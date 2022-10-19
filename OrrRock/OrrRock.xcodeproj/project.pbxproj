@@ -62,16 +62,24 @@
 		3AA4D41D28FEBADE006C718A /* OrrRock */ = {
 			isa = PBXGroup;
 			children = (
+				707B2CB128FFFE6C0062C958 /* Ruyha */,
 				3AA4D41E28FEBADE006C718A /* AppDelegate.swift */,
 				3AA4D42028FEBADE006C718A /* SceneDelegate.swift */,
 				3AA4D42228FEBADE006C718A /* MainViewController.swift */,
-				707B2CAF28FFFDB30062C958 /* UploadTestView.swift */,
 				3AA4D42A28FEBADF006C718A /* Assets.xcassets */,
 				3AA4D42C28FEBADF006C718A /* LaunchScreen.storyboard */,
 				3AA4D42F28FEBADF006C718A /* Info.plist */,
 				3AA4D42728FEBADE006C718A /* OrrRock.xcdatamodeld */,
 			);
 			path = OrrRock;
+			sourceTree = "<group>";
+		};
+		707B2CB128FFFE6C0062C958 /* Ruyha */ = {
+			isa = PBXGroup;
+			children = (
+				707B2CAF28FFFDB30062C958 /* UploadTestView.swift */,
+			);
+			path = Ruyha;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
