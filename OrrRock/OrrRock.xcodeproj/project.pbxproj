@@ -70,6 +70,8 @@
 		342C4567290066790037D9E7 /* HomeViewController */ = {
 			isa = PBXGroup;
 			children = (
+				342508A229001780000653D9 /* HomeViewController.swift */,
+				342508A42900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift */,
 			);
 			path = HomeViewController;
 			sourceTree = "<group>";
@@ -98,8 +100,6 @@
 			isa = PBXGroup;
 			children = (
 				342C4567290066790037D9E7 /* HomeViewController */,
-				342508A229001780000653D9 /* HomeViewController.swift */,
-				342508A42900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift */,
 				34B0113F2900158D0043951A /* ViewController */,
 			);
 			path = ViewControllers;
