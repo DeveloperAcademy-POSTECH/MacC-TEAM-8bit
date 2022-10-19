@@ -11,7 +11,7 @@ import PhotosUI
 
 import NVActivityIndicatorView
 
-class UploadTestView: UIViewController {
+class UploadTestViewController: UIViewController {
     
     //MARK: View에 추가를 해야하는 것들을 선언합니다.
     //인디게이터 사용을 위한 선언
@@ -51,7 +51,7 @@ class UploadTestView: UIViewController {
 
 
 //MARK: SnapKit관련 함수들입니다.
-extension UploadTestView{
+extension UploadTestViewController{
     func addTestBtn(){
         self.view.addSubview(testButton)
         testButton.snp.makeConstraints {
@@ -71,7 +71,7 @@ extension UploadTestView{
 }
 
 //MARK: 버튼 클릭 등 이벤트 관련 함수들입니다.
-extension UploadTestView{
+extension UploadTestViewController{
     
     @objc func testButtonPressed(sender: UIButton!) {
         var configuration = PHPickerConfiguration()
@@ -85,7 +85,7 @@ extension UploadTestView{
     }
 }
 
-extension UploadTestView: PHPickerViewControllerDelegate {
+extension UploadTestViewController: PHPickerViewControllerDelegate {
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
@@ -108,6 +108,7 @@ extension UploadTestView: PHPickerViewControllerDelegate {
                         DispatchQueue.main.sync {
                             //인디케이터를 숨깁니다.
                             self.indicator.stopAnimating()
+                            self.navigationController?.pushViewController(UpoadTestNextViewController(), animated: true)
                         }
                     }
                 }
