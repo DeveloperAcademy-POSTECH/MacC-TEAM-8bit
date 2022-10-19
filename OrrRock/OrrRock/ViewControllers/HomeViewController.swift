@@ -95,7 +95,7 @@ final class HomeViewController : UIViewController {
         self.view.backgroundColor = .systemGray5
         
         setLayout()
-        setUICollectionView()
+        setUICollectionViewDelegate()
     }
     
     // MARK: Layout Function

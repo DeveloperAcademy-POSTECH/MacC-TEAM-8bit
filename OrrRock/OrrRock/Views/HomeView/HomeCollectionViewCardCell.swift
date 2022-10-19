@@ -154,7 +154,8 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         return df
     }()
     
-    func setData() {
+    // 작성중인 함수
+    func setCardViewData() {
         dateLabel.text = dateFormatter.string(from: visitedDate)
         gymLabel.text = visitedGymName
         countPFLabel.text = "\(successCount)번의 성공, \(failCount)번의 실패"

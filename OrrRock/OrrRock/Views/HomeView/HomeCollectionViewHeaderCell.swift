@@ -39,6 +39,5 @@ class HomeCollectionViewHeaderCell: UICollectionReusableView {
     
     func setLayout() {
         addSubview(headerTitle)
-        
     }
 }
