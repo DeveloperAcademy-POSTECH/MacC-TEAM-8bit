@@ -34,12 +34,12 @@ final class HomeCardCollectionViewThumbnailCell: UICollectionViewCell {
         contentView.addSubview(thumbnailView)
         thumbnailView.backgroundColor = .systemGray
         
-        thumbnailView.snp.makeConstraints { make in
-            make.edges.equalTo(contentView.safeAreaLayoutGuide)
+        thumbnailView.snp.makeConstraints {
+            $0.edges.equalTo(contentView.safeAreaLayoutGuide)
         }
     }
     
-    func setData(image: UIImage) {
+    func setData(image: UIImage?) {
         thumbnailView.image = image
     }
 }

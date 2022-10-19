@@ -88,6 +88,13 @@ final class HomeViewController : UIViewController {
         return view
     }()
     
+    // MARK: Components
+    private let dateFormatter: DateFormatter = {
+       let df = DateFormatter()
+        df.dateFormat = "yyyy년 M월 d일"
+        return df
+    }()
+    
     // MARK: View Lifecycle Function
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -141,4 +148,7 @@ final class HomeViewController : UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
     }
+    
+    // MARK: Data Filtering Function
+    
 }

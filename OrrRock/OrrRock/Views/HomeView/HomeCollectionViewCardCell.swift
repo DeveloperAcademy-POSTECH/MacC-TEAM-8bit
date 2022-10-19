@@ -17,12 +17,11 @@ import UIKit
 final class HomeCollectionViewCardCell: UICollectionViewCell {
     
     // MARK: Data
-    var visitedDate: Date = Date()
-    var visitedGymName: String = "클라이밍장 정보"
-    var successCount: Int = 0
-    var failCount: Int = 0
-    var videoCount: Int = 0
-    var videoThumbnails: [UIImage] = []
+    private var visitedDate: String = "YYYY년 MM월 DD일"
+    private var visitedGymName: String = "클라이밍장 정보"
+    private var PFCountDescription: String = "N번의 성공, N번의 실패"
+    private var videoCountDescription: String = "N개의 비디오"
+     var videoThumbnails: [UIImage] = []
     
     // MARK: UI Components
     private let cardView: UIView = {
@@ -84,14 +83,14 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
     // MARK: View Lifecycle Function
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setCollectionView()
         setLayout()
+        setCollectionViewDelegate()
     }
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        setCollectionView()
         setLayout()
+        setCollectionViewDelegate()
     }
     
     // MARK: Layout Function
@@ -106,7 +105,6 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
             $0.leading.equalTo(cardView.snp.leading)
             $0.trailing.equalTo(cardView.snp.trailing)
             $0.centerY.equalTo(cardView.snp.centerY)
-            print("\(cardView.bounds.width) or \(cardView.frame.width)")
             $0.height.equalTo(((UIScreen.main.bounds.width - 32) / 5 * 2))
 
         }
@@ -142,25 +140,17 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         }
     }
     
-    func setCollectionView() {
+    func setCollectionViewDelegate() {
         thumbnailCollectionView.delegate = self
         thumbnailCollectionView.dataSource = self
     }
     
     // MARK: Value Assign Function
-    let dateFormatter: DateFormatter = {
-       let df = DateFormatter()
-        df.dateFormat = "yyyy년 M월 d일"
-        return df
-    }()
-    
-    // 작성중인 함수
-    func setCardViewData() {
-        dateLabel.text = dateFormatter.string(from: visitedDate)
-        gymLabel.text = visitedGymName
-        countPFLabel.text = "\(successCount)번의 성공, \(failCount)번의 실패"
-        countTotalVideoLabel.text = "\(videoCount)개의 비디오"
-        
-        // ThumbnailCollectionView의 image 지정해주기
+    func loadCardViewData(visitedDate: String, visitedGymName: String, PFCountDescription: String, videoCountDescription: String, thumbnails: [UIImage]) {
+        self.visitedDate = visitedDate
+        self.visitedGymName = visitedGymName
+        self.PFCountDescription = PFCountDescription
+        self.videoCountDescription = videoCountDescription
+        self.videoThumbnails = thumbnails
     }
 }

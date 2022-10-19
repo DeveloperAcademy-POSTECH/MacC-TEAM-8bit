@@ -20,6 +20,15 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewCardCell", for: indexPath) as! HomeCollectionViewCardCell
         
+        cell.loadCardViewData(visitedDate: "2022년 10월 20일",
+                              visitedGymName: "떠들석 클라이밍",
+                              PFCountDescription: "3회 실패 / 4회 성공",
+                              videoCountDescription: "7개의 영상",
+                              thumbnails: [UIImage(systemName: "house.fill")!,
+                                           UIImage(systemName: "gear")!,
+                                           UIImage(systemName: "person")!,
+                                           UIImage(systemName: "car")!])
+        
         return cell
     }
 }
