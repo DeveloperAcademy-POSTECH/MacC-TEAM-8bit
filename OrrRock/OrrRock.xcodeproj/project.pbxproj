@@ -15,6 +15,7 @@
 		3AA4D42E28FEBADF006C718A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA4D42C28FEBADF006C718A /* LaunchScreen.storyboard */; };
 		3AA4D43728FEBE94006C718A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA4D43628FEBE94006C718A /* SnapKit */; };
 		707B2CAE28FFF7090062C958 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 707B2CAD28FFF7090062C958 /* NVActivityIndicatorView */; };
+		707B2CB028FFFDB30062C958 /* UploadTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CAF28FFFDB30062C958 /* UploadTestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		3AA4D42A28FEBADF006C718A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AA4D42D28FEBADF006C718A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AA4D42F28FEBADF006C718A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		707B2CAF28FFFDB30062C958 /* UploadTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				3AA4D41E28FEBADE006C718A /* AppDelegate.swift */,
 				3AA4D42028FEBADE006C718A /* SceneDelegate.swift */,
 				3AA4D42228FEBADE006C718A /* MainViewController.swift */,
+				707B2CAF28FFFDB30062C958 /* UploadTestView.swift */,
 				3AA4D42A28FEBADF006C718A /* Assets.xcassets */,
 				3AA4D42C28FEBADF006C718A /* LaunchScreen.storyboard */,
 				3AA4D42F28FEBADF006C718A /* Info.plist */,
@@ -150,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
+				707B2CB028FFFDB30062C958 /* UploadTestView.swift in Sources */,
 				3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */,
 				3AA4D42928FEBADE006C718A /* OrrRock.xcdatamodeld in Sources */,
 				3AA4D42128FEBADE006C718A /* SceneDelegate.swift in Sources */,
@@ -291,7 +295,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ML59XN7A6B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -318,7 +322,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ML59XN7A6B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
