@@ -79,12 +79,12 @@
 		34B0113E290015860043951A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				34B0113F2900158D0043951A /* ViewController */,
 				342508A229001780000653D9 /* HomeViewController.swift */,
 				342508A42900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift */,
 				342508A629001BBC000653D9 /* HomeCollectionViewCardCell.swift */,
 				342508A829001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift */,
 				342508AA29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift */,
+				34B0113F2900158D0043951A /* ViewController */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -243,7 +243,7 @@
 			files = (
 				342508AF29002F31000653D9 /* HomeCollectionViewHeaderCell.swift in Sources */,
 				342508A729001BBC000653D9 /* HomeCollectionViewCardCell.swift in Sources */,
-				3AA4D42328FEBADE006C718A /* ViewController.swift in Sources */,
+				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
 				707B2CB028FFFDB30062C958 /* UploadTestViewController.swift in Sources */,
 				3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */,

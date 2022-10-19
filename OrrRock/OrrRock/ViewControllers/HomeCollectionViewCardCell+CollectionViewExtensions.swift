@@ -10,12 +10,10 @@
 //      받아온 영상의 개수가 0개~10개까지는 해당 개수를 return.
 //      영상의 개수가 10개가 넘을 때에는 10을 return 하도록 작성 필요.
 
-import Foundation
 import UIKit
 
-extension HomeCollectionViewCardCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension HomeCollectionViewCardCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return 10
     }
     
@@ -23,7 +21,9 @@ extension HomeCollectionViewCardCell: UICollectionViewDataSource, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCardCollectionViewThumbnailCell", for: indexPath) as! HomeCardCollectionViewThumbnailCell
         return cell
     }
-    
+}
+
+extension HomeCollectionViewCardCell:  UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width = contentView.bounds.width / 5 - 1
@@ -32,4 +32,3 @@ extension HomeCollectionViewCardCell: UICollectionViewDataSource, UICollectionVi
         return CGSize(width: Double(width), height: Double(height))
     }
 }
-
