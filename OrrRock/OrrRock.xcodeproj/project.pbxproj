@@ -20,11 +20,14 @@
 		34B01149290015A60043951A /* Model in Resources */ = {isa = PBXBuildFile; fileRef = 34B01148290015A60043951A /* Model */; };
 		3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D41E28FEBADE006C718A /* AppDelegate.swift */; };
 		3AA4D42128FEBADE006C718A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D42028FEBADE006C718A /* SceneDelegate.swift */; };
-		3AA4D42328FEBADE006C718A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D42228FEBADE006C718A /* ViewController.swift */; };
+		3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D42228FEBADE006C718A /* MainViewController.swift */; };
 		3AA4D42928FEBADE006C718A /* OrrRock.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D42728FEBADE006C718A /* OrrRock.xcdatamodeld */; };
 		3AA4D42B28FEBADF006C718A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AA4D42A28FEBADF006C718A /* Assets.xcassets */; };
 		3AA4D42E28FEBADF006C718A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA4D42C28FEBADF006C718A /* LaunchScreen.storyboard */; };
 		3AA4D43728FEBE94006C718A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA4D43628FEBE94006C718A /* SnapKit */; };
+		707B2CAE28FFF7090062C958 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 707B2CAD28FFF7090062C958 /* NVActivityIndicatorView */; };
+		707B2CB028FFFDB30062C958 /* UploadTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CAF28FFFDB30062C958 /* UploadTestViewController.swift */; };
+		707B2CB528FFFEFF0062C958 /* UpoadTestNextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB428FFFEFF0062C958 /* UpoadTestNextViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,11 +45,13 @@
 		3AA4D41B28FEBADE006C718A /* OrrRock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrrRock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA4D41E28FEBADE006C718A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AA4D42028FEBADE006C718A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3AA4D42228FEBADE006C718A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3AA4D42228FEBADE006C718A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3AA4D42828FEBADE006C718A /* OrrRock.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OrrRock.xcdatamodel; sourceTree = "<group>"; };
 		3AA4D42A28FEBADF006C718A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AA4D42D28FEBADF006C718A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AA4D42F28FEBADF006C718A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		707B2CAF28FFFDB30062C958 /* UploadTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTestViewController.swift; sourceTree = "<group>"; };
+		707B2CB428FFFEFF0062C958 /* UpoadTestNextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpoadTestNextViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				707B2CAE28FFF7090062C958 /* NVActivityIndicatorView in Frameworks */,
 				3AA4D43728FEBE94006C718A /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -126,6 +132,7 @@
 		3AA4D41D28FEBADE006C718A /* OrrRock */ = {
 			isa = PBXGroup;
 			children = (
+				707B2CB128FFFE6C0062C958 /* Ruyha */,
 				34B01147290015A10043951A /* Models */,
 				34B01144290015970043951A /* Resources */,
 				34B011412900158F0043951A /* Extensions */,
@@ -133,13 +140,22 @@
 				34B0113B290015760043951A /* Views */,
 				3AA4D41E28FEBADE006C718A /* AppDelegate.swift */,
 				3AA4D42028FEBADE006C718A /* SceneDelegate.swift */,
-				3AA4D42228FEBADE006C718A /* ViewController.swift */,
+				3AA4D42228FEBADE006C718A /* MainViewController.swift */,
 				3AA4D42A28FEBADF006C718A /* Assets.xcassets */,
 				3AA4D42C28FEBADF006C718A /* LaunchScreen.storyboard */,
 				3AA4D42F28FEBADF006C718A /* Info.plist */,
 				3AA4D42728FEBADE006C718A /* OrrRock.xcdatamodeld */,
 			);
 			path = OrrRock;
+			sourceTree = "<group>";
+		};
+		707B2CB128FFFE6C0062C958 /* Ruyha */ = {
+			isa = PBXGroup;
+			children = (
+				707B2CAF28FFFDB30062C958 /* UploadTestViewController.swift */,
+				707B2CB428FFFEFF0062C958 /* UpoadTestNextViewController.swift */,
+			);
+			path = Ruyha;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,6 +176,7 @@
 			name = OrrRock;
 			packageProductDependencies = (
 				3AA4D43628FEBE94006C718A /* SnapKit */,
+				707B2CAD28FFF7090062C958 /* NVActivityIndicatorView */,
 			);
 			productName = OrrRock;
 			productReference = 3AA4D41B28FEBADE006C718A /* OrrRock.app */;
@@ -191,6 +208,7 @@
 			mainGroup = 3AA4D41228FEBADE006C718A;
 			packageReferences = (
 				3AA4D43528FEBE94006C718A /* XCRemoteSwiftPackageReference "SnapKit" */,
+				707B2CAC28FFF7090062C958 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 			);
 			productRefGroup = 3AA4D41C28FEBADE006C718A /* Products */;
 			projectDirPath = "";
@@ -226,6 +244,8 @@
 				342508AF29002F31000653D9 /* HomeCollectionViewHeaderCell.swift in Sources */,
 				342508A729001BBC000653D9 /* HomeCollectionViewCardCell.swift in Sources */,
 				3AA4D42328FEBADE006C718A /* ViewController.swift in Sources */,
+				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
+				707B2CB028FFFDB30062C958 /* UploadTestViewController.swift in Sources */,
 				3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */,
 				342508A929001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift in Sources */,
 				3AA4D42928FEBADE006C718A /* OrrRock.xcdatamodeld in Sources */,
@@ -233,6 +253,7 @@
 				342508A52900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift in Sources */,
 				3AA4D42128FEBADE006C718A /* SceneDelegate.swift in Sources */,
 				342508AB29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift in Sources */,
+				707B2CB528FFFEFF0062C958 /* UpoadTestNextViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +471,14 @@
 				kind = branch;
 			};
 		};
+		707B2CAC28FFF7090062C958 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -457,6 +486,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3AA4D43528FEBE94006C718A /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		707B2CAD28FFF7090062C958 /* NVActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 707B2CAC28FFF7090062C958 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorView;
 		};
 /* End XCSwiftPackageProductDependency section */
 
