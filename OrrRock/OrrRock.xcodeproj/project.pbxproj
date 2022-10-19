@@ -14,6 +14,7 @@
 		3AA4D42B28FEBADF006C718A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AA4D42A28FEBADF006C718A /* Assets.xcassets */; };
 		3AA4D42E28FEBADF006C718A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA4D42C28FEBADF006C718A /* LaunchScreen.storyboard */; };
 		3AA4D43728FEBE94006C718A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA4D43628FEBE94006C718A /* SnapKit */; };
+		707B2CAE28FFF7090062C958 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 707B2CAD28FFF7090062C958 /* NVActivityIndicatorView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				707B2CAE28FFF7090062C958 /* NVActivityIndicatorView in Frameworks */,
 				3AA4D43728FEBE94006C718A /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -87,6 +89,7 @@
 			name = OrrRock;
 			packageProductDependencies = (
 				3AA4D43628FEBE94006C718A /* SnapKit */,
+				707B2CAD28FFF7090062C958 /* NVActivityIndicatorView */,
 			);
 			productName = OrrRock;
 			productReference = 3AA4D41B28FEBADE006C718A /* OrrRock.app */;
@@ -118,6 +121,7 @@
 			mainGroup = 3AA4D41228FEBADE006C718A;
 			packageReferences = (
 				3AA4D43528FEBE94006C718A /* XCRemoteSwiftPackageReference "SnapKit" */,
+				707B2CAC28FFF7090062C958 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 			);
 			productRefGroup = 3AA4D41C28FEBADE006C718A /* Products */;
 			projectDirPath = "";
@@ -366,6 +370,14 @@
 				kind = branch;
 			};
 		};
+		707B2CAC28FFF7090062C958 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -373,6 +385,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3AA4D43528FEBE94006C718A /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		707B2CAD28FFF7090062C958 /* NVActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 707B2CAC28FFF7090062C958 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorView;
 		};
 /* End XCSwiftPackageProductDependency section */
 
