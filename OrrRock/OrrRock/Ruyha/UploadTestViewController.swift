@@ -99,7 +99,7 @@ extension UploadTestViewController: PHPickerViewControllerDelegate {
                 self.indicator.stopAnimating()
         }
         
-        //선택된 영상에서 URL을 뽑아내는 로직이빈다.
+        //선택된 영상에서 URL을 뽑아내는 로직입니다.
         for i in 0..<results.count {
             results[i].itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { url, err in
                 if url != nil {
@@ -108,7 +108,9 @@ extension UploadTestViewController: PHPickerViewControllerDelegate {
                         DispatchQueue.main.sync {
                             //인디케이터를 숨깁니다.
                             self.indicator.stopAnimating()
-                            self.navigationController?.pushViewController(UpoadTestNextViewController(), animated: true)
+                            let nextVC = UpoadTestNextViewController()
+                            nextVC.viewUrlArray = myArray
+                            self.navigationController?.pushViewController(nextVC, animated: true)
                         }
                     }
                 }
