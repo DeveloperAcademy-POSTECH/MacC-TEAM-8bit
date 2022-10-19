@@ -17,6 +17,7 @@ import UIKit
 final class HomeCardCollectionViewThumbnailCell: UICollectionViewCell {
     private let thumbnailView: UIImageView = {
         let view = UIImageView()
+        
         return view
     }()
     

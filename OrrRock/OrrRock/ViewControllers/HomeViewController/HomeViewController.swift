@@ -94,13 +94,7 @@ final class HomeViewController : UIViewController {
         df.dateFormat = "yyyy년 M월 d일"
         return df
     }()
-    
-    var TESTCardDataList: [[TESTVideoInformationModel]] = [TESTVideoInformationModel.example,
-                                                           TESTVideoInformationModel.example2,
-                                                           TESTVideoInformationModel.example,
-                                                           TESTVideoInformationModel.example2,
-                                                           TESTVideoInformationModel.example,]
-    
+
     // MARK: View Lifecycle Function
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -14,26 +14,30 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // 디버깅을 위해 카드의 개수를 5로 지정해두었음.
         // 이후 동작 구현 시 카드 개수 지정을 위해 해당 값을 변경해주면 됨.
-//        return 5
-        return TESTCardDataList.count
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewCardCell", for: indexPath) as! HomeCollectionViewCardCell
         
-        var TESTSuccessed: Int = 0
-        var TESTthumbnails: [UIImage] = []
+        // 성공 개수 Count
+        // Thumbnails 배열 생성 (최대 10개의 UIImage를 담는 배열)
+        // CollectionViewCell에 필요한 데이터 loadCardViewData 함수를 통해 전달하기
         
-        TESTCardDataList[indexPath.row].forEach {
-            if $0.isSuccessed { TESTSuccessed += 1 }
-            TESTthumbnails.append(UIImage(systemName: $0.thumbnail)!)
-        }
-        
-        cell.loadCardViewData(visitedDate: dateFormatter.string(from: TESTCardDataList[indexPath.row][0].gymVisitDate),
-                              visitedGymName: TESTCardDataList[indexPath.row][0].gymName,
-                              PFCountDescription: "\(TESTSuccessed)개의 성공, \(TESTCardDataList[indexPath.row].count - TESTSuccessed)개의 실패",
-                              videoCountDescription: "\(TESTCardDataList[indexPath.row].count)개의 영상",
-                              thumbnails: TESTthumbnails)
+        // EX)
+        //        var TESTSuccessed: Int = 0
+        //        var TESTthumbnails: [UIImage] = []
+        //
+        //        TESTCardDataList[indexPath.row].forEach {
+        //            if $0.isSuccessed { TESTSuccessed += 1 }
+        //            TESTthumbnails.append(UIImage(named: $0.thumbnail)!)
+        //        }
+        //
+        //        cell.loadCardViewData(visitedDate: dateFormatter.string(from: TESTCardDataList[indexPath.row][0].gymVisitDate),
+        //                              visitedGymName: TESTCardDataList[indexPath.row][0].gymName,
+        //                              PFCountDescription: "\(TESTSuccessed)개의 성공, \(TESTCardDataList[indexPath.row].count - TESTSuccessed)개의 실패",
+        //                              videoCountDescription: "\(TESTCardDataList[indexPath.row].count)개의 영상",
+        //                              thumbnails: TESTthumbnails)
         
         return cell
     }
