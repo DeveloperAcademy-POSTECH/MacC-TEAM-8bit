@@ -147,10 +147,10 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
     
     // MARK: Value Assign Function
     func loadCardViewData(visitedDate: String, visitedGymName: String, PFCountDescription: String, videoCountDescription: String, thumbnails: [UIImage]) {
-        self.visitedDate = visitedDate
-        self.visitedGymName = visitedGymName
-        self.PFCountDescription = PFCountDescription
-        self.videoCountDescription = videoCountDescription
+        dateLabel.text = visitedDate
+        gymLabel.text = visitedGymName
+        countPFLabel.text = PFCountDescription
+        countTotalVideoLabel.text = videoCountDescription
         self.videoThumbnails = thumbnails
     }
 }

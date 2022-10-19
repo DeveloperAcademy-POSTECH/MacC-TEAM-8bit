@@ -51,7 +51,7 @@ final class HomeViewController : UIViewController {
     private let toolbarView: UIToolbar = {
         let view = UIToolbar()
         view.backgroundColor = .systemGray5
-
+        
         var items: [UIBarButtonItem] = []
         
         let myPageButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.rectangle"), style: .plain, target: HomeViewController.self, action: nil)
@@ -63,11 +63,11 @@ final class HomeViewController : UIViewController {
         items.append(myPageButton)
         items.append(flexibleSpace)
         items.append(addVideoButton)
-
+        
         items.forEach { (item) in
             item.tintColor = .systemBlue
         }
-
+        
         view.setItems(items, animated: true)
         
         return view
@@ -89,11 +89,17 @@ final class HomeViewController : UIViewController {
     }()
     
     // MARK: Components
-    private let dateFormatter: DateFormatter = {
-       let df = DateFormatter()
+    let dateFormatter: DateFormatter = {
+        let df = DateFormatter()
         df.dateFormat = "yyyy년 M월 d일"
         return df
     }()
+    
+    var TESTCardDataList: [[TESTVideoInformationModel]] = [TESTVideoInformationModel.example,
+                                                           TESTVideoInformationModel.example2,
+                                                           TESTVideoInformationModel.example,
+                                                           TESTVideoInformationModel.example2,
+                                                           TESTVideoInformationModel.example,]
     
     // MARK: View Lifecycle Function
     override func viewDidLoad() {
@@ -148,7 +154,4 @@ final class HomeViewController : UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
     }
-    
-    // MARK: Data Filtering Function
-    
 }

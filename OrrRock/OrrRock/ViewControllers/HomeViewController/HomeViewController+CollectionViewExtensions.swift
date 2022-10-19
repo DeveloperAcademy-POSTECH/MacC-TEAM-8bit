@@ -14,20 +14,26 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // 디버깅을 위해 카드의 개수를 5로 지정해두었음.
         // 이후 동작 구현 시 카드 개수 지정을 위해 해당 값을 변경해주면 됨.
-        return 5
+//        return 5
+        return TESTCardDataList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewCardCell", for: indexPath) as! HomeCollectionViewCardCell
         
-        cell.loadCardViewData(visitedDate: "2022년 10월 20일",
-                              visitedGymName: "떠들석 클라이밍",
-                              PFCountDescription: "3회 실패 / 4회 성공",
-                              videoCountDescription: "7개의 영상",
-                              thumbnails: [UIImage(systemName: "house.fill")!,
-                                           UIImage(systemName: "gear")!,
-                                           UIImage(systemName: "person")!,
-                                           UIImage(systemName: "car")!])
+        var TESTSuccessed: Int = 0
+        var TESTthumbnails: [UIImage] = []
+        
+        TESTCardDataList[indexPath.row].forEach {
+            if $0.isSuccessed { TESTSuccessed += 1 }
+            TESTthumbnails.append(UIImage(systemName: $0.thumbnail)!)
+        }
+        
+        cell.loadCardViewData(visitedDate: dateFormatter.string(from: TESTCardDataList[indexPath.row][0].gymVisitDate),
+                              visitedGymName: TESTCardDataList[indexPath.row][0].gymName,
+                              PFCountDescription: "\(TESTSuccessed)개의 성공, \(TESTCardDataList[indexPath.row].count - TESTSuccessed)개의 실패",
+                              videoCountDescription: "\(TESTCardDataList[indexPath.row].count)개의 영상",
+                              thumbnails: TESTthumbnails)
         
         return cell
     }
