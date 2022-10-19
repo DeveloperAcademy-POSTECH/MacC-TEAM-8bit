@@ -5,14 +5,14 @@
 //  Created by Ruyha on 2022/10/19.
 //
 
-import UIKit
-import SnapKit
 import PhotosUI
+import UIKit
 
 import NVActivityIndicatorView
+import SnapKit
 
-class UploadTestViewController: UIViewController {
-    
+final class UploadTestViewController: UIViewController {
+
     //MARK: View에 추가를 해야하는 것들을 선언합니다.
     //인디게이터 사용을 위한 선언
     let indicator : NVActivityIndicatorView = {
@@ -26,7 +26,7 @@ class UploadTestViewController: UIViewController {
         view.layer.masksToBounds = true
         return view
     }()
-    
+
     //추후 홈 화면 하단에 버튼을 생성한다면 이 버튼은 삭제 하셔야 합니다.
     let testButton : UIButton = {
         let btn = UIButton()
@@ -38,7 +38,7 @@ class UploadTestViewController: UIViewController {
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
-    
+
     //MARK: View의 생명주기 함수들이 있는 영역입니다.
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,33 +46,31 @@ class UploadTestViewController: UIViewController {
         addTestBtn()
         addIndicator()
     }
-    
 }
 
 
 //MARK: SnapKit관련 함수들입니다.
 extension UploadTestViewController{
-    func addTestBtn(){
+
+    func addTestBtn() {
         self.view.addSubview(testButton)
         testButton.snp.makeConstraints {
             $0.centerX.equalTo(self.view)
-            $0.bottom.equalTo(view.safeAreaInsets.bottom).offset(-20)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(20)
         }
     }
-    
-    func addIndicator(){
+
+    func addIndicator() {
         self.view.addSubview(indicator)
         indicator.snp.makeConstraints {
-            $0.centerX.equalTo(self.view)
-            $0.centerY.equalTo(self.view)
-            
+            $0.center.equalTo(self.view)
         }
     }
 }
 
 //MARK: 버튼 클릭 등 이벤트 관련 함수들입니다.
 extension UploadTestViewController{
-    
+
     @objc func testButtonPressed(sender: UIButton!) {
         var configuration = PHPickerConfiguration()
         configuration.selectionLimit = 0
@@ -86,19 +84,19 @@ extension UploadTestViewController{
 }
 
 extension UploadTestViewController: PHPickerViewControllerDelegate {
-    
+
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
         var myArray: [URL] = []
         //인디케이트를 소환합니다.
         indicator.startAnimating()
-        
+
         //사용자가 영상을 선택 하지 않은 상태일 때
         if results.count == 0{
                 //인디케이터를 숨깁니다.
                 self.indicator.stopAnimating()
         }
-        
+
         //선택된 영상에서 URL을 뽑아내는 로직입니다.
         for i in 0..<results.count {
             results[i].itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { url, err in
@@ -117,5 +115,4 @@ extension UploadTestViewController: PHPickerViewControllerDelegate {
             }
         }
     }
-
 }
