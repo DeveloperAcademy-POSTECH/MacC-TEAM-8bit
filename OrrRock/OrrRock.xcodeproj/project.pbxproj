@@ -67,11 +67,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		342C4567290066790037D9E7 /* HomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HomeViewController;
+			sourceTree = "<group>";
+		};
+		342C4568290066810037D9E7 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				342508A629001BBC000653D9 /* HomeCollectionViewCardCell.swift */,
+				342508A829001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift */,
+				342508AA29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift */,
+				342508AE29002F31000653D9 /* HomeCollectionViewHeaderCell.swift */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
 		34B0113B290015760043951A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				342C4568290066810037D9E7 /* HomeView */,
 				34B0113C290015830043951A /* View */,
-				342508AE29002F31000653D9 /* HomeCollectionViewHeaderCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -79,11 +97,9 @@
 		34B0113E290015860043951A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				342C4567290066790037D9E7 /* HomeViewController */,
 				342508A229001780000653D9 /* HomeViewController.swift */,
 				342508A42900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift */,
-				342508A629001BBC000653D9 /* HomeCollectionViewCardCell.swift */,
-				342508A829001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift */,
-				342508AA29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift */,
 				34B0113F2900158D0043951A /* ViewController */,
 			);
 			path = ViewControllers;
