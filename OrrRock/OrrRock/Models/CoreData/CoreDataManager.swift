@@ -28,11 +28,11 @@ class CoreDataManager {
         entity.setValue(info.feedback, forKey: "feedback")
         entity.setValue(info.isFavorite, forKey: "isFavorite")
         
-        saveData(context: context)
+        saveData()
     }
     
     // 추가한 데이터를 현재 context에 반영
-    func saveData(context: NSManagedObjectContext) {
+    func saveData() {
         do {
             try context.save()
         } catch {
