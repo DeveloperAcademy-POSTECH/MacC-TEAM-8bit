@@ -23,8 +23,13 @@ class MainViewController: UIViewController {
         testButton.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
+        testButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
-
+    
+    @objc func buttonAction(sender: UIButton!) {
+        let nextVC = VideoCollectionViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
 
 }
 
