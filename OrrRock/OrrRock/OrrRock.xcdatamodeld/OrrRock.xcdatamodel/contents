@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="true" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21279" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="VideoInformation" representedClassName="VideoInformation" syncable="YES" codeGenerationType="class">
+        <attribute name="feedback" optional="YES" attributeType="String"/>
+        <attribute name="gymName" attributeType="String" defaultValueString=""/>
+        <attribute name="gymVisitDate" attributeType="Date" defaultDateTimeInterval="687941220" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isFavorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isSucceeded" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="problemLevel" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="videoUrl" attributeType="String" defaultValueString=""/>
+    </entity>
 </model>
