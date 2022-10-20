@@ -7,11 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		342508A329001780000653D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A229001780000653D9 /* HomeViewController.swift */; };
+		342508A52900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A42900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift */; };
+		342508A729001BBC000653D9 /* HomeCollectionViewCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A629001BBC000653D9 /* HomeCollectionViewCardCell.swift */; };
+		342508A929001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A829001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift */; };
+		342508AB29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508AA29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift */; };
+		342508AF29002F31000653D9 /* HomeCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508AE29002F31000653D9 /* HomeCollectionViewHeaderCell.swift */; };
 		34B0113D290015830043951A /* View in Resources */ = {isa = PBXBuildFile; fileRef = 34B0113C290015830043951A /* View */; };
 		34B011402900158D0043951A /* ViewController in Resources */ = {isa = PBXBuildFile; fileRef = 34B0113F2900158D0043951A /* ViewController */; };
 		34B01143290015950043951A /* Extension in Resources */ = {isa = PBXBuildFile; fileRef = 34B01142290015950043951A /* Extension */; };
 		34B011462900159F0043951A /* Resource in Resources */ = {isa = PBXBuildFile; fileRef = 34B011452900159F0043951A /* Resource */; };
 		34B01149290015A60043951A /* Model in Resources */ = {isa = PBXBuildFile; fileRef = 34B01148290015A60043951A /* Model */; };
+		3A08879C29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A08879A29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift */; };
+		3A08879D29012C8A00EFFDBB /* VideoInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A08879B29012C8A00EFFDBB /* VideoInformation+CoreDataProperties.swift */; };
 		3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D41E28FEBADE006C718A /* AppDelegate.swift */; };
 		3AA4D42128FEBADE006C718A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D42028FEBADE006C718A /* SceneDelegate.swift */; };
 		3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D42228FEBADE006C718A /* MainViewController.swift */; };
@@ -27,11 +35,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		342508A229001780000653D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		342508A42900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+CollectionViewExtensions.swift"; sourceTree = "<group>"; };
+		342508A629001BBC000653D9 /* HomeCollectionViewCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCardCell.swift; sourceTree = "<group>"; };
+		342508A829001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeCollectionViewCardCell+CollectionViewExtensions.swift"; sourceTree = "<group>"; };
+		342508AA29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardCollectionViewThumbnailCell.swift; sourceTree = "<group>"; };
+		342508AE29002F31000653D9 /* HomeCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
 		34B0113C290015830043951A /* View */ = {isa = PBXFileReference; lastKnownFileType = text; path = View; sourceTree = "<group>"; };
 		34B0113F2900158D0043951A /* ViewController */ = {isa = PBXFileReference; lastKnownFileType = text; path = ViewController; sourceTree = "<group>"; };
 		34B01142290015950043951A /* Extension */ = {isa = PBXFileReference; lastKnownFileType = text; path = Extension; sourceTree = "<group>"; };
 		34B011452900159F0043951A /* Resource */ = {isa = PBXFileReference; lastKnownFileType = text; path = Resource; sourceTree = "<group>"; };
 		34B01148290015A60043951A /* Model */ = {isa = PBXFileReference; lastKnownFileType = text; path = Model; sourceTree = "<group>"; };
+		3A08879A29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoInformation+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3A08879B29012C8A00EFFDBB /* VideoInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3AA4D41B28FEBADE006C718A /* OrrRock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrrRock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA4D41E28FEBADE006C718A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AA4D42028FEBADE006C718A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,9 +75,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		342C4567290066790037D9E7 /* HomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				342508A229001780000653D9 /* HomeViewController.swift */,
+				342508A42900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift */,
+			);
+			path = HomeViewController;
+			sourceTree = "<group>";
+		};
+		342C4568290066810037D9E7 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				342508A629001BBC000653D9 /* HomeCollectionViewCardCell.swift */,
+				342508A829001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift */,
+				342508AA29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift */,
+				342508AE29002F31000653D9 /* HomeCollectionViewHeaderCell.swift */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
 		34B0113B290015760043951A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				342C4568290066810037D9E7 /* HomeView */,
 				34B0113C290015830043951A /* View */,
 			);
 			path = Views;
@@ -70,6 +107,7 @@
 		34B0113E290015860043951A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				342C4567290066790037D9E7 /* HomeViewController */,
 				34B0113F2900158D0043951A /* ViewController */,
 			);
 			path = ViewControllers;
@@ -96,9 +134,19 @@
 		34B01147290015A10043951A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3A08879E29012CC300EFFDBB /* CoreData */,
 				34B01148290015A60043951A /* Model */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		3A08879E29012CC300EFFDBB /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				3A08879A29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift */,
+				3A08879B29012C8A00EFFDBB /* VideoInformation+CoreDataProperties.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		3AA4D41228FEBADE006C718A = {
@@ -230,12 +278,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				707B2CB829012BFE0062C958 /* Color+.swift in Sources */,
+				342508AF29002F31000653D9 /* HomeCollectionViewHeaderCell.swift in Sources */,
+				342508A729001BBC000653D9 /* HomeCollectionViewCardCell.swift in Sources */,
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
+				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
+				3A08879C29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift in Sources */,
 				707B2CB028FFFDB30062C958 /* UploadTestViewController.swift in Sources */,
 				707B2CBA2901382A0062C958 /* Padding+.swift in Sources */,
 				3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */,
+				3A08879D29012C8A00EFFDBB /* VideoInformation+CoreDataProperties.swift in Sources */,
+				342508A929001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift in Sources */,
 				3AA4D42928FEBADE006C718A /* OrrRock.xcdatamodeld in Sources */,
+				342508A329001780000653D9 /* HomeViewController.swift in Sources */,
+				342508A52900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift in Sources */,
 				3AA4D42128FEBADE006C718A /* SceneDelegate.swift in Sources */,
+				342508AB29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift in Sources */,
 				707B2CB528FFFEFF0062C958 /* UpoadTestNextViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
