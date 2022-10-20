@@ -8,7 +8,13 @@
 import UIKit
 
 class MainViewController: UIViewController {
-
+    
+    private lazy var testButton : UIButton = {
+        let button = UIButton()
+        button.setTitle("gotoalbum", for: .normal)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
