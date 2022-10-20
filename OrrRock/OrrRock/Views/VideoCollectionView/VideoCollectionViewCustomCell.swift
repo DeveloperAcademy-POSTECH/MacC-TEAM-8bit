@@ -10,6 +10,7 @@ import SnapKit
 
 class VideoCollectionViewCell : UICollectionViewCell{
     static let identifier = "customVideoCollectionCell"
+
     
     private lazy var cellImage : UIImageView = {
         let img = UIImageView()
@@ -30,5 +31,41 @@ class VideoCollectionViewCell : UICollectionViewCell{
         return label
     }()
     
+    private lazy var heartImage : UIView  = {
+        let img = UIImageView()
+        img.translatesAutoresizingMaskIntoConstraints = false
+        img.image = UIImage(systemName: "heart.fill")
+        img.tintColor = .white
+        img.contentMode = .scaleToFill
+        return img
+    }()
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.cellSetting()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func cellSetting() {
+        self.backgroundColor = .gray
+        self.addSubview(cellImage)
+        cellImage.snp.makeConstraints {
+            $0.leading.top.trailing.equalTo(0)
+            $0.bottom.equalTo(0)
+        }
+        self.addSubview(cellLabel)
+        cellLabel.snp.makeConstraints {
+            $0.bottom.equalTo(cellImage.snp.bottom).offset(-16)
+            $0.leading.equalTo(cellImage.snp.leading).offset(16)
+        }
+        self.addSubview(heartImage)
+        heartImage.snp.makeConstraints {
+            $0.leading.equalTo(cellLabel.snp.trailing).offset(1)
+            $0.centerY.equalTo(cellLabel.snp.centerY)
+        }
+        
+    }
 }
