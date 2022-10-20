@@ -25,8 +25,6 @@ class CoreDataManager {
         entity.setValue(info.videoUrl, forKey: "videoUrl")
         entity.setValue(info.problemLevel, forKey: "problemLevel")
         entity.setValue(info.isSucceeded, forKey: "isSucceeded")
-        entity.setValue(info.feedback, forKey: "feedback")
-        entity.setValue(info.isFavorite, forKey: "isFavorite")
         
         saveData()
     }
