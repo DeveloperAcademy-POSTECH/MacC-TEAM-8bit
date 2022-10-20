@@ -15,6 +15,22 @@ class CoreDataManager {
     private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     private lazy var context = appDelegate.persistentContainer.viewContext
     
+    // VideoInfo 구조체를 매개변수로 받아 VideoInformation NSManagedObject에 추가
+    func createData(info: VideoInfo) {
+        let entity = NSEntityDescription.insertNewObject(forEntityName: "VideoInformation", into: context)
+        
+        entity.setValue(UUID(), forKey: "id")
+        entity.setValue(info.gymName, forKey: "gymName")
+        entity.setValue(info.gymVisitDate, forKey: "gymVisitDate")
+        entity.setValue(info.videoUrl, forKey: "videoUrl")
+        entity.setValue(info.problemLevel, forKey: "problemLevel")
+        entity.setValue(info.isSucceeded, forKey: "isSucceeded")
+        entity.setValue(info.feedback, forKey: "feedback")
+        entity.setValue(info.isFavorite, forKey: "isFavorite")
+        
+        saveData(context: context)
+    }
+    
     // 추가한 데이터를 현재 context에 반영
     func saveData(context: NSManagedObjectContext) {
         do {
