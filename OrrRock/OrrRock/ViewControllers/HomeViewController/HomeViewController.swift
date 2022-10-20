@@ -19,6 +19,12 @@ final class HomeViewController : UIViewController {
     // MARK: UI Components
     // CollectionView의 좌우 여백을 이용해 동적으로 UI 그리기 위한 변수
     let HorizontalPaddingSize: CGFloat = 16
+    var isCardView: Bool = false {
+        didSet {
+            collectionView.reloadData()
+            collectionView.collectionViewLayout.invalidateLayout()
+        }
+    }
     
     private lazy var headerView: UIView = {
         let view = UIView()
@@ -54,8 +60,8 @@ final class HomeViewController : UIViewController {
         
         var items: [UIBarButtonItem] = []
         
-        let myPageButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.rectangle"), style: .plain, target: HomeViewController.self, action: nil)
-        let addVideoButton = UIBarButtonItem(image: UIImage(systemName: "camera.fill"), style: .plain, target: HomeViewController.self, action: nil)
+        let myPageButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.rectangle"), style: .plain, target: self, action: nil)
+        let addVideoButton = UIBarButtonItem(image: UIImage(systemName: "camera.fill"), style: .plain, target: self, action: nil)
         
         // toolbar 내 Spacer() 역할
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: HomeViewController.self, action: nil)
@@ -75,13 +81,21 @@ final class HomeViewController : UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let flow = UICollectionViewFlowLayout()
+        flow.minimumInteritemSpacing = 1
+        flow.minimumLineSpacing = 1
         
         var view = UICollectionView(frame: CGRect.zero, collectionViewLayout: flow)
         view.register(HomeCollectionViewCardCell.classForCoder(),
                       forCellWithReuseIdentifier: "homeCollectionViewCardCell")
+        view.register(HomeCollectionViewListCell.classForCoder(),
+                      forCellWithReuseIdentifier: "homeCollectionViewListCell")
         view.register(HomeCollectionViewHeaderCell.self,
                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                       withReuseIdentifier: HomeCollectionViewHeaderCell.identifier)
+        view.register(HomeCollectionViewFooterCell.self,
+                      forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                      withReuseIdentifier: HomeCollectionViewFooterCell.identifier)
+        
         view.showsVerticalScrollIndicator = false
         view.backgroundColor = UIColor.clear
         
@@ -144,7 +158,7 @@ final class HomeViewController : UIViewController {
         }
     }
     
-    func setUICollectionViewDelegate() {
+    private func setUICollectionViewDelegate() {
         collectionView.dataSource = self
         collectionView.delegate = self
     }
