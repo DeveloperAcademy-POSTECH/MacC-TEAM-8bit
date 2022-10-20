@@ -18,7 +18,7 @@ extension UIColor{
     static let orrGray3 = UIColor(named: "oRGray3")
     static let orrGray4 = UIColor(named: "oRGray4")
     static let orrGray5 = UIColor(named: "oRGray5")
-    
+
     //SUB COLOR
     static let orrPass = UIColor(named: "oRPass")
     static let orrFail = UIColor(named: "oRFail")
