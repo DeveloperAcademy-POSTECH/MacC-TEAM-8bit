@@ -15,7 +15,7 @@ import SnapKit
 import UIKit
 
 final class HomeCardCollectionViewThumbnailCell: UICollectionViewCell {
-    private let thumbnailView: UIImageView = {
+    private lazy var thumbnailView: UIImageView = {
         let view = UIImageView()
         
         return view
@@ -23,15 +23,15 @@ final class HomeCardCollectionViewThumbnailCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setLayout()
+        setUpLayout()
     }
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        setLayout()
+        setUpLayout()
     }
     
-    func setLayout() {
+    func setUpLayout() {
         contentView.addSubview(thumbnailView)
         thumbnailView.backgroundColor = .systemGray
         
@@ -40,7 +40,7 @@ final class HomeCardCollectionViewThumbnailCell: UICollectionViewCell {
         }
     }
     
-    func setData(image: UIImage?) {
+    func setUpData(image: UIImage?) {
         thumbnailView.image = image
     }
 }

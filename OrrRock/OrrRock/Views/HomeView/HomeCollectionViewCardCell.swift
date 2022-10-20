@@ -24,21 +24,21 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
      var videoThumbnails: [UIImage] = []
     
     // MARK: UI Components
-    private let cardView: UIView = {
+    private lazy var cardView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 10
         return view
     }()
     
-    private let dateLabel: UILabel = {
+    private lazy var dateLabel: UILabel = {
         let view = UILabel()
         view.text = "YYYY년 MM월 DD일"
         view.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return view
     }()
     
-    private let gymLabel: UILabel = {
+    private lazy var gymLabel: UILabel = {
         let view = UILabel()
         view.text = "클라이밍장 정보"
         view.font = UIFont.systemFont(ofSize: 12)
@@ -46,7 +46,7 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         return view
     }()
     
-    private let thumbnailCollectionView: UICollectionView = {
+    private lazy var thumbnailCollectionView: UICollectionView = {
         let flow = UICollectionViewFlowLayout()
         flow.minimumInteritemSpacing = 1
         flow.minimumLineSpacing = 1
@@ -58,14 +58,14 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         return view
     }()
     
-    private let countPFLabel: UILabel = {
+    private lazy var countPFLabel: UILabel = {
         let view = UILabel()
         view.text = "N번의 성공, N번의 실패"
         view.font = UIFont.systemFont(ofSize: 12)
         return view
     }()
     
-    private let countTotalVideoLabel: UILabel = {
+    private lazy var countTotalVideoLabel: UILabel = {
         let view = UILabel()
         view.text = "N개의 비디오"
         view.font = UIFont.systemFont(ofSize: 12)
@@ -73,7 +73,7 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         return view
     }()
     
-    private let detailButton: UIButton = {
+    private lazy var detailButton: UIButton = {
         let button = UIButton()
         button.setTitle("더 보기", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -83,18 +83,18 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
     // MARK: View Lifecycle Function
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setLayout()
+        setUpLayout()
         setCollectionViewDelegate()
     }
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        setLayout()
+        setUpLayout()
         setCollectionViewDelegate()
     }
     
     // MARK: Layout Function
-    func setLayout() {
+    func setUpLayout() {
         contentView.addSubview(cardView)
         cardView.snp.makeConstraints {
             $0.edges.equalTo(contentView)
@@ -146,7 +146,7 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
     }
     
     // MARK: Value Assign Function
-    func loadCardViewData(visitedDate: String, visitedGymName: String, PFCountDescription: String, videoCountDescription: String, thumbnails: [UIImage]) {
+    func setUpData(visitedDate: String, visitedGymName: String, PFCountDescription: String, videoCountDescription: String, thumbnails: [UIImage]) {
         dateLabel.text = visitedDate
         gymLabel.text = visitedGymName
         countPFLabel.text = PFCountDescription

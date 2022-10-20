@@ -15,7 +15,7 @@ import UIKit
 class HomeCollectionViewHeaderCell: UICollectionReusableView {
     static let identifier = "HomeCollectionViewHeaderCell"
     
-    let headerTitle: UILabel = {
+    private lazy var headerTitle: UILabel = {
         let view = UILabel()
         view.text = "모든 비디오"
         view.font = UIFont.systemFont(ofSize: 22, weight: .bold)
@@ -25,7 +25,7 @@ class HomeCollectionViewHeaderCell: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setLayout()
+        setUpLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -37,7 +37,7 @@ class HomeCollectionViewHeaderCell: UICollectionReusableView {
         headerTitle.frame = bounds
     }
     
-    func setLayout() {
+    func setUpLayout() {
         addSubview(headerTitle)
     }
 }

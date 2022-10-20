@@ -20,7 +20,7 @@ final class HomeViewController : UIViewController {
     // CollectionView의 좌우 여백을 이용해 동적으로 UI 그리기 위한 변수
     let HorizontalPaddingSize: CGFloat = 16
     
-    private let headerView: UIView = {
+    private lazy var headerView: UIView = {
         let view = UIView()
         
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
@@ -32,7 +32,7 @@ final class HomeViewController : UIViewController {
         return view
     }()
     
-    private let logoView: UILabel = {
+    private lazy var logoView: UILabel = {
         // 앱 로고와 타이틀 디자인이 확정나면 이 컴포넌트를 활용해 그려주기
         let view = UILabel()
         view.text = "오르락 로고"
@@ -40,7 +40,7 @@ final class HomeViewController : UIViewController {
         return view
     }()
     
-    private let quickActionButton: UIButton = {
+    private lazy var quickActionButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "rectangle.stack"), for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
@@ -48,7 +48,7 @@ final class HomeViewController : UIViewController {
         return button
     }()
     
-    private let toolbarView: UIToolbar = {
+    private lazy var toolbarView: UIToolbar = {
         let view = UIToolbar()
         view.backgroundColor = .systemGray5
         
@@ -73,7 +73,7 @@ final class HomeViewController : UIViewController {
         return view
     }()
     
-    private let collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let flow = UICollectionViewFlowLayout()
         
         var view = UICollectionView(frame: CGRect.zero, collectionViewLayout: flow)
@@ -89,7 +89,7 @@ final class HomeViewController : UIViewController {
     }()
     
     // MARK: Components
-    let dateFormatter: DateFormatter = {
+    private let dateFormatter: DateFormatter = {
         let df = DateFormatter()
         df.dateFormat = "yyyy년 M월 d일"
         return df
@@ -101,12 +101,12 @@ final class HomeViewController : UIViewController {
         
         self.view.backgroundColor = .systemGray5
         
-        setLayout()
+        setUpLayout()
         setUICollectionViewDelegate()
     }
     
     // MARK: Layout Function
-    func setLayout() {
+    private func setUpLayout() {
         self.view.addSubview(toolbarView)
         toolbarView.snp.makeConstraints {
             $0.height.equalTo(45)

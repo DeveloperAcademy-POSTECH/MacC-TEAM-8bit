@@ -7,6 +7,7 @@
 
 // MARK: TODO
 // 퀵 액션을 통해 앨범형/목록형 옵션 변환에 따른 HeaderView 높이 변경 구현 필요
+// 데이터 파싱 함수 구현 필요
 
 import UIKit
 
@@ -20,7 +21,8 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewCardCell", for: indexPath) as! HomeCollectionViewCardCell
         
-        // 성공 개수 Count
+        // TODO
+        // 성공 개수 Count 하기
         // Thumbnails 배열 생성 (최대 10개의 UIImage를 담는 배열)
         // CollectionViewCell에 필요한 데이터 loadCardViewData 함수를 통해 전달하기
         
