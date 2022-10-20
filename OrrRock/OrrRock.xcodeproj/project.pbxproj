@@ -143,8 +143,8 @@
 			children = (
 				3A08879A29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift */,
 				3A08879B29012C8A00EFFDBB /* VideoInformation+CoreDataProperties.swift */,
-				3A70C3C52901435200BE11B5 /* VideoInfo.swift */,
 				3A70C3CE2901CB9600BE11B5 /* CoreDataManager.swift */,
+				3A70C3C52901435200BE11B5 /* VideoInfo.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
