@@ -11,8 +11,11 @@
 // Toolbar의 addVideoButton의 action으로 영상 추가로 이동하는 동작 구현
 // 색상 확정나면 지정해주기
 
-import SnapKit
+import PhotosUI
 import UIKit
+
+import NVActivityIndicatorView
+import SnapKit
 
 final class HomeViewController : UIViewController {
     
@@ -20,6 +23,25 @@ final class HomeViewController : UIViewController {
     // CollectionView의 좌우 여백을 이용해 동적으로 UI 그리기 위한 변수
     let HorizontalPaddingSize: CGFloat = 16
     
+    //인디게이터 사용을 위한 선언
+    private let indicator : NVActivityIndicatorView = {
+        let view = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 150, height: 150),
+                                           type: .lineSpinFadeLoader,
+                                           color: .lightGray,
+                                           padding: 50)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        view.layoutIfNeeded()
+        view.layer.cornerRadius = 15
+        view.layer.masksToBounds = true
+        return view
+    }()
+
+    //인디게이터가 돌 때 다른 동작을 못하게 하기위한 뷰
+    private lazy var blockTouchView: UIView = {
+        let view = UIView()
+        return view
+    }()
+
     private lazy var headerView: UIView = {
         let view = UIView()
         
@@ -54,9 +76,9 @@ final class HomeViewController : UIViewController {
         
         var items: [UIBarButtonItem] = []
         
-        let myPageButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.rectangle"), style: .plain, target: HomeViewController.self, action: nil)
-        let addVideoButton = UIBarButtonItem(image: UIImage(systemName: "camera.fill"), style: .plain, target: HomeViewController.self, action: nil)
-        
+        let myPageButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.rectangle"), style: .plain, target: self, action: nil)
+        let addVideoButton = UIBarButtonItem(image: UIImage(systemName: "camera.fill"), style: .plain, target: self, action: #selector(testButtonPressed))
+
         // toolbar 내 Spacer() 역할
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: HomeViewController.self, action: nil)
         
@@ -142,10 +164,87 @@ final class HomeViewController : UIViewController {
             $0.bottom.equalTo(headerView.snp.bottom).inset(16)
             $0.trailing.equalTo(headerView.snp.trailing).inset(24)
         }
+
+        // 인디게이터 위치 추가
+        self.view.addSubview(indicator)
+        indicator.snp.makeConstraints {
+            $0.center.equalTo(self.view)
+        }
+        
+    }
+
+    //이친구는 반복적으로 추가되고 삭제 되어야해서 따로 만들었습니다.
+    func addBlockTouchView(){
+        self.view.addSubview(blockTouchView)
+        blockTouchView.snp.makeConstraints {
+            $0.top.equalTo(view.snp.top)
+            $0.trailing.equalTo(view.snp.trailing)
+            $0.leading.equalTo(view.snp.leading)
+            $0.bottom.equalTo(view.snp.bottom)
+        }
     }
     
     func setUICollectionViewDelegate() {
         collectionView.dataSource = self
         collectionView.delegate = self
+    }
+}
+
+extension HomeViewController{
+
+    @objc func testButtonPressed(sender: UIButton!) {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 0
+        //인디게이터 도는거 보고 싶으면 아랫줄을 주석 처리해주세요.
+        configuration.preferredAssetRepresentationMode = .current
+        configuration.filter = .any(of: [.videos])
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        self.present(picker, animated: true, completion: nil)
+    }
+
+    //터치를 제한하는 뷰를 추가하고 인디게이터를 실행 시킵니다.
+    func startIndicator(){
+        addBlockTouchView()
+        indicator.startAnimating()
+    }
+
+    func stopIndicator(){
+        self.indicator.stopAnimating()
+        blockTouchView.removeFromSuperview()
+    }
+}
+
+extension HomeViewController: PHPickerViewControllerDelegate {
+
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        var myArray: [URL] = []
+        //인디케이트를 소환합니다.
+        startIndicator()
+
+        //사용자가 영상을 선택 하지 않은 상태일 때
+        if results.count == 0{
+            //인디게이터 종료
+            stopIndicator()
+        }
+
+        //선택된 영상에서 URL을 뽑아내는 로직입니다.
+        for i in 0..<results.count {
+            results[i].itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { url, err in
+                if url != nil {
+                    myArray.append(url!)
+                    if results.count == myArray.count{
+                        DispatchQueue.main.sync {
+                            //인디케이터 종료
+                            self.stopIndicator()
+                            let nextVC = UpoadTestNextViewController()
+                            nextVC.viewUrlArray = myArray
+                            self.navigationController?.pushViewController(nextVC, animated: true)
+                        }
+                    }
+                }
+            }
+        }
     }
 }
