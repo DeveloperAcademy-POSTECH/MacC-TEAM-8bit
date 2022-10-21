@@ -8,6 +8,8 @@
 import UIKit
 
 final class HomeCollectionViewListCell: UICollectionViewCell {
+    static let identifier = "homeCollectionViewListCell"
+    
     private lazy var cellView: UIView = {
         let view = UIView()
         return view

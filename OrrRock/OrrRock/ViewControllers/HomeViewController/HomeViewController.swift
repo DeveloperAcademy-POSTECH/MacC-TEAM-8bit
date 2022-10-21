@@ -85,10 +85,12 @@ final class HomeViewController : UIViewController {
         flow.minimumLineSpacing = 1
         
         var view = UICollectionView(frame: CGRect.zero, collectionViewLayout: flow)
+        
+        // CollectionView에서 사용할 Cell 등록
         view.register(HomeCollectionViewCardCell.classForCoder(),
-                      forCellWithReuseIdentifier: "homeCollectionViewCardCell")
+                      forCellWithReuseIdentifier: HomeCollectionViewCardCell.identifier)
         view.register(HomeCollectionViewListCell.classForCoder(),
-                      forCellWithReuseIdentifier: "homeCollectionViewListCell")
+                      forCellWithReuseIdentifier: HomeCollectionViewListCell.identifier)
         view.register(HomeCollectionViewHeaderCell.self,
                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                       withReuseIdentifier: HomeCollectionViewHeaderCell.identifier)

@@ -15,7 +15,8 @@ import SnapKit
 import UIKit
 
 final class HomeCollectionViewCardCell: UICollectionViewCell {
-    
+    static let identifier = "homeCollectionViewCardCell"
+
     // MARK: Data
     private var visitedDate: String = "YYYY년 MM월 DD일"
     private var visitedGymName: String = "클라이밍장 정보"
@@ -46,7 +47,6 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         return view
     }()
     
-    
     private lazy var gymLabel: UILabel = {
         let view = UILabel()
         view.text = "클라이밍장 정보"
@@ -60,7 +60,6 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         view.axis = .horizontal
         return view
     }()
-    
     
     private lazy var thumbnailCollectionView: UICollectionView = {
         let flow = UICollectionViewFlowLayout()

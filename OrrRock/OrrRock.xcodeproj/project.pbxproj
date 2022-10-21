@@ -83,12 +83,12 @@
 		342C4568290066810037D9E7 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
+				342508AE29002F31000653D9 /* HomeCollectionViewHeaderCell.swift */,
 				342508A629001BBC000653D9 /* HomeCollectionViewCardCell.swift */,
 				342508A829001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift */,
 				342508AA29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift */,
-				342508AE29002F31000653D9 /* HomeCollectionViewHeaderCell.swift */,
-				342C456F29018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift */,
 				342C456D290125260037D9E7 /* HomeCollectionViewListCell.swift */,
+				342C456F29018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
