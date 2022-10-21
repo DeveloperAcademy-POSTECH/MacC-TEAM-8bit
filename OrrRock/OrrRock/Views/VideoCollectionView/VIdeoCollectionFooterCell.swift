@@ -32,9 +32,11 @@ final class VideoCollectionFooterCell: UICollectionReusableView {
         self.backgroundColor = .white
         setUpLayout()
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         self.prepare(title: nil,count : 0,successCount: 0,failCount: 0)

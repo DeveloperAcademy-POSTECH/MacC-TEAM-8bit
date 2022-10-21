@@ -10,7 +10,7 @@ import UIKit
 
 //출처 : https://vanillacreamdonut.tistory.com/282
 
-class BasePaddingLabel: UILabel {
+final class BasePaddingLabel: UILabel {
     
     private var padding = UIEdgeInsets(top: 2.0, left: 4.0, bottom: 2.0, right: 4.0)
     
