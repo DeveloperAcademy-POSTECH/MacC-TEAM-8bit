@@ -234,7 +234,7 @@ extension HomeViewController: PHPickerViewControllerDelegate {
             results[i].itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { url, err in
                 if url != nil {
                     myArray.append(url!)
-                    if results.count == myArray.count{
+                    if results.count == myArray.count {
                         DispatchQueue.main.sync {
                             //인디케이터 종료
                             self.stopIndicator()
