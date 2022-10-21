@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class VideoCollectionViewCell : UICollectionViewCell{
+class VideoCollectionViewCell : UICollectionViewCell {
     static let identifier = "customVideoCollectionCell"
     
     
