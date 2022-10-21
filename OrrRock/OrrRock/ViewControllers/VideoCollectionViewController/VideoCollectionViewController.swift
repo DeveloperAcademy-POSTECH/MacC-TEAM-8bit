@@ -26,11 +26,28 @@ class VideoCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+        setVideoCollectionViewDelegate()
+        registerCells()
+        setUpLayout()
         // Do any additional setup after loading the view.
     }
     
-
+    func setVideoCollectionViewDelegate() {
+        videoCollectionView.dataSource = self
+        videoCollectionView.delegate = self
+    }
+    
+    func registerCells(){
+        videoCollectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "customVideoCollectionCell")
+    }
+    
+    private func setUpLayout(){
+        view.addSubview(videoCollectionView)
+        videoCollectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+                .inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+        }
+    }
     /*
     // MARK: - Navigation
 

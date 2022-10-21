@@ -11,15 +11,15 @@ import SnapKit
 class VideoCollectionViewCell : UICollectionViewCell{
     static let identifier = "customVideoCollectionCell"
 
-    
-    private lazy var cellImage : UIImageView = {
+    var isHeart : Bool = false
+    lazy var cellImage : UIImageView = {
         let img = UIImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
         img.image = UIImage(named: "")
         return
     }()
     
-    private lazy var cellLabel : UILabel = {
+    lazy var cellLabel : UILabel = {
         let label = BasePaddingLabel(padding: UIEdgeInsets(top: 2, left: 8, bottom: 2, right: 8))
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "V2"
@@ -31,12 +31,13 @@ class VideoCollectionViewCell : UICollectionViewCell{
         return label
     }()
     
-    private lazy var heartImage : UIView  = {
+    lazy var heartImage : UIView  = {
         let img = UIImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
         img.image = UIImage(systemName: "heart.fill")
         img.tintColor = .white
         img.contentMode = .scaleToFill
+        img.alpha = isHeart ? 1.0 : 0.0
         return img
     }()
     
