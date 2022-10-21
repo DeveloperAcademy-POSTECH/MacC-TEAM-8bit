@@ -9,6 +9,24 @@ import UIKit
 import SnapKit
 
 extension VideoCollectionViewController :  UICollectionViewDelegate{
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if !checkFirstContentOffset{
+            firstContentOffset = Float(scrollView.contentOffset.y)
+            checkFirstContentOffset = true
+        }
+
+        if (firstContentOffset + 64.0) < Float(scrollView.contentOffset.y){
+            titleStackView.isHidden = false
+        }
+        else{
+            titleStackView.isHidden = true
+        }
+        
+    }
+    
+   
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch mMode{
         case .view:
@@ -45,6 +63,7 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
                 for: indexPath
             ) as! VideoCollectionViewHeaderCell
             supplementaryView.prepare(title: "supplementaryView(header)")
+            
             return supplementaryView
             
         case UICollectionView.elementKindSectionFooter:
