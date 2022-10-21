@@ -77,7 +77,7 @@ final class HomeViewController : UIViewController {
         var items: [UIBarButtonItem] = []
         
         let myPageButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.rectangle"), style: .plain, target: self, action: nil)
-        let addVideoButton = UIBarButtonItem(image: UIImage(systemName: "camera.fill"), style: .plain, target: self, action: #selector(testButtonPressed))
+        let addVideoButton = UIBarButtonItem(image: UIImage(systemName: "camera.fill"), style: .plain, target: self, action: #selector(videoButtonPressed))
 
         // toolbar 내 Spacer() 역할
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: HomeViewController.self, action: nil)
@@ -191,7 +191,7 @@ final class HomeViewController : UIViewController {
 
 extension HomeViewController {
 
-    @objc func testButtonPressed(sender: UIButton!) {
+    @objc func videoButtonPressed(sender: UIButton!) {
         var configuration = PHPickerConfiguration()
         configuration.selectionLimit = 0
         //인디게이터 도는거 보고 싶으면 아랫줄을 주석 처리해주세요.
@@ -218,7 +218,8 @@ extension HomeViewController: PHPickerViewControllerDelegate {
 
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
-        var myArray: [URL] = []
+        var videoUrlArray: [URL] = []
+        var errorCount = 0
         //인디케이트를 소환합니다.
         startIndicator()
 
@@ -231,14 +232,17 @@ extension HomeViewController: PHPickerViewControllerDelegate {
         //선택된 영상에서 URL을 뽑아내는 로직입니다.
         for i in 0..<results.count {
             results[i].itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { url, err in
-                if url != nil {
-                    myArray.append(url!)
-                    if results.count == myArray.count {
+                if url == nil {
+                    NSLog("Orr_HomeViewController_Err1:\(String(describing: err))\n")
+                    errorCount += 1
+                } else {
+                    videoUrlArray.append(url!)
+                    if results.count == videoUrlArray.count + errorCount {
                         DispatchQueue.main.sync {
                             //인디케이터 종료
                             self.stopIndicator()
                             let nextVC = UpoadTestNextViewController()
-                            nextVC.viewUrlArray = myArray
+                            nextVC.viewUrlArray = videoUrlArray
                             self.navigationController?.pushViewController(nextVC, animated: true)
                         }
                     }
