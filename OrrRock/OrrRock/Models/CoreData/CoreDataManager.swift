@@ -65,11 +65,11 @@ class CoreDataManager {
         case .all:
             return originInformation
         case .favorite:
-            return originInformation.filter({ $0.isFavorite })
+            return originInformation.filter({ $0.isFavorite == true })
         case .success:
-            return originInformation.filter({ $0.isSucceeded })
+            return originInformation.filter({ $0.isSucceeded == true})
         case .failure:
-            return originInformation.filter({ !$0.isSucceeded })
+            return originInformation.filter({ $0.isSucceeded == false })
         }
     }
     
