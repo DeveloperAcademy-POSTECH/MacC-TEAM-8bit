@@ -170,11 +170,10 @@ final class HomeViewController : UIViewController {
         indicator.snp.makeConstraints {
             $0.center.equalTo(self.view)
         }
-        
     }
 
     //이친구는 반복적으로 추가되고 삭제 되어야해서 따로 만들었습니다.
-    func addBlockTouchView(){
+    func addBlockTouchView() {
         self.view.addSubview(blockTouchView)
         blockTouchView.snp.makeConstraints {
             $0.top.equalTo(view.snp.top)
@@ -190,7 +189,7 @@ final class HomeViewController : UIViewController {
     }
 }
 
-extension HomeViewController{
+extension HomeViewController {
 
     @objc func testButtonPressed(sender: UIButton!) {
         var configuration = PHPickerConfiguration()
@@ -204,12 +203,12 @@ extension HomeViewController{
     }
 
     //터치를 제한하는 뷰를 추가하고 인디게이터를 실행 시킵니다.
-    func startIndicator(){
+    func startIndicator() {
         addBlockTouchView()
         indicator.startAnimating()
     }
 
-    func stopIndicator(){
+    func stopIndicator() {
         self.indicator.stopAnimating()
         blockTouchView.removeFromSuperview()
     }
@@ -224,7 +223,7 @@ extension HomeViewController: PHPickerViewControllerDelegate {
         startIndicator()
 
         //사용자가 영상을 선택 하지 않은 상태일 때
-        if results.count == 0{
+        if results.count == 0 {
             //인디게이터 종료
             stopIndicator()
         }
