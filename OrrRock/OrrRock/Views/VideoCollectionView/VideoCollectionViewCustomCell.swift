@@ -34,7 +34,6 @@ class VideoCollectionViewCell : UICollectionViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "checkmark.circle.fill")
         imageView.tintColor = .systemBlue
-        imageView.clipsToBounds = true
         imageView.isHidden = true
         return imageView
     }()

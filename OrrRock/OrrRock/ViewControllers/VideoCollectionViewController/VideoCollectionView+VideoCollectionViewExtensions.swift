@@ -14,6 +14,7 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
         case .view:
             videoCollectionView.deselectItem(at: indexPath, animated: true)
             print("상세재생뷰로 이동")
+            print(indexPath.item)
             
         case .select:
             dictionarySelectedIndecPath[indexPath] = true
@@ -66,21 +67,25 @@ extension VideoCollectionViewController  : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customVideoCollectionCell", for: indexPath) as! VideoCollectionViewCell
         cell.cellImage.image = UIImage(named: imageArr[indexPath.row])
-        if indexPath.row % 5 == 0 {
+        if indexPath.item % 5 == 0 {
             cell.cellLabel.backgroundColor = .blue
             cell.heartImage.alpha = 0.0
         }
-        else if indexPath.row % 5 == 1{
+        else if indexPath.item % 5 == 1{
             cell.cellLabel.backgroundColor = .yellow
+            cell.heartImage.alpha = 1.0
         }
-        else if indexPath.row % 5 == 2{
+        else if indexPath.item % 5 == 2{
             cell.cellLabel.backgroundColor = .red
+            cell.heartImage.alpha = 1.0
         }
-        else if indexPath.row % 5 == 3{
+        else if indexPath.item % 5 == 3{
             cell.cellLabel.backgroundColor = .black
+            cell.heartImage.alpha = 1.0
         }
-        else if indexPath.row % 5 == 4{
+        else if indexPath.item % 5 == 4{
             cell.cellLabel.backgroundColor = .purple
+            cell.heartImage.alpha = 1.0
         }
         else{
             

@@ -28,7 +28,7 @@ class VideoCollectionViewController: UIViewController {
                 }
                 dictionarySelectedIndecPath.removeAll()
                 selectBarButton.title = "편집"
-                navigationItem.leftBarButtonItem = nil
+                navigationItem.leftBarButtonItem = backBarButton
                 videoCollectionView.allowsMultipleSelection = false
             case .select:
                 selectBarButton.title = "취소"
@@ -40,6 +40,11 @@ class VideoCollectionViewController: UIViewController {
     
     lazy var selectBarButton : UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(title: "편집", style: .plain, target: self, action: #selector(didSelectButtonClicked(_:)))
+        return barButtonItem
+    }()
+    
+    lazy var backBarButton : UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem(image:UIImage(systemName: "chevron.backward"),style: .plain, target: self, action: #selector(didBackButtonClicked(_:)))
         return barButtonItem
     }()
     
@@ -97,10 +102,15 @@ class VideoCollectionViewController: UIViewController {
         }
         
         navigationItem.rightBarButtonItem = selectBarButton
+        navigationItem.leftBarButtonItem = backBarButton
     }
     
     @objc func didSelectButtonClicked(_ sender: UIBarButtonItem){
         mMode = mMode == .view ? .select : .view
+    }
+    
+    @objc func didBackButtonClicked(_ sender: UIBarButtonItem){
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     @objc func didDeleteButtonClicked(_ sender: UIBarButtonItem){
