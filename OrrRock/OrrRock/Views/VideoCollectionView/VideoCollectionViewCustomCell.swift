@@ -10,7 +10,7 @@ import SnapKit
 
 class VideoCollectionViewCell : UICollectionViewCell{
     static let identifier = "customVideoCollectionCell"
-
+    
     
     lazy var cellImage : UIImageView = {
         let img = UIImageView()

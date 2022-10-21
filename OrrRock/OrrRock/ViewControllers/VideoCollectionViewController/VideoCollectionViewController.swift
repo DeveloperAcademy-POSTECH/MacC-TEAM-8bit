@@ -8,7 +8,7 @@
 import UIKit
 
 class VideoCollectionViewController: UIViewController {
-
+    
     var imageArr = ["as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5"]
     
     private lazy var videoCollectionView : UICollectionView = {
@@ -40,15 +40,15 @@ class VideoCollectionViewController: UIViewController {
     func registerCells(){
         videoCollectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "customVideoCollectionCell")
         videoCollectionView.register(
-          VideoCollectionViewHeaderCell.self,
-          forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-          withReuseIdentifier: VideoCollectionViewHeaderCell.id
+            VideoCollectionViewHeaderCell.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: VideoCollectionViewHeaderCell.id
         )
-
+        
         videoCollectionView.register(
             VideoCollectionFooterCell.self,
-          forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
-          withReuseIdentifier: VideoCollectionFooterCell.id + "footer"
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+            withReuseIdentifier: VideoCollectionFooterCell.id + "footer"
         )
     }
     
@@ -60,13 +60,13 @@ class VideoCollectionViewController: UIViewController {
         }
     }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
