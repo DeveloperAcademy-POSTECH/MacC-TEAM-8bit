@@ -27,15 +27,16 @@ private extension SwipeCardViewController {
     // 목업용 카드를 만들어줍니다.
     func showOtherCardToSwipe() {
         for card in 0...2 {
-            let swipeCard = UIView()
-            swipeCard.backgroundColor = card == 1 ? .blue : .red
+            let swipeCard = SwipeCardView()
             view.addSubview(swipeCard)
-            
+
             swipeCard.snp.makeConstraints {
                 $0.leading.trailing.equalToSuperview().inset(60.0)
                 $0.height.equalTo(450.0)
                 $0.centerY.equalToSuperview()
             }
+            
+//            swipeCard.addSubview(imageView)
             
             // gesture
             gesture.addTarget(self, action: #selector(handlerCard))

@@ -33,6 +33,7 @@
 		707B2CB528FFFEFF0062C958 /* UpoadTestNextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB428FFFEFF0062C958 /* UpoadTestNextViewController.swift */; };
 		707B2CB829012BFE0062C958 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB729012BFE0062C958 /* Color+.swift */; };
 		707B2CBA2901382A0062C958 /* Padding+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB92901382A0062C958 /* Padding+.swift */; };
+		A83D23F429029805008FAB39 /* SwipeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D23F329029805008FAB39 /* SwipeCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		707B2CB428FFFEFF0062C958 /* UpoadTestNextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpoadTestNextViewController.swift; sourceTree = "<group>"; };
 		707B2CB729012BFE0062C958 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		707B2CB92901382A0062C958 /* Padding+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Padding+.swift"; sourceTree = "<group>"; };
+		A83D23F329029805008FAB39 /* SwipeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				0AAB77E1290274CB00EEEFFB /* SwipeCardViewController.swift */,
+				A83D23F329029805008FAB39 /* SwipeCardView.swift */,
 			);
 			path = UploadView;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				707B2CB028FFFDB30062C958 /* UploadTestViewController.swift in Sources */,
 				707B2CBA2901382A0062C958 /* Padding+.swift in Sources */,
 				3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */,
+				A83D23F429029805008FAB39 /* SwipeCardView.swift in Sources */,
 				3A08879D29012C8A00EFFDBB /* VideoInformation+CoreDataProperties.swift in Sources */,
 				342508A929001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift in Sources */,
 				3AA4D42928FEBADE006C718A /* OrrRock.xcdatamodeld in Sources */,
