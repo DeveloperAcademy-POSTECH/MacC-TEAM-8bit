@@ -29,6 +29,19 @@ class CoreDataManager {
         saveData()
     }
     
+    // Core Data의 읽어 VideoInformation 클래스를 반환합니다.
+    func readData() -> [VideoInformation] {
+        var information: [VideoInformation] = []
+        
+        do {
+            information = try context.fetch(VideoInformation.fetchRequest())
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        return information
+    }
+    
     // 추가한 데이터를 현재 context에 반영
     func saveData() {
         do {
