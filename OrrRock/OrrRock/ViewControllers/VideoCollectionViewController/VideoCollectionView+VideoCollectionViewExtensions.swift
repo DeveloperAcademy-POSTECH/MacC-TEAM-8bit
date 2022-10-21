@@ -14,7 +14,6 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
         case .view:
             videoCollectionView.deselectItem(at: indexPath, animated: true)
             print("상세재생뷰로 이동")
-            print(indexPath.item)
             
         case .select:
             dictionarySelectedIndecPath[indexPath] = true
@@ -54,7 +53,7 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
                 withReuseIdentifier: VideoCollectionFooterCell.id + "footer",
                 for: indexPath
             ) as! VideoCollectionFooterCell
-            supplementaryView.prepare(title: "supplementaryView(footer)",count: imageArr.count,successCount: 40,failCount: 24)
+            supplementaryView.prepare(title: "supplementaryView(footer)",count: imageArr.count,successCount: 40,failCount: 26)
             return supplementaryView
         default:
             return UICollectionReusableView()

@@ -33,10 +33,35 @@ class VideoCollectionViewController: UIViewController {
             case .select:
                 selectBarButton.title = "취소"
                 navigationItem.leftBarButtonItem = deleteBarButton
+                navigationItem.titleView = titleStackView
                 videoCollectionView.allowsMultipleSelection = true
             }
         }
     }
+    
+    lazy var titleName : UILabel = {
+        let label = UILabel()
+        label.text = "김도한 암벽교실"
+        label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        label.sizeToFit()
+        return label
+    }()
+    
+    lazy var subTitleName : UILabel = {
+        let label = UILabel()
+        label.text = "2022년 10월 3일"
+        label.font = UIFont.systemFont(ofSize: 11, weight: .regular)
+        label.sizeToFit()
+        return label
+    }()
+    
+    lazy var titleStackView : UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [titleName,subTitleName])
+        stack.axis = .vertical
+        stack.frame.size.width = max(titleName.frame.width,subTitleName.frame.width)
+        stack.frame.size.height = titleName.frame.height + subTitleName.frame.height
+        return stack
+    }()
     
     lazy var selectBarButton : UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(title: "편집", style: .plain, target: self, action: #selector(didSelectButtonClicked(_:)))
