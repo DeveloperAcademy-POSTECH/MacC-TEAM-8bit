@@ -43,14 +43,14 @@ class VideoCollectionViewCell : UICollectionViewCell{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.cellSetting()
+        self.setUpLayout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func cellSetting() {
+    func setUpLayout() {
         self.backgroundColor = .gray
         self.addSubview(cellImage)
         cellImage.snp.makeConstraints {
