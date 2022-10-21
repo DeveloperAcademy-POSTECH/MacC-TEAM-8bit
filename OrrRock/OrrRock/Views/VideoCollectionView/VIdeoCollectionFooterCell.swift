@@ -52,9 +52,9 @@ final class VideoCollectionFooterCell: UICollectionReusableView {
             $0.top.equalToSuperview().inset(25)
         }
         self.addSubview(self.subTitleLabel)
-        self.subTitleLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(titleLabel.snp.bottom).offset(4)
+        self.subTitleLabel.snp.makeConstraints { $0
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
         }
     }
 }

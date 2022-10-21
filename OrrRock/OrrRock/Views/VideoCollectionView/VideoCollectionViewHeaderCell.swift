@@ -53,9 +53,9 @@ final class VideoCollectionViewHeaderCell: UICollectionReusableView {
         }
         
         self.addSubview(self.subTitleLabel)
-        self.subTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(4)
-            make.leading.equalToSuperview().inset(23)
+        self.subTitleLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
+            $0.leading.equalToSuperview().inset(23)
         }
     }
 }
