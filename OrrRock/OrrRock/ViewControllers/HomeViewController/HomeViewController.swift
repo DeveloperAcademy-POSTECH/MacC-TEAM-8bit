@@ -137,7 +137,9 @@ final class HomeViewController : UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = .systemGray5
-        navigationController?.isNavigationBarHidden = true
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoView)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: quickActionButton)
+
         setUpLayout()
         setUICollectionViewDelegate()
     }
@@ -166,18 +168,6 @@ final class HomeViewController : UIViewController {
             $0.top.equalTo(view.snp.top)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
-        }
-
-        headerView.addSubview(logoView)
-        logoView.snp.makeConstraints {
-            $0.bottom.equalTo(headerView.snp.bottom).inset(16)
-            $0.leading.equalTo(headerView.snp.leading).offset(24)
-        }
-
-        headerView.addSubview(quickActionButton)
-        quickActionButton.snp.makeConstraints {
-            $0.bottom.equalTo(headerView.snp.bottom).inset(16)
-            $0.trailing.equalTo(headerView.snp.trailing).inset(24)
         }
 
         // 인디게이터 위치 추가
