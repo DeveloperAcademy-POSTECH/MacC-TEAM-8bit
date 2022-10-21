@@ -75,16 +75,15 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
     }
     
     private func setConstraints() {
-        headerTitle.snp.removeConstraints()
         headerRoundedSquare.snp.removeConstraints()
         videoCountLabel.snp.removeConstraints()
         PFCountLabel.snp.removeConstraints()
         
+        headerTitle.snp.makeConstraints {
+            $0.bottom.equalTo(snp_topMargin).offset(95)
+        }
+        
         if isCardView {
-            headerTitle.snp.makeConstraints {
-                $0.bottom.equalTo(snp_topMargin).offset(50)
-            }
-            
             headerRoundedSquare.snp.makeConstraints { $0.width.equalTo(0) }
             videoCountLabel.snp.makeConstraints{ $0.width.equalTo(0) }
             PFCountLabel.snp.makeConstraints{ $0.width.equalTo(0) }
@@ -105,10 +104,6 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
             PFCountLabel.snp.makeConstraints {
                 $0.width.equalTo(UIScreen.main.bounds.width - 32)
                 $0.bottom.equalTo(videoCountLabel.snp.top).offset(-4)
-            }
-            
-            headerTitle.snp.makeConstraints {
-                $0.bottom.equalTo(snp_topMargin).offset(50)
             }
         }
     }

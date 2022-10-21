@@ -49,11 +49,11 @@ final class HomeViewController : UIViewController {
     private lazy var quickActionButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "rectangle.stack"), for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-        
+        button.tintColor = .systemRed
+        button.addTarget(self, action: #selector(switchViewStyle), for: .touchUpInside)
         return button
     }()
-    
+
     private lazy var toolbarView: UIToolbar = {
         let view = UIToolbar()
         view.backgroundColor = .systemGray5
@@ -116,7 +116,7 @@ final class HomeViewController : UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = .systemGray5
-        
+        navigationController?.isNavigationBarHidden = true
         setUpLayout()
         setUICollectionViewDelegate()
     }
@@ -146,13 +146,13 @@ final class HomeViewController : UIViewController {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
         }
-        
+
         headerView.addSubview(logoView)
         logoView.snp.makeConstraints {
             $0.bottom.equalTo(headerView.snp.bottom).inset(16)
             $0.leading.equalTo(headerView.snp.leading).offset(24)
         }
-        
+
         headerView.addSubview(quickActionButton)
         quickActionButton.snp.makeConstraints {
             $0.bottom.equalTo(headerView.snp.bottom).inset(16)
@@ -163,5 +163,9 @@ final class HomeViewController : UIViewController {
     private func setUICollectionViewDelegate() {
         collectionView.dataSource = self
         collectionView.delegate = self
+    }
+    
+    @objc func switchViewStyle() {
+        self.isCardView.toggle()
     }
 }
