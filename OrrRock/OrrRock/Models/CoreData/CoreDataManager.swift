@@ -50,4 +50,21 @@ class CoreDataManager {
             print(error.localizedDescription)
         }
     }
+    
+    func filterVideoInformation(filterOption: FilterOption) -> [VideoInformation] {
+        
+        let originInformation = videoInformation
+        
+        switch filterOption {
+        case .all:
+            return originInformation
+        case .favorite:
+            return originInformation.filter({ $0.isFavorite })
+        case .success:
+            return originInformation.filter({ $0.isSucceeded })
+        case .failure:
+            return originInformation.filter({ !$0.isSucceeded })
+        }
+    }
+    
 }
