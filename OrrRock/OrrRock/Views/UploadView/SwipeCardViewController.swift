@@ -10,13 +10,6 @@ import SnapKit
 
 final class SwipeCardViewController: UIViewController {
 
-    private lazy var swipeCard: UIView = {
-        let swipeView = UIView()
-        swipeView.backgroundColor = .red
-        
-        return swipeView
-    }()
-
     let gesture = UIPanGestureRecognizer()
 
     override func viewDidLoad() {
@@ -24,19 +17,34 @@ final class SwipeCardViewController: UIViewController {
 
         // card UI
         view.backgroundColor = .systemGroupedBackground
-        setupLayout()
-
-        // gesture
-        gesture.addTarget(self, action: #selector(handlerCard))
-        swipeCard.addGestureRecognizer(gesture)
+        showOtherCardToSwipe()
     }
 }
 
 // Gesture
 private extension SwipeCardViewController {
-
+    
+    // 목업용 카드를 만들어줍니다.
+    func showOtherCardToSwipe() {
+        for card in 0...2 {
+            let swipeCard = UIView()
+            swipeCard.backgroundColor = card == 1 ? .blue : .red
+            view.addSubview(swipeCard)
+            
+            swipeCard.snp.makeConstraints {
+                $0.leading.trailing.equalToSuperview().inset(60.0)
+                $0.height.equalTo(450.0)
+                $0.centerY.equalToSuperview()
+            }
+            
+            // gesture
+            gesture.addTarget(self, action: #selector(handlerCard))
+            swipeCard.addGestureRecognizer(gesture)
+        }
+    }
+    
+    // Gesture
     @objc func handlerCard (_ gesture: UIPanGestureRecognizer) {
-
         if let card = gesture.view {
             let point = gesture.translation(in: view)
             card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
@@ -51,19 +59,6 @@ private extension SwipeCardViewController {
                     card.transform = .identity
                 }
             }
-        }
-    }
-}
-
-// UI
-private extension SwipeCardViewController {
-
-    func setupLayout() {
-        view.addSubview(swipeCard)
-        swipeCard.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(60.0)
-            $0.height.equalTo(450.0)
-            $0.centerY.equalToSuperview()
         }
     }
 }
