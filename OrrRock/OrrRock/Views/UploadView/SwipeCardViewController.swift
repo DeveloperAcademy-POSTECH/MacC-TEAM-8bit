@@ -36,8 +36,6 @@ private extension SwipeCardViewController {
                 $0.centerY.equalToSuperview()
             }
             
-//            swipeCard.addSubview(imageView)
-            
             // gesture
             gesture.addTarget(self, action: #selector(handlerCard))
             swipeCard.addGestureRecognizer(gesture)
