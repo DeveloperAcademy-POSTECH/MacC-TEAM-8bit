@@ -228,7 +228,6 @@ extension HomeViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
         var videoUrlArray: [URL] = []
-        var errorCount = 0
         //인디케이트를 소환합니다.
         startIndicator()
 
@@ -243,17 +242,17 @@ extension HomeViewController: PHPickerViewControllerDelegate {
             results[i].itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { url, err in
                 if url == nil {
                     NSLog("Orr_HomeViewController_Err1:\(String(describing: err))\n")
-                    errorCount += 1
                 } else {
                     videoUrlArray.append(url!)
-                    if results.count == videoUrlArray.count + errorCount {
-                        DispatchQueue.main.sync {
-                            //인디케이터 종료
-                            self.stopIndicator()
-                            let nextVC = UpoadTestNextViewController()
-                            nextVC.viewUrlArray = videoUrlArray
-                            self.navigationController?.pushViewController(nextVC, animated: true)
-                        }
+                }
+
+                if results.count - 1 == i {
+                    DispatchQueue.main.sync {
+                        //인디케이터 종료
+                        self.stopIndicator()
+                        let nextVC = UpoadTestNextViewController()
+                        nextVC.viewUrlArray = videoUrlArray
+                        self.navigationController?.pushViewController(nextVC, animated: true)
                     }
                 }
             }
