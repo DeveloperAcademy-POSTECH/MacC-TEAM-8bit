@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 extension VideoCollectionViewController :  UICollectionViewDelegate{
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageArr.count
     }
@@ -45,7 +44,6 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
 }
 
 extension VideoCollectionViewController  : UICollectionViewDataSource{
-
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customVideoCollectionCell", for: indexPath) as! VideoCollectionViewCell
         cell.cellImage.image = UIImage(named: imageArr[indexPath.row])
@@ -73,7 +71,6 @@ extension VideoCollectionViewController  : UICollectionViewDataSource{
 }
 
 extension VideoCollectionViewController : UICollectionViewDelegateFlowLayout{
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
