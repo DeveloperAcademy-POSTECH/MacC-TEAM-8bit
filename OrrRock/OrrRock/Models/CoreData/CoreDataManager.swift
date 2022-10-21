@@ -15,6 +15,12 @@ class CoreDataManager {
     private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     private lazy var context = appDelegate.persistentContainer.viewContext
     
+    private var videoInformation: [VideoInformation] = []
+    
+    init() {
+        self.videoInformation = readData()
+    }
+    
     // VideoInfo 구조체를 매개변수로 받아 VideoInformation NSManagedObject에 추가
     func createData(info: VideoInfo) {
         let entity = NSEntityDescription.insertNewObject(forEntityName: "VideoInformation", into: context)
