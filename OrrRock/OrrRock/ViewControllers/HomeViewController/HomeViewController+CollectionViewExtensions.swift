@@ -13,33 +13,26 @@ import UIKit
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // 디버깅을 위해 카드의 개수를 5로 지정해두었음.
+        // 디버깅을 위해 카드의 개수를 10으로 지정해두었음.
         // 이후 동작 구현 시 카드 개수 지정을 위해 해당 값을 변경해주면 됨.
-        return 5
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewCardCell", for: indexPath) as! HomeCollectionViewCardCell
         
+        var cell: UICollectionViewCell!
+        
+        if isCardView {
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewCardCell", for: indexPath) as! HomeCollectionViewCardCell
+            
+        } else {
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewListCell", for: indexPath) as! HomeCollectionViewListCell
+        }
+          
         // TODO
         // 성공 개수 Count 하기
         // Thumbnails 배열 생성 (최대 10개의 UIImage를 담는 배열)
         // CollectionViewCell에 필요한 데이터 loadCardViewData 함수를 통해 전달하기
-        
-        // EX)
-        //        var TESTSuccessed: Int = 0
-        //        var TESTthumbnails: [UIImage] = []
-        //
-        //        TESTCardDataList[indexPath.row].forEach {
-        //            if $0.isSuccessed { TESTSuccessed += 1 }
-        //            TESTthumbnails.append(UIImage(named: $0.thumbnail)!)
-        //        }
-        //
-        //        cell.loadCardViewData(visitedDate: dateFormatter.string(from: TESTCardDataList[indexPath.row][0].gymVisitDate),
-        //                              visitedGymName: TESTCardDataList[indexPath.row][0].gymName,
-        //                              PFCountDescription: "\(TESTSuccessed)개의 성공, \(TESTCardDataList[indexPath.row].count - TESTSuccessed)개의 실패",
-        //                              videoCountDescription: "\(TESTCardDataList[indexPath.row].count)개의 영상",
-        //                              thumbnails: TESTthumbnails)
         
         return cell
     }
@@ -48,9 +41,19 @@ extension HomeViewController: UICollectionViewDataSource {
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
-            return collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                   withReuseIdentifier: HomeCollectionViewHeaderCell.identifier,
-                                                                   for: indexPath)
+            let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                             withReuseIdentifier: HomeCollectionViewHeaderCell.identifier,
+                                                                             for: indexPath) as! HomeCollectionViewHeaderCell
+            headerCell.isCardView = self.isCardView
+            return headerCell
+            
+        } else if kind == UICollectionView.elementKindSectionFooter {
+            let footerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                             withReuseIdentifier: HomeCollectionViewFooterCell.identifier,
+                                                                             for: indexPath) as! HomeCollectionViewFooterCell
+            footerCell.isCardView = self.isCardView
+            return footerCell
+            
         } else {
             return UICollectionReusableView()
         }
@@ -58,21 +61,26 @@ extension HomeViewController: UICollectionViewDelegate {
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        // 카드 간 간격 16 지정
-        return 16
+        // 카드 간 간격 16 지정 / 리스트 셀 간 간격 0 지정
+        return isCardView ? 16 : 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        // SafeArea의 Top 부터 CollectionView의 HeaderView 높이를 계산하면 됨
-        // 앨범 형 / 목록 형에 따라 HeaderView의 높이가 달라져야함
-        return CGSize(width: collectionView.frame.width, height: 72)
+        // 앨범형, 목록형의 Header Cell의 높이를 별도로 지정
+        return CGSize(width: collectionView.frame.width, height: isCardView ? 117 : 180)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        // 앨범형, 목록형의 Footer Cell의 높이를 별도로 지정
+        return CGSize(width: collectionView.frame.width, height: isCardView ? 72 : 102)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // 카드 비율 가로세로 비율 1.33:1
+        // 카드 셀의 가로세로 비율 1.33:1로 지정
         let width = view.bounds.width - 2 * HorizontalPaddingSize
-        let height = width / 1.33
+        let height = isCardView ? width / 1.33 : 70
         
         return CGSize(width: Double(width), height: Double(height))
     }
