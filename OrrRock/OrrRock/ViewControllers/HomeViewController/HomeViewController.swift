@@ -22,6 +22,12 @@ final class HomeViewController : UIViewController {
     // MARK: UI Components
     // CollectionView의 좌우 여백을 이용해 동적으로 UI 그리기 위한 변수
     let HorizontalPaddingSize: CGFloat = 16
+    var isCardView: Bool = false {
+        didSet {
+            collectionView.reloadData()
+            collectionView.collectionViewLayout.invalidateLayout()
+        }
+    }
     
     //인디게이터 사용을 위한 선언
     private let indicator : NVActivityIndicatorView = {
@@ -65,11 +71,11 @@ final class HomeViewController : UIViewController {
     private lazy var quickActionButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "rectangle.stack"), for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-        
+        button.tintColor = .systemRed
+        button.addTarget(self, action: #selector(switchViewStyle), for: .touchUpInside)
         return button
     }()
-    
+
     private lazy var toolbarView: UIToolbar = {
         let view = UIToolbar()
         view.backgroundColor = .systemGray5
@@ -78,7 +84,6 @@ final class HomeViewController : UIViewController {
         
         let myPageButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.rectangle"), style: .plain, target: self, action: nil)
         let addVideoButton = UIBarButtonItem(image: UIImage(systemName: "camera.fill"), style: .plain, target: self, action: #selector(videoButtonPressed))
-
         // toolbar 내 Spacer() 역할
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: HomeViewController.self, action: nil)
         
@@ -97,13 +102,23 @@ final class HomeViewController : UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let flow = UICollectionViewFlowLayout()
+        flow.minimumInteritemSpacing = 1
+        flow.minimumLineSpacing = 1
         
         var view = UICollectionView(frame: CGRect.zero, collectionViewLayout: flow)
+        
+        // CollectionView에서 사용할 Cell 등록
         view.register(HomeCollectionViewCardCell.classForCoder(),
-                      forCellWithReuseIdentifier: "homeCollectionViewCardCell")
+                      forCellWithReuseIdentifier: HomeCollectionViewCardCell.identifier)
+        view.register(HomeCollectionViewListCell.classForCoder(),
+                      forCellWithReuseIdentifier: HomeCollectionViewListCell.identifier)
         view.register(HomeCollectionViewHeaderCell.self,
                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                       withReuseIdentifier: HomeCollectionViewHeaderCell.identifier)
+        view.register(HomeCollectionViewFooterCell.self,
+                      forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                      withReuseIdentifier: HomeCollectionViewFooterCell.identifier)
+        
         view.showsVerticalScrollIndicator = false
         view.backgroundColor = UIColor.clear
         
@@ -122,7 +137,7 @@ final class HomeViewController : UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = .systemGray5
-        
+        navigationController?.isNavigationBarHidden = true
         setUpLayout()
         setUICollectionViewDelegate()
     }
@@ -152,13 +167,13 @@ final class HomeViewController : UIViewController {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
         }
-        
+
         headerView.addSubview(logoView)
         logoView.snp.makeConstraints {
             $0.bottom.equalTo(headerView.snp.bottom).inset(16)
             $0.leading.equalTo(headerView.snp.leading).offset(24)
         }
-        
+
         headerView.addSubview(quickActionButton)
         quickActionButton.snp.makeConstraints {
             $0.bottom.equalTo(headerView.snp.bottom).inset(16)
@@ -183,9 +198,13 @@ final class HomeViewController : UIViewController {
         }
     }
     
-    func setUICollectionViewDelegate() {
+    private func setUICollectionViewDelegate() {
         collectionView.dataSource = self
         collectionView.delegate = self
+    }
+    
+    @objc func switchViewStyle() {
+        self.isCardView.toggle()
     }
 }
 
