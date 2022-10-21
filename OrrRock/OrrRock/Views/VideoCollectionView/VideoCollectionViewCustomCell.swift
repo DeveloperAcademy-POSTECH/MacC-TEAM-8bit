@@ -11,12 +11,12 @@ import SnapKit
 class VideoCollectionViewCell : UICollectionViewCell{
     static let identifier = "customVideoCollectionCell"
 
-    var isHeart : Bool = false
+    
     lazy var cellImage : UIImageView = {
         let img = UIImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
-        img.image = UIImage(named: "")
-        return
+        img.image = UIImage(named: "s")
+        return img
     }()
     
     lazy var cellLabel : UILabel = {
@@ -37,7 +37,6 @@ class VideoCollectionViewCell : UICollectionViewCell{
         img.image = UIImage(systemName: "heart.fill")
         img.tintColor = .white
         img.contentMode = .scaleToFill
-        img.alpha = isHeart ? 1.0 : 0.0
         return img
     }()
     

@@ -39,6 +39,17 @@ class VideoCollectionViewController: UIViewController {
     
     func registerCells(){
         videoCollectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "customVideoCollectionCell")
+        videoCollectionView.register(
+          VideoCollectionViewHeaderCell.self,
+          forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+          withReuseIdentifier: VideoCollectionViewHeaderCell.id
+        )
+
+        videoCollectionView.register(
+            VideoCollectionFooterCell.self,
+          forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+          withReuseIdentifier: VideoCollectionFooterCell.id + "footer"
+        )
     }
     
     private func setUpLayout(){
