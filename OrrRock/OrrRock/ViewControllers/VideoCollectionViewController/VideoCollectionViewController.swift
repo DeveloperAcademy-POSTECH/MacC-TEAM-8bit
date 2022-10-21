@@ -11,12 +11,49 @@ class VideoCollectionViewController: UIViewController {
     
     var imageArr = ["as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5"]
     
-    private lazy var videoCollectionView : UICollectionView = {
+    enum Mode{
+        case view
+        case select
+    }
+    
+    var dictionarySelectedIndecPath : [IndexPath : Bool] = [:]
+    var mMode: Mode = .view {
+        didSet{
+            switch mMode{
+            case .view:
+                for (key,value) in dictionarySelectedIndecPath{
+                    if value{
+                        videoCollectionView.deselectItem(at: key, animated: true)
+                    }
+                }
+                dictionarySelectedIndecPath.removeAll()
+                selectBarButton.title = "편집"
+                navigationItem.leftBarButtonItem = nil
+                videoCollectionView.allowsMultipleSelection = false
+            case .select:
+                selectBarButton.title = "취소"
+                navigationItem.leftBarButtonItem = deleteBarButton
+                videoCollectionView.allowsMultipleSelection = true
+            }
+        }
+    }
+    
+    lazy var selectBarButton : UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem(title: "편집", style: .plain, target: self, action: #selector(didSelectButtonClicked(_:)))
+        return barButtonItem
+    }()
+    
+    lazy var deleteBarButton : UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(didDeleteButtonClicked(_:)))
+        return barButtonItem
+    }()
+    
+     lazy var videoCollectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 1
         layout.scrollDirection = .vertical
         layout.sectionInset = .zero
-        layout.headerReferenceSize = .init(width: 100, height: 100)
+        layout.headerReferenceSize = .init(width: 100, height: 76)
         layout.footerReferenceSize = .init(width: 50, height: 100)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .white
@@ -58,6 +95,29 @@ class VideoCollectionViewController: UIViewController {
             $0.edges.equalToSuperview()
                 .inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         }
+        
+        navigationItem.rightBarButtonItem = selectBarButton
+    }
+    
+    @objc func didSelectButtonClicked(_ sender: UIBarButtonItem){
+        mMode = mMode == .view ? .select : .view
+    }
+    
+    @objc func didDeleteButtonClicked(_ sender: UIBarButtonItem){
+        var deleteNeededIndexPaths : [IndexPath] = []
+        for (key,value) in dictionarySelectedIndecPath{
+            if value{
+                deleteNeededIndexPaths.append(key)
+            }
+        }
+        //삭제 실제 배열에서
+        for i in deleteNeededIndexPaths.sorted(by:{$0.item > $1.item
+        }){
+            imageArr.remove(at: i.item)
+        }
+        
+        videoCollectionView.deleteItems(at: deleteNeededIndexPaths)
+        dictionarySelectedIndecPath.removeAll()
     }
     
 }

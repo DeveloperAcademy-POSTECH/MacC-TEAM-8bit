@@ -9,6 +9,25 @@ import UIKit
 import SnapKit
 
 extension VideoCollectionViewController :  UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch mMode{
+        case .view:
+            videoCollectionView.deselectItem(at: indexPath, animated: true)
+            print("상세재생뷰로 이동")
+            
+        case .select:
+            dictionarySelectedIndecPath[indexPath] = true
+        
+        }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if mMode == .select{
+            dictionarySelectedIndecPath[indexPath] = false
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageArr.count
     }
