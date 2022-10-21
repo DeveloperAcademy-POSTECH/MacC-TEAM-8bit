@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class SwipeView: UIViewController {
+final class SwipeView: UIView {
     
     private lazy var swipeCard: UIView = {
         let swipeView = UIView()
