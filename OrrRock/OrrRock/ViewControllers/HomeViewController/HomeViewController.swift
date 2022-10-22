@@ -191,7 +191,6 @@ final class HomeViewController : UIViewController {
     
     private lazy var toolbarView: UIToolbar = {
         let view = UIToolbar()
-        view.backgroundColor = .systemGray5
         
         var items: [UIBarButtonItem] = []
         
@@ -249,11 +248,9 @@ final class HomeViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .systemGray5
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoView)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: quickActionButton)
-
+        view.backgroundColor = .orrGray1
         setUpLayout()
+        setUpNavigationBar()
         setUICollectionViewDelegate()
     }
     
@@ -283,7 +280,6 @@ final class HomeViewController : UIViewController {
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
         }
 
-
         // 인디게이터 위치 추가
         self.view.addSubview(indicator)
         indicator.snp.makeConstraints {
@@ -305,6 +301,11 @@ final class HomeViewController : UIViewController {
     private func setUICollectionViewDelegate() {
         collectionView.dataSource = self
         collectionView.delegate = self
+    }
+    
+    func setUpNavigationBar() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoView)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: quickActionButton)
     }
     
     @objc func switchViewStyle() {

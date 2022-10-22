@@ -18,7 +18,7 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
     // reloadData에 의해 HeaderCell이 다시 그려지며 isCardView 값을 지정하고, 이에 따라 didSet 호출되며 레이아웃 설정함
     var isCardView: Bool = false {
         didSet {
-            setUpLayout()
+            setConstraints()
         }
     }
     
@@ -69,19 +69,21 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
         addSubview(headerRoundedSquare)
         addSubview(videoCountLabel)
         addSubview(PFCountLabel)
+        
+        // header view의 위치는 앨범/목록형으로 전환되어도 바뀌지 않으므로 setConstraint에 넣지 않음
         addSubview(headerTitle)
+        headerTitle.snp.makeConstraints {
+            $0.bottom.equalTo(snp_topMargin).offset(CGFloat(orrPadding.padding5.rawValue))
+        }
         
         setConstraints()
     }
     
     private func setConstraints() {
+        // 뷰가 다시 그려져야 할 때 기존의 constraint를 지우고 새로운 constraint를 부여하는 코드
         headerRoundedSquare.snp.removeConstraints()
         videoCountLabel.snp.removeConstraints()
         PFCountLabel.snp.removeConstraints()
-        
-        headerTitle.snp.makeConstraints {
-            $0.bottom.equalTo(snp_topMargin).offset(95)
-        }
         
         if isCardView {
             headerRoundedSquare.snp.makeConstraints { $0.width.equalTo(0) }
@@ -95,15 +97,17 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
                 $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2)
             }
             
-            videoCountLabel.snp.makeConstraints {
-                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2)
-                $0.bottom.equalTo(headerRoundedSquare.snp.top).offset(-CGFloat(orrPadding.padding3.rawValue))
-            }
-            
             PFCountLabel.snp.makeConstraints {
                 $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2)
-                $0.bottom.equalTo(videoCountLabel.snp.top).offset(-CGFloat(orrPadding.padding1.rawValue))
+                $0.top.equalTo(headerTitle.snp.bottom).offset(CGFloat(orrPadding.padding3.rawValue))
             }
+            
+            videoCountLabel.snp.makeConstraints {
+                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2)
+                $0.top.equalTo(PFCountLabel.snp.bottom).offset(CGFloat(orrPadding.padding1.rawValue))
+            }
+            
+            
         }
     }
 }

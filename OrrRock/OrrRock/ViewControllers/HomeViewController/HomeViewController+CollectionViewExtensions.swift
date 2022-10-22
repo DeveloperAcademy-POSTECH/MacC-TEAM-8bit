@@ -69,12 +69,12 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         // 앨범형, 목록형의 Header Cell의 높이를 별도로 지정
-        return CGSize(width: collectionView.frame.width, height: isCardView ? 117 : 180)
+        return CGSize(width: collectionView.frame.width, height: isCardView ? 72 : 72 + CGFloat(orrPadding.padding6.rawValue - orrPadding.padding3.rawValue))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         // 앨범형, 목록형의 Footer Cell의 높이를 별도로 지정
-        return CGSize(width: collectionView.frame.width, height: isCardView ? 72 : 102)
+        return CGSize(width: collectionView.frame.width, height: CGFloat(orrPadding.padding6.rawValue))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
