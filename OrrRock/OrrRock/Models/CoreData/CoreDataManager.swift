@@ -133,17 +133,17 @@ class CoreDataManager {
             filteredInformation.sort(by: { $0.gymVisitDate < $1.gymVisitDate })
             
             sortedInformation.append([])
-            var currentGymVisitDate = filteredInformation[filteredInfoIndex].gymVisitDate
+            var currentGymVisitDate = filteredInformation[filteredInfoIndex].gymVisitDate.formatted(date: .numeric, time: .omitted)
             
             while filteredInfoIndex != filteredInformation.count {
                 
-                if filteredInformation[filteredInfoIndex].gymVisitDate == currentGymVisitDate {
+                if filteredInformation[filteredInfoIndex].gymVisitDate.formatted(date: .numeric, time: .omitted) == currentGymVisitDate {
                     sortedInformation[currentSortedInformationIndex].append(filteredInformation[filteredInfoIndex])
                 } else {
                     sortedInformation.append([])
                     currentSortedInformationIndex += 1
                     sortedInformation[currentSortedInformationIndex].append(filteredInformation[filteredInfoIndex])
-                    currentGymVisitDate = filteredInformation[filteredInfoIndex].gymVisitDate
+                    currentGymVisitDate = filteredInformation[filteredInfoIndex].gymVisitDate.formatted(date: .numeric, time: .omitted)
                 }
                 
                 filteredInfoIndex += 1
