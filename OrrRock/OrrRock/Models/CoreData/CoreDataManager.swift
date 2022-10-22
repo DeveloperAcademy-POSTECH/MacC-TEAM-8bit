@@ -203,7 +203,9 @@ class CoreDataManager {
         sortedVideoInformation.reverse()
     }
     
-    // 아래의 메소드는 모두 Print문을 띄우기 위한 테스트 코드입니다
+    // 아래의 메소드는 모두 Print문을 띄우기 위한 테스트 코드
+    
+    // 기본 1차원 배열
     func printRawData(standard: SortOption) {
         print("-----RAW-----")
         for info in rawVideoInformation {
@@ -212,11 +214,19 @@ class CoreDataManager {
         print("------------")
         print("================================")
     }
-    func printAllSortedData(standard: SortOption) {
-        print("------SORTED------")
+    
+    // Filtering, Sorting이 완료된 정보가 위치하는 2차원 배열 Print문 출력을 위한 테스트 코드
+    func printAllSortedData(primarySortOption: SortOption) {
+        
+        switch primarySortOption {
+        case .gymName:
+            print("------SORT: 암장별 분류------")
+        case .gymVisitDate:
+            print("------SORT: 암장 방문 날짜별 분류------")
+        }
         for i in 0..<sortedVideoInformation.count {
             for j in 0..<sortedVideoInformation[i].count {
-                printData(info: sortedVideoInformation[i][j], primarySortOption: standard)
+                printData(info: sortedVideoInformation[i][j], primarySortOption: primarySortOption)
             }
             
             print("---NEXT ARRAY---")
@@ -225,6 +235,7 @@ class CoreDataManager {
         print("================================")
     }
     
+    // VideoInformation 단일 개체 출력을 위한 코드
     func printData(info: VideoInformation, primarySortOption: SortOption) {
         
         if primarySortOption == .gymName {
@@ -234,9 +245,10 @@ class CoreDataManager {
         }
     }
     
+    // VideoInformation 복수 개체(배열) 출력을 위한 코드. 클라이밍장, 날짜별 옵션을 지정할 수 있습니다.
     func printDataList(info: [VideoInformation], primarySortOption: SortOption) {
         for information in rawVideoInformation {
-            printData(info: information,primarySortOption: primarySortOption)
+            printData(info: information, primarySortOption: primarySortOption)
         }
     }
     
