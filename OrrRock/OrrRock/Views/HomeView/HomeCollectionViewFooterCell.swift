@@ -23,7 +23,7 @@ final class HomeCollectionViewFooterCell: UICollectionReusableView {
     
     private lazy var footerRoundedSquare: UIView = {
        let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .orrWhite
         view.layer.cornerRadius = 10
         return view
     }()

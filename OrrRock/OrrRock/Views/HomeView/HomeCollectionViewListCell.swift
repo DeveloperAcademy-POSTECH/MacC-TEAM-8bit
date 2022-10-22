@@ -18,20 +18,20 @@ final class HomeCollectionViewListCell: UICollectionViewCell {
     private lazy var thumbnailView: UIImageView = {
         let view = UIImageView()
         view.layer.cornerRadius = 10
-        view.backgroundColor = .systemGray5
+        view.backgroundColor = .orrGray3
         return view
     }()
     
     private lazy var dividerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGray4
+        view.backgroundColor = .orrGray2
         return view
     }()
     
     private lazy var locationIconImageView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(systemName: "location.square.fill")
-        view.tintColor = .systemGray4
+        view.tintColor = .orrGray3
         view.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
         return view
     }()
@@ -39,8 +39,8 @@ final class HomeCollectionViewListCell: UICollectionViewCell {
     private lazy var gymNameLabel: UILabel = {
         let view = UILabel()
         view.text = "아띠 클라이밍"
-        view.font = UIFont.systemFont(ofSize: 12, weight: .bold)
-        view.textColor = .systemGray3
+        view.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        view.textColor = .orrGray3
         return view
     }()
     
@@ -61,7 +61,7 @@ final class HomeCollectionViewListCell: UICollectionViewCell {
         let view = UILabel()
         view.text = "V6"
         view.font = UIFont.systemFont(ofSize: 12)
-        view.textColor = .systemGray3
+        view.textColor = .orrGray3
         return view
     }()
     
@@ -69,7 +69,7 @@ final class HomeCollectionViewListCell: UICollectionViewCell {
         let view = UILabel()
         view.text = "성공"
         view.font = UIFont.systemFont(ofSize: 12)
-        view.textColor = .systemGray3
+        view.textColor = .orrGray3
         return view
     }()
     
@@ -87,7 +87,7 @@ final class HomeCollectionViewListCell: UICollectionViewCell {
     
     // MARK: Layout Function
     func setUpLayout() {
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .orrWhite
         
         contentView.addSubview(cellView)
         cellView.snp.makeConstraints {

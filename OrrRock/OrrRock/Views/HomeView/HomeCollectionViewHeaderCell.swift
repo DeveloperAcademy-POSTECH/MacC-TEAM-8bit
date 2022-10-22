@@ -33,7 +33,7 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
     private lazy var headerRoundedSquare: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 10
-        view.backgroundColor = .white
+        view.backgroundColor = .orrWhite
         return view
     }()
     
@@ -48,7 +48,7 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
         let view = UILabel()
         view.text = "NNN개의 비디오"
         view.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        view.textColor = .systemGray2
+        view.textColor = .orrGray3
         return view
     }()
     

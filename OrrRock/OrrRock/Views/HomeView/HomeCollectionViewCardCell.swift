@@ -27,7 +27,7 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
     // MARK: UI Components
     private lazy var cardView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .orrWhite
         view.layer.cornerRadius = 10
         return view
     }()
@@ -42,7 +42,7 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
     private lazy var locationIconImageView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(systemName: "location.square.fill")
-        view.tintColor = .systemGray4
+        view.tintColor = .orrGray3
         view.frame = CGRect(x: 0, y: 0, width: 8, height: 8)
         return view
     }()
@@ -51,12 +51,13 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         let view = UILabel()
         view.text = "클라이밍장 정보"
         view.font = UIFont.systemFont(ofSize: 12)
-        view.textColor = .gray
+        view.textColor = .orrGray3
         return view
     }()
     
     private lazy var gymStackView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [locationIconImageView, gymLabel])
+        view.spacing = 5
         view.axis = .horizontal
         return view
     }()
@@ -67,7 +68,7 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         flow.minimumLineSpacing = 1
         
         var view = UICollectionView(frame: CGRect.zero, collectionViewLayout: flow)
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.orrWhite
         view.register(HomeCardCollectionViewThumbnailCell.classForCoder(), forCellWithReuseIdentifier: "homeCardCollectionViewThumbnailCell")
         return view
     }()
@@ -83,14 +84,14 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         let view = UILabel()
         view.text = "N개의 비디오"
         view.font = UIFont.systemFont(ofSize: 12)
-        view.textColor = .gray
+        view.textColor = .orrGray3
         return view
     }()
     
     private lazy var detailButton: UIButton = {
         let button = UIButton()
         button.setTitle("더 보기", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
+        button.setTitleColor(.orrUPBlue, for: .normal)
         return button
     }()
     
@@ -138,7 +139,7 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         
         cardView.addSubview(countPFLabel)
         countPFLabel.snp.makeConstraints {
-            $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(CGFloat(orrPadding.padding1.rawValue))
+            $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(CGFloat(orrPadding.padding2.rawValue))
             $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(orrPadding.padding3.rawValue))
         }
         
