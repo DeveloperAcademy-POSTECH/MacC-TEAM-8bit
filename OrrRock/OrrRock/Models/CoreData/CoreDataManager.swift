@@ -78,11 +78,16 @@ class CoreDataManager {
         }
     }
     
-    func sortVideoInformation(videoInformation: [VideoInformation], sortOption: SortOption) {
+    func sortVideoInformation(filterOption: FilterOption, sortOption: SortOption) {
         
         self.sortedVideoInformation.removeAll()
         
-        var filteredInformation = videoInformation
+        var filteredInformation = filterVideoInformation(filterOption: filterOption)
+        
+        if filteredInformation.count == 0 {
+            print("해당하는 기준 조건의 영상이 존재하지 않습니다")
+            return
+        }
         var sortedInformation: [[VideoInformation]] = []
         
         var filteredInfoIndex = 0
