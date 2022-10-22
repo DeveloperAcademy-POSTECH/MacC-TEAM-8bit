@@ -203,6 +203,14 @@ class CoreDataManager {
         sortedVideoInformation.reverse()
     }
     
+    func getRawVideoInformation() -> [VideoInformation] {
+        return rawVideoInformation
+    }
+    
+    func getSortedVideoInformation() -> [[VideoInformation]] {
+        return sortedVideoInformation
+    }
+    
     // *테스트용* 아래의 메소드는 모두 Print문을 띄우기 위한 테스트 코드
     // 기본 1차원 배열
     func printRawData(standard: SortOption) {
