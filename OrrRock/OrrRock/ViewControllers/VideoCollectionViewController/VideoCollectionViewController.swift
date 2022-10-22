@@ -28,6 +28,9 @@ class VideoCollectionViewController: UIViewController {
                 }
                 dictionarySelectedIndecPath.removeAll()
                 selectBarButton.title = "편집"
+                let indexCountLabel = UILabel()
+                indexCountLabel.text = "항목 선택"
+                toolbarText.customView = indexCountLabel
                 navigationItem.leftBarButtonItem = backBarButton
                 videoCollectionView.allowsMultipleSelection = false
                 self.navigationController?.setToolbarHidden(true, animated: true)
@@ -92,7 +95,8 @@ class VideoCollectionViewController: UIViewController {
     }()
     
     lazy var deleteBarButton : UIBarButtonItem = {
-        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(didDeleteButtonClicked(_:)))
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(didDeleteActionSheetClicked(_:)))
+        barButtonItem.isEnabled = false
         return barButtonItem
     }()
     
@@ -108,6 +112,9 @@ class VideoCollectionViewController: UIViewController {
         return cv
     }()
     
+    lazy var bottomBatItems : [UIBarButtonItem] = [
+        UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),toolbarText,UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),deleteBarButton]
+    
     override func viewDidLayoutSubviews() {
         navigationItem.titleView = titleStackView
     }
@@ -117,9 +124,7 @@ class VideoCollectionViewController: UIViewController {
         setVideoCollectionViewDelegate()
         registerCells()
         setUpLayout()
-        let items : [UIBarButtonItem] = [
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),toolbarText,UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),deleteBarButton]
-        self.toolbarItems = items
+        
         
     }
     
@@ -149,7 +154,7 @@ class VideoCollectionViewController: UIViewController {
             $0.edges.equalToSuperview()
                 .inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         }
-        
+        self.toolbarItems = bottomBatItems
         navigationItem.rightBarButtonItem = selectBarButton
         navigationItem.leftBarButtonItem = backBarButton
         firstContentOffset = Float(videoCollectionView.contentOffset.y)
@@ -163,7 +168,7 @@ class VideoCollectionViewController: UIViewController {
         self.navigationController?.popToRootViewController(animated: true)
     }
     
-    @objc func didDeleteButtonClicked(_ sender: UIBarButtonItem){
+    func didDeleteButtonClicked(){
         var deleteNeededIndexPaths : [IndexPath] = []
         for (key,value) in dictionarySelectedIndecPath{
             if value{
@@ -180,7 +185,27 @@ class VideoCollectionViewController: UIViewController {
         dictionarySelectedIndecPath.removeAll()
         let indexCountLabel = UILabel()
         indexCountLabel.text = "항목 선택"
+        deleteBarButton.isEnabled = false
         toolbarText.customView = indexCountLabel
+    }
+    
+    @objc func didDeleteActionSheetClicked(_ sender: UIBarButtonItem){
+        let optionMenu = UIAlertController(title: "선택한 영상 삭제하기", message: "정말로 삭제하시겠어요?", preferredStyle: .actionSheet)
+        
+            // 2
+        let deleteAction = UIAlertAction(title: "삭제하기", style: .default) { _ in
+            self.didDeleteButtonClicked()
+        }
+                
+            // 3
+            let cancelAction = UIAlertAction(title: "취소하기", style: .cancel)
+                
+            // 4
+            optionMenu.addAction(deleteAction)
+            optionMenu.addAction(cancelAction)
+                
+            // 5
+            self.present(optionMenu, animated: true, completion: nil)
     }
     
     @objc func didSelectAllButtonClicked(_ sender: UIBarButtonItem){
@@ -197,6 +222,7 @@ class VideoCollectionViewController: UIViewController {
         
         let indexCountLabel = UILabel()
         indexCountLabel.text = (dictionarySelectedIndecPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndecPath.values.filter({$0 == true}).count)개의 비디오 선택"
+        
         toolbarText.customView = indexCountLabel
     }
     

@@ -38,6 +38,7 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
             let indexCountLabel = UILabel()
             indexCountLabel.text = (dictionarySelectedIndecPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndecPath.values.filter({$0 == true}).count)개의 비디오 선택"
             toolbarText.customView = indexCountLabel
+            deleteBarButton.isEnabled = true
         }
         
     }
@@ -51,6 +52,7 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
             collectionView.cellForItem(at: indexPath)?.isSelected = false
             let indexCountLabel = UILabel()
             indexCountLabel.text = (dictionarySelectedIndecPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndecPath.values.filter({$0 == true}).count)개의 비디오 선택"
+            deleteBarButton.isEnabled = (dictionarySelectedIndecPath.values.filter({$0 == true}).count) == 0 ? false : true
             toolbarText.customView = indexCountLabel
         }
     }
