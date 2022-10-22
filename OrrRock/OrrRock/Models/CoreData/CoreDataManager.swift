@@ -19,7 +19,7 @@ class CoreDataManager {
     private var sortedVideoInformation: [[VideoInformation]] = []
     
     init() {
-        rawVideoInformation = readData()
+        fetchData()
     }
     
     // VideoInfo 구조체를 매개변수로 받아 VideoInformation NSManagedObject에 추가
@@ -238,9 +238,9 @@ class CoreDataManager {
     func printData(info: VideoInformation, primarySortOption: SortOption) {
         
         if primarySortOption == .gymName {
-            print("\(info.gymName) | \(info.gymVisitDate.formatted(date: .numeric, time: .omitted)) | \(info.videoUrl) | \(info.problemLevel) | 즐겨찾기 \(info.isFavorite) | 성공 \(info.isSucceeded)")
+            print("\(info.gymName) | \(info.gymVisitDate.formatted(date: .numeric, time: .omitted)) | \(info.videoUrl) | 문제난이도 \(info.problemLevel) | 즐겨찾기 \(info.isFavorite) | 성공 \(info.isSucceeded)")
         } else {
-            print("| \(info.gymVisitDate.formatted(date: .numeric, time: .omitted)) | \(info.gymName) | \(info.videoUrl) | \(info.problemLevel) | 즐겨찾기 \(info.isFavorite) | 성공 \(info.isSucceeded)")
+            print("| \(info.gymVisitDate.formatted(date: .numeric, time: .omitted)) | \(info.gymName) | \(info.videoUrl) | 문제난이도 \(info.problemLevel) | 즐겨찾기 \(info.isFavorite) | 성공 \(info.isSucceeded)")
         }
     }
     

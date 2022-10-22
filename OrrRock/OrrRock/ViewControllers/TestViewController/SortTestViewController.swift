@@ -20,10 +20,10 @@ class SortTestViewController: UIViewController {
     let margin: CGFloat = 10
     let widthNHeight: CGFloat = 75
     
-    let sortButtonText = ["GYM UP", "GYM DOWN", "DATE UP", "DATE DOWN"]
+    let sortButtonText = ["암장이름 오름차순", "암장이름 내림차순", "방문날짜 최근순", "방문날짜 오래된순"]
     let sortButtons: [UIButton] = [UIButton(), UIButton(), UIButton(), UIButton()]
     
-    let sortNFilterButtonText = ["GYM\nUP\nFAV", "GYM\nDOWN\nFAV", "DATE\nUP\nFAV", "DATE\nDOWN\nFAV", "GYM\nUP\nPASS", "GYM\nDOWN\nPASS", "DATE\nUP\nPASS", "DATE\nDOWN\nPASS", "GYM\nUP\nFAIL", "GYM\nDOWN\nFAIL", "DATE\nUP\nFAIL", "DATE\nDOWN\nFAIL"]
+    let sortNFilterButtonText = ["암장 이름\n오름차순\nFAV", "암장 이름\n내림차순\nFAV", "암장 날짜\n최근순\nFAV", "암장 날짜\n오래된순\nFAV", "암장 이름\n오름차순\nPASS", "암장 이름\n내림차순\nPASS", "암장 날짜\n최근순\nPASS", "암장 날짜\n오래된순\nPASS", "암장 이름\n오름차순\nFAIL", "암장 이름\n내림차순\nFAIL", "암장 날짜\n최근순\nFAIL", "암장 날짜\n오래된순\nFAIL"]
     let sortNFilterButtons: [UIButton] = [UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton()]
     
     override func viewDidLoad() {
@@ -32,6 +32,7 @@ class SortTestViewController: UIViewController {
         coreDataRandomvideoInformationGenerate(howMany: 30)
         
         
+        // 암장별, 방문일자별로만 데이터를 확인하고 싶다면 아래의 주석 해제 후 line 39,40을 주석처리 후 실행해주세요
         //layoutConfigureForSortButtons()
         //sortButtonComponentConfigure()
         
@@ -67,10 +68,12 @@ class SortTestViewController: UIViewController {
     }
                                                
     func sortButtonComponentConfigure() {
+        
         sortButtons[0].addTarget(self, action: #selector(gymUPSort), for: .touchUpInside)
         sortButtons[1].addTarget(self, action: #selector(gymDOWNSort), for: .touchUpInside)
         sortButtons[2].addTarget(self, action: #selector(dateUPSort), for: .touchUpInside)
         sortButtons[3].addTarget(self, action: #selector(dateDOWNSort), for: .touchUpInside)
+        
     }
     
     
@@ -255,6 +258,8 @@ class SortTestViewController: UIViewController {
         }
         
         print("랜덤 데이터 \(CoreDataManager.shared.readData().count)개가 Core Data에 저장되었습니다.")
+        CoreDataManager.shared.fetchData()
+        CoreDataManager.shared.printRawData(standard: .gymName)
     }
 
 }
