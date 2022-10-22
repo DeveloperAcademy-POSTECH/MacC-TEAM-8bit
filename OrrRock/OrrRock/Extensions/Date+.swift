@@ -9,7 +9,7 @@ import Foundation
 
 extension Date {
 	//MARK: Date -> String 타입 변환 메서드
-	func timeToStringYMD() -> String { // "yyyy년 M월 d일"
+	func timeToString() -> String { // "yyyy년 M월 d일"
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "yyyy년 M월 d일"
 		dateFormatter.locale = Locale(identifier:"ko_KR")
