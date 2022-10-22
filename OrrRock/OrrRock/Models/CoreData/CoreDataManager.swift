@@ -15,10 +15,11 @@ class CoreDataManager {
     private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     private lazy var context = appDelegate.persistentContainer.viewContext
     
-    private var videoInformation: [VideoInformation] = []
+    private var rawVideoInformation: [VideoInformation] = []
+    private var sortedVideoInformation: [[VideoInformation]] = []
     
     init() {
-        self.videoInformation = readData()
+        rawVideoInformation = readData()
     }
     
     // VideoInfo 구조체를 매개변수로 받아 VideoInformation NSManagedObject에 추가
@@ -59,7 +60,7 @@ class CoreDataManager {
     
     func filterVideoInformation(filterOption: FilterOption) -> [VideoInformation] {
         
-        let originInformation = videoInformation
+        let originInformation = readData()
         
         switch filterOption {
         case .all:
@@ -73,7 +74,9 @@ class CoreDataManager {
         }
     }
     
-    func sortVideoInformation(videoInformation: [VideoInformation], sortOption: SortOption) -> [[VideoInformation]] {
+    func sortVideoInformation(videoInformation: [VideoInformation], sortOption: SortOption) {
+        
+        self.sortedVideoInformation.removeAll()
         
         var filteredInformation = videoInformation
         var sortedInformation: [[VideoInformation]] = []
@@ -92,7 +95,7 @@ class CoreDataManager {
              */
         case .gymName:
             
-            filteredInformation.sort(by: { $0.gymName > $1.gymName })
+            filteredInformation.sort(by: { $0.gymName < $1.gymName })
             
             sortedInformation.append([])
             var currentGymName = filteredInformation[filteredInfoIndex].gymName
@@ -112,42 +115,11 @@ class CoreDataManager {
                 
             }
             
-            currentSortedInformationIndex = -1
-            
-            var finalSortedInformation: [[VideoInformation]] = []
-            
             for index in 0..<sortedInformation.count {
-                
-                if sortedInformation[index].count == 0 {
-                    continue
-                }
-                
-                let visitDateSortedArray = sortedInformation[index].sorted(by: { $0.gymVisitDate > $1.gymVisitDate })
-                
-                filteredInfoIndex = 0
-                
-                var currentGymVisitDate = visitDateSortedArray[filteredInfoIndex].gymVisitDate
-                
-                finalSortedInformation.append([])
-                currentSortedInformationIndex += 1
-                
-                while filteredInfoIndex != visitDateSortedArray.count {
-                    
-                    if visitDateSortedArray[filteredInfoIndex].gymVisitDate == currentGymVisitDate {
-                        finalSortedInformation[currentSortedInformationIndex].append(visitDateSortedArray[filteredInfoIndex])
-                    } else {
-                        finalSortedInformation.append([])
-                        currentSortedInformationIndex += 1
-                        finalSortedInformation[currentSortedInformationIndex].append(visitDateSortedArray[filteredInfoIndex])
-                        currentGymVisitDate = visitDateSortedArray[filteredInfoIndex].gymVisitDate
-                    }
-                    
-                    filteredInfoIndex += 1
-                    
-                }
+                sortedInformation[index].sort(by: {$0.gymVisitDate > $1.gymVisitDate})
             }
             
-            return finalSortedInformation
+            self.sortedVideoInformation = sortedInformation
             
             // MARK: 클라이밍장 이름을 분류하는 케이스
             /* sort함수를 통해 클라이밍장 방문 날짜로 먼저 분류합니다.
@@ -213,7 +185,7 @@ class CoreDataManager {
                 }
             }
             
-            return finalSortedInformation
+            self.sortedVideoInformation = finalSortedInformation
         }
     }
     
