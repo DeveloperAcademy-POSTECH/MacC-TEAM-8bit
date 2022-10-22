@@ -203,10 +203,12 @@ class CoreDataManager {
         sortedVideoInformation.reverse()
     }
     
+    // private var rawVideoInformation 접근을 위한 메소드
     func getRawVideoInformation() -> [VideoInformation] {
         return rawVideoInformation
     }
     
+    // private var sortedVideoInformation 접근을 위한 메소드
     func getSortedVideoInformation() -> [[VideoInformation]] {
         return sortedVideoInformation
     }
