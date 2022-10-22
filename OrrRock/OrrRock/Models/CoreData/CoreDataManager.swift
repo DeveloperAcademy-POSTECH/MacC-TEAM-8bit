@@ -190,12 +190,8 @@ class CoreDataManager {
     }
     
     // 현재 정렬된 VideoInformation 2차원 배열을 reverse
-    func reverseSort(videoInformation: [[VideoInformation]]) -> [[VideoInformation]]{
-        
-        var videoInformation = videoInformation
-        videoInformation.reverse()
-        
-        return videoInformation
+    func reverseSort() {
+        sortedVideoInformation.reverse()
     }
 
 }
