@@ -119,39 +119,39 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         thumbnailCollectionView.snp.makeConstraints {
             $0.leading.equalTo(cardView.snp.leading)
             $0.trailing.equalTo(cardView.snp.trailing)
-            $0.centerY.equalTo(cardView.snp.centerY).offset(4)
-            $0.height.equalTo(((UIScreen.main.bounds.width - 32) / 5 * 2))
+            $0.centerY.equalTo(cardView.snp.centerY).offset(CGFloat(orrPadding.padding1.rawValue))
+            $0.height.equalTo(((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2))
             
         }
         
         cardView.addSubview(gymStackView)
         gymStackView.snp.makeConstraints {
-            $0.bottom.equalTo(thumbnailCollectionView.snp.top).offset(-8)
-            $0.leading.equalTo(cardView.snp.leading).offset(20)
+            $0.bottom.equalTo(thumbnailCollectionView.snp.top).offset(-CGFloat(orrPadding.padding2.rawValue))
+            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(orrPadding.padding3.rawValue))
         }
         
         cardView.addSubview(dateLabel)
         dateLabel.snp.makeConstraints {
-            $0.bottom.equalTo(gymStackView.snp.top).inset(-4)
-            $0.leading.equalTo(cardView.snp.leading).offset(20)
+            $0.bottom.equalTo(gymStackView.snp.top).inset(-CGFloat(orrPadding.padding1.rawValue))
+            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(orrPadding.padding3.rawValue))
         }
         
         cardView.addSubview(countPFLabel)
         countPFLabel.snp.makeConstraints {
-            $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(8)
-            $0.leading.equalTo(cardView.snp.leading).offset(20)
+            $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(CGFloat(orrPadding.padding1.rawValue))
+            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(orrPadding.padding3.rawValue))
         }
         
         cardView.addSubview(countTotalVideoLabel)
         countTotalVideoLabel.snp.makeConstraints {
-            $0.top.equalTo(countPFLabel.snp.bottom).offset(4)
-            $0.leading.equalTo(cardView.snp.leading).offset(20)
+            $0.top.equalTo(countPFLabel.snp.bottom).offset(CGFloat(orrPadding.padding1.rawValue))
+            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(orrPadding.padding3.rawValue))
         }
         
         cardView.addSubview(detailButton)
         detailButton.snp.makeConstraints {
-            $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(16)
-            $0.trailing.equalTo(cardView.snp.trailing).offset(-20)
+            $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(CGFloat(orrPadding.padding3.rawValue))
+            $0.trailing.equalTo(cardView.snp.trailing).offset(-CGFloat(orrPadding.padding3.rawValue))
         }
     }
     

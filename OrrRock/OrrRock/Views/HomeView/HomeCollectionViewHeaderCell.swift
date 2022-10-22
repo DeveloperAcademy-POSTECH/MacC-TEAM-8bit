@@ -90,20 +90,19 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
             
         } else {
             headerRoundedSquare.snp.makeConstraints {
-                $0.bottom.equalTo(snp_bottomMargin).offset(15)
-                
-                $0.height.equalTo(15)
-                $0.width.equalTo(UIScreen.main.bounds.width - 32)
+                $0.bottom.equalTo(snp_bottomMargin).offset(CGFloat(orrPadding.padding3.rawValue))
+                $0.height.equalTo(CGFloat(orrPadding.padding3.rawValue))
+                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2)
             }
             
             videoCountLabel.snp.makeConstraints {
-                $0.width.equalTo(UIScreen.main.bounds.width - 32)
-                $0.bottom.equalTo(headerRoundedSquare.snp.top).offset(-16)
+                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2)
+                $0.bottom.equalTo(headerRoundedSquare.snp.top).offset(-CGFloat(orrPadding.padding3.rawValue))
             }
             
             PFCountLabel.snp.makeConstraints {
-                $0.width.equalTo(UIScreen.main.bounds.width - 32)
-                $0.bottom.equalTo(videoCountLabel.snp.top).offset(-4)
+                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2)
+                $0.bottom.equalTo(videoCountLabel.snp.top).offset(-CGFloat(orrPadding.padding1.rawValue))
             }
         }
     }

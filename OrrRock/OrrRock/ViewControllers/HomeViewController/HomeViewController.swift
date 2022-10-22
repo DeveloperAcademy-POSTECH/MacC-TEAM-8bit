@@ -21,7 +21,6 @@ final class HomeViewController : UIViewController {
     
     // MARK: UI Components
     // CollectionView의 좌우 여백을 이용해 동적으로 UI 그리기 위한 변수
-    let HorizontalPaddingSize: CGFloat = 16
     var isCardView: Bool = false {
         didSet {
             collectionView.reloadData()
@@ -158,8 +157,8 @@ final class HomeViewController : UIViewController {
         collectionView.snp.makeConstraints {
             $0.top.equalTo(view.snp.top)
             $0.bottom.equalTo(toolbarView.snp.top)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(HorizontalPaddingSize)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(HorizontalPaddingSize)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(orrPadding.padding3.rawValue)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(orrPadding.padding3.rawValue)
         }
         
         self.view.addSubview(headerView)
