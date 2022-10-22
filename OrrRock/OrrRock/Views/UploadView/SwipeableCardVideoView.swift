@@ -12,6 +12,7 @@ import AVKit
 import AVFoundation
 
 final class SwipeableCardVideoView: UIView {
+
     private lazy var videoBackgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray
@@ -25,16 +26,34 @@ final class SwipeableCardVideoView: UIView {
         return slider
     }()
     
+    let successImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "success")
+        imageView.alpha = 0.0
+
+        return imageView
+    }()
+
+    let failImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "fail")
+        imageView.alpha = 0.0
+
+        return imageView
+    }()
+
+    
     private var player = AVPlayer()
     private var playerLayer: AVPlayerLayer?
     private let asset: AVAsset
-    
+
     init(asset: AVAsset) {
         self.asset = asset
         super.init(frame: .zero)
 
         setUpLayout()
         controller()
+
     }
     
     required init?(coder: NSCoder) {
@@ -96,5 +115,22 @@ private extension SwipeableCardVideoView {
             $0.top.equalTo(videoBackgroundView.snp.bottom).offset(16)
             $0.leading.trailing.equalToSuperview().inset(16)
         }
+        
+        self.addSubview(successImageView)
+        successImageView.snp.makeConstraints {
+             $0.top.equalTo(videoBackgroundView.snp.top).offset(16.0)
+             $0.leading.equalTo(videoBackgroundView.snp.leading).offset(16.0)
+             $0.height.equalTo(30.0)
+             $0.width.equalTo(150.0)
+         }
+
+        self.addSubview(failImageView)
+         failImageView.snp.makeConstraints {
+             $0.top.equalTo(videoBackgroundView.snp.top).offset(16.0)
+             $0.trailing.equalTo(videoBackgroundView.snp.trailing).offset(-16.0)
+             $0.height.equalTo(30.0)
+             $0.width.equalTo(100.0)
+         }
+        
     }
 }

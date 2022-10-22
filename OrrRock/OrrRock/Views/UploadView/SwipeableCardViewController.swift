@@ -32,13 +32,13 @@ private extension SwipeableCardViewController {
         for card in 0...2 {
             lazy var swipeCard: SwipeableCardVideoView = {
                 let embed = Bundle.main.url(forResource: "ianIsComming", withExtension: "MOV")
-                let asset1 = AVAsset(url: embed!)
-                
-                let view = SwipeableCardVideoView(asset: asset1)
+                let testVideoAsset = AVAsset(url: embed!)
+
+                let view = SwipeableCardVideoView(asset: testVideoAsset)
                 self.view.addSubview(view)
                 return view
             }()
-            
+
             view.addSubview(swipeCard)
 
             swipeCard.snp.makeConstraints {
