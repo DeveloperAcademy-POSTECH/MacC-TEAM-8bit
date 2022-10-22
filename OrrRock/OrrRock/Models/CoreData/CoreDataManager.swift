@@ -193,5 +193,43 @@ class CoreDataManager {
     func reverseSort() {
         sortedVideoInformation.reverse()
     }
+    
+    // 아래의 메소드는 모두 Print문을 띄우기 위한 테스트 코드입니다
+    func printRawData(standard: SortOption) {
+        print("-----RAW-----")
+        for info in rawVideoInformation {
+            printData(info: info, primarySortOption: standard)
+        }
+        print("------------")
+        print("================================")
+    }
+    func printAllSortedData(standard: SortOption) {
+        print("------SORTED------")
+        for i in 0..<sortedVideoInformation.count {
+            for j in 0..<sortedVideoInformation[i].count {
+                printData(info: sortedVideoInformation[i][j], primarySortOption: standard)
+            }
+            
+            print("---NEXT ARRAY---")
+        }
+        print("------------------")
+        print("================================")
+    }
+    
+    func printData(info: VideoInformation, primarySortOption: SortOption) {
+        
+        if primarySortOption == .gymName {
+            print("\(info.gymName) | \(info.gymVisitDate.formatted(date: .numeric, time: .omitted)) | \(info.videoUrl) | \(info.problemLevel) | 즐겨찾기 \(info.isFavorite) | 성공 \(info.isSucceeded)")
+        } else {
+            print("| \(info.gymVisitDate.formatted(date: .numeric, time: .omitted)) | \(info.gymName) | \(info.videoUrl) | \(info.problemLevel) | 즐겨찾기 \(info.isFavorite) | 성공 \(info.isSucceeded)")
+        }
+    }
+    
+    func printDataList(info: [VideoInformation], primarySortOption: SortOption) {
+        for information in rawVideoInformation {
+            printData(info: information,primarySortOption: primarySortOption)
+        }
+    }
+    
 
 }
