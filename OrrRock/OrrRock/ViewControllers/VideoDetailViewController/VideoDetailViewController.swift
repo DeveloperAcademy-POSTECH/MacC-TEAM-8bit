@@ -17,6 +17,9 @@ final class VideoDetailViewController: UIViewController {
 	
 	var isShowInfo: Bool = false
 	
+	let videoPlayView: UIView = VideoPlayView()
+	let videoInfoView: UIView = VideoInfoView()
+	
 	var infoButton: UIBarButtonItem!
 	var feedbackButton: UIBarButtonItem!
 	var trashButton: UIBarButtonItem!
@@ -34,18 +37,6 @@ final class VideoDetailViewController: UIViewController {
 	private lazy var bottomSafeareaView: UIView = {
 		let view = UIView()
 		view.backgroundColor = .white
-		return view
-	}()
-	
-	private lazy var videoView: UIView = {
-		let view = UIView()
-		view.backgroundColor = .blue
-		return view
-	}()
-	
-	private lazy var infoView: UIView = {
-		let view = UIView()
-		view.backgroundColor = .red
 		return view
 	}()
 	
@@ -70,7 +61,7 @@ final class VideoDetailViewController: UIViewController {
 		self.view.backgroundColor = .white
 		navigationController?.navigationBar.backgroundColor = .white
 		navigationController?.toolbar.backgroundColor = .white
-
+		
 		navigationItem.leftBarButtonItem = goBackButton
 		navigationItem.rightBarButtonItem = favoriteButton
 		
@@ -92,16 +83,16 @@ final class VideoDetailViewController: UIViewController {
 		if isShowInfo {
 			infoButton.image = UIImage(systemName: "info.circle.fill")
 			UIView.animate(withDuration: 0.2, animations: {
-				self.infoView.transform = CGAffineTransform(translationX: 0, y: -500)
-				self.videoView.transform = CGAffineTransform(translationX: 0, y: -100)
+				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -500)
+				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: -100)
 				self.navigationController?.navigationBar.layer.opacity = 0
 				self.topSafeareaView.layer.opacity = 0
 			})
 		} else {
 			infoButton.image = UIImage(systemName: "info.circle")
 			UIView.animate(withDuration: 0.2, animations: {
-				self.infoView.transform = CGAffineTransform(translationX: 0, y: 0)
-				self.videoView.transform = CGAffineTransform(translationX: 0, y: 0)
+				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
+				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: 0)
 				self.navigationController?.navigationBar.layer.opacity = 1
 				self.topSafeareaView.layer.opacity = 1
 			})
@@ -151,16 +142,16 @@ final class VideoDetailViewController: UIViewController {
 extension VideoDetailViewController {
 	private func setUpLayout() {
 		// 영상을 보여주는 뷰
-		view.addSubview(videoView)
-		videoView.snp.makeConstraints {
+		view.addSubview(videoPlayView)
+		videoPlayView.snp.makeConstraints {
 			$0.left.equalTo(self.view)
 			$0.right.equalTo(self.view)
 			$0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
 			$0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
 		}
 		// 정보를 보여주는 뷰
-		view.addSubview(infoView)
-		infoView.snp.makeConstraints {
+		view.addSubview(videoInfoView)
+		videoInfoView.snp.makeConstraints {
 			$0.left.equalTo(self.view)
 			$0.right.equalTo(self.view)
 			$0.height.equalTo(650)
