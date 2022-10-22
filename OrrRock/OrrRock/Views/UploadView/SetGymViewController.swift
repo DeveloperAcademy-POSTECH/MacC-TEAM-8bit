@@ -33,20 +33,27 @@ class SetGymViewController: UIViewController {
         let btn = UIButton()
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
         btn.setBackgroundColor(.orrGray2!, for: .disabled)
-//        btn.addTarget(self, action: #selector(nextButtonPressed), for: .touchDown)
+        btn.addTarget(self, action: #selector(nextButtonPressed), for: .touchDown)
         btn.setTitle("저장", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.isEnabled = false
         return btn
     }()
 
+//MARK: 생명주기 함수 모음
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .yellow
         setupLayout()
         gymTextField.becomeFirstResponder()
     }
-    
+
+}
+
+//MARK: 함수모음
+extension SetGymViewController {
+
+    //텍스트 필드의 내용물에 따라 버튼을 활성화 비활성화 시킴
     @objc final private func nextBttonOnAndOff(textField: UITextField) {
         if textField.text != "" {
             nextButton.isEnabled = true
@@ -54,12 +61,20 @@ class SetGymViewController: UIViewController {
             nextButton.isEnabled = false
         }
     }
+
+    @objc
+    private func nextButtonPressed(_ sender: UIButton) {
+        let nextVC = SetGymViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+
 }
 
+//MARK: 오토레이아웃 설정 영역
 extension SetGymViewController {
     
     func setupLayout() {
-    
+
         view.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
             $0.centerX.equalTo(view)

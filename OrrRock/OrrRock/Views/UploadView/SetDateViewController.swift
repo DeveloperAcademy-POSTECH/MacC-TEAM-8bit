@@ -44,11 +44,17 @@ class SetDateViewController: UIViewController {
         return btn
     }()
 
+//MARK: 생명주기 함수 모음
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .yellow
         setupLayout()
     }
+
+}
+
+//MARK: 함수모음
+extension SetDateViewController {
 
     @objc
     private func handleDatePicker(_ sender: UIDatePicker) {
@@ -65,7 +71,9 @@ class SetDateViewController: UIViewController {
 
 }
 
+//MARK: 오토레이아웃 설정 영역
 extension SetDateViewController {
+
     func setupLayout() {
 
         view.addSubview(datePickerLabel)
