@@ -139,7 +139,7 @@ class CoreDataManager {
              */
         case .gymVisitDate:
             
-            filteredInformation.sort(by: { $0.gymVisitDate < $1.gymVisitDate })
+            filteredInformation.sort(by: { $0.gymVisitDate > $1.gymVisitDate })
             
             sortedInformation.append([])
             var currentGymVisitDate = filteredInformation[filteredInfoIndex].gymVisitDate.formatted(date: .numeric, time: .omitted)
