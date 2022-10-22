@@ -240,5 +240,19 @@ class CoreDataManager {
         }
     }
     
+    // *테스트용* : SortTestViewController의 정렬 시 데이터 삭제를 위한 메소드
+    func deleteAllData() {
+        let objects = readData()
+        
+        if objects.count > 0 {
+            for object in objects {
+                context.delete(object)
+            }
+            print("기존 데이터 삭제 완료")
+            saveData()
+        } else {
+            print("삭제할 데이터가 존재하지 않습니다.")
+        }
+    }
 
 }
