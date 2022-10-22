@@ -1,5 +1,5 @@
 //
-//  SwipeCardView.swift
+//  SwipeableCardView.swift
 //  OrrRock
 //
 //  Created by 이성노, Yeni Hwang on 2022/10/21.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class SwipeCardView: UIView {
+final class SwipeableCardView: UIView {
 
     // 목업용 이미지입니다
     let photoImageView: UIImageView = {
@@ -23,7 +23,7 @@ class SwipeCardView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        setupLayout()
+        setUpLayout()
     }
 
     required init?(coder: NSCoder) {
@@ -31,13 +31,13 @@ class SwipeCardView: UIView {
     }
 }
 
-extension SwipeCardView {
+private extension SwipeableCardView {
 
-    func setupLayout() {
+    func setUpLayout() {
         addSubview(photoImageView)
 
         photoImageView.snp.makeConstraints {
-            $0.top.bottom.leading.trailing.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
     }
 }

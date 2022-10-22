@@ -1,5 +1,5 @@
 //
-//  SwipeCardViewController.swift
+//  SwipeableCardViewController.swift
 //  OrrRock
 //
 //  Created by 이성노, Yeni Hwang on 2022/10/21.
@@ -8,26 +8,26 @@
 import UIKit
 import SnapKit
 
-final class SwipeCardViewController: UIViewController {
+final class SwipeableCardViewController: UIViewController {
 
-    let gesture = UIPanGestureRecognizer()
+    private let gesture = UIPanGestureRecognizer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // card UI
         view.backgroundColor = .systemGroupedBackground
-        showOtherCardToSwipe()
+        createSwipeableCard()
     }
 }
 
 // Gesture
-private extension SwipeCardViewController {
+private extension SwipeableCardViewController {
     
     // 목업용 카드를 만들어줍니다.
-    func showOtherCardToSwipe() {
+    func createSwipeableCard() {
         for card in 0...2 {
-            let swipeCard = SwipeCardView()
+            let swipeCard = SwipeableCardView()
             view.addSubview(swipeCard)
 
             swipeCard.snp.makeConstraints {
@@ -43,7 +43,7 @@ private extension SwipeCardViewController {
     }
     
     // Gesture
-    @objc func handlerCard (_ gesture: UIPanGestureRecognizer) {
+    @objc func handlerCard(_ gesture: UIPanGestureRecognizer) {
         if let card = gesture.view {
             let point = gesture.translation(in: view)
             card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
