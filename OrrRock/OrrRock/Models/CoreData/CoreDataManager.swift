@@ -73,7 +73,7 @@ class CoreDataManager {
         }
     }
     
-    func sortVideoInformation(videoInformation: [VideoInformation], sortOption: SortOption, isAscended: Bool) -> [[VideoInformation]] {
+    func sortVideoInformation(videoInformation: [VideoInformation], sortOption: SortOption) -> [[VideoInformation]] {
         
         var filteredInformation = videoInformation
         var sortedInformation: [[VideoInformation]] = []
@@ -93,10 +93,6 @@ class CoreDataManager {
         case .gymName:
             
             filteredInformation.sort(by: { $0.gymName > $1.gymName })
-            
-            if !isAscended {
-                filteredInformation.reverse()
-            }
             
             sortedInformation.append([])
             var currentGymName = filteredInformation[filteredInfoIndex].gymName
@@ -164,10 +160,6 @@ class CoreDataManager {
             
             filteredInformation.sort(by: { $0.gymVisitDate < $1.gymVisitDate })
             
-            if !isAscended {
-                filteredInformation.reverse()
-            }
-            
             sortedInformation.append([])
             var currentGymVisitDate = filteredInformation[filteredInfoIndex].gymVisitDate
             
@@ -224,4 +216,14 @@ class CoreDataManager {
             return finalSortedInformation
         }
     }
+    
+    // 현재 정렬된 VideoInformation 2차원 배열을 reverse
+    func reverseSort(videoInformation: [[VideoInformation]]) -> [[VideoInformation]]{
+        
+        var videoInformation = videoInformation
+        videoInformation.reverse()
+        
+        return videoInformation
+    }
+
 }
