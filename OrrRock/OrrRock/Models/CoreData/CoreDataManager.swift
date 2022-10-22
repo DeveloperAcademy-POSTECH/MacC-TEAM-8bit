@@ -99,8 +99,8 @@ class CoreDataManager {
             /* sort함수를 통해 클라이밍장 이름으로 먼저 분류합니다.
              오름차순 이름으로 정렬된 filteredInformation이 만약 내림차순으로 구현되어야한다면 해당 배열을 reverse합니다.
              여기까지 작업이 완료되었다면 1차원 배열인 filteredInformation을 클라이밍장 이름별로 2차원 배열로 만들어줍니다.
-             같은 이름 하위에 다양한 날짜가 존재하므로 이를 오름차순으로 정렬하기 위해 1차원 배열 visitDateSortedArray를 만들어줍니다.
-             여기까지 작업이 완료되었다면 1차원 배열인 visitDateSortedArray를 클라이밍장 이름, 날짜가 동일한 것들을 묶어 2차원 배열 finalSortedInformation로 만들어줍니다.
+             같은 이름 하위에 다양한 날짜가 존재하므로 이를 오름차순으로 정렬하기 위해 다시 sort를 호출합니다
+             여기까지 작업이 완료되었다면, 해당 2차원 배열을 sortedVideoInformation에 넣어줍니다.
              */
         case .gymName:
             
@@ -203,8 +203,7 @@ class CoreDataManager {
         sortedVideoInformation.reverse()
     }
     
-    // 아래의 메소드는 모두 Print문을 띄우기 위한 테스트 코드
-    
+    // *테스트용* 아래의 메소드는 모두 Print문을 띄우기 위한 테스트 코드
     // 기본 1차원 배열
     func printRawData(standard: SortOption) {
         print("-----RAW-----")
