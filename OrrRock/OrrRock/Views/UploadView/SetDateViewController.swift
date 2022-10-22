@@ -25,6 +25,7 @@ class SetDateViewController: UIViewController {
         datePicker.preferredDatePickerStyle = .inline
         datePicker.datePickerMode = .date
         datePicker.timeZone = .autoupdatingCurrent
+        datePicker.locale = Locale(identifier:"ko_KR")
         datePicker.addTarget(self, action: #selector(handleDatePicker(_:)), for: .valueChanged)
         datePicker.backgroundColor = .red
         return datePicker
@@ -48,7 +49,7 @@ class SetDateViewController: UIViewController {
         view.backgroundColor = .yellow
         setupLayout()
     }
-    
+
     @objc
     private func handleDatePicker(_ sender: UIDatePicker) {
         print(sender.date)
