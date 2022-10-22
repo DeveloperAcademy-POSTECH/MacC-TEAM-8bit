@@ -52,7 +52,7 @@ final class SwipeableCardVideoView: UIView {
         super.init(frame: .zero)
 
         setUpLayout()
-        controller()
+        embedVideo()
 
     }
     
@@ -75,7 +75,7 @@ final class SwipeableCardVideoView: UIView {
 
 private extension SwipeableCardVideoView {
     
-    func controller() {
+    func embedVideo() {
         let item = AVPlayerItem(asset: asset)
         self.player.replaceCurrentItem(with: item)
         let playerLayer = AVPlayerLayer(player: self.player)
@@ -96,7 +96,6 @@ private extension SwipeableCardVideoView {
         self.player.addPeriodicTimeObserver(forInterval: interval, queue: .main, using: { [weak self] elapsedSeconds in
             let elapsedTimeSecondsFloat = CMTimeGetSeconds(elapsedSeconds)
             let totalTimeSecondsFloat = CMTimeGetSeconds(self?.player.currentItem?.duration ?? CMTimeMake(value: 1, timescale: 1))
-            print(elapsedTimeSecondsFloat, totalTimeSecondsFloat)
         })
     }
 }

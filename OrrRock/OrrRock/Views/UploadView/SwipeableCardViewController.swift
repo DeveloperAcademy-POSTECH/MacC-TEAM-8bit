@@ -55,11 +55,19 @@ private extension SwipeableCardViewController {
     
     // Gesture
     @objc func handlerCard(_ gesture: UIPanGestureRecognizer) {
-        if let card = gesture.view {
+        if let card = gesture.view as? SwipeableCardVideoView {
             let point = gesture.translation(in: view)
             card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
 
             let rotationAngle = point.x / view.bounds.width * 0.4
+
+            if point.x > 0 {
+                card.successImageView.alpha = rotationAngle * 5
+                card.failImageView.alpha = 0
+            } else {
+                card.successImageView.alpha = 0
+                card.failImageView.alpha = -rotationAngle * 5
+            }
 
             card.transform = CGAffineTransform(rotationAngle: rotationAngle)
 
@@ -67,6 +75,8 @@ private extension SwipeableCardViewController {
                 UIView.animate(withDuration: 0.2) {
                     card.center = self.view.center
                     card.transform = .identity
+                    card.successImageView.alpha = 0
+                    card.failImageView.alpha = 0
                 }
             }
         }
