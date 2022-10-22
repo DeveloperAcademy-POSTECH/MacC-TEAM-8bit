@@ -42,7 +42,6 @@ final class SwipeableCardVideoView: UIView {
         return imageView
     }()
 
-    
     private var player = AVPlayer()
     private var playerLayer: AVPlayerLayer?
     private let asset: AVAsset
