@@ -159,6 +159,7 @@
 		34B011412900158F0043951A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				3A2880FC2904298700FBFB70 /* TestExtensions */,
 				34B01142290015950043951A /* Extension */,
 				707B2CB729012BFE0062C958 /* Color+.swift */,
 				707B2CB92901382A0062C958 /* Padding+.swift */,
@@ -201,6 +202,13 @@
 			children = (
 			);
 			path = TestViewController;
+			sourceTree = "<group>";
+		};
+		3A2880FC2904298700FBFB70 /* TestExtensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TestExtensions;
 			sourceTree = "<group>";
 		};
 		3AA4D41228FEBADE006C718A = {
