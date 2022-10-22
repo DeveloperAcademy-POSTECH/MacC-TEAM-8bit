@@ -30,10 +30,12 @@ class VideoCollectionViewController: UIViewController {
                 selectBarButton.title = "편집"
                 navigationItem.leftBarButtonItem = backBarButton
                 videoCollectionView.allowsMultipleSelection = false
+                self.navigationController?.setToolbarHidden(true, animated: true)
             case .select:
                 selectBarButton.title = "취소"
-                navigationItem.leftBarButtonItem = deleteBarButton
+                navigationItem.leftBarButtonItem = selectAllButton
                 videoCollectionView.allowsMultipleSelection = true
+                self.navigationController?.setToolbarHidden(false, animated: true)
             }
         }
     }
@@ -66,8 +68,21 @@ class VideoCollectionViewController: UIViewController {
         return stack
     }()
     
+    lazy var toolbarText : UIBarButtonItem = {
+        let label = UILabel()
+        label.text = "항목 선택"
+        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        let item = UIBarButtonItem(customView: label)
+        return item
+    }()
+    
     lazy var selectBarButton : UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(title: "편집", style: .plain, target: self, action: #selector(didSelectButtonClicked(_:)))
+        return barButtonItem
+    }()
+    
+    lazy var selectAllButton : UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem(title: "전체 선택", style: .plain, target: self, action: #selector(didSelectAllButtonClicked(_:)))
         return barButtonItem
     }()
     
@@ -87,7 +102,7 @@ class VideoCollectionViewController: UIViewController {
         layout.scrollDirection = .vertical
         layout.sectionInset = .zero
         layout.headerReferenceSize = .init(width: 100, height: 76)
-        layout.footerReferenceSize = .init(width: 50, height: 100)
+        layout.footerReferenceSize = .init(width: 50, height: 120)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .white
         return cv
@@ -102,6 +117,9 @@ class VideoCollectionViewController: UIViewController {
         setVideoCollectionViewDelegate()
         registerCells()
         setUpLayout()
+        let items : [UIBarButtonItem] = [
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),toolbarText,UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),deleteBarButton]
+        self.toolbarItems = items
         
     }
     
@@ -160,6 +178,26 @@ class VideoCollectionViewController: UIViewController {
         
         videoCollectionView.deleteItems(at: deleteNeededIndexPaths)
         dictionarySelectedIndecPath.removeAll()
+        let indexCountLabel = UILabel()
+        indexCountLabel.text = "항목 선택"
+        toolbarText.customView = indexCountLabel
+    }
+    
+    @objc func didSelectAllButtonClicked(_ sender: UIBarButtonItem){
+        if imageArr.count != 0{
+            for i in 0...imageArr.count-1{
+                let indexPath = IndexPath(item: i, section: 0)
+                dictionarySelectedIndecPath.updateValue(true, forKey: indexPath)
+            }
+            for row in 0..<self.videoCollectionView.numberOfItems(inSection: 0) {
+                self.videoCollectionView.selectItem(at: IndexPath(row: row, section: 0), animated: false, scrollPosition: [])
+           }
+        }
+        
+        
+        let indexCountLabel = UILabel()
+        indexCountLabel.text = (dictionarySelectedIndecPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndecPath.values.filter({$0 == true}).count)개의 비디오 선택"
+        toolbarText.customView = indexCountLabel
     }
     
 }
