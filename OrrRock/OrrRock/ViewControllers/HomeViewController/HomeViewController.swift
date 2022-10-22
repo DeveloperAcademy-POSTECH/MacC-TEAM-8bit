@@ -98,7 +98,7 @@ final class HomeViewController : UIViewController {
         let button = UIButton(primaryAction: UIAction(title: "", handler: { _ in}))
         button.setImage(UIImage(systemName: isCardView ? "rectangle.stack" : "list.bullet"), for: .normal)
         button.tintColor = .orrUPBlue
-        
+
         // QuickAction은 UIMenu() 라는 컴포넌트로 구현할 수 있음
         // 버튼의 menu에 UIMenu로 감싼 UIAction들을 담아주기
         // UIMenu는 Action에 대한 그룹핑 역할. displayInline을 빼면 폴더링이 되어 접힘
