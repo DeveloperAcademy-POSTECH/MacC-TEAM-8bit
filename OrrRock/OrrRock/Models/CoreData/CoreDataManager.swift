@@ -49,6 +49,10 @@ class CoreDataManager {
         return information
     }
     
+    func fetchData() {
+        rawVideoInformation = readData()
+    }
+    
     // 추가한 데이터를 현재 context에 반영
     func saveData() {
         do {
