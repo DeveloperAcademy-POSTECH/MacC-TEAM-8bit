@@ -6,6 +6,9 @@
 //
 
 import UIKit
+
+import AVFoundation
+import AVKit
 import SnapKit
 
 final class SwipeableCardViewController: UIViewController {
@@ -27,7 +30,15 @@ private extension SwipeableCardViewController {
     // 목업용 카드를 만들어줍니다.
     func createSwipeableCard() {
         for card in 0...2 {
-            let swipeCard = SwipeableCardView()
+            lazy var swipeCard: SwipeableCardVideoView = {
+                let embed = Bundle.main.url(forResource: "ianIsComming", withExtension: "MOV")
+                let asset1 = AVAsset(url: embed!)
+                
+                let view = SwipeableCardVideoView(asset: asset1)
+                self.view.addSubview(view)
+                return view
+            }()
+            
             view.addSubview(swipeCard)
 
             swipeCard.snp.makeConstraints {
