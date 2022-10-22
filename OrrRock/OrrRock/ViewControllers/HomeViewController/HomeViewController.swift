@@ -314,16 +314,21 @@ final class HomeViewController : UIViewController {
 
 extension HomeViewController {
     
-    @objc func videoButtonPressed(sender: UIButton!) {
-        var configuration = PHPickerConfiguration()
-        configuration.selectionLimit = 0
-        //인디게이터 도는거 보고 싶으면 아랫줄을 주석 처리해주세요.
-        configuration.preferredAssetRepresentationMode = .current
-        configuration.filter = .any(of: [.videos])
-        let picker = PHPickerViewController(configuration: configuration)
-        picker.delegate = self
-        self.present(picker, animated: true, completion: nil)
+    @objc func videoButtonPressed(sender: UIButton){
+        let nextVC = SetDateViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
+    
+//    @objc func videoButtonPressed(sender: UIButton!) {
+//        var configuration = PHPickerConfiguration()
+//        configuration.selectionLimit = 0
+//        //인디게이터 도는거 보고 싶으면 아랫줄을 주석 처리해주세요.
+//        configuration.preferredAssetRepresentationMode = .current
+//        configuration.filter = .any(of: [.videos])
+//        let picker = PHPickerViewController(configuration: configuration)
+//        picker.delegate = self
+//        self.present(picker, animated: true, completion: nil)
+//    }
     
     //터치를 제한하는 뷰를 추가하고 인디게이터를 실행 시킵니다.
     func startIndicator() {

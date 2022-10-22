@@ -38,6 +38,9 @@
 		707B2CB528FFFEFF0062C958 /* UpoadTestNextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB428FFFEFF0062C958 /* UpoadTestNextViewController.swift */; };
 		707B2CB829012BFE0062C958 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB729012BFE0062C958 /* Color+.swift */; };
 		707B2CBA2901382A0062C958 /* Padding+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB92901382A0062C958 /* Padding+.swift */; };
+		70A44805290440E600BE18A5 /* SetDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A44804290440E600BE18A5 /* SetDateViewController.swift */; };
+		70A44807290452B000BE18A5 /* Button+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A44806290452B000BE18A5 /* Button+.swift */; };
+		70A44809290464BD00BE18A5 /* SetGymViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A44808290464BD00BE18A5 /* SetGymViewController.swift */; };
 		78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */; };
 		78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0354F290132D300FF1913 /* VideoCollectionViewCustomCell.swift */; };
 		78CAA0662901F7A9003C3D77 /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA0652901F7A9003C3D77 /* BasePaddingLabel.swift */; };
@@ -81,6 +84,9 @@
 		707B2CB428FFFEFF0062C958 /* UpoadTestNextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpoadTestNextViewController.swift; sourceTree = "<group>"; };
 		707B2CB729012BFE0062C958 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		707B2CB92901382A0062C958 /* Padding+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Padding+.swift"; sourceTree = "<group>"; };
+		70A44804290440E600BE18A5 /* SetDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDateViewController.swift; sourceTree = "<group>"; };
+		70A44806290452B000BE18A5 /* Button+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+.swift"; sourceTree = "<group>"; };
+		70A44808290464BD00BE18A5 /* SetGymViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGymViewController.swift; sourceTree = "<group>"; };
 		78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewController.swift; sourceTree = "<group>"; };
 		78A0354F290132D300FF1913 /* VideoCollectionViewCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCustomCell.swift; sourceTree = "<group>"; };
 		78CAA0652901F7A9003C3D77 /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
@@ -110,6 +116,8 @@
 			children = (
 				0AAB77E1290274CB00EEEFFB /* SwipeCardViewController.swift */,
 				A83D23F329029805008FAB39 /* SwipeCardView.swift */,
+				70A44804290440E600BE18A5 /* SetDateViewController.swift */,
+				70A44808290464BD00BE18A5 /* SetGymViewController.swift */,
 			);
 			path = UploadView;
 			sourceTree = "<group>";
@@ -165,6 +173,7 @@
 				707B2CB92901382A0062C958 /* Padding+.swift */,
 				FB3227FB2903FD9C00276A7D /* Date+.swift */,
 				FB3227FD2903FDA600276A7D /* String+.swift */,
+				70A44806290452B000BE18A5 /* Button+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -349,6 +358,7 @@
 				707B2CB829012BFE0062C958 /* Color+.swift in Sources */,
 				342508AF29002F31000653D9 /* HomeCollectionViewHeaderCell.swift in Sources */,
 				342508A729001BBC000653D9 /* HomeCollectionViewCardCell.swift in Sources */,
+				70A44805290440E600BE18A5 /* SetDateViewController.swift in Sources */,
 				342C457029018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift in Sources */,
 				342C456E290125260037D9E7 /* HomeCollectionViewListCell.swift in Sources */,
 				FB3227FC2903FD9C00276A7D /* Date+.swift in Sources */,
@@ -360,6 +370,7 @@
 				3A08879C29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift in Sources */,
 				707B2CB028FFFDB30062C958 /* UploadTestViewController.swift in Sources */,
 				707B2CBA2901382A0062C958 /* Padding+.swift in Sources */,
+				70A44809290464BD00BE18A5 /* SetGymViewController.swift in Sources */,
 				3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */,
 				A83D23F429029805008FAB39 /* SwipeCardView.swift in Sources */,
 				3A08879D29012C8A00EFFDBB /* VideoInformation+CoreDataProperties.swift in Sources */,
@@ -378,6 +389,7 @@
 				707B2CB528FFFEFF0062C958 /* UpoadTestNextViewController.swift in Sources */,
 				FB3227FE2903FDA600276A7D /* String+.swift in Sources */,
 				78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */,
+				70A44807290452B000BE18A5 /* Button+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,7 +528,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ML59XN7A6B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -543,7 +555,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ML59XN7A6B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
