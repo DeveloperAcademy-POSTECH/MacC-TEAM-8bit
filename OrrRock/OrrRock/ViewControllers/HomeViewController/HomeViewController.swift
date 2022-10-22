@@ -18,7 +18,7 @@ import NVActivityIndicatorView
 import SnapKit
 
 final class HomeViewController : UIViewController {
-    
+
     // MARK: variables
     // Quick Action 기능을 위한 조건 변수와 함수 호출 설정
     var isCardView: Bool = true {
@@ -101,7 +101,8 @@ final class HomeViewController : UIViewController {
         button.setImage(UIImage(systemName: isCardView ? "rectangle.stack" : "list.bullet"), for: .normal)
         button.tintColor = .systemBlue
         
-        // 버튼의 menu에 UIAction들을 담아주기
+        // QuickAction은 UIMenu() 라는 컴포넌트로 구현할 수 있음
+        // 버튼의 menu에 UIMenu로 감싼 UIAction들을 담아주기
         // UIMenu는 Action에 대한 그룹핑 역할. displayInline을 빼면 폴더링이 되어 접힘
         // UIDeferredMenuElement를 통해 동적으로 UI가 변경될 수 있도록 정의
         button.menu = UIMenu(options: .displayInline, children: [
@@ -181,7 +182,8 @@ final class HomeViewController : UIViewController {
                 completion(actions)
             }
         ])
-        button.translatesAutoresizingMaskIntoConstraints = false
+
+        // 버튼을 눌렀을 때 메뉴를 보여주도록 설정
         button.showsMenuAsPrimaryAction = true
         
         return button
@@ -267,8 +269,8 @@ final class HomeViewController : UIViewController {
         collectionView.snp.makeConstraints {
             $0.top.equalTo(view.snp.top)
             $0.bottom.equalTo(toolbarView.snp.top)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(orrPadding.padding3)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(orrPadding.padding3)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(orrPadding.padding3.rawValue)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(orrPadding.padding3.rawValue)
         }
         
         self.view.addSubview(headerView)
