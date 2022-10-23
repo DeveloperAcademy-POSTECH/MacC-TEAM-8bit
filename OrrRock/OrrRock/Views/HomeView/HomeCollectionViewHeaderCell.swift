@@ -18,7 +18,7 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
     // reloadData에 의해 HeaderCell이 다시 그려지며 isCardView 값을 지정하고, 이에 따라 didSet 호출되며 레이아웃 설정함
     var isCardView: Bool = false {
         didSet {
-            setConstraints()
+            setUpConstraints()
         }
     }
     
@@ -76,10 +76,10 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
             $0.bottom.equalTo(snp_topMargin).offset(CGFloat(orrPadding.padding5.rawValue))
         }
         
-        setConstraints()
+        setUpConstraints()
     }
     
-    private func setConstraints() {
+    private func setUpConstraints() {
         // 뷰가 다시 그려져야 할 때 기존의 constraint를 지우고 새로운 constraint를 부여하는 코드
         headerRoundedSquare.snp.removeConstraints()
         videoCountLabel.snp.removeConstraints()
@@ -106,8 +106,6 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
                 $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2)
                 $0.top.equalTo(PFCountLabel.snp.bottom).offset(CGFloat(orrPadding.padding1.rawValue))
             }
-            
-            
         }
     }
 }
