@@ -82,6 +82,7 @@ final class VideoDetailViewController: UIViewController {
 		isShowInfo.toggle()
 		if isShowInfo {
 			infoButton.image = UIImage(systemName: "info.circle.fill")
+			navigationController?.hidesBarsOnTap = false
 			UIView.animate(withDuration: 0.2, animations: {
 				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -500)
 				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: -100)
@@ -90,6 +91,7 @@ final class VideoDetailViewController: UIViewController {
 			})
 		} else {
 			infoButton.image = UIImage(systemName: "info.circle")
+			navigationController?.hidesBarsOnTap = true
 			UIView.animate(withDuration: 0.2, animations: {
 				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
 				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: 0)
