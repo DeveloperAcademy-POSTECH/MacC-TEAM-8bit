@@ -187,7 +187,10 @@ class VideoCollectionViewController: UIViewController {
         deleteBarButton.isEnabled = false
         toolbarText.customView = indexCountLabel
         videoCollectionView.reloadSections(IndexSet(integer: 0))
-
+        
+        if imageArr.count < 9{
+            titleStackView.isHidden = true
+        }
     }
     
     @objc func didDeleteActionSheetClicked(_ sender: UIBarButtonItem){
