@@ -18,7 +18,7 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
     // reloadData에 의해 HeaderCell이 다시 그려지며 isCardView 값을 지정하고, 이에 따라 didSet 호출되며 레이아웃 설정함
     var isCardView: Bool = false {
         didSet {
-            setUpLayout()
+            setUpConstraints()
         }
     }
     
@@ -33,7 +33,7 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
     private lazy var headerRoundedSquare: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 10
-        view.backgroundColor = .white
+        view.backgroundColor = .orrWhite
         return view
     }()
     
@@ -48,7 +48,7 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
         let view = UILabel()
         view.text = "NNN개의 비디오"
         view.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        view.textColor = .systemGray2
+        view.textColor = .orrGray3
         return view
     }()
     
@@ -69,19 +69,21 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
         addSubview(headerRoundedSquare)
         addSubview(videoCountLabel)
         addSubview(PFCountLabel)
-        addSubview(headerTitle)
         
-        setConstraints()
+        // header view의 위치는 앨범/목록형으로 전환되어도 바뀌지 않으므로 setConstraint에 넣지 않음
+        addSubview(headerTitle)
+        headerTitle.snp.makeConstraints {
+            $0.bottom.equalTo(snp_topMargin).offset(CGFloat(orrPadding.padding5.rawValue))
+        }
+        
+        setUpConstraints()
     }
     
-    private func setConstraints() {
+    private func setUpConstraints() {
+        // 뷰가 다시 그려져야 할 때 기존의 constraint를 지우고 새로운 constraint를 부여하는 코드
         headerRoundedSquare.snp.removeConstraints()
         videoCountLabel.snp.removeConstraints()
         PFCountLabel.snp.removeConstraints()
-        
-        headerTitle.snp.makeConstraints {
-            $0.bottom.equalTo(snp_topMargin).offset(95)
-        }
         
         if isCardView {
             headerRoundedSquare.snp.makeConstraints { $0.width.equalTo(0) }
@@ -90,20 +92,19 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
             
         } else {
             headerRoundedSquare.snp.makeConstraints {
-                $0.bottom.equalTo(snp_bottomMargin).offset(15)
-                
-                $0.height.equalTo(15)
-                $0.width.equalTo(UIScreen.main.bounds.width - 32)
-            }
-            
-            videoCountLabel.snp.makeConstraints {
-                $0.width.equalTo(UIScreen.main.bounds.width - 32)
-                $0.bottom.equalTo(headerRoundedSquare.snp.top).offset(-16)
+                $0.bottom.equalTo(snp_bottomMargin).offset(CGFloat(orrPadding.padding3.rawValue))
+                $0.height.equalTo(CGFloat(orrPadding.padding3.rawValue))
+                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2)
             }
             
             PFCountLabel.snp.makeConstraints {
-                $0.width.equalTo(UIScreen.main.bounds.width - 32)
-                $0.bottom.equalTo(videoCountLabel.snp.top).offset(-4)
+                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2)
+                $0.top.equalTo(headerTitle.snp.bottom).offset(CGFloat(orrPadding.padding3.rawValue))
+            }
+            
+            videoCountLabel.snp.makeConstraints {
+                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2)
+                $0.top.equalTo(PFCountLabel.snp.bottom).offset(CGFloat(orrPadding.padding1.rawValue))
             }
         }
     }
