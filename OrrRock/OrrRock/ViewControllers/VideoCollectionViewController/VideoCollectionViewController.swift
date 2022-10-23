@@ -10,12 +10,13 @@ import UIKit
 class VideoCollectionViewController: UIViewController {
     
     var imageArr = ["as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5"]
+    lazy var firstContentOffset : Float = 0.0
+    lazy var checkFirstContentOffset : Bool = false
     
     enum Mode{
         case view
         case select
     }
-    
     var dictionarySelectedIndecPath : [IndexPath : Bool] = [:]
     var mMode: Mode = .view {
         didSet{
@@ -43,8 +44,6 @@ class VideoCollectionViewController: UIViewController {
         }
     }
     
-    lazy var firstContentOffset : Float = 0.0
-    lazy var checkFirstContentOffset : Bool = false
     lazy var titleName : UILabel = {
         let label = UILabel()
         label.text = "김대우 암벽교실"
