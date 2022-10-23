@@ -19,7 +19,7 @@ class CoreDataManager {
     private var sortedVideoInformation: [[VideoInformation]] = []
     
     init() {
-        fetchData()
+        reloadRawVideoInformation()
     }
     
     // VideoInfo 구조체를 매개변수로 받아 VideoInformation NSManagedObject에 추가
@@ -49,7 +49,7 @@ class CoreDataManager {
         return information
     }
     
-    func fetchData() {
+    func reloadRawVideoInformation() {
         rawVideoInformation = readData()
     }
     
