@@ -23,7 +23,7 @@ final class HomeCollectionViewFooterCell: UICollectionReusableView {
     
     private lazy var footerRoundedSquare: UIView = {
        let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .orrWhite
         view.layer.cornerRadius = 10
         return view
     }()
@@ -54,10 +54,10 @@ final class HomeCollectionViewFooterCell: UICollectionReusableView {
             addSubview(footerRoundedSquare)
             
             footerRoundedSquare.snp.makeConstraints {
-                $0.top.equalTo(anchorView.snp.top).offset(-8)
+                $0.top.equalTo(anchorView.snp.top).offset(-CGFloat(orrPadding.padding2.rawValue))
             
-                $0.height.equalTo(16)
-                $0.width.equalTo(UIScreen.main.bounds.width - 32)
+                $0.height.equalTo(CGFloat(orrPadding.padding3.rawValue))
+                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue)*2)
             }
         }
     }
