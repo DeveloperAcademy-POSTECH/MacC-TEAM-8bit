@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-class SetDateViewController: UIViewController {
+class DateSettingViewController: UIViewController {
 
     let datePickerLabel : UILabel = {
         let label = UILabel()
@@ -28,6 +28,7 @@ class SetDateViewController: UIViewController {
         datePicker.locale = Locale(identifier:"ko_KR")
         datePicker.addTarget(self, action: #selector(handleDatePicker(_:)), for: .valueChanged)
         datePicker.backgroundColor = .orrWhite
+        datePicker.maximumDate = Date()
         return datePicker
     }()
 
@@ -37,7 +38,7 @@ class SetDateViewController: UIViewController {
         btn.layer.cornerRadius = 15
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
         btn.setBackgroundColor(.orrGray2!, for: .disabled)
-        btn.addTarget(self, action: #selector(nextButtonPressed), for: .touchDown)
+        btn.addTarget(self, action: #selector(pressNextButton), for: .touchDown)
         btn.setTitle("계속", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.isEnabled = false
@@ -48,33 +49,32 @@ class SetDateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
-        setupLayout()
+        setUpLayout()
     }
 
 }
 
 //MARK: 함수모음
-extension SetDateViewController {
+extension DateSettingViewController {
 
     @objc
     private func handleDatePicker(_ sender: UIDatePicker) {
-        print(sender.date)
         datePickerLabel.text = sender.date.timeToString()
         nextButton.isEnabled = true
     }
 
     @objc
-    private func nextButtonPressed(_ sender: UIButton) {
-        let nextVC = SetGymViewController()
+    private func pressNextButton(_ sender: UIButton) {
+        let nextVC = GymSettingViewController()
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 
 }
 
 //MARK: 오토레이아웃 설정 영역
-extension SetDateViewController {
+extension DateSettingViewController {
 
-    func setupLayout() {
+    func setUpLayout() {
 
         view.addSubview(datePickerLabel)
         datePickerLabel.snp.makeConstraints {

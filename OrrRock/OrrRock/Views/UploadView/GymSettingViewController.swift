@@ -10,7 +10,7 @@ import UIKit
 
 import SnapKit
 
-class SetGymViewController: UIViewController {
+class GymSettingViewController: UIViewController {
 
     let gymNameLabel : UILabel = {
         let label = UILabel()
@@ -27,7 +27,7 @@ class SetGymViewController: UIViewController {
         view.placeholder = "클라이밍장"
         view.tintColor = .orrUPBlue
         view.font = UIFont.systemFont(ofSize: 22)
-        view.addTarget(self, action: #selector(nextBttonOnAndOff(textField:)), for: .editingChanged)
+        view.addTarget(self, action: #selector(toggleNextButton(textField:)), for: .editingChanged)
         return view
     }()
 
@@ -35,7 +35,7 @@ class SetGymViewController: UIViewController {
         let btn = UIButton()
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
         btn.setBackgroundColor(.orrGray2!, for: .disabled)
-        btn.addTarget(self, action: #selector(nextButtonPressed), for: .touchDown)
+        btn.addTarget(self, action: #selector(pressNextButton), for: .touchDown)
         btn.setTitle("저장", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.isEnabled = false
@@ -46,7 +46,7 @@ class SetGymViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
-        setupLayout()
+        setUpLayout()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -55,18 +55,14 @@ class SetGymViewController: UIViewController {
 }
 
 //MARK: 함수모음
-extension SetGymViewController {
+extension GymSettingViewController {
 
     //텍스트 필드의 내용물에 따라 버튼을 활성화 비활성화 시킴
-    @objc final private func nextBttonOnAndOff(textField: UITextField) {
-        if textField.text != "" {
-            nextButton.isEnabled = true
-        }else{
-            nextButton.isEnabled = false
-        }
+    @objc final private func toggleNextButton(textField: UITextField) {
+        nextButton.isEnabled = !(textField.text!.isEmpty)
     }
 
-    @objc func nextButtonPressed(sender: UIButton!) {
+    @objc func pressNextButton(sender: UIButton!) {
         var configuration = PHPickerConfiguration()
         configuration.selectionLimit = 0
         //인디게이터 도는거 보고 싶으면 아랫줄을 주석 처리해주세요.
@@ -81,10 +77,10 @@ extension SetGymViewController {
 }
 
 //MARK: 오토레이아웃 설정 영역
-extension SetGymViewController {
+extension GymSettingViewController {
 
-    func setupLayout() {
-        
+    func setUpLayout() {
+
         view.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
             $0.centerX.equalTo(view)
@@ -110,7 +106,7 @@ extension SetGymViewController {
 
 }
 
-extension SetGymViewController: PHPickerViewControllerDelegate {
+extension GymSettingViewController: PHPickerViewControllerDelegate {
 
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)

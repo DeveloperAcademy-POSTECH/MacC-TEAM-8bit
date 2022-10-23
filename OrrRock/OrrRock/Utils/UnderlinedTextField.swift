@@ -12,7 +12,7 @@ class UnderlinedTextField: UITextField {
     let underlineLayer = CALayer()
 
     /// Size the underline layer and position it as a one point line under the text field.
-    func setupUnderlineLayer() {
+    func setUpUnderlineLayer() {
         var frame = self.bounds
         frame.origin.y = frame.size.height - 1
         frame.size.height = 1
@@ -37,6 +37,6 @@ class UnderlinedTextField: UITextField {
     // adjust the size and placement of the underline layer too
     override func layoutSubviews() {
         super.layoutSubviews()
-        setupUnderlineLayer()
+        setUpUnderlineLayer()
     }
 }

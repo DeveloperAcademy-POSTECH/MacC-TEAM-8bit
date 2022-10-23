@@ -275,7 +275,7 @@ final class HomeViewController : UIViewController {
     }
 
     @objc func videoButtonPressed(sender: UIButton){
-        let nextVC = SetDateViewController()
+        let nextVC = DateSettingViewController()
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 
