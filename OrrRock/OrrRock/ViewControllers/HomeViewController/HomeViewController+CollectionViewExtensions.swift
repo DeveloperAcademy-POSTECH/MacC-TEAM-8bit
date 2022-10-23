@@ -36,6 +36,11 @@ extension HomeViewController: UICollectionViewDataSource {
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let nextVC = VideoCollectionViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
 }
 
 extension HomeViewController: UICollectionViewDelegate {
