@@ -45,7 +45,7 @@ class SetGymViewController: UIViewController {
     //MARK: 생명주기 함수 모음
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow
+        view.backgroundColor = .orrWhite
         setupLayout()
     }
 
@@ -56,7 +56,7 @@ class SetGymViewController: UIViewController {
 
 //MARK: 함수모음
 extension SetGymViewController {
-    
+
     //텍스트 필드의 내용물에 따라 버튼을 활성화 비활성화 시킴
     @objc final private func nextBttonOnAndOff(textField: UITextField) {
         if textField.text != "" {
@@ -70,7 +70,7 @@ extension SetGymViewController {
         var configuration = PHPickerConfiguration()
         configuration.selectionLimit = 0
         //인디게이터 도는거 보고 싶으면 아랫줄을 주석 처리해주세요.
-        //        configuration.preferredAssetRepresentationMode = .current
+        configuration.preferredAssetRepresentationMode = .current
         configuration.filter = .any(of: [.videos])
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
@@ -124,7 +124,7 @@ extension SetGymViewController: PHPickerViewControllerDelegate {
             CustomIndicator.stopLoading()
             gymTextField.becomeFirstResponder()
         }
-        
+
         //선택된 영상에서 URL을 뽑아내는 로직입니다.
         for index in 0..<results.count {
             results[index].itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { url, err in

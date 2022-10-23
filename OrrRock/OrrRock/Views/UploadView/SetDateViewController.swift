@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 class SetDateViewController: UIViewController {
-    
+
     let datePickerLabel : UILabel = {
         let label = UILabel()
         label.text = "업로드할 영상의 날짜를 선택해주세요"
@@ -27,7 +27,7 @@ class SetDateViewController: UIViewController {
         datePicker.timeZone = .autoupdatingCurrent
         datePicker.locale = Locale(identifier:"ko_KR")
         datePicker.addTarget(self, action: #selector(handleDatePicker(_:)), for: .valueChanged)
-        datePicker.backgroundColor = .red
+        datePicker.backgroundColor = .orrWhite
         return datePicker
     }()
 
@@ -47,7 +47,7 @@ class SetDateViewController: UIViewController {
 //MARK: 생명주기 함수 모음
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow
+        view.backgroundColor = .orrWhite
         setupLayout()
     }
 
@@ -89,7 +89,7 @@ extension SetDateViewController {
             $0.leading.equalTo(view).offset(orrPadding.padding3.rawValue)
             $0.trailing.equalTo(view).offset(-orrPadding.padding3.rawValue)
         }
-        
+
         view.addSubview(nextButton)
         nextButton.snp.makeConstraints{
             $0.centerX.equalTo(view)
