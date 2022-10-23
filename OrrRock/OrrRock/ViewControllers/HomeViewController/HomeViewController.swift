@@ -69,19 +69,17 @@ final class HomeViewController : UIViewController {
         return view
     }()
     
-    private lazy var logoView: UILabel = {
+    private lazy var logoView: UIView = {
         // 앱 로고와 타이틀 디자인이 확정나면 이 컴포넌트를 활용해 그려주기
-        let view = UILabel()
-        view.text = "오르락 로고"
-        view.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        let view = UIImageView(image: UIImage(named: "orrrock_logo"))
         return view
     }()
     
     private lazy var quickActionButton: UIButton = {
         let button = UIButton(primaryAction: UIAction(title: "", handler: { _ in}))
         button.setImage(UIImage(systemName: isCardView ? "rectangle.stack" : "list.bullet"), for: .normal)
-        button.tintColor = .systemBlue
-        
+        button.tintColor = .orrUPBlue
+
         // QuickAction은 UIMenu() 라는 컴포넌트로 구현할 수 있음
         // 버튼의 menu에 UIMenu로 감싼 UIAction들을 담아주기
         // UIMenu는 Action에 대한 그룹핑 역할. displayInline을 빼면 폴더링이 되어 접힘
@@ -172,7 +170,6 @@ final class HomeViewController : UIViewController {
     
     private lazy var toolbarView: UIToolbar = {
         let view = UIToolbar()
-        view.backgroundColor = .systemGray5
         
         var items: [UIBarButtonItem] = []
         
@@ -186,7 +183,7 @@ final class HomeViewController : UIViewController {
         items.append(addVideoButton)
         
         items.forEach { (item) in
-            item.tintColor = .systemBlue
+            item.tintColor = .orrUPBlue
         }
         
         view.setItems(items, animated: true)
@@ -230,11 +227,9 @@ final class HomeViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .systemGray5
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoView)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: quickActionButton)
-
+        view.backgroundColor = .orrGray1
         setUpLayout()
+        setUpNavigationBar()
         setUICollectionViewDelegate()
     }
     
@@ -258,8 +253,8 @@ final class HomeViewController : UIViewController {
         
         self.view.addSubview(headerView)
         headerView.snp.makeConstraints {
-            $0.height.equalTo(100)
             $0.top.equalTo(view.snp.top)
+            $0.bottom.equalTo(view.forLastBaselineLayout.snp_topMargin).offset(16)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
         }
@@ -268,6 +263,11 @@ final class HomeViewController : UIViewController {
     private func setUICollectionViewDelegate() {
         collectionView.dataSource = self
         collectionView.delegate = self
+    }
+    
+    func setUpNavigationBar() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoView)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: quickActionButton)
     }
     
     @objc func switchViewStyle() {
