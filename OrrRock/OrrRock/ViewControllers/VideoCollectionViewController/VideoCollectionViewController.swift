@@ -187,6 +187,8 @@ class VideoCollectionViewController: UIViewController {
         indexCountLabel.text = "항목 선택"
         deleteBarButton.isEnabled = false
         toolbarText.customView = indexCountLabel
+        videoCollectionView.reloadSections(IndexSet(integer: 0))
+
     }
     
     @objc func didDeleteActionSheetClicked(_ sender: UIBarButtonItem){
@@ -222,7 +224,7 @@ class VideoCollectionViewController: UIViewController {
         
         let indexCountLabel = UILabel()
         indexCountLabel.text = (dictionarySelectedIndecPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndecPath.values.filter({$0 == true}).count)개의 비디오 선택"
-        
+        deleteBarButton.isEnabled = true
         toolbarText.customView = indexCountLabel
     }
     

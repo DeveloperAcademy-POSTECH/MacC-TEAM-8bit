@@ -44,10 +44,8 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        print(01111)
         if mMode == .select{
             dictionarySelectedIndecPath[indexPath] = false
-            print(indexPath)
             collectionView.cellForItem(at: indexPath)?.isHighlighted = false
             collectionView.cellForItem(at: indexPath)?.isSelected = false
             let indexCountLabel = UILabel()
@@ -60,6 +58,7 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageArr.count
     }
+    
     
     func collectionView(
         _ collectionView: UICollectionView,
@@ -74,7 +73,6 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
                 for: indexPath
             ) as! VideoCollectionViewHeaderCell
             supplementaryView.prepare(title: "supplementaryView(header)")
-            
             return supplementaryView
             
         case UICollectionView.elementKindSectionFooter:
@@ -121,6 +119,7 @@ extension VideoCollectionViewController  : UICollectionViewDataSource{
         }
         return cell
     }
+    
 }
 
 extension VideoCollectionViewController : UICollectionViewDelegateFlowLayout{
@@ -132,4 +131,6 @@ extension VideoCollectionViewController : UICollectionViewDelegateFlowLayout{
         let width = collectionView.frame.width / 3 - 1
         return CGSize(width: width, height: width * 2.13)
     }
+    
+    
 }
