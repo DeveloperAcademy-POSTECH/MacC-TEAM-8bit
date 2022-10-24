@@ -13,7 +13,7 @@ import SnapKit
 final class VideoDetailViewController: UIViewController {
 	
 	// FIXME: data관련 임시 코드 coreData 연동 시 추후 변경
-	var isFavortie: Bool = false
+	var isFavorite: Bool = false
 	// -----------------------------
 	
 	var isShowInfo: Bool = false
@@ -132,8 +132,8 @@ final class VideoDetailViewController: UIViewController {
 	
 	// 좋아요 버튼을 눌렀을 때 로직
 	@objc func favoriteAction() {
-		isFavortie.toggle()
-		favoriteButton.image = UIImage(systemName: isFavortie ? "heart.fill" : "heart")
+		isFavorite.toggle()
+		favoriteButton.image = UIImage(systemName: isFavorite ? "heart.fill" : "heart")
 		print(#function)
 	}
 	
