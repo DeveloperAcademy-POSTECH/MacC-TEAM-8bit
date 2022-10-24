@@ -28,13 +28,13 @@ final class VideoDetailViewController: UIViewController {
 	private var goBackButton: UIBarButtonItem!
 	private var flexibleSpace: UIBarButtonItem!
 	
-	private lazy var topSafeareaView: UIView = {
+	private lazy var topSafeAreaView: UIView = {
 		let view = UIView()
 		view.backgroundColor = .orrWhite
 		return view
 	}()
 	
-	private lazy var bottomSafeareaView: UIView = {
+	private lazy var bottomSafeAreaView: UIView = {
 		let view = UIView()
 		view.backgroundColor = .orrWhite
 		return view
@@ -99,14 +99,14 @@ final class VideoDetailViewController: UIViewController {
 				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -500)
 				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: -100)
 				self.navigationController?.navigationBar.layer.opacity = 0
-				self.topSafeareaView.layer.opacity = 0
+				self.topSafeAreaView.layer.opacity = 0
 			})
 		} else {
 			UIView.animate(withDuration: 0.2, animations: {
 				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
 				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: 0)
 				self.navigationController?.navigationBar.layer.opacity = 1
-				self.topSafeareaView.layer.opacity = 1
+				self.topSafeAreaView.layer.opacity = 1
 			})
 		}
 		print(#function)
@@ -143,8 +143,8 @@ final class VideoDetailViewController: UIViewController {
 		let isNavigationBarHidden = navigationController?.isNavigationBarHidden ?? false
 		let backGroundColor = isNavigationBarHidden ? UIColor.orrBlack : UIColor.orrWhite
 		view.backgroundColor = backGroundColor
-		bottomSafeareaView.backgroundColor = backGroundColor
-		topSafeareaView.backgroundColor = backGroundColor
+		bottomSafeAreaView.backgroundColor = backGroundColor
+		topSafeAreaView.backgroundColor = backGroundColor
 	}
 	
 	// 텍스트 뷰 활성화 상태일 때 여백 화면 터치해서 키보드 내리는 로직
@@ -172,16 +172,16 @@ extension VideoDetailViewController {
 			$0.bottom.equalTo(self.view).offset(700)
 		}
 		// 상단 safetyarea를 가려주는 뷰
-		view.addSubview(topSafeareaView)
-		topSafeareaView.snp.makeConstraints {
+		view.addSubview(topSafeAreaView)
+		topSafeAreaView.snp.makeConstraints {
 			$0.leading.equalTo(self.view)
 			$0.trailing.equalTo(self.view)
 			$0.top.equalTo(self.view)
 			$0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.top)
 		}
 		// 하단 safetyarea를 가려주는 뷰
-		view.addSubview(bottomSafeareaView)
-		bottomSafeareaView.snp.makeConstraints {
+		view.addSubview(bottomSafeAreaView)
+		bottomSafeAreaView.snp.makeConstraints {
 			$0.leading.equalTo(self.view)
 			$0.trailing.equalTo(self.view)
 			$0.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
