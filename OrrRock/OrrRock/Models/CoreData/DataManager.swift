@@ -19,8 +19,8 @@ final class DataManager {
         coreDataManager = CoreDataDAO()
     }
     
-    func sortRepository(filterOption: FilterOption, sortOption: SortOption, orderOption: OrderOption) {
-        repository.finalSortVideoInformation(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
+    func sortRepository(filterOption: FilterOption, sortOption: SortOption, orderOption: OrderOption) -> [[VideoInformation]] {
+        return repository.finalSortVideoInformation(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
     }
     
     func updateRepository() {
