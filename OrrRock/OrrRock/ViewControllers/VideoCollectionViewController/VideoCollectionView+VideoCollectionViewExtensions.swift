@@ -34,9 +34,9 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
             print("상세재생뷰로 이동")
             
         case .select:
-            dictionarySelectedIndecPath[indexPath] = true
+            dictionarySelectedIndexPath[indexPath] = true
             let indexCountLabel = UILabel()
-            indexCountLabel.text = (dictionarySelectedIndecPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndecPath.values.filter({$0 == true}).count)개의 비디오 선택"
+            indexCountLabel.text = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndexPath.values.filter({$0 == true}).count)개의 비디오 선택"
             toolbarText.customView = indexCountLabel
             deleteBarButton.isEnabled = true
         }
@@ -45,12 +45,12 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if mMode == .select{
-            dictionarySelectedIndecPath[indexPath] = false
+            dictionarySelectedIndexPath[indexPath] = false
             collectionView.cellForItem(at: indexPath)?.isHighlighted = false
             collectionView.cellForItem(at: indexPath)?.isSelected = false
             let indexCountLabel = UILabel()
-            indexCountLabel.text = (dictionarySelectedIndecPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndecPath.values.filter({$0 == true}).count)개의 비디오 선택"
-            deleteBarButton.isEnabled = (dictionarySelectedIndecPath.values.filter({$0 == true}).count) == 0 ? false : true
+            indexCountLabel.text = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndexPath.values.filter({$0 == true}).count)개의 비디오 선택"
+            deleteBarButton.isEnabled = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? false : true
             toolbarText.customView = indexCountLabel
         }
     }

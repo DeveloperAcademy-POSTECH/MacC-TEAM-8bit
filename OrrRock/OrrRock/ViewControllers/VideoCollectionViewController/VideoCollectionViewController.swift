@@ -17,17 +17,17 @@ class VideoCollectionViewController: UIViewController {
         case view
         case select
     }
-    var dictionarySelectedIndecPath : [IndexPath : Bool] = [:]
+    var dictionarySelectedIndexPath : [IndexPath : Bool] = [:]
     var mMode: Mode = .view {
         didSet{
             switch mMode{
             case .view:
-                for (key,value) in dictionarySelectedIndecPath{
+                for (key,value) in dictionarySelectedIndexPath{
                     if value{
                         videoCollectionView.deselectItem(at: key, animated: true)
                     }
                 }
-                dictionarySelectedIndecPath.removeAll()
+                dictionarySelectedIndexPath.removeAll()
                 selectBarButton.title = "편집"
                 let indexCountLabel = UILabel()
                 indexCountLabel.text = "항목 선택"
@@ -169,7 +169,7 @@ class VideoCollectionViewController: UIViewController {
     
     func didDeleteButtonClicked(){
         var deleteNeededIndexPaths : [IndexPath] = []
-        for (key,value) in dictionarySelectedIndecPath{
+        for (key,value) in dictionarySelectedIndexPath{
             if value{
                 deleteNeededIndexPaths.append(key)
             }
@@ -181,7 +181,7 @@ class VideoCollectionViewController: UIViewController {
         }
         
         videoCollectionView.deleteItems(at: deleteNeededIndexPaths)
-        dictionarySelectedIndecPath.removeAll()
+        dictionarySelectedIndexPath.removeAll()
         let indexCountLabel = UILabel()
         indexCountLabel.text = "항목 선택"
         deleteBarButton.isEnabled = false
@@ -216,7 +216,7 @@ class VideoCollectionViewController: UIViewController {
         if imageArr.count != 0{
             for i in 0...imageArr.count-1{
                 let indexPath = IndexPath(item: i, section: 0)
-                dictionarySelectedIndecPath.updateValue(true, forKey: indexPath)
+                dictionarySelectedIndexPath.updateValue(true, forKey: indexPath)
             }
             for row in 0..<self.videoCollectionView.numberOfItems(inSection: 0) {
                 self.videoCollectionView.selectItem(at: IndexPath(row: row, section: 0), animated: false, scrollPosition: [])
@@ -225,7 +225,7 @@ class VideoCollectionViewController: UIViewController {
         
         
         let indexCountLabel = UILabel()
-        indexCountLabel.text = (dictionarySelectedIndecPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndecPath.values.filter({$0 == true}).count)개의 비디오 선택"
+        indexCountLabel.text = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndexPath.values.filter({$0 == true}).count)개의 비디오 선택"
         deleteBarButton.isEnabled = true
         toolbarText.customView = indexCountLabel
     }
