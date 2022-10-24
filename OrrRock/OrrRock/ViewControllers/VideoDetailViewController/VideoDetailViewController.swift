@@ -150,32 +150,32 @@ extension VideoDetailViewController {
 		// 영상을 보여주는 뷰
 		view.addSubview(videoPlayView)
 		videoPlayView.snp.makeConstraints {
-			$0.left.equalTo(self.view)
-			$0.right.equalTo(self.view)
+			$0.leading.equalTo(self.view)
+			$0.trailing.equalTo(self.view)
 			$0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
 			$0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
 		}
 		// 정보를 보여주는 뷰
 		view.addSubview(videoInfoView)
 		videoInfoView.snp.makeConstraints {
-			$0.left.equalTo(self.view)
-			$0.right.equalTo(self.view)
+			$0.leading.equalTo(self.view)
+			$0.trailing.equalTo(self.view)
 			$0.height.equalTo(650)
 			$0.bottom.equalTo(self.view).offset(700)
 		}
 		// 상단 safetyarea를 가려주는 뷰
 		view.addSubview(topSafeareaView)
 		topSafeareaView.snp.makeConstraints {
-			$0.left.equalTo(self.view)
-			$0.right.equalTo(self.view)
+			$0.leading.equalTo(self.view)
+			$0.trailing.equalTo(self.view)
 			$0.top.equalTo(self.view)
 			$0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.top)
 		}
 		// 하단 safetyarea를 가려주는 뷰
 		view.addSubview(bottomSafeareaView)
 		bottomSafeareaView.snp.makeConstraints {
-			$0.left.equalTo(self.view)
-			$0.right.equalTo(self.view)
+			$0.leading.equalTo(self.view)
+			$0.trailing.equalTo(self.view)
 			$0.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
 			$0.bottom.equalTo(self.view)
 		}
