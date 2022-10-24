@@ -30,13 +30,13 @@ final class VideoDetailViewController: UIViewController {
 	
 	private lazy var topSafeareaView: UIView = {
 		let view = UIView()
-		view.backgroundColor = .white
+		view.backgroundColor = .orrWhite
 		return view
 	}()
 	
 	private lazy var bottomSafeareaView: UIView = {
 		let view = UIView()
-		view.backgroundColor = .white
+		view.backgroundColor = .orrWhite
 		return view
 	}()
 	
@@ -70,9 +70,9 @@ final class VideoDetailViewController: UIViewController {
 		navigationController?.hidesBarsOnTap = true
 		
 		// 배경, 네비게이션바, 툴바 색 지정
-		self.view.backgroundColor = .white
-		navigationController?.navigationBar.backgroundColor = .white
-		navigationController?.toolbar.backgroundColor = .white
+		self.view.backgroundColor = .orrWhite
+		navigationController?.navigationBar.backgroundColor = .orrWhite
+		navigationController?.toolbar.backgroundColor = .orrWhite
 		
 		navigationItem.leftBarButtonItem = goBackButton
 		navigationItem.rightBarButtonItem = favoriteButton
@@ -141,7 +141,7 @@ final class VideoDetailViewController: UIViewController {
 	override func viewWillLayoutSubviews() {
 		// 네비게이션바가 숨겨졌을 때 배경색 변경
 		let isNavigationBarHidden = navigationController?.isNavigationBarHidden ?? false
-		let backGroundColor: UIColor = isNavigationBarHidden ? .black : .white
+		let backGroundColor = isNavigationBarHidden ? UIColor.orrBlack : UIColor.orrWhite
 		view.backgroundColor = backGroundColor
 		bottomSafeareaView.backgroundColor = backGroundColor
 		topSafeareaView.backgroundColor = backGroundColor

@@ -18,7 +18,7 @@ final class VideoInfoView: UIView {
 	
 	private lazy var feedbackTextView: UITextView = {
 		let view = UITextView()
-		view.backgroundColor = .white
+		view.backgroundColor = .orrWhite
 		view.font = .systemFont(ofSize: 17.0, weight: .semibold)
 		view.text = "피드백 입력하기"
 		view.textColor = .placeholderText
@@ -29,7 +29,6 @@ final class VideoInfoView: UIView {
 	
 	private lazy var dateView: UIView = {
 		let view = UIView()
-		// FIXME: asset 컬러
 		view.backgroundColor = .orrGray3
 		view.layer.cornerRadius = 10
 		return view
@@ -37,7 +36,6 @@ final class VideoInfoView: UIView {
 	
 	private lazy var levelView: UIView = {
 		let view = UIView()
-		// FIXME: asset 컬러
 		view.backgroundColor = .orrGray3
 		view.layer.cornerRadius = 10
 		return view
@@ -62,7 +60,6 @@ final class VideoInfoView: UIView {
 	private lazy var locationLabel: UILabel = {
 		let label = UILabel()
 		label.font = .systemFont(ofSize: 12.0, weight: .regular)
-		// FIXME: asset 컬러
 		label.textColor = .orrGray2
 		label.text = videoLocation
 		return label
@@ -71,7 +68,6 @@ final class VideoInfoView: UIView {
 	private lazy var isSucceeded: UILabel = {
 		let label = UILabel()
 		label.font = .systemFont(ofSize: 12.0, weight: .regular)
-		// FIXME: asset 컬러
 		label.textColor = .orrGray2
 		label.text = videoIsSucceeded ? "성공" : "실패"
 		return label
@@ -107,7 +103,7 @@ final class VideoInfoView: UIView {
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		self.backgroundColor = .white
+		self.backgroundColor = .orrWhite
 		
 		setUpLayout()
 	}
