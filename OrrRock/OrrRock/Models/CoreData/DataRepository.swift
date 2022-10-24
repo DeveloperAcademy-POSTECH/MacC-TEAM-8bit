@@ -9,7 +9,7 @@ import Foundation
 
 class DataRepository {
     
-    var rawVideoInformation: [VideoInformation] = []
+    var rawVideoInformation: [VideoInformation]
     
     init() {
         rawVideoInformation = [ ]
@@ -42,7 +42,6 @@ class DataRepository {
         var currentSortedInformationIndex = 0
         
         var sortedVideoInformation: [[VideoInformation]] = []
-        sortedVideoInformation.append([])
         
         switch sortOption {
             
@@ -164,17 +163,8 @@ class DataRepository {
         return information
     }
     
-    func createData(info: VideoInfo) {
-        
-        let entity = VideoInformation()
-        
-        entity.gymName = info.gymName
-        entity.gymVisitDate = info.gymVisitDate
-        entity.videoUrl = info.videoLocalIdentifier
-        entity.problemLevel = Int16(info.problemLevel)
-        entity.isSucceeded = info.isSucceeded
-        
-        rawVideoInformation.append(entity)
+    func createData(info: VideoInformation) {
+        rawVideoInformation.append(info)
     }
     
     func updateDateAndGymData(videoInformation: VideoInformation, gymVisitDate: Date, gymName: String) {
