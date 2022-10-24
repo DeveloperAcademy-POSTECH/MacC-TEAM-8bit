@@ -149,7 +149,8 @@ final class VideoDetailViewController: UIViewController {
 	}
 	
 	// 텍스트 뷰 활성화 상태일 때 여백 화면 터치해서 키보드 내리는 로직
-	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){       self.view.endEditing(true)
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		self.view.endEditing(true)
 	}
 }
 
