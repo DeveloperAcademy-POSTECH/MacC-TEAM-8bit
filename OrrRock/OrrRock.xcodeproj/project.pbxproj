@@ -56,6 +56,9 @@
 		78CAA06C290271E7003C3D77 /* VIdeoCollectionFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA06B290271E7003C3D77 /* VIdeoCollectionFooterCell.swift */; };
 		FB3227FC2903FD9C00276A7D /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3227FB2903FD9C00276A7D /* Date+.swift */; };
 		FB3227FE2903FDA600276A7D /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3227FD2903FDA600276A7D /* String+.swift */; };
+		FB32280F29046B4500276A7D /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32280E29046B4500276A7D /* VideoDetailViewController.swift */; };
+		FB32281329046CDE00276A7D /* VideoPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32281229046CDE00276A7D /* VideoPlayView.swift */; };
+		FB32281529046CED00276A7D /* VideoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32281429046CED00276A7D /* VideoInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +111,9 @@
 		78CAA06B290271E7003C3D77 /* VIdeoCollectionFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIdeoCollectionFooterCell.swift; sourceTree = "<group>"; };
 		FB3227FB2903FD9C00276A7D /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		FB3227FD2903FDA600276A7D /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		FB32280E29046B4500276A7D /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
+		FB32281229046CDE00276A7D /* VideoPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayView.swift; sourceTree = "<group>"; };
+		FB32281429046CED00276A7D /* VideoInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +173,7 @@
 		34B0113B290015760043951A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FB32281129046CBF00276A7D /* VideoDetailView */,
 				0AAB77E0290274BE00EEEFFB /* UploadView */,
 				78A035492901317600FF1913 /* VideoCollectionView */,
 				342C4568290066810037D9E7 /* HomeView */,
@@ -178,10 +185,11 @@
 		34B0113E290015860043951A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				34B0113F2900158D0043951A /* ViewController */,
 				3A2880F9290428C000FBFB70 /* TestViewController */,
 				78A0354A2901318900FF1913 /* VideoCollectionViewController */,
 				342C4567290066790037D9E7 /* HomeViewController */,
-				34B0113F2900158D0043951A /* ViewController */,
+				FB32281029046B9400276A7D /* VideoDetailViewController */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -322,6 +330,23 @@
 			path = VideoCollectionViewController;
 			sourceTree = "<group>";
 		};
+		FB32281029046B9400276A7D /* VideoDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FB32280E29046B4500276A7D /* VideoDetailViewController.swift */,
+			);
+			path = VideoDetailViewController;
+			sourceTree = "<group>";
+		};
+		FB32281129046CBF00276A7D /* VideoDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				FB32281229046CDE00276A7D /* VideoPlayView.swift */,
+				FB32281429046CED00276A7D /* VideoInfoView.swift */,
+			);
+			path = VideoDetailView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -420,9 +445,12 @@
 				78CAA0662901F7A9003C3D77 /* BasePaddingLabel.swift in Sources */,
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
 				78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */,
-				3A2880FE29042A0600FBFB70 /* Date+RandomDate.swift in Sources */,
+				FB32280F29046B4500276A7D /* VideoDetailViewController.swift in Sources */,
 				3A70C3CF2901CB9600BE11B5 /* CoreDataManager.swift in Sources */,
 				3A08879C29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift in Sources */,
+				707B2CB028FFFDB30062C958 /* UploadTestViewController.swift in Sources */,
+				FB32281329046CDE00276A7D /* VideoPlayView.swift in Sources */,
+				3A2880FE29042A0600FBFB70 /* Date+RandomDate.swift in Sources */,
 				3A2880EB29033C2500FBFB70 /* FilterOption.swift in Sources */,
 				707B2CBA2901382A0062C958 /* Padding+.swift in Sources */,
 				70A44809290464BD00BE18A5 /* GymSettingViewController.swift in Sources */,
@@ -434,9 +462,8 @@
 				342508A329001780000653D9 /* HomeViewController.swift in Sources */,
 				342508A52900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift in Sources */,
 				3AA4D42128FEBADE006C718A /* SceneDelegate.swift in Sources */,
-				0AAB77E2290274CB00EEEFFB /* SwipeableCardViewController.swift in Sources */,
 				342699232902E8480054D34C /* VideoFilterEnum.swift in Sources */,
-				0AAB77E2290274CB00EEEFFB /* SwipeableCardViewController.swift in Sources */,
+				FB32281529046CED00276A7D /* VideoInfoView.swift in Sources */,
 				3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */,
 				342508AB29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift in Sources */,
 				78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */,
