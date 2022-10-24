@@ -2,7 +2,7 @@
 //  DummyVideoModel.swift
 //  OrrRock
 //
-//  Created by Yeni Hwang on 2022/10/25.
+//  Created by Yeni Hwang, 이성노 on 2022/10/25.
 //
 
 import Foundation
@@ -12,7 +12,7 @@ struct DummyVideo {
     var id: Int
     var videoURL: String
     var problemLevel: Int
-    var isSucceeded: Bool
+    var isSuccessed: Bool
 }
 
 class VideoManager {
@@ -20,11 +20,11 @@ class VideoManager {
     static let shared = VideoManager()
     
     let dummyVideoList: [DummyVideo] = [
-        DummyVideo(id: 100, videoURL: "ianIsComming", problemLevel: 0, isSucceeded: false),
-        DummyVideo(id: 101, videoURL: "ianIsComming", problemLevel: 0, isSucceeded: false),
-        DummyVideo(id: 102, videoURL: "ianIsComming", problemLevel: 0, isSucceeded: false),
-        DummyVideo(id: 103, videoURL: "ianIsComming", problemLevel: 0, isSucceeded: false),
-        DummyVideo(id: 104, videoURL: "ianIsComming", problemLevel: 0, isSucceeded: false)
+        DummyVideo(id: 100, videoURL: "ianIsComming", problemLevel: 0, isSuccessed: false),
+        DummyVideo(id: 101, videoURL: "ianIsComming", problemLevel: 0, isSuccessed: false),
+        DummyVideo(id: 102, videoURL: "ianIsComming", problemLevel: 0, isSuccessed: false),
+        DummyVideo(id: 103, videoURL: "ianIsComming", problemLevel: 0, isSuccessed: false),
+        DummyVideo(id: 104, videoURL: "ianIsComming", problemLevel: 0, isSuccessed: false)
     ]
     
     func fetchVideo() -> [DummyVideo] {

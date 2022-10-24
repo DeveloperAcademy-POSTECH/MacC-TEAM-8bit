@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A0B40FF29071A9B00057FA7 /* IsSuccessType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B40FE29071A9B00057FA7 /* IsSuccessType.swift */; };
 		0AAB77E2290274CB00EEEFFB /* SwipeableCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB77E1290274CB00EEEFFB /* SwipeableCardViewController.swift */; };
 		0AAB780A290424A300EEEFFB /* SwipeableCardVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */; };
 		0AAB780C2904251D00EEEFFB /* ianIsComming.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 0AAB780B2904251C00EEEFFB /* ianIsComming.MOV */; };
@@ -61,6 +62,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A0B40FE29071A9B00057FA7 /* IsSuccessType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsSuccessType.swift; sourceTree = "<group>"; };
 		0AAB77E1290274CB00EEEFFB /* SwipeableCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardViewController.swift; sourceTree = "<group>"; };
 		0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardVideoView.swift; sourceTree = "<group>"; };
 		0AAB780B2904251C00EEEFFB /* ianIsComming.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = ianIsComming.MOV; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 			children = (
 				0AAB77E1290274CB00EEEFFB /* SwipeableCardViewController.swift */,
 				0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */,
+				0A0B40FE29071A9B00057FA7 /* IsSuccessType.swift */,
 				A87768D92907116100D12DB2 /* DummyData */,
 			);
 			path = SwipeableCardView;
@@ -429,6 +432,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				707B2CB829012BFE0062C958 /* Color+.swift in Sources */,
+				0A0B40FF29071A9B00057FA7 /* IsSuccessType.swift in Sources */,
 				0AAB780A290424A300EEEFFB /* SwipeableCardVideoView.swift in Sources */,
 				A87768DB2907119500D12DB2 /* DummyVideoModel.swift in Sources */,
 				342508AF29002F31000653D9 /* HomeCollectionViewHeaderCell.swift in Sources */,

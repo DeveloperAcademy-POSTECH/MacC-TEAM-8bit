@@ -52,7 +52,6 @@ final class SwipeableCardVideoView: UIView {
 
         setUpLayout()
         embedVideo()
-
     }
     
     required init?(coder: NSCoder) {
