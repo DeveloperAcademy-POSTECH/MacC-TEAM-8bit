@@ -9,9 +9,12 @@ import UIKit
 
 class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControllerDelegate {
 
+    private let values: [String] = ["V1","V2","V3","V4","V5","V6","V7","V8","V9","V10","V11","V12","V13","V14"]
+    
     override var sheetPresentationController: UISheetPresentationController {
         presentationController as! UISheetPresentationController
     }
+
     
     private lazy var levelTopView : UIView = {
         let view = UIView()
@@ -63,15 +66,21 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
     lazy var pickerView: UIPickerView = {
                      let picker = UIPickerView()
                      picker.frame = CGRect(x: 0, y: 150, width: self.view.bounds.width, height: 180.0)
-                     picker.backgroundColor = .white
+                     picker.backgroundColor = .orrGray1
                      picker.delegate = self
                      picker.dataSource = self
                      return picker
-           
-           
-             
                  }()
-   출처: https://calmone.tistory.com/entry/iOS-UIKit-in-Swift-4-UIPickerView-사용하기-Select-value-with-UIPickerView [투데잇 (Today IT):티스토리]
+    
+    lazy var successLabel : UILabel = {
+        let label = UILabel()
+        label.textColor = .orrBlack
+        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        label.text = "성공 여부를 설정해주세요"
+        return label
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpLayout()
@@ -114,7 +123,20 @@ extension LevelAndPFEditViewController {
         levelContentView.addSubview(LevelLabel)
         LevelLabel.snp.makeConstraints {
             $0.centerX.equalTo(levelContentView)
-            $0.top.equalTo(levelContentView.snp.top).offset(orrPadding.padding5.rawValue)
+            $0.top.equalTo(levelContentView.snp.top).offset(orrPadding.padding6.rawValue)
+        }
+        
+        levelContentView.addSubview(pickerView)
+        pickerView.snp.makeConstraints {
+            $0.width.equalTo(levelContentView)
+            $0.leading.equalTo(levelContentView)
+            $0.top.equalTo(LevelLabel.snp.bottom).offset(orrPadding.padding5.rawValue)
+        }
+        
+        levelContentView.addSubview(successLabel)
+        successLabel.snp.makeConstraints {
+            $0.top.equalTo(pickerView.snp.bottom).offset(orrPadding.padding7.rawValue)
+            $0.centerX.equalToSuperview()
         }
     }
     
@@ -127,4 +149,22 @@ extension LevelAndPFEditViewController {
         self.dismiss(animated: true)
     }
     
+}
+
+extension LevelAndPFEditViewController : UIPickerViewDelegate,UIPickerViewDataSource{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return values.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print(component)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        values[row]
+    }
 }
