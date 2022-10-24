@@ -12,6 +12,8 @@ import SnapKit
 
 class GymSettingViewController: UIViewController {
 
+    var gymVisitDate : Date?
+
     let gymNameLabel : UILabel = {
         let label = UILabel()
         label.text = "해당 암장의 이름을 적어주세요"
@@ -46,6 +48,7 @@ class GymSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
+        self.navigationController?.navigationBar.topItem?.title = ""
         setUpLayout()
     }
 
@@ -63,7 +66,9 @@ extension GymSettingViewController {
     }
 
     @objc func pressNextButton(sender: UIButton!) {
-        var configuration = PHPickerConfiguration()
+        
+        let photoLibrary =  PHPhotoLibrary.shared()
+        var configuration = PHPickerConfiguration(photoLibrary: photoLibrary)
         configuration.selectionLimit = 0
         //인디게이터 도는거 보고 싶으면 아랫줄을 주석 처리해주세요.
         configuration.preferredAssetRepresentationMode = .current
@@ -107,11 +112,13 @@ extension GymSettingViewController {
 }
 
 extension GymSettingViewController: PHPickerViewControllerDelegate {
-
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
+        
+        var videoInfoArray : [VideoInfo] = []
+        let identifiers = results.compactMap(\.assetIdentifier)
+        let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: nil)
 
-        var videoUrlArray: [URL] = []
         //인디케이트를 소환합니다.
         CustomIndicator.startLoading()
         //사용자가 영상을 선택 하지 않은 상태일 때
@@ -119,27 +126,21 @@ extension GymSettingViewController: PHPickerViewControllerDelegate {
             //인디게이터 종료
             CustomIndicator.stopLoading()
             gymTextField.becomeFirstResponder()
+            return
         }
 
-        //선택된 영상에서 URL을 뽑아내는 로직입니다.
-        for index in 0..<results.count {
-            results[index].itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { url, err in
-                if url == nil {
-                    NSLog("Orr_HomeViewController_Err1:\(String(describing: err))\n")
-                } else {
-                    videoUrlArray.append(url!)
-                }
-
-                if results.count - 1 == index {
-                    DispatchQueue.main.sync {
-                        //인디케이터 종료
-                        CustomIndicator.stopLoading()
-                        let nextVC = UpoadTestNextViewController()
-                        nextVC.viewUrlArray = videoUrlArray
-                        self.navigationController?.pushViewController(nextVC, animated: true)
-                    }
-                }
-            }
+        for i in 0..<fetchResult.count {
+            let localIdentifier = fetchResult[i].localIdentifier
+            videoInfoArray.append(VideoInfo(gymName: gymTextField.text!,
+                                  gymVisitDate: gymVisitDate!,
+                                  videoLocalIdentifier: localIdentifier,
+                                  problemLevel: 0,
+                                  isSucceeded: true))
         }
+
+        CustomIndicator.stopLoading()
+        let nextVC = UpoadTestNextViewController()
+        nextVC.videoInfoArray = videoInfoArray
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }

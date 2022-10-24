@@ -10,14 +10,14 @@ import Foundation
 struct VideoInfo {
     var gymName: String
     var gymVisitDate: Date
-    var videoUrl: String
+    var videoLocalIdentifier: String
     var problemLevel: Int
     var isSucceeded: Bool
     
-    init(gymName: String, gymVisitDate: Date, videoUrl: String, problemLevel: Int, isSucceeded: Bool) {
+    init(gymName: String, gymVisitDate: Date, videoLocalIdentifier: String, problemLevel: Int, isSucceeded: Bool) {
         self.gymName = gymName
         self.gymVisitDate = gymVisitDate
-        self.videoUrl = videoUrl
+        self.videoLocalIdentifier = videoLocalIdentifier
         self.problemLevel = problemLevel
         self.isSucceeded = isSucceeded
     }
