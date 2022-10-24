@@ -27,6 +27,12 @@ final class DataManager {
         repository.rawVideoInformation = coreDataManager.readData()
     }
     
+    func createMultipleData(infoList: [VideoInfo]) {
+        for info in infoList {
+            createData(info: info)
+        }
+    }
+    
     func createData(info: VideoInfo) {
         let entity = coreDataManager.createData(info: info)
         repository.createData(info: entity as! VideoInformation)
@@ -52,6 +58,12 @@ final class DataManager {
         repository.updateFeedback(videoInformation: videoInformation, feedback: feedback)
     }
     
+    func deleteMultipleData(videoInformationList: [VideoInformation]) {
+        for videoInformation in videoInformationList {
+            deleteData(videoInformation: videoInformation)
+        }
+    }
+    
     func deleteData(videoInformation: VideoInformation) {
         coreDataManager.deleteData(videoInformation: videoInformation)
         repository.deleteData(videoInformation: videoInformation)
@@ -62,7 +74,7 @@ final class DataManager {
         repository.deleteAllData()
     }
     
-    // 테스트용 Print문 : 추후 삭제될 예정
+    // 테스트용 Print문 : 아래의 메소드는 추후 삭제될 예정
     func printRawData(standard: SortOption) {
         print(repository.rawVideoInformation.count)
         print("-----RAW-----")
