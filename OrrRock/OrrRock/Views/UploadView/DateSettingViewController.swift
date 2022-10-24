@@ -62,8 +62,6 @@ extension DateSettingViewController {
     private func handleDatePicker(_ sender: UIDatePicker) {
         datePickerLabel.text = sender.date.timeToString()
         self.gymVisitDate = sender.date
-        print("보내는놈: \(String(describing: sender.date))")
-
         nextButton.isEnabled = true
     }
 
