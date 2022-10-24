@@ -9,11 +9,11 @@ import UIKit
 
 class UpoadTestNextViewController: UIViewController {
 
-    var VideoInfoArray: [VideoInfo] = []
+    var videoInfoArray: [VideoInfo] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .blue
-        print("받을때: \(VideoInfoArray)")
+        print("받을때: \(videoInfoArray)")
         // Do any additional setup after loading the view.
     }
 }
