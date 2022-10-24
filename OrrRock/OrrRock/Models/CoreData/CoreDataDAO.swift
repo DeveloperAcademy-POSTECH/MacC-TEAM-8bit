@@ -120,6 +120,36 @@ class CoreDataDAO {
             saveData()
     }
     
+    func deleteData(videoInformation: VideoInformation) {
+        
+        guard let id = videoInformation.id else { return }
+        let request = VideoInformation.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        do {
+            let info = try context.fetch(request)
+                if let tempInfo = info.first {
+                    context.delete(tempInfo)
+                }
+            } catch {
+            print("업데이트 실패")
+        }
+        saveData()
+    }
+    
+    func deleteAllData() {
+        let objects = readData()
+        
+        if objects.count > 0 {
+            for object in objects {
+                context.delete(object)
+            }
+            print("DELETE ALL DATA")
+            saveData()
+        } else {
+            print()
+        }
+    }
     
     func reloadRawVideoInformation() {
         rawVideoInformation = readData()
@@ -332,20 +362,4 @@ class CoreDataDAO {
             printData(info: information, primarySortOption: primarySortOption)
         }
     }
-    
-    // *테스트용* : SortTestViewController의 정렬 시 데이터 삭제를 위한 메소드
-    func deleteAllData() {
-        let objects = readData()
-        
-        if objects.count > 0 {
-            for object in objects {
-                context.delete(object)
-            }
-            print("기존 데이터 삭제 완료")
-            saveData()
-        } else {
-            print("삭제할 데이터가 존재하지 않습니다.")
-        }
-    }
-
 }
