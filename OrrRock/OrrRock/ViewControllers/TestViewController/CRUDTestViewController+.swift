@@ -25,6 +25,8 @@ extension CRUDTestViewController {
     
     func sortVideoInformation(videoInformation: [VideoInformation], sectionData: SectionData) -> [VideoInformation] {
         
+        print("CHECK::1 --> \(videoInformation.count)")
+        print(videoInformation[0].gymName)
         if videoInformation.count == 0 {
             print("해당하는 기준 조건의 영상이 존재하지 않습니다")
             return []
@@ -49,6 +51,7 @@ extension CRUDTestViewController {
             filteredInformation.reverse()
         }
         
+        print("CHECK::2 --> \(filteredInformation.count)")
         return filteredInformation
     }
 }
