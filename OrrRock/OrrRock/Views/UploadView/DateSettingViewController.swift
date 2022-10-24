@@ -11,6 +11,8 @@ import SnapKit
 
 class DateSettingViewController: UIViewController {
 
+    var gymVisitDate = Date()
+
     let datePickerLabel : UILabel = {
         let label = UILabel()
         label.text = "업로드할 영상의 날짜를 선택해주세요"
@@ -51,7 +53,6 @@ class DateSettingViewController: UIViewController {
         view.backgroundColor = .orrWhite
         setUpLayout()
     }
-
 }
 
 //MARK: 함수모음
@@ -60,12 +61,16 @@ extension DateSettingViewController {
     @objc
     private func handleDatePicker(_ sender: UIDatePicker) {
         datePickerLabel.text = sender.date.timeToString()
+        self.gymVisitDate = sender.date
+        print("보내는놈: \(String(describing: sender.date))")
+
         nextButton.isEnabled = true
     }
 
     @objc
     private func pressNextButton(_ sender: UIButton) {
         let nextVC = GymSettingViewController()
+        nextVC.gymVisitDate = gymVisitDate
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 
