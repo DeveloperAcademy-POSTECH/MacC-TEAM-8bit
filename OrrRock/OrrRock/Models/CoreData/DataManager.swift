@@ -11,8 +11,8 @@ final class DataManager {
     
     static var shared = DataManager()
     
-    var repository: DataRepository!
-    private var coreDataManager: CoreDataDAO!
+    var repository: DataRepository
+    private var coreDataManager: CoreDataDAO
     
     init() {
         repository = DataRepository()
@@ -28,8 +28,8 @@ final class DataManager {
     }
     
     func createData(info: VideoInfo) {
-        coreDataManager.createData(info: info)
-//        repository.createData(info: info)
+        let entity = coreDataManager.createData(info: info)
+        repository.createData(info: entity as! VideoInformation)
     }
     
     func updateDateAndGymData(videoInformation: VideoInformation, gymVisitDate: Date, gymName: String) {
