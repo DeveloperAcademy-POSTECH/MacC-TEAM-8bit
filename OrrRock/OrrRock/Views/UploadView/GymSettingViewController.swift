@@ -48,6 +48,7 @@ class GymSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
+        self.navigationController?.navigationBar.topItem?.title = ""
         setUpLayout()
     }
 
