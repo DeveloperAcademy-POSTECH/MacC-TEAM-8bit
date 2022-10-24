@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0AAB77E2290274CB00EEEFFB /* SwipeCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB77E1290274CB00EEEFFB /* SwipeCardViewController.swift */; };
+		0AAB77E2290274CB00EEEFFB /* SwipeableCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB77E1290274CB00EEEFFB /* SwipeableCardViewController.swift */; };
+		0AAB780A290424A300EEEFFB /* SwipeableCardVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */; };
+		0AAB780C2904251D00EEEFFB /* ianIsComming.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 0AAB780B2904251C00EEEFFB /* ianIsComming.MOV */; };
 		342508A329001780000653D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A229001780000653D9 /* HomeViewController.swift */; };
 		342508A52900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A42900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift */; };
 		342508A729001BBC000653D9 /* HomeCollectionViewCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A629001BBC000653D9 /* HomeCollectionViewCardCell.swift */; };
@@ -24,6 +26,10 @@
 		34B01149290015A60043951A /* Model in Resources */ = {isa = PBXBuildFile; fileRef = 34B01148290015A60043951A /* Model */; };
 		3A08879C29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A08879A29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift */; };
 		3A08879D29012C8A00EFFDBB /* VideoInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A08879B29012C8A00EFFDBB /* VideoInformation+CoreDataProperties.swift */; };
+		3A2880E929033C0D00FBFB70 /* SortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2880E829033C0D00FBFB70 /* SortOption.swift */; };
+		3A2880EB29033C2500FBFB70 /* FilterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2880EA29033C2500FBFB70 /* FilterOption.swift */; };
+		3A2880FB2904290E00FBFB70 /* SortTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2880FA2904290E00FBFB70 /* SortTestViewController.swift */; };
+		3A2880FE29042A0600FBFB70 /* Date+RandomDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2880FD29042A0600FBFB70 /* Date+RandomDate.swift */; };
 		3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3C52901435200BE11B5 /* VideoInfo.swift */; };
 		3A70C3CF2901CB9600BE11B5 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3CE2901CB9600BE11B5 /* CoreDataManager.swift */; };
 		3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D41E28FEBADE006C718A /* AppDelegate.swift */; };
@@ -44,7 +50,6 @@
 		78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA0672901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift */; };
 		78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA069290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift */; };
 		78CAA06C290271E7003C3D77 /* VIdeoCollectionFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA06B290271E7003C3D77 /* VIdeoCollectionFooterCell.swift */; };
-		A83D23F429029805008FAB39 /* SwipeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D23F329029805008FAB39 /* SwipeCardView.swift */; };
 		FB3227FC2903FD9C00276A7D /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3227FB2903FD9C00276A7D /* Date+.swift */; };
 		FB3227FE2903FDA600276A7D /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3227FD2903FDA600276A7D /* String+.swift */; };
 		FB32280F29046B4500276A7D /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32280E29046B4500276A7D /* VideoDetailViewController.swift */; };
@@ -53,7 +58,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0AAB77E1290274CB00EEEFFB /* SwipeCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardViewController.swift; sourceTree = "<group>"; };
+		0AAB77E1290274CB00EEEFFB /* SwipeableCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardViewController.swift; sourceTree = "<group>"; };
+		0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardVideoView.swift; sourceTree = "<group>"; };
+		0AAB780B2904251C00EEEFFB /* ianIsComming.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = ianIsComming.MOV; sourceTree = "<group>"; };
 		342508A229001780000653D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		342508A42900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+CollectionViewExtensions.swift"; sourceTree = "<group>"; };
 		342508A629001BBC000653D9 /* HomeCollectionViewCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCardCell.swift; sourceTree = "<group>"; };
@@ -70,6 +77,10 @@
 		34B01148290015A60043951A /* Model */ = {isa = PBXFileReference; lastKnownFileType = text; path = Model; sourceTree = "<group>"; };
 		3A08879A29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoInformation+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3A08879B29012C8A00EFFDBB /* VideoInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3A2880E829033C0D00FBFB70 /* SortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOption.swift; sourceTree = "<group>"; };
+		3A2880EA29033C2500FBFB70 /* FilterOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOption.swift; sourceTree = "<group>"; };
+		3A2880FA2904290E00FBFB70 /* SortTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortTestViewController.swift; sourceTree = "<group>"; };
+		3A2880FD29042A0600FBFB70 /* Date+RandomDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+RandomDate.swift"; sourceTree = "<group>"; };
 		3A70C3C52901435200BE11B5 /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		3A70C3CE2901CB9600BE11B5 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		3AA4D41B28FEBADE006C718A /* OrrRock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrrRock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,7 +101,6 @@
 		78CAA0672901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoCollectionView+VideoCollectionViewExtensions.swift"; sourceTree = "<group>"; };
 		78CAA069290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
 		78CAA06B290271E7003C3D77 /* VIdeoCollectionFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIdeoCollectionFooterCell.swift; sourceTree = "<group>"; };
-		A83D23F329029805008FAB39 /* SwipeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardView.swift; sourceTree = "<group>"; };
 		FB3227FB2903FD9C00276A7D /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		FB3227FD2903FDA600276A7D /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		FB32280E29046B4500276A7D /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
@@ -114,10 +124,18 @@
 		0AAB77E0290274BE00EEEFFB /* UploadView */ = {
 			isa = PBXGroup;
 			children = (
-				0AAB77E1290274CB00EEEFFB /* SwipeCardViewController.swift */,
-				A83D23F329029805008FAB39 /* SwipeCardView.swift */,
+				0AAB77E1290274CB00EEEFFB /* SwipeableCardViewController.swift */,
+				0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */,
 			);
 			path = UploadView;
+			sourceTree = "<group>";
+		};
+		0AAB780D2904255D00EEEFFB /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				0AAB780B2904251C00EEEFFB /* ianIsComming.MOV */,
+			);
+			path = TestData;
 			sourceTree = "<group>";
 		};
 		342C4567290066790037D9E7 /* HomeViewController */ = {
@@ -157,7 +175,11 @@
 		34B0113E290015860043951A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				34B0113F2900158D0043951A /* ViewController */,
+=======
+				3A2880F9290428C000FBFB70 /* TestViewController */,
+>>>>>>> develop
 				78A0354A2901318900FF1913 /* VideoCollectionViewController */,
 				342C4567290066790037D9E7 /* HomeViewController */,
 				FB32281029046B9400276A7D /* VideoDetailViewController */,
@@ -168,6 +190,7 @@
 		34B011412900158F0043951A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				3A2880FC2904298700FBFB70 /* TestExtensions */,
 				34B01142290015950043951A /* Extension */,
 				707B2CB729012BFE0062C958 /* Color+.swift */,
 				707B2CB92901382A0062C958 /* Padding+.swift */,
@@ -202,8 +225,26 @@
 				3A08879B29012C8A00EFFDBB /* VideoInformation+CoreDataProperties.swift */,
 				3A70C3CE2901CB9600BE11B5 /* CoreDataManager.swift */,
 				3A70C3C52901435200BE11B5 /* VideoInfo.swift */,
+				3A2880E829033C0D00FBFB70 /* SortOption.swift */,
+				3A2880EA29033C2500FBFB70 /* FilterOption.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		3A2880F9290428C000FBFB70 /* TestViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3A2880FA2904290E00FBFB70 /* SortTestViewController.swift */,
+			);
+			path = TestViewController;
+			sourceTree = "<group>";
+		};
+		3A2880FC2904298700FBFB70 /* TestExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				3A2880FD29042A0600FBFB70 /* Date+RandomDate.swift */,
+			);
+			path = TestExtensions;
 			sourceTree = "<group>";
 		};
 		3AA4D41228FEBADE006C718A = {
@@ -225,6 +266,7 @@
 		3AA4D41D28FEBADE006C718A /* OrrRock */ = {
 			isa = PBXGroup;
 			children = (
+				0AAB780D2904255D00EEEFFB /* TestData */,
 				707B2CB128FFFE6C0062C958 /* Ruyha */,
 				34B01147290015A10043951A /* Models */,
 				34B01144290015970043951A /* Resources */,
@@ -360,6 +402,7 @@
 				3AA4D42B28FEBADF006C718A /* Assets.xcassets in Resources */,
 				34B01149290015A60043951A /* Model in Resources */,
 				34B0113D290015830043951A /* View in Resources */,
+				0AAB780C2904251D00EEEFFB /* ianIsComming.MOV in Resources */,
 				34B01143290015950043951A /* Extension in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -372,23 +415,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				707B2CB829012BFE0062C958 /* Color+.swift in Sources */,
+				0AAB780A290424A300EEEFFB /* SwipeableCardVideoView.swift in Sources */,
 				342508AF29002F31000653D9 /* HomeCollectionViewHeaderCell.swift in Sources */,
 				342508A729001BBC000653D9 /* HomeCollectionViewCardCell.swift in Sources */,
 				342C457029018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift in Sources */,
+				3A2880E929033C0D00FBFB70 /* SortOption.swift in Sources */,
 				342C456E290125260037D9E7 /* HomeCollectionViewListCell.swift in Sources */,
 				FB3227FC2903FD9C00276A7D /* Date+.swift in Sources */,
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
 				78CAA0662901F7A9003C3D77 /* BasePaddingLabel.swift in Sources */,
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
 				78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */,
+<<<<<<< HEAD
 				FB32280F29046B4500276A7D /* VideoDetailViewController.swift in Sources */,
 				3A70C3CF2901CB9600BE11B5 /* CoreDataManager.swift in Sources */,
 				3A08879C29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift in Sources */,
 				707B2CB028FFFDB30062C958 /* UploadTestViewController.swift in Sources */,
 				FB32281329046CDE00276A7D /* VideoPlayView.swift in Sources */,
+=======
+				3A2880FE29042A0600FBFB70 /* Date+RandomDate.swift in Sources */,
+				3A70C3CF2901CB9600BE11B5 /* CoreDataManager.swift in Sources */,
+				3A08879C29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift in Sources */,
+				707B2CB028FFFDB30062C958 /* UploadTestViewController.swift in Sources */,
+				3A2880EB29033C2500FBFB70 /* FilterOption.swift in Sources */,
+>>>>>>> develop
 				707B2CBA2901382A0062C958 /* Padding+.swift in Sources */,
 				3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */,
-				A83D23F429029805008FAB39 /* SwipeCardView.swift in Sources */,
 				3A08879D29012C8A00EFFDBB /* VideoInformation+CoreDataProperties.swift in Sources */,
 				342508A929001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift in Sources */,
 				3AA4D42928FEBADE006C718A /* OrrRock.xcdatamodeld in Sources */,
@@ -396,6 +448,7 @@
 				342508A329001780000653D9 /* HomeViewController.swift in Sources */,
 				342508A52900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift in Sources */,
 				3AA4D42128FEBADE006C718A /* SceneDelegate.swift in Sources */,
+				0AAB77E2290274CB00EEEFFB /* SwipeableCardViewController.swift in Sources */,
 				342699232902E8480054D34C /* VideoFilterEnum.swift in Sources */,
 				0AAB77E2290274CB00EEEFFB /* SwipeCardViewController.swift in Sources */,
 				FB32281529046CED00276A7D /* VideoInfoView.swift in Sources */,
@@ -404,6 +457,7 @@
 				78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */,
 				78CAA06C290271E7003C3D77 /* VIdeoCollectionFooterCell.swift in Sources */,
 				707B2CB528FFFEFF0062C958 /* UpoadTestNextViewController.swift in Sources */,
+				3A2880FB2904290E00FBFB70 /* SortTestViewController.swift in Sources */,
 				FB3227FE2903FDA600276A7D /* String+.swift in Sources */,
 				78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */,
 			);

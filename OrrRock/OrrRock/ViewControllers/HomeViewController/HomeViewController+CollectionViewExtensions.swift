@@ -64,21 +64,21 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         // 카드 간 간격 16 지정 / 리스트 셀 간 간격 0 지정
-        return isCardView ? 16 : 0
+        return isCardView ? CGFloat(orrPadding.padding3.rawValue) : 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         // 앨범형, 목록형의 Header Cell의 높이를 별도로 지정
-        return CGSize(width: collectionView.frame.width, height: isCardView ? 117 : 180)
+        return CGSize(width: collectionView.frame.width, height: isCardView ? 72 : 72 + CGFloat(orrPadding.padding6.rawValue - orrPadding.padding3.rawValue))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         // 앨범형, 목록형의 Footer Cell의 높이를 별도로 지정
-        return CGSize(width: collectionView.frame.width, height: isCardView ? 72 : 102)
+        return CGSize(width: collectionView.frame.width, height: CGFloat(orrPadding.padding6.rawValue))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // 카드 셀의 가로세로 비율 1.33:1로 지정
+        // 카드 셀의 가로세로 비율 1.33:1로 지정 : 목록형 셀의 높이는 70
         let width = view.bounds.width - 2 * CGFloat(orrPadding.padding3.rawValue)
         let height = isCardView ? width / 1.33 : 70
         
