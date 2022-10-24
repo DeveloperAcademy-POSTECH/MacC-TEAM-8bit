@@ -10,17 +10,10 @@ import CoreData
 
 class CoreDataDAO {
     
-    static var shared = CoreDataDAO()
-    
     private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     private lazy var context = appDelegate.persistentContainer.viewContext
     
-    private var rawVideoInformation: [VideoInformation] = []
-    private var sortedVideoInformation: [[VideoInformation]] = []
-    
-    init() {
-        reloadRawVideoInformation()
-    }
+    init() { }
     
     // VideoInfo 구조체를 매개변수로 받아 VideoInformation NSManagedObject에 추가
     func createData(info: VideoInfo) {
@@ -149,10 +142,6 @@ class CoreDataDAO {
         } else {
             print()
         }
-    }
-    
-    func reloadRawVideoInformation() {
-        rawVideoInformation = readData()
     }
     
     // 추가한 데이터를 현재 context에 반영
