@@ -258,7 +258,8 @@ class SortTestViewController: UIViewController {
         }
         
         print("랜덤 데이터 \(CoreDataManager.shared.readData().count)개가 Core Data에 저장되었습니다.")
-        CoreDataManager.shared.fetchData()
+//        CoreDataManager.shared.fetchData()
+        CoreDataManager.shared.reloadRawVideoInformation()
         CoreDataManager.shared.printRawData(standard: .gymName)
     }
 
