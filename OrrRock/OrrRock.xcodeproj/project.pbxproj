@@ -189,11 +189,8 @@
 		34B0113E290015860043951A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				34B0113F2900158D0043951A /* ViewController */,
-=======
 				3A2880F9290428C000FBFB70 /* TestViewController */,
->>>>>>> develop
 				78A0354A2901318900FF1913 /* VideoCollectionViewController */,
 				342C4567290066790037D9E7 /* HomeViewController */,
 				FB32281029046B9400276A7D /* VideoDetailViewController */,
@@ -453,19 +450,13 @@
 				78CAA0662901F7A9003C3D77 /* BasePaddingLabel.swift in Sources */,
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
 				78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */,
-<<<<<<< HEAD
 				FB32280F29046B4500276A7D /* VideoDetailViewController.swift in Sources */,
 				3A70C3CF2901CB9600BE11B5 /* CoreDataManager.swift in Sources */,
 				3A08879C29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift in Sources */,
 				707B2CB028FFFDB30062C958 /* UploadTestViewController.swift in Sources */,
 				FB32281329046CDE00276A7D /* VideoPlayView.swift in Sources */,
-=======
 				3A2880FE29042A0600FBFB70 /* Date+RandomDate.swift in Sources */,
-				3A70C3CF2901CB9600BE11B5 /* CoreDataManager.swift in Sources */,
-				3A08879C29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift in Sources */,
-				707B2CB028FFFDB30062C958 /* UploadTestViewController.swift in Sources */,
 				3A2880EB29033C2500FBFB70 /* FilterOption.swift in Sources */,
->>>>>>> develop
 				707B2CBA2901382A0062C958 /* Padding+.swift in Sources */,
 				70A44809290464BD00BE18A5 /* GymSettingViewController.swift in Sources */,
 				3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */,
