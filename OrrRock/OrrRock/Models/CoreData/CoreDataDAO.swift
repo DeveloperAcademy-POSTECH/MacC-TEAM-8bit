@@ -49,6 +49,78 @@ class CoreDataDAO {
         return information
     }
     
+    func updateDateAndGymData(videoInformation: VideoInformation, gymVisitDate: Date, gymName: String) {
+
+        guard let id = videoInformation.id else { return }
+        let request = VideoInformation.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+                    do {
+                        let info = try context.fetch(request)
+                            if let tempInfo = info.first {
+                                tempInfo.setValue(gymVisitDate, forKey: "gymVisitDate")
+                                tempInfo.setValue(gymName, forKey: "gymName")
+                            }
+                        } catch {
+                        print("업데이트 실패")
+                    }
+            saveData(context: context)
+    }
+    
+    // MARK: EditCase TWO 2 - 코드 반복 O
+    func updateLevelAndPF(videoInformation: VideoInformation, problemLevel: Int, isSucceeded: Bool) {
+
+        guard let id = videoInformation.id else { return }
+        let request = VideoInformation.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+                    do {
+                        let info = try context.fetch(request)
+                            if let tempInfo = info.first {
+                                tempInfo.setValue(problemLevel, forKey: "problemLevel")
+                                tempInfo.setValue(isSucceeded, forKey: "isSucceeded")
+                            }
+                        } catch {
+                        print("업데이트 실패")
+                    }
+            saveData(context: context)
+    }
+    
+    func updateFavorite(videoInformation: VideoInformation, isFavorite: Bool) {
+        
+        guard let id = videoInformation.id else { return }
+        let request = VideoInformation.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+                    do {
+                        let info = try context.fetch(request)
+                            if let tempInfo = info.first {
+                                tempInfo.setValue(isFavorite, forKey: "isFavorite")
+                            }
+                        } catch {
+                        print("업데이트 실패")
+                    }
+            saveData(context: context)
+    }
+    
+    func updateFeedback(videoInformation: VideoInformation, feedback: String) {
+
+        guard let id = videoInformation.id else { return }
+        let request = VideoInformation.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+                    do {
+                        let info = try context.fetch(request)
+                            if let tempInfo = info.first {
+                                tempInfo.setValue(feedback, forKey: "feedback")
+                            }
+                        } catch {
+                        print("업데이트 실패")
+                    }
+            saveData(context: context)
+    }
+    
+    
     func reloadRawVideoInformation() {
         rawVideoInformation = readData()
     }
