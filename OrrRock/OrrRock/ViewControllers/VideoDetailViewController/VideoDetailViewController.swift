@@ -141,9 +141,10 @@ final class VideoDetailViewController: UIViewController {
 	override func viewWillLayoutSubviews() {
 		// 네비게이션바가 숨겨졌을 때 배경색 변경
 		let isNavigationBarHidden = navigationController?.isNavigationBarHidden ?? false
-		view.backgroundColor = isNavigationBarHidden ? .black : .white
-		bottomSafeareaView.backgroundColor = isNavigationBarHidden ? .black : .white
-		topSafeareaView.backgroundColor = isNavigationBarHidden ? .black : .white
+		let backGroundColor: UIColor = isNavigationBarHidden ? .black : .white
+		view.backgroundColor = backGroundColor
+		bottomSafeareaView.backgroundColor = backGroundColor
+		topSafeareaView.backgroundColor = backGroundColor
 	}
 	
 	// 텍스트 뷰 활성화 상태일 때 여백 화면 터치해서 키보드 내리는 로직
