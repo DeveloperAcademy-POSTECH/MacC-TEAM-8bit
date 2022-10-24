@@ -8,9 +8,9 @@
 import UIKit
 import CoreData
 
-class CoreDataManager {
+class CoreDataDAO {
     
-    static var shared = CoreDataManager()
+    static var shared = CoreDataDAO()
     
     private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     private lazy var context = appDelegate.persistentContainer.viewContext

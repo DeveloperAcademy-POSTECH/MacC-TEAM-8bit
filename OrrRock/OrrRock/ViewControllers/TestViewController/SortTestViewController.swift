@@ -148,99 +148,99 @@ class SortTestViewController: UIViewController {
     
     // MARK: NORMAL SORT ONLY
     @objc func gymUPSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .all, sortOption: .gymName)
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymName)
+        CoreDataDAO.shared.sortVideoInformation(filterOption: .all, sortOption: .gymName)
+        CoreDataDAO.shared.printAllSortedData(primarySortOption: .gymName)
     }
     
     @objc func gymDOWNSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .all, sortOption: .gymName)
-        CoreDataManager.shared.reverseSort()
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymName)
+        CoreDataDAO.shared.sortVideoInformation(filterOption: .all, sortOption: .gymName)
+        CoreDataDAO.shared.reverseSort()
+        CoreDataDAO.shared.printAllSortedData(primarySortOption: .gymName)
         
     }
     
     @objc func dateUPSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .all, sortOption: .gymVisitDate)
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymVisitDate)
+        CoreDataDAO.shared.sortVideoInformation(filterOption: .all, sortOption: .gymVisitDate)
+        CoreDataDAO.shared.printAllSortedData(primarySortOption: .gymVisitDate)
     }
     
     @objc func dateDOWNSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .all, sortOption: .gymVisitDate)
-        CoreDataManager.shared.reverseSort()
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymVisitDate)
+        CoreDataDAO.shared.sortVideoInformation(filterOption: .all, sortOption: .gymVisitDate)
+        CoreDataDAO.shared.reverseSort()
+        CoreDataDAO.shared.printAllSortedData(primarySortOption: .gymVisitDate)
     }
     
     // MARK: FILTER N SORT
     @objc func gymUPFavSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .favorite, sortOption: .gymName)
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymName)
+        CoreDataDAO.shared.sortVideoInformation(filterOption: .favorite, sortOption: .gymName)
+        CoreDataDAO.shared.printAllSortedData(primarySortOption: .gymName)
     }
     
     @objc func gymDOWNFavSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .favorite, sortOption: .gymName)
-        CoreDataManager.shared.reverseSort()
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymName)
+        CoreDataDAO.shared.sortVideoInformation(filterOption: .favorite, sortOption: .gymName)
+        CoreDataDAO.shared.reverseSort()
+        CoreDataDAO.shared.printAllSortedData(primarySortOption: .gymName)
     }
     
     @objc func dateUPFavSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .favorite, sortOption: .gymVisitDate)
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymVisitDate)
+        CoreDataDAO.shared.sortVideoInformation(filterOption: .favorite, sortOption: .gymVisitDate)
+        CoreDataDAO.shared.printAllSortedData(primarySortOption: .gymVisitDate)
     }
     
     @objc func dateDOWNFavSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .favorite, sortOption: .gymVisitDate)
-        CoreDataManager.shared.reverseSort()
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymVisitDate)
+        CoreDataDAO.shared.sortVideoInformation(filterOption: .favorite, sortOption: .gymVisitDate)
+        CoreDataDAO.shared.reverseSort()
+        CoreDataDAO.shared.printAllSortedData(primarySortOption: .gymVisitDate)
     }
     
     @objc func gymUPSuccessSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .success, sortOption: .gymName)
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymName)
+        CoreDataDAO.shared.sortVideoInformation(filterOption: .success, sortOption: .gymName)
+        CoreDataDAO.shared.printAllSortedData(primarySortOption: .gymName)
         
     }
     
     @objc func gymDOWNSuccessSort () {
        // CoreDataManager.shared.sortVideoInformation(filterOption: .success, sortOption: .gymName)
-        CoreDataManager.shared.reverseSort()
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymName)
+        CoreDataDAO.shared.reverseSort()
+        CoreDataDAO.shared.printAllSortedData(primarySortOption: .gymName)
     }
     
     @objc func dateUPSuccessSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .success, sortOption: .gymVisitDate)
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymVisitDate)
+        CoreDataDAO.shared.sortVideoInformation(filterOption: .success, sortOption: .gymVisitDate)
+        CoreDataDAO.shared.printAllSortedData(primarySortOption: .gymVisitDate)
     }
     
     @objc func dateDOWNSuccessSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .success, sortOption: .gymVisitDate)
-        CoreDataManager.shared.reverseSort()
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymVisitDate)
+        CoreDataDAO.shared.sortVideoInformation(filterOption: .success, sortOption: .gymVisitDate)
+        CoreDataDAO.shared.reverseSort()
+        CoreDataDAO.shared.printAllSortedData(primarySortOption: .gymVisitDate)
     }
     
     @objc func gymUPFailureSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .failure, sortOption: .gymName)
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymName)
+        CoreDataDAO.shared.sortVideoInformation(filterOption: .failure, sortOption: .gymName)
+        CoreDataDAO.shared.printAllSortedData(primarySortOption: .gymName)
     }
     
     @objc func gymDOWNFailureSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .failure, sortOption: .gymName)
-        CoreDataManager.shared.reverseSort()
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymName)
+        CoreDataDAO.shared.sortVideoInformation(filterOption: .failure, sortOption: .gymName)
+        CoreDataDAO.shared.reverseSort()
+        CoreDataDAO.shared.printAllSortedData(primarySortOption: .gymName)
     }
     
     @objc func dateUPFailureSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .failure, sortOption: .gymVisitDate)
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymVisitDate)
+        CoreDataDAO.shared.sortVideoInformation(filterOption: .failure, sortOption: .gymVisitDate)
+        CoreDataDAO.shared.printAllSortedData(primarySortOption: .gymVisitDate)
     }
     
     @objc func dateDOWNFailureSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .failure, sortOption: .gymVisitDate)
-        CoreDataManager.shared.reverseSort()
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymVisitDate)
+        CoreDataDAO.shared.sortVideoInformation(filterOption: .failure, sortOption: .gymVisitDate)
+        CoreDataDAO.shared.reverseSort()
+        CoreDataDAO.shared.printAllSortedData(primarySortOption: .gymVisitDate)
     }
     
     func coreDataRandomvideoInformationGenerate(howMany: Int) {
         
-        CoreDataManager.shared.deleteAllData()
+        CoreDataDAO.shared.deleteAllData()
         
         for _ in 0..<howMany {
             let randomIndex = Int.random(in: 0..<nameList.count)
@@ -253,16 +253,16 @@ class SortTestViewController: UIViewController {
             
             let info = VideoInfo(gymName: name, gymVisitDate: date, videoLocalIdentifier: url, problemLevel: level, isSucceeded: isSucceeded)
             
-            CoreDataManager.shared.createData(info: info)
+            CoreDataDAO.shared.createData(info: info)
             
         }
         
-        print("랜덤 데이터 \(CoreDataManager.shared.readData().count)개가 Core Data에 저장되었습니다.")
+        print("랜덤 데이터 \(CoreDataDAO.shared.readData().count)개가 Core Data에 저장되었습니다.")
 
-//        CoreDataManager.shared.fetchData()
+//        CoreDataDAO.shared.fetchData()
 
-        CoreDataManager.shared.reloadRawVideoInformation()
-        CoreDataManager.shared.printRawData(standard: .gymName)
+        CoreDataDAO.shared.reloadRawVideoInformation()
+        CoreDataDAO.shared.printRawData(standard: .gymName)
     }
 
 }

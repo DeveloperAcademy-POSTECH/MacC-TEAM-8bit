@@ -32,7 +32,7 @@
 		3A2880FB2904290E00FBFB70 /* SortTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2880FA2904290E00FBFB70 /* SortTestViewController.swift */; };
 		3A2880FE29042A0600FBFB70 /* Date+RandomDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2880FD29042A0600FBFB70 /* Date+RandomDate.swift */; };
 		3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3C52901435200BE11B5 /* VideoInfo.swift */; };
-		3A70C3CF2901CB9600BE11B5 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3CE2901CB9600BE11B5 /* CoreDataManager.swift */; };
+		3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */; };
 		3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D41E28FEBADE006C718A /* AppDelegate.swift */; };
 		3AA4D42128FEBADE006C718A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D42028FEBADE006C718A /* SceneDelegate.swift */; };
 		3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D42228FEBADE006C718A /* MainViewController.swift */; };
@@ -85,7 +85,7 @@
 		3A2880FA2904290E00FBFB70 /* SortTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortTestViewController.swift; sourceTree = "<group>"; };
 		3A2880FD29042A0600FBFB70 /* Date+RandomDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+RandomDate.swift"; sourceTree = "<group>"; };
 		3A70C3C52901435200BE11B5 /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
-		3A70C3CE2901CB9600BE11B5 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDAO.swift; sourceTree = "<group>"; };
 		3AA4D41B28FEBADE006C718A /* OrrRock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrrRock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA4D41E28FEBADE006C718A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AA4D42028FEBADE006C718A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -225,7 +225,7 @@
 			children = (
 				3A08879A29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift */,
 				3A08879B29012C8A00EFFDBB /* VideoInformation+CoreDataProperties.swift */,
-				3A70C3CE2901CB9600BE11B5 /* CoreDataManager.swift */,
+				3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */,
 				3A70C3C52901435200BE11B5 /* VideoInfo.swift */,
 				3A2880E829033C0D00FBFB70 /* SortOption.swift */,
 				3A2880EA29033C2500FBFB70 /* FilterOption.swift */,
@@ -425,7 +425,7 @@
 				78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */,
 				3A2880FE29042A0600FBFB70 /* Date+RandomDate.swift in Sources */,
 				3A15AC7729071DD90058512F /* OrderOption.swift in Sources */,
-				3A70C3CF2901CB9600BE11B5 /* CoreDataManager.swift in Sources */,
+				3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */,
 				3A08879C29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift in Sources */,
 				3A2880EB29033C2500FBFB70 /* FilterOption.swift in Sources */,
 				707B2CBA2901382A0062C958 /* Padding+.swift in Sources */,
@@ -589,7 +589,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ML59XN7A6B;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
@@ -619,7 +619,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ML59XN7A6B;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
