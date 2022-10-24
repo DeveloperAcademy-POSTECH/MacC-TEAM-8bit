@@ -31,7 +31,8 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
         switch mMode{
         case .view:
             videoCollectionView.deselectItem(at: indexPath, animated: true)
-            print("상세재생뷰로 이동")
+            let vc = VideoDetailViewController()
+            navigationController?.pushViewController(vc, animated: true)
             
         case .select:
             dictionarySelectedIndexPath[indexPath] = true

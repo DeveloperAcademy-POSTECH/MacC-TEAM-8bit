@@ -46,6 +46,32 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         return title
     }()
     
+    private lazy var levelContentView : UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    private lazy var LevelLabel : UILabel = {
+        let label = UILabel()
+        label.text = "해당 문제의 레벨을 선택해 주세요."
+        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.textColor = .orrBlack
+        label.backgroundColor = .orrGray1
+        return label
+    }()
+    
+    lazy var pickerView: UIPickerView = {
+                     let picker = UIPickerView()
+                     picker.frame = CGRect(x: 0, y: 150, width: self.view.bounds.width, height: 180.0)
+                     picker.backgroundColor = .white
+                     picker.delegate = self
+                     picker.dataSource = self
+                     return picker
+           
+           
+             
+                 }()
+   출처: https://calmone.tistory.com/entry/iOS-UIKit-in-Swift-4-UIPickerView-사용하기-Select-value-with-UIPickerView [투데잇 (Today IT):티스토리]
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpLayout()
@@ -70,11 +96,25 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
 extension LevelAndPFEditViewController {
     
     private func setUpLayout(){
+        view.backgroundColor = .orrGray1
         view.addSubview(levelTopView)
         levelTopView.snp.makeConstraints {
             $0.width.equalToSuperview()
             $0.height.equalTo(60)
             $0.top.equalToSuperview()
+        }
+        view.addSubview(levelContentView)
+        levelContentView.snp.makeConstraints {
+            $0.top.equalTo(levelTopView.snp.bottom)
+            $0.bottom.equalToSuperview()
+            $0.width.equalToSuperview()
+            $0.leading.equalToSuperview()
+        }
+        
+        levelContentView.addSubview(LevelLabel)
+        LevelLabel.snp.makeConstraints {
+            $0.centerX.equalTo(levelContentView)
+            $0.top.equalTo(levelContentView.snp.top).offset(orrPadding.padding5.rawValue)
         }
     }
     
