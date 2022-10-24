@@ -20,9 +20,9 @@ final class VideoDetailViewController: UIViewController {
 	
 	let videoInfoView: UIView = VideoInfoView()
 	
-	var infoButton: UIBarButtonItem!
-	var feedbackButton: UIBarButtonItem!
-	var trashButton: UIBarButtonItem!
+	private var infoButton: UIBarButtonItem!
+	private var feedbackButton: UIBarButtonItem!
+	private var trashButton: UIBarButtonItem!
 	
 	private var favoriteButton: UIBarButtonItem!
 	private var goBackButton: UIBarButtonItem!
