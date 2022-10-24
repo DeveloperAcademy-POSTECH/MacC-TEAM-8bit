@@ -21,9 +21,9 @@ class VideoManager {
     
     let dummyVideoList: [DummyVideo] = [
         DummyVideo(id: 100, videoURL: "ianIsComming", problemLevel: 0, isSuccessed: false),
-        DummyVideo(id: 101, videoURL: "ianIsComming", problemLevel: 0, isSuccessed: false),
+        DummyVideo(id: 101, videoURL: "ledIsComming", problemLevel: 0, isSuccessed: false),
         DummyVideo(id: 102, videoURL: "ianIsComming", problemLevel: 0, isSuccessed: false),
-        DummyVideo(id: 103, videoURL: "ianIsComming", problemLevel: 0, isSuccessed: false),
+        DummyVideo(id: 103, videoURL: "ledIsComming", problemLevel: 0, isSuccessed: false),
         DummyVideo(id: 104, videoURL: "ianIsComming", problemLevel: 0, isSuccessed: false)
     ]
     
