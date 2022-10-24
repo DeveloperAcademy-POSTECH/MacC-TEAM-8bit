@@ -43,15 +43,15 @@ final class VideoCollectionViewHeaderCell: UICollectionReusableView {
     }
     
     func prepare(title: String?) {
-        self.titleLabel.text = "날짜"
-        self.subTitleLabel.text = "클라이밍장 이름"
+        self.titleLabel.text = "2022년 10월 22일"
+        self.subTitleLabel.text = "김대우 암벽교실"
     }
     
     func setUpLayout(){
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(23)
-            $0.bottom.equalToSuperview().inset(34)
+            $0.top.equalToSuperview().inset(16)
         }
         
         self.addSubview(self.subTitleLabel)

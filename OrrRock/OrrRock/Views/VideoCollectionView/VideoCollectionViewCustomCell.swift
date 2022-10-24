@@ -11,6 +11,32 @@ import SnapKit
 class VideoCollectionViewCell : UICollectionViewCell {
     static let identifier = "customVideoCollectionCell"
     
+    override var isHighlighted: Bool{
+        didSet{
+            cellBlurView.isHidden = !isHighlighted
+        }
+    }
+    
+    override var isSelected: Bool{
+        didSet{
+            cellBlurView.isHidden = !isSelected
+            checkImage.isHidden = !isSelected
+        }
+    }
+    lazy var cellBlurView : UIView = {
+        let uiView = UIView()
+        uiView.backgroundColor = .white.withAlphaComponent(0.3)
+        uiView.isHidden = true
+        return uiView
+    }()
+    
+    lazy var checkImage : UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "checkmark.circle.fill")
+        imageView.tintColor = .systemBlue
+        imageView.isHidden = true
+        return imageView
+    }()
     
     lazy var cellImage : UIImageView = {
         let img = UIImageView()
@@ -66,6 +92,15 @@ class VideoCollectionViewCell : UICollectionViewCell {
             $0.leading.equalTo(cellLabel.snp.trailing).offset(1)
             $0.centerY.equalTo(cellLabel.snp.centerY)
         }
+        self.addSubview(cellBlurView)
+        cellBlurView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
         
+        cellBlurView.addSubview(checkImage)
+        checkImage.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(10)
+            $0.bottom.equalToSuperview().inset(10)
+        }
     }
 }
