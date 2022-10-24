@@ -135,11 +135,7 @@ final class VideoDetailViewController: UIViewController {
 	// 좋아요 버튼을 눌렀을 때 로직
 	@objc func favoriteAction() {
 		isFavortie.toggle()
-		if isFavortie {
-			favoriteButton.image = UIImage(systemName: "heart.fill")
-		} else {
-			favoriteButton.image = UIImage(systemName: "heart")
-		}
+		favoriteButton.image = UIImage(systemName: isFavortie ? "heart.fill" : "heart")
 		print(#function)
 	}
 	
