@@ -228,11 +228,11 @@
 				3A08879A29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift */,
 				3A08879B29012C8A00EFFDBB /* VideoInformation+CoreDataProperties.swift */,
 				3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */,
+				3A15AC7829071F710058512F /* DataRepository.swift */,
 				3A70C3C52901435200BE11B5 /* VideoInfo.swift */,
 				3A2880E829033C0D00FBFB70 /* SortOption.swift */,
 				3A2880EA29033C2500FBFB70 /* FilterOption.swift */,
 				3A15AC7629071DD90058512F /* OrderOption.swift */,
-				3A15AC7829071F710058512F /* DataRepository.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
