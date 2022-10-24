@@ -7,7 +7,7 @@
 
 import UIKit
 
-class VideoInfoView: UIView {
+final class VideoInfoView: UIView {
 	
 	// FIXME: data관련 임시 코드 coreData 연동 시 추후 변경
 	var videoDate: String = "2022년 10월 3일"
