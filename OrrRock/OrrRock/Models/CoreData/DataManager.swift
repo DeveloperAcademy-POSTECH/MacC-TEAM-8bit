@@ -61,4 +61,31 @@ final class DataManager {
         coreDataManager.deleteAllData()
         repository.deleteAllData()
     }
+    
+    // 테스트용 Print문 : 추후 삭제될 예정
+    func printRawData(standard: SortOption) {
+        print(repository.rawVideoInformation.count)
+        print("-----RAW-----")
+        for info in repository.rawVideoInformation {
+            printData(info: info, primarySortOption: standard)
+        }
+        print("------------")
+        print("================================")
+    }
+    
+    func printData(info: VideoInformation, primarySortOption: SortOption) {
+        
+        if primarySortOption == .gymName {
+            print("\(info.gymName) | \(info.gymVisitDate.formatted(date: .numeric, time: .omitted)) | \(info.videoUrl) | \(info.problemLevel) | 즐겨찾기 \(info.isFavorite) | 성공 \(info.isSucceeded)")
+        } else {
+            print("| \(info.gymVisitDate.formatted(date: .numeric, time: .omitted)) | \(info.gymName) | \(info.videoUrl) | \(info.problemLevel) | 즐겨찾기 \(info.isFavorite) | 성공 \(info.isSucceeded)")
+        }
+    }
+    
+    func printDataList(info: [VideoInformation], primarySortOption: SortOption) {
+        for information in repository.rawVideoInformation {
+            printData(info: information,primarySortOption: primarySortOption)
+        }
+    }
+
 }
