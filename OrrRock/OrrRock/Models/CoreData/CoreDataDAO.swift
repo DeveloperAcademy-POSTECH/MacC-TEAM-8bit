@@ -64,7 +64,7 @@ class CoreDataDAO {
                         } catch {
                         print("업데이트 실패")
                     }
-            saveData(context: context)
+            saveData()
     }
     
     // MARK: EditCase TWO 2 - 코드 반복 O
@@ -83,7 +83,7 @@ class CoreDataDAO {
                         } catch {
                         print("업데이트 실패")
                     }
-            saveData(context: context)
+            saveData()
     }
     
     func updateFavorite(videoInformation: VideoInformation, isFavorite: Bool) {
@@ -100,7 +100,7 @@ class CoreDataDAO {
                         } catch {
                         print("업데이트 실패")
                     }
-            saveData(context: context)
+            saveData()
     }
     
     func updateFeedback(videoInformation: VideoInformation, feedback: String) {
@@ -117,7 +117,7 @@ class CoreDataDAO {
                         } catch {
                         print("업데이트 실패")
                     }
-            saveData(context: context)
+            saveData()
     }
     
     
