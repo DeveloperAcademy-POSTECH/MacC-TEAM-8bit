@@ -90,7 +90,7 @@ class DataRepository {
              */
         case .gymVisitDate:
             
-            filteredInformation.sort(by: { $0.gymVisitDate < $1.gymVisitDate })
+            filteredInformation.sort(by: { $0.gymVisitDate > $1.gymVisitDate })
             
             sortedVideoInformation.append([])
             var currentGymVisitDate = filteredInformation[filteredInfoIndex].gymVisitDate.formatted(date: .numeric, time: .omitted)
@@ -120,7 +120,7 @@ class DataRepository {
                     continue
                 }
                 
-                let gymNameSortedArray = sortedVideoInformation[index].sorted(by: { $0.gymName < $1.gymName })
+                let gymNameSortedArray = sortedVideoInformation[index].sorted(by: { $0.gymName > $1.gymName })
                 
                 filteredInfoIndex = 0
                 
