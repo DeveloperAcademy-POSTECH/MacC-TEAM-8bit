@@ -8,21 +8,19 @@
 import UIKit
 import SnapKit
 
-class DateAndGymEditViewController: UIViewController , UISheetPresentationControllerDelegate{
-
-    
+final class DateAndGymEditViewController: UIViewController , UISheetPresentationControllerDelegate{
     override var sheetPresentationController: UISheetPresentationController {
         presentationController as! UISheetPresentationController
     }
     
     // MARK: gym view compenents
-    let gymContentView : UIView = {
+    private lazy var gymContentView : UIView = {
         let view = UIView()
         view.alpha = 0.0
         return view
     }()
     
-    let gymNameLabel : UILabel = {
+    private lazy var gymNameLabel : UILabel = {
         let label = UILabel()
         label.text = "해당 암장의 이름을 적어주세요"
         label.font = UIFont.boldSystemFont(ofSize: 17)
@@ -30,8 +28,8 @@ class DateAndGymEditViewController: UIViewController , UISheetPresentationContro
         label.backgroundColor = .orrGray1
         return label
     }()
-
-    let gymTextField : UnderlinedTextField = {
+    
+    private lazy var gymTextField : UnderlinedTextField = {
         let view = UnderlinedTextField()
         view.borderStyle = .none
         view.placeholder = "김대우 암벽교실"
@@ -39,8 +37,8 @@ class DateAndGymEditViewController: UIViewController , UISheetPresentationContro
         view.font = UIFont.systemFont(ofSize: 22)
         return view
     }()
-
-    let saveButton : UIButton = {
+    
+    private lazy var saveButton : UIButton = {
         let btn = UIButton()
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
         btn.setBackgroundColor(.orrGray2!, for: .disabled)
@@ -52,7 +50,7 @@ class DateAndGymEditViewController: UIViewController , UISheetPresentationContro
     
     //MARK: date view 관련 components
     
-    let datePickerLabel : UILabel = {
+    private lazy var datePickerLabel : UILabel = {
         let label = UILabel()
         label.text = Date().timeToString()
         label.font = UIFont.boldSystemFont(ofSize: 17)
@@ -60,8 +58,8 @@ class DateAndGymEditViewController: UIViewController , UISheetPresentationContro
         label.backgroundColor = .orrGray1
         return label
     }()
-
-    let datePicker : UIDatePicker = {
+    
+    private lazy var datePicker : UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.overrideUserInterfaceStyle = .light
         datePicker.preferredDatePickerStyle = .inline
@@ -73,8 +71,8 @@ class DateAndGymEditViewController: UIViewController , UISheetPresentationContro
         datePicker.maximumDate = Date()
         return datePicker
     }()
-
-    let nextButton : UIButton = {
+    
+    private lazy var nextButton : UIButton = {
         let btn = UIButton()
         btn.clipsToBounds = true
         btn.layer.cornerRadius = 15
@@ -86,13 +84,13 @@ class DateAndGymEditViewController: UIViewController , UISheetPresentationContro
         return btn
     }()
     
-    lazy var dateContentView : UIView = {
+    private lazy var dateContentView : UIView = {
         let view = UIView()
         return view
     }()
     
     
-    lazy var dateTopView : UIView = {
+    private lazy var dateTopView : UIView = {
         let view = UIView()
         view.backgroundColor = .orrWhite
         
@@ -156,7 +154,7 @@ class DateAndGymEditViewController: UIViewController , UISheetPresentationContro
             $0.centerX.equalTo(dateContentView)
             $0.top.equalTo(dateContentView.snp.top).offset(orrPadding.padding5.rawValue)
         }
-
+        
         dateContentView.addSubview(datePicker)
         datePicker.snp.makeConstraints{
             $0.centerX.equalTo(dateContentView)
@@ -164,7 +162,7 @@ class DateAndGymEditViewController: UIViewController , UISheetPresentationContro
             $0.leading.equalTo(dateContentView).offset(orrPadding.padding3.rawValue)
             $0.trailing.equalTo(dateContentView).offset(-orrPadding.padding3.rawValue)
         }
-
+        
         dateContentView.addSubview(nextButton)
         nextButton.snp.makeConstraints{
             $0.centerX.equalTo(dateContentView)
@@ -187,7 +185,7 @@ class DateAndGymEditViewController: UIViewController , UISheetPresentationContro
             $0.centerX.equalTo(dateContentView)
             $0.top.equalTo(dateContentView.snp.top).offset(orrPadding.padding5.rawValue)
         }
-
+        
         gymContentView.addSubview(gymTextField)
         gymTextField.snp.makeConstraints{
             $0.centerX.equalTo(gymContentView)
@@ -195,14 +193,13 @@ class DateAndGymEditViewController: UIViewController , UISheetPresentationContro
             $0.leading.equalTo(gymContentView).offset(orrPadding.padding6.rawValue)
             $0.trailing.equalTo(gymContentView).offset(-orrPadding.padding6.rawValue)
         }
-
+        
         gymContentView.addSubview(saveButton)
         saveButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top)
             $0.height.equalTo(56)
         }
-    
     }
     
     private func setUpDelegate(){
@@ -211,18 +208,16 @@ class DateAndGymEditViewController: UIViewController , UISheetPresentationContro
         sheetPresentationController.prefersGrabberVisible = false
         sheetPresentationController.detents = [.large()]
     }
-    
-
 }
 
 extension DateAndGymEditViewController {
-
+    
     @objc
     private func handleDatePicker(_ sender: UIDatePicker) {
         datePickerLabel.text = sender.date.timeToString()
         datePickerLabel.textColor = .black
     }
-
+    
     @objc
     private func pressNextButton(_ sender: UIButton) {
         UIView.animate(withDuration: 0.5) {
@@ -237,7 +232,7 @@ extension DateAndGymEditViewController {
     private func pressSaveButton(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
-
+    
     @objc func didCancelButtonClicked(_ sender: UIBarButtonItem){
         self.dismiss(animated: true)
     }
