@@ -168,4 +168,70 @@ class DataRepository {
         return information
     }
     
+    func createData(info: VideoInfo) {
+        
+        let entity = VideoInformation()
+        
+        entity.gymName = info.gymName
+        entity.gymVisitDate = info.gymVisitDate
+        entity.videoUrl = info.videoLocalIdentifier
+        entity.problemLevel = Int16(info.problemLevel)
+        entity.isSucceeded = info.isSucceeded
+        
+        rawVideoInformation.append(entity)
+    }
+    
+    func updateDateAndGymData(videoInformation: VideoInformation, gymVisitDate: Date, gymName: String) {
+
+        guard let id = videoInformation.id else { return }
+        
+        let target = rawVideoInformation.filter({ $0.id == id })
+        target[0].gymVisitDate = gymVisitDate
+        target[0].gymName = gymName
+    }
+    
+    func updateLevelAndPF(videoInformation: VideoInformation, problemLevel: Int, isSucceeded: Bool) {
+
+        guard let id = videoInformation.id else { return }
+        
+        let target = rawVideoInformation.filter({ $0.id == id })
+        target[0].problemLevel = Int16(problemLevel)
+        target[0].isSucceeded = isSucceeded
+    }
+    
+    func updateFavorite(videoInformation: VideoInformation, isFavorite: Bool) {
+        
+        guard let id = videoInformation.id else { return }
+        
+        let target = rawVideoInformation.filter({ $0.id == id })
+        target[0].isFavorite = isFavorite
+    }
+    
+    func updateFeedback(videoInformation: VideoInformation, feedback: String) {
+
+        guard let id = videoInformation.id else { return }
+        
+        let target = rawVideoInformation.filter({ $0.id == id })
+        target[0].feedback = feedback
+    }
+    
+    func deleteData(videoInformation: VideoInformation) {
+        
+        let target = rawVideoInformation.filter({ $0 == videoInformation })
+        print("CONFIRM")
+        if let index = rawVideoInformation.firstIndex(of: target[0]) {
+            rawVideoInformation.remove(at: index)
+        }
+        print("Delete Data")
+    }
+    
+    func deleteDataList(videoInformation: [VideoInformation]) {
+        for information in videoInformation {
+            deleteData(videoInformation: information)
+        }
+    }
+    
+    func deleteAllData() {
+        rawVideoInformation.removeAll()
+    }
 }
