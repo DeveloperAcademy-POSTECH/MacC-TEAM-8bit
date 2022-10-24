@@ -117,7 +117,6 @@ class DataRepository {
             for index in 0..<sortedVideoInformation.count {
                 
                 if sortedVideoInformation[index].count == 0 {
-                    print("-----")
                     continue
                 }
                 
@@ -134,14 +133,11 @@ class DataRepository {
                     
                     if gymNameSortedArray[filteredInfoIndex].gymName == currentGymName {
                         finalSortedInformation[currentSortedInformationIndex].append(gymNameSortedArray[filteredInfoIndex])
-                        printData(info: gymNameSortedArray[filteredInfoIndex], primarySortOption: .gymVisitDate)
                     } else {
                         finalSortedInformation.append([])
                         currentSortedInformationIndex += 1
                         finalSortedInformation[currentSortedInformationIndex].append(gymNameSortedArray[filteredInfoIndex])
                         currentGymName = gymNameSortedArray[filteredInfoIndex].gymName
-                        printData(info: gymNameSortedArray[filteredInfoIndex], primarySortOption: .gymVisitDate)
-                        print("-----")
                     }
                     
                     filteredInfoIndex += 1
