@@ -28,12 +28,19 @@ class SortTestViewController: UIViewController {
     
     
     let sectionData: SectionData = SectionData(orderOption: .descend, sortOption: .gymName, filterOption: .all, gymName: "1암장", gymVisitDate: Date())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        coreDataRandomvideoInformationGenerate(howMany: 30)
+//        새로운 데이터 생성 후 테스트 시 주석 제거 & repositoryUpdate 주석
+//        DataManager.shared.deleteAllData()
+//        let generator = RandomDataGenerator()
+//        generator.coreDataRandomvideoInformationGenerate(howMany: 30)
         
+        // 기존 데이터로 테스트 시 주석 제거
+        DataManager.shared.updateRepository()
         
+        print(DataManager.shared.repository.rawVideoInformation.count)
         // 암장별, 방문일자별로만 데이터를 확인하고 싶다면 아래의 주석 해제 후 line 39,40을 주석처리 후 실행해주세요
         //layoutConfigureForSortButtons()
         //sortButtonComponentConfigure()
@@ -253,9 +260,13 @@ class SortTestViewController: UIViewController {
     }
     
     func print2ndDemensionData(videoInformation: [[VideoInformation]]) {
-        print("-----PRINT DATA-----")
-        for information in videoInformation {
-            DataManager.shared.printDataList(info: information, primarySortOption: sectionData.sortOption)
+        print("-----PRINT DATA: \(videoInformation.count)-----")
+        
+        for i in 0..<videoInformation.count {
+            for j in 0..<videoInformation[i].count {
+                DataManager.shared.printData(info: videoInformation[i][j], primarySortOption: sectionData.sortOption)
+            }
+            print("------------")
         }
         print("--------------------")
     }

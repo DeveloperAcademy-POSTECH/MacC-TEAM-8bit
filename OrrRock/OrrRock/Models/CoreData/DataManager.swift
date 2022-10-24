@@ -29,7 +29,7 @@ final class DataManager {
     
     func createData(info: VideoInfo) {
         coreDataManager.createData(info: info)
-        repository.createData(info: info)
+//        repository.createData(info: info)
     }
     
     func updateDateAndGymData(videoInformation: VideoInformation, gymVisitDate: Date, gymName: String) {
@@ -87,5 +87,4 @@ final class DataManager {
             printData(info: information,primarySortOption: primarySortOption)
         }
     }
-
 }
