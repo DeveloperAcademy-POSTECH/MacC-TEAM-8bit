@@ -11,7 +11,7 @@ final class DataManager {
     
     static var shared = DataManager()
     
-    private var repository: DataRepository!
+    var repository: DataRepository!
     private var coreDataManager: CoreDataDAO!
     
     init() {
