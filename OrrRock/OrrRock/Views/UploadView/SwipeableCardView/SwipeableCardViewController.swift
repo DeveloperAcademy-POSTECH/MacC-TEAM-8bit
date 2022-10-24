@@ -136,11 +136,11 @@ private extension SwipeableCardViewController {
     }
     
     @objc func didFailButton() {
-        
+        animateCard(rotationAngle: -0.4, isSuccessType: .fail)
     }
     
     @objc func didSuccessButton() {
-        
+        animateCard(rotationAngle: 0.4, isSuccessType: .success)
     }
 
     func fetchVideo() {
@@ -154,18 +154,25 @@ private extension SwipeableCardViewController {
             for view in view.subviews {
                 if view.tag == dummyVideo.id {
                     if let card = view as? SwipeableCardVideoView {
-                        let center: CGPoint
                         
+                        let center: CGPoint
+                        let isItSuccess: Bool
+
                         switch isSuccessType {
                         case .fail:
                             center = CGPoint(x: card.center.x - view.bounds.width, y: card.center.y + 50)
+                            isItSuccess = false
+
                         case .success:
                             center = CGPoint(x: card.center.x + view.bounds.width, y: card.center.y + 50)
+                            isItSuccess = true
                         }
                         
-                        UIView.animate(withDuration: 0.2, animations: {
+                        UIView.animate(withDuration: 1.0, animations: {
                             card.center = center
                             card.transform = CGAffineTransform(rotationAngle: rotationAngle)
+                            card.successImageView.alpha = isItSuccess == true ? 1 : 0
+                            card.failImageView.alpha = isItSuccess == false ? 1 : 0
                         }) { _ in
                             self.removeCard(card: card)
                         }
