@@ -19,6 +19,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .red
         //테스트코드
         view.addSubview(testButton)
@@ -29,8 +30,10 @@ class MainViewController: UIViewController {
     }
     //테스트 코드
     @objc func buttonAction(sender: UIButton!) {
-        let nextVC = VideoCollectionViewController()
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        
+        let nextVC = DateAndGymEditViewController()
+        self.navigationController?.present(nextVC, animated: true)
+        
     }
 
 }

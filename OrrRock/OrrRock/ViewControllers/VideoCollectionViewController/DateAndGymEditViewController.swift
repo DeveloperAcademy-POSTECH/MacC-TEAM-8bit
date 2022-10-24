@@ -208,9 +208,8 @@ class DateAndGymEditViewController: UIViewController , UISheetPresentationContro
     private func setUpDelegate(){
         sheetPresentationController.delegate = self
         sheetPresentationController.selectedDetentIdentifier = .large
-        sheetPresentationController.prefersGrabberVisible = true
+        sheetPresentationController.prefersGrabberVisible = false
         sheetPresentationController.detents = [.large()]
-        
     }
     
 
