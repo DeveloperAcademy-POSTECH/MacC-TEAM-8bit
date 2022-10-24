@@ -128,12 +128,10 @@
 		0AAB77E0290274BE00EEEFFB /* UploadView */ = {
 			isa = PBXGroup;
 			children = (
-
 				70A44804290440E600BE18A5 /* DateSettingViewController.swift */,
 				70A44808290464BD00BE18A5 /* GymSettingViewController.swift */,
 				0AAB77E1290274CB00EEEFFB /* SwipeableCardViewController.swift */,
 				0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */,
-
 			);
 			path = UploadView;
 			sourceTree = "<group>";
@@ -442,7 +440,7 @@
 				3AA4D42128FEBADE006C718A /* SceneDelegate.swift in Sources */,
 				0AAB77E2290274CB00EEEFFB /* SwipeableCardViewController.swift in Sources */,
 				342699232902E8480054D34C /* VideoFilterEnum.swift in Sources */,
-				0AAB77E2290274CB00EEEFFB /* SwipeCardViewController.swift in Sources */,
+				0AAB77E2290274CB00EEEFFB /* SwipeableCardViewController.swift in Sources */,
 				3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */,
 				342508AB29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift in Sources */,
 				78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */,
@@ -591,9 +589,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-
-				DEVELOPMENT_TEAM = ML59XN7A6B;
-
+				DEVELOPMENT_TEAM = HD34Q2YK79;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -620,9 +616,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-
-				DEVELOPMENT_TEAM = ML59XN7A6B;
-
+				DEVELOPMENT_TEAM = HD34Q2YK79;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
