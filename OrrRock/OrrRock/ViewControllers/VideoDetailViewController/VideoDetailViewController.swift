@@ -92,9 +92,9 @@ final class VideoDetailViewController: UIViewController {
 	// 정보를 보여주는 뷰를 띄워주는 함수
 	@objc func showInfo() {
 		isShowInfo.toggle()
+		infoButton.image = UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle")
+		navigationController?.hidesBarsOnTap = !isShowInfo
 		if isShowInfo {
-			infoButton.image = UIImage(systemName: "info.circle.fill")
-			navigationController?.hidesBarsOnTap = false
 			UIView.animate(withDuration: 0.2, animations: {
 				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -500)
 				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: -100)
@@ -102,8 +102,6 @@ final class VideoDetailViewController: UIViewController {
 				self.topSafeareaView.layer.opacity = 0
 			})
 		} else {
-			infoButton.image = UIImage(systemName: "info.circle")
-			navigationController?.hidesBarsOnTap = true
 			UIView.animate(withDuration: 0.2, animations: {
 				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
 				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: 0)
