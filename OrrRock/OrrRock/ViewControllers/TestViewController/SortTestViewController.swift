@@ -32,15 +32,16 @@ class SortTestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        새로운 데이터 생성 후 테스트 시 주석 제거 & repositoryUpdate 주석
-//        DataManager.shared.deleteAllData()
-//        let generator = RandomDataGenerator()
-//        generator.coreDataRandomvideoInformationGenerate(howMany: 30)
+//        새로운 데이터 생성 후 테스트 시 주석 제거 & updateRepository 주석
+        DataManager.shared.deleteAllData()
+        let generator = RandomDataGenerator()
+        generator.coreDataRandomvideoInformationGenerate(howMany: 30)
         
-        // 기존 데이터로 테스트 시 주석 제거
-        DataManager.shared.updateRepository()
+        // 기존 데이터로 테스트 시 주석 제거 & line.36-38 주석
+//        DataManager.shared.updateRepository()
         
         print(DataManager.shared.repository.rawVideoInformation.count)
+        
         // 암장별, 방문일자별로만 데이터를 확인하고 싶다면 아래의 주석 해제 후 line 39,40을 주석처리 후 실행해주세요
         //layoutConfigureForSortButtons()
         //sortButtonComponentConfigure()
