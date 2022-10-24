@@ -16,7 +16,7 @@ class CoreDataDAO {
     init() { }
     
     // VideoInfo 구조체를 매개변수로 받아 VideoInformation NSManagedObject에 추가
-    func createData(info: VideoInfo) {
+    func createData(info: VideoInfo) -> NSManagedObject {
         let entity = NSEntityDescription.insertNewObject(forEntityName: "VideoInformation", into: context)
         
         entity.setValue(UUID(), forKey: "id")
@@ -27,6 +27,8 @@ class CoreDataDAO {
         entity.setValue(info.isSucceeded, forKey: "isSucceeded")
         
         saveData()
+        
+        return entity
     }
     
     // Core Data의 읽어 VideoInformation 클래스를 반환합니다.
