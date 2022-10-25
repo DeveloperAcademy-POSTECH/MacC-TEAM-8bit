@@ -73,7 +73,7 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
                 withReuseIdentifier: VideoCollectionViewHeaderCell.id,
                 for: indexPath
             ) as! VideoCollectionViewHeaderCell
-            supplementaryView.prepare(title: "supplementaryView(header)")
+            supplementaryView.prepare(title: sectionData?.gymName)
             return supplementaryView
             
         case UICollectionView.elementKindSectionFooter:
@@ -82,7 +82,7 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
                 withReuseIdentifier: VideoCollectionFooterCell.id + "footer",
                 for: indexPath
             ) as! VideoCollectionFooterCell
-            supplementaryView.prepare(title: "supplementaryView(footer)",count: imageArr.count,successCount: 40,failCount: 26)
+            supplementaryView.prepare(title: "supplementaryView(footer)",count: videoInformationArray.count,successCount: successCount,failCount: videoInformationArray.count - successCount)
             return supplementaryView
         default:
             return UICollectionReusableView()
