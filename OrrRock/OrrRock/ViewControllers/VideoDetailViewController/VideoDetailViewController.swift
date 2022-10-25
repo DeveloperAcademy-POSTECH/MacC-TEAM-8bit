@@ -17,8 +17,12 @@ final class VideoDetailViewController: UIViewController {
 	// -----------------------------
 	
 	var isShowInfo: Bool = false
+	var isSounded: Bool = false
+	var isPlayed: Bool = false
+	var isShowKeyboard: Bool = false
+	var iconSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
 	
-	let videoInfoView: UIView = VideoInfoView()
+	let videoInfoView: VideoInfoView = VideoInfoView()
 	
     //VideoInfo - 꼬마가 사용할 데이터
     var videoInformation: VideoInformation!
@@ -26,10 +30,13 @@ final class VideoDetailViewController: UIViewController {
 	private var infoButton: UIBarButtonItem!
 	private var feedbackButton: UIBarButtonItem!
 	private var trashButton: UIBarButtonItem!
-	
+	private var soundButton: UIBarButtonItem!
+	private var playButton: UIBarButtonItem!
 	private var favoriteButton: UIBarButtonItem!
 	private var goBackButton: UIBarButtonItem!
 	private var flexibleSpace: UIBarButtonItem!
+	private var cancelButton: UIBarButtonItem!
+	private var completeButton: UIBarButtonItem!
 	
 	private lazy var topSafeAreaView: UIView = {
 		let view = UIView()
@@ -59,6 +66,7 @@ final class VideoDetailViewController: UIViewController {
 		super.viewDidLoad()
 		setNavigationBar()
 		setUpLayout()
+		setKeyboardObserver()
 	}
 	
 	// 네비게이션바 세팅 함수
@@ -67,6 +75,8 @@ final class VideoDetailViewController: UIViewController {
 		flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
 		goBackButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(goBackAction))
 		favoriteButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(favoriteAction))
+		cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelAction))
+		completeButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(completeAction))
 		
 		// 네비게이션바 띄워주고 탭 되었을 때 숨기기
 		navigationController?.isToolbarHidden = false
@@ -84,9 +94,12 @@ final class VideoDetailViewController: UIViewController {
 		infoButton = UIBarButtonItem(image: UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle"), style: .plain, target: self, action: #selector(showInfo))
 		feedbackButton = UIBarButtonItem(title: "피드백 입력하기", style: .plain, target: self, action: #selector(feedbackAction))
 		trashButton = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteVideoAction))
+		soundButton = UIBarButtonItem(image: UIImage(systemName: "speaker.slash.fill"), style: .plain, target: self, action: #selector(soundVideoAction))
 		var items = [UIBarButtonItem]()
+		playButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(playVideoAction))
+		iconSpace.width = 8.4
 		
-		[infoButton,flexibleSpace,feedbackButton,flexibleSpace,trashButton].forEach {
+		[soundButton,iconSpace,flexibleSpace,playButton,flexibleSpace,feedbackButton,flexibleSpace,infoButton,flexibleSpace,trashButton].forEach {
 			items.append($0)
 		}
 		self.toolbarItems = items
@@ -97,6 +110,7 @@ final class VideoDetailViewController: UIViewController {
 		isShowInfo.toggle()
 		infoButton.image = UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle")
 		navigationController?.hidesBarsOnTap = !isShowInfo
+		feedbackButton.title = self.videoInfoView.feedbackTextView.textColor == .placeholderText ? "피드백 입력하기" : "피드백 확인하기"
 		if isShowInfo {
 			UIView.animate(withDuration: 0.2, animations: {
 				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -500)
@@ -117,7 +131,6 @@ final class VideoDetailViewController: UIViewController {
 	
 	// 뒤로가기 버튼을 눌렀을 때 로직
 	@objc func goBackAction() {
-		// !!!: 이건 나중에 다른 로직으로 구현 다시 한번 체크하기
         self.navigationController?.popViewController(animated: true)
         navigationController?.isNavigationBarHidden = false
         navigationController?.isToolbarHidden = true
@@ -130,9 +143,45 @@ final class VideoDetailViewController: UIViewController {
 		print(#function)
 	}
 	
+	// 소리 버튼을 눌렀을 때 로직
+	@objc func soundVideoAction() {
+		isSounded.toggle()
+		iconSpace.width = isSounded ? 0 : 8.4
+		soundButton.image = UIImage(systemName: isSounded ? "speaker.wave.2.fill" : "speaker.slash.fill")
+		videoPlayView.queuePlayer.isMuted = isSounded ? false : true
+		print(#function)
+	}
+	
+	// 재생 버튼을 눌렀을 때 로직
+	@objc func playVideoAction() {
+		isPlayed.toggle()
+		playButton.image = UIImage(systemName: isPlayed ? "play.fill" : "pause.fill")
+		isPlayed ? videoPlayView.queuePlayer.pause() : videoPlayView.queuePlayer.play()
+		print(#function)
+	}
+	
 	// 피드백 버튼을 눌렀을 때 로직
 	@objc func feedbackAction() {
-		// 피드백 + 키보드 보여주기
+		isShowInfo.toggle()
+		infoButton.image = UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle")
+		navigationController?.hidesBarsOnTap = !isShowInfo
+		feedbackButton.title = self.videoInfoView.feedbackTextView.textColor == .placeholderText ? "피드백 입력하기" : "피드백 확인하기"
+		if isShowInfo {
+			UIView.animate(withDuration: 0.2, animations: {
+				self.videoInfoView.feedbackTextView.becomeFirstResponder()
+				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -430)
+				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: -100)
+				self.navigationController?.navigationBar.layer.opacity = 0
+				self.topSafeAreaView.layer.opacity = 0
+			})
+		} else {
+			UIView.animate(withDuration: 0.2, animations: {
+				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
+				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: 0)
+				self.navigationController?.navigationBar.layer.opacity = 1
+				self.topSafeAreaView.layer.opacity = 1
+			})
+		}
 		print(#function)
 	}
 	
@@ -141,6 +190,19 @@ final class VideoDetailViewController: UIViewController {
 		isFavorite.toggle()
 		favoriteButton.image = UIImage(systemName: isFavorite ? "heart.fill" : "heart")
 		print(#function)
+	}
+	
+	// 취소 버튼을 눌렀을 때 로직
+	@objc func cancelAction() {
+		self.view.endEditing(true)
+	}
+	
+	// 완료 버튼을 눌렀을 때 로직
+	@objc func completeAction() {
+		//TODO: 피드백 입력 구현 마무리
+		var feedbackText: String = self.videoInfoView.feedbackTextView.text
+		updateFeedback(videoInformation: VideoInformation, feedback: feedbackText)
+		self.view.endEditing(true)
 	}
 	
 	// 영상을 클릭했을 때 네비게이션바, 툴바가 사라지는 로직
@@ -156,6 +218,40 @@ final class VideoDetailViewController: UIViewController {
 	// 텍스트 뷰 활성화 상태일 때 여백 화면 터치해서 키보드 내리는 로직
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		self.view.endEditing(true)
+	}
+}
+
+// 키보드 올라오고 내려감을 인식
+extension VideoDetailViewController {
+	// 키보드 옵저버
+	func setKeyboardObserver() {
+		NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardWillHideNotification, object:nil)
+	}
+	
+	@objc func showKeyboard(notification: NSNotification) {
+		if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+			isShowKeyboard.toggle()
+			self.navigationController?.navigationBar.layer.opacity = 1
+			self.topSafeAreaView.layer.opacity = 1
+			// 키보드의 유무에 따라 버튼 옵션 변경
+			navigationItem.leftBarButtonItem = isShowKeyboard ? cancelButton : goBackButton
+			navigationItem.rightBarButtonItem = isShowKeyboard ? completeButton : favoriteButton
+			print(#function)
+		}
+	}
+	
+	@objc func hideKeyboard(notification: NSNotification) {
+		if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+			isShowKeyboard.toggle()
+			self.navigationController?.navigationBar.layer.opacity = 0
+			self.topSafeAreaView.layer.opacity = 0
+			// 키보드의 유무에 따라 버튼 옵션 변경
+			navigationItem.leftBarButtonItem = isShowKeyboard ? cancelButton : goBackButton
+			navigationItem.rightBarButtonItem = isShowKeyboard ? completeButton : favoriteButton
+			print(#function)
+		}
 	}
 }
 
