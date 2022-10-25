@@ -53,6 +53,10 @@ private extension SwipeableCardViewController {
         }
     }
     
+    func removeCard(card: UIView) {
+        card.removeFromSuperview()
+    }
+
     // Gesture
     @objc func handlerCard(_ gesture: UIPanGestureRecognizer) {
         if let card = gesture.view as? SwipeableCardVideoView {
@@ -72,6 +76,14 @@ private extension SwipeableCardViewController {
             card.transform = CGAffineTransform(rotationAngle: rotationAngle)
 
             if gesture.state == .ended {
+                if card.center.x > self.view.bounds.width + 20 {
+                    removeCard(card: card)
+                }
+                
+                if card.center.x < -20 {
+                    removeCard(card: card)
+                }
+                
                 UIView.animate(withDuration: 0.2) {
                     card.center = self.view.center
                     card.transform = .identity
