@@ -20,13 +20,19 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        var cell: UICollectionViewCell!
+        var listCell : HomeCollectionViewListCell!
+        var cardCell : HomeCollectionViewCardCell!
         
         if isCardView {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewCardCell", for: indexPath) as! HomeCollectionViewCardCell
+            cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewCardCell", for: indexPath) as? HomeCollectionViewCardCell
+            cardCell.detailButton.tag = indexPath.row
+            cardCell.detailButton.addTarget(self, action:  #selector(navigateToVideoCollectionView(sender:)), for: .touchUpInside)
+            return cardCell
+            
             
         } else {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewListCell", for: indexPath) as! HomeCollectionViewListCell
+            listCell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewListCell", for: indexPath) as? HomeCollectionViewListCell
+            return listCell
         }
           
         // TODO
@@ -34,13 +40,19 @@ extension HomeViewController: UICollectionViewDataSource {
         // Thumbnails 배열 생성 (최대 10개의 UIImage를 담는 배열)
         // CollectionViewCell에 필요한 데이터 loadCardViewData 함수를 통해 전달하기
         
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let nextVC = VideoCollectionViewController()
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        if !isCardView{
+            let vc = VideoDetailViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
+    
+    @objc func navigateToVideoCollectionView(sender: UIButton){
+        let vc = VideoCollectionViewController()
+        navigationController?.pushViewController(vc, animated: true)
+        }
 }
 
 extension HomeViewController: UICollectionViewDelegate {
