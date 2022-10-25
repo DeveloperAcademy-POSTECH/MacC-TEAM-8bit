@@ -88,7 +88,7 @@ final class VideoDetailViewController: UIViewController {
 		soundButton = UIBarButtonItem(image: UIImage(systemName: "speaker.slash.fill"), style: .plain, target: self, action: #selector(soundVideoAction))
 		var items = [UIBarButtonItem]()
 		playButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(playVideoAction))
-		iconSpace.width = 8.5
+		iconSpace.width = 8.4
 		
 		[soundButton,iconSpace,flexibleSpace,playButton,flexibleSpace,feedbackButton,flexibleSpace,infoButton,flexibleSpace,trashButton].forEach {
 			items.append($0)
@@ -137,7 +137,7 @@ final class VideoDetailViewController: UIViewController {
 	// 소리 버튼을 눌렀을 때 로직
 	@objc func soundVideoAction() {
 		isSounded.toggle()
-		iconSpace.width = isSounded ? 0 : 8.5
+		iconSpace.width = isSounded ? 0 : 8.4
 		soundButton.image = UIImage(systemName: isSounded ? "speaker.wave.2.fill" : "speaker.slash.fill")
 		videoPlayView.player.isMuted = isSounded ? false : true
 		print(#function)
