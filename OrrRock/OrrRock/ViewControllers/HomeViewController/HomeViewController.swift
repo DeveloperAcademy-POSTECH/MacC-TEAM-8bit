@@ -22,7 +22,6 @@ final class HomeViewController : UIViewController {
     // MARK: variables
     // Quick Action 기능을 위한 조건 변수와 함수 호출 설정
     var isCardView: Bool = true {
-        // 앨범형 : 목록형
         didSet {
             collectionView.reloadData()
             collectionView.collectionViewLayout.invalidateLayout()
@@ -33,20 +32,17 @@ final class HomeViewController : UIViewController {
     var sortOption: SortOption = .gymVisitDate {
         didSet {
             reloadCollectionViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
-            print("dd")
         }
     }
     
     var orderOption: OrderOption = .ascend {
         didSet {
             reloadCollectionViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
-            print("dd")
         }
     }
     var filterOption: FilterOption = .all {
         didSet {
             reloadCollectionViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
-            print("dd")
         }
     }
     
@@ -268,10 +264,7 @@ final class HomeViewController : UIViewController {
     }
     
     @objc func switchViewStyle() {
-        
-        reloadCollectionViewWithOptions(filterOption: .all, sortOption: .gymVisitDate, orderOption: .ascend)
-        reloadCollectionViewWithOptions(filterOption: .all, sortOption: .gymVisitDate, orderOption: .descend)
-        reloadCollectionViewWithOptions(filterOption: .all, sortOption: .gymVisitDate, orderOption: .ascend)
+        isCardView.toggle()
     }
     
     @objc func videoButtonPressed(sender: UIButton){
@@ -291,10 +284,11 @@ final class HomeViewController : UIViewController {
 // QuickAction을 통한 정렬 및 필터링 시 함수를 아래에 구현
 extension HomeViewController {
     // 정렬 기준 함수
-    
     func reloadCollectionViewWithOptions(filterOption: FilterOption, sortOption: SortOption, orderOption: OrderOption) {
-        
+
         self.DEBUGvideoData = DataManager.shared.sortRepository(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
+        self.DEBUGflattenVideoData = DEBUGvideoData.flatMap { $0 }
+        
         self.collectionView.reloadData()
     }
 }
@@ -303,27 +297,39 @@ extension HomeViewController {
 extension HomeViewController {
     func addDummyData() {
         // DEBUG
-        
         DataManager.shared.deleteAllData()
         
         DEBUGMakevideoData = [[
-            VideoInfo(gymName: "4", gymVisitDate: Date(), videoLocalIdentifier: "D150F80C-ABFA-4EAB-8CA5-80BBF39ECA01/L0/001", problemLevel: 3, isSucceeded: false),
-            VideoInfo(gymName: "4", gymVisitDate: Date(), videoLocalIdentifier: "E4E40C15-B932-431A-B440-0ADBFE19E022/L0/001", problemLevel: 3, isSucceeded: true),
-            VideoInfo(gymName: "4", gymVisitDate: Date(), videoLocalIdentifier: "BED792BC-AA01-435F-BE2B-D460008807C4/L0/001", problemLevel: 3, isSucceeded: true),
-            VideoInfo(gymName: "4", gymVisitDate: Date(), videoLocalIdentifier: "AFF9F7BB-1D37-4217-BD3B-35CAF076773B/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Date(), videoLocalIdentifier: "D150F80C-ABFA-4EAB-8CA5-80BBF39ECA01/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Date(), videoLocalIdentifier: "E4E40C15-B932-431A-B440-0ADBFE19E022/L0/001", problemLevel: 3, isSucceeded: true),
+            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Date(), videoLocalIdentifier: "BED792BC-AA01-435F-BE2B-D460008807C4/L0/001", problemLevel: 3, isSucceeded: true),
+            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Date(), videoLocalIdentifier: "AFF9F7BB-1D37-4217-BD3B-35CAF076773B/L0/001", problemLevel: 3, isSucceeded: false),
         ],[
-//            VideoInfo(gymName: "5", gymVisitDate: Date(), videoLocalIdentifier: "65B23455-6709-43C0-A90C-A89E52937050/L0/001", problemLevel: 3, isSucceeded: false),
-//            VideoInfo(gymName: "5", gymVisitDate: Date(), videoLocalIdentifier: "836486C1-D52F-4F66-AAFC-00203F3F221D/L0/001", problemLevel: 3, isSucceeded: false),
-//            VideoInfo(gymName: "5", gymVisitDate: Date(), videoLocalIdentifier: "3F643207-2002-41C0-BDAD-3CD207EB987E/L0/001", problemLevel: 3, isSucceeded: false),
-//            VideoInfo(gymName: "5", gymVisitDate: Date(), videoLocalIdentifier: "7194A843-1842-4FB6-A8AC-E0742C0B981B/L0/001", problemLevel: 3, isSucceeded: false),
-//            VideoInfo(gymName: "5", gymVisitDate: Date(), videoLocalIdentifier: "D150F80C-ABFA-4EAB-8CA5-80BBF39ECA01/L0/001", problemLevel: 3, isSucceeded: false),
-//        ],[
+            VideoInfo(gymName: "김대우", gymVisitDate: Calendar.current.date(byAdding: .day, value: -1, to: Date())!, videoLocalIdentifier: "65B23455-6709-43C0-A90C-A89E52937050/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "김대우", gymVisitDate: Calendar.current.date(byAdding: .day, value: -1, to: Date())!, videoLocalIdentifier: "836486C1-D52F-4F66-AAFC-00203F3F221D/L0/001", problemLevel: 3, isSucceeded: true),
+            VideoInfo(gymName: "김대우", gymVisitDate: Calendar.current.date(byAdding: .day, value: -1, to: Date())!, videoLocalIdentifier: "3F643207-2002-41C0-BDAD-3CD207EB987E/L0/001", problemLevel: 3, isSucceeded: true),
+            VideoInfo(gymName: "김대우", gymVisitDate: Calendar.current.date(byAdding: .day, value: -1, to: Date())!, videoLocalIdentifier: "7194A843-1842-4FB6-A8AC-E0742C0B981B/L0/001", problemLevel: 3, isSucceeded: true),
+            VideoInfo(gymName: "김대우", gymVisitDate: Calendar.current.date(byAdding: .day, value: -1, to: Date())!, videoLocalIdentifier: "D150F80C-ABFA-4EAB-8CA5-80BBF39ECA01/L0/001", problemLevel: 3, isSucceeded: false),
+        ],[
             VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoLocalIdentifier: "9C1C5CF8-9F72-4BDE-BEFC-0F098D0651EE/L0/001", problemLevel: 3, isSucceeded: false),
             VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoLocalIdentifier: "9C1C5CF8-9F72-4BDE-BEFC-0F098D0651EE/L0/001", problemLevel: 3, isSucceeded: true),
             VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoLocalIdentifier: "BC19B352-D956-403A-B118-D8A64EBF32A6/L0/001", problemLevel: 3, isSucceeded: false),
-            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoLocalIdentifier: "28A84914-E7FF-41C8-BC00-508981928EDA/L0/001", problemLevel: 3, isSucceeded: false),
-            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoLocalIdentifier: "53ED528F-9047-4799-8378-F3451E7B9CF0/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoLocalIdentifier: "28A84914-E7FF-41C8-BC00-508981928EDA/L0/001", problemLevel: 3, isSucceeded: true),
+            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoLocalIdentifier: "53ED528F-9047-4799-8378-F3451E7B9CF0/L0/001", problemLevel: 3, isSucceeded: true),
             VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoLocalIdentifier: "3DDCC03C-2197-42D6-A557-DFF28B09EC04/L0/001", problemLevel: 3, isSucceeded: false),
+        ],[
+            VideoInfo(gymName: "스파이더", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoLocalIdentifier: "9C1C5CF8-9F72-4BDE-BEFC-0F098D0651EE/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "스파이더", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoLocalIdentifier: "9C1C5CF8-9F72-4BDE-BEFC-0F098D0651EE/L0/001", problemLevel: 3, isSucceeded: true),
+            VideoInfo(gymName: "스파이더", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoLocalIdentifier: "BC19B352-D956-403A-B118-D8A64EBF32A6/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "스파이더", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoLocalIdentifier: "28A84914-E7FF-41C8-BC00-508981928EDA/L0/001", problemLevel: 3, isSucceeded: true),
+            VideoInfo(gymName: "스파이더", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoLocalIdentifier: "53ED528F-9047-4799-8378-F3451E7B9CF0/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "스파이더", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoLocalIdentifier: "3DDCC03C-2197-42D6-A557-DFF28B09EC04/L0/001", problemLevel: 3, isSucceeded: true),
+        ],[
+            VideoInfo(gymName: "김대우", gymVisitDate: Calendar.current.date(byAdding: .day, value: -3, to: Date())!, videoLocalIdentifier: "65B23455-6709-43C0-A90C-A89E52937050/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "김대우", gymVisitDate: Calendar.current.date(byAdding: .day, value: -3, to: Date())!, videoLocalIdentifier: "836486C1-D52F-4F66-AAFC-00203F3F221D/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "김대우", gymVisitDate: Calendar.current.date(byAdding: .day, value: -3, to: Date())!, videoLocalIdentifier: "3F643207-2002-41C0-BDAD-3CD207EB987E/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "김대우", gymVisitDate: Calendar.current.date(byAdding: .day, value: -3, to: Date())!, videoLocalIdentifier: "7194A843-1842-4FB6-A8AC-E0742C0B981B/L0/001", problemLevel: 3, isSucceeded: true),
+            VideoInfo(gymName: "김대우", gymVisitDate: Calendar.current.date(byAdding: .day, value: -3, to: Date())!, videoLocalIdentifier: "D150F80C-ABFA-4EAB-8CA5-80BBF39ECA01/L0/001", problemLevel: 3, isSucceeded: true),
         ]]
         
         DEBUGMakeflattenVideoData = DEBUGMakevideoData.flatMap({ $0 })

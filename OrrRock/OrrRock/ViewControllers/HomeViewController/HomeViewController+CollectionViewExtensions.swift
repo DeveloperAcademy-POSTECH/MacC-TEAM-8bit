@@ -19,35 +19,32 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+
         if isCardView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewCardCell", for: indexPath) as! HomeCollectionViewCardCell
             
             var successCount: Int = 0
-            var thumbnails: [UIImage] = Array(repeating: UIImage(), count: DEBUGvideoData[indexPath.row].count)
+            var thumbnails: [UIImage] = []
             
-//            DEBUGvideoData[indexPath.row].forEach { videoInfo in
-//                successCount += videoInfo.isSucceeded ? 1 : 0
-//                if let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2), height: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2))) {
-//                    thumbnails.append(thumbnail)
-//                }
-//            }
+            let primaryTitle: String = sortOption == .gymVisitDate ? DEBUGvideoData[indexPath.row][0].gymVisitDate.timeToString() : DEBUGvideoData[indexPath.row][0].gymName
             
-            for index in 0..<DEBUGvideoData[indexPath.row].count {
-                let videoInfo = DEBUGvideoData[indexPath.row][index]
+            let secondaryTitle: String = sortOption == .gymVisitDate ? DEBUGvideoData[indexPath.row][0].gymName : "\(min(DEBUGvideoData[indexPath.row].first!.gymVisitDate, DEBUGvideoData[indexPath.row].last!.gymVisitDate).timeToString()) ~  \(max(DEBUGvideoData[indexPath.row].first!.gymVisitDate, DEBUGvideoData[indexPath.row].last!.gymVisitDate).timeToString())"
+            
+            DEBUGvideoData[indexPath.row].forEach { videoInfo in
                 successCount += videoInfo.isSucceeded ? 1 : 0
+                
                 if let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2), height: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2))) {
-                    thumbnails[index] = thumbnail
+                    thumbnails.append(thumbnail)
                 }
             }
-            
-            print("DEBUG : \(DEBUGvideoData[indexPath.row][0].gymName) + \(thumbnails.count)")
-            
-            cell.setUpData(visitedDate: String(describing: DEBUGvideoData[indexPath.row][0].gymVisitDate),
-                           visitedGymName: DEBUGvideoData[indexPath.row][0].gymName,
+                        
+            cell.setUpData(primaryTitle: primaryTitle,
+                           secondaryTitle: secondaryTitle,
                            PFCountDescription: "\(successCount)번의 성공, \(DEBUGvideoData[indexPath.row].count - successCount)번의 실패",
                            videoCountDescription: "\(DEBUGvideoData[indexPath.row].count)개의 비디오",
-                           thumbnails: thumbnails)
+                           thumbnails: thumbnails,
+                           sortOption: sortOption
+            )
             
             cell.detailButton.tag = indexPath.row
             cell.detailButton.addTarget(self, action:  #selector(navigateToVideoCollectionView(sender:)), for: .touchUpInside)
