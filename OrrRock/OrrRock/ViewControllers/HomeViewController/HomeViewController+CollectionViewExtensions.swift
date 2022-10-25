@@ -15,7 +15,7 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // 디버깅을 위해 카드의 개수를 10으로 지정해두었음.
         // 이후 동작 구현 시 카드 개수 지정을 위해 해당 값을 변경해주면 됨.
-        return 10
+        return isCardView ? DEBUGvideoData.count : DEBUGflattenVideoData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -28,9 +28,11 @@ extension HomeViewController: UICollectionViewDataSource {
             
             DEBUGvideoData[indexPath.row].forEach { videoInfo in
                 successCount += videoInfo.isSucceeded ? 1 : 0
-                if let thumbnail = videoInfo.videoLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2), height: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2))) {
+                if let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2), height: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2))) {
                     thumbnails.append(thumbnail)
                 }
+                
+                print("DEBUG VLI : \(videoInfo.videoLocalIdentifier!)")
             }
             
             cell.setUpData(visitedDate: DEBUGvideoData[indexPath.row][0].gymVisitDate.timeToString(),
@@ -38,7 +40,9 @@ extension HomeViewController: UICollectionViewDataSource {
                            PFCountDescription: "\(successCount)번의 성공, \(DEBUGvideoData[indexPath.row].count - successCount)번의 실패",
                            videoCountDescription: "\(DEBUGvideoData[indexPath.row].count)개의 비디오",
                            thumbnails: thumbnails)
-
+            
+            print("DEBUG : \(DEBUGvideoData[indexPath.row].count) + \(successCount)")
+            
             cell.detailButton.tag = indexPath.row
             cell.detailButton.addTarget(self, action:  #selector(navigateToVideoCollectionView(sender:)), for: .touchUpInside)
             
@@ -51,7 +55,7 @@ extension HomeViewController: UICollectionViewDataSource {
                            visitedGymName: DEBUGflattenVideoData[indexPath.row].gymName,
                            level: "V\(DEBUGflattenVideoData[indexPath.row].problemLevel)",
                            PF: DEBUGflattenVideoData[indexPath.row].isSucceeded ? "성공" : "실패",
-                           thumbnail: DEBUGflattenVideoData[indexPath.row].videoLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: 50, height: 50))!)
+                           thumbnail: DEBUGflattenVideoData[indexPath.row].videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: 50, height: 50))!)
             
             
             return cell
