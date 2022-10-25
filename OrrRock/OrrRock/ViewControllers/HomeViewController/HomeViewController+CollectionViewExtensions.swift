@@ -90,6 +90,7 @@ extension HomeViewController: UICollectionViewDataSource {
                                                    primaryGymVisitDate: sender.primaryGymVisitDate,
                                                    secondaryGymVisitDate: sender.secondaryGymVisitDate)
         vc.videoInformationArray = sender.videoInformationArray
+        vc.sectionData = sectionData
         
         navigationController?.pushViewController(vc, animated: true)
     }
