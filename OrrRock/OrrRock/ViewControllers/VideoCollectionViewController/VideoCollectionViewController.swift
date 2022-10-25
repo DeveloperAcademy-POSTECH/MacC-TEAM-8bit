@@ -138,6 +138,13 @@ class VideoCollectionViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        print(sectionData.primaryGymVisitDate)
+        videoInformationArray = sortVideoInformation(videoInformation: videoInformationArray, sectionData: sectionData)
+        print(videoInformationArray.count)
+    }
+    
     func setVideoCollectionViewDelegate() {
         videoCollectionView.dataSource = self
         videoCollectionView.delegate = self

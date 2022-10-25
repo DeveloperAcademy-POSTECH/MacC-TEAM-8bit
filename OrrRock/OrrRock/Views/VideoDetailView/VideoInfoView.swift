@@ -97,6 +97,11 @@ final class VideoInfoView: UIView {
         let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
         let vc = DateAndGymEditViewController()
         vc.videoInformation = videoInformation
+        vc.completioHandler = { [self]gymName, date in
+            self.dateLabel.text = date.timeToString()
+            locationLabel.text = gymName
+            
+        }
         viewController.present(vc, animated: true)
 	}
 	
