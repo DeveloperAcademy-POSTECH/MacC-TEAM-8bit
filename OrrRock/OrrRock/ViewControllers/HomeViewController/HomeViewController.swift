@@ -223,6 +223,10 @@ final class HomeViewController : UIViewController {
         setUpLayout()
         setUpNavigationBar()
         setUICollectionViewDelegate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         reloadCollectionViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
     }
