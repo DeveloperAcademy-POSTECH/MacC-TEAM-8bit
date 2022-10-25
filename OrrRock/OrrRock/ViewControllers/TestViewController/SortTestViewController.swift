@@ -251,7 +251,7 @@ class SortTestViewController: UIViewController {
             let isSucceeded = tf[Int.random(in: 0..<tf.count)]
             let isFavorite = tf[Int.random(in: 0..<tf.count)]
             
-            let info = VideoInfo(gymName: name, gymVisitDate: date, videoUrl: url, problemLevel: level, isSucceeded: isSucceeded)
+            let info = VideoInfo(gymName: name, gymVisitDate: date, videoLocalIdentifier: url, problemLevel: level, isSucceeded: isSucceeded)
             
             CoreDataManager.shared.createData(info: info)
             
