@@ -16,7 +16,7 @@ import UIKit
 
 final class HomeCollectionViewCardCell: UICollectionViewCell {
     static let identifier = "homeCollectionViewCardCell"
-
+    
     // MARK: Data
     private var visitedDate: String = "YYYY년 MM월 DD일"
     private var visitedGymName: String = "클라이밍장 정보"
@@ -43,7 +43,7 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         let view = UIImageView()
         view.image = UIImage(systemName: "location.square.fill")
         view.tintColor = .orrGray3
-        view.frame = CGRect(x: 0, y: 0, width: 8, height: 8)
+        view.contentMode = .scaleAspectFit
         return view
     }()
     
@@ -57,7 +57,7 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
     
     private lazy var gymStackView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [locationIconImageView, gymLabel])
-        view.spacing = 5
+        view.spacing = 0
         view.axis = .horizontal
         return view
     }()
@@ -156,17 +156,28 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         }
     }
     
+    func setLocationIconView(_ sortOption: SortOption) {
+        locationIconImageView.snp.removeConstraints()
+        locationIconImageView.snp.makeConstraints {
+            $0.width.equalTo(sortOption == .gymName ? 0 : 20)
+            $0.height.equalTo(18)
+        }
+    }
+    
     func setCollectionViewDelegate() {
         thumbnailCollectionView.delegate = self
         thumbnailCollectionView.dataSource = self
     }
     
     // MARK: Value Assign Function
-    func setUpData(visitedDate: String, visitedGymName: String, PFCountDescription: String, videoCountDescription: String, thumbnails: [UIImage]) {
-        dateLabel.text = visitedDate
-        gymLabel.text = visitedGymName
+    func setUpData(primaryTitle: String, secondaryTitle: String, PFCountDescription: String, videoCountDescription: String, thumbnails: [UIImage], sortOption: SortOption) {
+        dateLabel.text = primaryTitle
+        gymLabel.text = secondaryTitle
         countPFLabel.text = PFCountDescription
         countTotalVideoLabel.text = videoCountDescription
-        self.videoThumbnails = thumbnails
+        videoThumbnails = thumbnails
+        setLocationIconView(sortOption)
+        
+        self.thumbnailCollectionView.reloadData()
     }
 }

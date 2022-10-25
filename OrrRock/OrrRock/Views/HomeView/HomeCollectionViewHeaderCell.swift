@@ -73,7 +73,7 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
         // header view의 위치는 앨범/목록형으로 전환되어도 바뀌지 않으므로 setConstraint에 넣지 않음
         addSubview(headerTitle)
         headerTitle.snp.makeConstraints {
-            $0.bottom.equalTo(snp_topMargin).offset(CGFloat(orrPadding.padding5.rawValue))
+            $0.bottom.equalTo(snp_topMargin).offset(CGFloat(orrPadding.padding6.rawValue))
         }
         
         setUpConstraints()
@@ -107,5 +107,10 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
                 $0.top.equalTo(PFCountLabel.snp.bottom).offset(CGFloat(orrPadding.padding1.rawValue))
             }
         }
+    }
+    
+    func setUpData(videoCount: Int, successCount: Int) {
+        videoCountLabel.text = "\(videoCount)개의 비디오"
+        PFCountLabel.text = "\(successCount)번의 성공, \(videoCount - successCount)번의 실패"
     }
 }

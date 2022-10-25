@@ -20,40 +20,33 @@ import SnapKit
 final class HomeViewController : UIViewController {
     
     // MARK: variables
+    // CollectionView DataSource로 사용될 배열
+    var sortedVideoInfoData: [[VideoInformation]] = []
+    var flattenSortedVideoInfoData: [VideoInformation] = []
+    
     // Quick Action 기능을 위한 조건 변수와 함수 호출 설정
     var isCardView: Bool = true {
-        // 앨범형 : 목록형
         didSet {
             collectionView.reloadData()
             collectionView.collectionViewLayout.invalidateLayout()
             quickActionButton.setImage(UIImage(systemName: isCardView ? "rectangle.stack" : "list.bullet"), for: .normal)
         }
     }
-    var isSortedByDate: Bool = true {
-        // 날짜 기준 : 암장 기준
+    
+    var sortOption: SortOption = .gymVisitDate {
         didSet {
-            isSortedByDate ? sortByDate() : sortByGym()
+            reloadCollectionViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
         }
     }
-    var isAscending: Bool = true {
-        // 오름차순  : 내림차순
+    
+    var orderOption: OrderOption = .ascend {
         didSet {
-            isAscending ? sortToAscending() : sortToDescending()
+            reloadCollectionViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
         }
     }
-    var selectedVideoFilterEnum: VideoFilterEnum = .whole {
-        // 필터링 기준
+    var filterOption: FilterOption = .all {
         didSet {
-            switch selectedVideoFilterEnum {
-            case .whole:
-                showWholeVideo()
-            case .liked:
-                showLikedVideo()
-            case .success:
-                showSuccessVideo()
-            case .fail:
-                showFailedVideo()
-            }
+            reloadCollectionViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
         }
     }
     
@@ -104,30 +97,29 @@ final class HomeViewController : UIViewController {
                     UIMenu(title: "", options: .displayInline, children: [
                         // 날짜 기준으로 정렬
                         UIAction(title: "날짜",
-                                 image: self!.isSortedByDate ? ( self!.isAscending ? UIImage(systemName: "chevron.up") : UIImage(systemName: "chevron.down")) : nil,
-                                 state: self!.isSortedByDate ? .on : .off) { [unowned self] _ in
-                                     
-                                     if self!.isSortedByDate {
+                                 image: self!.sortOption == .gymVisitDate ? ( self!.orderOption == .ascend ? UIImage(systemName: "chevron.down") : UIImage(systemName: "chevron.up")) : nil,
+                                 state: self!.sortOption == .gymVisitDate ? .on : .off) { [unowned self] _ in
+                                     if self!.sortOption == .gymVisitDate {
                                          // 이미 날짜 기준으로 정렬 중이라면
-                                         self?.isAscending.toggle()
+                                         self?.orderOption = self!.orderOption == .ascend ? .descend : .ascend
                                      } else {
                                          // 암장 기준으로 정렬 중이라면
-                                         self?.isSortedByDate.toggle()
-                                         self?.isAscending = true
+                                         self?.sortOption = .gymVisitDate
+                                         self?.orderOption = .ascend
                                      }
                                  },
                         // 암장 기준으로 정렬하기
                         UIAction(title: "클라이밍 장",
-                                 image: self!.isSortedByDate ? nil : ( self!.isAscending ? UIImage(systemName: "chevron.up") : UIImage(systemName: "chevron.down")),
-                                 state: self!.isSortedByDate ? .off : .on) { [unowned self] _ in
+                                 image: self!.sortOption == .gymVisitDate ? nil : ( self!.orderOption == .ascend ? UIImage(systemName: "chevron.up") : UIImage(systemName: "chevron.down")),
+                                 state: self!.sortOption == .gymVisitDate ? .off : .on) { [unowned self] _ in
                                      
-                                     if self!.isSortedByDate {
+                                     if self!.sortOption == .gymVisitDate {
                                          // 날짜 기준으로 정렬 중이라면
-                                         self?.isSortedByDate.toggle()
-                                         self?.isAscending = true
+                                         self?.sortOption = .gymName
+                                         self?.orderOption = .ascend
                                      } else {
                                          // 이미 암장 기준으로 정렬 중이라면
-                                         self?.isAscending.toggle()
+                                         self?.orderOption = self!.orderOption == .ascend ? .descend : .ascend
                                      }
                                  }
                     ]),
@@ -135,26 +127,26 @@ final class HomeViewController : UIViewController {
                         // 모든 비디오 보여주기
                         UIAction(title: "모든 비디오",
                                  image: UIImage(systemName: "photo.on.rectangle.angled"),
-                                 state: self?.selectedVideoFilterEnum == .whole ? .on : .off) { [unowned self] _ in
-                                     self?.selectedVideoFilterEnum = .whole
+                                 state: self!.filterOption == .all ? .on : .off) { [unowned self] _ in
+                                     self!.filterOption = .all as FilterOption
                                  },
                         // 즐겨찾는 항목만 보여주기
                         UIAction(title: "즐겨찾는 항목",
                                  image: UIImage(systemName: "heart"),
-                                 state: self?.selectedVideoFilterEnum == .liked ? .on : .off) { [unowned self] _ in
-                                     self?.selectedVideoFilterEnum = .liked
+                                 state: self!.filterOption == .favorite ? .on : .off) { [unowned self] _ in
+                                     self!.filterOption = .favorite as FilterOption
                                  },
                         // 성공 영상만 보여주기
                         UIAction(title: "성공",
                                  image: UIImage(systemName: "circle"),
-                                 state: self?.selectedVideoFilterEnum == .success ? .on : .off) { [unowned self] _ in
-                                     self?.selectedVideoFilterEnum = .success
+                                 state: self!.filterOption == .success ? .on : .off) { [unowned self] _ in
+                                     self!.filterOption = .success as FilterOption
                                  },
                         // 실패 영상만 보여주기
                         UIAction(title: "실패",
                                  image: UIImage(systemName: "multiply"),
-                                 state: self?.selectedVideoFilterEnum == .fail ? .on : .off) { [unowned self] _ in
-                                     self?.selectedVideoFilterEnum = .fail
+                                 state: self!.filterOption == .failure ? .on : .off) { [unowned self] _ in
+                                     self!.filterOption = .failure as FilterOption
                                  }
                     ])
                 ]
@@ -226,11 +218,18 @@ final class HomeViewController : UIViewController {
     // MARK: View Lifecycle Function
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .orrGray1
+        
         setUpLayout()
         setUpNavigationBar()
         setUICollectionViewDelegate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController!.navigationBar.backgroundColor = .clear
+        reloadCollectionViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
     }
     
     // MARK: Layout Function
@@ -271,49 +270,23 @@ final class HomeViewController : UIViewController {
     }
     
     @objc func switchViewStyle() {
-        self.isCardView.toggle()
+        isCardView.toggle()
     }
     
     @objc func videoButtonPressed(sender: UIButton){
         let nextVC = DateSettingViewController()
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
-    
 }
 
 // QuickAction을 통한 정렬 및 필터링 시 함수를 아래에 구현
 extension HomeViewController {
     // 정렬 기준 함수
-    func sortByDate() {
+    func reloadCollectionViewWithOptions(filterOption: FilterOption, sortOption: SortOption, orderOption: OrderOption) {
         
-    }
-    
-    func sortByGym() {
+        self.sortedVideoInfoData = DataManager.shared.sortRepository(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
+        self.flattenSortedVideoInfoData = sortedVideoInfoData.flatMap { $0 }
         
-    }
-    
-    func sortToAscending() {
-        
-    }
-    
-    func sortToDescending() {
-        
-    }
-    
-    // 필터링 기준 함수
-    func showWholeVideo() {
-        
-    }
-    
-    func showLikedVideo() {
-        
-    }
-    
-    func showSuccessVideo() {
-        
-    }
-    
-    func showFailedVideo() {
-        
+        self.collectionView.reloadData()
     }
 }
