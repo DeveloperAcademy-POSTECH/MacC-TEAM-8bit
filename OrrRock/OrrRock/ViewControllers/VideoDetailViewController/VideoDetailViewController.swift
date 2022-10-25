@@ -115,7 +115,7 @@ final class VideoDetailViewController: UIViewController {
 	// 뒤로가기 버튼을 눌렀을 때 로직
 	@objc func goBackAction() {
 		// !!!: 이건 나중에 다른 로직으로 구현 다시 한번 체크하기
-		print(#function)
+        self.navigationController?.popViewController(animated: true)
 	}
 	
 	// 삭제 버튼을 눌렀을 때 로직
