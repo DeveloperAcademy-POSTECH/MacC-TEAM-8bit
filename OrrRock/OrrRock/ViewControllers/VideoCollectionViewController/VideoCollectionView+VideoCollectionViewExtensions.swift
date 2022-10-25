@@ -73,7 +73,7 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
                 withReuseIdentifier: VideoCollectionViewHeaderCell.id,
                 for: indexPath
             ) as! VideoCollectionViewHeaderCell
-            supplementaryView.prepare(title: sectionData?.gymName)
+            supplementaryView.prepare(title: sectionData.sortOption == .gymVisitDate ?  sectionData!.primaryGymVisitDate.timeToString() : sectionData!.gymName,subtitle: sectionData!.sortOption == .gymVisitDate ? sectionData.gymName : "\(sectionData.primaryGymVisitDate.timeToString()) ~ \(sectionData.secondaryGymVisitDate!.timeToString())")
             return supplementaryView
             
         case UICollectionView.elementKindSectionFooter:

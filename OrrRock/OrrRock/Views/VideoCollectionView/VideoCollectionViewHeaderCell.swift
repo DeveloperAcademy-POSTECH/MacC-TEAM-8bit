@@ -39,12 +39,12 @@ final class VideoCollectionViewHeaderCell: UICollectionReusableView {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.prepare(title: nil)
+        self.prepare(title: "아띠 클라이밍",subtitle: "2022년 10월 26일")
     }
     
-    func prepare(title: String?) {
-        self.titleLabel.text = "2022년 10월 22일"
-        self.subTitleLabel.text = "김대우 암벽교실"
+    func prepare(title: String, subtitle: String) {
+        self.titleLabel.text = title
+        self.subTitleLabel.text = subtitle
     }
     
     func setUpLayout(){
