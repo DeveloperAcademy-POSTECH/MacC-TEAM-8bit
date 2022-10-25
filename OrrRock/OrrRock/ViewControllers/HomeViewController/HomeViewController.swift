@@ -18,7 +18,7 @@ import NVActivityIndicatorView
 import SnapKit
 
 final class HomeViewController : UIViewController {
-
+    
     // MARK: variables
     // Quick Action 기능을 위한 조건 변수와 함수 호출 설정
     var isCardView: Bool = true {
@@ -56,7 +56,7 @@ final class HomeViewController : UIViewController {
             }
         }
     }
-
+    
     private lazy var headerView: UIView = {
         let view = UIView()
         
@@ -79,7 +79,7 @@ final class HomeViewController : UIViewController {
         let button = UIButton(primaryAction: UIAction(title: "", handler: { _ in}))
         button.setImage(UIImage(systemName: isCardView ? "rectangle.stack" : "list.bullet"), for: .normal)
         button.tintColor = .orrUPBlue
-
+        
         // QuickAction은 UIMenu() 라는 컴포넌트로 구현할 수 있음
         // 버튼의 menu에 UIMenu로 감싼 UIAction들을 담아주기
         // UIMenu는 Action에 대한 그룹핑 역할. displayInline을 빼면 폴더링이 되어 접힘
@@ -161,7 +161,7 @@ final class HomeViewController : UIViewController {
                 completion(actions)
             }
         ])
-
+        
         // 버튼을 눌렀을 때 메뉴를 보여주도록 설정
         button.showsMenuAsPrimaryAction = true
         
@@ -273,12 +273,12 @@ final class HomeViewController : UIViewController {
     @objc func switchViewStyle() {
         self.isCardView.toggle()
     }
-
+    
     @objc func videoButtonPressed(sender: UIButton){
         let nextVC = DateSettingViewController()
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
-
+    
 }
 
 // QuickAction을 통한 정렬 및 필터링 시 함수를 아래에 구현

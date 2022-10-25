@@ -2,7 +2,7 @@
 //  VideoInformation+CoreDataProperties.swift
 //  OrrRock
 //
-//  Created by 황정현 on 2022/10/20.
+//  Created by 황정현 on 2022/10/25.
 //
 //
 
@@ -23,7 +23,7 @@ extension VideoInformation {
     @NSManaged public var isFavorite: Bool
     @NSManaged public var isSucceeded: Bool
     @NSManaged public var problemLevel: Int16
-    @NSManaged public var videoUrl: String
+    @NSManaged public var videoLocalIdentifier: String?
 
 }
 

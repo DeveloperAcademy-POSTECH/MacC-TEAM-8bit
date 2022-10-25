@@ -26,11 +26,21 @@ class SortTestViewController: UIViewController {
     let sortNFilterButtonText = ["암장 이름\n오름차순\nFAV", "암장 이름\n내림차순\nFAV", "암장 날짜\n최근순\nFAV", "암장 날짜\n오래된순\nFAV", "암장 이름\n오름차순\nPASS", "암장 이름\n내림차순\nPASS", "암장 날짜\n최근순\nPASS", "암장 날짜\n오래된순\nPASS", "암장 이름\n오름차순\nFAIL", "암장 이름\n내림차순\nFAIL", "암장 날짜\n최근순\nFAIL", "암장 날짜\n오래된순\nFAIL"]
     let sortNFilterButtons: [UIButton] = [UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton()]
     
+    
+    let sectionData: SectionData = SectionData(orderOption: .descend, sortOption: .gymName, filterOption: .all, gymName: "1암장", gymVisitDate: Date())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        coreDataRandomvideoInformationGenerate(howMany: 30)
+//        새로운 데이터 생성 후 테스트 시 주석 제거 & updateRepository 주석
+        DataManager.shared.deleteAllData()
+        let generator = RandomDataGenerator()
+        generator.coreDataRandomvideoInformationGenerate(howMany: 30)
         
+        // 기존 데이터로 테스트 시 주석 제거 & line.36-38 주석
+//        DataManager.shared.updateRepository()
+        
+        print(DataManager.shared.repository.rawVideoInformation.count)
         
         // 암장별, 방문일자별로만 데이터를 확인하고 싶다면 아래의 주석 해제 후 line 39,40을 주석처리 후 실행해주세요
         //layoutConfigureForSortButtons()
@@ -148,99 +158,90 @@ class SortTestViewController: UIViewController {
     
     // MARK: NORMAL SORT ONLY
     @objc func gymUPSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .all, sortOption: .gymName)
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymName)
+        let data = DataManager.shared.sortRepository(filterOption: .all, sortOption: .gymName, orderOption: .ascend)
+        print2ndDemensionData(videoInformation: data)
     }
     
     @objc func gymDOWNSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .all, sortOption: .gymName)
-        CoreDataManager.shared.reverseSort()
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymName)
-        
+        let data = DataManager.shared.sortRepository(filterOption: .all, sortOption: .gymName, orderOption: .descend)
+        print2ndDemensionData(videoInformation: data)
     }
     
     @objc func dateUPSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .all, sortOption: .gymVisitDate)
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymVisitDate)
+        let data = DataManager.shared.sortRepository(filterOption: .all, sortOption: .gymVisitDate, orderOption: .ascend)
+        print2ndDemensionData(videoInformation: data)
     }
     
     @objc func dateDOWNSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .all, sortOption: .gymVisitDate)
-        CoreDataManager.shared.reverseSort()
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymVisitDate)
+        let data = DataManager.shared.sortRepository(filterOption: .all, sortOption: .gymVisitDate, orderOption: .descend)
+        print2ndDemensionData(videoInformation: data)
     }
     
     // MARK: FILTER N SORT
     @objc func gymUPFavSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .favorite, sortOption: .gymName)
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymName)
+        let data = DataManager.shared.sortRepository(filterOption: .favorite, sortOption: .gymName, orderOption: .ascend)
+        print2ndDemensionData(videoInformation: data)
     }
     
     @objc func gymDOWNFavSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .favorite, sortOption: .gymName)
-        CoreDataManager.shared.reverseSort()
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymName)
+        let data = DataManager.shared.sortRepository(filterOption: .favorite, sortOption: .gymName, orderOption: .descend)
+        print2ndDemensionData(videoInformation: data)
     }
     
     @objc func dateUPFavSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .favorite, sortOption: .gymVisitDate)
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymVisitDate)
+        let data = DataManager.shared.sortRepository(filterOption: .favorite, sortOption: .gymVisitDate, orderOption: .ascend)
+        print2ndDemensionData(videoInformation: data)
     }
     
     @objc func dateDOWNFavSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .favorite, sortOption: .gymVisitDate)
-        CoreDataManager.shared.reverseSort()
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymVisitDate)
+        let data = DataManager.shared.sortRepository(filterOption: .favorite, sortOption: .gymVisitDate, orderOption: .descend)
+        print2ndDemensionData(videoInformation: data)
     }
     
     @objc func gymUPSuccessSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .success, sortOption: .gymName)
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymName)
+        let data = DataManager.shared.sortRepository(filterOption: .success, sortOption: .gymName, orderOption: .ascend)
+        print2ndDemensionData(videoInformation: data)
         
     }
     
     @objc func gymDOWNSuccessSort () {
-       // CoreDataManager.shared.sortVideoInformation(filterOption: .success, sortOption: .gymName)
-        CoreDataManager.shared.reverseSort()
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymName)
+        let data = DataManager.shared.sortRepository(filterOption: .success, sortOption: .gymName, orderOption: .descend)
+        print2ndDemensionData(videoInformation: data)
     }
     
     @objc func dateUPSuccessSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .success, sortOption: .gymVisitDate)
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymVisitDate)
+        let data = DataManager.shared.sortRepository(filterOption: .success, sortOption: .gymVisitDate, orderOption: .ascend)
+        print2ndDemensionData(videoInformation: data)
     }
     
     @objc func dateDOWNSuccessSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .success, sortOption: .gymVisitDate)
-        CoreDataManager.shared.reverseSort()
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymVisitDate)
+        let data = DataManager.shared.sortRepository(filterOption: .success, sortOption: .gymVisitDate, orderOption: .descend)
+        print2ndDemensionData(videoInformation: data)
     }
     
     @objc func gymUPFailureSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .failure, sortOption: .gymName)
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymName)
+        let data = DataManager.shared.sortRepository(filterOption: .failure, sortOption: .gymName, orderOption: .ascend)
+        print2ndDemensionData(videoInformation: data)
     }
     
     @objc func gymDOWNFailureSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .failure, sortOption: .gymName)
-        CoreDataManager.shared.reverseSort()
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymName)
+        let data = DataManager.shared.sortRepository(filterOption: .failure, sortOption: .gymName, orderOption: .descend)
+        print2ndDemensionData(videoInformation: data)
     }
     
     @objc func dateUPFailureSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .failure, sortOption: .gymVisitDate)
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymVisitDate)
+        let data = DataManager.shared.sortRepository(filterOption: .failure, sortOption: .gymVisitDate, orderOption: .ascend)
+        print2ndDemensionData(videoInformation: data)
     }
     
     @objc func dateDOWNFailureSort () {
-        CoreDataManager.shared.sortVideoInformation(filterOption: .failure, sortOption: .gymVisitDate)
-        CoreDataManager.shared.reverseSort()
-        CoreDataManager.shared.printAllSortedData(primarySortOption: .gymVisitDate)
+        let data = DataManager.shared.sortRepository(filterOption: .failure, sortOption: .gymVisitDate, orderOption: .descend)
+        print2ndDemensionData(videoInformation: data)
     }
     
     func coreDataRandomvideoInformationGenerate(howMany: Int) {
         
-        CoreDataManager.shared.deleteAllData()
+        DataManager.shared.deleteAllData()
         
         for _ in 0..<howMany {
             let randomIndex = Int.random(in: 0..<nameList.count)
@@ -253,16 +254,22 @@ class SortTestViewController: UIViewController {
             
             let info = VideoInfo(gymName: name, gymVisitDate: date, videoLocalIdentifier: url, problemLevel: level, isSucceeded: isSucceeded)
             
-            CoreDataManager.shared.createData(info: info)
+            DataManager.shared.createData(info: info)
             
         }
+
+    }
+    
+    func print2ndDemensionData(videoInformation: [[VideoInformation]]) {
+        print("-----PRINT DATA: \(videoInformation.count)-----")
         
-        print("랜덤 데이터 \(CoreDataManager.shared.readData().count)개가 Core Data에 저장되었습니다.")
-
-//        CoreDataManager.shared.fetchData()
-
-        CoreDataManager.shared.reloadRawVideoInformation()
-        CoreDataManager.shared.printRawData(standard: .gymName)
+        for i in 0..<videoInformation.count {
+            for j in 0..<videoInformation[i].count {
+                DataManager.shared.printData(info: videoInformation[i][j], primarySortOption: sectionData.sortOption)
+            }
+            print("------------")
+        }
+        print("--------------------")
     }
 
 }

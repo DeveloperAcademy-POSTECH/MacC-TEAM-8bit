@@ -20,12 +20,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.backgroundColor = .black
 
         
-        window?.rootViewController = UINavigationController(rootViewController: HomeViewController())
+        window?.rootViewController = UINavigationController(rootViewController: SwipeableCardViewController())
 //        window?.rootViewController = UINavigationController(rootViewController: SwipeCardViewController())
 //        window?.rootViewController = UINavigationController(rootViewController: MainViewController())
 //        업로드 이후 동작이 필요하다면 위의 코드를 주석 아래코드를 주석 해제후 사용해주세요.
 //        window?.rootViewController = UINavigationController(rootViewController: UploadTestViewController())
-        window?.rootViewController = UINavigationController(rootViewController: HomeViewController())
+//        window?.rootViewController = UINavigationController(rootViewController: HomeViewController())
         window?.makeKeyAndVisible()
     }
 

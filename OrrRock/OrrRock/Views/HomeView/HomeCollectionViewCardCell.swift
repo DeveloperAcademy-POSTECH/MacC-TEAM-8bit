@@ -88,7 +88,7 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         return view
     }()
     
-    private lazy var detailButton: UIButton = {
+    lazy var detailButton: UIButton = {
         let button = UIButton()
         button.setTitle("더 보기", for: .normal)
         button.setTitleColor(.orrUPBlue, for: .normal)
