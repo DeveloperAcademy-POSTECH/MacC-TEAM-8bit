@@ -12,9 +12,17 @@ import AVKit
 import SnapKit
 
 final class SwipeableCardViewController: UIViewController {
-    
+
     private var dummyVideos: [DummyVideo] = []
-    
+
+    private lazy var levelButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("레벨", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
+        button.addTarget(self, action: #selector(pickLevel), for: .touchUpInside)
+        return button
+    }()
+
     private lazy var failButton: UIButton = {
         let button = UIButton()
         button.setTitle("실패", for: .normal)
@@ -41,9 +49,10 @@ final class SwipeableCardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // card UI
         view.backgroundColor = .systemGroupedBackground
+
         setUpLayout()
         fetchVideo()
         createSwipeableCard()
@@ -52,7 +61,7 @@ final class SwipeableCardViewController: UIViewController {
 
 // Gesture
 private extension SwipeableCardViewController {
-    
+
     // 목업용 카드를 만들어줍니다.
     func createSwipeableCard() {
         for dummyVideo in dummyVideos {
@@ -65,10 +74,10 @@ private extension SwipeableCardViewController {
                 
                 return view
             }()
-            
+
             swipeCard.dummyVideo = dummyVideo
             swipeCard.tag = dummyVideo.id
-            
+
             // gesture
             let gesture = UIPanGestureRecognizer()
             gesture.addTarget(self, action: #selector(handlerCard))
@@ -83,7 +92,7 @@ private extension SwipeableCardViewController {
             }
         }
     }
-    
+
     // swipeCard가 SuperView에서 제거됩니다.
     @objc func removeCard(card: UIView) {
         card.removeFromSuperview()
@@ -92,7 +101,7 @@ private extension SwipeableCardViewController {
             return dummyVideos.id != card.tag
         })
     }
-    
+
     // Gesture
     @objc func handlerCard(_ gesture: UIPanGestureRecognizer) {
         if let card = gesture.view as? SwipeableCardVideoView {
@@ -132,7 +141,12 @@ private extension SwipeableCardViewController {
             }
         }
     }
-    
+
+    @objc func pickLevel() {
+        let nextViewController = LevelPickerView()
+        self.navigationController?.present(nextViewController, animated: true)
+    }
+
     @objc func didFailButton() {
         animateCard(rotationAngle: -0.4, videoResultType: .fail)
     }
@@ -184,6 +198,14 @@ private extension SwipeableCardViewController {
 private extension SwipeableCardViewController {
     
     func setUpLayout() {
+
+        view.addSubview(levelButton)
+        levelButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().inset(120.0)
+            $0.leading.trailing.equalToSuperview().inset(100)
+        }
+
         let buttonStackView = UIStackView(arrangedSubviews: [failButton, successButton])
         buttonStackView.spacing = 40.0
         buttonStackView.distribution = .fillEqually
