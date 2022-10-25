@@ -154,7 +154,24 @@ final class VideoDetailViewController: UIViewController {
 	
 	// 피드백 버튼을 눌렀을 때 로직
 	@objc func feedbackAction() {
-		// 피드백 + 키보드 보여주기
+		isShowInfo.toggle()
+		infoButton.image = UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle")
+		navigationController?.hidesBarsOnTap = !isShowInfo
+		if isShowInfo {
+			UIView.animate(withDuration: 0.2, animations: {
+				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -430)
+				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: -100)
+				self.navigationController?.navigationBar.layer.opacity = 0
+				self.topSafeareaView.layer.opacity = 0
+			})
+		} else {
+			UIView.animate(withDuration: 0.2, animations: {
+				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
+				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: 0)
+				self.navigationController?.navigationBar.layer.opacity = 1
+				self.topSafeareaView.layer.opacity = 1
+			})
+		}
 		print(#function)
 	}
 	
