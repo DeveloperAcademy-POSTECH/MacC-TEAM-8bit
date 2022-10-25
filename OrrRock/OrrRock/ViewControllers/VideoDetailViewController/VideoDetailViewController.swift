@@ -18,7 +18,7 @@ final class VideoDetailViewController: UIViewController {
 	
 	var isShowInfo: Bool = false
 	
-	let videoInfoView: UIView = VideoInfoView()
+    var videoInfoView: UIView?
 	
     //VideoInfo - 꼬마가 사용할 데이터
     var videoInformation: VideoInformation!
@@ -59,6 +59,7 @@ final class VideoDetailViewController: UIViewController {
 		super.viewDidLoad()
 		setNavigationBar()
 		setUpLayout()
+        
 	}
 	
 	// 네비게이션바 세팅 함수
@@ -99,14 +100,14 @@ final class VideoDetailViewController: UIViewController {
 		navigationController?.hidesBarsOnTap = !isShowInfo
 		if isShowInfo {
 			UIView.animate(withDuration: 0.2, animations: {
-				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -500)
+                self.videoInfoView!.transform = CGAffineTransform(translationX: 0, y: -500)
 				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: -100)
 				self.navigationController?.navigationBar.layer.opacity = 0
 				self.topSafeAreaView.layer.opacity = 0
 			})
 		} else {
 			UIView.animate(withDuration: 0.2, animations: {
-				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
+                self.videoInfoView!.transform = CGAffineTransform(translationX: 0, y: 0)
 				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: 0)
 				self.navigationController?.navigationBar.layer.opacity = 1
 				self.topSafeAreaView.layer.opacity = 1
@@ -170,8 +171,9 @@ extension VideoDetailViewController {
 			$0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
 		}
 		// 정보를 보여주는 뷰
-		view.addSubview(videoInfoView)
-		videoInfoView.snp.makeConstraints {
+        videoInfoView = VideoInfoView(frame: .zero, videoInfo: videoInformation)
+        view.addSubview(videoInfoView!)
+        videoInfoView!.snp.makeConstraints {
 			$0.leading.equalTo(self.view)
 			$0.trailing.equalTo(self.view)
 			$0.height.equalTo(650)
@@ -194,4 +196,6 @@ extension VideoDetailViewController {
 			$0.bottom.equalTo(self.view)
 		}
 	}
+    
+
 }

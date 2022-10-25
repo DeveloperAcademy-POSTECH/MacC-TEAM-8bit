@@ -13,6 +13,10 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         presentationController as! UISheetPresentationController
     }
     
+    var videoInformation : VideoInformation!
+    var selectDate : Date?
+    var selecrGymName : String?
+    
     // MARK: gym view compenents
     private lazy var gymContentView : UIView = {
         let view = UIView()

@@ -15,7 +15,7 @@ final class VideoInfoView: UIView {
 	var videoLocation: String = "아띠 클라이밍"
 	var videoIsSucceeded: Bool = true
 	// -----------------------------
-	
+    var videoInformation : VideoInformation?
 	private lazy var feedbackTextView: UITextView = {
 		let view = UITextView()
 		view.backgroundColor = .orrWhite
@@ -96,6 +96,7 @@ final class VideoInfoView: UIView {
 		// 날짜, 클라이밍장 편집 뷰 네비게이션
         let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
         let vc = DateAndGymEditViewController()
+        vc.videoInformation = videoInformation
         viewController.present(vc, animated: true)
 	}
 	
@@ -114,6 +115,11 @@ final class VideoInfoView: UIView {
 		setUpLayout()
 	}
 	
+    convenience init(frame: CGRect, videoInfo : VideoInformation) {
+        self.init(frame: frame)
+        self.videoInformation = videoInfo
+        //make here what you want
+    }
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}

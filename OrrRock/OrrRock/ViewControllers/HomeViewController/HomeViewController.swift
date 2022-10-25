@@ -223,7 +223,7 @@ final class HomeViewController : UIViewController {
         setUpLayout()
         setUpNavigationBar()
         setUICollectionViewDelegate()
-        
+        makeArray()
         sortedVideoInfoData = DataManager.shared.sortRepository(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
         flattenSortedVideoInfoData = sortedVideoInfoData.flatMap({ $0 })
         
@@ -310,4 +310,29 @@ func printVideoInformation(videoInformation: [[VideoInformation]]) {
         print("Pass: \(success) Failure: \(videoInformation[i].count - success)")
         print("-----------------")
     }
+}
+
+func makeArray() {
+    
+    DataManager.shared.deleteAllData()
+    
+    let array = [
+        VideoInfo(gymName: "아띠", gymVisitDate: Date(timeIntervalSince1970: 300), videoLocalIdentifier: "1C8D0AD3-12EA-4069-9F10-7F161A6144CB/L0/001", problemLevel: 2, isSucceeded: false),
+        VideoInfo(gymName: "아띠", gymVisitDate: Date(timeIntervalSince1970: 305), videoLocalIdentifier: "D387F418-80A6-4495-A55D-2596B90365E9/L0/001", problemLevel: 3, isSucceeded: true),
+        VideoInfo(gymName: "아띠", gymVisitDate: Date(timeIntervalSince1970: 308), videoLocalIdentifier: "7E735EA9-5D1A-4577-BB73-A40982D49DF7/L0/001", problemLevel: 10, isSucceeded: true),
+        VideoInfo(gymName: "아띠", gymVisitDate: Date(timeIntervalSince1970: 399), videoLocalIdentifier: "48D487C8-822F-4601-A373-9E8988245E6F/L0/001", problemLevel: 2, isSucceeded: false),
+        VideoInfo(gymName: "스파이더", gymVisitDate: Date(timeIntervalSince1970: 1330002313), videoLocalIdentifier: "2941E313-180F-4E2C-818A-16DEF34A2B29/L0/001", problemLevel: 5, isSucceeded: false),
+        VideoInfo(gymName: "스파이더", gymVisitDate: Date(timeIntervalSince1970: 25000), videoLocalIdentifier: "CC9E7114-41D0-47B4-857C-A746A57EAF12/L0/001", problemLevel: 4, isSucceeded: false),
+        VideoInfo(gymName: "스파이더", gymVisitDate: Date(timeIntervalSince1970: 25000), videoLocalIdentifier: "96A800F5-8922-4B00-89C0-A978D5ED7515/L0/001", problemLevel: 0, isSucceeded: true),
+        VideoInfo(gymName: "김대우", gymVisitDate: Date(), videoLocalIdentifier: "B8F9CC78-E934-4406-928D-E415C94A6B02/L0/001", problemLevel: 6, isSucceeded: true),
+        VideoInfo(gymName: "김대우", gymVisitDate: Date(), videoLocalIdentifier: "05B17C5D-8343-4034-A486-CB49319CE205/L0/001", problemLevel: 5, isSucceeded: false),
+        VideoInfo(gymName: "김대우", gymVisitDate: Date(), videoLocalIdentifier: "E05F04B2-E966-4CA2-A780-152090DEA551/L0/001", problemLevel: 3, isSucceeded: false),
+        VideoInfo(gymName: "김대우", gymVisitDate: Date(), videoLocalIdentifier: "8E46E64C-890B-45AB-8110-BDFE9FB6DC01/L0/001", problemLevel: 3, isSucceeded: false),
+        VideoInfo(gymName: "김대우", gymVisitDate: Date(), videoLocalIdentifier: "255B9BE0-D0C8-4DBC-A96D-7C43E36AC8B5/L0/001", problemLevel: 2, isSucceeded: true),
+        VideoInfo(gymName: "김대우", gymVisitDate: Date(), videoLocalIdentifier: "B40A9030-7E21-41E3-BAFD-829998240FED/L0/001", problemLevel: 1, isSucceeded: true),
+        VideoInfo(gymName: "김대우", gymVisitDate: Date(), videoLocalIdentifier: "37475FC6-4C51-4425-9C46-F93D2234A905/L0/001", problemLevel: 7, isSucceeded: true),
+        VideoInfo(gymName: "김대우", gymVisitDate: Date(), videoLocalIdentifier: "15FD2681-C2B3-4B9F-9CC0-CB119E608259/L0/001", problemLevel: 4, isSucceeded: false)
+    ]
+
+    DataManager.shared.createMultipleData(infoList: array)
 }
