@@ -61,22 +61,55 @@ class GymSettingViewController: UIViewController {
 extension GymSettingViewController {
 
     //텍스트 필드의 내용물에 따라 버튼을 활성화 비활성화 시킴
-    @objc final private func toggleNextButton(textField: UITextField) {
+    @objc
+    final private func toggleNextButton(textField: UITextField) {
         nextButton.isEnabled = !(textField.text!.isEmpty)
     }
 
-    @objc func pressNextButton(sender: UIButton!) {
-        
+    @objc
+    final private func pressNextButton(sender: UIButton!) {
         let photoLibrary =  PHPhotoLibrary.shared()
         var configuration = PHPickerConfiguration(photoLibrary: photoLibrary)
+        configuration.filter = .videos
         configuration.selectionLimit = 0
-        //인디게이터 도는거 보고 싶으면 아랫줄을 주석 처리해주세요.
         configuration.preferredAssetRepresentationMode = .current
-        configuration.filter = .any(of: [.videos])
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
-        self.present(picker, animated: true, completion: nil)
-        self.view.endEditing(true)
+
+        PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+            switch status {
+            case .authorized:
+                DispatchQueue.main.async {
+                self.present(picker, animated: true, completion: nil)
+                self.view.endEditing(true)
+                }
+            case .limited:
+                DispatchQueue.main.async {
+                    self.authSettingOpen(authString: "모든 비디오")
+                }
+                break
+            default:
+                DispatchQueue.main.async {
+                    self.authSettingOpen(authString: "앨범")
+                }
+            }
+        }
+    }
+
+    final private func authSettingOpen(authString: String) {
+        if let AppName = Bundle.main.infoDictionary!["CFBundleName"] as? String {
+            let message = "\(AppName)이(가) \(authString) 접근이 허용되어 있지않습니다. \r\n 설정화면으로 가시겠습니까?"
+            let alert = UIAlertController(title: "설정", message: message, preferredStyle: .alert)
+            let cancle = UIAlertAction(title: "취소", style: .default) { (UIAlertAction) in
+                print("\(String(describing: UIAlertAction.title)) 클릭")
+            }
+            let confirm = UIAlertAction(title: "확인", style: .default) { (UIAlertAction) in
+                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+            }
+            alert.addAction(cancle)
+            alert.addAction(confirm)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 
 }
@@ -132,15 +165,16 @@ extension GymSettingViewController: PHPickerViewControllerDelegate {
         for i in 0..<fetchResult.count {
             let localIdentifier = fetchResult[i].localIdentifier
             videoInfoArray.append(VideoInfo(gymName: gymTextField.text!,
-                                  gymVisitDate: gymVisitDate!,
-                                  videoLocalIdentifier: localIdentifier,
-                                  problemLevel: 0,
-                                  isSucceeded: true))
+                                            gymVisitDate: gymVisitDate!,
+                                            videoLocalIdentifier: localIdentifier,
+                                            problemLevel: 0,
+                                            isSucceeded: true))
         }
 
         CustomIndicator.stopLoading()
-        let nextVC = UpoadTestNextViewController()
-        nextVC.videoInfoArray = videoInfoArray
+        let nextVC = SwipeableCardViewController()
+        // SwipeableCardViewController()에videoInfoArray 가 없어 임시 처리된 코드입니다.
+//        nextVC.videoInfoArray = videoInfoArray
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }

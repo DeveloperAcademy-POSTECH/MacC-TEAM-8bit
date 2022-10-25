@@ -15,7 +15,7 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // 디버깅을 위해 카드의 개수를 10으로 지정해두었음.
         // 이후 동작 구현 시 카드 개수 지정을 위해 해당 값을 변경해주면 됨.
-        return 10
+        return isCardView ? sortedVideoInfoData.count : flattenSortedVideoInfoData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -29,6 +29,7 @@ extension HomeViewController: UICollectionViewDataSource {
             let primaryTitle: String = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymVisitDate.timeToString() : sortedVideoInfoData[indexPath.row][0].gymName
             
             let secondaryTitle: String = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymName : "\(min(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString()) ~  \(max(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString())"
+
             
             sortedVideoInfoData[indexPath.row].forEach { videoInfo in
                 successCount += videoInfo.isSucceeded ? 1 : 0
@@ -52,6 +53,7 @@ extension HomeViewController: UICollectionViewDataSource {
             cell.detailButton.secondaryGymVisitDate = sortOption == .gymVisitDate ? nil : max(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString()
             cell.detailButton.videoInformationArray = sortedVideoInfoData[indexPath.row]
             
+
             cell.detailButton.addTarget(self, action:  #selector(navigateToVideoCollectionView(sender:)), for: .touchUpInside)
             
             return cell
@@ -99,7 +101,15 @@ extension HomeViewController: UICollectionViewDelegate {
             let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                              withReuseIdentifier: HomeCollectionViewHeaderCell.identifier,
                                                                              for: indexPath) as! HomeCollectionViewHeaderCell
+            
+            var successCount = 0
+            flattenSortedVideoInfoData.forEach { video in
+                successCount += video.isSucceeded ? 1 : 0
+            }
+            
             headerCell.isCardView = self.isCardView
+            headerCell.setUpData(videoCount: flattenSortedVideoInfoData.count, successCount: successCount)
+            
             return headerCell
             
         } else if kind == UICollectionView.elementKindSectionFooter {
@@ -124,12 +134,12 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         // 앨범형, 목록형의 Header Cell의 높이를 별도로 지정
-        return CGSize(width: collectionView.frame.width, height: isCardView ? 72 : 72 + CGFloat(orrPadding.padding6.rawValue - orrPadding.padding3.rawValue))
+        return CGSize(width: collectionView.frame.width, height: isCardView ? 72 : 72 + CGFloat(orrPadding.padding7.rawValue - orrPadding.padding3.rawValue))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         // 앨범형, 목록형의 Footer Cell의 높이를 별도로 지정
-        return CGSize(width: collectionView.frame.width, height: CGFloat(orrPadding.padding6.rawValue))
+        return CGSize(width: collectionView.frame.width, height: CGFloat(orrPadding.padding7.rawValue))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

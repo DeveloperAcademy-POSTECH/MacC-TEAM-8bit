@@ -45,15 +45,9 @@ final class HomeCollectionViewListCell: UICollectionViewCell {
     }()
     
     private lazy var visitedDateLabel: UILabel = {
-       let view = UILabel()
+        let view = UILabel()
         view.text = "2022년 12월 30일"
         view.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        return view
-    }()
-    
-    private lazy var stackView: UIStackView = {
-       let view = UIStackView(arrangedSubviews: [visitedDateLabel, gymNameLabel])
-        view.axis = .horizontal
         return view
     }()
     
@@ -104,10 +98,18 @@ final class HomeCollectionViewListCell: UICollectionViewCell {
             $0.width.equalTo(cellView.snp.height)
         }
         
-        cellView.addSubview(stackView)
-        stackView.snp.makeConstraints {
+        cellView.addSubview(visitedDateLabel)
+        visitedDateLabel.snp.makeConstraints {
             $0.top.equalTo(cellView.snp.top).offset(CGFloat(orrPadding.padding1.rawValue))
             $0.leading.equalTo(thumbnailView.snp.trailing).offset(CGFloat(orrPadding.padding3.rawValue))
+            $0.width.equalTo(130)
+            
+        }
+        
+        cellView.addSubview(gymNameLabel)
+        gymNameLabel.snp.makeConstraints {
+            $0.top.equalTo(cellView.snp.top).offset(CGFloat(orrPadding.padding1.rawValue))
+            $0.leading.equalTo(visitedDateLabel.snp.trailing).offset(30)
             $0.trailing.equalTo(cellView.snp.trailing)
         }
         
@@ -120,13 +122,13 @@ final class HomeCollectionViewListCell: UICollectionViewCell {
         cellView.addSubview(levelLabel)
         levelLabel.snp.makeConstraints {
             $0.leading.equalTo(thumbnailView.snp.trailing).offset(CGFloat(orrPadding.padding3.rawValue))
-            $0.top.equalTo(stackView.snp.bottom).offset(CGFloat(orrPadding.padding1.rawValue))
+            $0.top.equalTo(gymNameLabel.snp.bottom).offset(CGFloat(orrPadding.padding1.rawValue))
         }
         
         cellView.addSubview(PFLabel)
         PFLabel.snp.makeConstraints {
             $0.leading.equalTo(levelLabel.snp.trailing).offset(CGFloat(orrPadding.padding2.rawValue))
-            $0.top.equalTo(stackView.snp.bottom).offset(CGFloat(orrPadding.padding1.rawValue))
+            $0.top.equalTo(gymNameLabel.snp.bottom).offset(CGFloat(orrPadding.padding1.rawValue))
         }
         
         cellView.addSubview(dividerView)
@@ -136,5 +138,13 @@ final class HomeCollectionViewListCell: UICollectionViewCell {
             $0.trailing.equalTo(cellView.snp.trailing)
             $0.height.equalTo(1)
         }
+    }
+    
+    func setUpData(visitedDate: String, visitedGymName: String, level: String, PF: String, thumbnail: UIImage) {
+        visitedDateLabel.text = visitedDate
+        gymNameLabel.text = visitedGymName
+        levelLabel.text = level
+        PFLabel.text = PF
+        thumbnailView.image = thumbnail
     }
 }
