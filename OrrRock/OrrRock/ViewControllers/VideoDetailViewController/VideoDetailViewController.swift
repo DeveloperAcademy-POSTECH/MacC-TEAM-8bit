@@ -159,6 +159,7 @@ final class VideoDetailViewController: UIViewController {
 		navigationController?.hidesBarsOnTap = !isShowInfo
 		if isShowInfo {
 			UIView.animate(withDuration: 0.2, animations: {
+				self.videoInfoView.feedbackTextView.becomeFirstResponder()
 				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -430)
 				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: -100)
 				self.navigationController?.navigationBar.layer.opacity = 0
