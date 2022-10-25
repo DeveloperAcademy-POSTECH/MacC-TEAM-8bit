@@ -73,7 +73,7 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
         // header view의 위치는 앨범/목록형으로 전환되어도 바뀌지 않으므로 setConstraint에 넣지 않음
         addSubview(headerTitle)
         headerTitle.snp.makeConstraints {
-            $0.bottom.equalTo(snp_topMargin).offset(CGFloat(orrPadding.padding5.rawValue))
+            $0.bottom.equalTo(snp_topMargin).offset(CGFloat(orrPadding.padding6.rawValue))
         }
         
         setUpConstraints()
