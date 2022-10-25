@@ -223,6 +223,11 @@ final class HomeViewController : UIViewController {
         setUpLayout()
         setUpNavigationBar()
         setUICollectionViewDelegate()
+        
+        sortedVideoInfoData = DataManager.shared.sortRepository(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
+        flattenSortedVideoInfoData = sortedVideoInfoData.flatMap({ $0 })
+        
+        printVideoInformation(videoInformation: sortedVideoInfoData)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -288,5 +293,21 @@ extension HomeViewController {
         self.flattenSortedVideoInfoData = sortedVideoInfoData.flatMap { $0 }
         
         self.collectionView.reloadData()
+    }
+}
+
+
+func printVideoInformation(videoInformation: [[VideoInformation]]) {
+    print("DATA LIST INFORMATION")
+    for i in 0..<videoInformation.count {
+        var success = 0
+        print("VideoInformation \(i)th Index Count: \(videoInformation[i].count)")
+        for j in 0..<videoInformation[i].count {
+            if videoInformation[i][j].isSucceeded == true {
+                success += 1
+            }
+        }
+        print("Pass: \(success) Failure: \(videoInformation[i].count - success)")
+        print("-----------------")
     }
 }

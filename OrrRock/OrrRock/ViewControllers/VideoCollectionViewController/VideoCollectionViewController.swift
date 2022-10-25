@@ -9,9 +9,9 @@ import UIKit
 
 class VideoCollectionViewController: UIViewController {
     
-    var imageArr = ["as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5"]
     var videoInformationArray: [VideoInformation] = []
-    
+    var sectionData : SectionData!
+    var successCount : Int = 0
     // 썸네일은 videoInformationArray[n].videoLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize) 을 통해 간편하게 생성 가능함!
     
     lazy var firstContentOffset : Float = 0.0
@@ -120,6 +120,13 @@ class VideoCollectionViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         navigationItem.titleView = titleStackView
+        if sectionData?.sortOption == .gymName{
+            titleName.text = sectionData?.gymName
+            subTitleName.text = "\(sectionData.primaryGymVisitDate.timeToString()) ~ \(sectionData.secondaryGymVisitDate!.timeToString())"
+        }else{
+            titleName.text = sectionData?.gymName
+            subTitleName.text = sectionData?.primaryGymVisitDate.timeToString()
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -127,7 +134,7 @@ class VideoCollectionViewController: UIViewController {
         setVideoCollectionViewDelegate()
         registerCells()
         setUpLayout()
-        
+        getSuccessCount()
         
     }
     
@@ -181,7 +188,10 @@ class VideoCollectionViewController: UIViewController {
         //삭제 실제 배열에서
         for i in deleteNeededIndexPaths.sorted(by:{$0.item > $1.item
         }){
-            imageArr.remove(at: i.item)
+            DataManager.shared.deleteData(videoInformation: videoInformationArray[i.item])
+            videoInformationArray.remove(at: i.item)
+            // 삭제 하는 코어데이터 함수
+            
         }
         
         videoCollectionView.deleteItems(at: deleteNeededIndexPaths)
@@ -190,9 +200,9 @@ class VideoCollectionViewController: UIViewController {
         indexCountLabel.text = "항목 선택"
         deleteBarButton.isEnabled = false
         toolbarText.customView = indexCountLabel
+        getSuccessCount()
         videoCollectionView.reloadSections(IndexSet(integer: 0))
-        
-        if imageArr.count < 9{
+        if videoInformationArray.count < 4{
             titleStackView.isHidden = true
         }
     }
@@ -217,8 +227,8 @@ class VideoCollectionViewController: UIViewController {
     }
     
     @objc func didSelectAllButtonClicked(_ sender: UIBarButtonItem){
-        if imageArr.count != 0{
-            for i in 0...imageArr.count-1{
+        if videoInformationArray.count != 0{
+            for i in 0...videoInformationArray.count-1{
                 let indexPath = IndexPath(item: i, section: 0)
                 dictionarySelectedIndexPath.updateValue(true, forKey: indexPath)
             }
@@ -232,6 +242,10 @@ class VideoCollectionViewController: UIViewController {
         indexCountLabel.text = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndexPath.values.filter({$0 == true}).count)개의 비디오 선택"
         deleteBarButton.isEnabled = true
         toolbarText.customView = indexCountLabel
+    }
+    
+    func getSuccessCount(){
+        successCount = videoInformationArray.filter{$0.isSucceeded == true}.count
     }
     
 }

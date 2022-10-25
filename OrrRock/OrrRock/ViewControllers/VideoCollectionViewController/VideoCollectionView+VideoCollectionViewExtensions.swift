@@ -32,6 +32,7 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
         case .view:
             videoCollectionView.deselectItem(at: indexPath, animated: true)
             let vc = VideoDetailViewController()
+            vc.videoInformation = videoInformationArray[indexPath.item]
             navigationController?.pushViewController(vc, animated: true)
             
         case .select:
@@ -57,7 +58,7 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageArr.count
+        return videoInformationArray.count
     }
     
     
@@ -73,7 +74,7 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
                 withReuseIdentifier: VideoCollectionViewHeaderCell.id,
                 for: indexPath
             ) as! VideoCollectionViewHeaderCell
-            supplementaryView.prepare(title: "supplementaryView(header)")
+            supplementaryView.prepare(title: sectionData.sortOption == .gymVisitDate ?  sectionData!.primaryGymVisitDate.timeToString() : sectionData!.gymName,subtitle: sectionData!.sortOption == .gymVisitDate ? sectionData.gymName : "\(sectionData.primaryGymVisitDate.timeToString()) ~ \(sectionData.secondaryGymVisitDate!.timeToString())")
             return supplementaryView
             
         case UICollectionView.elementKindSectionFooter:
@@ -82,7 +83,7 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
                 withReuseIdentifier: VideoCollectionFooterCell.id + "footer",
                 for: indexPath
             ) as! VideoCollectionFooterCell
-            supplementaryView.prepare(title: "supplementaryView(footer)",count: imageArr.count,successCount: 40,failCount: 26)
+            supplementaryView.prepare(title: "supplementaryView(footer)",count: videoInformationArray.count,successCount: successCount,failCount: videoInformationArray.count - successCount)
             return supplementaryView
         default:
             return UICollectionReusableView()
@@ -94,29 +95,19 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
 extension VideoCollectionViewController  : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customVideoCollectionCell", for: indexPath) as! VideoCollectionViewCell
-        cell.cellImage.image = UIImage(named: imageArr[indexPath.row])
-        if indexPath.item % 5 == 0 {
-            cell.cellLabel.backgroundColor = .blue
-            cell.heartImage.alpha = 0.0
-        }
-        else if indexPath.item % 5 == 1{
-            cell.cellLabel.backgroundColor = .yellow
-            cell.heartImage.alpha = 1.0
-        }
-        else if indexPath.item % 5 == 2{
-            cell.cellLabel.backgroundColor = .red
-            cell.heartImage.alpha = 1.0
-        }
-        else if indexPath.item % 5 == 3{
-            cell.cellLabel.backgroundColor = .black
-            cell.heartImage.alpha = 1.0
-        }
-        else if indexPath.item % 5 == 4{
-            cell.cellLabel.backgroundColor = .purple
+        cell.cellImage.image = videoInformationArray[indexPath.row].videoLocalIdentifier?.generateCardViewThumbnail(targetSize: CGSize(width: collectionView.frame.width, height: collectionView.frame.width * 2.13))
+        if videoInformationArray[indexPath.item].isFavorite{
             cell.heartImage.alpha = 1.0
         }
         else{
-            
+            cell.heartImage.alpha = 0.0
+        }
+        
+        if videoInformationArray[indexPath.item].isSucceeded{
+            cell.cellLabel.backgroundColor = .orrPass
+        }
+        else{
+            cell.cellLabel.backgroundColor = .orrFail
         }
         return cell
     }
