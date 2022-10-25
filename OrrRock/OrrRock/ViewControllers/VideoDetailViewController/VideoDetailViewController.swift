@@ -116,6 +116,9 @@ final class VideoDetailViewController: UIViewController {
 	@objc func goBackAction() {
 		// !!!: 이건 나중에 다른 로직으로 구현 다시 한번 체크하기
         self.navigationController?.popViewController(animated: true)
+        navigationController?.isNavigationBarHidden = false
+        navigationController?.isToolbarHidden = true
+        navigationController?.hidesBarsOnTap = false
 	}
 	
 	// 삭제 버튼을 눌렀을 때 로직
