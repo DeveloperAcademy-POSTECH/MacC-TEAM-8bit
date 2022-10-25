@@ -17,13 +17,14 @@ final class VideoDetailViewController: UIViewController {
 	// -----------------------------
 	
 	var isShowInfo: Bool = false
+	var isSounded: Bool = false
 	
 	let videoInfoView: UIView = VideoInfoView()
 	
 	private var infoButton: UIBarButtonItem!
 	private var feedbackButton: UIBarButtonItem!
 	private var trashButton: UIBarButtonItem!
-	
+	private var soundButton: UIBarButtonItem!
 	private var favoriteButton: UIBarButtonItem!
 	private var goBackButton: UIBarButtonItem!
 	private var flexibleSpace: UIBarButtonItem!
@@ -81,6 +82,7 @@ final class VideoDetailViewController: UIViewController {
 		infoButton = UIBarButtonItem(image: UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle"), style: .plain, target: self, action: #selector(showInfo))
 		feedbackButton = UIBarButtonItem(title: "피드백 입력하기", style: .plain, target: self, action: #selector(feedbackAction))
 		trashButton = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteVideoAction))
+		soundButton = UIBarButtonItem(image: UIImage(systemName: "speaker.slash.fill"), style: .plain, target: self, action: #selector(soundVideoAction))
 		var items = [UIBarButtonItem]()
 		
 		[infoButton,flexibleSpace,feedbackButton,flexibleSpace,trashButton].forEach {
@@ -124,6 +126,14 @@ final class VideoDetailViewController: UIViewController {
 	// 삭제 버튼을 눌렀을 때 로직
 	@objc func deleteVideoAction() {
 		// 삭제하기
+		print(#function)
+	}
+	
+	// 소리 버튼을 눌렀을 때 로직
+	@objc func soundVideoAction() {
+		isSounded.toggle()
+		soundButton.image = UIImage(systemName: isSounded ? "speaker.wave.2.fill" : "speaker.slash.fill")
+		videoPlayView.player.isMuted = isSounded ? false : true
 		print(#function)
 	}
 	

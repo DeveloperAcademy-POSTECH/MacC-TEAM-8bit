@@ -50,6 +50,7 @@ private extension VideoPlayView {
 		playerLayer.videoGravity = .resizeAspectFill
 		self.playerLayer = playerLayer
 		self.videoBackgroundView.layer.addSublayer(playerLayer)
+		self.player.isMuted = true
 		self.player.play()
 	}
 }
