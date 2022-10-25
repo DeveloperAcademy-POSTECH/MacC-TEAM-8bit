@@ -19,6 +19,7 @@ final class VideoDetailViewController: UIViewController {
 	var isShowInfo: Bool = false
 	var isSounded: Bool = false
 	var isPlayed: Bool = false
+	var iconSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
 	
 	let videoInfoView: UIView = VideoInfoView()
 	
@@ -67,7 +68,6 @@ final class VideoDetailViewController: UIViewController {
 		flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
 		goBackButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(goBackAction))
 		favoriteButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(favoriteAction))
-		playButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(playVideoAction))
 		
 		// 네비게이션바 띄워주고 탭 되었을 때 숨기기
 		navigationController?.isToolbarHidden = false
@@ -87,8 +87,10 @@ final class VideoDetailViewController: UIViewController {
 		trashButton = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteVideoAction))
 		soundButton = UIBarButtonItem(image: UIImage(systemName: "speaker.slash.fill"), style: .plain, target: self, action: #selector(soundVideoAction))
 		var items = [UIBarButtonItem]()
+		playButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(playVideoAction))
+		iconSpace.width = 8.5
 		
-		[soundButton,flexibleSpace,playButton,flexibleSpace,feedbackButton,flexibleSpace,infoButton,flexibleSpace,trashButton].forEach {
+		[soundButton,iconSpace,flexibleSpace,playButton,flexibleSpace,feedbackButton,flexibleSpace,infoButton,flexibleSpace,trashButton].forEach {
 			items.append($0)
 		}
 		self.toolbarItems = items
@@ -135,6 +137,7 @@ final class VideoDetailViewController: UIViewController {
 	// 소리 버튼을 눌렀을 때 로직
 	@objc func soundVideoAction() {
 		isSounded.toggle()
+		iconSpace.width = isSounded ? 0 : 8.5
 		soundButton.image = UIImage(systemName: isSounded ? "speaker.wave.2.fill" : "speaker.slash.fill")
 		videoPlayView.player.isMuted = isSounded ? false : true
 		print(#function)
