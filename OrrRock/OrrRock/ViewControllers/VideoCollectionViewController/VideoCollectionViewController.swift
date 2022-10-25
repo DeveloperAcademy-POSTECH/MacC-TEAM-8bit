@@ -9,7 +9,6 @@ import UIKit
 
 class VideoCollectionViewController: UIViewController {
     
-    var imageArr = ["as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5"]
     var videoInformationArray: [VideoInformation] = []
     var sectionData : SectionData!
     var successCount : Int = 0
@@ -228,8 +227,8 @@ class VideoCollectionViewController: UIViewController {
     }
     
     @objc func didSelectAllButtonClicked(_ sender: UIBarButtonItem){
-        if imageArr.count != 0{
-            for i in 0...imageArr.count-1{
+        if videoInformationArray.count != 0{
+            for i in 0...videoInformationArray.count-1{
                 let indexPath = IndexPath(item: i, section: 0)
                 dictionarySelectedIndexPath.updateValue(true, forKey: indexPath)
             }
