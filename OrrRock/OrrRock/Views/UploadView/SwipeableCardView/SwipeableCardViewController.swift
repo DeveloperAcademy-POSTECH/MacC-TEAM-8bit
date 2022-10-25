@@ -13,13 +13,14 @@ import SnapKit
 
 final class SwipeableCardViewController: UIViewController {
 
-    private let gesture = UIPanGestureRecognizer()
+    var dummyVideos: [DummyVideo] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // card UI
         view.backgroundColor = .systemGroupedBackground
+        fetchVideo()
         createSwipeableCard()
     }
 }
@@ -29,9 +30,9 @@ private extension SwipeableCardViewController {
     
     // 목업용 카드를 만들어줍니다.
     func createSwipeableCard() {
-        for card in 0...2 {
+        for dummyVideo in dummyVideos {
             lazy var swipeCard: SwipeableCardVideoView = {
-                let embed = Bundle.main.url(forResource: "ianIsComming", withExtension: "MOV")
+                let embed = Bundle.main.url(forResource: dummyVideo.videoURL, withExtension: "MOV")
                 let testVideoAsset = AVAsset(url: embed!)
 
                 let view = SwipeableCardVideoView(asset: testVideoAsset)
@@ -41,15 +42,16 @@ private extension SwipeableCardViewController {
 
             view.addSubview(swipeCard)
 
+            // gesture
+            let gesture = UIPanGestureRecognizer()
+            gesture.addTarget(self, action: #selector(handlerCard))
+            swipeCard.addGestureRecognizer(gesture)
+            
             swipeCard.snp.makeConstraints {
                 $0.leading.trailing.equalToSuperview().inset(60.0)
                 $0.height.equalTo(450.0)
                 $0.centerY.equalToSuperview()
             }
-            
-            // gesture
-            gesture.addTarget(self, action: #selector(handlerCard))
-            swipeCard.addGestureRecognizer(gesture)
         }
     }
     
@@ -92,5 +94,11 @@ private extension SwipeableCardViewController {
                 }
             }
         }
+    }
+    
+    func fetchVideo() {
+        self.dummyVideos = VideoManager.shared.fetchVideo()
+        
+        print(self.dummyVideos)
     }
 }
