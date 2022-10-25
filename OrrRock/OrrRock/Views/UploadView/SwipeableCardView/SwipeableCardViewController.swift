@@ -11,7 +11,7 @@ import AVFoundation
 import AVKit
 import SnapKit
 
-final class SwipeableCardViewController: UIViewController {
+final class SwipeableCardViewController: UIViewController, LevelPickerViewDelegate {
 
     private var dummyVideos: [DummyVideo] = []
 
@@ -56,6 +56,10 @@ final class SwipeableCardViewController: UIViewController {
         setUpLayout()
         fetchVideo()
         createSwipeableCard()
+    }
+
+    func didLevelChanged(selectedLevel: String) {
+        levelButton.setTitle(selectedLevel, for: .normal)
     }
 }
 
@@ -145,6 +149,7 @@ private extension SwipeableCardViewController {
     @objc func pickLevel() {
         let nextViewController = LevelPickerView()
         self.navigationController?.present(nextViewController, animated: true)
+        nextViewController.delegate = self
     }
 
     @objc func didFailButton() {

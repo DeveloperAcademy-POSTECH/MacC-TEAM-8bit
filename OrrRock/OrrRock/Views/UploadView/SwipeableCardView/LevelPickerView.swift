@@ -2,15 +2,20 @@
 //  LevelPickerView.swift
 //  OrrRock
 //
-//  Created by Yeni Hwang on 2022/10/25.
+//  Created by 이성노, Yeni Hwang on 2022/10/25.
 //
 
 import UIKit
+
+protocol LevelPickerViewDelegate {
+    func didLevelChanged(selectedLevel: String)
+}
 
 class LevelPickerView: UIViewController, UISheetPresentationControllerDelegate {
 
     var isSuccess : Bool = false
     var level = String()
+    var delegate: LevelPickerViewDelegate?
 
     private let levelList: [String] = ["V1","V2","V3","V4","V5","V6","V7","V8","V9"]
 
@@ -33,13 +38,13 @@ class LevelPickerView: UIViewController, UISheetPresentationControllerDelegate {
     }()
 
     lazy var pickerView: UIPickerView = {
-        let picker = UIPickerView()
-        picker.frame = CGRect(x: 0, y: 150, width: self.view.bounds.width, height: 180.0)
-        picker.backgroundColor = .orrGray1
-        picker.delegate = self
-        picker.dataSource = self
-        return picker
-    }()
+         let picker = UIPickerView()
+         picker.frame = CGRect(x: 0, y: 150, width: self.view.bounds.width, height: 180.0)
+         picker.backgroundColor = .orrGray1
+         picker.delegate = self
+         picker.dataSource = self
+         return picker
+     }()
 
     private lazy var saveButton : UIButton = {
         let button = UIButton()
@@ -100,7 +105,7 @@ extension LevelPickerView {
 
     @objc func tapSaveButton(_ sender: UIButton) {
         self.dismiss(animated: true)
-
+        delegate?.didLevelChanged(selectedLevel: level)
     }
 
     @objc func tapCancelButton(_ sender: UIBarButtonItem){
