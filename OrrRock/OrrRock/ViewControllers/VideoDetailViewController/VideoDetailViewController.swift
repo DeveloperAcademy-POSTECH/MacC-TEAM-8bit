@@ -19,6 +19,7 @@ final class VideoDetailViewController: UIViewController {
 	var isShowInfo: Bool = false
 	var isSounded: Bool = false
 	var isPlayed: Bool = false
+	var isShowKeyboard: Bool = false
 	var iconSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
 	
 	let videoInfoView: UIView = VideoInfoView()
@@ -31,6 +32,8 @@ final class VideoDetailViewController: UIViewController {
 	private var favoriteButton: UIBarButtonItem!
 	private var goBackButton: UIBarButtonItem!
 	private var flexibleSpace: UIBarButtonItem!
+	private var cancelButton: UIBarButtonItem!
+	private var completeButton: UIBarButtonItem!
 	
 	private lazy var topSafeAreaView: UIView = {
 		let view = UIView()
@@ -69,6 +72,8 @@ final class VideoDetailViewController: UIViewController {
 		flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
 		goBackButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(goBackAction))
 		favoriteButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(favoriteAction))
+		cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelAction))
+		completeButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(completeAction))
 		
 		// 네비게이션바 띄워주고 탭 되었을 때 숨기기
 		navigationController?.isToolbarHidden = false
@@ -181,6 +186,16 @@ final class VideoDetailViewController: UIViewController {
 	@objc func favoriteAction() {
 		isFavorite.toggle()
 		favoriteButton.image = UIImage(systemName: isFavorite ? "heart.fill" : "heart")
+		print(#function)
+	}
+	
+	// 취소 버튼을 눌렀을 때 로직
+	@objc func cancelAction() {
+		print(#function)
+	}
+	
+	// 완료 버튼을 눌렀을 때 로직
+	@objc func completeAction() {
 		print(#function)
 	}
 	
