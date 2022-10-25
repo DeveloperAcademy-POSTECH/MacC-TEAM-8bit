@@ -231,6 +231,29 @@ final class HomeViewController : UIViewController {
         setUpLayout()
         setUpNavigationBar()
         setUICollectionViewDelegate()
+        
+        // DEBUG
+        DEBUGvideoData = [[
+            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Date(), videoUrl: "D150F80C-ABFA-4EAB-8CA5-80BBF39ECA01/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Date(), videoUrl: "E4E40C15-B932-431A-B440-0ADBFE19E022/L0/001", problemLevel: 3, isSucceeded: true),
+            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Date(), videoUrl: "BED792BC-AA01-435F-BE2B-D460008807C4/L0/001", problemLevel: 3, isSucceeded: true),
+            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Date(), videoUrl: "AFF9F7BB-1D37-4217-BD3B-35CAF076773B/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Date(), videoUrl: "8CED629B-A920-4436-B50C-CDE7A5FC5F22/L0/001", problemLevel: 3, isSucceeded: true),
+        ],[
+            VideoInfo(gymName: "김대우 암벽교실", gymVisitDate: Date(), videoUrl: "65B23455-6709-43C0-A90C-A89E52937050/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "김대우 암벽교실", gymVisitDate: Date(), videoUrl: "836486C1-D52F-4F66-AAFC-00203F3F221D/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "김대우 암벽교실", gymVisitDate: Date(), videoUrl: "3F643207-2002-41C0-BDAD-3CD207EB987E/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "김대우 암벽교실", gymVisitDate: Date(), videoUrl: "7194A843-1842-4FB6-A8AC-E0742C0B981B/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "김대우 암벽교실", gymVisitDate: Date(), videoUrl: "D150F80C-ABFA-4EAB-8CA5-80BBF39ECA01/L0/001", problemLevel: 3, isSucceeded: false),
+        ],[
+            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoUrl: "9C1C5CF8-9F72-4BDE-BEFC-0F098D0651EE/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoUrl: "BC19B352-D956-403A-B118-D8A64EBF32A6/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoUrl: "28A84914-E7FF-41C8-BC00-508981928EDA/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoUrl: "53ED528F-9047-4799-8378-F3451E7B9CF0/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoUrl: "3DDCC03C-2197-42D6-A557-DFF28B09EC04/L0/001", problemLevel: 3, isSucceeded: false),
+        ]]
+        
+        DEBUGflattenVideoData = DEBUGvideoData.flatMap({ $0 })
     }
     
     // MARK: Layout Function
@@ -278,6 +301,11 @@ final class HomeViewController : UIViewController {
         let nextVC = DateSettingViewController()
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
+    
+    
+    // DEBUG
+    var DEBUGvideoData: [[VideoInformation]] = []
+    var DEBUGflattenVideoData: [VideoInformation] = []
     
 }
 
