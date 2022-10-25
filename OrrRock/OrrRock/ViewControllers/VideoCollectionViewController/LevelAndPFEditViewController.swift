@@ -177,7 +177,7 @@ extension LevelAndPFEditViewController {
         
         levelContentView.addSubview(successCheckButton)
         successCheckButton.snp.makeConstraints {
-            $0.centerY.equalTo(successLabel.snp.bottom).offset(71.5)
+            $0.centerY.equalTo(successLabel.snp.bottom).offset(61.5)
             $0.centerX.equalTo(LevelLabel.snp.centerX).offset(52)
             $0.width.equalTo(isSuccess ? 75 : 61)
             $0.height.equalTo(isSuccess ? 75 : 61)
@@ -185,7 +185,7 @@ extension LevelAndPFEditViewController {
         
         levelContentView.addSubview(failCheckButton)
         failCheckButton.snp.makeConstraints {
-            $0.centerY.equalTo(successLabel.snp.bottom).offset(71.5)
+            $0.centerY.equalTo(successLabel.snp.bottom).offset(61.5)
             $0.centerX.equalTo(LevelLabel.snp.centerX).offset(-52)
             $0.width.equalTo(isSuccess ? 61 : 75)
             $0.height.equalTo(isSuccess ? 61 : 75)
@@ -213,45 +213,45 @@ extension LevelAndPFEditViewController {
     
     @objc func didSuccessButtonClicked(_ sender: UIButton){
         isSuccess = true
+        self.successCheckButton.snp.updateConstraints {
+            $0.height.equalTo(75)
+            $0.width.equalTo(75)
+        }
+        self.failCheckButton.snp.updateConstraints {
+            $0.height.equalTo(61)
+            $0.width.equalTo(61)
+        }
         UIView.animate(withDuration: 0.2) {
-            self.successCheckButton.snp.updateConstraints {
-                $0.height.equalTo(75)
-                $0.width.equalTo(75)
-            }
-            
+            self.view.layoutIfNeeded()
             self.successCheckButton.alpha = 1.0
-            
-            self.failCheckButton.snp.updateConstraints {
-                $0.height.equalTo(61)
-                $0.width.equalTo(61)
-            }
-            
+            self.failCheckButton.alpha = 0.3
+            self.successCheckButton.layer.cornerRadius = 37.5
+            self.failCheckButton.layer.cornerRadius = 30.5
             
         }
-        self.failCheckButton.alpha = 0.3
-        self.successCheckButton.layer.cornerRadius = 37.5
-        self.failCheckButton.layer.cornerRadius = 30.5
+        
     }
     
     @objc func didFailButtonClicked(_ sender: UIButton){
         isSuccess = false
+        self.failCheckButton.snp.updateConstraints {
+            $0.height.equalTo(75)
+            $0.width.equalTo(75)
+        }
+        self.successCheckButton.snp.updateConstraints {
+            $0.height.equalTo(61)
+            $0.width.equalTo(61)
+        }
         UIView.animate(withDuration: 0.2) {
-            self.failCheckButton.snp.updateConstraints {
-                $0.height.equalTo(75)
-                $0.width.equalTo(75)
-            }
-            
+            self.view.layoutIfNeeded()
             self.failCheckButton.alpha = 1.0
+            self.successCheckButton.alpha = 0.3
+            self.failCheckButton.layer.cornerRadius = 37.5
+            self.successCheckButton.layer.cornerRadius = 30.5
             
-            self.successCheckButton.snp.updateConstraints {
-                $0.height.equalTo(61)
-                $0.width.equalTo(61)
-            }
             
         }
-        self.successCheckButton.alpha = 0.3
-        failCheckButton.layer.cornerRadius = 37.5
-        successCheckButton.layer.cornerRadius = 30.5
+        
         
     }
 }
