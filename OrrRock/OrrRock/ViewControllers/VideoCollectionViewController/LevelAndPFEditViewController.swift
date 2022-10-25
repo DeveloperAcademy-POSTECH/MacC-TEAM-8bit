@@ -80,6 +80,23 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         return label
     }()
     
+    private lazy var successCheckButton : UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = 37.5
+           button.clipsToBounds = true
+        button.backgroundColor = .orrPass
+        button.setTitle("성공", for: .normal)
+        return button
+    }()
+    
+    private lazy var failCheckButton : UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = 37.5
+           button.clipsToBounds = true
+        button.backgroundColor = .orrFail
+        button.setTitle("실패", for: .normal)
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -137,6 +154,22 @@ extension LevelAndPFEditViewController {
         successLabel.snp.makeConstraints {
             $0.top.equalTo(pickerView.snp.bottom).offset(orrPadding.padding7.rawValue)
             $0.centerX.equalToSuperview()
+        }
+        
+        levelContentView.addSubview(successCheckButton)
+        successCheckButton.snp.makeConstraints {
+            $0.top.equalTo(successLabel.snp.bottom).offset(orrPadding.padding5.rawValue)
+            $0.leading.equalTo(levelContentView.snp.leading).offset(206)
+            $0.width.equalTo(75)
+            $0.height.equalTo(75)
+        }
+        
+        levelContentView.addSubview(failCheckButton)
+        failCheckButton.snp.makeConstraints {
+            $0.top.equalTo(successLabel.snp.bottom).offset(orrPadding.padding5.rawValue)
+            $0.leading.equalTo(levelContentView.snp.leading).offset(109)
+            $0.width.equalTo(75)
+            $0.height.equalTo(75)
         }
     }
     
