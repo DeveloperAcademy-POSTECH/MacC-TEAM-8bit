@@ -14,15 +14,6 @@ import SnapKit
 final class SwipeableCardViewController: UIViewController, LevelPickerViewDelegate {
 
     private var dummyVideos: [DummyVideo] = []
-
-    private lazy var levelButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("레벨", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
-        button.addTarget(self, action: #selector(pickLevel), for: .touchUpInside)
-        return button
-    }()
-
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -31,6 +22,32 @@ final class SwipeableCardViewController: UIViewController, LevelPickerViewDelega
         label.font = .systemFont(ofSize: 17.0, weight: .semibold)
 
         return label
+    }()
+
+    private lazy var levelButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("레벨", for: .normal)
+        button.setTitleColor(.orrGray3, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 17.0, weight: .semibold)
+        button.addTarget(self, action: #selector(pickLevel), for: .touchUpInside)
+
+        return button
+    }()
+
+    private lazy var levelButtonImage: UIImageView = {
+        
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "chevron.down")
+        imageView.tintColor = .orrGray3
+        
+        return imageView
+    }()
+
+    private lazy var separator: UIView = {
+        let separator = UIView()
+        separator.backgroundColor = .orrUPBlue
+        
+        return separator
     }()
     
     private lazy var emptyVideoView: UIView = {
@@ -125,7 +142,7 @@ private extension SwipeableCardViewController {
 
             swipeCard.snp.makeConstraints {
                 $0.center.equalToSuperview()
-                $0.height.equalTo(450.0)
+                $0.height.equalTo(420.0)
                 $0.leading.trailing.equalToSuperview().inset(60.0)
             }
             
@@ -244,27 +261,43 @@ private extension SwipeableCardViewController {
 private extension SwipeableCardViewController {
     
     func setUpLayout() {
-
-        view.addSubview(levelButton)
-        levelButton.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().inset(120.0)
-            $0.leading.trailing.equalToSuperview().inset(100)
-        }
-
+        let buttonStackView = UIStackView(arrangedSubviews: [levelButton, levelButtonImage])
+        buttonStackView.spacing = 8.0
+        buttonStackView.distribution = .fillProportionally
+        
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().inset(104.0)
         }
+    
+        view.addSubview(buttonStackView)
+        buttonStackView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(titleLabel.snp.bottom).offset(24.0)
+            $0.centerX.equalToSuperview()
+        }
         
+        levelButtonImage.snp.makeConstraints {
+            $0.height.equalTo(20.0)
+            $0.width.equalTo(20.0)
+        }
+
         view.addSubview(emptyVideoView)
         emptyVideoView.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.height.equalTo(450.0)
+            $0.height.equalTo(420.0)
             $0.leading.trailing.equalToSuperview().inset(60.0)
         }
         
+        view.addSubview(separator)
+        separator.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(buttonStackView.snp.bottom).offset(8.0)
+            $0.height.equalTo(2.0)
+            $0.width.equalTo(70.0)
+        }
+
         emptyVideoView.addSubview(emptyVideoInformation)
         emptyVideoInformation.snp.makeConstraints {
             $0.center.equalTo(emptyVideoView.snp.center)
