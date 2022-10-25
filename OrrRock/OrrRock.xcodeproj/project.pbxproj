@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A0B41072907C59600057FA7 /* SwipeableCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B41062907C59600057FA7 /* SwipeableCardViewController.swift */; };
 		0A0B410B2907C64900057FA7 /* DummyVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B410A2907C64900057FA7 /* DummyVideoModel.swift */; };
+		0A0B410D2907C79200057FA7 /* VideoResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B410C2907C79200057FA7 /* VideoResultType.swift */; };
 		0AAB780A290424A300EEEFFB /* SwipeableCardVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */; };
 		0AAB780C2904251D00EEEFFB /* ianIsComming.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 0AAB780B2904251C00EEEFFB /* ianIsComming.MOV */; };
 		342508A329001780000653D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A229001780000653D9 /* HomeViewController.swift */; };
@@ -75,6 +76,7 @@
 /* Begin PBXFileReference section */
 		0A0B41062907C59600057FA7 /* SwipeableCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardViewController.swift; sourceTree = "<group>"; };
 		0A0B410A2907C64900057FA7 /* DummyVideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyVideoModel.swift; sourceTree = "<group>"; };
+		0A0B410C2907C79200057FA7 /* VideoResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoResultType.swift; sourceTree = "<group>"; };
 		0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardVideoView.swift; sourceTree = "<group>"; };
 		0AAB780B2904251C00EEEFFB /* ianIsComming.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = ianIsComming.MOV; sourceTree = "<group>"; };
 		342508A229001780000653D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			children = (
 				0A0B41062907C59600057FA7 /* SwipeableCardViewController.swift */,
 				0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */,
+				0A0B410C2907C79200057FA7 /* VideoResultType.swift */,
 				0A0B41092907C63000057FA7 /* DummyData */,
 			);
 			path = SwipeableCardView;
@@ -486,6 +489,7 @@
 				342508AF29002F31000653D9 /* HomeCollectionViewHeaderCell.swift in Sources */,
 				709A8C6D2904A3E800CEA6F4 /* CustomIndicator.swift in Sources */,
 				342508A729001BBC000653D9 /* HomeCollectionViewCardCell.swift in Sources */,
+				0A0B410D2907C79200057FA7 /* VideoResultType.swift in Sources */,
 				70A44805290440E600BE18A5 /* DateSettingViewController.swift in Sources */,
 				342C457029018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift in Sources */,
 				3A2880E929033C0D00FBFB70 /* SortOption.swift in Sources */,
