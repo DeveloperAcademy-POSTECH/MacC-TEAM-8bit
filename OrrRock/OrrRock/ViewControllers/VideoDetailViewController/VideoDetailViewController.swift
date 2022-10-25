@@ -169,14 +169,14 @@ final class VideoDetailViewController: UIViewController {
 				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -430)
 				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: -100)
 				self.navigationController?.navigationBar.layer.opacity = 0
-				self.topSafeareaView.layer.opacity = 0
+				self.topSafeAreaView.layer.opacity = 0
 			})
 		} else {
 			UIView.animate(withDuration: 0.2, animations: {
 				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
 				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: 0)
 				self.navigationController?.navigationBar.layer.opacity = 1
-				self.topSafeareaView.layer.opacity = 1
+				self.topSafeAreaView.layer.opacity = 1
 			})
 		}
 		print(#function)
@@ -231,7 +231,7 @@ extension VideoDetailViewController {
 		if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
 			isShowKeyboard.toggle()
 			self.navigationController?.navigationBar.layer.opacity = 1
-			self.topSafeareaView.layer.opacity = 1
+			self.topSafeAreaView.layer.opacity = 1
 			// 키보드의 유무에 따라 버튼 옵션 변경
 			navigationItem.leftBarButtonItem = isShowKeyboard ? cancelButton : goBackButton
 			navigationItem.rightBarButtonItem = isShowKeyboard ? completeButton : favoriteButton
@@ -243,7 +243,7 @@ extension VideoDetailViewController {
 		if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
 			isShowKeyboard.toggle()
 			self.navigationController?.navigationBar.layer.opacity = 0
-			self.topSafeareaView.layer.opacity = 0
+			self.topSafeAreaView.layer.opacity = 0
 			// 키보드의 유무에 따라 버튼 옵션 변경
 			navigationItem.leftBarButtonItem = isShowKeyboard ? cancelButton : goBackButton
 			navigationItem.rightBarButtonItem = isShowKeyboard ? completeButton : favoriteButton
