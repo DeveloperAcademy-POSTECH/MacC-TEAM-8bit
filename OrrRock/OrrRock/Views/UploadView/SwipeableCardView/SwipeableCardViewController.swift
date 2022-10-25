@@ -35,7 +35,6 @@ final class SwipeableCardViewController: UIViewController {
     }()
 
     private lazy var levelButtonImage: UIImageView = {
-        
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "chevron.down")
         imageView.tintColor = .orrGray3
@@ -62,7 +61,7 @@ final class SwipeableCardViewController: UIViewController {
     private lazy var emptyVideoInformation: UILabel = {
         let label = UILabel()
         label.text = "모든 비디오를 분류했습니다!"
-        label.textColor = .orrGray4
+        label.textColor = .orrGray3
         label.font = .systemFont(ofSize: 15.0, weight: .regular)
         
         return label
@@ -90,6 +89,19 @@ final class SwipeableCardViewController: UIViewController {
         button.layer.cornerRadius = 37.0
         button.addTarget(self, action: #selector(didSuccessButton), for: .touchUpInside)
         
+        return button
+    }()
+    
+    private lazy var saveButton : UIButton = {
+        let button = UIButton()
+        button.setBackgroundColor(.orrUPBlue!, for: .normal)
+        button.addTarget(self, action: #selector(tapSaveButton), for: .touchUpInside)
+        button.setTitle("저장하기", for: .normal)
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 10.0
+        button.setTitleColor(.white, for: .normal)
+        button.isHidden = true
+
         return button
     }()
     
@@ -220,6 +232,10 @@ private extension SwipeableCardViewController {
         animateCard(rotationAngle: 0.4, videoResultType: .success)
     }
     
+    @objc func tapSaveButton() {
+        // TODO: - 다음 뷰로 넘어가는 로직
+    }
+    
     func fetchVideo() {
         self.dummyVideos = VideoManager.shared.fetchVideo()
         
@@ -256,6 +272,11 @@ private extension SwipeableCardViewController {
                     }
                 }
             }
+        }
+        if dummyVideos.count == 1 {
+            saveButton.isHidden = false
+            successButton.isHidden = true
+            failButton.isHidden = true
         }
     }
     
@@ -324,6 +345,13 @@ private extension SwipeableCardViewController {
             $0.trailing.equalToSuperview().inset(48.0)
             $0.height.equalTo(74.0)
             $0.width.equalTo(74.0)
+        }
+        
+        view.addSubview(saveButton)
+        saveButton.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(16.0)
+            $0.bottom.equalToSuperview().inset(30.0)
+            $0.height.equalTo(56.0)
         }
     }
 }
