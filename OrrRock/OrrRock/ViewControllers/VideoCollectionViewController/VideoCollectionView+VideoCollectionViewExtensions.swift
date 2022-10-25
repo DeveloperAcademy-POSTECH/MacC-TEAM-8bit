@@ -32,6 +32,7 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
         case .view:
             videoCollectionView.deselectItem(at: indexPath, animated: true)
             let vc = VideoDetailViewController()
+            vc.videoInformation = videoInformationArray[indexPath.item]
             navigationController?.pushViewController(vc, animated: true)
             
         case .select:
