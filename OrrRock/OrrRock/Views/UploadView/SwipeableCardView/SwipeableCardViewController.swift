@@ -66,13 +66,16 @@ private extension SwipeableCardViewController {
                 return view
             }()
             
-            view.addSubview(swipeCard)
+            swipeCard.dummyVideo = dummyVideo
+            swipeCard.tag = dummyVideo.id
             
             // gesture
             let gesture = UIPanGestureRecognizer()
             gesture.addTarget(self, action: #selector(handlerCard))
             swipeCard.addGestureRecognizer(gesture)
             
+            view.insertSubview(swipeCard, at: 0)
+
             swipeCard.snp.makeConstraints {
                 $0.leading.trailing.equalToSuperview().inset(60.0)
                 $0.height.equalTo(450.0)
@@ -83,12 +86,17 @@ private extension SwipeableCardViewController {
     
     @objc func removeCard(card: UIView) {
         card.removeFromSuperview()
+        
+        self.dummyVideos = self.dummyVideos.filter ({ dummyVideos in
+            return dummyVideos.id != card.tag
+        })
     }
     
     // Gesture
     @objc func handlerCard(_ gesture: UIPanGestureRecognizer) {
         if let card = gesture.view as? SwipeableCardVideoView {
             let point = gesture.translation(in: view)
+            
             card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
             
             let rotationAngle = point.x / view.bounds.width * 0.4
@@ -105,11 +113,13 @@ private extension SwipeableCardViewController {
             
             if gesture.state == .ended {
                 if card.center.x > self.view.bounds.width + 20 {
-                    removeCard(card: card)
+                    animateCard(rotationAngle: rotationAngle, videoResultType: .success)
+                    return
                 }
                 
                 if card.center.x < -20 {
-                    removeCard(card: card)
+                    animateCard(rotationAngle: rotationAngle, videoResultType: .fail)
+                    return
                 }
                 
                 UIView.animate(withDuration: 0.2) {
@@ -134,6 +144,32 @@ private extension SwipeableCardViewController {
         self.dummyVideos = VideoManager.shared.fetchVideo()
         
         print(self.dummyVideos)
+    }
+    
+    func animateCard(rotationAngle: CGFloat, videoResultType: VideoResultType) {
+        if let dummyVideo = dummyVideos.first {
+            for view in view.subviews {
+                if view.tag == dummyVideo.id {
+                    if let card = view as? SwipeableCardVideoView {
+                        let center: CGPoint
+                        
+                        switch videoResultType {
+                        case .fail:
+                            center = CGPoint(x: card.center.x - view.bounds.width, y: card.center.y + 50)
+                        case .success:
+                            center = CGPoint(x: card.center.x + view.bounds.width, y: card.center.y + 50)
+                        }
+                        
+                        UIView.animate(withDuration: 0.2, animations: {
+                            card.center = center
+                            card.transform = CGAffineTransform(rotationAngle: rotationAngle)
+                        }) { _ in
+                            self.removeCard(card: card)
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

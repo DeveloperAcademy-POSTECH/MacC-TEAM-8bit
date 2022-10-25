@@ -13,6 +13,14 @@ import AVFoundation
 
 final class SwipeableCardVideoView: UIView {
 
+    var dummyVideo: DummyVideo? {
+        didSet {
+            if let dummyVideo = dummyVideo {
+                self.asset = AVAsset(url: Bundle.main.url(forResource: "ianIsComming", withExtension: "MOV")!)
+            }
+        }
+    }
+    
     private lazy var videoBackgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray
@@ -44,7 +52,7 @@ final class SwipeableCardVideoView: UIView {
 
     private var player = AVPlayer()
     private var playerLayer: AVPlayerLayer?
-    private let asset: AVAsset
+    private var asset: AVAsset
 
     init(asset: AVAsset) {
         self.asset = asset
