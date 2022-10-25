@@ -22,7 +22,7 @@ final class VideoDetailViewController: UIViewController {
 	var isShowKeyboard: Bool = false
 	var iconSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
 	
-	let videoInfoView: UIView = VideoInfoView()
+	let videoInfoView: VideoInfoView = VideoInfoView()
 	
 	private var infoButton: UIBarButtonItem!
 	private var feedbackButton: UIBarButtonItem!
