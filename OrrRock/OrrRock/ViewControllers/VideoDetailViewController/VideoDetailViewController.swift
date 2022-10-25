@@ -44,7 +44,7 @@ final class VideoDetailViewController: UIViewController {
 	lazy var videoPlayView: VideoPlayView = {
 		// FIXME: 임시 데이터 입력을 위한 코드 추후 변경
 		// 추후 PHAsset 타입의 데이터를 AVAsset으로 타입 포매팅 후 url을 가져오는 코드로 변경
-		let embed = Bundle.main.url(forResource: "testVideo", withExtension: "MP4")
+		let embed = Bundle.main.url(forResource: "ianIsComming", withExtension: "MOV")
 		let testVideoAsset = AVAsset(url: embed!)
 		
 		let view = VideoPlayView(asset: testVideoAsset)

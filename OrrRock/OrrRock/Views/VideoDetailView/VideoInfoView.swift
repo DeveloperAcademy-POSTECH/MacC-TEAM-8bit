@@ -94,11 +94,17 @@ final class VideoInfoView: UIView {
 	@objc func dateLocationEdit() {
 		print(#function)
 		// 날짜, 클라이밍장 편집 뷰 네비게이션
+        let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
+        let vc = DateAndGymEditViewController()
+        viewController.present(vc, animated: true)
 	}
 	
 	@objc func levelPFEdit() {
 		print(#function)
 		// 난이도, 성패여부 편집 뷰 네비게이션
+        let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
+        let vc = LevelAndPFEditViewController()
+        viewController.present(vc, animated: true)
 	}
 	
 	override init(frame: CGRect) {
