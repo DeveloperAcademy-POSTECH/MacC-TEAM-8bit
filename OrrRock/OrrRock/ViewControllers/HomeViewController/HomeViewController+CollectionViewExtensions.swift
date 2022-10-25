@@ -49,8 +49,8 @@ extension HomeViewController: UICollectionViewDataSource {
             
             cell.detailButton.tag = indexPath.row
             cell.detailButton.gymName = sortedVideoInfoData[indexPath.row][0].gymName
-            cell.detailButton.primaryGymVisitDate = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymVisitDate : min(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString()
-            cell.detailButton.secondaryGymVisitDate = sortOption == .gymVisitDate ? nil : max(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString()
+            cell.detailButton.primaryGymVisitDate = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymVisitDate : min(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate)
+            cell.detailButton.secondaryGymVisitDate = sortOption == .gymVisitDate ? nil : max(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate)
             cell.detailButton.videoInformationArray = sortedVideoInfoData[indexPath.row]
             
 
