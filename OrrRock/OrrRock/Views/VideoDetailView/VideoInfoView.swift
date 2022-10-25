@@ -123,7 +123,7 @@ extension VideoInfoView: UITextViewDelegate {
 	// 텍스트뷰가 비어있을 때 플레이스 홀더 띄워주는 메서드
 	func textViewDidBeginEditing(_ textView: UITextView) {
 		guard textView.textColor == .placeholderText else { return }
-		textView.textColor = .label
+		textView.textColor = .orrBlack
 		textView.text = nil
 	}
 
