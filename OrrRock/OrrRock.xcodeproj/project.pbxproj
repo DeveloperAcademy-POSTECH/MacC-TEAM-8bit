@@ -24,8 +24,6 @@
 		34B01143290015950043951A /* Extension in Resources */ = {isa = PBXBuildFile; fileRef = 34B01142290015950043951A /* Extension */; };
 		34B011462900159F0043951A /* Resource in Resources */ = {isa = PBXBuildFile; fileRef = 34B011452900159F0043951A /* Resource */; };
 		34B01149290015A60043951A /* Model in Resources */ = {isa = PBXBuildFile; fileRef = 34B01148290015A60043951A /* Model */; };
-		3A08879C29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A08879A29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift */; };
-		3A08879D29012C8A00EFFDBB /* VideoInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A08879B29012C8A00EFFDBB /* VideoInformation+CoreDataProperties.swift */; };
 		3A15AC7729071DD90058512F /* OrderOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC7629071DD90058512F /* OrderOption.swift */; };
 		3A15AC7929071F710058512F /* DataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC7829071F710058512F /* DataRepository.swift */; };
 		3A15AC7B290724620058512F /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC7A290724620058512F /* DataManager.swift */; };
@@ -34,6 +32,8 @@
 		3A15AC8129072D280058512F /* CRUDTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC8029072D280058512F /* CRUDTestViewController.swift */; };
 		3A15AC8329072DD80058512F /* CRUDTestViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC8229072DD80058512F /* CRUDTestViewController+.swift */; };
 		3A15AC8529072F940058512F /* RandomDataGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC8429072F940058512F /* RandomDataGenerator.swift */; };
+		3A15AC882907B1160058512F /* VideoInformation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC862907B1160058512F /* VideoInformation+CoreDataClass.swift */; };
+		3A15AC892907B1160058512F /* VideoInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC872907B1160058512F /* VideoInformation+CoreDataProperties.swift */; };
 		3A2880E929033C0D00FBFB70 /* SortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2880E829033C0D00FBFB70 /* SortOption.swift */; };
 		3A2880EB29033C2500FBFB70 /* FilterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2880EA29033C2500FBFB70 /* FilterOption.swift */; };
 		3A2880FB2904290E00FBFB70 /* SortTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2880FA2904290E00FBFB70 /* SortTestViewController.swift */; };
@@ -88,8 +88,6 @@
 		34B01142290015950043951A /* Extension */ = {isa = PBXFileReference; lastKnownFileType = text; path = Extension; sourceTree = "<group>"; };
 		34B011452900159F0043951A /* Resource */ = {isa = PBXFileReference; lastKnownFileType = text; path = Resource; sourceTree = "<group>"; };
 		34B01148290015A60043951A /* Model */ = {isa = PBXFileReference; lastKnownFileType = text; path = Model; sourceTree = "<group>"; };
-		3A08879A29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoInformation+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3A08879B29012C8A00EFFDBB /* VideoInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3A15AC7629071DD90058512F /* OrderOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderOption.swift; sourceTree = "<group>"; };
 		3A15AC7829071F710058512F /* DataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepository.swift; sourceTree = "<group>"; };
 		3A15AC7A290724620058512F /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -98,6 +96,8 @@
 		3A15AC8029072D280058512F /* CRUDTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRUDTestViewController.swift; sourceTree = "<group>"; };
 		3A15AC8229072DD80058512F /* CRUDTestViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CRUDTestViewController+.swift"; sourceTree = "<group>"; };
 		3A15AC8429072F940058512F /* RandomDataGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomDataGenerator.swift; sourceTree = "<group>"; };
+		3A15AC862907B1160058512F /* VideoInformation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoInformation+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3A15AC872907B1160058512F /* VideoInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3A2880E829033C0D00FBFB70 /* SortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOption.swift; sourceTree = "<group>"; };
 		3A2880EA29033C2500FBFB70 /* FilterOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOption.swift; sourceTree = "<group>"; };
 		3A2880FA2904290E00FBFB70 /* SortTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortTestViewController.swift; sourceTree = "<group>"; };
@@ -247,8 +247,8 @@
 		3A08879E29012CC300EFFDBB /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				3A08879A29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift */,
-				3A08879B29012C8A00EFFDBB /* VideoInformation+CoreDataProperties.swift */,
+				3A15AC862907B1160058512F /* VideoInformation+CoreDataClass.swift */,
+				3A15AC872907B1160058512F /* VideoInformation+CoreDataProperties.swift */,
 				3A15AC7A290724620058512F /* DataManager.swift */,
 				3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */,
 				3A15AC7829071F710058512F /* DataRepository.swift */,
@@ -474,14 +474,13 @@
 				78CAA0662901F7A9003C3D77 /* BasePaddingLabel.swift in Sources */,
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
 				78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */,
+				3A15AC892907B1160058512F /* VideoInformation+CoreDataProperties.swift in Sources */,
 				3A2880FE29042A0600FBFB70 /* Date+RandomDate.swift in Sources */,
 				3A15AC8329072DD80058512F /* CRUDTestViewController+.swift in Sources */,
 				3A15AC7729071DD90058512F /* OrderOption.swift in Sources */,
 				3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */,
 				FB32280F29046B4500276A7D /* VideoDetailViewController.swift in Sources */,
-				3A70C3CF2901CB9600BE11B5 /* CoreDataManager.swift in Sources */,
-				3A08879C29012C8A00EFFDBB /* VideoInformation+CoreDataClass.swift in Sources */,
-				707B2CB028FFFDB30062C958 /* UploadTestViewController.swift in Sources */,
+				3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */,
 				FB32281329046CDE00276A7D /* VideoPlayView.swift in Sources */,
 				3A2880FE29042A0600FBFB70 /* Date+RandomDate.swift in Sources */,
 				3A2880EB29033C2500FBFB70 /* FilterOption.swift in Sources */,
@@ -489,13 +488,13 @@
 				70A44809290464BD00BE18A5 /* GymSettingViewController.swift in Sources */,
 				3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */,
 				3A15AC7F2907262C0058512F /* VideoCollectionView+DataSorting.swift in Sources */,
-				3A08879D29012C8A00EFFDBB /* VideoInformation+CoreDataProperties.swift in Sources */,
 				342508A929001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift in Sources */,
 				3A15AC8129072D280058512F /* CRUDTestViewController.swift in Sources */,
 				3AA4D42928FEBADE006C718A /* OrrRock.xcdatamodeld in Sources */,
 				78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */,
 				342508A329001780000653D9 /* HomeViewController.swift in Sources */,
 				342508A52900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift in Sources */,
+				3A15AC882907B1160058512F /* VideoInformation+CoreDataClass.swift in Sources */,
 				3AA4D42128FEBADE006C718A /* SceneDelegate.swift in Sources */,
 				342699232902E8480054D34C /* VideoFilterEnum.swift in Sources */,
 				3A15AC7D2907258A0058512F /* SectionData.swift in Sources */,
@@ -651,7 +650,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MSUF83HQ8R;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
@@ -681,7 +680,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MSUF83HQ8R;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";

@@ -22,7 +22,7 @@ class CoreDataDAO {
         entity.setValue(UUID(), forKey: "id")
         entity.setValue(info.gymName, forKey: "gymName")
         entity.setValue(info.gymVisitDate, forKey: "gymVisitDate")
-        entity.setValue(info.videoLocalIdentifier, forKey: "videoUrl")
+        entity.setValue(info.videoLocalIdentifier, forKey: "videoLocalIdentifier")
         entity.setValue(info.problemLevel, forKey: "problemLevel")
         entity.setValue(info.isSucceeded, forKey: "isSucceeded")
         
