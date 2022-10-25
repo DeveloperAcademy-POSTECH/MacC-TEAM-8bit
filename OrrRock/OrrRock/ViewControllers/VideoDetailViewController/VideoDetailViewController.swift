@@ -12,10 +12,6 @@ import SnapKit
 
 final class VideoDetailViewController: UIViewController {
 	
-	// FIXME: data관련 임시 코드 coreData 연동 시 추후 변경
-	var isFavorite: Bool = false
-	// -----------------------------
-	
 	var isShowInfo: Bool = false
 	var isSounded: Bool = false
 	var isPlayed: Bool = false
@@ -24,7 +20,6 @@ final class VideoDetailViewController: UIViewController {
 	
 	let videoInfoView: VideoInfoView = VideoInfoView()
 	
-    //VideoInfo - 꼬마가 사용할 데이터
     var videoInformation: VideoInformation!
     
 	private var infoButton: UIBarButtonItem!
@@ -74,7 +69,7 @@ final class VideoDetailViewController: UIViewController {
 		// 네비게이션바 버튼 아이템 생성
 		flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
 		goBackButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(goBackAction))
-		favoriteButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(favoriteAction))
+		favoriteButton = UIBarButtonItem(image: UIImage(systemName: videoInformation.isFavorite ? "heart.fill" : "heart"), style: .plain, target: self, action: #selector(favoriteAction))
 		cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelAction))
 		completeButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(completeAction))
 		
@@ -187,8 +182,8 @@ final class VideoDetailViewController: UIViewController {
 	
 	// 좋아요 버튼을 눌렀을 때 로직
 	@objc func favoriteAction() {
-		isFavorite.toggle()
-		favoriteButton.image = UIImage(systemName: isFavorite ? "heart.fill" : "heart")
+		videoInformation.isFavorite.toggle()
+		favoriteButton.image = UIImage(systemName: videoInformation.isFavorite ? "heart.fill" : "heart")
 		print(#function)
 	}
 	
@@ -201,7 +196,7 @@ final class VideoDetailViewController: UIViewController {
 	@objc func completeAction() {
 		//TODO: 피드백 입력 구현 마무리
 		var feedbackText: String = self.videoInfoView.feedbackTextView.text
-		updateFeedback(videoInformation: VideoInformation, feedback: feedbackText)
+//		updateFeedback(videoInformation: VideoInformation, feedback: feedbackText)
 		self.view.endEditing(true)
 	}
 	
