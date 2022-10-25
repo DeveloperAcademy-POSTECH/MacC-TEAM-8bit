@@ -11,7 +11,7 @@ import AVFoundation
 import AVKit
 import SnapKit
 
-final class SwipeableCardViewController: UIViewController, LevelPickerViewDelegate {
+final class SwipeableCardViewController: UIViewController {
 
     private var dummyVideos: [DummyVideo] = []
     
@@ -106,9 +106,16 @@ final class SwipeableCardViewController: UIViewController, LevelPickerViewDelega
         fetchVideo()
         createSwipeableCard()
     }
+}
 
+extension SwipeableCardViewController: LevelPickerViewDelegate {
+    
     func didLevelChanged(selectedLevel: String) {
         levelButton.setTitle(selectedLevel, for: .normal)
+        if !selectedLevel.isEmpty {
+            levelButton.setTitleColor(.black, for: .normal)
+            separator.backgroundColor = .black
+        }
     }
 }
 
