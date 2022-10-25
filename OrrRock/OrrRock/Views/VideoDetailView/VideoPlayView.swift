@@ -15,7 +15,7 @@ final class VideoPlayView: UIView {
 		return view
 	}()
 	
-	private var player = AVPlayer()
+	var player = AVPlayer()
 	private var playerLayer: AVPlayerLayer?
 	private let asset: AVAsset
 	
