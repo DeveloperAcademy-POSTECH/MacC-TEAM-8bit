@@ -20,26 +20,42 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        var listCell : HomeCollectionViewListCell!
-        var cardCell : HomeCollectionViewCardCell!
-        
         if isCardView {
-            cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewCardCell", for: indexPath) as? HomeCollectionViewCardCell
-            cardCell.detailButton.tag = indexPath.row
-            cardCell.detailButton.addTarget(self, action:  #selector(navigateToVideoCollectionView(sender:)), for: .touchUpInside)
-            return cardCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewCardCell", for: indexPath) as! HomeCollectionViewCardCell
             
+            var successCount: Int = 0
+            var thumbnails: [UIImage] = []
+            
+            DEBUGvideoData[indexPath.row].forEach { videoInfo in
+                successCount += videoInfo.isSucceeded ? 1 : 0
+                if let thumbnail = videoInfo.videoLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2), height: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2))) {
+                    thumbnails.append(thumbnail)
+                }
+            }
+            
+            cell.setUpData(visitedDate: DEBUGvideoData[indexPath.row][0].gymVisitDate.timeToString(),
+                           visitedGymName: DEBUGvideoData[indexPath.row][0].gymName,
+                           PFCountDescription: "\(successCount)번의 성공, \(DEBUGvideoData[indexPath.row].count - successCount)번의 실패",
+                           videoCountDescription: "\(DEBUGvideoData[indexPath.row].count)개의 비디오",
+                           thumbnails: thumbnails)
+
+            cell.detailButton.tag = indexPath.row
+            cell.detailButton.addTarget(self, action:  #selector(navigateToVideoCollectionView(sender:)), for: .touchUpInside)
+            
+            return cell
             
         } else {
-            listCell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewListCell", for: indexPath) as? HomeCollectionViewListCell
-            return listCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewListCell", for: indexPath) as! HomeCollectionViewListCell
+            
+            cell.setUpData(visitedDate: DEBUGflattenVideoData[indexPath.row].gymVisitDate.timeToString(),
+                           visitedGymName: DEBUGflattenVideoData[indexPath.row].gymName,
+                           level: "V\(DEBUGflattenVideoData[indexPath.row].problemLevel)",
+                           PF: DEBUGflattenVideoData[indexPath.row].isSucceeded ? "성공" : "실패",
+                           thumbnail: DEBUGflattenVideoData[indexPath.row].videoLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: 50, height: 50))!)
+            
+            
+            return cell
         }
-        
-        // TODO
-        // 성공 개수 Count 하기
-        // Thumbnails 배열 생성 (최대 10개의 UIImage를 담는 배열)
-        // CollectionViewCell에 필요한 데이터 loadCardViewData 함수를 통해 전달하기
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

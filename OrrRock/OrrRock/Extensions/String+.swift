@@ -5,7 +5,7 @@
 //  Created by kimhyeongmin on 2022/10/22.
 //
 
-import Foundation
+import UIKit
 import Photos
 
 extension String {

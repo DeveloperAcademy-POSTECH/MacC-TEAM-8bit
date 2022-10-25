@@ -137,4 +137,12 @@ final class HomeCollectionViewListCell: UICollectionViewCell {
             $0.height.equalTo(1)
         }
     }
+    
+    func setUpData(visitedDate: String, visitedGymName: String, level: String, PF: String, thumbnail: UIImage) {
+        visitedDateLabel.text = visitedDate
+        gymNameLabel.text = visitedGymName
+        levelLabel.text = level
+        PFLabel.text = PF
+        thumbnailView.image = thumbnail
+    }
 }
