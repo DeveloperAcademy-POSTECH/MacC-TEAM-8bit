@@ -13,7 +13,7 @@ import SnapKit
 
 final class SwipeableCardViewController: UIViewController {
     
-    var dummyVideos: [DummyVideo] = []
+    private var dummyVideos: [DummyVideo] = []
     
     private lazy var failButton: UIButton = {
         let button = UIButton()
@@ -84,6 +84,7 @@ private extension SwipeableCardViewController {
         }
     }
     
+    // swipeCard가 SuperView에서 제거됩니다.
     @objc func removeCard(card: UIView) {
         card.removeFromSuperview()
         
@@ -146,6 +147,7 @@ private extension SwipeableCardViewController {
         print(self.dummyVideos)
     }
     
+    // swipeCard의 애니매이션 효과를 담당합니다.
     func animateCard(rotationAngle: CGFloat, videoResultType: VideoResultType) {
         if let dummyVideo = dummyVideos.first {
             for view in view.subviews {
