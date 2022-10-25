@@ -18,7 +18,7 @@ final class SwipeableCardViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "스와이프를 통해 비디오를 분류해주세요."
-        label.textColor = .label
+        label.textColor = .orrBlack
         label.font = .systemFont(ofSize: 17.0, weight: .semibold)
 
         return label
@@ -26,7 +26,9 @@ final class SwipeableCardViewController: UIViewController {
     
     private lazy var emptyVideoView: UIView = {
         let view = UIView()
-        view.backgroundColor = .gray
+        view.backgroundColor = .orrGray2
+        view.layer.cornerRadius = 10
+        view.clipsToBounds = true
         
         return view
     }()
@@ -34,7 +36,8 @@ final class SwipeableCardViewController: UIViewController {
     private lazy var emptyVideoInformation: UILabel = {
         let label = UILabel()
         label.text = "모든 비디오를 분류했습니다!"
-        label.textColor = .white
+        label.textColor = .orrGray4
+        label.font = .systemFont(ofSize: 15.0, weight: .regular)
         
         return label
     }()
@@ -66,9 +69,12 @@ final class SwipeableCardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // card UI
         view.backgroundColor = .white
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonClicked))
+        navigationItem.leftBarButtonItem?.tintColor = .orrUPBlue
+        
+        // card UI
         setUpLayout()
         fetchVideo()
         createSwipeableCard()
@@ -87,6 +93,8 @@ private extension SwipeableCardViewController {
                 
                 let view = SwipeableCardVideoView(asset: testVideoAsset)
                 self.view.addSubview(view)
+                view.layer.cornerRadius = 10
+                view.clipsToBounds = true
                 
                 return view
             }()
@@ -206,6 +214,11 @@ private extension SwipeableCardViewController {
             }
         }
     }
+    
+    @objc func backButtonClicked() {
+        self.navigationController?.popViewController(animated: true)
+        print("pop 가 됐습니다.")
+    }
 }
 
 private extension SwipeableCardViewController {
@@ -214,7 +227,7 @@ private extension SwipeableCardViewController {
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().inset(114.0)
+            $0.top.equalToSuperview().inset(104.0)
         }
         
         view.addSubview(emptyVideoView)
@@ -231,16 +244,16 @@ private extension SwipeableCardViewController {
 
         view.addSubview(failButton)
         failButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(32.0)
-            $0.leading.equalToSuperview().inset(40.0)
+            $0.bottom.equalToSuperview().inset(64.0)
+            $0.leading.equalToSuperview().inset(48.0)
             $0.height.equalTo(74.0)
             $0.width.equalTo(74.0)
         }
         
         view.addSubview(successButton)
         successButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(40.0)
-            $0.trailing.equalToSuperview().inset(40.0)
+            $0.bottom.equalToSuperview().inset(64.0)
+            $0.trailing.equalToSuperview().inset(48.0)
             $0.height.equalTo(74.0)
             $0.width.equalTo(74.0)
         }
