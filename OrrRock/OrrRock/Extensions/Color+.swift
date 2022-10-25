@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIColor{
+extension UIColor {
     //MAIN COLOR
     static let orrUPBlue = UIColor(named: "oRUPBlue")
 

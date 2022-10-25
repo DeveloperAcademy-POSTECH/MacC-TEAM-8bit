@@ -23,13 +23,41 @@ final class SwipeableCardViewController: UIViewController, LevelPickerViewDelega
         return button
     }()
 
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "스와이프를 통해 비디오를 분류해주세요."
+        label.textColor = .orrBlack
+        label.font = .systemFont(ofSize: 17.0, weight: .semibold)
+
+        return label
+    }()
+    
+    private lazy var emptyVideoView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .orrGray2
+        view.layer.cornerRadius = 10
+        view.clipsToBounds = true
+        
+        return view
+    }()
+    
+    private lazy var emptyVideoInformation: UILabel = {
+        let label = UILabel()
+        label.text = "모든 비디오를 분류했습니다!"
+        label.textColor = .orrGray4
+        label.font = .systemFont(ofSize: 15.0, weight: .regular)
+        
+        return label
+    }()
+    
     private lazy var failButton: UIButton = {
         let button = UIButton()
         button.setTitle("실패", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .semibold)
-        button.backgroundColor = .red
-        button.layer.cornerRadius = 10.0
+        button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .semibold)
+        button.backgroundColor = .orrFail
+        button.layer.cornerRadius = 37.0
         button.addTarget(self, action: #selector(didFailButton), for: .touchUpInside)
         
         return button
@@ -39,9 +67,9 @@ final class SwipeableCardViewController: UIViewController, LevelPickerViewDelega
         let button = UIButton()
         button.setTitle("성공", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .semibold)
-        button.backgroundColor = .blue
-        button.layer.cornerRadius = 10.0
+        button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .semibold)
+        button.backgroundColor = .orrPass
+        button.layer.cornerRadius = 37.0
         button.addTarget(self, action: #selector(didSuccessButton), for: .touchUpInside)
         
         return button
@@ -49,10 +77,13 @@ final class SwipeableCardViewController: UIViewController, LevelPickerViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        view.backgroundColor = .white
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonClicked))
+        navigationItem.leftBarButtonItem?.tintColor = .orrUPBlue
+        
         // card UI
-        view.backgroundColor = .systemGroupedBackground
-
         setUpLayout()
         fetchVideo()
         createSwipeableCard()
@@ -75,6 +106,8 @@ private extension SwipeableCardViewController {
                 
                 let view = SwipeableCardVideoView(asset: testVideoAsset)
                 self.view.addSubview(view)
+                view.layer.cornerRadius = 10
+                view.clipsToBounds = true
                 
                 return view
             }()
@@ -90,10 +123,12 @@ private extension SwipeableCardViewController {
             view.insertSubview(swipeCard, at: 0)
 
             swipeCard.snp.makeConstraints {
-                $0.leading.trailing.equalToSuperview().inset(60.0)
+                $0.center.equalToSuperview()
                 $0.height.equalTo(450.0)
-                $0.centerY.equalToSuperview()
+                $0.leading.trailing.equalToSuperview().inset(60.0)
             }
+            
+            self.view.sendSubviewToBack(self.emptyVideoView)
         }
     }
 
@@ -110,9 +145,9 @@ private extension SwipeableCardViewController {
     @objc func handlerCard(_ gesture: UIPanGestureRecognizer) {
         if let card = gesture.view as? SwipeableCardVideoView {
             let point = gesture.translation(in: view)
-            
+ 
             card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
-            
+                        
             let rotationAngle = point.x / view.bounds.width * 0.4
             
             if point.x > 0 {
@@ -198,6 +233,11 @@ private extension SwipeableCardViewController {
             }
         }
     }
+    
+    @objc func backButtonClicked() {
+        self.navigationController?.popViewController(animated: true)
+        print("pop 가 됐습니다.")
+    }
 }
 
 private extension SwipeableCardViewController {
@@ -211,17 +251,38 @@ private extension SwipeableCardViewController {
             $0.leading.trailing.equalToSuperview().inset(100)
         }
 
-        let buttonStackView = UIStackView(arrangedSubviews: [failButton, successButton])
-        buttonStackView.spacing = 40.0
-        buttonStackView.distribution = .fillEqually
-        
-        // TODO: 디자인 수정 예정 (린다와 얘기 후) -> 임의의 cont 값 조절하였음
-        view.addSubview(buttonStackView)
-        buttonStackView.snp.makeConstraints {
+        view.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(100.0)
-            $0.height.equalTo(40.0)
-            $0.width.equalTo(300.0)
+            $0.top.equalToSuperview().inset(104.0)
+        }
+        
+        view.addSubview(emptyVideoView)
+        emptyVideoView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.height.equalTo(450.0)
+            $0.leading.trailing.equalToSuperview().inset(60.0)
+        }
+        
+        emptyVideoView.addSubview(emptyVideoInformation)
+        emptyVideoInformation.snp.makeConstraints {
+            $0.center.equalTo(emptyVideoView.snp.center)
+        }
+
+        view.addSubview(failButton)
+        failButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(64.0)
+            $0.leading.equalToSuperview().inset(48.0)
+            $0.height.equalTo(74.0)
+            $0.width.equalTo(74.0)
+        }
+        
+        view.addSubview(successButton)
+        successButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(64.0)
+            $0.trailing.equalToSuperview().inset(48.0)
+            $0.height.equalTo(74.0)
+            $0.width.equalTo(74.0)
         }
     }
 }
