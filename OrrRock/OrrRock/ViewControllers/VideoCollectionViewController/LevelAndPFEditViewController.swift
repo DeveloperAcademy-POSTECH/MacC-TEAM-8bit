@@ -98,6 +98,18 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         return button
     }()
     
+    private lazy var saveButton : UIButton = {
+        let btn = UIButton()
+        btn.setBackgroundColor(.orrUPBlue!, for: .normal)
+        btn.setBackgroundColor(.orrGray2!, for: .disabled)
+        btn.clipsToBounds = true
+        btn.layer.cornerRadius = 15
+        btn.addTarget(self, action: #selector(pressSaveButton), for: .touchDown)
+        btn.setTitle("저장", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        return btn
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpLayout()
@@ -170,6 +182,15 @@ extension LevelAndPFEditViewController {
             $0.leading.equalTo(levelContentView.snp.leading).offset(109)
             $0.width.equalTo(75)
             $0.height.equalTo(75)
+        }
+        
+        levelContentView.addSubview(saveButton)
+        saveButton.snp.makeConstraints{
+            $0.centerX.equalTo(levelContentView)
+            $0.bottom.equalTo(levelContentView).offset(-34)
+            $0.leading.equalTo(levelContentView).offset(orrPadding.padding3.rawValue)
+            $0.trailing.equalTo(levelContentView).offset(-orrPadding.padding3.rawValue)
+            $0.height.equalTo(56)
         }
     }
     
