@@ -22,7 +22,7 @@ final class SwipeableCardViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .semibold)
         button.backgroundColor = .red
         button.layer.cornerRadius = 10.0
-        button.addTarget(self, action: #selector(fail), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didFailButton), for: .touchUpInside)
         
         return button
     }()
@@ -34,7 +34,7 @@ final class SwipeableCardViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .semibold)
         button.backgroundColor = .blue
         button.layer.cornerRadius = 10.0
-        button.addTarget(self, action: #selector(success), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didSuccessButton), for: .touchUpInside)
         
         return button
     }()
@@ -132,11 +132,11 @@ private extension SwipeableCardViewController {
         }
     }
     
-    @objc func fail() {
+    @objc func didFailButton() {
         
     }
     
-    @objc func success() {
+    @objc func didSuccessButton() {
         
     }
     
