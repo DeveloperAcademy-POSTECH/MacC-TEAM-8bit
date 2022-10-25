@@ -12,7 +12,7 @@ struct DummyVideo {
     var id: Int
     var videoURL: String
     var problemLevel: Int
-    var isSucceeded: Bool
+    var isSuccess: Bool
 }
 
 class VideoManager {
@@ -20,11 +20,11 @@ class VideoManager {
     static let shared = VideoManager()
 
     let dummyVideoList: [DummyVideo] = [
-        DummyVideo(id: 100, videoURL: "ianIsComming", problemLevel: 0, isSucceeded: false),
-        DummyVideo(id: 101, videoURL: "ianIsComming", problemLevel: 0, isSucceeded: false),
-        DummyVideo(id: 102, videoURL: "ianIsComming", problemLevel: 0, isSucceeded: false),
-        DummyVideo(id: 103, videoURL: "ianIsComming", problemLevel: 0, isSucceeded: false),
-        DummyVideo(id: 104, videoURL: "ianIsComming", problemLevel: 0, isSucceeded: false)
+        DummyVideo(id: 100, videoURL: "ianIsComming", problemLevel: 0, isSuccess: false),
+        DummyVideo(id: 101, videoURL: "ianIsComming", problemLevel: 0, isSuccess: false),
+        DummyVideo(id: 102, videoURL: "ianIsComming", problemLevel: 0, isSuccess: false),
+        DummyVideo(id: 103, videoURL: "ianIsComming", problemLevel: 0, isSuccess: false),
+        DummyVideo(id: 104, videoURL: "ianIsComming", problemLevel: 0, isSuccess: false)
     ]
 
     func fetchVideo() -> [DummyVideo] {
