@@ -34,7 +34,7 @@ extension HomeViewController: UICollectionViewDataSource {
             listCell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewListCell", for: indexPath) as? HomeCollectionViewListCell
             return listCell
         }
-          
+        
         // TODO
         // 성공 개수 Count 하기
         // Thumbnails 배열 생성 (최대 10개의 UIImage를 담는 배열)
@@ -52,7 +52,7 @@ extension HomeViewController: UICollectionViewDataSource {
     @objc func navigateToVideoCollectionView(sender: UIButton){
         let vc = VideoCollectionViewController()
         navigationController?.pushViewController(vc, animated: true)
-        }
+    }
 }
 
 extension HomeViewController: UICollectionViewDelegate {
