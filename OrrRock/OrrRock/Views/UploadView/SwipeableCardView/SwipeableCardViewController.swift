@@ -21,7 +21,7 @@ final class SwipeableCardViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .semibold)
         button.backgroundColor = .red
-        button.layer.cornerRadius = 10.0
+        button.layer.cornerRadius = 40.0
         button.addTarget(self, action: #selector(didFailButton), for: .touchUpInside)
         
         return button
@@ -33,7 +33,7 @@ final class SwipeableCardViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .semibold)
         button.backgroundColor = .blue
-        button.layer.cornerRadius = 10.0
+        button.layer.cornerRadius = 40.0
         button.addTarget(self, action: #selector(didSuccessButton), for: .touchUpInside)
         
         return button
@@ -184,17 +184,20 @@ private extension SwipeableCardViewController {
 private extension SwipeableCardViewController {
     
     func setUpLayout() {
-        let buttonStackView = UIStackView(arrangedSubviews: [failButton, successButton])
-        buttonStackView.spacing = 40.0
-        buttonStackView.distribution = .fillEqually
+        view.addSubview(failButton)
+        failButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(32.0)
+            $0.leading.equalToSuperview().inset(40.0)
+            $0.height.equalTo(80.0)
+            $0.width.equalTo(80.0)
+        }
         
-        // TODO: 디자인 수정 예정 (린다와 얘기 후) -> 임의의 cont 값 조절하였음
-        view.addSubview(buttonStackView)
-        buttonStackView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(100.0)
-            $0.height.equalTo(40.0)
-            $0.width.equalTo(300.0)
+        view.addSubview(successButton)
+        successButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(32.0)
+            $0.trailing.equalToSuperview().inset(40.0)
+            $0.height.equalTo(80.0)
+            $0.width.equalTo(80.0)
         }
     }
 }
