@@ -20,26 +20,54 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        var listCell : HomeCollectionViewListCell!
-        var cardCell : HomeCollectionViewCardCell!
-        
         if isCardView {
-            cardCell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewCardCell", for: indexPath) as? HomeCollectionViewCardCell
-            cardCell.detailButton.tag = indexPath.row
-            cardCell.detailButton.addTarget(self, action:  #selector(navigateToVideoCollectionView(sender:)), for: .touchUpInside)
-            return cardCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewCardCell", for: indexPath) as! HomeCollectionViewCardCell
             
+            var successCount: Int = 0
+            var thumbnails: [UIImage] = []
+            
+            let primaryTitle: String = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymVisitDate.timeToString() : sortedVideoInfoData[indexPath.row][0].gymName
+            
+            let secondaryTitle: String = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymName : "\(min(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString()) ~  \(max(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString())"
+            
+            sortedVideoInfoData[indexPath.row].forEach { videoInfo in
+                successCount += videoInfo.isSucceeded ? 1 : 0
+                
+                if let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2), height: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2))) {
+                    thumbnails.append(thumbnail)
+                }
+            }
+            
+            cell.setUpData(primaryTitle: primaryTitle,
+                           secondaryTitle: secondaryTitle,
+                           PFCountDescription: "\(successCount)번의 성공, \(sortedVideoInfoData[indexPath.row].count - successCount)번의 실패",
+                           videoCountDescription: "\(sortedVideoInfoData[indexPath.row].count)개의 비디오",
+                           thumbnails: thumbnails,
+                           sortOption: sortOption
+            )
+            
+            cell.detailButton.tag = indexPath.row
+            cell.detailButton.gymName = sortedVideoInfoData[indexPath.row][0].gymName
+            cell.detailButton.primaryGymVisitDate = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymVisitDate : min(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString()
+            cell.detailButton.secondaryGymVisitDate = sortOption == .gymVisitDate ? nil : max(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString()
+            cell.detailButton.videoInformationArray = sortedVideoInfoData[indexPath.row]
+            
+            cell.detailButton.addTarget(self, action:  #selector(navigateToVideoCollectionView(sender:)), for: .touchUpInside)
+            
+            return cell
             
         } else {
-            listCell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewListCell", for: indexPath) as? HomeCollectionViewListCell
-            return listCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewListCell", for: indexPath) as! HomeCollectionViewListCell
+            
+            cell.setUpData(visitedDate: flattenSortedVideoInfoData[indexPath.row].gymVisitDate.timeToString(),
+                           visitedGymName: flattenSortedVideoInfoData[indexPath.row].gymName,
+                           level: "V\(flattenSortedVideoInfoData[indexPath.row].problemLevel)",
+                           PF: flattenSortedVideoInfoData[indexPath.row].isSucceeded ? "성공" : "실패",
+                           thumbnail: flattenSortedVideoInfoData[indexPath.row].videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: 50, height: 50))!)
+            
+            
+            return cell
         }
-        
-        // TODO
-        // 성공 개수 Count 하기
-        // Thumbnails 배열 생성 (최대 10개의 UIImage를 담는 배열)
-        // CollectionViewCell에 필요한 데이터 loadCardViewData 함수를 통해 전달하기
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -49,8 +77,16 @@ extension HomeViewController: UICollectionViewDataSource {
         }
     }
     
-    @objc func navigateToVideoCollectionView(sender: UIButton){
+    @objc func navigateToVideoCollectionView(sender: CustomDetailButton){
         let vc = VideoCollectionViewController()
+        let sectionData: SectionData = SectionData(orderOption: self.orderOption,
+                                                   sortOption: self.sortOption,
+                                                   filterOption: self.filterOption,
+                                                   gymName: sender.gymName,
+                                                   primaryGymVisitDate: sender.primaryGymVisitDate,
+                                                   secondaryGymVisitDate: sender.secondaryGymVisitDate)
+        vc.videoInformationArray = sender.videoInformationArray
+        
         navigationController?.pushViewController(vc, animated: true)
     }
 }

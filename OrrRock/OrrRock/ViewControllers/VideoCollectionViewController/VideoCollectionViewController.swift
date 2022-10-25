@@ -10,6 +10,9 @@ import UIKit
 class VideoCollectionViewController: UIViewController {
     
     var imageArr = ["as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5","as","as1","as2","as3","as4","as5"]
+    var videoInformationArray: [VideoInformation] = []
+    // 썸네일은 videoInformationArray[n].videoLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize) 을 통해 간편하게 생성 가능함!
+    
     lazy var firstContentOffset : Float = 0.0
     lazy var checkFirstContentOffset : Bool = false
     

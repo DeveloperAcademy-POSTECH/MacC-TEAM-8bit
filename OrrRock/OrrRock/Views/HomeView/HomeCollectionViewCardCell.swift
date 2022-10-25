@@ -88,7 +88,7 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         return view
     }()
     
-    lazy var detailButton: UIButton = {
+    lazy var detailButton: CustomDetailButton = {
         let button = UIButton()
         button.setTitle("더 보기", for: .normal)
         button.setTitleColor(.orrUPBlue, for: .normal)
@@ -169,4 +169,11 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         countTotalVideoLabel.text = videoCountDescription
         self.videoThumbnails = thumbnails
     }
+}
+
+final class CustomDetailButton: UIButton {
+    var gymName: String
+    var primaryGymVisitDate: Date
+    var secondaryGymVisitDate: Date?
+    var videoInformationArray: [VideoInformation]
 }
