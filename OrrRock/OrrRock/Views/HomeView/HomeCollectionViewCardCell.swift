@@ -89,7 +89,7 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
     }()
     
     lazy var detailButton: CustomDetailButton = {
-        let button = UIButton()
+        let button = CustomDetailButton()
         button.setTitle("더 보기", for: .normal)
         button.setTitleColor(.orrUPBlue, for: .normal)
         return button
@@ -183,8 +183,17 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
 }
 
 final class CustomDetailButton: UIButton {
-    var gymName: String
-    var primaryGymVisitDate: Date
-    var secondaryGymVisitDate: Date?
-    var videoInformationArray: [VideoInformation]
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        fatalError("This class does not support NSCoding")
+    }
+    
+    var gymName: String = ""
+    var primaryGymVisitDate: Date = Date()
+    var secondaryGymVisitDate: Date? = nil
+    var videoInformationArray: [VideoInformation] = []
 }
