@@ -189,7 +189,8 @@ class VideoCollectionViewController: UIViewController {
         //삭제 실제 배열에서
         for i in deleteNeededIndexPaths.sorted(by:{$0.item > $1.item
         }){
-            imageArr.remove(at: i.item)
+            videoInformationArray.remove(at: i.item)
+            // 삭제 하는 코어데이터 함수
         }
         
         videoCollectionView.deleteItems(at: deleteNeededIndexPaths)
@@ -199,8 +200,8 @@ class VideoCollectionViewController: UIViewController {
         deleteBarButton.isEnabled = false
         toolbarText.customView = indexCountLabel
         videoCollectionView.reloadSections(IndexSet(integer: 0))
-        
-        if imageArr.count < 9{
+        getSuccessCount()
+        if videoInformationArray.count < 4{
             titleStackView.isHidden = true
         }
     }

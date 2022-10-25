@@ -98,6 +98,10 @@ extension VideoCollectionViewController  : UICollectionViewDataSource{
         if videoInformationArray[indexPath.item].isFavorite{
             cell.heartImage.alpha = 1.0
         }
+        else{
+            cell.heartImage.alpha = 0.0
+        }
+        
         if videoInformationArray[indexPath.item].isSucceeded{
             cell.cellLabel.backgroundColor = .orrPass
         }
