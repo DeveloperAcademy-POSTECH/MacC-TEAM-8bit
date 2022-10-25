@@ -13,7 +13,7 @@ import SnapKit
 
 final class SwipeableCardViewController: UIViewController {
 
-    private var dummyVideos: [DummyVideo] = []
+    var videoInfoArray: [VideoInfo] = []
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -136,9 +136,9 @@ private extension SwipeableCardViewController {
 
     // 목업용 카드를 만들어줍니다.
     func createSwipeableCard() {
-        for dummyVideo in dummyVideos {
+        for dummyVideo in videoInfoArray {
             lazy var swipeCard: SwipeableCardVideoView = {
-                let embed = Bundle.main.url(forResource: dummyVideo.videoURL, withExtension: "MOV")
+                let embed = Bundle.main.url(forResource: dummyVideo.videoLocalIdentifier, withExtension: "MOV")
                 let testVideoAsset = AVAsset(url: embed!)
                 
                 let view = SwipeableCardVideoView(asset: testVideoAsset)
@@ -151,6 +151,7 @@ private extension SwipeableCardViewController {
 
             swipeCard.dummyVideo = dummyVideo
             swipeCard.tag = dummyVideo.id
+            swipeCard.tag = dummyVideo.videoLocalIdentifier
 
             // gesture
             let gesture = UIPanGestureRecognizer()
@@ -173,7 +174,7 @@ private extension SwipeableCardViewController {
     @objc func removeCard(card: UIView) {
         card.removeFromSuperview()
         
-        self.dummyVideos = self.dummyVideos.filter ({ dummyVideos in
+        self.videoInfoArray = self.videoInfoArray.filter ({ dummyVideos in
             return dummyVideos.id != card.tag
         })
     }
@@ -237,16 +238,16 @@ private extension SwipeableCardViewController {
     }
     
     func fetchVideo() {
-        self.dummyVideos = VideoManager.shared.fetchVideo()
+        self.videoInfoArray = VideoManager.shared.fetchVideo()
         
-        print(self.dummyVideos)
+        print(self.videoInfoArray)
     }
     
     // swipeCard의 애니매이션 효과를 담당합니다.
     func animateCard(rotationAngle: CGFloat, videoResultType: VideoResultType) {
-        if let dummyVideo = dummyVideos.first {
+        if let video = videoInfoArray.first {
             for view in view.subviews {
-                if view.tag == dummyVideo.id {
+                if view.tag == video.id {
                     if let card = view as? SwipeableCardVideoView {
                         let center: CGPoint
                         let isSuccess: Bool
@@ -273,7 +274,7 @@ private extension SwipeableCardViewController {
                 }
             }
         }
-        if dummyVideos.count == 1 {
+        if videoInfoArray.count == 1 {
             didVideoClassificationComplete()
         }
     }

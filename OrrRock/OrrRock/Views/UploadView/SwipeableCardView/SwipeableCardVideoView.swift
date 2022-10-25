@@ -13,7 +13,7 @@ import AVFoundation
 
 final class SwipeableCardVideoView: UIView {
 
-    var dummyVideo: DummyVideo? {
+    var dummyVideo: VideoInfo? {
         didSet {
             if let dummyVideo = dummyVideo {
                 self.asset = AVAsset(url: Bundle.main.url(forResource: "ianIsComming", withExtension: "MOV")!)

@@ -201,7 +201,7 @@ final class VideoDetailViewController: UIViewController {
 	@objc func completeAction() {
 		//TODO: 피드백 입력 구현 마무리
 		var feedbackText: String = self.videoInfoView.feedbackTextView.text
-		updateFeedback(videoInformation: VideoInformation, feedback: feedbackText)
+//		updateFeedback(videoInformation: VideoInformation, feedback: feedbackText)
 		self.view.endEditing(true)
 	}
 	
