@@ -31,7 +31,7 @@ class MainViewController: UIViewController {
     //테스트 코드
     @objc func buttonAction(sender: UIButton!) {
         
-        let nextVC = DateAndGymEditViewController()
+        let nextVC = LevelAndPFEditViewController()
         self.navigationController?.present(nextVC, animated: true)
         
     }

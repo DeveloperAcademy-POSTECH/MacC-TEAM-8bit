@@ -44,7 +44,7 @@ final class VideoDetailViewController: UIViewController {
 	lazy var videoPlayView: VideoPlayView = {
 		// FIXME: 임시 데이터 입력을 위한 코드 추후 변경
 		// 추후 PHAsset 타입의 데이터를 AVAsset으로 타입 포매팅 후 url을 가져오는 코드로 변경
-		let embed = Bundle.main.url(forResource: "testVideo", withExtension: "MP4")
+		let embed = Bundle.main.url(forResource: "ianIsComming", withExtension: "MOV")
 		let testVideoAsset = AVAsset(url: embed!)
 		
 		let view = VideoPlayView(asset: testVideoAsset)
@@ -115,7 +115,10 @@ final class VideoDetailViewController: UIViewController {
 	// 뒤로가기 버튼을 눌렀을 때 로직
 	@objc func goBackAction() {
 		// !!!: 이건 나중에 다른 로직으로 구현 다시 한번 체크하기
-		print(#function)
+        self.navigationController?.popViewController(animated: true)
+        navigationController?.isNavigationBarHidden = false
+        navigationController?.isToolbarHidden = true
+        navigationController?.hidesBarsOnTap = false
 	}
 	
 	// 삭제 버튼을 눌렀을 때 로직
