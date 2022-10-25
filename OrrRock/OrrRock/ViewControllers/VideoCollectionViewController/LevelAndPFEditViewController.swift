@@ -85,20 +85,22 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
     private lazy var failCheckButton : UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = isSuccess ? 30.5 : 37.5
-        button.alpha = isSuccess ? 0.6 : 1.0
+        button.alpha = isSuccess ? 0.3 : 1.0
         button.clipsToBounds = true
         button.backgroundColor = .orrFail
         button.setTitle("실패", for: .normal)
+        button.addTarget(self, action: #selector(didFailButtonClicked), for: .touchUpInside)
         return button
     }()
     
     private lazy var successCheckButton : UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = isSuccess ? 37.5 : 30.5
-        button.alpha = isSuccess ? 1.0 : 0.6
+        button.alpha = isSuccess ? 1.0 : 0.3
            button.clipsToBounds = true
         button.backgroundColor = .orrPass
         button.setTitle("성공", for: .normal)
+        button.addTarget(self, action: #selector(didSuccessButtonClicked), for: .touchUpInside)
         return button
     }()
     
@@ -197,6 +199,7 @@ extension LevelAndPFEditViewController {
             $0.trailing.equalTo(levelContentView).offset(-orrPadding.padding3.rawValue)
             $0.height.equalTo(56)
         }
+        
     }
     
     @objc
@@ -208,6 +211,49 @@ extension LevelAndPFEditViewController {
         self.dismiss(animated: true)
     }
     
+    @objc func didSuccessButtonClicked(_ sender: UIButton){
+        isSuccess = true
+        UIView.animate(withDuration: 0.2) {
+            self.successCheckButton.snp.updateConstraints {
+                $0.height.equalTo(75)
+                $0.width.equalTo(75)
+            }
+            
+            self.successCheckButton.alpha = 1.0
+            
+            self.failCheckButton.snp.updateConstraints {
+                $0.height.equalTo(61)
+                $0.width.equalTo(61)
+            }
+            
+            
+        }
+        self.failCheckButton.alpha = 0.3
+        self.successCheckButton.layer.cornerRadius = 37.5
+        self.failCheckButton.layer.cornerRadius = 30.5
+    }
+    
+    @objc func didFailButtonClicked(_ sender: UIButton){
+        isSuccess = false
+        UIView.animate(withDuration: 0.2) {
+            self.failCheckButton.snp.updateConstraints {
+                $0.height.equalTo(75)
+                $0.width.equalTo(75)
+            }
+            
+            self.failCheckButton.alpha = 1.0
+            
+            self.successCheckButton.snp.updateConstraints {
+                $0.height.equalTo(61)
+                $0.width.equalTo(61)
+            }
+            
+        }
+        self.successCheckButton.alpha = 0.3
+        failCheckButton.layer.cornerRadius = 37.5
+        successCheckButton.layer.cornerRadius = 30.5
+        
+    }
 }
 
 extension LevelAndPFEditViewController : UIPickerViewDelegate,UIPickerViewDataSource{
