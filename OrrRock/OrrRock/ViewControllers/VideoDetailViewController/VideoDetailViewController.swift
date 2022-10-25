@@ -101,6 +101,7 @@ final class VideoDetailViewController: UIViewController {
 		isShowInfo.toggle()
 		infoButton.image = UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle")
 		navigationController?.hidesBarsOnTap = !isShowInfo
+		feedbackButton.title = self.videoInfoView.feedbackTextView.textColor == .placeholderText ? "피드백 입력하기" : "피드백 확인하기"
 		if isShowInfo {
 			UIView.animate(withDuration: 0.2, animations: {
 				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -500)
