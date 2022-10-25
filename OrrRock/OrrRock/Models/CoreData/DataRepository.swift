@@ -159,7 +159,7 @@ class DataRepository {
         if orderOption == .descend {
             information = reverseSort(sortedVideoInformation: information)
         }
-        
+
         return information
     }
     

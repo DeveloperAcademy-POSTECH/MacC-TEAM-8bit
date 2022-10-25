@@ -17,6 +17,7 @@ final class DataManager {
     init() {
         repository = DataRepository()
         coreDataManager = CoreDataDAO()
+        updateRepository()
     }
     
     // CoreData로부터 읽은 데이터를 정렬 기준에 맞게 2차원 배열로 변경

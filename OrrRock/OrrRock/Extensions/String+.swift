@@ -5,7 +5,8 @@
 //  Created by kimhyeongmin on 2022/10/22.
 //
 
-import Foundation
+import UIKit
+import Photos
 
 extension String {
 	//MARK: String -> Date 타입 변환 메서드
@@ -20,4 +21,28 @@ extension String {
 			return nil
 		}
 	}
+    
+    // MARK: String -> UIImage 변환 메서드
+    // PHAsset Local Identifier로부터 영상 썸네일을 생성해 반환
+    func generateCardViewThumbnail(targetSize: CGSize) -> UIImage? {
+        
+        guard let asset: PHAsset = PHAsset.fetchAssets(withLocalIdentifiers: [self], options: .none).firstObject else { return nil }
+
+        let manager = PHImageManager.default()
+        let option = PHImageRequestOptions()
+        option.deliveryMode = .opportunistic
+        var thumbnail = UIImage()
+        
+        manager.requestImage(for: asset,
+                             targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight),
+                             contentMode: .aspectFill,
+                             options: option,
+                             resultHandler: {(result, info) -> Void in
+            if result == nil { return }
+            
+            thumbnail = result!
+        })
+        
+        return thumbnail
+    }
 }

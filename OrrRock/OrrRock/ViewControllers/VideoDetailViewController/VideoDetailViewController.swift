@@ -20,6 +20,9 @@ final class VideoDetailViewController: UIViewController {
 	
 	let videoInfoView: UIView = VideoInfoView()
 	
+    //VideoInfo - 꼬마가 사용할 데이터
+    var videoInformation: VideoInformation!
+    
 	private var infoButton: UIBarButtonItem!
 	private var feedbackButton: UIBarButtonItem!
 	private var trashButton: UIBarButtonItem!
