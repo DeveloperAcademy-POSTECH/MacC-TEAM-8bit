@@ -29,6 +29,7 @@ extension HomeViewController: UICollectionViewDataSource {
             let primaryTitle: String = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymVisitDate.timeToString() : sortedVideoInfoData[indexPath.row][0].gymName
             
             let secondaryTitle: String = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymName : "\(min(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString()) ~  \(max(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString())"
+
             
             sortedVideoInfoData[indexPath.row].forEach { videoInfo in
                 successCount += videoInfo.isSucceeded ? 1 : 0
@@ -47,6 +48,12 @@ extension HomeViewController: UICollectionViewDataSource {
             )
             
             cell.detailButton.tag = indexPath.row
+            cell.detailButton.gymName = sortedVideoInfoData[indexPath.row][0].gymName
+            cell.detailButton.primaryGymVisitDate = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymVisitDate : min(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString()
+            cell.detailButton.secondaryGymVisitDate = sortOption == .gymVisitDate ? nil : max(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString()
+            cell.detailButton.videoInformationArray = sortedVideoInfoData[indexPath.row]
+            
+
             cell.detailButton.addTarget(self, action:  #selector(navigateToVideoCollectionView(sender:)), for: .touchUpInside)
             
             return cell
@@ -68,12 +75,22 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if !isCardView{
             let vc = VideoDetailViewController()
+            // 꼬마가 VideoInformation 및 기타 데이터를 받고 넘길 곳
+            // vc.videoInformation = flattenSortedVideoInfoData[indexPath.row]
             navigationController?.pushViewController(vc, animated: true)
         }
     }
     
-    @objc func navigateToVideoCollectionView(sender: UIButton){
+    @objc func navigateToVideoCollectionView(sender: CustomDetailButton){
         let vc = VideoCollectionViewController()
+        let sectionData: SectionData = SectionData(orderOption: self.orderOption,
+                                                   sortOption: self.sortOption,
+                                                   filterOption: self.filterOption,
+                                                   gymName: sender.gymName,
+                                                   primaryGymVisitDate: sender.primaryGymVisitDate,
+                                                   secondaryGymVisitDate: sender.secondaryGymVisitDate)
+        vc.videoInformationArray = sender.videoInformationArray
+        
         navigationController?.pushViewController(vc, animated: true)
     }
 }
