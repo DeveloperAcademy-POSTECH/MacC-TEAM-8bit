@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum IsSuccessType {
+enum ResultType {
     case success
     case fail
 }

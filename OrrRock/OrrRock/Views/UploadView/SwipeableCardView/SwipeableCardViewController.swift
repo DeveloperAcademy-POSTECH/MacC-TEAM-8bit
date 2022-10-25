@@ -13,7 +13,7 @@ import SnapKit
 
 final class SwipeableCardViewController: UIViewController {
 
-    var dummyVideos: [DummyVideo] = []
+    private var dummyVideos: [DummyVideo] = []
 
     private lazy var failButton: UIButton = {
         let button = UIButton()
@@ -68,9 +68,7 @@ private extension SwipeableCardViewController {
             
             swipeCard.dummyVideo = dummyVideo
             swipeCard.tag = dummyVideo.id
-            
-//            view.addSubview(swipeCard)
-            
+                        
             // gesture
             let gesture = UIPanGestureRecognizer()
             gesture.addTarget(self, action: #selector(handlerCard))
@@ -87,6 +85,7 @@ private extension SwipeableCardViewController {
         }
     }
     
+    // swipeCard가 SuperView에서 제거됩니다.
     @objc func removeCard(card: UIView) {
         card.removeFromSuperview()
         
@@ -116,12 +115,12 @@ private extension SwipeableCardViewController {
 
             if gesture.state == .ended {
                 if card.center.x > self.view.bounds.width + 20 {
-                    animateCard(rotationAngle: rotationAngle, isSuccessType: .success)
+                    animateCard(rotationAngle: rotationAngle, resultType: .success)
                     return
                 }
 
                 if card.center.x < -20 {
-                    animateCard(rotationAngle: rotationAngle, isSuccessType: .fail)
+                    animateCard(rotationAngle: rotationAngle, resultType: .fail)
                     return
                 }
 
@@ -136,20 +135,19 @@ private extension SwipeableCardViewController {
     }
     
     @objc func didFailButton() {
-        animateCard(rotationAngle: -0.4, isSuccessType: .fail)
+        animateCard(rotationAngle: -0.4, resultType: .fail)
     }
     
     @objc func didSuccessButton() {
-        animateCard(rotationAngle: 0.4, isSuccessType: .success)
+        animateCard(rotationAngle: 0.4, resultType: .success)
     }
 
     func fetchVideo() {
         self.dummyVideos = VideoManager.shared.fetchVideo()
-        
-        print(self.dummyVideos)
     }
     
-    func animateCard(rotationAngle: CGFloat, isSuccessType: IsSuccessType) {
+    // swipeCard의 애니매이션 효과를 담당합니다.
+    func animateCard(rotationAngle: CGFloat, resultType: ResultType) {
         if let dummyVideo = dummyVideos.first {
             for view in view.subviews {
                 if view.tag == dummyVideo.id {
@@ -158,7 +156,7 @@ private extension SwipeableCardViewController {
                         let center: CGPoint
                         let isItSuccess: Bool
 
-                        switch isSuccessType {
+                        switch resultType {
                         case .fail:
                             center = CGPoint(x: card.center.x - view.bounds.width, y: card.center.y + 50)
                             isItSuccess = false
