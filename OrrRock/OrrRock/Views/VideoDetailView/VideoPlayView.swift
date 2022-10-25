@@ -15,7 +15,8 @@ final class VideoPlayView: UIView {
 		return view
 	}()
 	
-	var player = AVPlayer()
+	var queuePlayer = AVQueuePlayer()
+	private var playerLooper: AVPlayerLooper?
 	private var playerLayer: AVPlayerLayer?
 	private let asset: AVAsset
 	
@@ -43,14 +44,15 @@ private extension VideoPlayView {
 	
 	func embedVideo() {
 		let item = AVPlayerItem(asset: asset)
-		self.player.replaceCurrentItem(with: item)
-		let playerLayer = AVPlayerLayer(player: self.player)
+		self.queuePlayer = AVQueuePlayer()
+		let playerLayer = AVPlayerLayer(player: self.queuePlayer)
 		playerLayer.frame = self.videoBackgroundView.bounds
 		playerLayer.videoGravity = .resizeAspectFill
 		self.playerLayer = playerLayer
 		self.videoBackgroundView.layer.addSublayer(playerLayer)
-		self.player.isMuted = true
-		self.player.play()
+		self.queuePlayer.isMuted = true
+		playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: item)
+		queuePlayer.play()
 	}
 }
 

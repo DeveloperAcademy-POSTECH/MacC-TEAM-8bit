@@ -145,7 +145,7 @@ final class VideoDetailViewController: UIViewController {
 		isSounded.toggle()
 		iconSpace.width = isSounded ? 0 : 8.4
 		soundButton.image = UIImage(systemName: isSounded ? "speaker.wave.2.fill" : "speaker.slash.fill")
-		videoPlayView.player.isMuted = isSounded ? false : true
+		videoPlayView.queuePlayer.isMuted = isSounded ? false : true
 		print(#function)
 	}
 	
@@ -153,7 +153,7 @@ final class VideoDetailViewController: UIViewController {
 	@objc func playVideoAction() {
 		isPlayed.toggle()
 		playButton.image = UIImage(systemName: isPlayed ? "play.fill" : "pause.fill")
-		isPlayed ? videoPlayView.player.pause() : videoPlayView.player.play()
+		isPlayed ? videoPlayView.queuePlayer.pause() : videoPlayView.queuePlayer.play()
 		print(#function)
 	}
 	
