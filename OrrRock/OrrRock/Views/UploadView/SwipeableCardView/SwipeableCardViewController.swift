@@ -274,24 +274,28 @@ private extension SwipeableCardViewController {
             }
         }
         if dummyVideos.count == 1 {
-            levelButton.isEnabled = false
-            
-            saveButton.isHidden = false
-            successButton.isHidden = true
-            failButton.isHidden = true
-            
-            titleLabel.text = "분류 완료! 저장하기를 눌러주세요."
-            levelButton.setTitle("레벨", for: .normal)
-            
-            titleLabel.textColor = .orrGray3
-            levelButton.tintColor = .orrGray3
-            separator.backgroundColor = .orrGray3
+            didVideoClassificationComplete()
         }
     }
-    
+
     @objc func backButtonClicked() {
         self.navigationController?.popViewController(animated: true)
         print("pop 가 됐습니다.")
+    }
+
+    func didVideoClassificationComplete() {
+        levelButton.isEnabled = false
+        
+        saveButton.isHidden = false
+        successButton.isHidden = true
+        failButton.isHidden = true
+        
+        titleLabel.text = "분류 완료! 저장하기를 눌러주세요."
+        levelButton.setTitle("레벨", for: .normal)
+        
+        titleLabel.textColor = .orrGray3
+        levelButton.tintColor = .orrGray3
+        separator.backgroundColor = .orrGray3
     }
 }
 
