@@ -29,31 +29,24 @@ final class HomeViewController : UIViewController {
             quickActionButton.setImage(UIImage(systemName: isCardView ? "rectangle.stack" : "list.bullet"), for: .normal)
         }
     }
-    var isSortedByDate: Bool = true {
-        // 날짜 기준 : 암장 기준
+    
+    var sortOption: SortOption = .gymVisitDate {
         didSet {
-            isSortedByDate ? sortByDate() : sortByGym()
+            reloadCollectionViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
+            print("dd")
         }
     }
-    var isAscending: Bool = true {
-        // 오름차순  : 내림차순
+    
+    var orderOption: OrderOption = .ascend {
         didSet {
-            isAscending ? sortToAscending() : sortToDescending()
+            reloadCollectionViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
+            print("dd")
         }
     }
-    var selectedVideoFilterEnum: VideoFilterEnum = .whole {
-        // 필터링 기준
+    var filterOption: FilterOption = .all {
         didSet {
-            switch selectedVideoFilterEnum {
-            case .whole:
-                showWholeVideo()
-            case .liked:
-                showLikedVideo()
-            case .success:
-                showSuccessVideo()
-            case .fail:
-                showFailedVideo()
-            }
+            reloadCollectionViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
+            print("dd")
         }
     }
     
@@ -104,30 +97,29 @@ final class HomeViewController : UIViewController {
                     UIMenu(title: "", options: .displayInline, children: [
                         // 날짜 기준으로 정렬
                         UIAction(title: "날짜",
-                                 image: self!.isSortedByDate ? ( self!.isAscending ? UIImage(systemName: "chevron.up") : UIImage(systemName: "chevron.down")) : nil,
-                                 state: self!.isSortedByDate ? .on : .off) { [unowned self] _ in
-                                     
-                                     if self!.isSortedByDate {
+                                 image: self!.sortOption == .gymVisitDate ? ( self!.orderOption == .ascend ? UIImage(systemName: "chevron.down") : UIImage(systemName: "chevron.up")) : nil,
+                                 state: self!.sortOption == .gymVisitDate ? .on : .off) { [unowned self] _ in
+                                     if self!.sortOption == .gymVisitDate {
                                          // 이미 날짜 기준으로 정렬 중이라면
-                                         self?.isAscending.toggle()
+                                         self?.orderOption = self!.orderOption == .ascend ? .descend : .ascend
                                      } else {
                                          // 암장 기준으로 정렬 중이라면
-                                         self?.isSortedByDate.toggle()
-                                         self?.isAscending = true
+                                         self?.sortOption = .gymVisitDate
+                                         self?.orderOption = .ascend
                                      }
                                  },
                         // 암장 기준으로 정렬하기
                         UIAction(title: "클라이밍 장",
-                                 image: self!.isSortedByDate ? nil : ( self!.isAscending ? UIImage(systemName: "chevron.up") : UIImage(systemName: "chevron.down")),
-                                 state: self!.isSortedByDate ? .off : .on) { [unowned self] _ in
+                                 image: self!.sortOption == .gymVisitDate ? nil : ( self!.orderOption == .ascend ? UIImage(systemName: "chevron.up") : UIImage(systemName: "chevron.down")),
+                                 state: self!.sortOption == .gymVisitDate ? .off : .on) { [unowned self] _ in
                                      
-                                     if self!.isSortedByDate {
+                                     if self!.sortOption == .gymVisitDate {
                                          // 날짜 기준으로 정렬 중이라면
-                                         self?.isSortedByDate.toggle()
-                                         self?.isAscending = true
+                                         self?.sortOption = .gymName
+                                         self?.orderOption = .ascend
                                      } else {
                                          // 이미 암장 기준으로 정렬 중이라면
-                                         self?.isAscending.toggle()
+                                         self?.orderOption = self!.orderOption == .ascend ? .descend : .ascend
                                      }
                                  }
                     ]),
@@ -135,26 +127,26 @@ final class HomeViewController : UIViewController {
                         // 모든 비디오 보여주기
                         UIAction(title: "모든 비디오",
                                  image: UIImage(systemName: "photo.on.rectangle.angled"),
-                                 state: self?.selectedVideoFilterEnum == .whole ? .on : .off) { [unowned self] _ in
-                                     self?.selectedVideoFilterEnum = .whole
+                                 state: self!.filterOption == .all ? .on : .off) { [unowned self] _ in
+                                     self!.filterOption = .all as FilterOption
                                  },
                         // 즐겨찾는 항목만 보여주기
                         UIAction(title: "즐겨찾는 항목",
                                  image: UIImage(systemName: "heart"),
-                                 state: self?.selectedVideoFilterEnum == .liked ? .on : .off) { [unowned self] _ in
-                                     self?.selectedVideoFilterEnum = .liked
+                                 state: self!.filterOption == .favorite ? .on : .off) { [unowned self] _ in
+                                     self!.filterOption = .favorite as FilterOption
                                  },
                         // 성공 영상만 보여주기
                         UIAction(title: "성공",
                                  image: UIImage(systemName: "circle"),
-                                 state: self?.selectedVideoFilterEnum == .success ? .on : .off) { [unowned self] _ in
-                                     self?.selectedVideoFilterEnum = .success
+                                 state: self!.filterOption == .success ? .on : .off) { [unowned self] _ in
+                                     self!.filterOption = .success as FilterOption
                                  },
                         // 실패 영상만 보여주기
                         UIAction(title: "실패",
                                  image: UIImage(systemName: "multiply"),
-                                 state: self?.selectedVideoFilterEnum == .fail ? .on : .off) { [unowned self] _ in
-                                     self?.selectedVideoFilterEnum = .fail
+                                 state: self!.filterOption == .failure ? .on : .off) { [unowned self] _ in
+                                     self!.filterOption = .failure as FilterOption
                                  }
                     ])
                 ]
@@ -226,15 +218,15 @@ final class HomeViewController : UIViewController {
     // MARK: View Lifecycle Function
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .orrGray1
+        
         setUpLayout()
         setUpNavigationBar()
         setUICollectionViewDelegate()
         
         addDummyData()
         
-        DEBUGvideoData = DataManager.shared.sortRepository(filterOption: .all, sortOption: .gymName, orderOption: .ascend)
+        DEBUGvideoData = DataManager.shared.sortRepository(filterOption: .all, sortOption: .gymVisitDate, orderOption: .ascend)
         DEBUGflattenVideoData = DEBUGvideoData.flatMap({ $0 })
     }
     
@@ -276,7 +268,10 @@ final class HomeViewController : UIViewController {
     }
     
     @objc func switchViewStyle() {
-        self.isCardView.toggle()
+        
+        reloadCollectionViewWithOptions(filterOption: .all, sortOption: .gymVisitDate, orderOption: .ascend)
+        reloadCollectionViewWithOptions(filterOption: .all, sortOption: .gymVisitDate, orderOption: .descend)
+        reloadCollectionViewWithOptions(filterOption: .all, sortOption: .gymVisitDate, orderOption: .ascend)
     }
     
     @objc func videoButtonPressed(sender: UIButton){
@@ -291,46 +286,18 @@ final class HomeViewController : UIViewController {
     
     var DEBUGvideoData: [[VideoInformation]] = []
     var DEBUGflattenVideoData: [VideoInformation] = []
-    
 }
 
 // QuickAction을 통한 정렬 및 필터링 시 함수를 아래에 구현
 extension HomeViewController {
     // 정렬 기준 함수
-    func sortByDate() {
-        
-    }
     
-    func sortByGym() {
+    func reloadCollectionViewWithOptions(filterOption: FilterOption, sortOption: SortOption, orderOption: OrderOption) {
         
-    }
-    
-    func sortToAscending() {
-        
-    }
-    
-    func sortToDescending() {
-        
-    }
-    
-    // 필터링 기준 함수
-    func showWholeVideo() {
-        
-    }
-    
-    func showLikedVideo() {
-        
-    }
-    
-    func showSuccessVideo() {
-        
-    }
-    
-    func showFailedVideo() {
-        
+        self.DEBUGvideoData = DataManager.shared.sortRepository(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
+        self.collectionView.reloadData()
     }
 }
-
 
 // DEBUG
 extension HomeViewController {
@@ -340,19 +307,19 @@ extension HomeViewController {
         DataManager.shared.deleteAllData()
         
         DEBUGMakevideoData = [[
-            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Date(), videoLocalIdentifier: "D150F80C-ABFA-4EAB-8CA5-80BBF39ECA01/L0/001", problemLevel: 3, isSucceeded: false),
-            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Date(), videoLocalIdentifier: "E4E40C15-B932-431A-B440-0ADBFE19E022/L0/001", problemLevel: 3, isSucceeded: true),
-            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Date(), videoLocalIdentifier: "BED792BC-AA01-435F-BE2B-D460008807C4/L0/001", problemLevel: 3, isSucceeded: true),
-            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Date(), videoLocalIdentifier: "AFF9F7BB-1D37-4217-BD3B-35CAF076773B/L0/001", problemLevel: 3, isSucceeded: false),
-            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Date(), videoLocalIdentifier: "8CED629B-A920-4436-B50C-CDE7A5FC5F22/L0/001", problemLevel: 3, isSucceeded: true),
+            VideoInfo(gymName: "4", gymVisitDate: Date(), videoLocalIdentifier: "D150F80C-ABFA-4EAB-8CA5-80BBF39ECA01/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "4", gymVisitDate: Date(), videoLocalIdentifier: "E4E40C15-B932-431A-B440-0ADBFE19E022/L0/001", problemLevel: 3, isSucceeded: true),
+            VideoInfo(gymName: "4", gymVisitDate: Date(), videoLocalIdentifier: "BED792BC-AA01-435F-BE2B-D460008807C4/L0/001", problemLevel: 3, isSucceeded: true),
+            VideoInfo(gymName: "4", gymVisitDate: Date(), videoLocalIdentifier: "AFF9F7BB-1D37-4217-BD3B-35CAF076773B/L0/001", problemLevel: 3, isSucceeded: false),
         ],[
-            VideoInfo(gymName: "김대우 암벽교실", gymVisitDate: Date(), videoLocalIdentifier: "65B23455-6709-43C0-A90C-A89E52937050/L0/001", problemLevel: 3, isSucceeded: false),
-            VideoInfo(gymName: "김대우 암벽교실", gymVisitDate: Date(), videoLocalIdentifier: "836486C1-D52F-4F66-AAFC-00203F3F221D/L0/001", problemLevel: 3, isSucceeded: false),
-            VideoInfo(gymName: "김대우 암벽교실", gymVisitDate: Date(), videoLocalIdentifier: "3F643207-2002-41C0-BDAD-3CD207EB987E/L0/001", problemLevel: 3, isSucceeded: false),
-            VideoInfo(gymName: "김대우 암벽교실", gymVisitDate: Date(), videoLocalIdentifier: "7194A843-1842-4FB6-A8AC-E0742C0B981B/L0/001", problemLevel: 3, isSucceeded: false),
-            VideoInfo(gymName: "김대우 암벽교실", gymVisitDate: Date(), videoLocalIdentifier: "D150F80C-ABFA-4EAB-8CA5-80BBF39ECA01/L0/001", problemLevel: 3, isSucceeded: false),
-        ],[
+//            VideoInfo(gymName: "5", gymVisitDate: Date(), videoLocalIdentifier: "65B23455-6709-43C0-A90C-A89E52937050/L0/001", problemLevel: 3, isSucceeded: false),
+//            VideoInfo(gymName: "5", gymVisitDate: Date(), videoLocalIdentifier: "836486C1-D52F-4F66-AAFC-00203F3F221D/L0/001", problemLevel: 3, isSucceeded: false),
+//            VideoInfo(gymName: "5", gymVisitDate: Date(), videoLocalIdentifier: "3F643207-2002-41C0-BDAD-3CD207EB987E/L0/001", problemLevel: 3, isSucceeded: false),
+//            VideoInfo(gymName: "5", gymVisitDate: Date(), videoLocalIdentifier: "7194A843-1842-4FB6-A8AC-E0742C0B981B/L0/001", problemLevel: 3, isSucceeded: false),
+//            VideoInfo(gymName: "5", gymVisitDate: Date(), videoLocalIdentifier: "D150F80C-ABFA-4EAB-8CA5-80BBF39ECA01/L0/001", problemLevel: 3, isSucceeded: false),
+//        ],[
             VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoLocalIdentifier: "9C1C5CF8-9F72-4BDE-BEFC-0F098D0651EE/L0/001", problemLevel: 3, isSucceeded: false),
+            VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoLocalIdentifier: "9C1C5CF8-9F72-4BDE-BEFC-0F098D0651EE/L0/001", problemLevel: 3, isSucceeded: true),
             VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoLocalIdentifier: "BC19B352-D956-403A-B118-D8A64EBF32A6/L0/001", problemLevel: 3, isSucceeded: false),
             VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoLocalIdentifier: "28A84914-E7FF-41C8-BC00-508981928EDA/L0/001", problemLevel: 3, isSucceeded: false),
             VideoInfo(gymName: "아띠 클라이밍", gymVisitDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, videoLocalIdentifier: "53ED528F-9047-4799-8378-F3451E7B9CF0/L0/001", problemLevel: 3, isSucceeded: false),

@@ -24,24 +24,30 @@ extension HomeViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewCardCell", for: indexPath) as! HomeCollectionViewCardCell
             
             var successCount: Int = 0
-            var thumbnails: [UIImage] = []
+            var thumbnails: [UIImage] = Array(repeating: UIImage(), count: DEBUGvideoData[indexPath.row].count)
             
-            DEBUGvideoData[indexPath.row].forEach { videoInfo in
+//            DEBUGvideoData[indexPath.row].forEach { videoInfo in
+//                successCount += videoInfo.isSucceeded ? 1 : 0
+//                if let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2), height: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2))) {
+//                    thumbnails.append(thumbnail)
+//                }
+//            }
+            
+            for index in 0..<DEBUGvideoData[indexPath.row].count {
+                let videoInfo = DEBUGvideoData[indexPath.row][index]
                 successCount += videoInfo.isSucceeded ? 1 : 0
                 if let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2), height: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2))) {
-                    thumbnails.append(thumbnail)
+                    thumbnails[index] = thumbnail
                 }
-                
-                print("DEBUG VLI : \(videoInfo.videoLocalIdentifier!)")
             }
             
-            cell.setUpData(visitedDate: DEBUGvideoData[indexPath.row][0].gymVisitDate.timeToString(),
+            print("DEBUG : \(DEBUGvideoData[indexPath.row][0].gymName) + \(thumbnails.count)")
+            
+            cell.setUpData(visitedDate: String(describing: DEBUGvideoData[indexPath.row][0].gymVisitDate),
                            visitedGymName: DEBUGvideoData[indexPath.row][0].gymName,
                            PFCountDescription: "\(successCount)번의 성공, \(DEBUGvideoData[indexPath.row].count - successCount)번의 실패",
                            videoCountDescription: "\(DEBUGvideoData[indexPath.row].count)개의 비디오",
                            thumbnails: thumbnails)
-            
-            print("DEBUG : \(DEBUGvideoData[indexPath.row].count) + \(successCount)")
             
             cell.detailButton.tag = indexPath.row
             cell.detailButton.addTarget(self, action:  #selector(navigateToVideoCollectionView(sender:)), for: .touchUpInside)
