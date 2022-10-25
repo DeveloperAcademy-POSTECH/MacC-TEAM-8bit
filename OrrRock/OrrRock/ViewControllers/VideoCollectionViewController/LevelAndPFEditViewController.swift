@@ -9,6 +9,8 @@ import UIKit
 
 class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControllerDelegate {
 
+    var isSuccess : Bool = false
+    
     private let values: [String] = ["V1","V2","V3","V4","V5","V6","V7","V8","V9","V10","V11","V12","V13","V14"]
     
     override var sheetPresentationController: UISheetPresentationController {
@@ -80,23 +82,26 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         return label
     }()
     
+    private lazy var failCheckButton : UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = isSuccess ? 30.5 : 37.5
+        button.alpha = isSuccess ? 0.6 : 1.0
+        button.clipsToBounds = true
+        button.backgroundColor = .orrFail
+        button.setTitle("실패", for: .normal)
+        return button
+    }()
+    
     private lazy var successCheckButton : UIButton = {
         let button = UIButton()
-        button.layer.cornerRadius = 37.5
+        button.layer.cornerRadius = isSuccess ? 37.5 : 30.5
+        button.alpha = isSuccess ? 1.0 : 0.6
            button.clipsToBounds = true
         button.backgroundColor = .orrPass
         button.setTitle("성공", for: .normal)
         return button
     }()
     
-    private lazy var failCheckButton : UIButton = {
-        let button = UIButton()
-        button.layer.cornerRadius = 37.5
-           button.clipsToBounds = true
-        button.backgroundColor = .orrFail
-        button.setTitle("실패", for: .normal)
-        return button
-    }()
     
     private lazy var saveButton : UIButton = {
         let btn = UIButton()
@@ -170,18 +175,18 @@ extension LevelAndPFEditViewController {
         
         levelContentView.addSubview(successCheckButton)
         successCheckButton.snp.makeConstraints {
-            $0.top.equalTo(successLabel.snp.bottom).offset(orrPadding.padding5.rawValue)
-            $0.leading.equalTo(levelContentView.snp.leading).offset(206)
-            $0.width.equalTo(75)
-            $0.height.equalTo(75)
+            $0.centerY.equalTo(successLabel.snp.bottom).offset(71.5)
+            $0.centerX.equalTo(LevelLabel.snp.centerX).offset(52)
+            $0.width.equalTo(isSuccess ? 75 : 61)
+            $0.height.equalTo(isSuccess ? 75 : 61)
         }
         
         levelContentView.addSubview(failCheckButton)
         failCheckButton.snp.makeConstraints {
-            $0.top.equalTo(successLabel.snp.bottom).offset(orrPadding.padding5.rawValue)
-            $0.leading.equalTo(levelContentView.snp.leading).offset(109)
-            $0.width.equalTo(75)
-            $0.height.equalTo(75)
+            $0.centerY.equalTo(successLabel.snp.bottom).offset(71.5)
+            $0.centerX.equalTo(LevelLabel.snp.centerX).offset(-52)
+            $0.width.equalTo(isSuccess ? 61 : 75)
+            $0.height.equalTo(isSuccess ? 61 : 75)
         }
         
         levelContentView.addSubview(saveButton)
