@@ -15,13 +15,36 @@ final class SwipeableCardViewController: UIViewController {
     
     private var dummyVideos: [DummyVideo] = []
     
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "스와이프를 통해 비디오를 분류해주세요."
+        label.textColor = .label
+        label.font = .systemFont(ofSize: 17.0, weight: .semibold)
+
+        return label
+    }()
+    
+    private lazy var emptyVideoView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+        
+        return view
+    }()
+    
+    private lazy var emptyVideoInformation: UILabel = {
+        let label = UILabel()
+        label.text = "모든 비디오를 분류했습니다!"
+        
+        return label
+    }()
+    
     private lazy var failButton: UIButton = {
         let button = UIButton()
         button.setTitle("실패", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .semibold)
-        button.backgroundColor = .red
-        button.layer.cornerRadius = 40.0
+        button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .semibold)
+        button.backgroundColor = .orrFail
+        button.layer.cornerRadius = 37.0
         button.addTarget(self, action: #selector(didFailButton), for: .touchUpInside)
         
         return button
@@ -31,9 +54,9 @@ final class SwipeableCardViewController: UIViewController {
         let button = UIButton()
         button.setTitle("성공", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .semibold)
-        button.backgroundColor = .blue
-        button.layer.cornerRadius = 40.0
+        button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .semibold)
+        button.backgroundColor = .orrPass
+        button.layer.cornerRadius = 37.0
         button.addTarget(self, action: #selector(didSuccessButton), for: .touchUpInside)
         
         return button
@@ -43,7 +66,7 @@ final class SwipeableCardViewController: UIViewController {
         super.viewDidLoad()
         
         // card UI
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = .white
         setUpLayout()
         fetchVideo()
         createSwipeableCard()
@@ -61,7 +84,7 @@ private extension SwipeableCardViewController {
                 let testVideoAsset = AVAsset(url: embed!)
                 
                 let view = SwipeableCardVideoView(asset: testVideoAsset)
-                self.view.addSubview(view)
+                self.emptyVideoView.addSubview(view)
                 
                 return view
             }()
@@ -74,12 +97,13 @@ private extension SwipeableCardViewController {
             gesture.addTarget(self, action: #selector(handlerCard))
             swipeCard.addGestureRecognizer(gesture)
             
-            view.insertSubview(swipeCard, at: 0)
+            emptyVideoView.insertSubview(swipeCard, at: 0)
 
             swipeCard.snp.makeConstraints {
-                $0.leading.trailing.equalToSuperview().inset(60.0)
-                $0.height.equalTo(450.0)
-                $0.centerY.equalToSuperview()
+                $0.leading.equalTo(emptyVideoView.snp.leading)
+                $0.trailing.equalTo(emptyVideoView.snp.trailing)
+                $0.top.equalTo(emptyVideoView.snp.top)
+                $0.bottom.equalTo(emptyVideoView.snp.bottom)
             }
         }
     }
@@ -99,7 +123,7 @@ private extension SwipeableCardViewController {
             let point = gesture.translation(in: view)
             
             card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
-            
+                        
             let rotationAngle = point.x / view.bounds.width * 0.4
             
             if point.x > 0 {
@@ -124,7 +148,7 @@ private extension SwipeableCardViewController {
                 }
                 
                 UIView.animate(withDuration: 0.2) {
-                    card.center = self.view.center
+                    card.center = CGPoint(x: self.view.center.x , y: self.view.center.y)//self.emptyVideoView.center//self.view.center
                     card.transform = .identity
                     card.successImageView.alpha = 0
                     card.failImageView.alpha = 0
@@ -150,7 +174,7 @@ private extension SwipeableCardViewController {
     // swipeCard의 애니매이션 효과를 담당합니다.
     func animateCard(rotationAngle: CGFloat, videoResultType: VideoResultType) {
         if let dummyVideo = dummyVideos.first {
-            for view in view.subviews {
+            for view in emptyVideoView.subviews {
                 if view.tag == dummyVideo.id {
                     if let card = view as? SwipeableCardVideoView {
                         let center: CGPoint
@@ -184,20 +208,39 @@ private extension SwipeableCardViewController {
 private extension SwipeableCardViewController {
     
     func setUpLayout() {
+        view.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().inset(114.0)
+        }
+        
+        view.addSubview(emptyVideoView)
+        emptyVideoView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(450.0)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(90.0)
+            $0.leading.trailing.equalToSuperview().inset(60.0)
+        }
+        
+        emptyVideoView.addSubview(emptyVideoInformation)
+        emptyVideoInformation.snp.makeConstraints {
+            $0.center.equalTo(emptyVideoView.snp.center)
+        }
+        
         view.addSubview(failButton)
         failButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(32.0)
             $0.leading.equalToSuperview().inset(40.0)
-            $0.height.equalTo(80.0)
-            $0.width.equalTo(80.0)
+            $0.height.equalTo(74.0)
+            $0.width.equalTo(74.0)
         }
         
         view.addSubview(successButton)
         successButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(32.0)
+            $0.bottom.equalToSuperview().inset(40.0)
             $0.trailing.equalToSuperview().inset(40.0)
-            $0.height.equalTo(80.0)
-            $0.width.equalTo(80.0)
+            $0.height.equalTo(74.0)
+            $0.width.equalTo(74.0)
         }
     }
 }
