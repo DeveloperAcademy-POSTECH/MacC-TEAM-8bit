@@ -18,6 +18,7 @@ final class VideoDetailViewController: UIViewController {
 	
 	var isShowInfo: Bool = false
 	var isSounded: Bool = false
+	var isPlayed: Bool = false
 	
 	let videoInfoView: UIView = VideoInfoView()
 	
@@ -25,6 +26,7 @@ final class VideoDetailViewController: UIViewController {
 	private var feedbackButton: UIBarButtonItem!
 	private var trashButton: UIBarButtonItem!
 	private var soundButton: UIBarButtonItem!
+	private var playButton: UIBarButtonItem!
 	private var favoriteButton: UIBarButtonItem!
 	private var goBackButton: UIBarButtonItem!
 	private var flexibleSpace: UIBarButtonItem!
@@ -65,6 +67,7 @@ final class VideoDetailViewController: UIViewController {
 		flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
 		goBackButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(goBackAction))
 		favoriteButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(favoriteAction))
+		playButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(playVideoAction))
 		
 		// 네비게이션바 띄워주고 탭 되었을 때 숨기기
 		navigationController?.isToolbarHidden = false
@@ -85,7 +88,7 @@ final class VideoDetailViewController: UIViewController {
 		soundButton = UIBarButtonItem(image: UIImage(systemName: "speaker.slash.fill"), style: .plain, target: self, action: #selector(soundVideoAction))
 		var items = [UIBarButtonItem]()
 		
-		[infoButton,flexibleSpace,feedbackButton,flexibleSpace,trashButton].forEach {
+		[soundButton,flexibleSpace,playButton,flexibleSpace,feedbackButton,flexibleSpace,infoButton,flexibleSpace,trashButton].forEach {
 			items.append($0)
 		}
 		self.toolbarItems = items
@@ -134,6 +137,15 @@ final class VideoDetailViewController: UIViewController {
 		isSounded.toggle()
 		soundButton.image = UIImage(systemName: isSounded ? "speaker.wave.2.fill" : "speaker.slash.fill")
 		videoPlayView.player.isMuted = isSounded ? false : true
+		print(#function)
+	}
+	
+	// 재생 버튼을 눌렀을 때 로직
+	@objc func playVideoAction() {
+		isPlayed.toggle()
+		playButton.image = UIImage(systemName: isPlayed ? "play.fill" : "pause.fill")
+		// TODO: player뷰 private 해제하기
+		isPlayed ? videoPlayView.player.pause() : videoPlayView.player.play()
 		print(#function)
 	}
 	
