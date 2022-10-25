@@ -11,7 +11,7 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
 
     var isSuccess : Bool = false
     
-    private let values: [String] = ["V1","V2","V3","V4","V5","V6","V7","V8","V9","V10","V11","V12","V13","V14"]
+    private let values: [String] = ["V1","V2","V3","V4","V5","V6","V7","V8","V9"]
     
     override var sheetPresentationController: UISheetPresentationController {
         presentationController as! UISheetPresentationController
@@ -124,17 +124,6 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         // Do any additional setup after loading the view.
     }
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
