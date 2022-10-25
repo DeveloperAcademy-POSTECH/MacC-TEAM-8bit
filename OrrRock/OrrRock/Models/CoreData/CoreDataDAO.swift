@@ -44,6 +44,7 @@ class CoreDataDAO {
         return information
     }
     
+    // 암장 방문 날짜 및 이름 변경과 관련된 메소드
     func updateDateAndGymData(videoInformation: VideoInformation, gymVisitDate: Date, gymName: String) {
         
         guard let id = videoInformation.id else { return }
@@ -62,7 +63,7 @@ class CoreDataDAO {
         saveData()
     }
     
-    // MARK: EditCase TWO 2 - 코드 반복 O
+    // 문제 난이도 및 성패 변경과 관련된 메소드
     func updateLevelAndPF(videoInformation: VideoInformation, problemLevel: Int, isSucceeded: Bool) {
         
         guard let id = videoInformation.id else { return }
@@ -81,6 +82,7 @@ class CoreDataDAO {
         saveData()
     }
     
+    // 문제 즐겨찾기 여부 변경과 관련된 메소드
     func updateFavorite(videoInformation: VideoInformation, isFavorite: Bool) {
         
         guard let id = videoInformation.id else { return }
@@ -98,6 +100,7 @@ class CoreDataDAO {
         saveData()
     }
     
+    // 문제 피드백 수정과 관련된 메소드
     func updateFeedback(videoInformation: VideoInformation, feedback: String) {
         
         guard let id = videoInformation.id else { return }
@@ -115,6 +118,7 @@ class CoreDataDAO {
         saveData()
     }
     
+    // 단일 데이터 삭제를 위한 메소드
     func deleteData(videoInformation: VideoInformation) {
         
         guard let id = videoInformation.id else { return }
@@ -132,6 +136,7 @@ class CoreDataDAO {
         saveData()
     }
     
+    // 전체 데이터 삭제를 위한 메소드
     func deleteAllData() {
         let objects = readData()
         

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// **테스트용** 데이터 랜덤 생성기
 class RandomDataGenerator {
     
     let nameList = ["1암장", "2암장", "3암장", "4암장", "5암장"]
