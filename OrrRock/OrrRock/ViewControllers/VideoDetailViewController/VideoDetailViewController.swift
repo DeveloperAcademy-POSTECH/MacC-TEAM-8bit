@@ -191,12 +191,15 @@ final class VideoDetailViewController: UIViewController {
 	
 	// 취소 버튼을 눌렀을 때 로직
 	@objc func cancelAction() {
-		print(#function)
+		self.view.endEditing(true)
 	}
 	
 	// 완료 버튼을 눌렀을 때 로직
 	@objc func completeAction() {
-		print(#function)
+		//TODO: 피드백 입력 구현 마무리
+		var feedbackText: String = self.videoInfoView.feedbackTextView.text
+		updateFeedback(videoInformation: VideoInformation, feedback: feedbackText)
+		self.view.endEditing(true)
 	}
 	
 	// 영상을 클릭했을 때 네비게이션바, 툴바가 사라지는 로직
