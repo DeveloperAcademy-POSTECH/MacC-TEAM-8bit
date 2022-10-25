@@ -16,7 +16,7 @@ import UIKit
 
 final class HomeCollectionViewCardCell: UICollectionViewCell {
     static let identifier = "homeCollectionViewCardCell"
-
+    
     // MARK: Data
     private var visitedDate: String = "YYYY년 MM월 DD일"
     private var visitedGymName: String = "클라이밍장 정보"
@@ -177,7 +177,7 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         countTotalVideoLabel.text = videoCountDescription
         videoThumbnails = thumbnails
         setLocationIconView(sortOption)
-                
+        
         self.thumbnailCollectionView.reloadData()
     }
 }

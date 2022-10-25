@@ -45,7 +45,7 @@ final class HomeCollectionViewListCell: UICollectionViewCell {
     }()
     
     private lazy var visitedDateLabel: UILabel = {
-       let view = UILabel()
+        let view = UILabel()
         view.text = "2022년 12월 30일"
         view.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         return view

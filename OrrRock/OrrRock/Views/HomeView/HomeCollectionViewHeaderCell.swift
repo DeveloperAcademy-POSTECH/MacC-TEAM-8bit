@@ -108,4 +108,9 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
             }
         }
     }
+    
+    func setUpData(videoCount: Int, successCount: Int) {
+        videoCountLabel.text = "\(videoCount)개의 비디오"
+        PFCountLabel.text = "\(successCount)번의 성공, \(videoCount - successCount)번의 실패"
+    }
 }

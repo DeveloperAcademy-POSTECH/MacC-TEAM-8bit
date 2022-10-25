@@ -15,33 +15,33 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // 디버깅을 위해 카드의 개수를 10으로 지정해두었음.
         // 이후 동작 구현 시 카드 개수 지정을 위해 해당 값을 변경해주면 됨.
-        return isCardView ? DEBUGvideoData.count : DEBUGflattenVideoData.count
+        return isCardView ? sortedVideoInfoData.count : flattenSortedVideoInfoData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
+        
         if isCardView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewCardCell", for: indexPath) as! HomeCollectionViewCardCell
             
             var successCount: Int = 0
             var thumbnails: [UIImage] = []
             
-            let primaryTitle: String = sortOption == .gymVisitDate ? DEBUGvideoData[indexPath.row][0].gymVisitDate.timeToString() : DEBUGvideoData[indexPath.row][0].gymName
+            let primaryTitle: String = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymVisitDate.timeToString() : sortedVideoInfoData[indexPath.row][0].gymName
             
-            let secondaryTitle: String = sortOption == .gymVisitDate ? DEBUGvideoData[indexPath.row][0].gymName : "\(min(DEBUGvideoData[indexPath.row].first!.gymVisitDate, DEBUGvideoData[indexPath.row].last!.gymVisitDate).timeToString()) ~  \(max(DEBUGvideoData[indexPath.row].first!.gymVisitDate, DEBUGvideoData[indexPath.row].last!.gymVisitDate).timeToString())"
+            let secondaryTitle: String = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymName : "\(min(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString()) ~  \(max(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString())"
             
-            DEBUGvideoData[indexPath.row].forEach { videoInfo in
+            sortedVideoInfoData[indexPath.row].forEach { videoInfo in
                 successCount += videoInfo.isSucceeded ? 1 : 0
                 
                 if let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2), height: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2))) {
                     thumbnails.append(thumbnail)
                 }
             }
-                        
+            
             cell.setUpData(primaryTitle: primaryTitle,
                            secondaryTitle: secondaryTitle,
-                           PFCountDescription: "\(successCount)번의 성공, \(DEBUGvideoData[indexPath.row].count - successCount)번의 실패",
-                           videoCountDescription: "\(DEBUGvideoData[indexPath.row].count)개의 비디오",
+                           PFCountDescription: "\(successCount)번의 성공, \(sortedVideoInfoData[indexPath.row].count - successCount)번의 실패",
+                           videoCountDescription: "\(sortedVideoInfoData[indexPath.row].count)개의 비디오",
                            thumbnails: thumbnails,
                            sortOption: sortOption
             )
@@ -54,11 +54,11 @@ extension HomeViewController: UICollectionViewDataSource {
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewListCell", for: indexPath) as! HomeCollectionViewListCell
             
-            cell.setUpData(visitedDate: DEBUGflattenVideoData[indexPath.row].gymVisitDate.timeToString(),
-                           visitedGymName: DEBUGflattenVideoData[indexPath.row].gymName,
-                           level: "V\(DEBUGflattenVideoData[indexPath.row].problemLevel)",
-                           PF: DEBUGflattenVideoData[indexPath.row].isSucceeded ? "성공" : "실패",
-                           thumbnail: DEBUGflattenVideoData[indexPath.row].videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: 50, height: 50))!)
+            cell.setUpData(visitedDate: flattenSortedVideoInfoData[indexPath.row].gymVisitDate.timeToString(),
+                           visitedGymName: flattenSortedVideoInfoData[indexPath.row].gymName,
+                           level: "V\(flattenSortedVideoInfoData[indexPath.row].problemLevel)",
+                           PF: flattenSortedVideoInfoData[indexPath.row].isSucceeded ? "성공" : "실패",
+                           thumbnail: flattenSortedVideoInfoData[indexPath.row].videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: 50, height: 50))!)
             
             
             return cell
@@ -84,7 +84,15 @@ extension HomeViewController: UICollectionViewDelegate {
             let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                              withReuseIdentifier: HomeCollectionViewHeaderCell.identifier,
                                                                              for: indexPath) as! HomeCollectionViewHeaderCell
+            
+            var successCount = 0
+            flattenSortedVideoInfoData.forEach { video in
+                successCount += video.isSucceeded ? 1 : 0
+            }
+            
             headerCell.isCardView = self.isCardView
+            headerCell.setUpData(videoCount: flattenSortedVideoInfoData.count, successCount: successCount)
+            
             return headerCell
             
         } else if kind == UICollectionView.elementKindSectionFooter {
