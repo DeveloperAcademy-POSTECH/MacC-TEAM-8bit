@@ -60,6 +60,7 @@ final class VideoDetailViewController: UIViewController {
 		super.viewDidLoad()
 		setNavigationBar()
 		setUpLayout()
+		setKeyboardObserver()
 	}
 	
 	// 네비게이션바 세팅 함수
@@ -196,6 +197,40 @@ final class VideoDetailViewController: UIViewController {
 	// 텍스트 뷰 활성화 상태일 때 여백 화면 터치해서 키보드 내리는 로직
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		self.view.endEditing(true)
+	}
+}
+
+// 키보드 올라오고 내려감을 인식
+extension VideoDetailViewController {
+	// 키보드 옵저버
+	func setKeyboardObserver() {
+		NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardWillHideNotification, object:nil)
+	}
+	
+	@objc func showKeyboard(notification: NSNotification) {
+		if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+			isShowKeyboard.toggle()
+			self.navigationController?.navigationBar.layer.opacity = 1
+			self.topSafeareaView.layer.opacity = 1
+			// 키보드의 유무에 따라 버튼 옵션 변경
+			navigationItem.leftBarButtonItem = isShowKeyboard ? cancelButton : goBackButton
+			navigationItem.rightBarButtonItem = isShowKeyboard ? completeButton : favoriteButton
+			print(#function)
+		}
+	}
+	
+	@objc func hideKeyboard(notification: NSNotification) {
+		if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+			isShowKeyboard.toggle()
+			self.navigationController?.navigationBar.layer.opacity = 0
+			self.topSafeareaView.layer.opacity = 0
+			// 키보드의 유무에 따라 버튼 옵션 변경
+			navigationItem.leftBarButtonItem = isShowKeyboard ? cancelButton : goBackButton
+			navigationItem.rightBarButtonItem = isShowKeyboard ? completeButton : favoriteButton
+			print(#function)
+		}
 	}
 }
 
