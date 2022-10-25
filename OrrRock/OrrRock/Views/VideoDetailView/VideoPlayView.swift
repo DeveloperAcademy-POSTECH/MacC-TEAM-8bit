@@ -25,7 +25,6 @@ final class VideoPlayView: UIView {
 		
 		setUpLayout()
 		embedVideo()
-		
 	}
 	
 	required init?(coder: NSCoder) {
