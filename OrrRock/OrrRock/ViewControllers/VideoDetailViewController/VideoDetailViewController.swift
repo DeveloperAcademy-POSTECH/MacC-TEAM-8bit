@@ -22,7 +22,7 @@ final class VideoDetailViewController: UIViewController {
 	var isShowKeyboard: Bool = false
 	var iconSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
 	
-	let videoInfoView: VideoInfoView = VideoInfoView()
+    var videoInfoView: UIView?
 	
     //VideoInfo - 꼬마가 사용할 데이터
     var videoInformation: VideoInformation!
@@ -113,14 +113,14 @@ final class VideoDetailViewController: UIViewController {
 		feedbackButton.title = self.videoInfoView.feedbackTextView.textColor == .placeholderText ? "피드백 입력하기" : "피드백 확인하기"
 		if isShowInfo {
 			UIView.animate(withDuration: 0.2, animations: {
-				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -500)
+                self.videoInfoView!.transform = CGAffineTransform(translationX: 0, y: -500)
 				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: -100)
 				self.navigationController?.navigationBar.layer.opacity = 0
 				self.topSafeAreaView.layer.opacity = 0
 			})
 		} else {
 			UIView.animate(withDuration: 0.2, animations: {
-				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
+                self.videoInfoView!.transform = CGAffineTransform(translationX: 0, y: 0)
 				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: 0)
 				self.navigationController?.navigationBar.layer.opacity = 1
 				self.topSafeAreaView.layer.opacity = 1
@@ -266,8 +266,9 @@ extension VideoDetailViewController {
 			$0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
 		}
 		// 정보를 보여주는 뷰
-		view.addSubview(videoInfoView)
-		videoInfoView.snp.makeConstraints {
+        videoInfoView = VideoInfoView(frame: .zero, videoInfo: videoInformation)
+        view.addSubview(videoInfoView!)
+        videoInfoView!.snp.makeConstraints {
 			$0.leading.equalTo(self.view)
 			$0.trailing.equalTo(self.view)
 			$0.height.equalTo(650)
@@ -290,4 +291,6 @@ extension VideoDetailViewController {
 			$0.bottom.equalTo(self.view)
 		}
 	}
+    
+
 }
