@@ -110,6 +110,12 @@ final class VideoInfoView: UIView {
 		// 난이도, 성패여부 편집 뷰 네비게이션
         let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
         let vc = LevelAndPFEditViewController()
+        vc.videoInformation = videoInformation
+        vc.completioHandler = {isSuccess,level in
+            self.levelLabel.text = "V\(level)"
+            self.isSucceeded.text = isSuccess ? "성공" : "실패"
+            
+        }
         viewController.present(vc, animated: true)
 	}
 	
