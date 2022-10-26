@@ -14,6 +14,9 @@ import SnapKit
 final class SwipeableCardViewController: UIViewController {
 
     var videoInfoArray: [VideoInfo] = []
+//    private var dummyVideoArray: [VideoInfo] = VideoManager.shared.fetchVideo()
+    private var videoInformation: [VideoInfo] = []
+    var videoIndexArray: [Int] = []
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -136,9 +139,11 @@ private extension SwipeableCardViewController {
 
     // 목업용 카드를 만들어줍니다.
     func createSwipeableCard() {
-        for dummyVideo in videoInfoArray {
+        for index in 0 ..< videoInfoArray.count {
             lazy var swipeCard: SwipeableCardVideoView = {
-                let embed = Bundle.main.url(forResource: dummyVideo.videoLocalIdentifier, withExtension: "MOV")
+                
+                // TODO: PHAsset -> AVAsset으로 변경하는 코드부 : PHAssetWithCoreData Repository 참
+                let embed = Bundle.main.url(forResource: videoInfoArray[index].videoLocalIdentifier, withExtension: "MOV")
                 let testVideoAsset = AVAsset(url: embed!)
                 
                 let view = SwipeableCardVideoView(asset: testVideoAsset)
@@ -148,10 +153,10 @@ private extension SwipeableCardViewController {
                 
                 return view
             }()
-
-            swipeCard.dummyVideo = dummyVideo
-            swipeCard.tag = dummyVideo.id
-            swipeCard.tag = dummyVideo.videoLocalIdentifier
+            
+            swipeCard.video = videoInformation[index]
+            swipeCard.tag = index
+            videoIndexArray.append(index)
 
             // gesture
             let gesture = UIPanGestureRecognizer()
@@ -173,10 +178,6 @@ private extension SwipeableCardViewController {
     // swipeCard가 SuperView에서 제거됩니다.
     @objc func removeCard(card: UIView) {
         card.removeFromSuperview()
-        
-        self.videoInfoArray = self.videoInfoArray.filter ({ dummyVideos in
-            return dummyVideos.id != card.tag
-        })
     }
 
     // Gesture
@@ -238,16 +239,25 @@ private extension SwipeableCardViewController {
     }
     
     func fetchVideo() {
-        self.videoInfoArray = VideoManager.shared.fetchVideo()
+        // self.videoInfoArray = VideoManager.shared.fetchVideo()
+
+        // videoLocalIdentifier - PHAsset을 AVAsset으로 변환하기 위해 사용함
+        videoInformation = [VideoInfo(gymName: "ii", gymVisitDate: Date(), videoLocalIdentifier: "sisis", problemLevel: 3, isSucceeded: false),VideoInfo(gymName: "ii", gymVisitDate: Date(), videoLocalIdentifier: "sisis", problemLevel: 3, isSucceeded: false),VideoInfo(gymName: "ii", gymVisitDate: Date(), videoLocalIdentifier: "sisis", problemLevel: 3, isSucceeded: false)]
         
-        print(self.videoInfoArray)
+//        for index in 0 ..< videoInformation.count {
+//            let info = videoInformation[index]
+//            let dummyVideo = DummyVideo(id: index, videoURL: info.videoLocalIdentifier, problemLevel: info.problemLevel, isSuccess: info.isSucceeded)
+//            dummyVideos.append(dummyVideo)
+//        }
+//
+//        print(self.dummyVideos)
     }
     
     // swipeCard의 애니매이션 효과를 담당합니다.
     func animateCard(rotationAngle: CGFloat, videoResultType: VideoResultType) {
-        if let video = videoInfoArray.first {
+//        if let video = videoInfoArray.first {
             for view in view.subviews {
-                if view.tag == video.id {
+                if view.tag == videoIndexArray[view.tag] {
                     if let card = view as? SwipeableCardVideoView {
                         let center: CGPoint
                         let isSuccess: Bool
@@ -273,8 +283,9 @@ private extension SwipeableCardViewController {
                     }
                 }
             }
-        }
-        if videoInfoArray.count == 1 {
+//        }
+        // 실행해보고 안되면 포문 안에 넣어주기
+        if videoIndexArray.count == 1 {
             didVideoClassificationComplete()
         }
     }
