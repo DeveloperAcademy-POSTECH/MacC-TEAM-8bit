@@ -67,7 +67,6 @@ extension DateSettingViewController {
     private func pressNextButton(_ sender: UIButton) {
         let nextVC = GymSettingViewController()
         nextVC.gymVisitDate = gymVisitDate
-        print("홀로롤로 \(gymVisitDate)")
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 
