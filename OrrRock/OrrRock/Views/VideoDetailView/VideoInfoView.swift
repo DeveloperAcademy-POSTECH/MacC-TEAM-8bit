@@ -122,13 +122,16 @@ final class VideoInfoView: UIView {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		self.backgroundColor = .orrWhite
-		
 		setUpLayout()
 	}
 	
     convenience init(frame: CGRect, videoInfo : VideoInformation) {
         self.init(frame: frame)
         self.videoInformation = videoInfo
+        dateLabel.text = videoInformation?.gymVisitDate.timeToString()
+        levelLabel.text = "V\(videoInformation?.problemLevel ?? 2)"
+        isSucceeded.text = videoInformation!.isSucceeded ? "성공" : "실패"
+        locationLabel.text = videoInformation?.gymName
         //make here what you want
     }
 	required init?(coder: NSCoder) {
