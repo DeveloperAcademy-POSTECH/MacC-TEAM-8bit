@@ -229,6 +229,7 @@ final class HomeViewController : UIViewController {
     
     // MARK: View Lifecycle Function
     override func viewDidLoad() {
+		
         super.viewDidLoad()
         view.backgroundColor = .orrGray1
 
@@ -340,5 +341,3 @@ func printVideoInformation(videoInformation: [[VideoInformation]]) {
         print("-----------------")
     }
 }
-
-
