@@ -231,7 +231,7 @@ final class HomeViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orrGray1
-        
+
         setUpLayout()
         setUpNavigationBar()
         setUICollectionViewDelegate()
@@ -312,6 +312,8 @@ extension HomeViewController {
         self.flattenSortedVideoInfoData = sortedVideoInfoData.flatMap { $0 }
         
         placeholderView.alpha = flattenSortedVideoInfoData.isEmpty ? 1 : 0
+        collectionView.alpha = flattenSortedVideoInfoData.isEmpty ? 0 : 1
+
         self.collectionView.reloadData()
     }
 }
