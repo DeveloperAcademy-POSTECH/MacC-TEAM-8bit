@@ -8,47 +8,48 @@
 import Foundation
 
 // 코어데이터 연결 전 사용할 임시 모델입니다
-//struct VideoInfo {
-//    var id: Int
-//    var videoURL: String
-//    var problemLevel: Int
-//    var isSuccess: Bool
-//}
+struct DummyVideoInfo {
+    var gymName: String
+    var gymVisitDate: Date
+    var videoLocalIdentifier: String
+    var problemLevel: Int
+    var isSucceeded: Bool
+}
 
 class VideoManager {
 
     static let shared = VideoManager()
 
-    let dummyVideoList: [VideoInfo] = [
-        VideoInfo(
+    let dummyVideoList: [DummyVideoInfo] = [
+        DummyVideoInfo(
             gymName: "아띠",
             gymVisitDate: Date(),
             videoLocalIdentifier: "identifier",
             problemLevel: 2,
             isSucceeded: true
         ),
-        VideoInfo(
+        DummyVideoInfo(
             gymName: "아띠",
             gymVisitDate: Date(),
             videoLocalIdentifier: "identifier",
             problemLevel: 2,
             isSucceeded: true
         ),
-        VideoInfo(
+        DummyVideoInfo(
             gymName: "아띠",
             gymVisitDate: Date(),
             videoLocalIdentifier: "identifier",
             problemLevel: 2,
             isSucceeded: true
         ),
-        VideoInfo(
+        DummyVideoInfo(
             gymName: "아띠",
             gymVisitDate: Date(),
             videoLocalIdentifier: "identifier",
             problemLevel: 2,
             isSucceeded: true
         ),
-        VideoInfo(
+        DummyVideoInfo(
             gymName: "아띠",
             gymVisitDate: Date(),
             videoLocalIdentifier: "identifier",
@@ -57,7 +58,7 @@ class VideoManager {
         )
     ]
 
-    func fetchVideo() -> [VideoInfo] {
+    func fetchVideo() -> [DummyVideoInfo] {
         return self.dummyVideoList
     }
 }
