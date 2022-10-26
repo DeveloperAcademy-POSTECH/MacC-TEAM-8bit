@@ -43,7 +43,6 @@ class DateSettingViewController: UIViewController {
         btn.addTarget(self, action: #selector(pressNextButton), for: .touchDown)
         btn.setTitle("계속", for: .normal)
         btn.setTitleColor(.white, for: .normal)
-        btn.isEnabled = false
         return btn
     }()
 
@@ -61,9 +60,7 @@ extension DateSettingViewController {
 
     @objc
     private func handleDatePicker(_ sender: UIDatePicker) {
-        datePickerLabel.text = sender.date.timeToString()
         self.gymVisitDate = sender.date
-        nextButton.isEnabled = true
     }
 
     @objc
