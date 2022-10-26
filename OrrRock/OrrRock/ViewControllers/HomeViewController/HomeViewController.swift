@@ -219,9 +219,7 @@ final class HomeViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orrGray1
-        if !UserDefaults.standard.bool(forKey: "watchOnBoard"){
-            self.present(OnBoardingViewController(), animated: true)
-        }
+        showOnBoard()
         setUpLayout()
         setUpNavigationBar()
         setUICollectionViewDelegate()
@@ -275,6 +273,11 @@ final class HomeViewController : UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: quickActionButton)
     }
     
+    private func showOnBoard(){
+        if !UserDefaults.standard.bool(forKey: "watchOnBoard"){
+            self.present(OnBoardingViewController(), animated: true)
+        }
+    }
     @objc func switchViewStyle() {
         isCardView.toggle()
     }
