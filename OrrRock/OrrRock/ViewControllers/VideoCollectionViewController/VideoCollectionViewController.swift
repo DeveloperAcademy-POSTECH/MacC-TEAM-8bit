@@ -142,6 +142,11 @@ class VideoCollectionViewController: UIViewController {
         super.viewWillAppear(true)
         
         videoInformationArray = sortVideoInformation(videoInformation: videoInformationArray, sectionData: sectionData)
+        if videoInformationArray.count != 0 {
+                    sectionData.primaryGymVisitDate = videoInformationArray[videoInformationArray.count - 1].gymVisitDate
+                    sectionData.secondaryGymVisitDate = videoInformationArray[0].gymVisitDate
+                }
+        getSuccessCount()
         videoCollectionView.reloadData()
     }
     
