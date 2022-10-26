@@ -192,6 +192,7 @@ class VideoDetailViewController: UIViewController {
 	@objc func favoriteAction() {
 		videoInformation.isFavorite.toggle()
 		favoriteButton.image = UIImage(systemName: videoInformation.isFavorite ? "heart.fill" : "heart")
+		DataManager.shared.updateFavorite(videoInformation: videoInformation, isFavorite: videoInformation.isFavorite)
 		print(#function)
 	}
 	
