@@ -19,11 +19,11 @@ class VideoDetailViewController: UIViewController {
 	var isShowKeyboard: Bool = false
 	var iconSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
 	
-    var videoInfoView = VideoInfoView()
+	var videoInfoView = VideoInfoView()
 	
-    var videoInformation: VideoInformation!
+	var videoInformation: VideoInformation!
 	var feedbackText: String?
-    
+	
 	private var infoButton: UIBarButtonItem!
 	private var feedbackButton: UIBarButtonItem!
 	private var trashButton: UIBarButtonItem!
@@ -49,12 +49,7 @@ class VideoDetailViewController: UIViewController {
 	
 	// 영상 재생하는 뷰 (VideoPlayerView)
 	lazy var videoPlayView: VideoPlayView = {
-		// FIXME: 임시 데이터 입력을 위한 코드 추후 변경
-		// 추후 PHAsset 타입의 데이터를 AVAsset으로 타입 포매팅 후 url을 가져오는 코드로 변경
-		let embed = Bundle.main.url(forResource: "ianIsComming", withExtension: "MOV")
-		let testVideoAsset = AVAsset(url: embed!)
-		
-		let view = VideoPlayView(asset: testVideoAsset)
+		let view = VideoPlayView(videoInfo: videoInformation)
 		self.view.addSubview(view)
 		return view
 	}()
@@ -112,14 +107,14 @@ class VideoDetailViewController: UIViewController {
 		feedbackButton.title = videoInfoView.feedbackTextView.textColor == .placeholderText ? "피드백 입력하기" : "피드백 확인하기"
 		if isShowInfo {
 			UIView.animate(withDuration: 0.2, animations: {
-                self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -500)
+				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -500)
 				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: -100)
 				self.navigationController?.navigationBar.layer.opacity = 0
 				self.topSafeAreaView.layer.opacity = 0
 			})
 		} else {
 			UIView.animate(withDuration: 0.2, animations: {
-                self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
+				self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
 				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: 0)
 				self.navigationController?.navigationBar.layer.opacity = 1
 				self.topSafeAreaView.layer.opacity = 1
@@ -129,10 +124,10 @@ class VideoDetailViewController: UIViewController {
 	
 	// 뒤로가기 버튼을 눌렀을 때 로직
 	@objc func goBackAction() {
-        self.navigationController?.popViewController(animated: true)
-        navigationController?.isNavigationBarHidden = false
-        navigationController?.isToolbarHidden = true
-        navigationController?.hidesBarsOnTap = false
+		self.navigationController?.popViewController(animated: true)
+		navigationController?.isNavigationBarHidden = false
+		navigationController?.isToolbarHidden = true
+		navigationController?.hidesBarsOnTap = false
 	}
 	
 	// 삭제 버튼을 눌렀을 때 로직
@@ -270,6 +265,11 @@ extension VideoDetailViewController {
 	}
 }
 
+// PHAsset 타입의 영상 데이터를 videoLocalIdentifier를 통해서 AVAsset으로 포매팅하는 매서드
+extension VideoDetailViewController {
+
+}
+
 extension VideoDetailViewController {
 	private func setUpLayout() {
 		// 영상을 보여주는 뷰
@@ -281,7 +281,7 @@ extension VideoDetailViewController {
 			$0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
 		}
 		// 정보를 보여주는 뷰
-        videoInfoView = VideoInfoView(frame: .zero, videoInfo: videoInformation)
+		videoInfoView = VideoInfoView(frame: .zero, videoInfo: videoInformation)
 		view.addSubview(videoInfoView)
 		videoInfoView.snp.makeConstraints {
 			$0.leading.equalTo(self.view)
@@ -306,6 +306,4 @@ extension VideoDetailViewController {
 			$0.bottom.equalTo(self.view)
 		}
 	}
-    
-
 }
