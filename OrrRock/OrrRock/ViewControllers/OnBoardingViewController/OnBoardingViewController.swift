@@ -54,6 +54,20 @@ class OnBoardingViewController: UIViewController , UISheetPresentationController
         label.text = "성장 그래프 및 성공 횟수를 보여줍니다."
         return label
     }()
+    
+    private lazy var labelImage1 : UIImageView = {
+        let label = UIImageView(image: UIImage(named: "icon1"))
+        return label
+    }()
+    
+    private lazy var labelImage2 : UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 28, weight: .regular)
+        label.textColor = .orrUPBlue
+        label.text = "􀑁"
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpDelegate()
@@ -98,6 +112,20 @@ class OnBoardingViewController: UIViewController , UISheetPresentationController
         subLabel4.snp.makeConstraints {
             $0.leading.equalTo(titleLabel)
             $0.top.equalTo(titleLabel.snp.bottom).offset(148)
+        }
+        
+        view.addSubview(labelImage1)
+        labelImage1.snp.makeConstraints {
+            $0.width.equalTo(40)
+            $0.height.equalTo(30)
+            $0.trailing.equalTo(titleLabel.snp.leading).offset(-16)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(51)
+        }
+        
+        view.addSubview(labelImage2)
+        labelImage2.snp.makeConstraints {
+            $0.trailing.equalTo(titleLabel.snp.leading).offset(-16)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(135)
         }
     }
 
