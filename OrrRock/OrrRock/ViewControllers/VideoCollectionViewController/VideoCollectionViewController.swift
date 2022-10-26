@@ -143,9 +143,9 @@ class VideoCollectionViewController: UIViewController {
         
         videoInformationArray = sortVideoInformation(videoInformation: videoInformationArray, sectionData: sectionData)
         if videoInformationArray.count != 0 {
-                    sectionData.primaryGymVisitDate = videoInformationArray[videoInformationArray.count - 1].gymVisitDate
-                    sectionData.secondaryGymVisitDate = videoInformationArray[0].gymVisitDate
-                }
+            sectionData.primaryGymVisitDate = videoInformationArray[videoInformationArray.count - 1].gymVisitDate
+            sectionData.secondaryGymVisitDate = videoInformationArray[0].gymVisitDate
+        }
         getSuccessCount()
         videoCollectionView.reloadData()
     }
@@ -222,20 +222,20 @@ class VideoCollectionViewController: UIViewController {
     @objc func didDeleteActionSheetClicked(_ sender: UIBarButtonItem){
         let optionMenu = UIAlertController(title: "선택한 영상 삭제하기", message: "정말로 삭제하시겠어요?", preferredStyle: .actionSheet)
         
-            // 2
+        // 2
         let deleteAction = UIAlertAction(title: "삭제하기", style: .default) { _ in
             self.didDeleteButtonClicked()
         }
-                
-            // 3
-            let cancelAction = UIAlertAction(title: "취소하기", style: .cancel)
-                
-            // 4
-            optionMenu.addAction(deleteAction)
-            optionMenu.addAction(cancelAction)
-                
-            // 5
-            self.present(optionMenu, animated: true, completion: nil)
+        
+        // 3
+        let cancelAction = UIAlertAction(title: "취소하기", style: .cancel)
+        
+        // 4
+        optionMenu.addAction(deleteAction)
+        optionMenu.addAction(cancelAction)
+        
+        // 5
+        self.present(optionMenu, animated: true, completion: nil)
     }
     
     @objc func didSelectAllButtonClicked(_ sender: UIBarButtonItem){
@@ -246,7 +246,7 @@ class VideoCollectionViewController: UIViewController {
             }
             for row in 0..<self.videoCollectionView.numberOfItems(inSection: 0) {
                 self.videoCollectionView.selectItem(at: IndexPath(row: row, section: 0), animated: false, scrollPosition: [])
-           }
+            }
         }
         
         

@@ -8,7 +8,7 @@
 import UIKit
 
 class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControllerDelegate {
-
+    
     var isSuccess : Bool = false
     
     private let values: [Int] = [1,2,3,4,5,6,7,8,9]
@@ -70,13 +70,13 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
     }()
     
     lazy var pickerView: UIPickerView = {
-                     let picker = UIPickerView()
-                     picker.frame = CGRect(x: 0, y: 150, width: self.view.bounds.width, height: 180.0)
-                     picker.backgroundColor = .orrGray1
-                     picker.delegate = self
-                     picker.dataSource = self
-                     return picker
-                 }()
+        let picker = UIPickerView()
+        picker.frame = CGRect(x: 0, y: 150, width: self.view.bounds.width, height: 180.0)
+        picker.backgroundColor = .orrGray1
+        picker.delegate = self
+        picker.dataSource = self
+        return picker
+    }()
     
     lazy var successLabel : UILabel = {
         let label = UILabel()
@@ -101,7 +101,7 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         let button = UIButton()
         button.layer.cornerRadius = isSuccess ? 37.5 : 30.5
         button.alpha = isSuccess ? 1.0 : 0.3
-           button.clipsToBounds = true
+        button.clipsToBounds = true
         button.backgroundColor = .orrPass
         button.setTitle("성공", for: .normal)
         button.addTarget(self, action: #selector(didSuccessButtonClicked), for: .touchUpInside)
@@ -120,7 +120,7 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         btn.setTitleColor(.white, for: .normal)
         return btn
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpLayout()
@@ -128,7 +128,7 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         // Do any additional setup after loading the view.
     }
     
-
+    
 }
 
 extension LevelAndPFEditViewController {

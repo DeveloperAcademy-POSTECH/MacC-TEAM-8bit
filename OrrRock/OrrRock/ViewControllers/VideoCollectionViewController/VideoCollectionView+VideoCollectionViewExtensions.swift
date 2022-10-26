@@ -15,7 +15,7 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
             firstContentOffset = Float(scrollView.contentOffset.y)
             checkFirstContentOffset = true
         }
-
+        
         if (firstContentOffset + 64.0) < Float(scrollView.contentOffset.y){
             titleStackView.isHidden = false
         }
@@ -25,7 +25,7 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
         
     }
     
-   
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch mMode{
