@@ -25,6 +25,7 @@ class CoreDataDAO {
         entity.setValue(info.videoLocalIdentifier, forKey: "videoLocalIdentifier")
         entity.setValue(info.problemLevel, forKey: "problemLevel")
         entity.setValue(info.isSucceeded, forKey: "isSucceeded")
+		entity.setValue(info.feedback, forKey: "")
         
         saveData()
         
