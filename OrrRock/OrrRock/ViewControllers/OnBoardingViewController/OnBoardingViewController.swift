@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class OnBoardingViewController: UIViewController , UISheetPresentationControllerDelegate{
-
+    
     override var sheetPresentationController: UISheetPresentationController {
         presentationController as! UISheetPresentationController
     }
@@ -85,7 +85,7 @@ class OnBoardingViewController: UIViewController , UISheetPresentationController
         // Do any additional setup after loading the view.
     }
     
-
+    
     private func setUpDelegate(){
         self.isModalInPresentation = true
         sheetPresentationController.delegate = self
@@ -151,7 +151,7 @@ class OnBoardingViewController: UIViewController , UISheetPresentationController
             $0.height.equalTo(56)
         }
     }
-
+    
     @objc
     private func pressNextButton(_ sender: UIButton) {
         UserDefaults.standard.set(true, forKey: "watchOnBoard")
