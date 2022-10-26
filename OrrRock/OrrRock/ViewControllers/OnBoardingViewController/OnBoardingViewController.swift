@@ -34,6 +34,7 @@ class OnBoardingViewController: UIViewController , UISheetPresentationController
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         label.textColor = .black
+        label.numberOfLines = 2
         label.text = "날짜, 암장, 성공, 실패 및 즐겨찾는 항목의\n영상을 분류해 줍니다."
         label.textAlignment = .left
         return label
@@ -60,12 +61,21 @@ class OnBoardingViewController: UIViewController , UISheetPresentationController
         return label
     }()
     
-    private lazy var labelImage2 : UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 28, weight: .regular)
-        label.textColor = .orrUPBlue
-        label.text = "􀑁"
+    private lazy var labelImage2 : UIImageView = {
+        let label = UIImageView(image: UIImage(named: "icon2"))
         return label
+    }()
+    
+    private lazy var nextButton : UIButton = {
+        let btn = UIButton()
+        btn.clipsToBounds = true
+        btn.layer.cornerRadius = 15
+        btn.setBackgroundColor(.orrUPBlue!, for: .normal)
+        btn.setBackgroundColor(.orrGray2!, for: .disabled)
+        btn.addTarget(self, action: #selector(pressNextButton), for: .touchDown)
+        btn.setTitle("계속", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        return btn
     }()
     
     override func viewDidLoad() {
@@ -77,10 +87,12 @@ class OnBoardingViewController: UIViewController , UISheetPresentationController
     
 
     private func setUpDelegate(){
+        self.isModalInPresentation = true
         sheetPresentationController.delegate = self
         sheetPresentationController.selectedDetentIdentifier = .large
         sheetPresentationController.prefersGrabberVisible = false
         sheetPresentationController.detents = [.large()]
+        
     }
     
     private func setUpLayout(){
@@ -124,9 +136,25 @@ class OnBoardingViewController: UIViewController , UISheetPresentationController
         
         view.addSubview(labelImage2)
         labelImage2.snp.makeConstraints {
+            $0.width.equalTo(36)
+            $0.height.equalTo(30)
             $0.trailing.equalTo(titleLabel.snp.leading).offset(-16)
-            $0.top.equalTo(titleLabel.snp.bottom).offset(135)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(130)
+        }
+        
+        view.addSubview(nextButton)
+        nextButton.snp.makeConstraints{
+            $0.centerX.equalTo(view)
+            $0.bottom.equalTo(view).offset(-34)
+            $0.leading.equalTo(view).offset(orrPadding.padding3.rawValue)
+            $0.trailing.equalTo(view).offset(-orrPadding.padding3.rawValue)
+            $0.height.equalTo(56)
         }
     }
 
+    @objc
+    private func pressNextButton(_ sender: UIButton) {
+        UserDefaults.standard.set(true, forKey: "watchOnBoard")
+        self.dismiss(animated: true)
+    }
 }
