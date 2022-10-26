@@ -140,20 +140,20 @@ final class VideoInfoView: UIView {
 }
 
 extension VideoInfoView: UITextViewDelegate {
-    // 텍스트뷰가 비어있을 때 플레이스 홀더 띄워주는 메서드
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        guard textView.textColor == .placeholderText else { return }
-        textView.textColor = .label
-        textView.text = nil
-    }
-    
-    // 다른 작업을 할 때 텍스트뷰가 비어있으면 플레이스 홀더 띄워주는 메서드
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "피드백 입력"
-            textView.textColor = .placeholderText
-        }
-    }
+	// 텍스트뷰가 비어있을 때 플레이스 홀더 띄워주는 메서드
+	func textViewDidBeginEditing(_ textView: UITextView) {
+		guard textView.textColor == .placeholderText else { return }
+		textView.textColor = .orrBlack
+		textView.text = nil
+	}
+
+	// 다른 작업을 할 때 텍스트뷰가 비어있으면 플레이스 홀더 띄워주는 메서드
+	func textViewDidEndEditing(_ textView: UITextView) {
+		if textView.text.isEmpty {
+			textView.text = "피드백 입력"
+			textView.textColor = .placeholderText
+		}
+	}
 }
 
 extension VideoInfoView {

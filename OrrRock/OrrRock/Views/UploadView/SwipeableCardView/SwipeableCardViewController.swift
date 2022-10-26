@@ -12,16 +12,69 @@ import AVKit
 import SnapKit
 
 final class SwipeableCardViewController: UIViewController {
-    
+
     private var dummyVideos: [DummyVideo] = []
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "스와이프를 통해 비디오를 분류해주세요."
+        label.textColor = .orrBlack
+        label.font = .systemFont(ofSize: 17.0, weight: .semibold)
+
+        return label
+    }()
+
+    private lazy var levelButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("레벨", for: .normal)
+        button.setTitleColor(.orrGray3, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 17.0, weight: .semibold)
+        button.addTarget(self, action: #selector(pickLevel), for: .touchUpInside)
+
+        return button
+    }()
+
+    private lazy var levelButtonImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "chevron.down")
+        imageView.tintColor = .orrGray3
+        
+        return imageView
+    }()
+
+    private lazy var separator: UIView = {
+        let separator = UIView()
+        separator.backgroundColor = .orrUPBlue
+        
+        return separator
+    }()
+    
+    private lazy var emptyVideoView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .orrGray2
+        view.layer.cornerRadius = 10
+        view.clipsToBounds = true
+        
+        return view
+    }()
+    
+    private lazy var emptyVideoInformation: UILabel = {
+        let label = UILabel()
+        label.text = "모든 비디오를 분류했습니다!"
+        label.textColor = .orrGray3
+        label.font = .systemFont(ofSize: 15.0, weight: .regular)
+        
+        return label
+    }()
     
     private lazy var failButton: UIButton = {
         let button = UIButton()
         button.setTitle("실패", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .semibold)
-        button.backgroundColor = .red
-        button.layer.cornerRadius = 10.0
+        button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .semibold)
+        // TODO: - .orrfail 에셋 문제 해결 후 수정하기
+        button.backgroundColor = .systemRed
+        button.layer.cornerRadius = 37.0
         button.addTarget(self, action: #selector(didFailButton), for: .touchUpInside)
         
         return button
@@ -31,28 +84,56 @@ final class SwipeableCardViewController: UIViewController {
         let button = UIButton()
         button.setTitle("성공", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .semibold)
-        button.backgroundColor = .blue
-        button.layer.cornerRadius = 10.0
+        button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .semibold)
+        button.backgroundColor = .orrPass
+        button.layer.cornerRadius = 37.0
         button.addTarget(self, action: #selector(didSuccessButton), for: .touchUpInside)
         
+        return button
+    }()
+    
+    private lazy var saveButton : UIButton = {
+        let button = UIButton()
+        button.setBackgroundColor(.orrUPBlue!, for: .normal)
+        button.addTarget(self, action: #selector(tapSaveButton), for: .touchUpInside)
+        button.setTitle("저장하기", for: .normal)
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 10.0
+        button.setTitleColor(.white, for: .normal)
+        button.isHidden = true
+
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonClicked))
+        navigationItem.leftBarButtonItem?.tintColor = .orrUPBlue
+        
         // card UI
-        view.backgroundColor = .systemGroupedBackground
         setUpLayout()
         fetchVideo()
         createSwipeableCard()
     }
 }
 
+extension SwipeableCardViewController: LevelPickerViewDelegate {
+    
+    func didLevelChanged(selectedLevel: String) {
+        levelButton.setTitle(selectedLevel, for: .normal)
+        if !selectedLevel.isEmpty {
+            levelButton.setTitleColor(.black, for: .normal)
+            separator.backgroundColor = .black
+        }
+    }
+}
+
 // Gesture
 private extension SwipeableCardViewController {
-    
+
     // 목업용 카드를 만들어줍니다.
     func createSwipeableCard() {
         for dummyVideo in dummyVideos {
@@ -62,13 +143,15 @@ private extension SwipeableCardViewController {
                 
                 let view = SwipeableCardVideoView(asset: testVideoAsset)
                 self.view.addSubview(view)
+                view.layer.cornerRadius = 10
+                view.clipsToBounds = true
                 
                 return view
             }()
-            
+
             swipeCard.dummyVideo = dummyVideo
             swipeCard.tag = dummyVideo.id
-            
+
             // gesture
             let gesture = UIPanGestureRecognizer()
             gesture.addTarget(self, action: #selector(handlerCard))
@@ -77,13 +160,15 @@ private extension SwipeableCardViewController {
             view.insertSubview(swipeCard, at: 0)
 
             swipeCard.snp.makeConstraints {
+                $0.center.equalToSuperview()
+                $0.height.equalTo(420.0)
                 $0.leading.trailing.equalToSuperview().inset(60.0)
-                $0.height.equalTo(450.0)
-                $0.centerY.equalToSuperview()
             }
+            
+            self.view.sendSubviewToBack(self.emptyVideoView)
         }
     }
-    
+
     // swipeCard가 SuperView에서 제거됩니다.
     @objc func removeCard(card: UIView) {
         card.removeFromSuperview()
@@ -92,14 +177,14 @@ private extension SwipeableCardViewController {
             return dummyVideos.id != card.tag
         })
     }
-    
+
     // Gesture
     @objc func handlerCard(_ gesture: UIPanGestureRecognizer) {
         if let card = gesture.view as? SwipeableCardVideoView {
             let point = gesture.translation(in: view)
-            
+ 
             card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
-            
+                        
             let rotationAngle = point.x / view.bounds.width * 0.4
             
             if point.x > 0 {
@@ -132,13 +217,23 @@ private extension SwipeableCardViewController {
             }
         }
     }
-    
+
+    @objc func pickLevel() {
+        let nextViewController = LevelPickerView()
+        self.navigationController?.present(nextViewController, animated: true)
+        nextViewController.delegate = self
+    }
+
     @objc func didFailButton() {
         animateCard(rotationAngle: -0.4, videoResultType: .fail)
     }
     
     @objc func didSuccessButton() {
         animateCard(rotationAngle: 0.4, videoResultType: .success)
+    }
+    
+    @objc func tapSaveButton() {
+        // TODO: - 다음 뷰로 넘어가는 로직
     }
     
     func fetchVideo() {
@@ -178,23 +273,98 @@ private extension SwipeableCardViewController {
                 }
             }
         }
+        if dummyVideos.count == 1 {
+            didVideoClassificationComplete()
+        }
+    }
+
+    @objc func backButtonClicked() {
+        self.navigationController?.popViewController(animated: true)
+        print("pop 가 됐습니다.")
+    }
+
+    func didVideoClassificationComplete() {
+        levelButton.isEnabled = false
+        
+        saveButton.isHidden = false
+        successButton.isHidden = true
+        failButton.isHidden = true
+        
+        titleLabel.text = "분류 완료! 저장하기를 눌러주세요."
+        levelButton.setTitle("레벨", for: .normal)
+        
+        titleLabel.textColor = .orrGray3
+        levelButton.tintColor = .orrGray3
+        separator.backgroundColor = .orrGray3
     }
 }
 
 private extension SwipeableCardViewController {
     
     func setUpLayout() {
-        let buttonStackView = UIStackView(arrangedSubviews: [failButton, successButton])
-        buttonStackView.spacing = 40.0
-        buttonStackView.distribution = .fillEqually
+        let buttonStackView = UIStackView(arrangedSubviews: [levelButton, levelButtonImage])
+        buttonStackView.spacing = 8.0
+        buttonStackView.distribution = .fillProportionally
         
-        // TODO: 디자인 수정 예정 (린다와 얘기 후) -> 임의의 cont 값 조절하였음
+        view.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().inset(104.0)
+        }
+    
         view.addSubview(buttonStackView)
         buttonStackView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(100.0)
-            $0.height.equalTo(40.0)
-            $0.width.equalTo(300.0)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(24.0)
+            $0.centerX.equalToSuperview()
+        }
+        
+        levelButtonImage.snp.makeConstraints {
+            $0.height.equalTo(20.0)
+            $0.width.equalTo(20.0)
+        }
+
+        view.addSubview(emptyVideoView)
+        emptyVideoView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.height.equalTo(420.0)
+            $0.leading.trailing.equalToSuperview().inset(60.0)
+        }
+        
+        view.addSubview(separator)
+        separator.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(buttonStackView.snp.bottom).offset(8.0)
+            $0.height.equalTo(2.0)
+            $0.width.equalTo(70.0)
+        }
+
+        emptyVideoView.addSubview(emptyVideoInformation)
+        emptyVideoInformation.snp.makeConstraints {
+            $0.center.equalTo(emptyVideoView.snp.center)
+        }
+
+        view.addSubview(failButton)
+        failButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(64.0)
+            $0.leading.equalToSuperview().inset(48.0)
+            $0.height.equalTo(74.0)
+            $0.width.equalTo(74.0)
+        }
+        
+        view.addSubview(successButton)
+        successButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(64.0)
+            $0.trailing.equalToSuperview().inset(48.0)
+            $0.height.equalTo(74.0)
+            $0.width.equalTo(74.0)
+        }
+        
+        view.addSubview(saveButton)
+        saveButton.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(16.0)
+            $0.bottom.equalToSuperview().inset(30.0)
+            $0.height.equalTo(56.0)
         }
     }
 }
