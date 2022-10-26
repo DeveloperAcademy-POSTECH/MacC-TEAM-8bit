@@ -22,7 +22,9 @@ final class VideoDetailViewController: UIViewController {
 	var isShowKeyboard: Bool = false
 	var iconSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
 	
+
     var videoInfoView = VideoInfoView()
+
 	
     //VideoInfo - 꼬마가 사용할 데이터
     var videoInformation: VideoInformation!
