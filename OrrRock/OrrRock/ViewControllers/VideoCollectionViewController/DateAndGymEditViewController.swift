@@ -246,11 +246,10 @@ extension DateAndGymEditViewController {
     
     @objc
     private func pressSaveButton(_ sender: UIButton) {
-        if gymTextField.text == ""{
+        if gymTextField.text == "" {
             DataManager.shared.updateDateAndGymData(videoInformation: videoInformation, gymVisitDate: selectDate!, gymName: videoInformation.gymName)
-            
             completioHandler?(videoInformation.gymName,selectDate!)
-        }else{
+        } else {
             DataManager.shared.updateDateAndGymData(videoInformation: videoInformation, gymVisitDate: selectDate!, gymName: gymTextField.text!)
             completioHandler?(gymTextField.text!,selectDate!)
         }
