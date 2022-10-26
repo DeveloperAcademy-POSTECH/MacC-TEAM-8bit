@@ -205,6 +205,7 @@ class VideoDetailViewController: UIViewController {
 	// 완료 버튼을 눌렀을 때 로직
 	@objc func completeAction() {
 		//TODO: 피드백 입력 구현 마무리
+
 		feedbackText = videoInfoView.feedbackTextView.text!
 		DataManager.shared.updateFeedback(videoInformation: videoInformation, feedback: feedbackText!)
 		self.view.endEditing(true)

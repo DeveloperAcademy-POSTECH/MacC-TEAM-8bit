@@ -174,7 +174,7 @@ extension GymSettingViewController: PHPickerViewControllerDelegate {
         CustomIndicator.stopLoading()
         let nextVC = SwipeableCardViewController()
         // SwipeableCardViewController()에videoInfoArray 가 없어 임시 처리된 코드입니다.
-//        nextVC.videoInfoArray = videoInfoArray
+        nextVC.videoInfoArray = videoInfoArray
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }

@@ -10,10 +10,11 @@ import UIKit
 import AVFoundation
 import AVKit
 import SnapKit
+import Photos
 
 final class SwipeableCardViewController: UIViewController {
 
-    private var dummyVideos: [DummyVideo] = []
+    var videoInfoArray: [VideoInfo] = []
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -105,6 +106,10 @@ final class SwipeableCardViewController: UIViewController {
         return button
     }()
     
+    private var cards: [SwipeableCardVideoView] = []
+    private var counter: Int = 0
+    
+    private var currentSelectedLevel: Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -115,19 +120,18 @@ final class SwipeableCardViewController: UIViewController {
         
         // card UI
         setUpLayout()
-        fetchVideo()
         createSwipeableCard()
     }
 }
 
 extension SwipeableCardViewController: LevelPickerViewDelegate {
     
-    func didLevelChanged(selectedLevel: String) {
-        levelButton.setTitle(selectedLevel, for: .normal)
-        if !selectedLevel.isEmpty {
-            levelButton.setTitleColor(.black, for: .normal)
-            separator.backgroundColor = .black
-        }
+    func didLevelChanged(selectedLevel: Int) {
+        levelButton.setTitle("V\(selectedLevel)", for: .normal)
+        currentSelectedLevel = selectedLevel
+        
+        levelButton.setTitleColor(.black, for: .normal)
+        separator.backgroundColor = .black
     }
 }
 
@@ -136,46 +140,82 @@ private extension SwipeableCardViewController {
 
     // 목업용 카드를 만들어줍니다.
     func createSwipeableCard() {
-        for dummyVideo in dummyVideos {
-            lazy var swipeCard: SwipeableCardVideoView = {
-                let embed = Bundle.main.url(forResource: dummyVideo.videoURL, withExtension: "MOV")
-                let testVideoAsset = AVAsset(url: embed!)
-                
-                let view = SwipeableCardVideoView(asset: testVideoAsset)
-                self.view.addSubview(view)
-                view.layer.cornerRadius = 10
-                view.clipsToBounds = true
-                
-                return view
-            }()
+        
+//        let identifiers = ["0FAB51F9-292E-4063-B9DA-116A82478F31/L0/001",
+//                           "E2AF7BA4-FC5C-434B-9F89-604DB7390C8E/L0/001",
+//                           "192E5D25-37AB-4CF8-802C-7EC9118250F1/L0/001",
+//                           "8C925304-7B39-42DB-8653-DBF5CD420541/L0/001",
+//                           "45B439B4-98DC-4BC0-B897-48F9EE801AB9/L0/001",
+//                           "09B406A3-D991-439F-9873-DE51D6A5D66B/L0/001",
+//                           "123DB5F8-CCDE-492A-B6BE-04FEB90C6724/L0/001",
+//                           "A2A9A990-364A-4FEB-9AC3-FE01B5EFAA07/L0/001",
+//                           "87FD3C13-2816-43E2-B966-BEAD0FEA16EA/L0/001",
+//                           "C3D74F7F-949F-4E97-BC20-ABE18DB5D24D/L0/001",
+//                           "F4722B4E-847D-4C0C-B213-749DCDA1E279/L0/001",
+//                           "FAB3A40A-34D3-4C7A-A775-A92E4D066B7A/L0/001",
+//                           "AAE0A4CE-7438-434B-9E7F-87758C7FE4DB/L0/001",
+//                           "94AB1FD7-1DB5-4734-B862-8B572A69A74B/L0/001",
+//                           "342BD2E7-BE07-42AC-B4B3-19992E51EBBA/L0/001"]
+        
+//        let identifiers = ["0FAB51F9-292E-4063-B9DA-116A82478F31/L0/001",
+//                           "E2AF7BA4-FC5C-434B-9F89-604DB7390C8E/L0/001",
+//                           "192E5D25-37AB-4CF8-802C-7EC9118250F1/L0/001"]
+        
+        var identifiers: [String] = []
+        for videoInfo in videoInfoArray {
+            identifiers.append(videoInfo.videoLocalIdentifier)
+        }
+        
+        let assets = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: .none)
+        
+        for index in 0..<assets.count {
+            guard (assets[index].mediaType == PHAssetMediaType.video)
 
-            swipeCard.dummyVideo = dummyVideo
-            swipeCard.tag = dummyVideo.id
-
-            // gesture
-            let gesture = UIPanGestureRecognizer()
-            gesture.addTarget(self, action: #selector(handlerCard))
-            swipeCard.addGestureRecognizer(gesture)
-            
-            view.insertSubview(swipeCard, at: 0)
-
-            swipeCard.snp.makeConstraints {
-                $0.center.equalToSuperview()
-                $0.height.equalTo(420.0)
-                $0.leading.trailing.equalToSuperview().inset(60.0)
+                else {
+                    print("Not a valid video media type")
+                    return
             }
             
-            self.view.sendSubviewToBack(self.emptyVideoView)
+            var asset: AVURLAsset?
+            PHCachingImageManager().requestAVAsset(forVideo: assets[index], options: nil) { (assets, audioMix, info) in
+                asset = assets as? AVURLAsset
+                
+                DispatchQueue.main.async {
+                    guard let url = asset?.url else {
+                        print ("UUUUUUUU")
+                        return }
+                    var swipeCard = SwipeableCardVideoView(asset: AVAsset(url: url))
+                    
+                    if index == 0 {
+                        swipeCard.embedVideo()
+                        swipeCard.videoPlay()
+                    }
+                    
+                    self.view.insertSubview(swipeCard, at: 0)
+                    self.cards.append(swipeCard)
+                    
+                    swipeCard.snp.makeConstraints {
+                        $0.center.equalToSuperview()
+                        $0.height.equalTo(420.0)
+                        $0.leading.trailing.equalToSuperview().inset(60.0)
+                    }
+                    
+                    swipeCard.tag = index
+                    print(swipeCard.tag)
+                    self.view.sendSubviewToBack(self.emptyVideoView)
+                    
+                    // gesture
+                    let gesture = UIPanGestureRecognizer()
+                    gesture.addTarget(self, action: #selector(self.handlerCard))
+                    swipeCard.addGestureRecognizer(gesture)
+                }
+            }
         }
     }
 
     // swipeCard가 SuperView에서 제거됩니다.
     @objc func removeCard(card: UIView) {
         card.removeFromSuperview()
-        
-        self.dummyVideos = self.dummyVideos.filter ({ dummyVideos in
-            return dummyVideos.id != card.tag
-        })
     }
 
     // Gesture
@@ -234,47 +274,55 @@ private extension SwipeableCardViewController {
     
     @objc func tapSaveButton() {
         // TODO: - 다음 뷰로 넘어가는 로직
+        DataManager.shared.createMultipleData(infoList: videoInfoArray)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
-    func fetchVideo() {
-        self.dummyVideos = VideoManager.shared.fetchVideo()
-        
-        print(self.dummyVideos)
-    }
+    
     
     // swipeCard의 애니매이션 효과를 담당합니다.
     func animateCard(rotationAngle: CGFloat, videoResultType: VideoResultType) {
-        if let dummyVideo = dummyVideos.first {
-            for view in view.subviews {
-                if view.tag == dummyVideo.id {
-                    if let card = view as? SwipeableCardVideoView {
-                        let center: CGPoint
-                        let isSuccess: Bool
-                        
-                        switch videoResultType {
-                        case .fail:
-                            center = CGPoint(x: card.center.x - view.bounds.width, y: card.center.y + 50)
-                            isSuccess = false
-                            
-                        case .success:
-                            center = CGPoint(x: card.center.x + view.bounds.width, y: card.center.y + 50)
-                            isSuccess = true
-                        }
-                        
-                        UIView.animate(withDuration: 0.6, animations: {
-                            card.center = center
-                            card.transform = CGAffineTransform(rotationAngle: rotationAngle)
-                            card.successImageView.alpha = isSuccess == true ? 1 : 0
-                            card.failImageView.alpha = isSuccess == false ? 1 : 0
-                        }) { _ in
-                            self.removeCard(card: card)
-                        }
+        
+        print(view.subviews.count)
+        var cardViews = view.subviews.filter({ ($0 as? SwipeableCardVideoView) != nil })
+        print("DDD ", cardViews.count)
+        
+        for view in cardViews {
+            if view == cards[counter] {
+                let center: CGPoint
+                let isSuccess: Bool
+                let  card = view as! SwipeableCardVideoView
+                
+                switch videoResultType {
+                case .fail:
+                    center = CGPoint(x: card.center.x - view.bounds.width, y: card.center.y + 30)
+                    isSuccess = false
+                    
+                case .success:
+                    center = CGPoint(x: card.center.x + view.bounds.width, y: card.center.y + 30)
+                    isSuccess = true
+                }
+                
+                videoInfoArray[counter].isSucceeded = isSuccess
+                videoInfoArray[counter].problemLevel = currentSelectedLevel ?? 0
+                print(videoInfoArray[counter])
+                UIView.animate(withDuration: 0.6, animations: {
+                    card.center = center
+                    card.transform = CGAffineTransform(rotationAngle: rotationAngle)
+                    card.successImageView.alpha = isSuccess == true ? 1 : 0
+                    card.failImageView.alpha = isSuccess == false ? 1 : 0
+                }) { [self] _ in
+                    if counter != cards.count-1 {
+                        print(counter)
+                        cards[counter].videoPlay()
+                        removeCard(card: card)
+                        counter += 1
+                    } else {
+                        didVideoClassificationComplete()
+                        removeCard(card: card)
                     }
                 }
             }
-        }
-        if dummyVideos.count == 1 {
-            didVideoClassificationComplete()
         }
     }
 

@@ -13,13 +13,7 @@ import AVFoundation
 
 final class SwipeableCardVideoView: UIView {
 
-    var dummyVideo: DummyVideo? {
-        didSet {
-            if let dummyVideo = dummyVideo {
-                self.asset = AVAsset(url: Bundle.main.url(forResource: "ianIsComming", withExtension: "MOV")!)
-            }
-        }
-    }
+    var video: VideoInfo?
     
     private lazy var videoBackgroundView: UIView = {
         let view = UIView()
@@ -67,7 +61,7 @@ final class SwipeableCardVideoView: UIView {
     }
 }
 
-private extension SwipeableCardVideoView {
+extension SwipeableCardVideoView {
     
     func embedVideo() {
         let item = AVPlayerItem(asset: asset)
@@ -79,6 +73,10 @@ private extension SwipeableCardVideoView {
         
         self.playerLayer = playerLayer
         self.videoBackgroundView.layer.addSublayer(playerLayer)
+//        self.player.play()
+    }
+    
+    func videoPlay() {
         self.player.play()
     }
 }
