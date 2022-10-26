@@ -61,7 +61,7 @@ final class SwipeableCardVideoView: UIView {
     }
 }
 
-private extension SwipeableCardVideoView {
+extension SwipeableCardVideoView {
     
     func embedVideo() {
         let item = AVPlayerItem(asset: asset)
@@ -73,6 +73,10 @@ private extension SwipeableCardVideoView {
         
         self.playerLayer = playerLayer
         self.videoBackgroundView.layer.addSublayer(playerLayer)
+//        self.player.play()
+    }
+    
+    func videoPlay() {
         self.player.play()
     }
 }
