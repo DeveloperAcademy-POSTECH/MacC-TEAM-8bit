@@ -15,9 +15,6 @@ import Photos
 final class SwipeableCardViewController: UIViewController {
 
     var videoInfoArray: [VideoInfo] = []
-//    private var dummyVideoArray: [VideoInfo] = VideoManager.shared.fetchVideo()
-    private var videoInformation: [VideoInfo] = []
-    var videoIndexArray: [Int] = []
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -159,9 +156,14 @@ private extension SwipeableCardViewController {
 //                           "94AB1FD7-1DB5-4734-B862-8B572A69A74B/L0/001",
 //                           "342BD2E7-BE07-42AC-B4B3-19992E51EBBA/L0/001"]
         
-        let identifiers = ["0FAB51F9-292E-4063-B9DA-116A82478F31/L0/001",
-                           "E2AF7BA4-FC5C-434B-9F89-604DB7390C8E/L0/001",
-                           "192E5D25-37AB-4CF8-802C-7EC9118250F1/L0/001"]
+//        let identifiers = ["0FAB51F9-292E-4063-B9DA-116A82478F31/L0/001",
+//                           "E2AF7BA4-FC5C-434B-9F89-604DB7390C8E/L0/001",
+//                           "192E5D25-37AB-4CF8-802C-7EC9118250F1/L0/001"]
+        
+        var identifiers: [String] = []
+        for videoInfo in videoInfoArray {
+            identifiers.append(videoInfo.videoLocalIdentifier)
+        }
         
         let assets = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: .none)
         
