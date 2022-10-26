@@ -67,6 +67,7 @@
 		78CAA06C290271E7003C3D77 /* VIdeoCollectionFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA06B290271E7003C3D77 /* VIdeoCollectionFooterCell.swift */; };
 		78F93ED32906EFC500F3D9F3 /* DateAndGymEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */; };
 		78F93ED7290743DF00F3D9F3 /* LevelAndPFEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */; };
+		78F93EDA2908D00F00F3D9F3 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED92908D00F00F3D9F3 /* OnBoardingViewController.swift */; };
 		A88805852907F5A0002CD52E /* LevelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88805842907F5A0002CD52E /* LevelPickerView.swift */; };
 		FB3227FC2903FD9C00276A7D /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3227FB2903FD9C00276A7D /* Date+.swift */; };
 		FB3227FE2903FDA600276A7D /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3227FD2903FDA600276A7D /* String+.swift */; };
@@ -136,6 +137,7 @@
 		78CAA06B290271E7003C3D77 /* VIdeoCollectionFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIdeoCollectionFooterCell.swift; sourceTree = "<group>"; };
 		78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAndGymEditViewController.swift; sourceTree = "<group>"; };
 		78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelAndPFEditViewController.swift; sourceTree = "<group>"; };
+		78F93ED92908D00F00F3D9F3 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		A88805842907F5A0002CD52E /* LevelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelPickerView.swift; sourceTree = "<group>"; };
 		FB3227FB2903FD9C00276A7D /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		FB3227FD2903FDA600276A7D /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 		34B0113E290015860043951A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				78F93ED82908CFDF00F3D9F3 /* OnBoardingViewController */,
 				34B0113F2900158D0043951A /* ViewController */,
 				3A2880F9290428C000FBFB70 /* TestViewController */,
 				78A0354A2901318900FF1913 /* VideoCollectionViewController */,
@@ -386,6 +389,14 @@
 				78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */,
 			);
 			path = VideoCollectionViewController;
+			sourceTree = "<group>";
+		};
+		78F93ED82908CFDF00F3D9F3 /* OnBoardingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				78F93ED92908D00F00F3D9F3 /* OnBoardingViewController.swift */,
+			);
+			path = OnBoardingViewController;
 			sourceTree = "<group>";
 		};
 		FB32281029046B9400276A7D /* VideoDetailViewController */ = {
@@ -544,6 +555,7 @@
 				707B2CB528FFFEFF0062C958 /* UpoadTestNextViewController.swift in Sources */,
 				3A2880FB2904290E00FBFB70 /* SortTestViewController.swift in Sources */,
 				FB3227FE2903FDA600276A7D /* String+.swift in Sources */,
+				78F93EDA2908D00F00F3D9F3 /* OnBoardingViewController.swift in Sources */,
 				3A15AC7B290724620058512F /* DataManager.swift in Sources */,
 				A88805852907F5A0002CD52E /* LevelPickerView.swift in Sources */,
 				78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */,
