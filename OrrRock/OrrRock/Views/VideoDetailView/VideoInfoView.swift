@@ -16,7 +16,7 @@ final class VideoInfoView: UIView {
     var videoIsSucceeded: Bool = true
     // -----------------------------
     var videoInformation : VideoInformation?
-    private lazy var feedbackTextView: UITextView = {
+    lazy var feedbackTextView: UITextView = {
         let view = UITextView()
         view.backgroundColor = .orrWhite
         view.font = .systemFont(ofSize: 17.0, weight: .semibold)
