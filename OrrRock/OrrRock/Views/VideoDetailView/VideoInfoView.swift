@@ -16,14 +16,11 @@ final class VideoInfoView: UIView {
     var videoIsSucceeded: Bool = true
     // -----------------------------
     var videoInformation : VideoInformation?
+	
     lazy var feedbackTextView: UITextView = {
         let view = UITextView()
         view.backgroundColor = .orrWhite
         view.font = .systemFont(ofSize: 17.0, weight: .semibold)
-        view.text = "피드백 입력하기"
-        view.textColor = .placeholderText
-        // 플레이스 홀더를 위한 델리게이트
-        view.delegate = self
         return view
     }()
     
@@ -132,6 +129,9 @@ final class VideoInfoView: UIView {
         levelLabel.text = "V\(videoInformation?.problemLevel ?? 2)"
         isSucceeded.text = videoInformation!.isSucceeded ? "성공" : "실패"
         locationLabel.text = videoInformation?.gymName
+		feedbackTextView.text = videoInformation?.feedback
+		feedbackTextView.delegate = self  // 플레이스 홀더를 위한 델리게이트
+		feedbackTextView.textColor = feedbackTextView.text.isEmpty || feedbackTextView.text == nil ? .placeholderText : .orrBlack
         //make here what you want
     }
     required init?(coder: NSCoder) {

@@ -19,7 +19,7 @@ class VideoDetailViewController: UIViewController {
 	var isShowKeyboard: Bool = false
 	var iconSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
 	
-    var videoInfoView: UIView?
+    var videoInfoView = VideoInfoView()
 	
     var videoInformation: VideoInformation!
 	var feedbackText: String?
@@ -108,23 +108,23 @@ class VideoDetailViewController: UIViewController {
 		isShowInfo.toggle()
 		infoButton.image = UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle")
 		navigationController?.hidesBarsOnTap = !isShowInfo
-		feedbackButton.title = self.videoInfoView.feedbackTextView.textColor == .placeholderText ? "피드백 입력하기" : "피드백 확인하기"
+		feedbackText = videoInfoView.feedbackTextView.text!
+		feedbackButton.title = videoInfoView.feedbackTextView.textColor == .placeholderText ? "피드백 입력하기" : "피드백 확인하기"
 		if isShowInfo {
 			UIView.animate(withDuration: 0.2, animations: {
-                self.videoInfoView!.transform = CGAffineTransform(translationX: 0, y: -500)
+                self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -500)
 				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: -100)
 				self.navigationController?.navigationBar.layer.opacity = 0
 				self.topSafeAreaView.layer.opacity = 0
 			})
 		} else {
 			UIView.animate(withDuration: 0.2, animations: {
-                self.videoInfoView!.transform = CGAffineTransform(translationX: 0, y: 0)
+                self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
 				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: 0)
 				self.navigationController?.navigationBar.layer.opacity = 1
 				self.topSafeAreaView.layer.opacity = 1
 			})
 		}
-		print(#function)
 	}
 	
 	// 뒤로가기 버튼을 눌렀을 때 로직
@@ -163,6 +163,7 @@ class VideoDetailViewController: UIViewController {
 		isShowInfo.toggle()
 		infoButton.image = UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle")
 		navigationController?.hidesBarsOnTap = !isShowInfo
+		feedbackText = videoInfoView.feedbackTextView.text!
 		feedbackButton.title = self.videoInfoView.feedbackTextView.textColor == .placeholderText ? "피드백 입력하기" : "피드백 확인하기"
 		if isShowInfo {
 			UIView.animate(withDuration: 0.2, animations: {
@@ -192,14 +193,14 @@ class VideoDetailViewController: UIViewController {
 	
 	// 취소 버튼을 눌렀을 때 로직
 	@objc func cancelAction() {
+		feedbackText = videoInformation.feedback
 		self.view.endEditing(true)
 	}
 	
 	// 완료 버튼을 눌렀을 때 로직
 	@objc func completeAction() {
 		//TODO: 피드백 입력 구현 마무리
-		feedbackText = videoInfoView.feedbackTextView.text
-		print(feedbackText)
+		feedbackText = videoInfoView.feedbackTextView.text!
 		DataManager.shared.updateFeedback(videoInformation: videoInformation, feedback: feedbackText!)
 		self.view.endEditing(true)
 	}
@@ -220,7 +221,7 @@ class VideoDetailViewController: UIViewController {
 	}
 	
 	func setDefaultData() {
-		feedbackText = videoInformation.feedback ?? ""
+		feedbackText = videoInformation.feedback
 	}
 }
 
@@ -241,7 +242,8 @@ extension VideoDetailViewController {
 			// 키보드의 유무에 따라 버튼 옵션 변경
 			navigationItem.leftBarButtonItem = isShowKeyboard ? cancelButton : goBackButton
 			navigationItem.rightBarButtonItem = isShowKeyboard ? completeButton : favoriteButton
-			print(#function)
+			feedbackText = videoInfoView.feedbackTextView.text!
+			DataManager.shared.updateFeedback(videoInformation: videoInformation, feedback: feedbackText!)
 		}
 	}
 	
@@ -253,7 +255,8 @@ extension VideoDetailViewController {
 			// 키보드의 유무에 따라 버튼 옵션 변경
 			navigationItem.leftBarButtonItem = isShowKeyboard ? cancelButton : goBackButton
 			navigationItem.rightBarButtonItem = isShowKeyboard ? completeButton : favoriteButton
-			print(#function)
+			feedbackText = videoInfoView.feedbackTextView.text!
+			DataManager.shared.updateFeedback(videoInformation: videoInformation, feedback: feedbackText!)
 		}
 	}
 }
@@ -270,8 +273,8 @@ extension VideoDetailViewController {
 		}
 		// 정보를 보여주는 뷰
         videoInfoView = VideoInfoView(frame: .zero, videoInfo: videoInformation)
-        view.addSubview(videoInfoView!)
-        videoInfoView!.snp.makeConstraints {
+		view.addSubview(videoInfoView)
+		videoInfoView.snp.makeConstraints {
 			$0.leading.equalTo(self.view)
 			$0.trailing.equalTo(self.view)
 			$0.height.equalTo(650)
