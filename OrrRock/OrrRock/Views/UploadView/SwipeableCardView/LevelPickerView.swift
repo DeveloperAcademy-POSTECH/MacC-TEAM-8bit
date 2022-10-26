@@ -8,13 +8,13 @@
 import UIKit
 
 protocol LevelPickerViewDelegate {
-    func didLevelChanged(selectedLevel: String)
+    func didLevelChanged(selectedLevel: Int)
 }
 
 class LevelPickerView: UIViewController, UISheetPresentationControllerDelegate {
 
     var isSuccess : Bool = false
-    var level = String()
+    var level = Int()
     var delegate: LevelPickerViewDelegate?
 
     private let levelList: [String] = ["V1","V2","V3","V4","V5","V6","V7","V8","V9"]
@@ -126,7 +126,7 @@ extension LevelPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
 
     // 선택된 값
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        level = levelList[row]
+        level = row+1
         print(level)
     }
 

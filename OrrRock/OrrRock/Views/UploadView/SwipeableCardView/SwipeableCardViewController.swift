@@ -109,6 +109,7 @@ final class SwipeableCardViewController: UIViewController {
     private var cards: [SwipeableCardVideoView] = []
     private var counter: Int = 0
     
+    private var currentSelectedLevel: Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -125,12 +126,12 @@ final class SwipeableCardViewController: UIViewController {
 
 extension SwipeableCardViewController: LevelPickerViewDelegate {
     
-    func didLevelChanged(selectedLevel: String) {
-        levelButton.setTitle(selectedLevel, for: .normal)
-        if !selectedLevel.isEmpty {
-            levelButton.setTitleColor(.black, for: .normal)
-            separator.backgroundColor = .black
-        }
+    func didLevelChanged(selectedLevel: Int) {
+        levelButton.setTitle("V\(selectedLevel)", for: .normal)
+        currentSelectedLevel = selectedLevel
+        
+        levelButton.setTitleColor(.black, for: .normal)
+        separator.backgroundColor = .black
     }
 }
 
@@ -273,6 +274,8 @@ private extension SwipeableCardViewController {
     
     @objc func tapSaveButton() {
         // TODO: - 다음 뷰로 넘어가는 로직
+        DataManager.shared.createMultipleData(infoList: videoInfoArray)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     
@@ -300,6 +303,9 @@ private extension SwipeableCardViewController {
                     isSuccess = true
                 }
                 
+                videoInfoArray[counter].isSucceeded = isSuccess
+                videoInfoArray[counter].problemLevel = currentSelectedLevel ?? 0
+                print(videoInfoArray[counter])
                 UIView.animate(withDuration: 0.6, animations: {
                     card.center = center
                     card.transform = CGAffineTransform(rotationAngle: rotationAngle)
