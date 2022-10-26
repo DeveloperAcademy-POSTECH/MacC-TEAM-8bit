@@ -77,9 +77,28 @@ class OnBoardingViewController: UIViewController , UISheetPresentationController
             $0.top.equalToSuperview().inset(81)
         }
         view.addSubview(subLabel1)
+        subLabel1.snp.makeConstraints {
+            $0.leading.equalTo(titleLabel)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(41)
+        }
+        
         view.addSubview(subLabel2)
+        subLabel2.snp.makeConstraints {
+            $0.leading.equalTo(titleLabel)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(66)
+        }
+        
         view.addSubview(subLabel3)
+        subLabel3.snp.makeConstraints {
+            $0.leading.equalTo(titleLabel)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(122)
+        }
+        
         view.addSubview(subLabel4)
+        subLabel4.snp.makeConstraints {
+            $0.leading.equalTo(titleLabel)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(148)
+        }
     }
 
 }
