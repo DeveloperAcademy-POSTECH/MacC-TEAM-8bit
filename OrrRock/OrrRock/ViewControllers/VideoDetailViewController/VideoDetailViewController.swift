@@ -136,9 +136,18 @@ class VideoDetailViewController: UIViewController {
 	}
 	
 	// 삭제 버튼을 눌렀을 때 로직
-	@objc func deleteVideoAction() {
-		// 삭제하기
-		print(#function)
+	@objc func deleteVideoAction(_ sender: UIBarButtonItem) {
+		let optionMenu = UIAlertController(title: "선택한 영상 삭제하기", message: "정말로 삭제하시겠어요?", preferredStyle: .actionSheet)
+		let deleteAction = UIAlertAction(title: "삭제하기", style: .default) {_ in
+			DataManager.shared.deleteData(videoInformation: self.videoInformation)
+			self.goBackAction()
+		}
+		let cancelAction = UIAlertAction(title: "취소하기", style: .cancel)
+		
+		optionMenu.addAction(deleteAction)
+		optionMenu.addAction(cancelAction)
+		
+		self.present(optionMenu, animated: true, completion: nil)
 	}
 	
 	// 소리 버튼을 눌렀을 때 로직
