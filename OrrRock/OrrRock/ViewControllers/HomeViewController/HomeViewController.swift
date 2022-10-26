@@ -217,6 +217,9 @@ final class HomeViewController : UIViewController {
     
     // MARK: View Lifecycle Function
     override func viewDidLoad() {
+		// FIXME: 추후 삭제
+		makeArray()
+		
         super.viewDidLoad()
         view.backgroundColor = .orrGray1
         
@@ -310,4 +313,31 @@ func printVideoInformation(videoInformation: [[VideoInformation]]) {
         print("Pass: \(success) Failure: \(videoInformation[i].count - success)")
         print("-----------------")
     }
+}
+
+extension HomeViewController {
+	func makeArray() {
+		
+		DataManager.shared.deleteAllData()
+		
+		let array = [
+			VideoInfo(gymName: "아띠", gymVisitDate: Date(timeIntervalSince1970: 300), videoLocalIdentifier: "~~~~~~~/L0/001", problemLevel: 2, isSucceeded: false),
+			VideoInfo(gymName: "아띠", gymVisitDate: Date(timeIntervalSince1970: 300), videoLocalIdentifier: "~~~~~~~/L0/001", problemLevel: 3, isSucceeded: true),
+			VideoInfo(gymName: "아띠", gymVisitDate: Date(timeIntervalSince1970: 300), videoLocalIdentifier: "~~~~~~~/L0/001", problemLevel: 10, isSucceeded: true),
+			VideoInfo(gymName: "아띠", gymVisitDate: Date(timeIntervalSince1970: 300), videoLocalIdentifier: "~~~~~~~/L0/001", problemLevel: 2, isSucceeded: false),
+			VideoInfo(gymName: "스파이더", gymVisitDate: Date(timeIntervalSince1970: 25000), videoLocalIdentifier: "~~~~~~~/L0/001", problemLevel: 5, isSucceeded: false),
+			VideoInfo(gymName: "스파이더", gymVisitDate: Date(timeIntervalSince1970: 25000), videoLocalIdentifier: "~~~~~~~/L0/001", problemLevel: 4, isSucceeded: false),
+			VideoInfo(gymName: "스파이더", gymVisitDate: Date(timeIntervalSince1970: 25000), videoLocalIdentifier: "~~~~~~~/L0/001", problemLevel: 0, isSucceeded: true),
+			VideoInfo(gymName: "김대우", gymVisitDate: Date(), videoLocalIdentifier: "~~~~~~~/L0/001", problemLevel: 6, isSucceeded: true),
+			VideoInfo(gymName: "김대우", gymVisitDate: Date(), videoLocalIdentifier: "~~~~~~~/L0/001", problemLevel: 5, isSucceeded: false),
+			VideoInfo(gymName: "김대우", gymVisitDate: Date(), videoLocalIdentifier: "~~~~~~~/L0/001", problemLevel: 3, isSucceeded: false),
+			VideoInfo(gymName: "김대우", gymVisitDate: Date(), videoLocalIdentifier: "~~~~~~~/L0/001", problemLevel: 3, isSucceeded: false),
+			VideoInfo(gymName: "김대우", gymVisitDate: Date(), videoLocalIdentifier: "~~~~~~~/L0/001", problemLevel: 2, isSucceeded: true),
+			VideoInfo(gymName: "김대우", gymVisitDate: Date(), videoLocalIdentifier: "~~~~~~~/L0/001", problemLevel: 1, isSucceeded: true),
+			VideoInfo(gymName: "김대우", gymVisitDate: Date(), videoLocalIdentifier: "~~~~~~~/L0/001", problemLevel: 7, isSucceeded: true),
+			VideoInfo(gymName: "김대우", gymVisitDate: Date(), videoLocalIdentifier: "~~~~~~~/L0/001", problemLevel: 4, isSucceeded: false)
+		]
+
+		DataManager.shared.createMultipleData(infoList: array)
+	}
 }

@@ -10,7 +10,8 @@ import UIKit
 
 import SnapKit
 
-final class VideoDetailViewController: UIViewController {
+//final class VideoDetailViewController: UIViewController {
+class VideoDetailViewController: UIViewController {
 	
 	var isShowInfo: Bool = false
 	var isSounded: Bool = false
@@ -21,6 +22,7 @@ final class VideoDetailViewController: UIViewController {
 	let videoInfoView: VideoInfoView = VideoInfoView()
 	
     var videoInformation: VideoInformation!
+	var feedbackText: String?
     
 	private var infoButton: UIBarButtonItem!
 	private var feedbackButton: UIBarButtonItem!
@@ -62,6 +64,7 @@ final class VideoDetailViewController: UIViewController {
 		setNavigationBar()
 		setUpLayout()
 		setKeyboardObserver()
+		setDefaultData()
 	}
 	
 	// 네비게이션바 세팅 함수
@@ -195,8 +198,9 @@ final class VideoDetailViewController: UIViewController {
 	// 완료 버튼을 눌렀을 때 로직
 	@objc func completeAction() {
 		//TODO: 피드백 입력 구현 마무리
-		var feedbackText: String = self.videoInfoView.feedbackTextView.text
-//		updateFeedback(videoInformation: VideoInformation, feedback: feedbackText)
+		feedbackText = videoInfoView.feedbackTextView.text
+		print(feedbackText)
+		DataManager.shared.updateFeedback(videoInformation: videoInformation, feedback: feedbackText!)
 		self.view.endEditing(true)
 	}
 	
@@ -213,6 +217,10 @@ final class VideoDetailViewController: UIViewController {
 	// 텍스트 뷰 활성화 상태일 때 여백 화면 터치해서 키보드 내리는 로직
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		self.view.endEditing(true)
+	}
+	
+	func setDefaultData() {
+		feedbackText = videoInformation.feedback ?? ""
 	}
 }
 
