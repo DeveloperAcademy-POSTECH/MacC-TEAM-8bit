@@ -22,7 +22,7 @@ final class VideoDetailViewController: UIViewController {
 	var isShowKeyboard: Bool = false
 	var iconSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
 	
-    var videoInfoView: UIView?
+    var videoInfoView: VideoInfoView!
 	
     //VideoInfo - 꼬마가 사용할 데이터
     var videoInformation: VideoInformation!
@@ -201,7 +201,7 @@ final class VideoDetailViewController: UIViewController {
 	@objc func completeAction() {
 		//TODO: 피드백 입력 구현 마무리
 		var feedbackText: String = self.videoInfoView.feedbackTextView.text
-		updateFeedback(videoInformation: VideoInformation, feedback: feedbackText)
+        DataManager.shared.updateFeedback(videoInformation: videoInformation, feedback: feedbackText)
 		self.view.endEditing(true)
 	}
 	
