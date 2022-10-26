@@ -24,15 +24,15 @@ final class VideoPlayView: UIView {
 	
 	private var stringArray: [String]
 	
-	init(videoInfo : VideoInformation) {
-		self.videoInformation = videoInfo
+	init(videoInformation : VideoInformation) {
+		self.videoInformation = videoInformation
 		self.stringArray = []
 		super.init(frame: .zero)
 		
 		setUpLayout()
 		
 		// PHAsset 기본 메서드 fetchAssets의 포맷을 맞추기 위한 String 배열 생성 및 데이터 삽입
-		stringArray.append((videoInformation?.videoLocalIdentifier ?? nil)!)
+		stringArray.append((videoInformation.videoLocalIdentifier ?? nil)!)
 		videoDataFomatter(videoLocalIdentifier: stringArray)
 	}
 	

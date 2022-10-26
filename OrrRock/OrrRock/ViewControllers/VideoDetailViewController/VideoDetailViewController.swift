@@ -49,7 +49,7 @@ class VideoDetailViewController: UIViewController {
 	
 	// 영상 재생하는 뷰 (VideoPlayerView)
 	lazy var videoPlayView: VideoPlayView = {
-		let view = VideoPlayView(videoInfo: videoInformation)
+		let view = VideoPlayView(videoInformation: videoInformation)
 		self.view.addSubview(view)
 		return view
 	}()
