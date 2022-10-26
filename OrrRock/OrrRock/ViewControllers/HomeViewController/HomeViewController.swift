@@ -208,6 +208,18 @@ final class HomeViewController : UIViewController {
         return view
     }()
     
+    private lazy var placeholderView: UILabel = {
+        let view = UILabel()
+        view.text = "업로드한 비디오가 없습니다.\n비디오를 업로드 해주세요."
+        view.numberOfLines = 0
+        view.textAlignment = .center
+        view.textColor = .orrGray4
+        view.font = .systemFont(ofSize: 15)
+        
+        view.alpha = 0.0
+        return view
+    }()
+    
     // MARK: Components
     private let dateFormatter: DateFormatter = {
         let df = DateFormatter()
@@ -261,6 +273,14 @@ final class HomeViewController : UIViewController {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
         }
+        
+        self.view.addSubview(placeholderView)
+        placeholderView.snp.makeConstraints {
+            $0.top.equalTo(view.snp.top)
+            $0.bottom.equalTo(toolbarView.snp.top)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(orrPadding.padding3.rawValue)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(orrPadding.padding3.rawValue)
+        }
     }
     
     private func setUICollectionViewDelegate() {
@@ -291,6 +311,7 @@ extension HomeViewController {
         self.sortedVideoInfoData = DataManager.shared.sortRepository(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
         self.flattenSortedVideoInfoData = sortedVideoInfoData.flatMap { $0 }
         
+        placeholderView.alpha = flattenSortedVideoInfoData.isEmpty ? 1 : 0
         self.collectionView.reloadData()
     }
 }
