@@ -22,7 +22,7 @@ final class VideoDetailViewController: UIViewController {
 	var isShowKeyboard: Bool = false
 	var iconSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
 	
-    var videoInfoView: UIView?
+    var videoInfoView = VideoInfoView()
 	
     //VideoInfo - 꼬마가 사용할 데이터
     var videoInformation: VideoInformation!
@@ -113,14 +113,14 @@ final class VideoDetailViewController: UIViewController {
 		feedbackButton.title = self.videoInfoView.feedbackTextView.textColor == .placeholderText ? "피드백 입력하기" : "피드백 확인하기"
 		if isShowInfo {
 			UIView.animate(withDuration: 0.2, animations: {
-                self.videoInfoView!.transform = CGAffineTransform(translationX: 0, y: -500)
+                self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -500)
 				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: -100)
 				self.navigationController?.navigationBar.layer.opacity = 0
 				self.topSafeAreaView.layer.opacity = 0
 			})
 		} else {
 			UIView.animate(withDuration: 0.2, animations: {
-                self.videoInfoView!.transform = CGAffineTransform(translationX: 0, y: 0)
+                self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
 				self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: 0)
 				self.navigationController?.navigationBar.layer.opacity = 1
 				self.topSafeAreaView.layer.opacity = 1
@@ -201,7 +201,7 @@ final class VideoDetailViewController: UIViewController {
 	@objc func completeAction() {
 		//TODO: 피드백 입력 구현 마무리
 		var feedbackText: String = self.videoInfoView.feedbackTextView.text
-		updateFeedback(videoInformation: VideoInformation, feedback: feedbackText)
+        DataManager.shared.updateFeedback(videoInformation: videoInformation, feedback: feedbackText)
 		self.view.endEditing(true)
 	}
 	
@@ -267,8 +267,8 @@ extension VideoDetailViewController {
 		}
 		// 정보를 보여주는 뷰
         videoInfoView = VideoInfoView(frame: .zero, videoInfo: videoInformation)
-        view.addSubview(videoInfoView!)
-        videoInfoView!.snp.makeConstraints {
+        view.addSubview(videoInfoView)
+        videoInfoView.snp.makeConstraints {
 			$0.leading.equalTo(self.view)
 			$0.trailing.equalTo(self.view)
 			$0.height.equalTo(650)
