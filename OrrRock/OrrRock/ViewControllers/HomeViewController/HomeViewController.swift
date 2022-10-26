@@ -226,7 +226,6 @@ final class HomeViewController : UIViewController {
         setUpLayout()
         setUpNavigationBar()
         setUICollectionViewDelegate()
-        
         sortedVideoInfoData = DataManager.shared.sortRepository(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
         flattenSortedVideoInfoData = sortedVideoInfoData.flatMap({ $0 })
         
