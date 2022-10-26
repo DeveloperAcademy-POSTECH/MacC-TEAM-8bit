@@ -13,6 +13,12 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         presentationController as! UISheetPresentationController
     }
     
+    var videoInformation : VideoInformation!
+    var selectDate : Date?
+    var selectGymName : String?
+    
+    var completioHandler : ((String,Date) -> (Void))?
+    
     // MARK: gym view compenents
     private lazy var gymContentView : UIView = {
         let view = UIView()
@@ -127,6 +133,7 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         super.viewDidLoad()
         setUpDelegate()
         setUpLayout()
+        setData()
         // Do any additional setup after loading the view.
     }
     
@@ -208,6 +215,14 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         sheetPresentationController.prefersGrabberVisible = false
         sheetPresentationController.detents = [.large()]
     }
+    
+    private func setData(){
+        datePicker.date = videoInformation.gymVisitDate
+        gymTextField.placeholder = videoInformation.gymName
+        datePickerLabel.text = videoInformation.gymVisitDate.timeToString()
+        selectDate = videoInformation.gymVisitDate
+        selectGymName = videoInformation.gymName
+    }
 }
 
 extension DateAndGymEditViewController {
@@ -220,6 +235,7 @@ extension DateAndGymEditViewController {
     
     @objc
     private func pressNextButton(_ sender: UIButton) {
+        selectDate = datePicker.date
         UIView.animate(withDuration: 0.5) {
             self.dateContentView.alpha = 0.0
             self.gymContentView.alpha = 1.0
@@ -230,6 +246,14 @@ extension DateAndGymEditViewController {
     
     @objc
     private func pressSaveButton(_ sender: UIButton) {
+        if gymTextField.text == "" {
+            DataManager.shared.updateDateAndGymData(videoInformation: videoInformation, gymVisitDate: selectDate!, gymName: videoInformation.gymName)
+            completioHandler?(videoInformation.gymName,selectDate!)
+        } else {
+            DataManager.shared.updateDateAndGymData(videoInformation: videoInformation, gymVisitDate: selectDate!, gymName: gymTextField.text!)
+            completioHandler?(gymTextField.text!,selectDate!)
+        }
+        
         self.dismiss(animated: true)
     }
     

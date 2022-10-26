@@ -42,6 +42,7 @@ extension VideoCollectionViewController {
         case .gymVisitDate:
             filteredInformation = filterVideoInformation(videoInformation: videoInformation, filterOption: sectionData.filterOption)
                 .filter({ $0.gymName == sectionData.gymName })
+                .filter({ $0.gymVisitDate.formatted(date: .numeric, time: .omitted) == sectionData.primaryGymVisitDate.formatted(date: .numeric, time: .omitted) })
                 .sorted(by: { $0.gymVisitDate < $1.gymVisitDate })
         }
         

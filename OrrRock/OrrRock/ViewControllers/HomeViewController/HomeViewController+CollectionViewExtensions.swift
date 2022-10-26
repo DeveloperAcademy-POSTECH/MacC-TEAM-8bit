@@ -76,7 +76,7 @@ extension HomeViewController: UICollectionViewDataSource {
         if !isCardView{
             let vc = VideoDetailViewController()
             // 꼬마가 VideoInformation 및 기타 데이터를 받고 넘길 곳
-            // vc.videoInformation = flattenSortedVideoInfoData[indexPath.row]
+             vc.videoInformation = flattenSortedVideoInfoData[indexPath.row]
             navigationController?.pushViewController(vc, animated: true)
         }
     }
