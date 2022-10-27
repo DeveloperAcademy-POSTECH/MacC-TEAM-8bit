@@ -73,8 +73,8 @@ final class SwipeableCardViewController: UIViewController {
         button.setTitle("실패", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .semibold)
-        // TODO: - .orrfail 에셋 문제 해결 후 수정하기
-        button.backgroundColor = .systemRed
+        // TODO: - .orrfail 에셋 문제 해결 후 수정하기 -> 해결
+        button.backgroundColor = .orrfail
         button.layer.cornerRadius = 37.0
         button.addTarget(self, action: #selector(didFailButton), for: .touchUpInside)
         
