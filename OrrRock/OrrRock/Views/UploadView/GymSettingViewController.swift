@@ -85,33 +85,30 @@ extension GymSettingViewController {
                 }
             case .limited:
                 DispatchQueue.main.async {
-                    self.authSettingOpen(authString: "모든 비디오")
+                self.present(picker, animated: true, completion: nil)
+                self.view.endEditing(true)
                 }
-                break
             default:
                 DispatchQueue.main.async {
-                    self.authSettingOpen(authString: "앨범")
+                    self.authSettingOpen(alertType: .denied)
                 }
             }
         }
     }
 
-    final private func authSettingOpen(authString: String) {
-        if let AppName = Bundle.main.infoDictionary!["CFBundleName"] as? String {
-            let message = "\(AppName)이(가) \(authString) 접근이 허용되어 있지않습니다. \r\n 설정화면으로 가시겠습니까?"
-            let alert = UIAlertController(title: "설정", message: message, preferredStyle: .alert)
-            let cancle = UIAlertAction(title: "취소", style: .default) { (UIAlertAction) in
-                print("\(String(describing: UIAlertAction.title)) 클릭")
-            }
-            let confirm = UIAlertAction(title: "확인", style: .default) { (UIAlertAction) in
-                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-            }
-            alert.addAction(cancle)
-            alert.addAction(confirm)
-            self.present(alert, animated: true, completion: nil)
+    final private func authSettingOpen(alertType: AuthSettingAlert) {
+        let message = alertType.rawValue
+        let alert = UIAlertController(title: "설정", message: message, preferredStyle: .alert)
+        let cancle = UIAlertAction(title: "취소", style: .default) { (UIAlertAction) in
+            print("\(String(describing: UIAlertAction.title)) 클릭")
         }
+        let confirm = UIAlertAction(title: "확인", style: .default) { (UIAlertAction) in
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+        }
+        alert.addAction(cancle)
+        alert.addAction(confirm)
+        self.present(alert, animated: true, completion: nil)
     }
-
 }
 
 //MARK: 오토레이아웃 설정 영역
@@ -154,11 +151,19 @@ extension GymSettingViewController: PHPickerViewControllerDelegate {
 
         //인디케이트를 소환합니다.
         CustomIndicator.startLoading()
-        //사용자가 영상을 선택 하지 않은 상태일 때
-        if results.count == 0 {
-            //인디게이터 종료
+
+        guard results.count != 0 else {
+            //사용자가 영상을 선택 하지 않았을때 예외처리
             CustomIndicator.stopLoading()
             gymTextField.becomeFirstResponder()
+            return
+        }
+
+        guard results.count == fetchResult.count else{
+            // 사용자가 선택한 영상과 허용된 영상의 갯수가 다를때 발생하는 문구
+            CustomIndicator.stopLoading()
+            gymTextField.becomeFirstResponder()
+            self.authSettingOpen(alertType: .limited)
             return
         }
 
@@ -173,7 +178,6 @@ extension GymSettingViewController: PHPickerViewControllerDelegate {
 
         CustomIndicator.stopLoading()
         let nextVC = SwipeableCardViewController()
-        // SwipeableCardViewController()에videoInfoArray 가 없어 임시 처리된 코드입니다.
         nextVC.videoInfoArray = videoInfoArray
         self.navigationController?.pushViewController(nextVC, animated: true)
     }

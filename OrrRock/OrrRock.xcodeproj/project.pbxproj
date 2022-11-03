@@ -51,7 +51,6 @@
 		3AA4D42E28FEBADF006C718A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA4D42C28FEBADF006C718A /* LaunchScreen.storyboard */; };
 		3AA4D43728FEBE94006C718A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA4D43628FEBE94006C718A /* SnapKit */; };
 		707B2CAE28FFF7090062C958 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 707B2CAD28FFF7090062C958 /* NVActivityIndicatorView */; };
-		707B2CB528FFFEFF0062C958 /* UpoadTestNextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB428FFFEFF0062C958 /* UpoadTestNextViewController.swift */; };
 		707B2CB829012BFE0062C958 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB729012BFE0062C958 /* Color+.swift */; };
 		707B2CBA2901382A0062C958 /* Padding+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB92901382A0062C958 /* Padding+.swift */; };
 		709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709A8C6A2904827B00CEA6F4 /* UnderlinedTextField.swift */; };
@@ -59,6 +58,7 @@
 		70A44805290440E600BE18A5 /* DateSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A44804290440E600BE18A5 /* DateSettingViewController.swift */; };
 		70A44807290452B000BE18A5 /* Button+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A44806290452B000BE18A5 /* Button+.swift */; };
 		70A44809290464BD00BE18A5 /* GymSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A44808290464BD00BE18A5 /* GymSettingViewController.swift */; };
+		70A8DF05291403EA0061E36B /* GymSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8DF04291403EA0061E36B /* GymSettingModel.swift */; };
 		78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */; };
 		78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0354F290132D300FF1913 /* VideoCollectionViewCustomCell.swift */; };
 		78CAA0662901F7A9003C3D77 /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA0652901F7A9003C3D77 /* BasePaddingLabel.swift */; };
@@ -121,7 +121,6 @@
 		3AA4D42A28FEBADF006C718A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AA4D42D28FEBADF006C718A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AA4D42F28FEBADF006C718A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		707B2CB428FFFEFF0062C958 /* UpoadTestNextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpoadTestNextViewController.swift; sourceTree = "<group>"; };
 		707B2CB729012BFE0062C958 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		707B2CB92901382A0062C958 /* Padding+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Padding+.swift"; sourceTree = "<group>"; };
 		709A8C6A2904827B00CEA6F4 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
@@ -129,6 +128,7 @@
 		70A44804290440E600BE18A5 /* DateSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSettingViewController.swift; sourceTree = "<group>"; };
 		70A44806290452B000BE18A5 /* Button+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+.swift"; sourceTree = "<group>"; };
 		70A44808290464BD00BE18A5 /* GymSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymSettingViewController.swift; sourceTree = "<group>"; };
+		70A8DF04291403EA0061E36B /* GymSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymSettingModel.swift; sourceTree = "<group>"; };
 		78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewController.swift; sourceTree = "<group>"; };
 		78A0354F290132D300FF1913 /* VideoCollectionViewCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCustomCell.swift; sourceTree = "<group>"; };
 		78CAA0652901F7A9003C3D77 /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
@@ -270,6 +270,7 @@
 		34B01147290015A10043951A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				70A8DF03291403C10061E36B /* UploadModels */,
 				3A08879E29012CC300EFFDBB /* CoreData */,
 				34B01148290015A60043951A /* Model */,
 				342699222902E8480054D34C /* VideoFilterEnum.swift */,
@@ -334,7 +335,6 @@
 			children = (
 				709A8C69290481F000CEA6F4 /* Utils */,
 				0AAB780D2904255D00EEEFFB /* TestData */,
-				707B2CB128FFFE6C0062C958 /* Ruyha */,
 				34B01147290015A10043951A /* Models */,
 				34B01144290015970043951A /* Resources */,
 				34B011412900158F0043951A /* Extensions */,
@@ -351,14 +351,6 @@
 			path = OrrRock;
 			sourceTree = "<group>";
 		};
-		707B2CB128FFFE6C0062C958 /* Ruyha */ = {
-			isa = PBXGroup;
-			children = (
-				707B2CB428FFFEFF0062C958 /* UpoadTestNextViewController.swift */,
-			);
-			path = Ruyha;
-			sourceTree = "<group>";
-		};
 		709A8C69290481F000CEA6F4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,6 +358,14 @@
 				709A8C6C2904A3E800CEA6F4 /* CustomIndicator.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		70A8DF03291403C10061E36B /* UploadModels */ = {
+			isa = PBXGroup;
+			children = (
+				70A8DF04291403EA0061E36B /* GymSettingModel.swift */,
+			);
+			path = UploadModels;
 			sourceTree = "<group>";
 		};
 		78A035492901317600FF1913 /* VideoCollectionView */ = {
@@ -521,6 +521,7 @@
 				3A15AC892907B1160058512F /* VideoInformation+CoreDataProperties.swift in Sources */,
 				3A2880FE29042A0600FBFB70 /* Date+RandomDate.swift in Sources */,
 				3A15AC8329072DD80058512F /* CRUDTestViewController+.swift in Sources */,
+				70A8DF05291403EA0061E36B /* GymSettingModel.swift in Sources */,
 				3A15AC7729071DD90058512F /* OrderOption.swift in Sources */,
 				0A0B41072907C59600057FA7 /* SwipeableCardViewController.swift in Sources */,
 				3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */,
@@ -552,7 +553,6 @@
 				78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */,
 				78CAA06C290271E7003C3D77 /* VIdeoCollectionFooterCell.swift in Sources */,
 				709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */,
-				707B2CB528FFFEFF0062C958 /* UpoadTestNextViewController.swift in Sources */,
 				3A2880FB2904290E00FBFB70 /* SortTestViewController.swift in Sources */,
 				FB3227FE2903FDA600276A7D /* String+.swift in Sources */,
 				78F93EDA2908D00F00F3D9F3 /* OnBoardingViewController.swift in Sources */,
