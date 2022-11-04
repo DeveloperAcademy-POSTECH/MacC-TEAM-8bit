@@ -17,7 +17,6 @@ import UIKit
 final class HomeCardCollectionViewThumbnailCell: UICollectionViewCell {
     private lazy var thumbnailView: UIImageView = {
         let view = UIImageView()
-        
         return view
     }()
     
@@ -42,5 +41,11 @@ final class HomeCardCollectionViewThumbnailCell: UICollectionViewCell {
     
     func setUpData(image: UIImage?) {
         thumbnailView.image = image
+        print("OFO : \(image)")
+        /*
+         OFO : Optional(<UIImage:0x283548cf0 anonymous {120, 68} renderingMode=automatic(original)>)
+         이런식으로 이미지 크기자체가 작음 역으로 추적하면서 확인할 필요가 있음
+         */
+        //Ruyha1f
     }
 }

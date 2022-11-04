@@ -34,8 +34,18 @@ extension HomeViewController: UICollectionViewDataSource {
             sortedVideoInfoData[indexPath.row].forEach { videoInfo in
                 successCount += videoInfo.isSucceeded ? 1 : 0
                 
-                if let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2), height: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2))) {
+                if let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail(
+                    targetSize: CGSize(width: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2),
+                                       height: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2)))
+//                    targetSize: CGSize(width: 300,
+//                                       height: 300))
+                    
+                {
                     thumbnails.append(thumbnail)
+                    print("??: \(thumbnail)")
+
+                    //Ruyha66 여기다 여기야
+                    //아니여기서 이미지 크기 떄려도 왜 변경된 값을도 들어감? ㅅㅂ?
                 }
             }
             

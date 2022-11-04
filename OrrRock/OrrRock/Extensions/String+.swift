@@ -42,7 +42,7 @@ extension String {
             
             thumbnail = result!
         })
-        
+        //Ruyha 333여기다여기
         return thumbnail
     }
 }
