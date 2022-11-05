@@ -13,7 +13,7 @@ class VideoCollectionViewController: UIViewController {
     var sectionData : SectionData!
     var successCount : Int = 0
     // 썸네일은 videoInformationArray[n].videoLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize) 을 통해 간편하게 생성 가능함!
-    
+    var isFirstSelectAllButtonTouch = true
     lazy var firstContentOffset : Float = 0.0
     lazy var checkFirstContentOffset : Bool = false
     
@@ -239,21 +239,31 @@ class VideoCollectionViewController: UIViewController {
     }
     
     @objc func didSelectAllButtonClicked(_ sender: UIBarButtonItem){
-        if videoInformationArray.count != 0{
-            for i in 0...videoInformationArray.count-1{
-                let indexPath = IndexPath(item: i, section: 0)
-                dictionarySelectedIndexPath.updateValue(true, forKey: indexPath)
-            }
-            for row in 0..<self.videoCollectionView.numberOfItems(inSection: 0) {
-                self.videoCollectionView.selectItem(at: IndexPath(row: row, section: 0), animated: false, scrollPosition: [])
+        if isFirstSelectAllButtonTouch{
+            if videoInformationArray.count != 0{
+                for i in 0...videoInformationArray.count-1{
+                    let indexPath = IndexPath(item: i, section: 0)
+                    dictionarySelectedIndexPath.updateValue(true, forKey: indexPath)
+                }
+                for row in 0..<self.videoCollectionView.numberOfItems(inSection: 0) {
+                    self.videoCollectionView.selectItem(at: IndexPath(row: row, section: 0), animated: false, scrollPosition: [])
+                }
             }
         }
-        
-        
+        else{
+            for (key,value) in dictionarySelectedIndexPath{
+                if value{
+                    videoCollectionView.deselectItem(at: key, animated: true)
+                }
+            }
+            dictionarySelectedIndexPath.removeAll()
+            
+        }
         let indexCountLabel = UILabel()
         indexCountLabel.text = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndexPath.values.filter({$0 == true}).count)개의 비디오 선택"
-        deleteBarButton.isEnabled = true
+        deleteBarButton.isEnabled = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? false : true
         toolbarText.customView = indexCountLabel
+        isFirstSelectAllButtonTouch.toggle()
     }
     
     func getSuccessCount(){
