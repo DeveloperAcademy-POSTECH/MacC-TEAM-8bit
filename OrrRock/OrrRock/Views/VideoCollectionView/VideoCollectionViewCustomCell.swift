@@ -32,8 +32,7 @@ class VideoCollectionViewCell : UICollectionViewCell {
     
     lazy var checkImage : UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "checkmark.circle.fill")
-        imageView.tintColor = .systemBlue
+        imageView.image = UIImage(named: "Check")
         imageView.isHidden = true
         return imageView
     }()
