@@ -223,7 +223,7 @@ class VideoCollectionViewController: UIViewController {
         let optionMenu = UIAlertController(title: "선택한 영상 삭제하기", message: "정말로 삭제하시겠어요?", preferredStyle: .actionSheet)
         
         // 2
-        let deleteAction = UIAlertAction(title: "삭제하기", style: .default) { _ in
+        let deleteAction = UIAlertAction(title: "삭제하기", style: .destructive) { _ in
             self.didDeleteButtonClicked()
         }
         
