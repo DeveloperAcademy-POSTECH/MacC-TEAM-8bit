@@ -161,7 +161,7 @@ extension VideoInfoView {
         // textView
         self.addSubview(feedbackTextView)
         feedbackTextView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.leading.trailing.equalToSuperview().inset(orrPadding.padding3.rawValue)
             $0.top.equalTo(self.snp.top).offset(orrPadding.padding3.rawValue)
             $0.height.equalTo(120)
         }
@@ -169,14 +169,14 @@ extension VideoInfoView {
         self.addSubview(dateView)
         dateView.snp.makeConstraints {
             $0.height.equalTo(80)
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.leading.trailing.equalToSuperview().inset(orrPadding.padding3.rawValue)
             $0.top.equalTo(feedbackTextView.snp.bottom)
         }
         // 문제 난이도 뷰
         self.addSubview(levelView)
         levelView.snp.makeConstraints {
             $0.height.equalTo(80)
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.leading.trailing.equalToSuperview().inset(orrPadding.padding3.rawValue)
             $0.top.equalTo(dateView.snp.bottom).offset(orrPadding.padding3.rawValue)
         }
         // 날짜 레이블
