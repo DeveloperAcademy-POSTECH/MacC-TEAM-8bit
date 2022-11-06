@@ -197,7 +197,7 @@ extension VideoInfoView {
             $0.top.equalTo(levelView.snp.top).offset(orrPadding.padding4.rawValue)
             $0.leading.equalTo(levelView.snp.leading).offset(orrPadding.padding4.rawValue)
         }
-        // 난이도 레이블
+        // 성공 여부 레이블
         levelView.addSubview(isSucceeded)
         isSucceeded.snp.makeConstraints {
             $0.bottom.equalTo(levelView.snp.bottom).inset(orrPadding.padding4.rawValue)
