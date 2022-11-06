@@ -40,6 +40,10 @@ final class SwipeableCardViewController: UIViewController {
         imageView.image = UIImage(systemName: "chevron.down")
         imageView.tintColor = .orrGray3
         
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(pickLevel))
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tapGestureRecognizer)
+        
         return imageView
     }()
     
@@ -106,10 +110,9 @@ final class SwipeableCardViewController: UIViewController {
     }()
     
     private var cards: [SwipeableCardVideoView?] = []
-    
     private var counter: Int = 0
-    
     private var currentSelectedLevel: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -120,6 +123,7 @@ final class SwipeableCardViewController: UIViewController {
         
         // card UI
         setUpLayout()
+        
         createSwipeableCard() {
             self.cards.forEach { swipeCard in
                 self.view.insertSubview(swipeCard!, at: 0)
@@ -135,8 +139,8 @@ final class SwipeableCardViewController: UIViewController {
                 let gesture = UIPanGestureRecognizer()
                 gesture.addTarget(self, action: #selector(self.handlerCard))
                 swipeCard!.addGestureRecognizer(gesture)
-                
             }
+            
             CustomIndicator.stopLoading()
         }
     }
