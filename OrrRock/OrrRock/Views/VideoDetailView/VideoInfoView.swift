@@ -163,14 +163,14 @@ extension VideoInfoView {
         feedbackTextView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(orrPadding.padding3.rawValue)
             $0.top.equalTo(self.snp.top).offset(orrPadding.padding3.rawValue)
-            $0.height.equalTo(120)
+            $0.height.equalTo(110)
         }
         // 날짜 입력 뷰
         self.addSubview(dateView)
         dateView.snp.makeConstraints {
             $0.height.equalTo(80)
             $0.leading.trailing.equalToSuperview().inset(orrPadding.padding3.rawValue)
-            $0.top.equalTo(feedbackTextView.snp.bottom)
+			$0.top.equalTo(feedbackTextView.snp.bottom).offset(orrPadding.padding3.rawValue)
         }
         // 문제 난이도 뷰
         self.addSubview(levelView)
