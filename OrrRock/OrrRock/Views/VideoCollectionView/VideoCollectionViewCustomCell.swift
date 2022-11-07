@@ -42,6 +42,8 @@ class VideoCollectionViewCell : UICollectionViewCell {
         let img = UIImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
         img.image = UIImage(named: "s")
+        img.contentMode = .scaleAspectFill
+        img.layer.masksToBounds = true
         return img
     }()
     
