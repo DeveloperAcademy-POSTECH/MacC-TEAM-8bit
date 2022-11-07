@@ -43,6 +43,16 @@ final class SwipeableCardViewController: UIViewController {
         return imageView
     }()
     
+    private lazy var buttonStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 8
+        
+        return stackView
+    }()
+    
     private lazy var separator: UIView = {
         let separator = UIView()
         separator.backgroundColor = .orrUPBlue
@@ -106,10 +116,9 @@ final class SwipeableCardViewController: UIViewController {
     }()
     
     private var cards: [SwipeableCardVideoView?] = []
-    
     private var counter: Int = 0
-    
     private var currentSelectedLevel: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -120,6 +129,7 @@ final class SwipeableCardViewController: UIViewController {
         
         // card UI
         setUpLayout()
+        
         createSwipeableCard() {
             self.cards.forEach { swipeCard in
                 self.view.insertSubview(swipeCard!, at: 0)
@@ -135,8 +145,8 @@ final class SwipeableCardViewController: UIViewController {
                 let gesture = UIPanGestureRecognizer()
                 gesture.addTarget(self, action: #selector(self.handlerCard))
                 swipeCard!.addGestureRecognizer(gesture)
-                
             }
+            
             CustomIndicator.stopLoading()
         }
     }
@@ -282,8 +292,6 @@ private extension SwipeableCardViewController {
         self.navigationController?.popToRootViewController(animated: true)
     }
     
-    
-    
     // swipeCard의 애니매이션 효과를 담당합니다.
     func animateCard(rotationAngle: CGFloat, videoResultType: VideoResultType) {
         
@@ -354,9 +362,14 @@ private extension SwipeableCardViewController {
 private extension SwipeableCardViewController {
     
     func setUpLayout() {
-        let buttonStackView = UIStackView(arrangedSubviews: [levelButton, levelButtonImage])
-        buttonStackView.spacing = 8.0
-        buttonStackView.distribution = .fillProportionally
+
+        [levelButton, levelButtonImage].map {
+            self.buttonStackView.addArrangedSubview($0)
+        }
+
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(pickLevel))
+        buttonStackView.isUserInteractionEnabled = true
+        buttonStackView.addGestureRecognizer(tapGestureRecognizer)
         
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
