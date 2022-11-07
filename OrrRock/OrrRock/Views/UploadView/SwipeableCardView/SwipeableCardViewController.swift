@@ -244,9 +244,11 @@ private extension SwipeableCardViewController {
             if point.x > 0 {
                 card.successImageView.alpha = rotationAngle * 5
                 card.failImageView.alpha = 0
+                card.setVideoBackgroundViewBorderColor(color: .pass, alpha: rotationAngle * 5)
             } else {
                 card.successImageView.alpha = 0
                 card.failImageView.alpha = -rotationAngle * 5
+                card.setVideoBackgroundViewBorderColor(color: .fail, alpha: -rotationAngle * 5)
             }
             
             card.transform = CGAffineTransform(rotationAngle: rotationAngle)
@@ -267,6 +269,7 @@ private extension SwipeableCardViewController {
                     card.transform = .identity
                     card.successImageView.alpha = 0
                     card.failImageView.alpha = 0
+                    card.setVideoBackgroundViewBorderColor(color: .clear, alpha: 1)
                 }
             }
         }
@@ -323,6 +326,13 @@ private extension SwipeableCardViewController {
                     card.transform = CGAffineTransform(rotationAngle: rotationAngle)
                     card.successImageView.alpha = isSuccess == true ? 1 : 0
                     card.failImageView.alpha = isSuccess == false ? 1 : 0
+                    if isSuccess{
+                        card.setVideoBackgroundViewBorderColor(color: .pass, alpha: 1)
+                    }else{
+                        card.setVideoBackgroundViewBorderColor(color: .fail, alpha: 1)
+
+                    }
+                    
                 }) { [self] _ in
                     if counter != cards.count-1 {
                         print("DEBUG : \(counter) / \(cards.count - 1)")
