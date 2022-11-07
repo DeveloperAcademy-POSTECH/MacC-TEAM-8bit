@@ -216,9 +216,7 @@ private extension SwipeableCardViewController {
 					
 					let swipeCard = SwipeableCardVideoView(asset: AVAsset(url: url))
 					
-					if index == 0 {
-						swipeCard.embedVideo()
-					}
+					swipeCard.embedVideo()
 					
 					self.cards[index] = swipeCard
 					
