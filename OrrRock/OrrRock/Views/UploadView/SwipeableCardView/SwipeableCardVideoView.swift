@@ -116,12 +116,12 @@ private extension SwipeableCardVideoView {
 
 extension SwipeableCardVideoView {
     
-    func setVideoBackgroundViewBorderColor(color: VideoBackgroundViewBorderColor,alpha: CGFloat){
-        var r = 0.0
-        var g = 0.0
-        var b = 0.0
+    func setVideoBackgroundViewBorderColor(color: VideoBackgroundViewBorderColor,alpha: CGFloat) {
+        var r : CGFloat = 0.0
+        var g : CGFloat = 0.0
+        var b : CGFloat = 0.0
         
-        switch color{
+        switch color {
         case.pass :
             r = 48; g = 176; b = 199
         case .fail :

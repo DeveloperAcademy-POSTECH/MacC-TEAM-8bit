@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum VideoBackgroundViewBorderColor{
+enum VideoBackgroundViewBorderColor {
     case pass
     case fail
     case clear

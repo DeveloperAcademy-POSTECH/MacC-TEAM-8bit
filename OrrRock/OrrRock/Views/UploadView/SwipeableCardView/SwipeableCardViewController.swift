@@ -328,9 +328,8 @@ private extension SwipeableCardViewController {
                     card.failImageView.alpha = isSuccess == false ? 1 : 0
                     if isSuccess{
                         card.setVideoBackgroundViewBorderColor(color: .pass, alpha: 1)
-                    }else{
+                    } else {
                         card.setVideoBackgroundViewBorderColor(color: .fail, alpha: 1)
-
                     }
                     
                 }) { [self] _ in
