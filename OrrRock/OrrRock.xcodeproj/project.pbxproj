@@ -59,6 +59,7 @@
 		70A44807290452B000BE18A5 /* Button+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A44806290452B000BE18A5 /* Button+.swift */; };
 		70A44809290464BD00BE18A5 /* GymSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A44808290464BD00BE18A5 /* GymSettingViewController.swift */; };
 		70A8DF05291403EA0061E36B /* GymSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8DF04291403EA0061E36B /* GymSettingModel.swift */; };
+		70A8DF08291966E20061E36B /* SwipeableCardVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8DF07291966E20061E36B /* SwipeableCardVideoModel.swift */; };
 		78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */; };
 		78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0354F290132D300FF1913 /* VideoCollectionViewCustomCell.swift */; };
 		78CAA0662901F7A9003C3D77 /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA0652901F7A9003C3D77 /* BasePaddingLabel.swift */; };
@@ -129,6 +130,7 @@
 		70A44806290452B000BE18A5 /* Button+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+.swift"; sourceTree = "<group>"; };
 		70A44808290464BD00BE18A5 /* GymSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymSettingViewController.swift; sourceTree = "<group>"; };
 		70A8DF04291403EA0061E36B /* GymSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymSettingModel.swift; sourceTree = "<group>"; };
+		70A8DF07291966E20061E36B /* SwipeableCardVideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardVideoModel.swift; sourceTree = "<group>"; };
 		78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewController.swift; sourceTree = "<group>"; };
 		78A0354F290132D300FF1913 /* VideoCollectionViewCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCustomCell.swift; sourceTree = "<group>"; };
 		78CAA0652901F7A9003C3D77 /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
@@ -363,9 +365,18 @@
 		70A8DF03291403C10061E36B /* UploadModels */ = {
 			isa = PBXGroup;
 			children = (
+				70A8DF06291966900061E36B /* SwipeableCardModel */,
 				70A8DF04291403EA0061E36B /* GymSettingModel.swift */,
 			);
 			path = UploadModels;
+			sourceTree = "<group>";
+		};
+		70A8DF06291966900061E36B /* SwipeableCardModel */ = {
+			isa = PBXGroup;
+			children = (
+				70A8DF07291966E20061E36B /* SwipeableCardVideoModel.swift */,
+			);
+			path = SwipeableCardModel;
 			sourceTree = "<group>";
 		};
 		78A035492901317600FF1913 /* VideoCollectionView */ = {
@@ -511,6 +522,7 @@
 				70A44805290440E600BE18A5 /* DateSettingViewController.swift in Sources */,
 				342C457029018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift in Sources */,
 				3A2880E929033C0D00FBFB70 /* SortOption.swift in Sources */,
+				70A8DF08291966E20061E36B /* SwipeableCardVideoModel.swift in Sources */,
 				342C456E290125260037D9E7 /* HomeCollectionViewListCell.swift in Sources */,
 				FB3227FC2903FD9C00276A7D /* Date+.swift in Sources */,
 				78F93ED32906EFC500F3D9F3 /* DateAndGymEditViewController.swift in Sources */,
@@ -730,6 +742,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = "";
@@ -750,6 +763,7 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jhHwang.OrrRock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

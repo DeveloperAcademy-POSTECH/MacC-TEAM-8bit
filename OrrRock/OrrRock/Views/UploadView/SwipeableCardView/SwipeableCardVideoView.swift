@@ -14,11 +14,15 @@ import AVFoundation
 final class SwipeableCardVideoView: UIView {
 
     var video: VideoInfo?
-    
+    let cornerRadius: CGFloat = 10
+
     private lazy var videoBackgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = .blue
-        
+        view.layer.borderWidth = 3
+        view.layer.cornerRadius = cornerRadius
+        view.layer.borderColor = UIColor.white.cgColor
+
         return view
     }()
 
@@ -58,6 +62,9 @@ final class SwipeableCardVideoView: UIView {
         super.layoutSubviews()
         
         self.playerLayer?.frame = self.videoBackgroundView.bounds
+        self.playerLayer?.masksToBounds = true
+        self.playerLayer?.cornerRadius = cornerRadius
+        
     }
 }
 
@@ -104,5 +111,25 @@ private extension SwipeableCardVideoView {
              $0.height.equalTo(30.0)
              $0.width.equalTo(100.0)
          }
+    }
+}
+
+extension SwipeableCardVideoView {
+    
+    func setVideoBackgroundViewBorderColor(color: VideoBackgroundViewBorderColor,alpha: CGFloat) {
+        var r : CGFloat = 0.0
+        var g : CGFloat = 0.0
+        var b : CGFloat = 0.0
+        
+        switch color {
+        case.pass :
+            r = 48; g = 176; b = 199
+        case .fail :
+            r = 242; g = 52; b = 52
+        case .clear :
+            r = 255; g = 255; b = 255
+        }
+
+        videoBackgroundView.layer.borderColor = UIColor(red:r/255.0, green:g/255.0, blue:b/255.0, alpha: 1.0).cgColor
     }
 }
