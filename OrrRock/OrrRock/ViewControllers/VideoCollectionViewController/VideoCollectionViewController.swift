@@ -135,12 +135,19 @@ class VideoCollectionViewController: UIViewController {
         registerCells()
         setUpLayout()
         getSuccessCount()
-        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        self.navigationController?.setToolbarHidden(true, animated: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+        self.navigationController?.setToolbarHidden(true, animated: false)
+        self.navigationController?.hidesBarsOnTap = false
+        self.navigationController?.isNavigationBarHidden = false
         videoInformationArray = sortVideoInformation(videoInformation: videoInformationArray, sectionData: sectionData)
         if videoInformationArray.count != 0 {
             sectionData.primaryGymVisitDate = videoInformationArray[videoInformationArray.count - 1].gymVisitDate
