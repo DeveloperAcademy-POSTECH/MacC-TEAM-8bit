@@ -218,7 +218,6 @@ private extension SwipeableCardViewController {
 					
 					if index == 0 {
 						swipeCard.embedVideo()
-						swipeCard.videoPlay()
 					}
 					
 					self.cards[index] = swipeCard
@@ -345,7 +344,6 @@ private extension SwipeableCardViewController {
 						print("DEBUG : \(counter) / \(cards.count - 1)")
 						removeCard(card: card)
 						counter += 1
-						cards[counter]!.videoPlay()
 					} else {
 						didVideoClassificationComplete()
 						removeCard(card: card)
