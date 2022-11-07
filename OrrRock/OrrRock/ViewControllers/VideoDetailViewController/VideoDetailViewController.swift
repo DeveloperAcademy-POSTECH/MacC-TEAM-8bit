@@ -61,13 +61,14 @@ class VideoDetailViewController: UIViewController {
         setKeyboardObserver()
         setDefaultData()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         self.navigationController?.isToolbarHidden = false
         self.navigationController?.hidesBarsOnTap = true
         self.navigationController?.isNavigationBarHidden = false
-        
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         self.navigationController?.isNavigationBarHidden = false
@@ -240,6 +241,7 @@ class VideoDetailViewController: UIViewController {
     
     func setDefaultData() {
         feedbackText = videoInformation.feedback
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 }
 
@@ -277,6 +279,11 @@ extension VideoDetailViewController {
             DataManager.shared.updateFeedback(videoInformation: videoInformation, feedback: feedbackText!)
         }
     }
+    
+    @objc func applicationDidBecomeActive(notification: NSNotification) {
+        self.navigationController?.navigationBar.layer.opacity = UserDefaults.standard.float(forKey: "navState")
+    }
+    
 }
 
 // PHAsset 타입의 영상 데이터를 videoLocalIdentifier를 통해서 AVAsset으로 포매팅하는 매서드
