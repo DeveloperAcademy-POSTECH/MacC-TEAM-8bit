@@ -44,7 +44,6 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         view.image = UIImage(systemName: "location.square.fill")
         view.tintColor = .orrGray3
         view.contentMode = .scaleAspectFit
-        //Ruyha4 여기검사
         return view
     }()
     
@@ -71,7 +70,6 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         var view = UICollectionView(frame: CGRect.zero, collectionViewLayout: flow)
         view.backgroundColor = UIColor.orrWhite
         view.register(HomeCardCollectionViewThumbnailCell.classForCoder(), forCellWithReuseIdentifier: "homeCardCollectionViewThumbnailCell")
-        //Ruyha 여기 한번 확인 
         return view
     }()
     
@@ -178,8 +176,6 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         countPFLabel.text = PFCountDescription
         countTotalVideoLabel.text = videoCountDescription
         videoThumbnails = thumbnails
-        //Ruyha5 이미지 받아오는것 역추적중
-        print("bbb : \(thumbnails)")
         setLocationIconView(sortOption)
         
         self.thumbnailCollectionView.reloadData()

@@ -16,7 +16,6 @@ extension HomeCollectionViewCardCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCardCollectionViewThumbnailCell", for: indexPath) as! HomeCardCollectionViewThumbnailCell
         cell.setUpData(image: videoThumbnails.count > indexPath.row ? videoThumbnails[indexPath.row] : nil)
-        //Ruyha2 썸네일 확인
         return cell
     }
 }

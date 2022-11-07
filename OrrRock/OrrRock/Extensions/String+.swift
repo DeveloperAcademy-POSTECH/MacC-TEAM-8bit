@@ -30,19 +30,18 @@ extension String {
 
         let manager = PHImageManager.default()
         let option = PHImageRequestOptions()
-        option.deliveryMode = .opportunistic
+        option.deliveryMode = .highQualityFormat
+        option.isSynchronous = true
         var thumbnail = UIImage()
-        
+
         manager.requestImage(for: asset,
-                             targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight),
-                             contentMode: .aspectFill,
+                             targetSize: targetSize,
+                             contentMode: .aspectFit,
                              options: option,
                              resultHandler: {(result, info) -> Void in
             if result == nil { return }
-            
             thumbnail = result!
         })
-        //Ruyha 333여기다여기
         return thumbnail
     }
 }
