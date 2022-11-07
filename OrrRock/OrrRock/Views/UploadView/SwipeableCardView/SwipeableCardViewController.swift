@@ -174,34 +174,46 @@ private extension SwipeableCardViewController {
 			identifiers.append(videoInfo.videoLocalIdentifier)
 		}
 		
+		// 날짜 기준으로 정렬하는 PHFetchOptions 설정
 		let option = PHFetchOptions()
 		option.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
 		
+		// identifiers를 기반으로 불러온 PHAsset을 PHFetchResult<PHAsset> 타입으로 변환
 		let assets = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: option)
+		// PHFetchResult<PHAsset>의 Asset 개수만큼 배열 공간 할당
 		cards = Array(repeating: nil, count: assets.count)
-		var totalCount = cards.count
-		
+		// Asset 카운팅을 위한 디스패치 그룹
+		let countingGroup = DispatchGroup()
+
 		CustomIndicator.startLoading()
 		
 		for index in 0..<assets.count {
+			
+			// Asset 카운팅 +1
+			countingGroup.enter()
+			
+			// 미디어가 존재하는지 확인하는 코드
 			guard (assets[index].mediaType == PHAssetMediaType.video)
-					
 			else {
-				print("Not a valid video media type")
+				print("비디오 미디어가 존재하지 않습니다.")
 				return
 			}
 			
+			// 클라우드에서 Asset을 받아올 일이 생겼을 때 나는 오류 해결을 위한 PHVideoRequestOptions 설정
 			let option = PHVideoRequestOptions()
 			option.isNetworkAccessAllowed = true
 			
 			PHCachingImageManager().requestAVAsset(forVideo: assets[index], options: option) { (assets, audioMix, info) in
+				
 				let asset = assets as? AVURLAsset
 				
 				guard let url = asset?.url else {
 					return
 				}
 				
-				DispatchQueue.main.async {
+				// Main Thread에서 View를 디스패치 그룹
+				DispatchQueue.main.async(group: countingGroup) {
+					
 					let swipeCard = SwipeableCardVideoView(asset: AVAsset(url: url))
 					
 					if index == 0 {
@@ -211,11 +223,13 @@ private extension SwipeableCardViewController {
 					
 					self.cards[index] = swipeCard
 					
-					totalCount -= 1
+					// Asset 카운팅 -1
+					countingGroup.leave()
 					
-					if totalCount == 0 {
-						completion()
-					}
+				}
+				// Asset 카운팅이 0이 되었을 때 completionHandler로 반환
+				countingGroup.notify(queue: DispatchQueue.main) {
+					completion()
 				}
 			}
 		}
