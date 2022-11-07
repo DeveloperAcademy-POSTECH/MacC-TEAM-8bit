@@ -17,7 +17,8 @@ import UIKit
 final class HomeCardCollectionViewThumbnailCell: UICollectionViewCell {
     private lazy var thumbnailView: UIImageView = {
         let view = UIImageView()
-        
+        view.contentMode = .scaleAspectFill
+        view.layer.masksToBounds = true
         return view
     }()
     

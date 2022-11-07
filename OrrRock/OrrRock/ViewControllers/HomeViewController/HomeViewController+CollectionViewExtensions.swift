@@ -22,7 +22,7 @@ extension HomeViewController: UICollectionViewDataSource {
         
         if isCardView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewCardCell", for: indexPath) as! HomeCollectionViewCardCell
-            
+
             var successCount: Int = 0
             var thumbnails: [UIImage] = []
             
@@ -34,7 +34,9 @@ extension HomeViewController: UICollectionViewDataSource {
             sortedVideoInfoData[indexPath.row].forEach { videoInfo in
                 successCount += videoInfo.isSucceeded ? 1 : 0
                 
-                if let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2), height: ((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2))) {
+                if let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail(
+                    targetSize: CGSize(width: cell.bounds.width, height: cell.bounds.height))
+                {
                     thumbnails.append(thumbnail)
                 }
             }
