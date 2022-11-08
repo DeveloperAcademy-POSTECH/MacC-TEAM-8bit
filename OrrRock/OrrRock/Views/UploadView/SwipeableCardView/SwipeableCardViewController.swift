@@ -280,7 +280,13 @@ private extension SwipeableCardViewController {
 					card.successImageView.alpha = 0
 					card.failImageView.alpha = 0
 					card.setVideoBackgroundViewBorderColor(color: .clear, alpha: 1)
+					// 터치가 해제되고 카드가 돌아가는 도중에 터치 제한
+					UIApplication.shared.beginIgnoringInteractionEvents()
+				} completion: {_ in
+					// completion을 통해 애니메이션이 끝났을 때 터치 제한 해제
+					UIApplication.shared.endIgnoringInteractionEvents()
 				}
+
 			}
 		}
 	}
@@ -331,7 +337,7 @@ private extension SwipeableCardViewController {
 				
 				videoInfoArray[counter].isSucceeded = isSuccess
 				videoInfoArray[counter].problemLevel = currentSelectedLevel ?? 0
-				UIView.animate(withDuration: 0.5, animations: {
+				UIView.animate(withDuration: 0.3, animations: {
 					card.center = center
 					card.transform = CGAffineTransform(rotationAngle: rotationAngle)
 					card.successImageView.alpha = isSuccess == true ? 1 : 0
