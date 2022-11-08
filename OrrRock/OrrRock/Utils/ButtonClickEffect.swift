@@ -1,5 +1,5 @@
 //
-//  ButtonClickEffect.swift
+//  CustomButton.swift
 //  OrrRock
 //
 //  Created by kimhyeongmin on 2022/11/08.
