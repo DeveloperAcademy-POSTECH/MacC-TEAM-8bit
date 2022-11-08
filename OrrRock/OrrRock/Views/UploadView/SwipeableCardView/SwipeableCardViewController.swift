@@ -235,6 +235,11 @@ private extension SwipeableCardViewController {
 	// swipeCard가 SuperView에서 제거됩니다.
 	@objc func removeCard(card: UIView) {
 		card.removeFromSuperview()
+		// 스와이프가 완료되고 removeCard가 호출될 때 버튼 활성화
+		successButton.isEnabled = true
+		failButton.isEnabled = true
+		// 카드가 사라질 때 카운팅
+		counter += 1
 	}
 	
 	// Gesture
@@ -304,14 +309,14 @@ private extension SwipeableCardViewController {
 	func animateCard(rotationAngle: CGFloat, videoResultType: VideoResultType) {
 		
 		print(view.subviews.count)
-		var cardViews = view.subviews.filter({ ($0 as? SwipeableCardVideoView) != nil })
+		let cardViews = view.subviews.filter({ ($0 as? SwipeableCardVideoView) != nil })
 		print("DDD ", cardViews.count)
 		
 		for view in cardViews {
 			if view == cards[counter] {
 				let center: CGPoint
 				let isSuccess: Bool
-				let  card = view as! SwipeableCardVideoView
+				let card = view as! SwipeableCardVideoView
 				
 				switch videoResultType {
 				case .fail:
@@ -326,11 +331,14 @@ private extension SwipeableCardViewController {
 				videoInfoArray[counter].isSucceeded = isSuccess
 				videoInfoArray[counter].problemLevel = currentSelectedLevel ?? 0
 				print(videoInfoArray[counter])
-				UIView.animate(withDuration: 0.6, animations: {
+				UIView.animate(withDuration: 0.5, animations: {
 					card.center = center
 					card.transform = CGAffineTransform(rotationAngle: rotationAngle)
 					card.successImageView.alpha = isSuccess == true ? 1 : 0
 					card.failImageView.alpha = isSuccess == false ? 1 : 0
+					// 카드 스와이프 애니매이션이 진행 중일 때 버튼 비활성화
+					self.successButton.isEnabled = false
+					self.failButton.isEnabled = false
 					if isSuccess{
 						card.setVideoBackgroundViewBorderColor(color: .pass, alpha: 1)
 					} else {
@@ -339,9 +347,7 @@ private extension SwipeableCardViewController {
 					
 				}) { [self] _ in
 					if counter != cards.count-1 {
-						print("DEBUG : \(counter) / \(cards.count - 1)")
 						removeCard(card: card)
-						counter += 1
 					} else {
 						didVideoClassificationComplete()
 						removeCard(card: card)
