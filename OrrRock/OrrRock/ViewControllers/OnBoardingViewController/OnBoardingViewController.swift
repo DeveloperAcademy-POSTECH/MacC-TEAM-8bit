@@ -14,7 +14,7 @@ class OnBoardingViewController: UIViewController , UISheetPresentationController
         presentationController as! UISheetPresentationController
     }
     
-    private lazy var titleLabel : UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 34, weight: .bold)
         label.textColor = .black
@@ -22,7 +22,7 @@ class OnBoardingViewController: UIViewController , UISheetPresentationController
         return label
     }()
     
-    private lazy var subLabel1 : UILabel = {
+    private lazy var subLabel1: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         label.textColor = .black
@@ -30,7 +30,7 @@ class OnBoardingViewController: UIViewController , UISheetPresentationController
         return label
     }()
     
-    private lazy var subLabel2 : UILabel = {
+    private lazy var subLabel2: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         label.textColor = .black
@@ -40,7 +40,7 @@ class OnBoardingViewController: UIViewController , UISheetPresentationController
         return label
     }()
     
-    private lazy var subLabel3 : UILabel = {
+    private lazy var subLabel3: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         label.textColor = .black
@@ -48,7 +48,7 @@ class OnBoardingViewController: UIViewController , UISheetPresentationController
         return label
     }()
     
-    private lazy var subLabel4 : UILabel = {
+    private lazy var subLabel4: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         label.textColor = .black
@@ -56,17 +56,21 @@ class OnBoardingViewController: UIViewController , UISheetPresentationController
         return label
     }()
     
-    private lazy var labelImage1 : UIImageView = {
-        let label = UIImageView(image: UIImage(named: "icon1"))
+    private lazy var labelImage1: UIImageView = {
+        let configuration = UIImage.SymbolConfiguration(pointSize: 28)
+        let image = UIImage(systemName: "mail.and.text.magnifyingglass",withConfiguration: configuration)?.withTintColor(.orrUPBlue!, renderingMode: .alwaysOriginal)
+        let label = UIImageView(image: image)
         return label
     }()
     
-    private lazy var labelImage2 : UIImageView = {
-        let label = UIImageView(image: UIImage(named: "icon2"))
+    private lazy var labelImage2: UIImageView = {
+        let configuration = UIImage.SymbolConfiguration(pointSize: 28)
+        let image = UIImage(systemName: "chart.line.uptrend.xyaxis",withConfiguration: configuration)?.withTintColor(.orrUPBlue!, renderingMode: .alwaysOriginal)
+        let label = UIImageView(image: image)
         return label
     }()
     
-    private lazy var nextButton : UIButton = {
+    private lazy var nextButton: UIButton = {
         let btn = UIButton()
         btn.clipsToBounds = true
         btn.layer.cornerRadius = 15
@@ -128,18 +132,14 @@ class OnBoardingViewController: UIViewController , UISheetPresentationController
         
         view.addSubview(labelImage1)
         labelImage1.snp.makeConstraints {
-            $0.width.equalTo(40)
-            $0.height.equalTo(30)
             $0.trailing.equalTo(titleLabel.snp.leading).offset(-16)
             $0.top.equalTo(titleLabel.snp.bottom).offset(51)
         }
         
         view.addSubview(labelImage2)
         labelImage2.snp.makeConstraints {
-            $0.width.equalTo(36)
-            $0.height.equalTo(30)
             $0.trailing.equalTo(titleLabel.snp.leading).offset(-16)
-            $0.top.equalTo(titleLabel.snp.bottom).offset(130)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(126)
         }
         
         view.addSubview(nextButton)
