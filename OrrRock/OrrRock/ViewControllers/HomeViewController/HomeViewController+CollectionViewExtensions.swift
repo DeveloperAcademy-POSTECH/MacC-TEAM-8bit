@@ -67,9 +67,8 @@ extension HomeViewController: UICollectionViewDataSource {
                            visitedGymName: flattenSortedVideoInfoData[indexPath.row].gymName,
                            level: "V\(flattenSortedVideoInfoData[indexPath.row].problemLevel)",
                            PF: flattenSortedVideoInfoData[indexPath.row].isSucceeded ? "성공" : "실패",
-                           thumbnail: flattenSortedVideoInfoData[indexPath.row].videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: 50, height: 50))!)
-            
-            
+                           thumbnail: flattenSortedVideoInfoData[indexPath.row].videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: 825, height: 825))!)
+
             return cell
         }
     }
