@@ -78,8 +78,8 @@ final class SwipeableCardViewController: UIViewController {
 		return label
 	}()
 	
-	private lazy var failButton: UIButton = {
-		let button = UIButton()
+	private lazy var failButton: CustomButton = {
+		let button = CustomButton()
 		button.setTitle("실패", for: .normal)
 		button.setTitleColor(.white, for: .normal)
 		button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .semibold)
@@ -90,8 +90,8 @@ final class SwipeableCardViewController: UIViewController {
 		return button
 	}()
 	
-	private lazy var successButton: UIButton = {
-		let button = UIButton()
+	private lazy var successButton: CustomButton = {
+		let button = CustomButton()
 		button.setTitle("성공", for: .normal)
 		button.setTitleColor(.white, for: .normal)
 		button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .semibold)
@@ -269,7 +269,6 @@ private extension SwipeableCardViewController {
 					animateCard(rotationAngle: rotationAngle, videoResultType: .success)
 					return
 				}
-				
 				if card.center.x < 30 {
 					animateCard(rotationAngle: rotationAngle, videoResultType: .fail)
 					return
@@ -292,16 +291,20 @@ private extension SwipeableCardViewController {
 		nextViewController.delegate = self
 	}
 	
+	// 실패 버튼을 눌렀을 때 로직
 	@objc func didFailButton() {
 		animateCard(rotationAngle: -0.4, videoResultType: .fail)
+		failButton.isActivated.toggle()
 	}
 	
+	// 성공 버튼을 눌렀을 때 로직
 	@objc func didSuccessButton() {
 		animateCard(rotationAngle: 0.4, videoResultType: .success)
+		successButton.isActivated.toggle()
 	}
 	
+	// 다음 뷰로 넘어가는 로직
 	@objc func tapSaveButton() {
-		// TODO: - 다음 뷰로 넘어가는 로직
 		DataManager.shared.createMultipleData(infoList: videoInfoArray)
 		self.navigationController?.popToRootViewController(animated: true)
 	}
