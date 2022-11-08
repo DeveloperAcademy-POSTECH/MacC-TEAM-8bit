@@ -10,9 +10,9 @@ import UIKit
 class OnBoardingViewController: UIPageViewController {
     
     lazy var vcArray: [UIViewController] = {
-        return [OnBoardingViewController1(),
-                OnBoardingViewController2(),
-                OnBoardingViewController3()]
+        return [OnBoardingViewControllerFirst(),
+                OnBoardingViewControllerSecond(),
+                OnBoardingViewControllerThird()]
     }()
     
     lazy var pageControl : UIPageControl = {
@@ -49,9 +49,9 @@ class OnBoardingViewController: UIPageViewController {
     }
 }
 
-extension OnBoardingViewController : UIPageViewControllerDelegate{
+extension OnBoardingViewController : UIPageViewControllerDelegate {
     
-    func setLayout(){
+    private func setLayout() {
         view.addSubview(pageControl)
         pageControl.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -91,7 +91,7 @@ extension OnBoardingViewController : UIPageViewControllerDelegate{
     
 }
 
-extension OnBoardingViewController : UIPageViewControllerDataSource{
+extension OnBoardingViewController : UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let vcIndex = vcArray.firstIndex(of: viewController) else { return nil }
         let prevIndex = vcIndex - 1

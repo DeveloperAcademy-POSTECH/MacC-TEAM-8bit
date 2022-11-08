@@ -66,12 +66,12 @@
 		78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA0672901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift */; };
 		78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA069290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift */; };
 		78CAA06C290271E7003C3D77 /* VIdeoCollectionFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA06B290271E7003C3D77 /* VIdeoCollectionFooterCell.swift */; };
-		78F56F68291A67CA00174B74 /* OnBoardingViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F56F67291A67CA00174B74 /* OnBoardingViewController2.swift */; };
-		78F56F6A291A67D500174B74 /* OnBoardingViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F56F69291A67D500174B74 /* OnBoardingViewController3.swift */; };
+		78F56F68291A67CA00174B74 /* OnBoardingViewControllerSecond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F56F67291A67CA00174B74 /* OnBoardingViewControllerSecond.swift */; };
+		78F56F6A291A67D500174B74 /* OnBoardingViewControllerThird.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F56F69291A67D500174B74 /* OnBoardingViewControllerThird.swift */; };
 		78F56F6C291A67FA00174B74 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F56F6B291A67FA00174B74 /* OnBoardingViewController.swift */; };
 		78F93ED32906EFC500F3D9F3 /* DateAndGymEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */; };
 		78F93ED7290743DF00F3D9F3 /* LevelAndPFEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */; };
-		78F93EDA2908D00F00F3D9F3 /* OnBoardingViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED92908D00F00F3D9F3 /* OnBoardingViewController1.swift */; };
+		78F93EDA2908D00F00F3D9F3 /* OnBoardingViewControllerFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED92908D00F00F3D9F3 /* OnBoardingViewControllerFirst.swift */; };
 		A88805852907F5A0002CD52E /* LevelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88805842907F5A0002CD52E /* LevelPickerView.swift */; };
 		FB3227FC2903FD9C00276A7D /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3227FB2903FD9C00276A7D /* Date+.swift */; };
 		FB3227FE2903FDA600276A7D /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3227FD2903FDA600276A7D /* String+.swift */; };
@@ -140,12 +140,12 @@
 		78CAA0672901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoCollectionView+VideoCollectionViewExtensions.swift"; sourceTree = "<group>"; };
 		78CAA069290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
 		78CAA06B290271E7003C3D77 /* VIdeoCollectionFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIdeoCollectionFooterCell.swift; sourceTree = "<group>"; };
-		78F56F67291A67CA00174B74 /* OnBoardingViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController2.swift; sourceTree = "<group>"; };
-		78F56F69291A67D500174B74 /* OnBoardingViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController3.swift; sourceTree = "<group>"; };
+		78F56F67291A67CA00174B74 /* OnBoardingViewControllerSecond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewControllerSecond.swift; sourceTree = "<group>"; };
+		78F56F69291A67D500174B74 /* OnBoardingViewControllerThird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewControllerThird.swift; sourceTree = "<group>"; };
 		78F56F6B291A67FA00174B74 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAndGymEditViewController.swift; sourceTree = "<group>"; };
 		78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelAndPFEditViewController.swift; sourceTree = "<group>"; };
-		78F93ED92908D00F00F3D9F3 /* OnBoardingViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController1.swift; sourceTree = "<group>"; };
+		78F93ED92908D00F00F3D9F3 /* OnBoardingViewControllerFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewControllerFirst.swift; sourceTree = "<group>"; };
 		A88805842907F5A0002CD52E /* LevelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelPickerView.swift; sourceTree = "<group>"; };
 		FB3227FB2903FD9C00276A7D /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		FB3227FD2903FDA600276A7D /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
@@ -412,9 +412,9 @@
 			isa = PBXGroup;
 			children = (
 				78F56F6B291A67FA00174B74 /* OnBoardingViewController.swift */,
-				78F93ED92908D00F00F3D9F3 /* OnBoardingViewController1.swift */,
-				78F56F67291A67CA00174B74 /* OnBoardingViewController2.swift */,
-				78F56F69291A67D500174B74 /* OnBoardingViewController3.swift */,
+				78F93ED92908D00F00F3D9F3 /* OnBoardingViewControllerFirst.swift */,
+				78F56F67291A67CA00174B74 /* OnBoardingViewControllerSecond.swift */,
+				78F56F69291A67D500174B74 /* OnBoardingViewControllerThird.swift */,
 			);
 			path = OnBoardingViewController;
 			sourceTree = "<group>";
@@ -554,7 +554,7 @@
 				707B2CBA2901382A0062C958 /* Padding+.swift in Sources */,
 				0A0B410B2907C64900057FA7 /* DummyVideoModel.swift in Sources */,
 				70A44809290464BD00BE18A5 /* GymSettingViewController.swift in Sources */,
-				78F56F6A291A67D500174B74 /* OnBoardingViewController3.swift in Sources */,
+				78F56F6A291A67D500174B74 /* OnBoardingViewControllerThird.swift in Sources */,
 				3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */,
 				3A15AC7F2907262C0058512F /* VideoCollectionView+DataSorting.swift in Sources */,
 				342508A929001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift in Sources */,
@@ -563,7 +563,7 @@
 				78F93ED7290743DF00F3D9F3 /* LevelAndPFEditViewController.swift in Sources */,
 				78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */,
 				342508A329001780000653D9 /* HomeViewController.swift in Sources */,
-				78F56F68291A67CA00174B74 /* OnBoardingViewController2.swift in Sources */,
+				78F56F68291A67CA00174B74 /* OnBoardingViewControllerSecond.swift in Sources */,
 				342508A52900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift in Sources */,
 				3A15AC882907B1160058512F /* VideoInformation+CoreDataClass.swift in Sources */,
 				3AA4D42128FEBADE006C718A /* SceneDelegate.swift in Sources */,
@@ -579,7 +579,7 @@
 				709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */,
 				3A2880FB2904290E00FBFB70 /* SortTestViewController.swift in Sources */,
 				FB3227FE2903FDA600276A7D /* String+.swift in Sources */,
-				78F93EDA2908D00F00F3D9F3 /* OnBoardingViewController1.swift in Sources */,
+				78F93EDA2908D00F00F3D9F3 /* OnBoardingViewControllerFirst.swift in Sources */,
 				3A15AC7B290724620058512F /* DataManager.swift in Sources */,
 				A88805852907F5A0002CD52E /* LevelPickerView.swift in Sources */,
 				78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */,

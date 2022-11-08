@@ -8,13 +8,13 @@
 import UIKit
 import SnapKit
 
-class OnBoardingViewController1: UIViewController {
+class OnBoardingViewControllerThird: UIViewController {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         label.textColor = .black
-        label.text = "오르락과 함께"
+        label.text = "더 높이, 더 어려운 문제에"
         return label
     }()
     
@@ -22,13 +22,12 @@ class OnBoardingViewController1: UIViewController {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         label.textColor = .black
-        label.textAlignment = .center
-        label.text = "볼더링 클라이밍을 즐겨요"
+        label.text = "함께 도전해요"
         return label
     }()
     
     private lazy var labelImage1: UIImageView = {
-        let image = UIImage(named: "OnboardingImage1")
+        let image = UIImage(named: "OnboardingImage3")
         let label = UIImageView(image: image)
         return label
     }()
@@ -39,7 +38,7 @@ class OnBoardingViewController1: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    private func setUpLayout(){
+    private func setUpLayout() {
         view.backgroundColor = .orrWhite
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
@@ -57,4 +56,5 @@ class OnBoardingViewController1: UIViewController {
             $0.top.equalTo(subLabel1.snp.bottom).offset(29)
         }
     }
+    
 }
