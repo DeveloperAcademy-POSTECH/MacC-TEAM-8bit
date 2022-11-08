@@ -16,8 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        //모달시 뒤의 배경을 검은색으로 만들기위해 검정으로 설정
-        window?.backgroundColor = .black
+        
+        window?.backgroundColor = .white
         
         //        window?.rootViewController = UINavigationController(rootViewController: MainViewController())
         //        window?.rootViewController = UINavigationController(rootViewController: SwipeCardViewController())

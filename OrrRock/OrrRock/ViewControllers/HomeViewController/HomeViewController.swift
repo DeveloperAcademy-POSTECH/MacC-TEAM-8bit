@@ -300,7 +300,8 @@ final class HomeViewController : UIViewController {
     
     private func showOnBoard(){
         if !UserDefaults.standard.bool(forKey: "watchOnBoard"){
-            self.present(OnBoardingViewController(), animated: true)
+            let onBoardingViewController = OnBoardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+            self.navigationController?.pushViewController(onBoardingViewController, animated: true)
         }
     }
     @objc func switchViewStyle() {
