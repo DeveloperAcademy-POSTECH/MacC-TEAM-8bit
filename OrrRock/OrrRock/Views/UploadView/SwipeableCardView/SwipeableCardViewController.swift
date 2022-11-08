@@ -156,8 +156,8 @@ final class SwipeableCardViewController: UIViewController {
 			self.cards.forEach { swipeCard in
 				// FIXME: 다시 수정해야 되는 코드
 				// 카드를 z축 기준 가장 상단에 위치하게 하는 코드
-				// self.view.insertSubview(swipeCard!, at: 0)
-				self.view.bringSubviewToFront(swipeCard!)
+				// self.view.bringSubviewToFront(swipeCard!)
+				self.view.insertSubview(swipeCard!, at: 0)
 				swipeCard!.snp.makeConstraints {
 					$0.center.equalToSuperview()
 					$0.height.equalTo(420.0)
