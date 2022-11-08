@@ -59,12 +59,12 @@ class VideoDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadVideoAsset()
+
         setNavigationBar()
         setUpLayout()
         setKeyboardObserver()
         setDefaultData()
-        
-        loadVideoAsset()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -299,6 +299,8 @@ private extension VideoDetailViewController {
             print("영상이 없음")
             return
         }
+        
+        self.videoAsset = videoAsset
     }
     
     func videoDataFomatter(videoLocalIdentifier: String) -> PHAsset? {
