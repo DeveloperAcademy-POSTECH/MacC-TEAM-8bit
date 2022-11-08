@@ -10,18 +10,18 @@ import UIKit
 class VideoCollectionViewController: UIViewController {
     
     var videoInformationArray: [VideoInformation] = []
-    var sectionData : SectionData!
-    var successCount : Int = 0
+    var sectionData: SectionData!
+    var successCount: Int = 0
     // 썸네일은 videoInformationArray[n].videoLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize) 을 통해 간편하게 생성 가능함!
     var isFirstSelectAllButtonTouch = true
-    lazy var firstContentOffset : Float = 0.0
-    lazy var checkFirstContentOffset : Bool = false
+    lazy var firstContentOffset: Float = 0.0
+    lazy var checkFirstContentOffset: Bool = false
     
     enum Mode{
         case view
         case select
     }
-    var dictionarySelectedIndexPath : [IndexPath : Bool] = [:]
+    var dictionarySelectedIndexPath: [IndexPath : Bool] = [:]
     var mMode: Mode = .view {
         didSet{
             switch mMode{
@@ -48,7 +48,7 @@ class VideoCollectionViewController: UIViewController {
         }
     }
     
-    lazy var titleName : UILabel = {
+    lazy var titleName: UILabel = {
         let label = UILabel()
         label.text = "김대우 암벽교실"
         label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
@@ -56,7 +56,7 @@ class VideoCollectionViewController: UIViewController {
         return label
     }()
     
-    lazy var subTitleName : UILabel = {
+    lazy var subTitleName: UILabel = {
         let label = UILabel()
         label.text = "2022년 10월 22일"
         label.font = UIFont.systemFont(ofSize: 11, weight: .regular)
@@ -64,7 +64,7 @@ class VideoCollectionViewController: UIViewController {
         return label
     }()
     
-    lazy var titleStackView : UIStackView = {
+    lazy var titleStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [titleName,subTitleName])
         stack.axis = .vertical
         stack.frame.size.width = max(titleName.frame.width,subTitleName.frame.width)
@@ -74,7 +74,7 @@ class VideoCollectionViewController: UIViewController {
         return stack
     }()
     
-    lazy var toolbarText : UIBarButtonItem = {
+    lazy var toolbarText: UIBarButtonItem = {
         let label = UILabel()
         label.text = "항목 선택"
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
@@ -82,28 +82,28 @@ class VideoCollectionViewController: UIViewController {
         return item
     }()
     
-    lazy var selectBarButton : UIBarButtonItem = {
+    lazy var selectBarButton: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(title: "편집", style: .plain, target: self, action: #selector(didSelectButtonClicked(_:)))
         return barButtonItem
     }()
     
-    lazy var selectAllButton : UIBarButtonItem = {
+    lazy var selectAllButton: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(title: "전체 선택", style: .plain, target: self, action: #selector(didSelectAllButtonClicked(_:)))
         return barButtonItem
     }()
     
-    lazy var backBarButton : UIBarButtonItem = {
+    lazy var backBarButton: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(image:UIImage(systemName: "chevron.backward"),style: .plain, target: self, action: #selector(didBackButtonClicked(_:)))
         return barButtonItem
     }()
     
-    lazy var deleteBarButton : UIBarButtonItem = {
+    lazy var deleteBarButton: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(didDeleteActionSheetClicked(_:)))
         barButtonItem.isEnabled = false
         return barButtonItem
     }()
     
-    lazy var videoCollectionView : UICollectionView = {
+    lazy var videoCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 1
         layout.scrollDirection = .vertical
@@ -115,7 +115,7 @@ class VideoCollectionViewController: UIViewController {
         return cv
     }()
     
-    lazy var bottomBatItems : [UIBarButtonItem] = [
+    lazy var bottomBatItems: [UIBarButtonItem] = [
         UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),toolbarText,UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),deleteBarButton]
     
     override func viewDidLayoutSubviews() {
@@ -162,7 +162,7 @@ class VideoCollectionViewController: UIViewController {
         videoCollectionView.delegate = self
     }
     
-    func registerCells(){
+    func registerCells() {
         videoCollectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "customVideoCollectionCell")
         videoCollectionView.register(
             VideoCollectionViewHeaderCell.self,
@@ -177,7 +177,7 @@ class VideoCollectionViewController: UIViewController {
         )
     }
     
-    private func setUpLayout(){
+    private func setUpLayout() {
         view.addSubview(videoCollectionView)
         videoCollectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -189,15 +189,15 @@ class VideoCollectionViewController: UIViewController {
         firstContentOffset = Float(videoCollectionView.contentOffset.y)
     }
     
-    @objc func didSelectButtonClicked(_ sender: UIBarButtonItem){
+    @objc func didSelectButtonClicked(_ sender: UIBarButtonItem) {
         mMode = mMode == .view ? .select : .view
     }
     
-    @objc func didBackButtonClicked(_ sender: UIBarButtonItem){
+    @objc func didBackButtonClicked(_ sender: UIBarButtonItem) {
         self.navigationController?.popToRootViewController(animated: true)
     }
     
-    func didDeleteButtonClicked(){
+    func didDeleteButtonClicked() {
         var deleteNeededIndexPaths : [IndexPath] = []
         for (key,value) in dictionarySelectedIndexPath{
             if value{
@@ -226,7 +226,7 @@ class VideoCollectionViewController: UIViewController {
         }
     }
     
-    @objc func didDeleteActionSheetClicked(_ sender: UIBarButtonItem){
+    @objc func didDeleteActionSheetClicked(_ sender: UIBarButtonItem) {
         let optionMenu = UIAlertController(title: "선택한 영상 삭제하기", message: "정말로 삭제하시겠어요?", preferredStyle: .actionSheet)
         
         // 2
@@ -245,7 +245,7 @@ class VideoCollectionViewController: UIViewController {
         self.present(optionMenu, animated: true, completion: nil)
     }
     
-    @objc func didSelectAllButtonClicked(_ sender: UIBarButtonItem){
+    @objc func didSelectAllButtonClicked(_ sender: UIBarButtonItem) {
         if isFirstSelectAllButtonTouch{
             if videoInformationArray.count != 0{
                 for i in 0...videoInformationArray.count-1{
@@ -258,7 +258,7 @@ class VideoCollectionViewController: UIViewController {
             }
         }
         else{
-            for (key,value) in dictionarySelectedIndexPath{
+            for (key,value) in dictionarySelectedIndexPath {
                 if value{
                     videoCollectionView.deselectItem(at: key, animated: true)
                 }
@@ -273,7 +273,7 @@ class VideoCollectionViewController: UIViewController {
         isFirstSelectAllButtonTouch.toggle()
     }
     
-    func getSuccessCount(){
+    func getSuccessCount() {
         successCount = videoInformationArray.filter{$0.isSucceeded == true}.count
     }
     
