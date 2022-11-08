@@ -7,6 +7,7 @@
 
 import AVFoundation
 import UIKit
+import Photos
 
 import SnapKit
 
@@ -22,6 +23,8 @@ class VideoDetailViewController: UIViewController {
     var videoInfoView = VideoInfoView()
     
     var videoInformation: VideoInformation!
+    var videoAsset: PHAsset?
+    
     var feedbackText: String?
     
     private var infoButton: UIBarButtonItem!
@@ -49,13 +52,15 @@ class VideoDetailViewController: UIViewController {
     
     // 영상 재생하는 뷰 (VideoPlayerView)
     lazy var videoPlayView: VideoPlayView = {
-        let view = VideoPlayView(videoInformation: videoInformation)
+        let view = VideoPlayView(videoAsset: videoAsset)
         self.view.addSubview(view)
         return view
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadVideoAsset()
+
         setNavigationBar()
         setUpLayout()
         setKeyboardObserver()
@@ -284,6 +289,43 @@ extension VideoDetailViewController {
         self.navigationController?.navigationBar.layer.opacity = UserDefaults.standard.float(forKey: "navState")
     }
     
+}
+
+// Video 처리 관련 functions
+private extension VideoDetailViewController {
+    func loadVideoAsset() {
+        guard let videoAsset = videoDataFomatter(videoLocalIdentifier: videoInformation.videoLocalIdentifier ?? "") else {
+            // 영상이 없어 fetch를 하지 못한 경우
+            print("영상이 없음")
+            return
+        }
+        
+        self.videoAsset = videoAsset
+    }
+    
+    func videoDataFomatter(videoLocalIdentifier: String) -> PHAsset? {
+        var videoIDArray: [String] = []
+        videoIDArray.append(videoLocalIdentifier)
+        
+        // LocalIdentifier를 기반으로 불러온 PHAsset을 PHFetchResult<PHAsset> 타입으로 변환
+        // 클래스에서 사용하는 것과 동일한 방법 및 규칙을 사용하여 가져오기 결과의 내용에 액세스
+        let phAsset = PHAsset.fetchAssets(withLocalIdentifiers: videoIDArray, options: .none)
+        // 참고 : https://developer.apple.com/documentation/photokit/phasset/1624783-fetchassets
+        
+        // 미디어가 존재하는지 확인하는 코드
+        guard phAsset.count != 0 else {
+            print("DEBUG: 앨범에서 비디오를 찾을 수 없습니다.")
+            return nil
+        }
+        
+        guard phAsset[0].mediaType == PHAssetMediaType.video
+        else {
+            print("DEBUG: 비디오 미디어가 존재하지 않습니다.")
+            return nil
+        }
+        
+        return phAsset[0]
+    }
 }
 
 // PHAsset 타입의 영상 데이터를 videoLocalIdentifier를 통해서 AVAsset으로 포매팅하는 매서드

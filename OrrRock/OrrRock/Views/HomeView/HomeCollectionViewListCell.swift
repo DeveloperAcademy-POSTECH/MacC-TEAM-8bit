@@ -18,7 +18,10 @@ final class HomeCollectionViewListCell: UICollectionViewCell {
     private lazy var thumbnailView: UIImageView = {
         let view = UIImageView()
         view.layer.cornerRadius = 10
+        view.layer.masksToBounds = true
         view.backgroundColor = .orrGray3
+        view.contentMode = .scaleAspectFill
+
         return view
     }()
     
@@ -143,7 +146,7 @@ final class HomeCollectionViewListCell: UICollectionViewCell {
     func setUpData(visitedDate: String, visitedGymName: String, level: String, PF: String, thumbnail: UIImage) {
         visitedDateLabel.text = visitedDate
         gymNameLabel.text = visitedGymName
-        levelLabel.text = level
+        levelLabel.text = level == "V-1" ? "선택안함" : level
         PFLabel.text = PF
         thumbnailView.image = thumbnail
     }
