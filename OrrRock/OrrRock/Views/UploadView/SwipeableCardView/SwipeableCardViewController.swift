@@ -393,7 +393,6 @@ private extension SwipeableCardViewController {
 
 		titleLabel.textColor = .orrGray3
 		levelButton.tintColor = .orrGray3
-//		separator.backgroundColor = .orrGray3
 	}
 }
 
