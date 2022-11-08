@@ -44,6 +44,8 @@ final class SwipeableCardVideoView: UIView {
 
     private var player = AVPlayer()
     private var playerLayer: AVPlayerLayer?
+	private var queuePlayer = AVQueuePlayer()
+	private var playerLooper: AVPlayerLooper?
     private var asset: AVAsset
 
     init(asset: AVAsset) {
@@ -71,20 +73,16 @@ final class SwipeableCardVideoView: UIView {
 extension SwipeableCardVideoView {
     
     func embedVideo() {
-        let item = AVPlayerItem(asset: asset)
-        self.player.replaceCurrentItem(with: item)
-        
-        let playerLayer = AVPlayerLayer(player: self.player)
-        playerLayer.frame = self.videoBackgroundView.bounds
-        playerLayer.videoGravity = .resizeAspectFill
-        
-        self.playerLayer = playerLayer
-        self.videoBackgroundView.layer.addSublayer(playerLayer)
-//        self.player.play()
-    }
-    
-    func videoPlay() {
-        self.player.play()
+		let item = AVPlayerItem(asset: asset)
+		self.queuePlayer = AVQueuePlayer()
+		let playerLayer = AVPlayerLayer(player: self.queuePlayer)
+		playerLayer.frame = self.videoBackgroundView.bounds
+		playerLayer.videoGravity = .resizeAspectFill
+		self.playerLayer = playerLayer
+		self.videoBackgroundView.layer.addSublayer(playerLayer)
+		self.queuePlayer.isMuted = true
+		self.playerLooper = AVPlayerLooper(player: self.queuePlayer, templateItem: item)
+		self.queuePlayer.play()
     }
 }
 
