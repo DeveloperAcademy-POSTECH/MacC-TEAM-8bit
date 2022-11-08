@@ -223,10 +223,11 @@ class VideoCollectionViewController: UIViewController {
         let indexCountLabel = UILabel()
         indexCountLabel.text = "항목 선택"
         navigationItem.leftBarButtonItem = backBarButton
-        videoCollectionView.allowsMultipleSelection = false
         self.navigationController?.setToolbarHidden(true, animated: true)
+        
+        videoCollectionView.allowsMultipleSelection = false
         videoCollectionView.deleteItems(at: deleteNeededIndexPaths)
-        dictionarySelectedIndexPath.removeAll()
+        
         deleteBarButton.isEnabled = false
         toolbarText.customView = indexCountLabel
         getSuccessCount()
