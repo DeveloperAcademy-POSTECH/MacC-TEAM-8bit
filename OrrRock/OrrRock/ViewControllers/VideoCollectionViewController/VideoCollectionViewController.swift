@@ -213,14 +213,25 @@ class VideoCollectionViewController: UIViewController {
             
         }
         
-        videoCollectionView.deleteItems(at: deleteNeededIndexPaths)
+        for (key,value) in dictionarySelectedIndexPath{
+            if value{
+                videoCollectionView.deselectItem(at: key, animated: true)
+            }
+        }
         dictionarySelectedIndexPath.removeAll()
+        selectBarButton.title = "편집"
         let indexCountLabel = UILabel()
         indexCountLabel.text = "항목 선택"
+        navigationItem.leftBarButtonItem = backBarButton
+        videoCollectionView.allowsMultipleSelection = false
+        self.navigationController?.setToolbarHidden(true, animated: true)
+        videoCollectionView.deleteItems(at: deleteNeededIndexPaths)
+        dictionarySelectedIndexPath.removeAll()
         deleteBarButton.isEnabled = false
         toolbarText.customView = indexCountLabel
         getSuccessCount()
         videoCollectionView.reloadSections(IndexSet(integer: 0))
+        
         if videoInformationArray.count < 4{
             titleStackView.isHidden = true
         }
