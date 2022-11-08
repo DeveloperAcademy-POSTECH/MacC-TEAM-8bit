@@ -122,7 +122,7 @@ final class SwipeableCardViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		view.backgroundColor = .white
+		view.backgroundColor = .orrWhite
 		
 		navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonClicked))
 		navigationItem.leftBarButtonItem?.tintColor = .orrUPBlue
