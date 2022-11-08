@@ -11,7 +11,7 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
     
     var isSuccess : Bool = false
     
-    private let values: [Int] = [1,2,3,4,5,6,7,8,9]
+    private let levelValues: [Int] = [-1,0,1,2,3,4,5,6,7,8,9]
     
     override var sheetPresentationController: UISheetPresentationController {
         presentationController as! UISheetPresentationController
@@ -21,6 +21,7 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
     var completioHandler : ((Bool,Int) -> (Void))?
     var selectSuccess : Bool?
     var selectLevel : Int?
+    var pickerSelectValue = 0
     
     private lazy var levelTopView : UIView = {
         let view = UIView()
@@ -125,6 +126,8 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         super.viewDidLoad()
         setUpLayout()
         setData()
+        self.pickerView.delegate?.pickerView?(self.pickerView, didSelectRow: pickerSelectValue, inComponent: 0)
+        self.pickerView.selectRow(pickerSelectValue, inComponent: 0, animated: true)
         // Do any additional setup after loading the view.
     }
     
@@ -253,7 +256,7 @@ extension LevelAndPFEditViewController {
     private func setData(){
         isSuccess = videoInformation.isSucceeded
         selectLevel = Int(videoInformation.problemLevel)
-        pickerView.selectRow(Int(videoInformation.problemLevel)-1, inComponent: 0, animated: true)
+        pickerView.selectRow(Int(videoInformation.problemLevel), inComponent: 0, animated: true)
         if isSuccess{
             self.successCheckButton.snp.updateConstraints {
                 $0.height.equalTo(75)
@@ -281,16 +284,16 @@ extension LevelAndPFEditViewController : UIPickerViewDelegate,UIPickerViewDataSo
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return values.count
+        return levelValues.count
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print(component)
         print(row)
-        selectLevel = row + 1
+        selectLevel = row - 1
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        "V\(values[row])"
+        return levelValues[row] == -1 ? "선택안함" : "V\(levelValues[row])"
     }
 }

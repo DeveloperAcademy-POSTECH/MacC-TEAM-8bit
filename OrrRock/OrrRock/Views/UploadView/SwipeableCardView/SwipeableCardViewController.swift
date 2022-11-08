@@ -180,12 +180,8 @@ extension SwipeableCardViewController: LevelPickerViewDelegate {
     }
     
 	func didLevelChanged(selectedLevel: Int) {
-        if selectedLevel == -1 {
-            levelButton.setTitle("선택안함", for: .normal)
-        } else {
-            levelButton.setTitle("V\(selectedLevel)", for: .normal)
-        }
-
+        let levelButtonTiltle = selectedLevel == -1 ? "선택안함" : "V\(selectedLevel)"
+        levelButton.setTitle(levelButtonTiltle, for: .normal)
 		currentSelectedLevel = selectedLevel
 	}
 }
@@ -424,10 +420,7 @@ private extension SwipeableCardViewController {
 			$0.top.equalToSuperview().inset(104.0)
 		}
 		
-//		view.addSubview(buttonStackView)
 		buttonStackView.snp.makeConstraints {
-//            $0.centerX.equalToSuperview()
-//			$0.top.equalTo(titleLabel.snp.bottom).offset(24.0)
             $0.width.equalTo(90.0)
 		}
         
@@ -436,7 +429,6 @@ private extension SwipeableCardViewController {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(titleLabel.snp.bottom).offset(24.0)
             $0.centerX.equalToSuperview()
-//            $0.width.equalTo(120.0)
         }
         
 		
@@ -488,20 +480,4 @@ private extension SwipeableCardViewController {
 			$0.height.equalTo(56.0)
 		}
 	}
-}
-
-extension UIView {
-
-    static func spacer(size: CGFloat = 10, for layout: NSLayoutConstraint.Axis = .horizontal) -> UIView {
-        let spacer = UIView()
-        
-        if layout == .horizontal {
-            spacer.widthAnchor.constraint(equalToConstant: size).isActive = true
-        } else {
-            spacer.heightAnchor.constraint(equalToConstant: size).isActive = true
-        }
-
-        return spacer
-    }
-
 }
