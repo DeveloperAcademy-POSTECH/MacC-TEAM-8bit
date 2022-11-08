@@ -14,6 +14,7 @@ class OnBoardingViewController: UIPageViewController {
                 OnBoardingViewController2(),
                 OnBoardingViewController3()]
     }()
+    
     lazy var pageControl : UIPageControl = {
         let control = UIPageControl()
         control.numberOfPages = 3
@@ -39,32 +40,33 @@ class OnBoardingViewController: UIPageViewController {
     
     var currentIndex: Int?
     var pendingIndex: Int?
+    var index = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
+        setLayout()
+    }
+}
+
+extension OnBoardingViewController : UIPageViewControllerDelegate{
+    
+    func setLayout(){
         view.addSubview(pageControl)
         pageControl.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().inset(158)
         }
-                view.addSubview(nextButton)
-                nextButton.snp.makeConstraints{
-                    $0.centerX.equalTo(view)
-                    $0.bottom.equalTo(view).offset(-34)
-                    $0.leading.equalTo(view).offset(orrPadding.padding3.rawValue)
-                    $0.trailing.equalTo(view).offset(-orrPadding.padding3.rawValue)
-                    $0.height.equalTo(56)
-                }
-        
+        view.addSubview(nextButton)
+        nextButton.snp.makeConstraints{
+            $0.centerX.equalTo(view)
+            $0.bottom.equalTo(view).offset(-34)
+            $0.leading.equalTo(view).offset(orrPadding.padding3.rawValue)
+            $0.trailing.equalTo(view).offset(-orrPadding.padding3.rawValue)
+            $0.height.equalTo(56)
+        }
     }
     
-    
-    
-    
-}
-
-extension OnBoardingViewController : UIPageViewControllerDelegate{
     func setDelegate(){
         self.delegate = self
         self.dataSource = self
@@ -72,14 +74,18 @@ extension OnBoardingViewController : UIPageViewControllerDelegate{
         if let firstVC = vcArray.first {
             setViewControllers([firstVC], direction: .forward, animated: false, completion: nil)
         }
-        
-        
     }
     
     @objc
     private func pressNextButton(_ sender: UIButton) {
         self.goToNextPage()
-        var index = vcArray.firstIndex(of: <#T##UIViewController#>)
+        if pageControl.currentPage == 2 {
+            self.navigationController?.isNavigationBarHidden = false
+            self.navigationController?.popToRootViewController(animated: false)
+            UserDefaults.standard.set(true, forKey: "watchOnBoard")
+            
+        }
+        pageControl.currentPage += 1
         //이동
     }
     
@@ -106,17 +112,17 @@ extension OnBoardingViewController : UIPageViewControllerDataSource{
         return vcArray[nextIndex]
     }
     //MARK: 기본 인디케이터 사용시 코드 - 혹시 몰라서 일단 남겨놓음
-//    func presentationCount(for pageViewController: UIPageViewController) -> Int {
-//        let appearance = UIPageControl.appearance()
-//        appearance.pageIndicatorTintColor = UIColor.gray
-//        appearance.currentPageIndicatorTintColor = UIColor.white
-//        appearance.backgroundColor = UIColor.darkGray
-//        return 3
-//    }
-//
-//    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-//        return 0
-//    }
+    //    func presentationCount(for pageViewController: UIPageViewController) -> Int {
+    //        let appearance = UIPageControl.appearance()
+    //        appearance.pageIndicatorTintColor = UIColor.gray
+    //        appearance.currentPageIndicatorTintColor = UIColor.white
+    //        appearance.backgroundColor = UIColor.darkGray
+    //        return 3
+    //    }
+    //
+    //    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+    //        return 0
+    //    }
     
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         pendingIndex = vcArray.firstIndex(of: pendingViewControllers.first!)
@@ -124,26 +130,26 @@ extension OnBoardingViewController : UIPageViewControllerDataSource{
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
-                currentIndex = pendingIndex
-                if let index = currentIndex {
-                    pageControl.currentPage = index
-                }
+            currentIndex = pendingIndex
+            if let index = currentIndex {
+                pageControl.currentPage = index
             }
+        }
     }
 }
 
 extension UIPageViewController {
-
+    
     func goToNextPage() {
-       guard let currentViewController = self.viewControllers?.first else { return }
-       guard let nextViewController = dataSource?.pageViewController( self, viewControllerAfter: currentViewController ) else { return }
-       setViewControllers([nextViewController], direction: .forward, animated: true, completion: nil)
+        guard let currentViewController = self.viewControllers?.first else { return }
+        guard let nextViewController = dataSource?.pageViewController( self, viewControllerAfter: currentViewController ) else { return }
+        setViewControllers([nextViewController], direction: .forward, animated: true, completion: nil)
     }
-
+    
     func goToPreviousPage() {
-       guard let currentViewController = self.viewControllers?.first else { return }
-       guard let previousViewController = dataSource?.pageViewController( self, viewControllerBefore: currentViewController ) else { return }
-       setViewControllers([previousViewController], direction: .reverse, animated: false, completion: nil)
+        guard let currentViewController = self.viewControllers?.first else { return }
+        guard let previousViewController = dataSource?.pageViewController( self, viewControllerBefore: currentViewController ) else { return }
+        setViewControllers([previousViewController], direction: .reverse, animated: false, completion: nil)
     }
-
+    
 }
