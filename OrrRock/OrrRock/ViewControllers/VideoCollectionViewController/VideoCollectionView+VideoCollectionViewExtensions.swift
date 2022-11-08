@@ -115,7 +115,12 @@ extension VideoCollectionViewController  : UICollectionViewDataSource{
             cell.cellLabel.backgroundColor = .orrFail
         }
         
-        cell.cellLabel.text = "V\(videoInformationArray[indexPath.item].problemLevel)"
+        if videoInformationArray[indexPath.item].problemLevel == -1{
+            cell.cellLabel.text = "V?"
+        } else {
+            cell.cellLabel.text = "V\(videoInformationArray[indexPath.item].problemLevel)"
+        }
+
         return cell
     }
     

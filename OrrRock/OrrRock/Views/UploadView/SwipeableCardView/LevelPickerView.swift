@@ -9,6 +9,7 @@ import UIKit
 
 protocol LevelPickerViewDelegate {
     func didLevelChanged(selectedLevel: Int)
+    func setSeparatorColor()
 }
 
 class LevelPickerView: UIViewController, UISheetPresentationControllerDelegate {
@@ -16,8 +17,9 @@ class LevelPickerView: UIViewController, UISheetPresentationControllerDelegate {
     var isSuccess : Bool = false
     var level = Int()
     var delegate: LevelPickerViewDelegate?
+    var pickerSelectValue = 0
 
-    private let levelList: [String] = ["V1","V2","V3","V4","V5","V6","V7","V8","V9"]
+    private let levelList: [String] = ["선택안함","V0","V1","V2","V3","V4","V5","V6","V7","V8","V9"]
 
     override var sheetPresentationController: UISheetPresentationController {
         presentationController as! UISheetPresentationController
@@ -38,13 +40,13 @@ class LevelPickerView: UIViewController, UISheetPresentationControllerDelegate {
     }()
 
     lazy var pickerView: UIPickerView = {
-         let picker = UIPickerView()
-         picker.frame = CGRect(x: 0, y: 150, width: self.view.bounds.width, height: 180.0)
-         picker.backgroundColor = .orrGray1
-         picker.delegate = self
-         picker.dataSource = self
-         return picker
-     }()
+        let picker = UIPickerView()
+        picker.frame = CGRect(x: 0, y: 150, width: self.view.bounds.width, height: 180.0)
+        picker.backgroundColor = .orrGray1
+        picker.delegate = self
+        picker.dataSource = self
+        return picker
+    }()
 
     private lazy var saveButton : UIButton = {
         let button = UIButton()
@@ -62,8 +64,14 @@ class LevelPickerView: UIViewController, UISheetPresentationControllerDelegate {
         super.viewDidLoad()
         setUpLayout()
         setUpDelegate()
+        self.pickerView.delegate?.pickerView?(self.pickerView, didSelectRow: pickerSelectValue, inComponent: 0)
+        self.pickerView.selectRow(pickerSelectValue, inComponent: 0, animated: true)
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        delegate?.setSeparatorColor()
+    }
+    
     private func setUpDelegate(){
         sheetPresentationController.delegate = self
         sheetPresentationController.prefersGrabberVisible = false
@@ -126,8 +134,7 @@ extension LevelPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
 
     // 선택된 값
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        level = row+1
-        print(level)
+        level = row - 1
     }
 
     // 선택된 값을 리턴
