@@ -2,72 +2,27 @@
 //  OnBoardingViewController.swift
 //  OrrRock
 //
-//  Created by dohankim on 2022/10/26.
+//  Created by dohankim on 2022/11/08.
 //
 
 import UIKit
-import SnapKit
 
-class OnBoardingViewController: UIViewController , UISheetPresentationControllerDelegate{
+class OnBoardingViewController: UIPageViewController {
     
-    override var sheetPresentationController: UISheetPresentationController {
-        presentationController as! UISheetPresentationController
-    }
-    
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 34, weight: .bold)
-        label.textColor = .black
-        label.text = "오르락 시작하기"
-        return label
+    lazy var vcArray: [UIViewController] = {
+        return [OnBoardingViewController1(),
+                OnBoardingViewController2(),
+                OnBoardingViewController3()]
     }()
-    
-    private lazy var subLabel1: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        label.textColor = .black
-        label.text = "클라이밍 발견하기"
-        return label
-    }()
-    
-    private lazy var subLabel2: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        label.textColor = .black
-        label.numberOfLines = 2
-        label.text = "날짜, 암장, 성공, 실패 및 즐겨찾는 항목의\n영상을 분류해 줍니다."
-        label.textAlignment = .left
-        return label
-    }()
-    
-    private lazy var subLabel3: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        label.textColor = .black
-        label.text = "요약 보기"
-        return label
-    }()
-    
-    private lazy var subLabel4: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        label.textColor = .black
-        label.text = "성장 그래프 및 성공 횟수를 보여줍니다."
-        return label
-    }()
-    
-    private lazy var labelImage1: UIImageView = {
-        let configuration = UIImage.SymbolConfiguration(pointSize: 28)
-        let image = UIImage(systemName: "mail.and.text.magnifyingglass",withConfiguration: configuration)?.withTintColor(.orrUPBlue!, renderingMode: .alwaysOriginal)
-        let label = UIImageView(image: image)
-        return label
-    }()
-    
-    private lazy var labelImage2: UIImageView = {
-        let configuration = UIImage.SymbolConfiguration(pointSize: 28)
-        let image = UIImage(systemName: "chart.line.uptrend.xyaxis",withConfiguration: configuration)?.withTintColor(.orrUPBlue!, renderingMode: .alwaysOriginal)
-        let label = UIImageView(image: image)
-        return label
+    lazy var pageControl : UIPageControl = {
+        let control = UIPageControl()
+        control.numberOfPages = 3
+        control.currentPage = 0
+        control.alpha = 0.5
+        control.tintColor = UIColor.black
+        control.pageIndicatorTintColor = UIColor.gray
+        control.currentPageIndicatorTintColor = UIColor.black
+        return control
     }()
     
     private lazy var nextButton: UIButton = {
@@ -82,79 +37,113 @@ class OnBoardingViewController: UIViewController , UISheetPresentationController
         return btn
     }()
     
+    var currentIndex: Int?
+    var pendingIndex: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpDelegate()
-        setUpLayout()
-        // Do any additional setup after loading the view.
-    }
-    
-    
-    private func setUpDelegate(){
-        self.isModalInPresentation = true
-        sheetPresentationController.delegate = self
-        sheetPresentationController.selectedDetentIdentifier = .large
-        sheetPresentationController.prefersGrabberVisible = false
-        sheetPresentationController.detents = [.large()]
-        
-    }
-    
-    private func setUpLayout(){
-        view.backgroundColor = .orrWhite
-        view.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints {
+        setDelegate()
+        view.addSubview(pageControl)
+        pageControl.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().inset(81)
+            $0.bottom.equalToSuperview().inset(158)
         }
-        view.addSubview(subLabel1)
-        subLabel1.snp.makeConstraints {
-            $0.leading.equalTo(titleLabel)
-            $0.top.equalTo(titleLabel.snp.bottom).offset(41)
+                view.addSubview(nextButton)
+                nextButton.snp.makeConstraints{
+                    $0.centerX.equalTo(view)
+                    $0.bottom.equalTo(view).offset(-34)
+                    $0.leading.equalTo(view).offset(orrPadding.padding3.rawValue)
+                    $0.trailing.equalTo(view).offset(-orrPadding.padding3.rawValue)
+                    $0.height.equalTo(56)
+                }
+        
+    }
+    
+    
+    
+    
+}
+
+extension OnBoardingViewController : UIPageViewControllerDelegate{
+    func setDelegate(){
+        self.delegate = self
+        self.dataSource = self
+        self.navigationController?.isNavigationBarHidden = true
+        if let firstVC = vcArray.first {
+            setViewControllers([firstVC], direction: .forward, animated: false, completion: nil)
         }
         
-        view.addSubview(subLabel2)
-        subLabel2.snp.makeConstraints {
-            $0.leading.equalTo(titleLabel)
-            $0.top.equalTo(titleLabel.snp.bottom).offset(66)
-        }
         
-        view.addSubview(subLabel3)
-        subLabel3.snp.makeConstraints {
-            $0.leading.equalTo(titleLabel)
-            $0.top.equalTo(titleLabel.snp.bottom).offset(122)
-        }
-        
-        view.addSubview(subLabel4)
-        subLabel4.snp.makeConstraints {
-            $0.leading.equalTo(titleLabel)
-            $0.top.equalTo(titleLabel.snp.bottom).offset(148)
-        }
-        
-        view.addSubview(labelImage1)
-        labelImage1.snp.makeConstraints {
-            $0.trailing.equalTo(titleLabel.snp.leading).offset(-16)
-            $0.top.equalTo(titleLabel.snp.bottom).offset(51)
-        }
-        
-        view.addSubview(labelImage2)
-        labelImage2.snp.makeConstraints {
-            $0.trailing.equalTo(titleLabel.snp.leading).offset(-16)
-            $0.top.equalTo(titleLabel.snp.bottom).offset(126)
-        }
-        
-        view.addSubview(nextButton)
-        nextButton.snp.makeConstraints{
-            $0.centerX.equalTo(view)
-            $0.bottom.equalTo(view).offset(-34)
-            $0.leading.equalTo(view).offset(orrPadding.padding3.rawValue)
-            $0.trailing.equalTo(view).offset(-orrPadding.padding3.rawValue)
-            $0.height.equalTo(56)
-        }
     }
     
     @objc
     private func pressNextButton(_ sender: UIButton) {
-        UserDefaults.standard.set(true, forKey: "watchOnBoard")
-        self.dismiss(animated: true)
+        self.goToNextPage()
+        var index = vcArray.firstIndex(of: <#T##UIViewController#>)
+        //이동
     }
+    
+}
+
+extension OnBoardingViewController : UIPageViewControllerDataSource{
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard let vcIndex = vcArray.firstIndex(of: viewController) else { return nil }
+        let prevIndex = vcIndex - 1
+        guard prevIndex >= 0 else {
+            return nil
+        }
+        guard vcArray.count > prevIndex else { return nil }
+        return vcArray[prevIndex]
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard let vcIndex = vcArray.firstIndex(of: viewController) else { return nil }
+        let nextIndex = vcIndex + 1
+        guard nextIndex < vcArray.count else {
+            return nil
+        }
+        guard vcArray.count > nextIndex else { return nil }
+        return vcArray[nextIndex]
+    }
+    //MARK: 기본 인디케이터 사용시 코드 - 혹시 몰라서 일단 남겨놓음
+//    func presentationCount(for pageViewController: UIPageViewController) -> Int {
+//        let appearance = UIPageControl.appearance()
+//        appearance.pageIndicatorTintColor = UIColor.gray
+//        appearance.currentPageIndicatorTintColor = UIColor.white
+//        appearance.backgroundColor = UIColor.darkGray
+//        return 3
+//    }
+//
+//    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+//        return 0
+//    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        pendingIndex = vcArray.firstIndex(of: pendingViewControllers.first!)
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if completed {
+                currentIndex = pendingIndex
+                if let index = currentIndex {
+                    pageControl.currentPage = index
+                }
+            }
+    }
+}
+
+extension UIPageViewController {
+
+    func goToNextPage() {
+       guard let currentViewController = self.viewControllers?.first else { return }
+       guard let nextViewController = dataSource?.pageViewController( self, viewControllerAfter: currentViewController ) else { return }
+       setViewControllers([nextViewController], direction: .forward, animated: true, completion: nil)
+    }
+
+    func goToPreviousPage() {
+       guard let currentViewController = self.viewControllers?.first else { return }
+       guard let previousViewController = dataSource?.pageViewController( self, viewControllerBefore: currentViewController ) else { return }
+       setViewControllers([previousViewController], direction: .reverse, animated: false, completion: nil)
+    }
+
 }
