@@ -102,8 +102,8 @@ final class SwipeableCardViewController: UIViewController {
 		return label
 	}()
 	
-	private lazy var failButton: UIButton = {
-		let button = UIButton()
+	private lazy var failButton: CustomButton = {
+		let button = CustomButton()
 		button.setTitle("실패", for: .normal)
 		button.setTitleColor(.white, for: .normal)
 		button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .semibold)
@@ -114,8 +114,8 @@ final class SwipeableCardViewController: UIViewController {
 		return button
 	}()
 	
-	private lazy var successButton: UIButton = {
-		let button = UIButton()
+	private lazy var successButton: CustomButton = {
+		let button = CustomButton()
 		button.setTitle("성공", for: .normal)
 		button.setTitleColor(.white, for: .normal)
 		button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .semibold)
@@ -144,7 +144,7 @@ final class SwipeableCardViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		view.backgroundColor = .white
+		view.backgroundColor = .orrWhite
 		
 		navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonClicked))
 		navigationItem.leftBarButtonItem?.tintColor = .orrUPBlue
@@ -155,6 +155,8 @@ final class SwipeableCardViewController: UIViewController {
 		createSwipeableCard() {
 			self.cards.forEach { swipeCard in
 				self.view.insertSubview(swipeCard!, at: 0)
+				// 카드를 z축 기준 가장 상단에 위치하게 하는 코드
+				self.view.bringSubviewToFront(swipeCard!)
 				swipeCard!.snp.makeConstraints {
 					$0.center.equalToSuperview()
 					$0.height.equalTo(420.0)
@@ -258,6 +260,11 @@ private extension SwipeableCardViewController {
 	// swipeCard가 SuperView에서 제거됩니다.
 	@objc func removeCard(card: UIView) {
 		card.removeFromSuperview()
+		// 스와이프가 완료되고 removeCard가 호출될 때 버튼 활성화
+		successButton.isEnabled = true
+		failButton.isEnabled = true
+		// 카드가 사라질 때 카운팅
+		counter += 1
 	}
 	
 	// Gesture
@@ -282,12 +289,12 @@ private extension SwipeableCardViewController {
 			card.transform = CGAffineTransform(rotationAngle: rotationAngle)
 			
 			if gesture.state == .ended {
-				if card.center.x > self.view.bounds.width + 20 {
+				// 카드의 x축을 통한 성패 결정 스와이프 정도
+				if card.center.x > self.view.bounds.width - 30 {
 					animateCard(rotationAngle: rotationAngle, videoResultType: .success)
 					return
 				}
-				
-				if card.center.x < -20 {
+				if card.center.x < 30 {
 					animateCard(rotationAngle: rotationAngle, videoResultType: .fail)
 					return
 				}
@@ -298,7 +305,13 @@ private extension SwipeableCardViewController {
 					card.successImageView.alpha = 0
 					card.failImageView.alpha = 0
 					card.setVideoBackgroundViewBorderColor(color: .clear, alpha: 1)
+					// 터치가 해제되고 카드가 돌아가는 도중에 터치 제한
+					UIApplication.shared.beginIgnoringInteractionEvents()
+				} completion: {_ in
+					// completion을 통해 애니메이션이 끝났을 때 터치 제한 해제
+					UIApplication.shared.endIgnoringInteractionEvents()
 				}
+
 			}
 		}
 	}
@@ -311,32 +324,33 @@ private extension SwipeableCardViewController {
 		nextViewController.delegate = self
 	}
 	
+	// 실패 버튼을 눌렀을 때 로직
 	@objc func didFailButton() {
 		animateCard(rotationAngle: -0.4, videoResultType: .fail)
+		failButton.isActivated.toggle()
 	}
 	
+	// 성공 버튼을 눌렀을 때 로직
 	@objc func didSuccessButton() {
 		animateCard(rotationAngle: 0.4, videoResultType: .success)
+		successButton.isActivated.toggle()
 	}
 	
+	// 다음 뷰로 넘어가는 로직
 	@objc func tapSaveButton() {
-		// TODO: - 다음 뷰로 넘어가는 로직
 		DataManager.shared.createMultipleData(infoList: videoInfoArray)
 		self.navigationController?.popToRootViewController(animated: true)
 	}
 	
 	// swipeCard의 애니매이션 효과를 담당합니다.
 	func animateCard(rotationAngle: CGFloat, videoResultType: VideoResultType) {
-		
-		print(view.subviews.count)
-		var cardViews = view.subviews.filter({ ($0 as? SwipeableCardVideoView) != nil })
-		print("DDD ", cardViews.count)
+		let cardViews = view.subviews.filter({ ($0 as? SwipeableCardVideoView) != nil })
 		
 		for view in cardViews {
 			if view == cards[counter] {
 				let center: CGPoint
 				let isSuccess: Bool
-				let  card = view as! SwipeableCardVideoView
+				let card = view as! SwipeableCardVideoView
 				
 				switch videoResultType {
 				case .fail:
@@ -349,13 +363,16 @@ private extension SwipeableCardViewController {
 				}
 				
 				videoInfoArray[counter].isSucceeded = isSuccess
-				videoInfoArray[counter].problemLevel = currentSelectedLevel
-				print(videoInfoArray[counter])
-				UIView.animate(withDuration: 0.6, animations: {
+				videoInfoArray[counter].problemLevel = currentSelectedLevel ?? 0
+				UIView.animate(withDuration: 0.3, animations: {
 					card.center = center
 					card.transform = CGAffineTransform(rotationAngle: rotationAngle)
 					card.successImageView.alpha = isSuccess == true ? 1 : 0
 					card.failImageView.alpha = isSuccess == false ? 1 : 0
+					// 카드 스와이프 애니매이션이 진행 중일 때 버튼 비활성화
+					self.successButton.isEnabled = false
+					self.failButton.isEnabled = false
+					
 					if isSuccess{
 						card.setVideoBackgroundViewBorderColor(color: .pass, alpha: 1)
 					} else {
@@ -364,9 +381,7 @@ private extension SwipeableCardViewController {
 					
 				}) { [self] _ in
 					if counter != cards.count-1 {
-						print("DEBUG : \(counter) / \(cards.count - 1)")
 						removeCard(card: card)
-						counter += 1
 					} else {
 						didVideoClassificationComplete()
 						removeCard(card: card)
@@ -378,9 +393,9 @@ private extension SwipeableCardViewController {
 	
 	@objc func backButtonClicked() {
 		self.navigationController?.popViewController(animated: true)
-		print("pop 가 됐습니다.")
 	}
 	
+	// 모든 카드를 스와이핑 했을 때 호출되는 메서드
 	func didVideoClassificationComplete() {
 		levelButton.isEnabled = false
 		
@@ -400,7 +415,7 @@ private extension SwipeableCardViewController {
 	
 	func setUpLayout() {
 		
-        [UIView.spacer(size: 1), levelButton, levelButtonImage].map {
+		[levelButton, levelButtonImage].forEach {
 			self.buttonStackView.addArrangedSubview($0)
 		}
         
