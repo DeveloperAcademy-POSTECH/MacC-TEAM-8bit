@@ -264,12 +264,13 @@ private extension SwipeableCardViewController {
 			card.transform = CGAffineTransform(rotationAngle: rotationAngle)
 			
 			if gesture.state == .ended {
-				if card.center.x > self.view.bounds.width + 20 {
+				// 카드의 x축을 통한 성패 결정 스와이프 정도
+				if card.center.x > self.view.bounds.width - 30 {
 					animateCard(rotationAngle: rotationAngle, videoResultType: .success)
 					return
 				}
 				
-				if card.center.x < -20 {
+				if card.center.x < 30 {
 					animateCard(rotationAngle: rotationAngle, videoResultType: .fail)
 					return
 				}
@@ -307,10 +308,7 @@ private extension SwipeableCardViewController {
 	
 	// swipeCard의 애니매이션 효과를 담당합니다.
 	func animateCard(rotationAngle: CGFloat, videoResultType: VideoResultType) {
-		
-		print(view.subviews.count)
 		let cardViews = view.subviews.filter({ ($0 as? SwipeableCardVideoView) != nil })
-		print("DDD ", cardViews.count)
 		
 		for view in cardViews {
 			if view == cards[counter] {
@@ -330,7 +328,6 @@ private extension SwipeableCardViewController {
 				
 				videoInfoArray[counter].isSucceeded = isSuccess
 				videoInfoArray[counter].problemLevel = currentSelectedLevel ?? 0
-				print(videoInfoArray[counter])
 				UIView.animate(withDuration: 0.5, animations: {
 					card.center = center
 					card.transform = CGAffineTransform(rotationAngle: rotationAngle)
@@ -339,6 +336,7 @@ private extension SwipeableCardViewController {
 					// 카드 스와이프 애니매이션이 진행 중일 때 버튼 비활성화
 					self.successButton.isEnabled = false
 					self.failButton.isEnabled = false
+					
 					if isSuccess{
 						card.setVideoBackgroundViewBorderColor(color: .pass, alpha: 1)
 					} else {
@@ -359,9 +357,9 @@ private extension SwipeableCardViewController {
 	
 	@objc func backButtonClicked() {
 		self.navigationController?.popViewController(animated: true)
-		print("pop 가 됐습니다.")
 	}
 	
+	// 모든 카드를 스와이핑 했을 때 호출되는 메서드
 	func didVideoClassificationComplete() {
 		levelButton.isEnabled = false
 		
