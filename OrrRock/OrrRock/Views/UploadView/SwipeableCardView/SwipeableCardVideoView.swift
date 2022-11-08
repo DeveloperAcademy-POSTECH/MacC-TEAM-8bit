@@ -22,6 +22,8 @@ final class SwipeableCardVideoView: UIView {
         view.layer.borderWidth = 3
         view.layer.cornerRadius = cornerRadius
         view.layer.borderColor = UIColor.white.cgColor
+		// 스와이프 뷰에서 카드들이 다중 터치가 되지 않게 막는 코드
+		view.isExclusiveTouch = true
 
         return view
     }()
