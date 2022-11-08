@@ -224,6 +224,9 @@ class VideoCollectionViewController: UIViewController {
         if videoInformationArray.count < 4{
             titleStackView.isHidden = true
         }
+        if videoInformationArray.count == 0 {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
     
     @objc func didDeleteActionSheetClicked(_ sender: UIBarButtonItem) {
