@@ -376,7 +376,7 @@ private extension SwipeableCardViewController {
 	
 	func setUpLayout() {
 		
-		[levelButton, levelButtonImage].map {
+		[levelButton, levelButtonImage].forEach {
 			self.buttonStackView.addArrangedSubview($0)
 		}
 		
