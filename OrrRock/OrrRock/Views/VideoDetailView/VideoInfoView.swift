@@ -108,8 +108,11 @@ final class VideoInfoView: UIView {
         let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
         let vc = LevelAndPFEditViewController()
         vc.videoInformation = videoInformation
+        vc.pickerSelectValue = Int(videoInformation!.problemLevel) + 1
         vc.completioHandler = {isSuccess,level in
-            self.levelLabel.text = "V\(level)"
+            
+            self.levelLabel.text = level == -1 ? "선택안함" : "V\(level)"
+            
             self.isSucceeded.text = isSuccess ? "성공" : "실패"
             
         }
@@ -126,7 +129,7 @@ final class VideoInfoView: UIView {
         self.init(frame: frame)
         self.videoInformation = videoInfo
         dateLabel.text = videoInformation?.gymVisitDate.timeToString()
-        levelLabel.text = "V\(videoInformation?.problemLevel ?? 2)"
+        levelLabel.text = videoInformation?.problemLevel == -1 ? "선택안함" : "V\(videoInformation?.problemLevel ?? -3)"
         isSucceeded.text = videoInformation!.isSucceeded ? "성공" : "실패"
         locationLabel.text = videoInformation?.gymName
 		feedbackTextView.text = videoInformation?.feedback
