@@ -165,12 +165,14 @@ final class HomeViewController : UIViewController {
         
         var items: [UIBarButtonItem] = []
         
-        let myPageButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.rectangle"), style: .plain, target: self, action: nil)
+        // 이번 스프린트에서는 기능이 없음
+//        let myPageButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.rectangle"), style: .plain, target: self, action: nil)
+        
         let addVideoButton = UIBarButtonItem(image: UIImage(systemName: "camera.fill"), style: .plain, target: self, action: #selector(videoButtonPressed))
         // toolbar 내 Spacer() 역할
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: HomeViewController.self, action: nil)
         
-        items.append(myPageButton)
+//        items.append(myPageButton)
         items.append(flexibleSpace)
         items.append(addVideoButton)
         
