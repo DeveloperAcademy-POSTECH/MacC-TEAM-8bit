@@ -70,7 +70,7 @@ extension GymSettingViewController {
     final private func pressNextButton(sender: UIButton!) {
         let photoLibrary =  PHPhotoLibrary.shared()
         var configuration = PHPickerConfiguration(photoLibrary: photoLibrary)
-        configuration.filter = .videos
+        configuration.filter = .all(of: [.videos,.not(.slomoVideos)])
         configuration.selectionLimit = 0
         configuration.preferredAssetRepresentationMode = .current
         let picker = PHPickerViewController(configuration: configuration)
