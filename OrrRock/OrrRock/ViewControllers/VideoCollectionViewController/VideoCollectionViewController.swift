@@ -12,7 +12,6 @@ class VideoCollectionViewController: UIViewController {
     var videoInformationArray: [VideoInformation] = []
     var sectionData: SectionData!
     var successCount: Int = 0
-    // 썸네일은 videoInformationArray[n].videoLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize) 을 통해 간편하게 생성 가능함!
     var isFirstSelectAllButtonTouch = true
     lazy var firstContentOffset: Float = 0.0
     lazy var checkFirstContentOffset: Bool = false
@@ -21,6 +20,7 @@ class VideoCollectionViewController: UIViewController {
         case view
         case select
     }
+    
     var dictionarySelectedIndexPath: [IndexPath : Bool] = [:]
     var mMode: Mode = .view {
         didSet{
@@ -209,8 +209,6 @@ class VideoCollectionViewController: UIViewController {
         }){
             DataManager.shared.deleteData(videoInformation: videoInformationArray[i.item])
             videoInformationArray.remove(at: i.item)
-            // 삭제 하는 코어데이터 함수
-            
         }
         
         for (key,value) in dictionarySelectedIndexPath{
@@ -243,20 +241,12 @@ class VideoCollectionViewController: UIViewController {
     
     @objc func didDeleteActionSheetClicked(_ sender: UIBarButtonItem) {
         let optionMenu = UIAlertController(title: "선택한 영상 삭제하기", message: "정말로 삭제하시겠어요?", preferredStyle: .actionSheet)
-        
-        // 2
         let deleteAction = UIAlertAction(title: "삭제하기", style: .destructive) { _ in
             self.didDeleteButtonClicked()
         }
-        
-        // 3
         let cancelAction = UIAlertAction(title: "취소하기", style: .cancel)
-        
-        // 4
         optionMenu.addAction(deleteAction)
         optionMenu.addAction(cancelAction)
-        
-        // 5
         self.present(optionMenu, animated: true, completion: nil)
     }
     

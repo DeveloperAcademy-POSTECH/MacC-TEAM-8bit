@@ -10,9 +10,7 @@ import UIKit
 class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControllerDelegate {
     
     var isSuccess : Bool = false
-    
     private let levelValues: [Int] = [-1,0,1,2,3,4,5,6,7,8,9]
-    
     override var sheetPresentationController: UISheetPresentationController {
         presentationController as! UISheetPresentationController
     }
@@ -25,8 +23,8 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
     
     private lazy var levelTopView : UIView = {
         let view = UIView()
-        view.backgroundColor = .orrWhite
         
+        view.backgroundColor = .orrWhite
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
@@ -109,7 +107,6 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         return button
     }()
     
-    
     private lazy var saveButton : UIButton = {
         let btn = UIButton()
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
@@ -130,8 +127,6 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         self.pickerView.selectRow(pickerSelectValue, inComponent: 0, animated: true)
         // Do any additional setup after loading the view.
     }
-    
-    
 }
 
 extension LevelAndPFEditViewController {
@@ -144,6 +139,7 @@ extension LevelAndPFEditViewController {
             $0.height.equalTo(60)
             $0.top.equalToSuperview()
         }
+        
         view.addSubview(levelContentView)
         levelContentView.snp.makeConstraints {
             $0.top.equalTo(levelTopView.snp.bottom)
@@ -246,11 +242,7 @@ extension LevelAndPFEditViewController {
             self.successCheckButton.alpha = 0.3
             self.failCheckButton.layer.cornerRadius = 37.5
             self.successCheckButton.layer.cornerRadius = 30.5
-            
-            
         }
-        
-        
     }
     
     private func setData(){
@@ -272,7 +264,6 @@ extension LevelAndPFEditViewController {
                 self.failCheckButton.alpha = 0.3
                 self.successCheckButton.layer.cornerRadius = 37.5
                 self.failCheckButton.layer.cornerRadius = 30.5
-                
             }
         }
     }
@@ -288,8 +279,6 @@ extension LevelAndPFEditViewController : UIPickerViewDelegate,UIPickerViewDataSo
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print(component)
-        print(row)
         selectLevel = row - 1
     }
     
