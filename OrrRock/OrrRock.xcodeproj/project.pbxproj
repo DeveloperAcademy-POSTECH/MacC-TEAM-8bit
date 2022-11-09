@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A0B41072907C59600057FA7 /* SwipeableCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B41062907C59600057FA7 /* SwipeableCardViewController.swift */; };
 		0A0B410D2907C79200057FA7 /* VideoResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B410C2907C79200057FA7 /* VideoResultType.swift */; };
-		0A0B410F2907C84B00057FA7 /* ledIsComming.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 0A0B410E2907C84B00057FA7 /* ledIsComming.MOV */; };
 		0AAB780A290424A300EEEFFB /* SwipeableCardVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */; };
-		0AAB780C2904251D00EEEFFB /* ianIsComming.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 0AAB780B2904251C00EEEFFB /* ianIsComming.MOV */; };
 		342508A329001780000653D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A229001780000653D9 /* HomeViewController.swift */; };
 		342508A52900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A42900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift */; };
 		342508A729001BBC000653D9 /* HomeCollectionViewCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A629001BBC000653D9 /* HomeCollectionViewCardCell.swift */; };
@@ -76,9 +74,7 @@
 /* Begin PBXFileReference section */
 		0A0B41062907C59600057FA7 /* SwipeableCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardViewController.swift; sourceTree = "<group>"; };
 		0A0B410C2907C79200057FA7 /* VideoResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoResultType.swift; sourceTree = "<group>"; };
-		0A0B410E2907C84B00057FA7 /* ledIsComming.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = ledIsComming.MOV; sourceTree = "<group>"; };
 		0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardVideoView.swift; sourceTree = "<group>"; };
-		0AAB780B2904251C00EEEFFB /* ianIsComming.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = ianIsComming.MOV; sourceTree = "<group>"; };
 		342508A229001780000653D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		342508A42900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+CollectionViewExtensions.swift"; sourceTree = "<group>"; };
 		342508A629001BBC000653D9 /* HomeCollectionViewCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCardCell.swift; sourceTree = "<group>"; };
@@ -174,15 +170,6 @@
 			path = UploadView;
 			sourceTree = "<group>";
 		};
-		0AAB780D2904255D00EEEFFB /* TestData */ = {
-			isa = PBXGroup;
-			children = (
-				0AAB780B2904251C00EEEFFB /* ianIsComming.MOV */,
-				0A0B410E2907C84B00057FA7 /* ledIsComming.MOV */,
-			);
-			path = TestData;
-			sourceTree = "<group>";
-		};
 		342C4567290066790037D9E7 /* HomeViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,13 +228,6 @@
 				70A8DF09291A863F0061E36B /* UIView+.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		34B01144290015970043951A /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		34B01147290015A10043951A /* Models */ = {
@@ -312,9 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				709A8C69290481F000CEA6F4 /* Utils */,
-				0AAB780D2904255D00EEEFFB /* TestData */,
 				34B01147290015A10043951A /* Models */,
-				34B01144290015970043951A /* Resources */,
 				34B011412900158F0043951A /* Extensions */,
 				34B0113E290015860043951A /* ViewControllers */,
 				34B0113B290015760043951A /* Views */,
@@ -475,9 +453,7 @@
 			files = (
 				3AA4D42E28FEBADF006C718A /* LaunchScreen.storyboard in Resources */,
 				3AA4D42B28FEBADF006C718A /* Assets.xcassets in Resources */,
-				0A0B410F2907C84B00057FA7 /* ledIsComming.MOV in Resources */,
 				34B0113D290015830043951A /* View in Resources */,
-				0AAB780C2904251D00EEEFFB /* ianIsComming.MOV in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
