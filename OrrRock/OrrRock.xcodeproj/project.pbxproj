@@ -226,7 +226,7 @@
 		3AA4D41D28FEBADE006C718A /* OrrRock */ = {
 			isa = PBXGroup;
 			children = (
-				3AEB3D5B291BFEE000A989FF /* Enums */,
+				3AEB3D65291C080400A989FF /* Models */,
 				709A8C69290481F000CEA6F4 /* Utils */,
 				34B011412900158F0043951A /* Extensions */,
 				3A08879E29012CC300EFFDBB /* CoreData */,
@@ -319,6 +319,14 @@
 				0AAB77E0290274BE00EEEFFB /* UIComponent */,
 			);
 			path = Upload;
+			sourceTree = "<group>";
+		};
+		3AEB3D65291C080400A989FF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3AEB3D5B291BFEE000A989FF /* Enums */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		709A8C69290481F000CEA6F4 /* Utils */ = {
