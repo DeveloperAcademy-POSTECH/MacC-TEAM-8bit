@@ -230,7 +230,6 @@
 		34B01147290015A10043951A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3A08879E29012CC300EFFDBB /* CoreData */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -281,6 +280,7 @@
 			children = (
 				3AEB3D5B291BFEE000A989FF /* Enums */,
 				709A8C69290481F000CEA6F4 /* Utils */,
+				3A08879E29012CC300EFFDBB /* CoreData */,
 				34B01147290015A10043951A /* Models */,
 				34B011412900158F0043951A /* Extensions */,
 				34B0113E290015860043951A /* ViewControllers */,
