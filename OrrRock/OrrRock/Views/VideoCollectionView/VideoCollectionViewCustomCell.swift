@@ -23,6 +23,7 @@ class VideoCollectionViewCell : UICollectionViewCell {
             checkImage.isHidden = !isSelected
         }
     }
+    
     lazy var cellBlurView : UIView = {
         let uiView = UIView()
         uiView.backgroundColor = .white.withAlphaComponent(0.3)
@@ -97,7 +98,6 @@ class VideoCollectionViewCell : UICollectionViewCell {
         cellBlurView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
         cellBlurView.addSubview(checkImage)
         checkImage.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(10)

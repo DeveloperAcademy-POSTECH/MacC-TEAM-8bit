@@ -5,11 +5,9 @@
 //  Created by Park Sungmin on 2022/10/19.
 //
 
-// MARK: TODO
-// 퀵 액션에서 형태에 따라 headerTitle의 글자 변경 필요.
+import UIKit
 
 import SnapKit
-import UIKit
 
 final class HomeCollectionViewHeaderCell: UICollectionReusableView {
     static let identifier = "HomeCollectionViewHeaderCell"
@@ -70,7 +68,6 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
         addSubview(videoCountLabel)
         addSubview(PFCountLabel)
         
-        // header view의 위치는 앨범/목록형으로 전환되어도 바뀌지 않으므로 setConstraint에 넣지 않음
         addSubview(headerTitle)
         headerTitle.snp.makeConstraints {
             $0.bottom.equalTo(snp_topMargin).offset(CGFloat(orrPadding.padding6.rawValue))

@@ -10,7 +10,6 @@ import Foundation
 extension VideoCollectionViewController {
     
     func filterVideoInformation(videoInformation: [VideoInformation], filterOption: FilterOption) -> [VideoInformation] {
-        
         switch filterOption {
         case .all:
             return videoInformation
@@ -24,15 +23,11 @@ extension VideoCollectionViewController {
     }
     
     func sortVideoInformation(videoInformation: [VideoInformation], sectionData: SectionData) -> [VideoInformation] {
-        
         if videoInformation.count == 0 {
             return []
         }
-        
         var filteredInformation: [VideoInformation] = []
-        
         switch sectionData.sortOption {
-            
         case .gymName:
             filteredInformation = filterVideoInformation(videoInformation: videoInformation, filterOption: sectionData.filterOption)
                 .filter({$0.gymName == sectionData.gymName})
@@ -48,7 +43,6 @@ extension VideoCollectionViewController {
         if sectionData.orderOption == .descend {
             filteredInformation.reverse()
         }
-        
         return filteredInformation
     }
 }

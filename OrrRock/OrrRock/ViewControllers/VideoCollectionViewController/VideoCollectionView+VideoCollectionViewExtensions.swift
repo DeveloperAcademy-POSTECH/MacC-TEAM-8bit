@@ -15,17 +15,13 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
             firstContentOffset = Float(scrollView.contentOffset.y)
             checkFirstContentOffset = true
         }
-        
         if (firstContentOffset + 64.0) < Float(scrollView.contentOffset.y){
             titleStackView.isHidden = false
         }
         else{
             titleStackView.isHidden = true
         }
-        
     }
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch mMode{
@@ -42,7 +38,6 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
             toolbarText.customView = indexCountLabel
             deleteBarButton.isEnabled = true
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -60,7 +55,6 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return videoInformationArray.count
     }
-    
     
     func collectionView(
         _ collectionView: UICollectionView,
@@ -89,7 +83,6 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
             return UICollectionReusableView()
         }
     }
-    
 }
 
 extension VideoCollectionViewController  : UICollectionViewDataSource{
@@ -97,40 +90,32 @@ extension VideoCollectionViewController  : UICollectionViewDataSource{
         let screenBounds = UIScreen.main.bounds
         let screenScale = UIScreen.main.scale
         let screenSize = CGSize(width: screenBounds.size.width * screenScale, height: screenBounds.size.height * screenScale)
-
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customVideoCollectionCell", for: indexPath) as! VideoCollectionViewCell
         cell.cellImage.image = videoInformationArray[indexPath.row].videoLocalIdentifier?.generateCardViewThumbnail(targetSize: screenSize )
-
         if videoInformationArray[indexPath.item].isFavorite{
             cell.heartImage.alpha = 1.0
         }
         else{
             cell.heartImage.alpha = 0.0
         }
-        
         if videoInformationArray[indexPath.item].isSucceeded{
             cell.cellLabel.backgroundColor = .orrPass
         }
         else{
             cell.cellLabel.backgroundColor = .orrFail
         }
-        
         cell.cellLabel.text = videoInformationArray[indexPath.item].problemLevel == -1 ? "V?" : "V\(videoInformationArray[indexPath.item].problemLevel)"
-
         return cell
     }
-    
 }
 
 extension VideoCollectionViewController : UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / 3 - 1
         return CGSize(width: width, height: width * 2.13)
     }
-
-
 }
