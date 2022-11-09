@@ -5,14 +5,9 @@
 //  Created by Park Sungmin on 2022/10/19.
 //
 
-// MARK: TODO
-// cell을 생성하며 setData 함수를 통해 데이터를 받아와 HomeViewController에서 visitedDate, visitedGymName, successCount, failCount, videoCount, videoThumbnails을 저장 및 데이터 지정하도록 함수 작성
-// 혹은 CardCell이 생성될 때 해당 데이터를 Load 해오도록 함수 작성
-// 색상 확정나면 지정해주기
-
+import UIKit
 
 import SnapKit
-import UIKit
 
 final class HomeCollectionViewCardCell: UICollectionViewCell {
     static let identifier = "homeCollectionViewCardCell"
@@ -94,7 +89,6 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         button.setTitleColor(.orrUPBlue, for: .normal)
         return button
     }()
-    
     
     // MARK: View Lifecycle Function
     required init?(coder: NSCoder) {

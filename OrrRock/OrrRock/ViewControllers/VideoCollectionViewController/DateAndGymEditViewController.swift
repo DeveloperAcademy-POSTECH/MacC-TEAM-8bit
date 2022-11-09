@@ -16,9 +16,8 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
     var videoInformation : VideoInformation!
     var selectDate : Date?
     var selectGymName : String?
-    
     var completioHandler : ((String,Date) -> (Void))?
-    
+
     // MARK: gym view compenents
     private lazy var gymContentView : UIView = {
         let view = UIView()
@@ -55,7 +54,6 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
     }()
     
     //MARK: date view 관련 components
-    
     private lazy var datePickerLabel : UILabel = {
         let label = UILabel()
         label.text = Date().timeToString()
@@ -134,7 +132,6 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         setUpDelegate()
         setUpLayout()
         setData()
-        // Do any additional setup after loading the view.
     }
     
     private func setUpLayout(){
@@ -253,12 +250,10 @@ extension DateAndGymEditViewController {
             DataManager.shared.updateDateAndGymData(videoInformation: videoInformation, gymVisitDate: selectDate!, gymName: gymTextField.text!)
             completioHandler?(gymTextField.text!,selectDate!)
         }
-        
         self.dismiss(animated: true)
     }
     
     @objc func didCancelButtonClicked(_ sender: UIBarButtonItem){
         self.dismiss(animated: true)
     }
-    
 }
