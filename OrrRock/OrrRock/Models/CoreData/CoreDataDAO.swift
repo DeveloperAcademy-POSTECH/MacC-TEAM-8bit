@@ -58,7 +58,7 @@ class CoreDataDAO {
                 tempInfo.setValue(gymName, forKey: "gymName")
             }
         } catch {
-            print("업데이트 실패")
+            print(error.localizedDescription)
         }
         saveData()
     }
@@ -77,7 +77,7 @@ class CoreDataDAO {
                 tempInfo.setValue(isSucceeded, forKey: "isSucceeded")
             }
         } catch {
-            print("업데이트 실패")
+            print(error.localizedDescription)
         }
         saveData()
     }
@@ -95,7 +95,7 @@ class CoreDataDAO {
                 tempInfo.setValue(isFavorite, forKey: "isFavorite")
             }
         } catch {
-            print("업데이트 실패")
+            print(error.localizedDescription)
         }
         saveData()
     }
@@ -113,7 +113,7 @@ class CoreDataDAO {
                 tempInfo.setValue(feedback, forKey: "feedback")
             }
         } catch {
-            print("업데이트 실패")
+            print(error.localizedDescription)
         }
         saveData()
     }
@@ -131,7 +131,7 @@ class CoreDataDAO {
                 context.delete(tempInfo)
             }
         } catch {
-            print("업데이트 실패")
+            print(error.localizedDescription)
         }
         saveData()
     }
@@ -144,7 +144,6 @@ class CoreDataDAO {
             for object in objects {
                 context.delete(object)
             }
-            print("DELETE ALL DATA")
             saveData()
         }
     }

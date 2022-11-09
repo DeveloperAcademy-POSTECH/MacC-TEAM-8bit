@@ -86,7 +86,7 @@ final class DataManager {
         repository.deleteAllData()
     }
     
-    // 테스트용 Print문 : 아래의 메소드는 추후 삭제될 예정
+    // MARK: Data Printing을 위한 메소드로 Print문을 따로 삭제하지 않았습니다.
     func printRawData(standard: SortOption) {
         print(repository.rawVideoInformation.count)
         print("-----RAW-----")
@@ -97,6 +97,7 @@ final class DataManager {
         print("================================")
     }
     
+    // MARK: Data Printing을 위한 메소드로 Print문을 따로 삭제하지 않았습니다.
     func printData(info: VideoInformation, primarySortOption: SortOption) {
         
         if primarySortOption == .gymName {

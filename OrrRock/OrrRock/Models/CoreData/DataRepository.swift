@@ -34,7 +34,6 @@ class DataRepository {
         var filteredInformation = filterVideoInformation(filterOption: filterOption)
         
         if filteredInformation.count == 0 {
-            print("해당하는 기준 조건의 영상이 존재하지 않습니다")
             return []
         }
         
@@ -204,11 +203,9 @@ class DataRepository {
     func deleteData(videoInformation: VideoInformation) {
         
         let target = rawVideoInformation.filter({ $0 == videoInformation })
-        print("CONFIRM")
         if let index = rawVideoInformation.firstIndex(of: target[0]) {
             rawVideoInformation.remove(at: index)
         }
-        print("Delete Data")
     }
     
     func deleteDataList(videoInformation: [VideoInformation]) {

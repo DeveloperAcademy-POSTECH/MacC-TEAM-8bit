@@ -19,10 +19,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window?.backgroundColor = .white
         
-        //        window?.rootViewController = UINavigationController(rootViewController: MainViewController())
-        //        window?.rootViewController = UINavigationController(rootViewController: SwipeCardViewController())
-        //        업로드 이후 동작이 필요하다면 위의 코드를 주석 아래코드를 주석 해제후 사용해주세요.
-        //        window?.rootViewController = UINavigationController(rootViewController: UploadTestViewController())
         window?.rootViewController = UINavigationController(rootViewController: HomeViewController())
         window?.makeKeyAndVisible()
     }

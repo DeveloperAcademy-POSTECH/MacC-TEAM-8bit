@@ -26,7 +26,6 @@ extension VideoCollectionViewController {
     func sortVideoInformation(videoInformation: [VideoInformation], sectionData: SectionData) -> [VideoInformation] {
         
         if videoInformation.count == 0 {
-            print("해당하는 기준 조건의 영상이 존재하지 않습니다")
             return []
         }
         
