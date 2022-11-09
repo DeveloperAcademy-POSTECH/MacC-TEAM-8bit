@@ -16,13 +16,8 @@ class VideoCollectionViewController: UIViewController {
     lazy var firstContentOffset: Float = 0.0
     lazy var checkFirstContentOffset: Bool = false
     
-    enum Mode{
-        case view
-        case select
-    }
-    
     var dictionarySelectedIndexPath: [IndexPath : Bool] = [:]
-    var mMode: Mode = .view {
+    var mMode: VideoCollectionViewMode = .view {
         didSet{
             switch mMode{
             case .view:

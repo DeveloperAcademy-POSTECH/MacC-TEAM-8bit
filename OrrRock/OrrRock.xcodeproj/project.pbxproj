@@ -38,6 +38,7 @@
 		3AA4D42B28FEBADF006C718A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AA4D42A28FEBADF006C718A /* Assets.xcassets */; };
 		3AA4D42E28FEBADF006C718A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA4D42C28FEBADF006C718A /* LaunchScreen.storyboard */; };
 		3AA4D43728FEBE94006C718A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA4D43628FEBE94006C718A /* SnapKit */; };
+		3AEB3D5D291C003D00A989FF /* VideoCollectionViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */; };
 		707B2CAE28FFF7090062C958 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 707B2CAD28FFF7090062C958 /* NVActivityIndicatorView */; };
 		707B2CB829012BFE0062C958 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB729012BFE0062C958 /* Color+.swift */; };
 		707B2CBA2901382A0062C958 /* Padding+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB92901382A0062C958 /* Padding+.swift */; };
@@ -103,6 +104,7 @@
 		3AA4D42A28FEBADF006C718A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AA4D42D28FEBADF006C718A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AA4D42F28FEBADF006C718A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewMode.swift; sourceTree = "<group>"; };
 		707B2CB729012BFE0062C958 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		707B2CB92901382A0062C958 /* Padding+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Padding+.swift"; sourceTree = "<group>"; };
 		709A8C6A2904827B00CEA6F4 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
@@ -152,7 +154,6 @@
 			children = (
 				0A0B41062907C59600057FA7 /* SwipeableCardViewController.swift */,
 				0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */,
-				0A0B410C2907C79200057FA7 /* VideoResultType.swift */,
 				A88805842907F5A0002CD52E /* LevelPickerView.swift */,
 			);
 			path = SwipeableCardView;
@@ -218,7 +219,6 @@
 			isa = PBXGroup;
 			children = (
 				707B2CB729012BFE0062C958 /* Color+.swift */,
-				707B2CB92901382A0062C958 /* Padding+.swift */,
 				FB3227FB2903FD9C00276A7D /* Date+.swift */,
 				FB3227FD2903FDA600276A7D /* String+.swift */,
 				70A44806290452B000BE18A5 /* Button+.swift */,
@@ -230,7 +230,6 @@
 		34B01147290015A10043951A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				70A8DF03291403C10061E36B /* UploadModels */,
 				3A08879E29012CC300EFFDBB /* CoreData */,
 			);
 			path = Models;
@@ -280,6 +279,7 @@
 		3AA4D41D28FEBADE006C718A /* OrrRock */ = {
 			isa = PBXGroup;
 			children = (
+				3AEB3D5B291BFEE000A989FF /* Enums */,
 				709A8C69290481F000CEA6F4 /* Utils */,
 				34B01147290015A10043951A /* Models */,
 				34B011412900158F0043951A /* Extensions */,
@@ -296,6 +296,18 @@
 			path = OrrRock;
 			sourceTree = "<group>";
 		};
+		3AEB3D5B291BFEE000A989FF /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				70A8DF07291966E20061E36B /* SwipeableCardVideoModel.swift */,
+				70A8DF04291403EA0061E36B /* GymSettingModel.swift */,
+				707B2CB92901382A0062C958 /* Padding+.swift */,
+				0A0B410C2907C79200057FA7 /* VideoResultType.swift */,
+				3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		709A8C69290481F000CEA6F4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,23 +316,6 @@
 				709A8C6C2904A3E800CEA6F4 /* CustomIndicator.swift */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		70A8DF03291403C10061E36B /* UploadModels */ = {
-			isa = PBXGroup;
-			children = (
-				70A8DF06291966900061E36B /* SwipeableCardModel */,
-				70A8DF04291403EA0061E36B /* GymSettingModel.swift */,
-			);
-			path = UploadModels;
-			sourceTree = "<group>";
-		};
-		70A8DF06291966900061E36B /* SwipeableCardModel */ = {
-			isa = PBXGroup;
-			children = (
-				70A8DF07291966E20061E36B /* SwipeableCardVideoModel.swift */,
-			);
-			path = SwipeableCardModel;
 			sourceTree = "<group>";
 		};
 		78A035492901317600FF1913 /* VideoCollectionView */ = {
@@ -501,6 +496,7 @@
 				78F56F6C291A67FA00174B74 /* OnBoardingViewController.swift in Sources */,
 				342508AB29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift in Sources */,
 				78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */,
+				3AEB3D5D291C003D00A989FF /* VideoCollectionViewMode.swift in Sources */,
 				78CAA06C290271E7003C3D77 /* VIdeoCollectionFooterCell.swift in Sources */,
 				709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */,
 				3A2880FB2904290E00FBFB70 /* SortTestViewController.swift in Sources */,
@@ -649,7 +645,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UAM52RQFW9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
@@ -684,7 +680,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UAM52RQFW9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
