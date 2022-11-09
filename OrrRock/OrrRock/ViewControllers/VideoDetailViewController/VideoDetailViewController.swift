@@ -80,6 +80,7 @@ class VideoDetailViewController: UIViewController {
         self.navigationController?.navigationBar.layer.opacity = 1
         self.topSafeAreaView.layer.opacity = 1
     }
+    
     // 네비게이션바 세팅 함수
     func setNavigationBar() {
         // 네비게이션바 버튼 아이템 생성
