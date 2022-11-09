@@ -206,8 +206,6 @@
 		34B0113E290015860043951A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				78F93ED82908CFDF00F3D9F3 /* OnBoardingViewController */,
-				3A2880F9290428C000FBFB70 /* TestViewController */,
 				78A0354A2901318900FF1913 /* VideoCollectionViewController */,
 				342C4567290066790037D9E7 /* HomeViewController */,
 				FB32281029046B9400276A7D /* VideoDetailViewController */,
@@ -237,6 +235,7 @@
 		3A08879E29012CC300EFFDBB /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				3A2880FA2904290E00FBFB70 /* SortTestViewController.swift */,
 				3A15AC862907B1160058512F /* VideoInformation+CoreDataClass.swift */,
 				3A15AC872907B1160058512F /* VideoInformation+CoreDataProperties.swift */,
 				3A15AC7A290724620058512F /* DataManager.swift */,
@@ -249,14 +248,6 @@
 				3A15AC7629071DD90058512F /* OrderOption.swift */,
 			);
 			path = CoreData;
-			sourceTree = "<group>";
-		};
-		3A2880F9290428C000FBFB70 /* TestViewController */ = {
-			isa = PBXGroup;
-			children = (
-				3A2880FA2904290E00FBFB70 /* SortTestViewController.swift */,
-			);
-			path = TestViewController;
 			sourceTree = "<group>";
 		};
 		3AA4D41228FEBADE006C718A = {
@@ -351,13 +342,6 @@
 				78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */,
 			);
 			path = VideoCollectionViewController;
-			sourceTree = "<group>";
-		};
-		78F93ED82908CFDF00F3D9F3 /* OnBoardingViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = OnBoardingViewController;
 			sourceTree = "<group>";
 		};
 		FB32281029046B9400276A7D /* VideoDetailViewController */ = {
