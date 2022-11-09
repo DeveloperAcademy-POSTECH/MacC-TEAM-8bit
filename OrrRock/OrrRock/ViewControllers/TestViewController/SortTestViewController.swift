@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class SortTestViewController: UIViewController {
-
+    
     let nameList = ["1암장", "2암장", "3암장", "4암장", "5암장"]
     let dateList = [1, 2, 3, 4, 5]
     let url = "URL"
@@ -31,8 +31,8 @@ class SortTestViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//         기존 데이터로 테스트 시 주석 제거 & line.36-38 주석
+        
+        //         기존 데이터로 테스트 시 주석 제거 & line.36-38 주석
         DataManager.shared.updateRepository()
         
         print(DataManager.shared.repository.rawVideoInformation.count)
@@ -71,7 +71,7 @@ class SortTestViewController: UIViewController {
             }
         }
     }
-                                               
+    
     func sortButtonComponentConfigure() {
         
         sortButtons[0].addTarget(self, action: #selector(gymUPSort), for: .touchUpInside)
@@ -252,7 +252,7 @@ class SortTestViewController: UIViewController {
             DataManager.shared.createData(info: info)
             
         }
-
+        
     }
     
     // MARK: Sorting이 제대로 이루지는지를 확인하기 위한 Print문입니다.
@@ -267,5 +267,5 @@ class SortTestViewController: UIViewController {
         }
         print("--------------------")
     }
-
+    
 }

@@ -151,14 +151,14 @@ class DataRepository {
     func reverseSort(sortedVideoInformation: [[VideoInformation]]) -> [[VideoInformation]] {
         return sortedVideoInformation.reversed()
     }
-
+    
     func finalSortVideoInformation(filterOption: FilterOption, sortOption: SortOption, orderOption: OrderOption) -> [[VideoInformation]] {
         var information = sortVideoInformation(filterOption: filterOption, sortOption: sortOption)
         
         if orderOption == .descend {
             information = reverseSort(sortedVideoInformation: information)
         }
-
+        
         return information
     }
     
@@ -167,7 +167,7 @@ class DataRepository {
     }
     
     func updateDateAndGymData(videoInformation: VideoInformation, gymVisitDate: Date, gymName: String) {
-
+        
         guard let id = videoInformation.id else { return }
         
         let target = rawVideoInformation.filter({ $0.id == id })
@@ -176,7 +176,7 @@ class DataRepository {
     }
     
     func updateLevelAndPF(videoInformation: VideoInformation, problemLevel: Int, isSucceeded: Bool) {
-
+        
         guard let id = videoInformation.id else { return }
         
         let target = rawVideoInformation.filter({ $0.id == id })
@@ -193,7 +193,7 @@ class DataRepository {
     }
     
     func updateFeedback(videoInformation: VideoInformation, feedback: String) {
-
+        
         guard let id = videoInformation.id else { return }
         
         let target = rawVideoInformation.filter({ $0.id == id })

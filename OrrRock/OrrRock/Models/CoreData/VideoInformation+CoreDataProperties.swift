@@ -11,11 +11,11 @@ import CoreData
 
 
 extension VideoInformation {
-
+    
     @nonobjc public class func fetchRequest() -> NSFetchRequest<VideoInformation> {
         return NSFetchRequest<VideoInformation>(entityName: "VideoInformation")
     }
-
+    
     @NSManaged public var feedback: String?
     @NSManaged public var gymName: String
     @NSManaged public var gymVisitDate: Date
@@ -24,9 +24,9 @@ extension VideoInformation {
     @NSManaged public var isSucceeded: Bool
     @NSManaged public var problemLevel: Int16
     @NSManaged public var videoLocalIdentifier: String?
-
+    
 }
 
 extension VideoInformation : Identifiable {
-
+    
 }
