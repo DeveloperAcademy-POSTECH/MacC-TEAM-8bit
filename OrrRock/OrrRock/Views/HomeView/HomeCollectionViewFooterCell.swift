@@ -5,8 +5,9 @@
 //  Created by Park Sungmin on 2022/10/20.
 //
 
-import SnapKit
 import UIKit
+
+import SnapKit
 
 final class HomeCollectionViewFooterCell: UICollectionReusableView {
     static let identifier = "HomeCollectionViewFooterCell"
