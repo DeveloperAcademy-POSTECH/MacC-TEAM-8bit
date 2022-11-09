@@ -9,7 +9,7 @@ import UIKit
 
 extension HomeCollectionViewCardCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // 10개의 영상이 들어오지 않더라도,  배경색을 부여한 빈 cell이 PlaceHolder로 작동할 수 있도록 return을 10으로 고정
+        // 10개의 영상이 들어오지 않더라도, 배경색을 부여한 빈 cell이 PlaceHolder로 작동할 수 있도록 return을 10으로 고정
         return 10
     }
     

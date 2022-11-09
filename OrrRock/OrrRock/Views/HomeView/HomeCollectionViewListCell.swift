@@ -106,7 +106,6 @@ final class HomeCollectionViewListCell: UICollectionViewCell {
             $0.top.equalTo(cellView.snp.top).offset(CGFloat(orrPadding.padding1.rawValue))
             $0.leading.equalTo(thumbnailView.snp.trailing).offset(CGFloat(orrPadding.padding3.rawValue))
             $0.width.equalTo(130)
-            
         }
         
         cellView.addSubview(gymNameLabel)
