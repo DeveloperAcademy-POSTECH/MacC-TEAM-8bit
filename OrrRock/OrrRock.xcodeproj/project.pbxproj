@@ -278,6 +278,7 @@
 		3AA4D41D28FEBADE006C718A /* OrrRock */ = {
 			isa = PBXGroup;
 			children = (
+				3AEB3D5E291C01B000A989FF /* OnBoarding */,
 				3AEB3D5B291BFEE000A989FF /* Enums */,
 				709A8C69290481F000CEA6F4 /* Utils */,
 				3A08879E29012CC300EFFDBB /* CoreData */,
@@ -306,6 +307,17 @@
 				3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		3AEB3D5E291C01B000A989FF /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				78F56F6B291A67FA00174B74 /* OnBoardingViewController.swift */,
+				78F93ED92908D00F00F3D9F3 /* OnBoardingViewControllerFirst.swift */,
+				78F56F67291A67CA00174B74 /* OnBoardingViewControllerSecond.swift */,
+				78F56F69291A67D500174B74 /* OnBoardingViewControllerThird.swift */,
+			);
+			path = OnBoarding;
 			sourceTree = "<group>";
 		};
 		709A8C69290481F000CEA6F4 /* Utils */ = {
@@ -344,10 +356,6 @@
 		78F93ED82908CFDF00F3D9F3 /* OnBoardingViewController */ = {
 			isa = PBXGroup;
 			children = (
-				78F56F6B291A67FA00174B74 /* OnBoardingViewController.swift */,
-				78F93ED92908D00F00F3D9F3 /* OnBoardingViewControllerFirst.swift */,
-				78F56F67291A67CA00174B74 /* OnBoardingViewControllerSecond.swift */,
-				78F56F69291A67D500174B74 /* OnBoardingViewControllerThird.swift */,
 			);
 			path = OnBoardingViewController;
 			sourceTree = "<group>";
