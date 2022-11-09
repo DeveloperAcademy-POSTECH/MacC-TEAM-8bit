@@ -1,5 +1,5 @@
 //
-//  SwipeableCardViewController.swift
+//  LevelAndPFSettingViewController.swift
 //  OrrRock
 //
 //  Created by 이성노, Yeni Hwang on 2022/10/21.
@@ -12,7 +12,7 @@ import AVKit
 import SnapKit
 import Photos
 
-final class SwipeableCardViewController: UIViewController {
+final class LevelAndPFSettingViewController: UIViewController {
 	
 	var videoInfoArray: [VideoInfo] = []
 	
@@ -173,7 +173,7 @@ final class SwipeableCardViewController: UIViewController {
 	}
 }
 
-extension SwipeableCardViewController: LevelPickerViewDelegate {
+extension LevelAndPFSettingViewController: LevelPickerViewDelegate {
 	func setSeparatorColor() {
 		self.separator.backgroundColor = .orrBlack
 	}
@@ -186,7 +186,7 @@ extension SwipeableCardViewController: LevelPickerViewDelegate {
 }
 
 // Gesture
-private extension SwipeableCardViewController {
+private extension LevelAndPFSettingViewController {
 	
 	// 목업용 카드를 만들어줍니다.
 	func createSwipeableCard(_ completion: @escaping () -> Void) {
@@ -406,7 +406,7 @@ private extension SwipeableCardViewController {
 	}
 }
 
-private extension SwipeableCardViewController {
+private extension LevelAndPFSettingViewController {
 	
 	func setUpLayout() {
 		

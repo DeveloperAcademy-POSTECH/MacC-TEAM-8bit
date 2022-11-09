@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A0B41072907C59600057FA7 /* SwipeableCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B41062907C59600057FA7 /* SwipeableCardViewController.swift */; };
+		0A0B41072907C59600057FA7 /* LevelAndPFSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B41062907C59600057FA7 /* LevelAndPFSettingViewController.swift */; };
 		0A0B410D2907C79200057FA7 /* VideoResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B410C2907C79200057FA7 /* VideoResultType.swift */; };
 		0AAB780A290424A300EEEFFB /* SwipeableCardVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */; };
 		342508A329001780000653D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A229001780000653D9 /* HomeViewController.swift */; };
@@ -71,7 +71,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A0B41062907C59600057FA7 /* SwipeableCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardViewController.swift; sourceTree = "<group>"; };
+		0A0B41062907C59600057FA7 /* LevelAndPFSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelAndPFSettingViewController.swift; sourceTree = "<group>"; };
 		0A0B410C2907C79200057FA7 /* VideoResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoResultType.swift; sourceTree = "<group>"; };
 		0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardVideoView.swift; sourceTree = "<group>"; };
 		342508A229001780000653D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -315,7 +315,7 @@
 			children = (
 				70A44804290440E600BE18A5 /* DateSettingViewController.swift */,
 				70A44808290464BD00BE18A5 /* GymSettingViewController.swift */,
-				0A0B41062907C59600057FA7 /* SwipeableCardViewController.swift */,
+				0A0B41062907C59600057FA7 /* LevelAndPFSettingViewController.swift */,
 				0AAB77E0290274BE00EEEFFB /* UIComponent */,
 			);
 			path = Upload;
@@ -449,7 +449,7 @@
 				3A15AC892907B1160058512F /* VideoInformation+CoreDataProperties.swift in Sources */,
 				70A8DF05291403EA0061E36B /* GymSettingModel.swift in Sources */,
 				3A15AC7729071DD90058512F /* OrderOption.swift in Sources */,
-				0A0B41072907C59600057FA7 /* SwipeableCardViewController.swift in Sources */,
+				0A0B41072907C59600057FA7 /* LevelAndPFSettingViewController.swift in Sources */,
 				3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */,
 				FB32280F29046B4500276A7D /* VideoDetailViewController.swift in Sources */,
 				3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */,

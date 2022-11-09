@@ -179,7 +179,7 @@ extension GymSettingViewController: PHPickerViewControllerDelegate {
         }
         
         CustomIndicator.stopLoading()
-        let nextVC = SwipeableCardViewController()
+        let nextVC = LevelAndPFSettingViewController()
         nextVC.videoInfoArray = videoInfoArray
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
