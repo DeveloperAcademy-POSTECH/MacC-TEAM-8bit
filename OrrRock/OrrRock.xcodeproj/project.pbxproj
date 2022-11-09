@@ -60,7 +60,7 @@
 		70A44809290464BD00BE18A5 /* GymSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A44808290464BD00BE18A5 /* GymSettingViewController.swift */; };
 		70A8DF05291403EA0061E36B /* GymSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8DF04291403EA0061E36B /* GymSettingModel.swift */; };
 		70A8DF08291966E20061E36B /* SwipeableCardVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8DF07291966E20061E36B /* SwipeableCardVideoModel.swift */; };
-		70A8DF0A291A863F0061E36B /* UIview+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8DF09291A863F0061E36B /* UIview+.swift */; };
+		70A8DF0A291A863F0061E36B /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8DF09291A863F0061E36B /* UIView+.swift */; };
 		78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */; };
 		78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0354F290132D300FF1913 /* VideoCollectionViewCustomCell.swift */; };
 		78CAA0662901F7A9003C3D77 /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA0652901F7A9003C3D77 /* BasePaddingLabel.swift */; };
@@ -136,7 +136,7 @@
 		70A44808290464BD00BE18A5 /* GymSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymSettingViewController.swift; sourceTree = "<group>"; };
 		70A8DF04291403EA0061E36B /* GymSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymSettingModel.swift; sourceTree = "<group>"; };
 		70A8DF07291966E20061E36B /* SwipeableCardVideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardVideoModel.swift; sourceTree = "<group>"; };
-		70A8DF09291A863F0061E36B /* UIview+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIview+.swift"; sourceTree = "<group>"; };
+		70A8DF09291A863F0061E36B /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewController.swift; sourceTree = "<group>"; };
 		78A0354F290132D300FF1913 /* VideoCollectionViewCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCustomCell.swift; sourceTree = "<group>"; };
 		78CAA0652901F7A9003C3D77 /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
@@ -267,7 +267,7 @@
 				FB3227FB2903FD9C00276A7D /* Date+.swift */,
 				FB3227FD2903FDA600276A7D /* String+.swift */,
 				70A44806290452B000BE18A5 /* Button+.swift */,
-				70A8DF09291A863F0061E36B /* UIview+.swift */,
+				70A8DF09291A863F0061E36B /* UIView+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -588,7 +588,7 @@
 				FB3227FE2903FDA600276A7D /* String+.swift in Sources */,
 				78F93EDA2908D00F00F3D9F3 /* OnBoardingViewControllerFirst.swift in Sources */,
 				3A15AC7B290724620058512F /* DataManager.swift in Sources */,
-				70A8DF0A291A863F0061E36B /* UIview+.swift in Sources */,
+				70A8DF0A291A863F0061E36B /* UIView+.swift in Sources */,
 				A88805852907F5A0002CD52E /* LevelPickerView.swift in Sources */,
 				78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */,
 				70A44807290452B000BE18A5 /* Button+.swift in Sources */,

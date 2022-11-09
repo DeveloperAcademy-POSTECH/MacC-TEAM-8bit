@@ -183,5 +183,4 @@ extension GymSettingViewController: PHPickerViewControllerDelegate {
         nextVC.videoInfoArray = videoInfoArray
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
-    
 }

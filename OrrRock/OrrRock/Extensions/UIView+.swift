@@ -1,5 +1,5 @@
 //
-//  UIview+.swift
+//  UIView+.swift
 //  OrrRock
 //
 //  Created by Ruyha on 2022/11/08.
