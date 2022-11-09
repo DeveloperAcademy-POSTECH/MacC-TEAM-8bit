@@ -191,14 +191,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		34B0113E290015860043951A /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				FB32281029046B9400276A7D /* VideoDetailViewController */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
 		34B011412900158F0043951A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,7 +255,6 @@
 				3A08879E29012CC300EFFDBB /* CoreData */,
 				34B01147290015A10043951A /* Models */,
 				34B011412900158F0043951A /* Extensions */,
-				34B0113E290015860043951A /* ViewControllers */,
 				34B0113B290015760043951A /* Views */,
 				3AA4D41E28FEBADE006C718A /* AppDelegate.swift */,
 				3AA4D42028FEBADE006C718A /* SceneDelegate.swift */,
@@ -317,6 +308,7 @@
 				3A15AC7E2907262C0058512F /* VideoCollectionView+DataSorting.swift */,
 				78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */,
 				78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */,
+				FB32280E29046B4500276A7D /* VideoDetailViewController.swift */,
 				78A035492901317600FF1913 /* Cell */,
 				3AEB3D61291C03A900A989FF /* UIComponent */,
 			);
@@ -358,14 +350,6 @@
 				78CAA06B290271E7003C3D77 /* VIdeoCollectionFooterCell.swift */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		FB32281029046B9400276A7D /* VideoDetailViewController */ = {
-			isa = PBXGroup;
-			children = (
-				FB32280E29046B4500276A7D /* VideoDetailViewController.swift */,
-			);
-			path = VideoDetailViewController;
 			sourceTree = "<group>";
 		};
 		FB32281129046CBF00276A7D /* View */ = {
