@@ -15,10 +15,10 @@ import Photos
 final class SwipeableCardViewController: UIViewController {
 	
 	var videoInfoArray: [VideoInfo] = []
-    
-    private var cards: [SwipeableCardVideoView?] = []
-    private var counter: Int = 0
-    private var currentSelectedLevel = -1
+	
+	private var cards: [SwipeableCardVideoView?] = []
+	private var counter: Int = 0
+	private var currentSelectedLevel = -1
 	
 	private lazy var titleLabel: UILabel = {
 		let label = UILabel()
@@ -28,15 +28,15 @@ final class SwipeableCardViewController: UIViewController {
 		
 		return label
 	}()
-    
-    private lazy var levelLabel: UILabel = {
-        let label = UILabel()
-        label.text = "레벨"
-        label.textColor = .orrBlack
-        label.font = .systemFont(ofSize: 17.0, weight: .semibold)
-        
-        return label
-    }()
+	
+	private lazy var levelLabel: UILabel = {
+		let label = UILabel()
+		label.text = "레벨"
+		label.textColor = .orrBlack
+		label.font = .systemFont(ofSize: 17.0, weight: .semibold)
+		
+		return label
+	}()
 	
 	private lazy var levelButton: UIButton = {
 		let button = UIButton()
@@ -56,17 +56,16 @@ final class SwipeableCardViewController: UIViewController {
 		return imageView
 	}()
 	
-    
-    private lazy var levelStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.alignment = .fill
-        stackView.distribution = .equalSpacing
-        stackView.spacing = 10
-        
-        return stackView
-    }()
-    
+	private lazy var levelStackView: UIStackView = {
+		let stackView = UIStackView()
+		stackView.axis = .horizontal
+		stackView.alignment = .fill
+		stackView.distribution = .equalSpacing
+		stackView.spacing = 10
+		
+		return stackView
+	}()
+	
 	private lazy var buttonStackView: UIStackView = {
 		let stackView = UIStackView()
 		stackView.axis = .horizontal
@@ -139,8 +138,6 @@ final class SwipeableCardViewController: UIViewController {
 		return button
 	}()
 	
-
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -171,20 +168,19 @@ final class SwipeableCardViewController: UIViewController {
 				gesture.addTarget(self, action: #selector(self.handlerCard))
 				swipeCard!.addGestureRecognizer(gesture)
 			}
-			
 			CustomIndicator.stopLoading()
 		}
 	}
 }
 
 extension SwipeableCardViewController: LevelPickerViewDelegate {
-    func setSeparatorColor() {
-        self.separator.backgroundColor = .orrBlack
-    }
-    
+	func setSeparatorColor() {
+		self.separator.backgroundColor = .orrBlack
+	}
+	
 	func didLevelChanged(selectedLevel: Int) {
-        let levelButtonTiltle = selectedLevel == -1 ? "선택안함" : "V\(selectedLevel)"
-        levelButton.setTitle(levelButtonTiltle, for: .normal)
+		let levelButtonTiltle = selectedLevel == -1 ? "선택안함" : "V\(selectedLevel)"
+		levelButton.setTitle(levelButtonTiltle, for: .normal)
 		currentSelectedLevel = selectedLevel
 	}
 }
@@ -210,7 +206,7 @@ private extension SwipeableCardViewController {
 		cards = Array(repeating: nil, count: assets.count)
 		// Asset 카운팅을 위한 디스패치 그룹
 		let countingGroup = DispatchGroup()
-
+		
 		CustomIndicator.startLoading()
 		
 		for index in 0..<assets.count {
@@ -248,7 +244,6 @@ private extension SwipeableCardViewController {
 					
 					// Asset 카운팅 -1
 					countingGroup.leave()
-					
 				}
 				// Asset 카운팅이 0이 되었을 때 completionHandler로 반환
 				countingGroup.notify(queue: DispatchQueue.main) {
@@ -312,16 +307,15 @@ private extension SwipeableCardViewController {
 					// completion을 통해 애니메이션이 끝났을 때 터치 제한 해제
 					UIApplication.shared.endIgnoringInteractionEvents()
 				}
-
 			}
 		}
 	}
 	
 	@objc func pickLevel() {
 		let nextViewController = LevelPickerView()
-        nextViewController.pickerSelectValue = currentSelectedLevel + 1
+		nextViewController.pickerSelectValue = currentSelectedLevel + 1
 		self.navigationController?.present(nextViewController, animated: true)
-        separator.backgroundColor = .orrUPBlue
+		separator.backgroundColor = .orrUPBlue
 		nextViewController.delegate = self
 	}
 	
@@ -405,8 +399,8 @@ private extension SwipeableCardViewController {
 		failButton.isHidden = true
 		
 		titleLabel.text = "분류 완료! 저장하기를 눌러주세요."
-        buttonStackView.isUserInteractionEnabled = false
-
+		buttonStackView.isUserInteractionEnabled = false
+		
 		titleLabel.textColor = .orrGray3
 		levelButton.tintColor = .orrGray3
 	}
@@ -419,11 +413,10 @@ private extension SwipeableCardViewController {
 		[levelButton, levelButtonImage].forEach {
 			self.buttonStackView.addArrangedSubview($0)
 		}
-        
-        [levelLabel, buttonStackView].map {
-            self.levelStackView.addArrangedSubview($0)
-        }
-        
+		
+		[levelLabel, buttonStackView].forEach {
+			self.levelStackView.addArrangedSubview($0)
+		}
 		
 		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(pickLevel))
 		buttonStackView.isUserInteractionEnabled = true
@@ -436,16 +429,16 @@ private extension SwipeableCardViewController {
 		}
 		
 		buttonStackView.snp.makeConstraints {
-            $0.width.equalTo(90.0)
+			$0.width.equalTo(90.0)
 		}
-        
-        view.addSubview(levelStackView)
-        levelStackView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(titleLabel.snp.bottom).offset(24.0)
-            $0.centerX.equalToSuperview()
-        }
-        
+		
+		view.addSubview(levelStackView)
+		levelStackView.snp.makeConstraints {
+			$0.centerX.equalToSuperview()
+			$0.top.equalTo(titleLabel.snp.bottom).offset(24.0)
+			$0.centerX.equalToSuperview()
+		}
+		
 		
 		levelButtonImage.snp.makeConstraints {
 			$0.height.equalTo(20.0)
@@ -461,7 +454,7 @@ private extension SwipeableCardViewController {
 		
 		view.addSubview(separator)
 		separator.snp.makeConstraints {
-            $0.centerX.equalTo(buttonStackView.snp.centerX)
+			$0.centerX.equalTo(buttonStackView.snp.centerX)
 			$0.top.equalTo(buttonStackView.snp.bottom).offset(8.0)
 			$0.height.equalTo(2.0)
 			$0.width.equalTo(90.0)
