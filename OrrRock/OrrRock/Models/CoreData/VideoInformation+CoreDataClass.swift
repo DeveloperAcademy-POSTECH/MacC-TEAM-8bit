@@ -11,5 +11,5 @@ import CoreData
 
 @objc(VideoInformation)
 public class VideoInformation: NSManagedObject {
-
+    
 }

@@ -26,9 +26,6 @@
 		3A15AC7B290724620058512F /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC7A290724620058512F /* DataManager.swift */; };
 		3A15AC7D2907258A0058512F /* SectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC7C2907258A0058512F /* SectionData.swift */; };
 		3A15AC7F2907262C0058512F /* VideoCollectionView+DataSorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC7E2907262C0058512F /* VideoCollectionView+DataSorting.swift */; };
-		3A15AC8129072D280058512F /* CRUDTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC8029072D280058512F /* CRUDTestViewController.swift */; };
-		3A15AC8329072DD80058512F /* CRUDTestViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC8229072DD80058512F /* CRUDTestViewController+.swift */; };
-		3A15AC8529072F940058512F /* RandomDataGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC8429072F940058512F /* RandomDataGenerator.swift */; };
 		3A15AC882907B1160058512F /* VideoInformation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC862907B1160058512F /* VideoInformation+CoreDataClass.swift */; };
 		3A15AC892907B1160058512F /* VideoInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC872907B1160058512F /* VideoInformation+CoreDataProperties.swift */; };
 		3A2880E929033C0D00FBFB70 /* SortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2880E829033C0D00FBFB70 /* SortOption.swift */; };
@@ -96,9 +93,6 @@
 		3A15AC7A290724620058512F /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		3A15AC7C2907258A0058512F /* SectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionData.swift; sourceTree = "<group>"; };
 		3A15AC7E2907262C0058512F /* VideoCollectionView+DataSorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoCollectionView+DataSorting.swift"; sourceTree = "<group>"; };
-		3A15AC8029072D280058512F /* CRUDTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRUDTestViewController.swift; sourceTree = "<group>"; };
-		3A15AC8229072DD80058512F /* CRUDTestViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CRUDTestViewController+.swift"; sourceTree = "<group>"; };
-		3A15AC8429072F940058512F /* RandomDataGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomDataGenerator.swift; sourceTree = "<group>"; };
 		3A15AC862907B1160058512F /* VideoInformation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoInformation+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3A15AC872907B1160058512F /* VideoInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3A2880E829033C0D00FBFB70 /* SortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOption.swift; sourceTree = "<group>"; };
@@ -278,7 +272,6 @@
 				3A2880E829033C0D00FBFB70 /* SortOption.swift */,
 				3A2880EA29033C2500FBFB70 /* FilterOption.swift */,
 				3A15AC7629071DD90058512F /* OrderOption.swift */,
-				3A15AC8429072F940058512F /* RandomDataGenerator.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -287,8 +280,6 @@
 			isa = PBXGroup;
 			children = (
 				3A2880FA2904290E00FBFB70 /* SortTestViewController.swift */,
-				3A15AC8029072D280058512F /* CRUDTestViewController.swift */,
-				3A15AC8229072DD80058512F /* CRUDTestViewController+.swift */,
 			);
 			path = TestViewController;
 			sourceTree = "<group>";
@@ -517,7 +508,6 @@
 				78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */,
 				3A15AC892907B1160058512F /* VideoInformation+CoreDataProperties.swift in Sources */,
 				3A2880FE29042A0600FBFB70 /* Date+RandomDate.swift in Sources */,
-				3A15AC8329072DD80058512F /* CRUDTestViewController+.swift in Sources */,
 				70A8DF05291403EA0061E36B /* GymSettingModel.swift in Sources */,
 				3A15AC7729071DD90058512F /* OrderOption.swift in Sources */,
 				0A0B41072907C59600057FA7 /* SwipeableCardViewController.swift in Sources */,
@@ -533,7 +523,6 @@
 				3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */,
 				3A15AC7F2907262C0058512F /* VideoCollectionView+DataSorting.swift in Sources */,
 				342508A929001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift in Sources */,
-				3A15AC8129072D280058512F /* CRUDTestViewController.swift in Sources */,
 				3AA4D42928FEBADE006C718A /* OrrRock.xcdatamodeld in Sources */,
 				78F93ED7290743DF00F3D9F3 /* LevelAndPFEditViewController.swift in Sources */,
 				78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */,
@@ -546,7 +535,6 @@
 				3A15AC7D2907258A0058512F /* SectionData.swift in Sources */,
 				FB32281529046CED00276A7D /* VideoInfoView.swift in Sources */,
 				3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */,
-				3A15AC8529072F940058512F /* RandomDataGenerator.swift in Sources */,
 				78F56F6C291A67FA00174B74 /* OnBoardingViewController.swift in Sources */,
 				342508AB29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift in Sources */,
 				78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */,

@@ -34,7 +34,6 @@ class DataRepository {
         var filteredInformation = filterVideoInformation(filterOption: filterOption)
         
         if filteredInformation.count == 0 {
-            print("해당하는 기준 조건의 영상이 존재하지 않습니다")
             return []
         }
         
@@ -152,14 +151,14 @@ class DataRepository {
     func reverseSort(sortedVideoInformation: [[VideoInformation]]) -> [[VideoInformation]] {
         return sortedVideoInformation.reversed()
     }
-
+    
     func finalSortVideoInformation(filterOption: FilterOption, sortOption: SortOption, orderOption: OrderOption) -> [[VideoInformation]] {
         var information = sortVideoInformation(filterOption: filterOption, sortOption: sortOption)
         
         if orderOption == .descend {
             information = reverseSort(sortedVideoInformation: information)
         }
-
+        
         return information
     }
     
@@ -168,7 +167,7 @@ class DataRepository {
     }
     
     func updateDateAndGymData(videoInformation: VideoInformation, gymVisitDate: Date, gymName: String) {
-
+        
         guard let id = videoInformation.id else { return }
         
         let target = rawVideoInformation.filter({ $0.id == id })
@@ -177,7 +176,7 @@ class DataRepository {
     }
     
     func updateLevelAndPF(videoInformation: VideoInformation, problemLevel: Int, isSucceeded: Bool) {
-
+        
         guard let id = videoInformation.id else { return }
         
         let target = rawVideoInformation.filter({ $0.id == id })
@@ -194,7 +193,7 @@ class DataRepository {
     }
     
     func updateFeedback(videoInformation: VideoInformation, feedback: String) {
-
+        
         guard let id = videoInformation.id else { return }
         
         let target = rawVideoInformation.filter({ $0.id == id })
@@ -204,11 +203,9 @@ class DataRepository {
     func deleteData(videoInformation: VideoInformation) {
         
         let target = rawVideoInformation.filter({ $0 == videoInformation })
-        print("CONFIRM")
         if let index = rawVideoInformation.firstIndex(of: target[0]) {
             rawVideoInformation.remove(at: index)
         }
-        print("Delete Data")
     }
     
     func deleteDataList(videoInformation: [VideoInformation]) {
