@@ -16,7 +16,7 @@ class CustomButton: UIButton {
 		}
 	}
 	
-	fileprivate func animate(){
+	func animate(){
 		UIView.animate(withDuration: 0.1, animations: { [weak self] in
 			guard let self = self else { return }
 			
