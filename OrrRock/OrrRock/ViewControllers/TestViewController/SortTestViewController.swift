@@ -4,7 +4,8 @@
 //
 //  Created by 황정현 on 2022/10/22.
 //
-//
+/// 추후 Sorting 기준이 추가될 가능성을 고려하여 삭제가 보류된 코드
+
 import UIKit
 import SnapKit
 
@@ -241,7 +242,7 @@ class SortTestViewController: UIViewController {
         for _ in 0..<howMany {
             let randomIndex = Int.random(in: 0..<nameList.count)
             let name = nameList[randomIndex]
-            let date = Date.random(in: Date(timeIntervalSince1970: 0)..<Date(timeIntervalSince1970: 2000000))
+            let date = Date()
             let url = url
             let level = probLevelList[Int.random(in: 0..<probLevelList.count)]
             let isSucceeded = tf[Int.random(in: 0..<tf.count)]
