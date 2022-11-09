@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum VideoCollectionViewMode{
+enum VideoCollectionViewMode {
     case view
     case select
 }

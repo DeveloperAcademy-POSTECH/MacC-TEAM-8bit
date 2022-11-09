@@ -120,15 +120,15 @@ extension GymSettingViewController {
         view.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
             $0.centerX.equalTo(view)
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(orrPadding.padding5.rawValue)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPadding.padding5.rawValue)
         }
         
         view.addSubview(gymTextField)
         gymTextField.snp.makeConstraints{
             $0.centerX.equalTo(view)
-            $0.top.equalTo(gymNameLabel.snp.bottom).offset(orrPadding.padding7.rawValue)
-            $0.leading.equalTo(view).offset(orrPadding.padding6.rawValue)
-            $0.trailing.equalTo(view).offset(-orrPadding.padding6.rawValue)
+            $0.top.equalTo(gymNameLabel.snp.bottom).offset(OrrPadding.padding7.rawValue)
+            $0.leading.equalTo(view).offset(OrrPadding.padding6.rawValue)
+            $0.trailing.equalTo(view).offset(-OrrPadding.padding6.rawValue)
         }
         
         view.addSubview(nextButton)

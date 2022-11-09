@@ -61,8 +61,8 @@ extension OnBoardingViewController : UIPageViewControllerDelegate {
         nextButton.snp.makeConstraints{
             $0.centerX.equalTo(view)
             $0.bottom.equalTo(view).offset(-34)
-            $0.leading.equalTo(view).offset(orrPadding.padding3.rawValue)
-            $0.trailing.equalTo(view).offset(-orrPadding.padding3.rawValue)
+            $0.leading.equalTo(view).offset(OrrPadding.padding3.rawValue)
+            $0.trailing.equalTo(view).offset(-OrrPadding.padding3.rawValue)
             $0.height.equalTo(56)
         }
     }

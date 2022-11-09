@@ -70,7 +70,7 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
         
         addSubview(headerTitle)
         headerTitle.snp.makeConstraints {
-            $0.bottom.equalTo(snp_topMargin).offset(CGFloat(orrPadding.padding6.rawValue))
+            $0.bottom.equalTo(snp_topMargin).offset(CGFloat(OrrPadding.padding6.rawValue))
         }
         
         setUpConstraints()
@@ -89,19 +89,19 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
             
         } else {
             headerRoundedSquare.snp.makeConstraints {
-                $0.bottom.equalTo(snp_bottomMargin).offset(CGFloat(orrPadding.padding3.rawValue))
-                $0.height.equalTo(CGFloat(orrPadding.padding3.rawValue))
-                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2)
+                $0.bottom.equalTo(snp_bottomMargin).offset(CGFloat(OrrPadding.padding3.rawValue))
+                $0.height.equalTo(CGFloat(OrrPadding.padding3.rawValue))
+                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(OrrPadding.padding3.rawValue) * 2)
             }
             
             PFCountLabel.snp.makeConstraints {
-                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2)
-                $0.top.equalTo(headerTitle.snp.bottom).offset(CGFloat(orrPadding.padding3.rawValue))
+                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(OrrPadding.padding3.rawValue) * 2)
+                $0.top.equalTo(headerTitle.snp.bottom).offset(CGFloat(OrrPadding.padding3.rawValue))
             }
             
             videoCountLabel.snp.makeConstraints {
-                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2)
-                $0.top.equalTo(PFCountLabel.snp.bottom).offset(CGFloat(orrPadding.padding1.rawValue))
+                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(OrrPadding.padding3.rawValue) * 2)
+                $0.top.equalTo(PFCountLabel.snp.bottom).offset(CGFloat(OrrPadding.padding1.rawValue))
             }
         }
     }

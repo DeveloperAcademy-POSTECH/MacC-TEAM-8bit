@@ -151,19 +151,19 @@ extension LevelAndPFEditViewController {
         levelContentView.addSubview(LevelLabel)
         LevelLabel.snp.makeConstraints {
             $0.centerX.equalTo(levelContentView)
-            $0.top.equalTo(levelContentView.snp.top).offset(orrPadding.padding6.rawValue)
+            $0.top.equalTo(levelContentView.snp.top).offset(OrrPadding.padding6.rawValue)
         }
         
         levelContentView.addSubview(pickerView)
         pickerView.snp.makeConstraints {
             $0.width.equalTo(levelContentView)
             $0.leading.equalTo(levelContentView)
-            $0.top.equalTo(LevelLabel.snp.bottom).offset(orrPadding.padding5.rawValue)
+            $0.top.equalTo(LevelLabel.snp.bottom).offset(OrrPadding.padding5.rawValue)
         }
         
         levelContentView.addSubview(successLabel)
         successLabel.snp.makeConstraints {
-            $0.top.equalTo(pickerView.snp.bottom).offset(orrPadding.padding7.rawValue)
+            $0.top.equalTo(pickerView.snp.bottom).offset(OrrPadding.padding7.rawValue)
             $0.centerX.equalToSuperview()
         }
         
@@ -187,8 +187,8 @@ extension LevelAndPFEditViewController {
         saveButton.snp.makeConstraints{
             $0.centerX.equalTo(levelContentView)
             $0.bottom.equalTo(levelContentView).offset(-34)
-            $0.leading.equalTo(levelContentView).offset(orrPadding.padding3.rawValue)
-            $0.trailing.equalTo(levelContentView).offset(-orrPadding.padding3.rawValue)
+            $0.leading.equalTo(levelContentView).offset(OrrPadding.padding3.rawValue)
+            $0.trailing.equalTo(levelContentView).offset(-OrrPadding.padding3.rawValue)
             $0.height.equalTo(56)
         }
         

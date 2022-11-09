@@ -87,17 +87,17 @@ extension LevelPickerView {
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(orrPadding.padding4.rawValue)
-            $0.leading.equalToSuperview().offset(orrPadding.padding4.rawValue)
-            $0.trailing.equalToSuperview().offset(-orrPadding.padding4.rawValue)
+            $0.top.equalToSuperview().offset(OrrPadding.padding4.rawValue)
+            $0.leading.equalToSuperview().offset(OrrPadding.padding4.rawValue)
+            $0.trailing.equalToSuperview().offset(-OrrPadding.padding4.rawValue)
         }
 
         view.addSubview(pickerView)
         pickerView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(titleLabel.snp.bottom).offset(orrPadding.padding1.rawValue)
-            $0.leading.equalToSuperview().offset(orrPadding.padding4.rawValue)
-            $0.trailing.equalToSuperview().offset(-orrPadding.padding4.rawValue)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(OrrPadding.padding1.rawValue)
+            $0.leading.equalToSuperview().offset(OrrPadding.padding4.rawValue)
+            $0.trailing.equalToSuperview().offset(-OrrPadding.padding4.rawValue)
             $0.height.equalTo(300)
         }
 
@@ -105,8 +105,8 @@ extension LevelPickerView {
         saveButton.snp.makeConstraints{
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().offset(-34)
-            $0.leading.trailing.equalToSuperview().offset(orrPadding.padding3.rawValue)
-            $0.trailing.equalToSuperview().offset(-orrPadding.padding3.rawValue)
+            $0.leading.trailing.equalToSuperview().offset(OrrPadding.padding3.rawValue)
+            $0.trailing.equalToSuperview().offset(-OrrPadding.padding3.rawValue)
             $0.height.equalTo(56)
         }
     }

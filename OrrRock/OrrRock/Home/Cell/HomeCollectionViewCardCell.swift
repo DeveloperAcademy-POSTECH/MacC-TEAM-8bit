@@ -114,39 +114,39 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         thumbnailCollectionView.snp.makeConstraints {
             $0.leading.equalTo(cardView.snp.leading)
             $0.trailing.equalTo(cardView.snp.trailing)
-            $0.centerY.equalTo(cardView.snp.centerY).offset(CGFloat(orrPadding.padding1.rawValue))
-            $0.height.equalTo(((UIScreen.main.bounds.width - CGFloat(orrPadding.padding3.rawValue) * 2) / 5 * 2))
+            $0.centerY.equalTo(cardView.snp.centerY).offset(CGFloat(OrrPadding.padding1.rawValue))
+            $0.height.equalTo(((UIScreen.main.bounds.width - CGFloat(OrrPadding.padding3.rawValue) * 2) / 5 * 2))
             
         }
         
         cardView.addSubview(gymStackView)
         gymStackView.snp.makeConstraints {
-            $0.bottom.equalTo(thumbnailCollectionView.snp.top).offset(-CGFloat(orrPadding.padding2.rawValue))
-            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(orrPadding.padding3.rawValue))
+            $0.bottom.equalTo(thumbnailCollectionView.snp.top).offset(-CGFloat(OrrPadding.padding2.rawValue))
+            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
         }
         
         cardView.addSubview(dateLabel)
         dateLabel.snp.makeConstraints {
-            $0.bottom.equalTo(gymStackView.snp.top).inset(-CGFloat(orrPadding.padding1.rawValue))
-            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(orrPadding.padding3.rawValue))
+            $0.bottom.equalTo(gymStackView.snp.top).inset(-CGFloat(OrrPadding.padding1.rawValue))
+            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
         }
         
         cardView.addSubview(countPFLabel)
         countPFLabel.snp.makeConstraints {
-            $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(CGFloat(orrPadding.padding2.rawValue))
-            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(orrPadding.padding3.rawValue))
+            $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(CGFloat(OrrPadding.padding2.rawValue))
+            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
         }
         
         cardView.addSubview(countTotalVideoLabel)
         countTotalVideoLabel.snp.makeConstraints {
-            $0.top.equalTo(countPFLabel.snp.bottom).offset(CGFloat(orrPadding.padding1.rawValue))
-            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(orrPadding.padding3.rawValue))
+            $0.top.equalTo(countPFLabel.snp.bottom).offset(CGFloat(OrrPadding.padding1.rawValue))
+            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
         }
         
         cardView.addSubview(detailButton)
         detailButton.snp.makeConstraints {
-            $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(CGFloat(orrPadding.padding3.rawValue))
-            $0.trailing.equalTo(cardView.snp.trailing).offset(-CGFloat(orrPadding.padding3.rawValue))
+            $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(CGFloat(OrrPadding.padding3.rawValue))
+            $0.trailing.equalTo(cardView.snp.trailing).offset(-CGFloat(OrrPadding.padding3.rawValue))
         }
     }
     

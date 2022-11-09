@@ -161,59 +161,59 @@ extension VideoInfoView {
 		// textView
 		self.addSubview(feedbackTextView)
 		feedbackTextView.snp.makeConstraints {
-			$0.leading.trailing.equalToSuperview().inset(orrPadding.padding3.rawValue)
-			$0.top.equalTo(self.snp.top).offset(orrPadding.padding3.rawValue)
+			$0.leading.trailing.equalToSuperview().inset(OrrPadding.padding3.rawValue)
+			$0.top.equalTo(self.snp.top).offset(OrrPadding.padding3.rawValue)
 			$0.height.equalTo(110)
 		}
 		// 날짜 입력 뷰
 		self.addSubview(dateView)
 		dateView.snp.makeConstraints {
 			$0.height.equalTo(80)
-			$0.leading.trailing.equalToSuperview().inset(orrPadding.padding3.rawValue)
-			$0.top.equalTo(feedbackTextView.snp.bottom).offset(orrPadding.padding3.rawValue)
+			$0.leading.trailing.equalToSuperview().inset(OrrPadding.padding3.rawValue)
+			$0.top.equalTo(feedbackTextView.snp.bottom).offset(OrrPadding.padding3.rawValue)
 		}
 		// 문제 난이도 뷰
 		self.addSubview(levelView)
 		levelView.snp.makeConstraints {
 			$0.height.equalTo(80)
-			$0.leading.trailing.equalToSuperview().inset(orrPadding.padding3.rawValue)
-			$0.top.equalTo(dateView.snp.bottom).offset(orrPadding.padding3.rawValue)
+			$0.leading.trailing.equalToSuperview().inset(OrrPadding.padding3.rawValue)
+			$0.top.equalTo(dateView.snp.bottom).offset(OrrPadding.padding3.rawValue)
 		}
 		// 날짜 레이블
 		dateView.addSubview(dateLabel)
 		dateLabel.snp.makeConstraints {
-			$0.top.equalTo(dateView.snp.top).offset(orrPadding.padding4.rawValue)
-			$0.leading.equalTo(dateView.snp.leading).offset(orrPadding.padding4.rawValue)
+			$0.top.equalTo(dateView.snp.top).offset(OrrPadding.padding4.rawValue)
+			$0.leading.equalTo(dateView.snp.leading).offset(OrrPadding.padding4.rawValue)
 		}
 		// 클라이밍장 정보
 		dateView.addSubview(locationLabel)
 		locationLabel.snp.makeConstraints {
-			$0.bottom.equalTo(dateView.snp.bottom).inset(orrPadding.padding4.rawValue)
-			$0.leading.equalTo(dateView.snp.leading).inset(orrPadding.padding4.rawValue)
+			$0.bottom.equalTo(dateView.snp.bottom).inset(OrrPadding.padding4.rawValue)
+			$0.leading.equalTo(dateView.snp.leading).inset(OrrPadding.padding4.rawValue)
 		}
 		// 난이도 레이블
 		levelView.addSubview(levelLabel)
 		levelLabel.snp.makeConstraints {
-			$0.top.equalTo(levelView.snp.top).offset(orrPadding.padding4.rawValue)
-			$0.leading.equalTo(levelView.snp.leading).offset(orrPadding.padding4.rawValue)
+			$0.top.equalTo(levelView.snp.top).offset(OrrPadding.padding4.rawValue)
+			$0.leading.equalTo(levelView.snp.leading).offset(OrrPadding.padding4.rawValue)
 		}
 		// 성공 여부 레이블
 		levelView.addSubview(isSucceeded)
 		isSucceeded.snp.makeConstraints {
-			$0.bottom.equalTo(levelView.snp.bottom).inset(orrPadding.padding4.rawValue)
-			$0.leading.equalTo(levelView.snp.leading).inset(orrPadding.padding4.rawValue)
+			$0.bottom.equalTo(levelView.snp.bottom).inset(OrrPadding.padding4.rawValue)
+			$0.leading.equalTo(levelView.snp.leading).inset(OrrPadding.padding4.rawValue)
 		}
 		// 날짜, 클라이밍장 편집 버튼
 		dateView.addSubview(dateLocationEditButton)
 		dateLocationEditButton.snp.makeConstraints {
 			$0.centerY.equalTo(dateView.snp.centerY)
-			$0.trailing.equalTo(dateView.snp.trailing).inset(orrPadding.padding4.rawValue)
+			$0.trailing.equalTo(dateView.snp.trailing).inset(OrrPadding.padding4.rawValue)
 		}
 		// 난이도, 성패여부 편집 버튼
 		levelView.addSubview(levelPFEditButton)
 		levelPFEditButton.snp.makeConstraints {
 			$0.centerY.equalTo(levelView.snp.centerY)
-			$0.trailing.equalTo(levelView.snp.trailing).inset(orrPadding.padding4.rawValue)
+			$0.trailing.equalTo(levelView.snp.trailing).inset(OrrPadding.padding4.rawValue)
 		}
 	}
 }

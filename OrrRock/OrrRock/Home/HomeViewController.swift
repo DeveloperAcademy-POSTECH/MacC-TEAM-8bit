@@ -259,8 +259,8 @@ final class HomeViewController : UIViewController {
         collectionView.snp.makeConstraints {
             $0.top.equalTo(view.snp.top)
             $0.bottom.equalTo(toolbarView.snp.top)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(orrPadding.padding3.rawValue)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(orrPadding.padding3.rawValue)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(OrrPadding.padding3.rawValue)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(OrrPadding.padding3.rawValue)
         }
         
         self.view.addSubview(headerView)
@@ -275,8 +275,8 @@ final class HomeViewController : UIViewController {
         placeholderView.snp.makeConstraints {
             $0.top.equalTo(view.snp.top)
             $0.bottom.equalTo(toolbarView.snp.top)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(orrPadding.padding3.rawValue)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(orrPadding.padding3.rawValue)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(OrrPadding.padding3.rawValue)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(OrrPadding.padding3.rawValue)
         }
     }
     

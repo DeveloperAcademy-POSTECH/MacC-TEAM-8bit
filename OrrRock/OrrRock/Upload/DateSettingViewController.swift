@@ -80,23 +80,23 @@ extension DateSettingViewController {
         view.addSubview(datePickerLabel)
         datePickerLabel.snp.makeConstraints {
             $0.centerX.equalTo(view)
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(orrPadding.padding5.rawValue)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPadding.padding5.rawValue)
         }
         
         view.addSubview(datePicker)
         datePicker.snp.makeConstraints{
             $0.centerX.equalTo(view)
-            $0.top.equalTo(datePickerLabel.snp.bottom).offset(orrPadding.padding5.rawValue)
-            $0.leading.equalTo(view).offset(orrPadding.padding3.rawValue)
-            $0.trailing.equalTo(view).offset(-orrPadding.padding3.rawValue)
+            $0.top.equalTo(datePickerLabel.snp.bottom).offset(OrrPadding.padding5.rawValue)
+            $0.leading.equalTo(view).offset(OrrPadding.padding3.rawValue)
+            $0.trailing.equalTo(view).offset(-OrrPadding.padding3.rawValue)
         }
         
         view.addSubview(nextButton)
         nextButton.snp.makeConstraints{
             $0.centerX.equalTo(view)
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
-            $0.leading.equalTo(view).offset(orrPadding.padding3.rawValue)
-            $0.trailing.equalTo(view).offset(-orrPadding.padding3.rawValue)
+            $0.leading.equalTo(view).offset(OrrPadding.padding3.rawValue)
+            $0.trailing.equalTo(view).offset(-OrrPadding.padding3.rawValue)
             $0.height.equalTo(56)
         }
     }

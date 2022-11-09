@@ -88,8 +88,8 @@ final class HomeCollectionViewListCell: UICollectionViewCell {
         
         contentView.addSubview(cellView)
         cellView.snp.makeConstraints {
-            $0.leading.equalTo(contentView.snp.leading).offset(CGFloat(orrPadding.padding3.rawValue))
-            $0.trailing.equalTo(contentView.snp.trailing).inset(CGFloat(orrPadding.padding3.rawValue))
+            $0.leading.equalTo(contentView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
+            $0.trailing.equalTo(contentView.snp.trailing).inset(CGFloat(OrrPadding.padding3.rawValue))
             $0.centerY.equalTo(contentView.snp.centerY)
             $0.height.equalTo(50)
         }
@@ -103,40 +103,40 @@ final class HomeCollectionViewListCell: UICollectionViewCell {
         
         cellView.addSubview(visitedDateLabel)
         visitedDateLabel.snp.makeConstraints {
-            $0.top.equalTo(cellView.snp.top).offset(CGFloat(orrPadding.padding1.rawValue))
-            $0.leading.equalTo(thumbnailView.snp.trailing).offset(CGFloat(orrPadding.padding3.rawValue))
+            $0.top.equalTo(cellView.snp.top).offset(CGFloat(OrrPadding.padding1.rawValue))
+            $0.leading.equalTo(thumbnailView.snp.trailing).offset(CGFloat(OrrPadding.padding3.rawValue))
             $0.width.equalTo(130)
         }
         
         cellView.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
-            $0.top.equalTo(cellView.snp.top).offset(CGFloat(orrPadding.padding1.rawValue))
+            $0.top.equalTo(cellView.snp.top).offset(CGFloat(OrrPadding.padding1.rawValue))
             $0.leading.equalTo(visitedDateLabel.snp.trailing).offset(30)
             $0.trailing.equalTo(cellView.snp.trailing)
         }
         
         cellView.addSubview(locationIconImageView)
         locationIconImageView.snp.makeConstraints {
-            $0.trailing.equalTo(gymNameLabel.snp.leading).offset(-CGFloat(orrPadding.padding1.rawValue))
+            $0.trailing.equalTo(gymNameLabel.snp.leading).offset(-CGFloat(OrrPadding.padding1.rawValue))
             $0.centerY.equalTo(gymNameLabel.snp.centerY)
         }
         
         cellView.addSubview(levelLabel)
         levelLabel.snp.makeConstraints {
-            $0.leading.equalTo(thumbnailView.snp.trailing).offset(CGFloat(orrPadding.padding3.rawValue))
-            $0.top.equalTo(gymNameLabel.snp.bottom).offset(CGFloat(orrPadding.padding1.rawValue))
+            $0.leading.equalTo(thumbnailView.snp.trailing).offset(CGFloat(OrrPadding.padding3.rawValue))
+            $0.top.equalTo(gymNameLabel.snp.bottom).offset(CGFloat(OrrPadding.padding1.rawValue))
         }
         
         cellView.addSubview(PFLabel)
         PFLabel.snp.makeConstraints {
-            $0.leading.equalTo(levelLabel.snp.trailing).offset(CGFloat(orrPadding.padding2.rawValue))
-            $0.top.equalTo(gymNameLabel.snp.bottom).offset(CGFloat(orrPadding.padding1.rawValue))
+            $0.leading.equalTo(levelLabel.snp.trailing).offset(CGFloat(OrrPadding.padding2.rawValue))
+            $0.top.equalTo(gymNameLabel.snp.bottom).offset(CGFloat(OrrPadding.padding1.rawValue))
         }
         
         cellView.addSubview(dividerView)
         dividerView.snp.makeConstraints {
             $0.bottom.equalTo(cellView.snp.bottom).offset(-1)
-            $0.leading.equalTo(thumbnailView.snp.trailing).offset(CGFloat(orrPadding.padding3.rawValue))
+            $0.leading.equalTo(thumbnailView.snp.trailing).offset(CGFloat(OrrPadding.padding3.rawValue))
             $0.trailing.equalTo(cellView.snp.trailing)
             $0.height.equalTo(1)
         }
