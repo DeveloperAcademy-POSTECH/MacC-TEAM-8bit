@@ -156,7 +156,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         // card UI
         setUpLayout()
         
-        createSwipeableCard() { [self] in
+        createSwipeableCard() {
             self.cards.forEach { swipeCard in
                 // FIXME: 다시 수정해야 되는 코드
                 // 카드를 z축 기준 가장 상단에 위치하게 하는 코드
@@ -469,7 +469,6 @@ private extension LevelAndPFSettingViewController {
         
         view.addSubview(failButton)
         failButton.snp.makeConstraints {
-//            $0.bottom.equalToSuperview().inset(64.0)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPadding.padding3.rawValue)
             $0.leading.equalToSuperview().inset(48.0)
             $0.height.equalTo(74.0)
@@ -478,7 +477,6 @@ private extension LevelAndPFSettingViewController {
         
         view.addSubview(successButton)
         successButton.snp.makeConstraints {
-//            $0.bottom.equalToSuperview().inset(64.0)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPadding.padding3.rawValue)
             $0.trailing.equalToSuperview().inset(48.0)
             $0.height.equalTo(74.0)
