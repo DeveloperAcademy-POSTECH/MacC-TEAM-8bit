@@ -156,16 +156,17 @@ final class LevelAndPFSettingViewController: UIViewController {
         // card UI
         setUpLayout()
         
-        createSwipeableCard() {
+        createSwipeableCard() { [self] in
             self.cards.forEach { swipeCard in
                 // FIXME: 다시 수정해야 되는 코드
                 // 카드를 z축 기준 가장 상단에 위치하게 하는 코드
                 // self.view.bringSubviewToFront(swipeCard!)
                 self.view.insertSubview(swipeCard!, at: 0)
                 swipeCard!.snp.makeConstraints {
-                    $0.center.equalToSuperview()
-                    $0.height.equalTo(420.0)
-                    $0.leading.trailing.equalToSuperview().inset(60.0)
+                    $0.top.equalTo(self.emptyVideoView.snp.top)
+                    $0.bottom.equalTo(self.emptyVideoView.snp.bottom)
+                    $0.leading.equalTo(self.emptyVideoView.snp.leading)
+                    $0.trailing.equalTo(self.emptyVideoView.snp.trailing)
                 }
                 
                 self.view.sendSubviewToBack(self.emptyVideoView)
@@ -432,7 +433,7 @@ private extension LevelAndPFSettingViewController {
         view.addSubview(headerView)
         headerView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
-            $0.top.equalToSuperview().offset(105)
+            $0.top.equalTo(view.safeAreaLayoutGuide)
         }
         
         headerView.addSubview(titleLabel)
@@ -448,20 +449,13 @@ private extension LevelAndPFSettingViewController {
         headerView.addSubview(levelStackView)
         levelStackView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(titleLabel.snp.bottom).offset(24.0)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(OrrPadding.padding3.rawValue)
             $0.centerX.equalToSuperview()
         }
         
         levelButtonImage.snp.makeConstraints {
             $0.height.equalTo(20.0)
             $0.width.equalTo(20.0)
-        }
-        
-        view.addSubview(emptyVideoView)
-        emptyVideoView.snp.makeConstraints {
-            $0.center.equalToSuperview()
-            $0.height.equalTo(420.0)
-            $0.leading.trailing.equalToSuperview().inset(60.0)
         }
         
         headerView.addSubview(separator)
@@ -473,14 +467,10 @@ private extension LevelAndPFSettingViewController {
             $0.width.equalTo(90.0)
         }
         
-        emptyVideoView.addSubview(emptyVideoInformation)
-        emptyVideoInformation.snp.makeConstraints {
-            $0.center.equalTo(emptyVideoView.snp.center)
-        }
-        
         view.addSubview(failButton)
         failButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(64.0)
+//            $0.bottom.equalToSuperview().inset(64.0)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPadding.padding3.rawValue)
             $0.leading.equalToSuperview().inset(48.0)
             $0.height.equalTo(74.0)
             $0.width.equalTo(74.0)
@@ -488,17 +478,32 @@ private extension LevelAndPFSettingViewController {
         
         view.addSubview(successButton)
         successButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(64.0)
+//            $0.bottom.equalToSuperview().inset(64.0)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPadding.padding3.rawValue)
             $0.trailing.equalToSuperview().inset(48.0)
             $0.height.equalTo(74.0)
             $0.width.equalTo(74.0)
         }
         
+        view.addSubview(emptyVideoView)
+        emptyVideoView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(separator.snp.bottom).offset(OrrPadding.padding4.rawValue)
+            $0.bottom.equalTo(successButton.snp.top).offset(-OrrPadding.padding4.rawValue)
+            $0.width.equalTo(emptyVideoView.snp.height).multipliedBy(0.5625)
+        }
+        
+        emptyVideoView.addSubview(emptyVideoInformation)
+        emptyVideoInformation.snp.makeConstraints {
+            $0.center.equalTo(emptyVideoView.snp.center)
+        }
+        
         view.addSubview(saveButton)
         saveButton.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(16.0)
-            $0.bottom.equalToSuperview().inset(30.0)
-            $0.height.equalTo(56.0)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPadding.padding3.rawValue)
+            $0.leading.equalTo(view).offset(OrrPadding.padding3.rawValue)
+            $0.trailing.equalTo(view).offset(-OrrPadding.padding3.rawValue)
+            $0.height.equalTo(56)
         }
     }
 }
