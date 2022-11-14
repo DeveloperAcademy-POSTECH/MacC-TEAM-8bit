@@ -304,7 +304,7 @@ private extension LevelAndPFSettingViewController {
                 }
                 
                 UIView.animate(withDuration: 0.2) {
-                    card.center = self.view.center
+                    card.center = self.emptyVideoView.center
                     card.transform = .identity
                     card.successImageView.alpha = 0
                     card.failImageView.alpha = 0
