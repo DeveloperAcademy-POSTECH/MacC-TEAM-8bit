@@ -10,9 +10,12 @@ import Foundation
 class DataRepository {
     
     var rawVideoInformation: [VideoInformation]
+    var visitedClimbingGyms: [VisitedClimbingGym]
+    
     
     init() {
         rawVideoInformation = [ ]
+        visitedClimbingGyms = []
     }
     
     func filterVideoInformation(filterOption: FilterOption) -> [VideoInformation] {
@@ -216,5 +219,22 @@ class DataRepository {
     
     func deleteAllData() {
         rawVideoInformation.removeAll()
+    }
+    
+    // MARK: VisitedClimbingGym DataRepository
+    func createVisitedClimbingGym(visitedClimbingGym: VisitedClimbingGym) {
+        visitedClimbingGyms.append(visitedClimbingGym)
+        sortVisitedClimbingGym()
+    }
+    
+    func sortVisitedClimbingGym() {
+        visitedClimbingGyms.sort { $0.createdDate > $1.createdDate }
+    }
+    
+    func deleteVisitedClimbingGym(deleteTarget: VisitedClimbingGym) {
+        let target = visitedClimbingGyms.filter({ $0 == deleteTarget })
+        if let index = visitedClimbingGyms.firstIndex(of: target[0]) {
+            visitedClimbingGyms.remove(at: index)
+        }
     }
 }
