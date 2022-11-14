@@ -44,12 +44,30 @@ class GymSettingViewController: UIViewController {
         return btn
     }()
     
+    lazy var autocompleteTableView: UITableView = {
+       let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.register(AutocompleteTableViewCell.classForCoder(), forCellReuseIdentifier: AutocompleteTableViewCell.identifier)
+        tableView.backgroundColor = .systemBlue
+        return tableView
+    }()
+    
+    lazy var tableViewHeaderLabel: UILabel = {
+        let label = UILabel()
+        label.text = "최근 방문"
+        label.font = .systemFont(ofSize: 22, weight: .regular)
+        return label
+    }()
+    
     //MARK: 생명주기 함수 모음
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
         self.navigationController?.navigationBar.topItem?.title = ""
         setUpLayout()
+        setUITableViewDelegate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,6 +128,11 @@ extension GymSettingViewController {
         alert.addAction(confirm)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    private func setUITableViewDelegate() {
+        autocompleteTableView.dataSource = self
+        autocompleteTableView.delegate = self
+    }
 }
 
 //MARK: 오토레이아웃 설정 영역
@@ -138,6 +161,19 @@ extension GymSettingViewController {
             $0.height.equalTo(56)
         }
         
+        view.addSubview(autocompleteTableView)
+        autocompleteTableView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(nextButton.snp.top)
+            $0.height.equalTo(150)
+        }
+        
+        view.addSubview(tableViewHeaderLabel)
+        tableViewHeaderLabel.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(OrrPadding.padding3.rawValue)
+            $0.trailing.equalToSuperview().offset(OrrPadding.padding3.rawValue)
+            $0.bottom.equalTo(autocompleteTableView.snp.top).offset(-OrrPadding.padding3.rawValue)
+        }
     }
     
 }
