@@ -54,7 +54,7 @@ class LevelPickerView: UIViewController, UISheetPresentationControllerDelegate {
         button.setBackgroundColor(.orrGray2 ?? .red, for: .disabled)
         button.clipsToBounds = true
         button.layer.cornerRadius = 15
-        button.addTarget(self, action: #selector(tapSaveButton), for: .touchDown)
+        button.addTarget(self, action: #selector(tapSaveButton), for: .touchUpInside)
         button.setTitle("저장", for: .normal)
         button.setTitleColor(.white, for: .normal)
         return button
