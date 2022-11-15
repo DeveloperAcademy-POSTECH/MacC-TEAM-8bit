@@ -14,6 +14,7 @@ class GymSettingViewController: UIViewController {
     
     var gymVisitDate : Date?
     var visitedGymList: [VisitedClimbingGym] = []
+    var filteredVisitedGymList: [VisitedClimbingGym] = []
     var maxTableViewCellCount: Int = 0
     
     let gymNameLabel : UILabel = {
@@ -32,6 +33,7 @@ class GymSettingViewController: UIViewController {
         view.tintColor = .orrUPBlue
         view.font = UIFont.systemFont(ofSize: 22)
         view.addTarget(self, action: #selector(toggleNextButton(textField:)), for: .editingChanged)
+        view.addTarget(self, action: #selector(searchGymName(textField:)), for: .editingChanged)
         return view
     }()
     
@@ -88,13 +90,30 @@ extension GymSettingViewController {
         nextButton.isEnabled = !(textField.text!.isEmpty)
     }
     
+    // 자동완성을 위한 테이블 내 클라이밍장 명 검색
     @objc
-    final private func pressNextButton(sender: UIButton!) {
-        // 자동완성 기능
+    final private func searchGymName(textField: UITextField) {
+        if (textField.text ?? "").isEmpty {
+            filteredVisitedGymList = visitedGymList
+            setTableViewHeaderLabel(text: "최근 방문")
+        } else {
+            filteredVisitedGymList = visitedGymList.filter { $0.name.contains(textField.text!) }
+            setTableViewHeaderLabel(text: filteredVisitedGymList.isEmpty ? "" : "이곳을 방문하셨나요?")
+        }
+        
+        autocompleteTableView.reloadData()
+        resetTableViewLayout()
+    }
+    
+    @objc
+    final func pressNextButton() {
+        // 자동완성에 클라이밍장명 데이터 업데이트
         let target = visitedGymList.filter({ $0.name == gymTextField.text! })
         if target.isEmpty {
+            // 만약 클라이밍장 명이 데이터에 포함되어 있지 않으면 추가하기
             DataManager.shared.createVisitedClimbingGym(gymName: gymTextField.text!)
         } else {
+            // 만약 클라이밍장 명이 데이터에 이미 포함되어 있다면, 최근 방문으로 날짜 변경하기
             let index = visitedGymList.firstIndex(of: target[0])
             DataManager.shared.updateVisitedClimbingGym(updateTarget: visitedGymList[index!])
         }
@@ -147,12 +166,17 @@ extension GymSettingViewController {
         autocompleteTableView.delegate = self
     }
     
-    private func setUpData() {
+    func setUpData() {
         visitedGymList = DataManager.shared.repository.visitedClimbingGyms
+        filteredVisitedGymList = visitedGymList
         
         // 기기 대응한 테이블뷰셀의 개수
         // SE 사이즈 - 2개 / 13 사이즈 - 3개 / max 사이즈 - 4개
         maxTableViewCellCount = 1 + Int((UIScreen.main.bounds.height - 500) / 140)
+    }
+    
+    func setTableViewHeaderLabel(text: String) {
+        tableViewHeaderLabel.text = text
     }
 }
 
@@ -197,7 +221,7 @@ extension GymSettingViewController {
     }
     
     func resetTableViewData() {
-        setUpData()
+        searchGymName(textField: gymTextField)
         autocompleteTableView.reloadData()
     }
     
@@ -206,7 +230,7 @@ extension GymSettingViewController {
         autocompleteTableView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(nextButton.snp.top)
-            $0.height.equalTo(50 * min(maxTableViewCellCount, visitedGymList.count))
+            $0.height.equalTo(50 * min(maxTableViewCellCount, filteredVisitedGymList.count))
         }
     }
 }
