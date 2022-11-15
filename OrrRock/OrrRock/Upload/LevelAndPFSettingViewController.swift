@@ -370,12 +370,11 @@ private extension LevelAndPFSettingViewController {
                 let center: CGPoint
                 let isSuccess: Bool
                 let card = view as! SwipeableCardVideoView
-                let nextCard = view as! SwipeableCardVideoView
                 
                 // 마지막 카드가 아닐 때 다음 카드를 재생
                 if counter != cards.count-1 {
                     // 다음에 나올 카드
-                    let nextCard = cards[counter + 1] as! SwipeableCardVideoView
+                    guard let nextCard = cards[counter + 1] as? SwipeableCardVideoView else { return }
                     // 이전 카드가 스와이프가 되었을 때 다음에 나올 카드가 재생
                     nextCard.queuePlayer.play()
                 }
