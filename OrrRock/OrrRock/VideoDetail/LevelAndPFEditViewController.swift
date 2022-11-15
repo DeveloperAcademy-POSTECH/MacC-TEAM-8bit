@@ -113,7 +113,7 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         btn.setBackgroundColor(.orrGray2!, for: .disabled)
         btn.clipsToBounds = true
         btn.layer.cornerRadius = 15
-        btn.addTarget(self, action: #selector(pressSaveButton), for: .touchDown)
+        btn.addTarget(self, action: #selector(pressSaveButton), for: .touchUpInside)
         btn.setTitle("저장", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         return btn

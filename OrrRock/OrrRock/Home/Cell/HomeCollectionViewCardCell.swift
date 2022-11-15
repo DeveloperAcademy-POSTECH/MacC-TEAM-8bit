@@ -65,6 +65,8 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         var view = UICollectionView(frame: CGRect.zero, collectionViewLayout: flow)
         view.backgroundColor = UIColor.orrWhite
         view.register(HomeCardCollectionViewThumbnailCell.classForCoder(), forCellWithReuseIdentifier: "homeCardCollectionViewThumbnailCell")
+        view.isUserInteractionEnabled = false
+        
         return view
     }()
     
@@ -83,11 +85,12 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         return view
     }()
     
-    lazy var detailButton: CustomDetailButton = {
-        let button = CustomDetailButton()
-        button.setTitle("더 보기", for: .normal)
-        button.setTitleColor(.orrUPBlue, for: .normal)
-        return button
+    lazy var detailLabel: UILabel = {
+        let view = UILabel()
+        view.text = "더 보기"
+        view.font = UIFont.systemFont(ofSize: 17)
+        view.textColor = .orrUPBlue
+        return view
     }()
     
     // MARK: View Lifecycle Function
@@ -143,8 +146,8 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
             $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
         }
         
-        cardView.addSubview(detailButton)
-        detailButton.snp.makeConstraints {
+        cardView.addSubview(detailLabel)
+        detailLabel.snp.makeConstraints {
             $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(CGFloat(OrrPadding.padding3.rawValue))
             $0.trailing.equalTo(cardView.snp.trailing).offset(-CGFloat(OrrPadding.padding3.rawValue))
         }
@@ -174,20 +177,4 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         
         self.thumbnailCollectionView.reloadData()
     }
-}
-
-final class CustomDetailButton: UIButton {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        fatalError("This class does not support NSCoding")
-    }
-    
-    var gymName: String = ""
-    var primaryGymVisitDate: Date = Date()
-    var secondaryGymVisitDate: Date? = nil
-    var videoInformationArray: [VideoInformation] = []
 }
