@@ -82,7 +82,7 @@ extension SwipeableCardVideoView {
 		self.videoBackgroundView.layer.addSublayer(playerLayer)
 		self.queuePlayer.isMuted = true
 		self.playerLooper = AVPlayerLooper(player: self.queuePlayer, templateItem: item)
-		self.queuePlayer.play()
+		self.queuePlayer.pause()
 	}
 }
 
