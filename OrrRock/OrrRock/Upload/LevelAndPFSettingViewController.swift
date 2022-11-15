@@ -264,6 +264,10 @@ private extension LevelAndPFSettingViewController {
                     
                     // Asset 카운팅 -1
                     countingGroup.leave()
+                    
+                    // 첫번째 카드를 재생시켜주는 코드
+                    let firstCard = self.cards[0] as! SwipeableCardVideoView
+                    firstCard.queuePlayer.play()
                 }
                 // Asset 카운팅이 0이 되었을 때 completionHandler로 반환
                 countingGroup.notify(queue: DispatchQueue.main) {
