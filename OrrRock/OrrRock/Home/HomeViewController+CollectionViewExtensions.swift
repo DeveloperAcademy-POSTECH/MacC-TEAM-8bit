@@ -139,9 +139,10 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // 카드 셀의 가로세로 비율 1.33:1로 지정 : 목록형 셀의 높이는 70
+
         let width = view.bounds.width - 2 * CGFloat(OrrPadding.padding3.rawValue)
-        let height = isCardView ? width / 1.33 : 70
+        let height = isCardView ? (sortedVideoInfoData[indexPath.row].count > 5 ? width / 1.33 : width / 1.80) : 70
+        
         
         return CGSize(width: Double(width), height: Double(height))
     }
