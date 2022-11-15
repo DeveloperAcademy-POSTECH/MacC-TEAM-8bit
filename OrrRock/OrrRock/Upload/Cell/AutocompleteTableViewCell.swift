@@ -44,8 +44,6 @@ final class AutocompleteTableViewCell: UITableViewCell {
         return view
     }()
 
-    
-    
     // MARK: View Lifecycle Function
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -61,7 +59,6 @@ final class AutocompleteTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         setUpLayout()
-        contentView.backgroundColor = .systemRed
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

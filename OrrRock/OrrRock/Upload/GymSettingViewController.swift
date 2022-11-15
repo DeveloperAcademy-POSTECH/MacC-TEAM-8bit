@@ -211,7 +211,7 @@ extension GymSettingViewController {
         autocompleteTableView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(nextButton.snp.top)
-            $0.height.equalTo(50 * min(maxTableViewCellCount, visitedGymList.count))
+            $0.height.equalTo(50 * min(maxTableViewCellCount, filteredVisitedGymList.count))
         }
         
         view.addSubview(tableViewHeaderLabel)
@@ -221,8 +221,7 @@ extension GymSettingViewController {
             $0.bottom.equalTo(autocompleteTableView.snp.top).offset(-OrrPadding.padding3.rawValue)
         }
     }
-    
-    
+        
     // 자동완성 테이블 뷰의 데이터 개수의 변화에 따른 테이블뷰의 레이아웃의 변화가 필요한 경우에 본 함수를 호출
     func resetAutocompleteTableView() {
         autocompleteTableView.reloadData()
