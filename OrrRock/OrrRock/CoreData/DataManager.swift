@@ -29,6 +29,7 @@ final class DataManager {
     func updateRepository() {
         repository.rawVideoInformation = coreDataManager.readData()
         repository.visitedClimbingGyms = coreDataManager.readVisitedClimbingGym()
+        repository.sortVisitedClimbingGym()
     }
     
     // 단일 VideoInformation 데이터를 추가
@@ -99,6 +100,10 @@ final class DataManager {
         repository.deleteVisitedClimbingGym(deleteTarget: deleteTarget)
     }
     
+    func updateVisitedClimbingGym(updateTarget: VisitedClimbingGym) {
+        coreDataManager.updateVisitedClimbingGym(updateTarget: updateTarget)
+        repository.updateVisitedClimbingGym(updateTarget: updateTarget)
+    }
     
     // MARK: Data Printing을 위한 메소드로 Print문을 따로 삭제하지 않았습니다.
     func printRawData(standard: SortOption) {

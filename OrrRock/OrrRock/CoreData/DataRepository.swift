@@ -14,7 +14,7 @@ class DataRepository {
     
     
     init() {
-        rawVideoInformation = [ ]
+        rawVideoInformation = []
         visitedClimbingGyms = []
     }
     
@@ -233,8 +233,18 @@ class DataRepository {
     
     func deleteVisitedClimbingGym(deleteTarget: VisitedClimbingGym) {
         let target = visitedClimbingGyms.filter({ $0 == deleteTarget })
+        if target.isEmpty { return }
         if let index = visitedClimbingGyms.firstIndex(of: target[0]) {
             visitedClimbingGyms.remove(at: index)
         }
+    }
+    
+    func updateVisitedClimbingGym(updateTarget: VisitedClimbingGym) {
+        guard let id = updateTarget.id else { return }
+        
+        let target = visitedClimbingGyms.filter({ $0.id == id })
+        target[0].createdDate = Date()
+        
+        sortVisitedClimbingGym()
     }
 }

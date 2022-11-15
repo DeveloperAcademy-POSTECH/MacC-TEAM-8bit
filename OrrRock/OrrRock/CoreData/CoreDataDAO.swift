@@ -198,10 +198,27 @@ class CoreDataDAO {
             let visitedClimbingGym = try context.fetch(request)
             if let foundGym = visitedClimbingGym.first {
                 context.delete(foundGym)
+                saveData()
             }
         } catch {
             print("CoreDataDAO deleteVisitedClimbingGym Method \(error.localizedDescription)")
-
         }
+    }
+    
+    // 단일 데이터 날짜를 최신으로 변경
+    func updateVisitedClimbingGym(updateTarget: VisitedClimbingGym) {
+        guard let id = updateTarget.id else { return }
+        let request = VisitedClimbingGym.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        do {
+            let info = try context.fetch(request)
+            if let target = info.first {
+                target.setValue(Date(), forKey: "createdDate")
+            }
+        } catch {
+            print("CoreDataDAO updateVisitedClimbingGym Method \(error.localizedDescription)")
+        }
+        saveData()
     }
 }

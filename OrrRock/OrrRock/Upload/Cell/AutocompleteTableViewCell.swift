@@ -9,11 +9,16 @@ import UIKit
 
 import SnapKit
 
+protocol AutocompleteTableViewCellDelegate {
+    func tapDeleteButton(deleteTarget: VisitedClimbingGym)
+}
+
 final class AutocompleteTableViewCell: UITableViewCell {
     static let identifier = "autocompleteTableViewCell"
 
     private var gymName: String = ""
     private var gymData: VisitedClimbingGym? = nil
+    var delegate: AutocompleteTableViewCellDelegate?
     
     // MARK: UI Components
     private lazy var locationIconView: UIImageView = {
@@ -35,6 +40,7 @@ final class AutocompleteTableViewCell: UITableViewCell {
         let view = UIButton()
         view.setImage(UIImage(systemName: "multiply"), for: .normal)
         view.tintColor = UIColor.orrGray4
+        view.addTarget(self, action: #selector(tapDeleteButton(_:)), for: .touchUpInside)
         return view
     }()
 
@@ -67,6 +73,11 @@ final class AutocompleteTableViewCell: UITableViewCell {
     func setUpData(data: VisitedClimbingGym) {
         self.gymData = data
         self.gymNameLabel.text = data.name
+    }
+    
+    @objc func tapDeleteButton(_ sender: UIButton) {
+        guard let delegate = delegate else { return }
+        delegate.tapDeleteButton(deleteTarget: gymData!)
     }
 }
 

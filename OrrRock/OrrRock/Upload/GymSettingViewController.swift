@@ -47,7 +47,7 @@ class GymSettingViewController: UIViewController {
     }()
     
     lazy var autocompleteTableView: UITableView = {
-       let tableView = UITableView()
+        let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isScrollEnabled = false
@@ -67,7 +67,7 @@ class GymSettingViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
         self.navigationController?.navigationBar.topItem?.title = ""
-
+        
         setUpData()
         setUpLayout()
         setUITableViewDelegate()
@@ -90,6 +90,16 @@ extension GymSettingViewController {
     
     @objc
     final private func pressNextButton(sender: UIButton!) {
+        // 자동완성 기능
+        let target = visitedGymList.filter({ $0.name == gymTextField.text! })
+        if target.isEmpty {
+            DataManager.shared.createVisitedClimbingGym(gymName: gymTextField.text!)
+        } else {
+            let index = visitedGymList.firstIndex(of: target[0])
+            DataManager.shared.updateVisitedClimbingGym(updateTarget: visitedGymList[index!])
+        }
+        
+        // 영상 선택
         let photoLibrary =  PHPhotoLibrary.shared()
         var configuration = PHPickerConfiguration(photoLibrary: photoLibrary)
         configuration.filter = .all(of: [.videos,.not(.slomoVideos)])
@@ -186,6 +196,19 @@ extension GymSettingViewController {
         }
     }
     
+    func resetTableViewData() {
+        setUpData()
+        autocompleteTableView.reloadData()
+    }
+    
+    func resetTableViewLayout() {
+        autocompleteTableView.snp.removeConstraints()
+        autocompleteTableView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(nextButton.snp.top)
+            $0.height.equalTo(50 * min(maxTableViewCellCount, visitedGymList.count))
+        }
+    }
 }
 
 extension GymSettingViewController: PHPickerViewControllerDelegate {
