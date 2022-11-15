@@ -152,7 +152,7 @@ class VideoDetailViewController: UIViewController {
     // 삭제 버튼을 눌렀을 때 로직
     @objc func deleteVideoAction(_ sender: UIBarButtonItem) {
         let optionMenu = UIAlertController(title: "선택한 영상 삭제하기", message: "정말로 삭제하시겠어요?", preferredStyle: .actionSheet)
-        let deleteAction = UIAlertAction(title: "삭제하기", style: .default) {_ in
+        let deleteAction = UIAlertAction(title: "삭제하기", style: .destructive) {_ in
             DataManager.shared.deleteData(videoInformation: self.videoInformation)
             self.goBackAction()
         }
