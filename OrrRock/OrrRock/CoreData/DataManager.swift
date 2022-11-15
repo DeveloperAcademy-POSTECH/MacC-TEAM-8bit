@@ -28,6 +28,8 @@ final class DataManager {
     // CoreData 정보를 DataRepository의 rawVideoInformation에 할당
     func updateRepository() {
         repository.rawVideoInformation = coreDataManager.readData()
+        repository.visitedClimbingGyms = coreDataManager.readVisitedClimbingGym()
+        repository.sortVisitedClimbingGym()
     }
     
     // 단일 VideoInformation 데이터를 추가
@@ -84,6 +86,23 @@ final class DataManager {
     func deleteAllData() {
         coreDataManager.deleteAllData()
         repository.deleteAllData()
+    }
+    
+    // MARK: VisitedClimbingGym CoreData 메서드
+    // 방문한 클라이밍장 추가를 위한 메서드
+    func createVisitedClimbingGym(gymName: String) {
+        let entity = coreDataManager.createVisitedClimbingGym(gymName: gymName)
+        repository.createVisitedClimbingGym(visitedClimbingGym: entity as! VisitedClimbingGym)
+    }
+    
+    func deleteVisitedClimbingGym(deleteTarget: VisitedClimbingGym) {
+        coreDataManager.deleteVisitedClimbingGym(deleteTarget: deleteTarget)
+        repository.deleteVisitedClimbingGym(deleteTarget: deleteTarget)
+    }
+    
+    func updateVisitedClimbingGym(updateTarget: VisitedClimbingGym) {
+        coreDataManager.updateVisitedClimbingGym(updateTarget: updateTarget)
+        repository.updateVisitedClimbingGym(updateTarget: updateTarget)
     }
     
     // MARK: Data Printing을 위한 메소드로 Print문을 따로 삭제하지 않았습니다.

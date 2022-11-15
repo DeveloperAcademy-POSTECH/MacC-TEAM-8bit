@@ -10,6 +10,11 @@
 		0A0B41072907C59600057FA7 /* LevelAndPFSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B41062907C59600057FA7 /* LevelAndPFSettingViewController.swift */; };
 		0A0B410D2907C79200057FA7 /* VideoResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B410C2907C79200057FA7 /* VideoResultType.swift */; };
 		0AAB780A290424A300EEEFFB /* SwipeableCardVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */; };
+		341418B42922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341418B32922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift */; };
+		341418B6292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341418B5292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift */; };
+		341418B82922A2500033D851 /* GymSettingViewController+TableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341418B72922A2500033D851 /* GymSettingViewController+TableViewExtensions.swift */; };
+		341418BB2922A3800033D851 /* AutocompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341418BA2922A3800033D851 /* AutocompleteTableViewCell.swift */; };
+		341418BD2923A6FF0033D851 /* DateAndGymEditViewController+TableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341418BC2923A6FF0033D851 /* DateAndGymEditViewController+TableViewExtensions.swift */; };
 		342508A329001780000653D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A229001780000653D9 /* HomeViewController.swift */; };
 		342508A52900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A42900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift */; };
 		342508A729001BBC000653D9 /* HomeCollectionViewCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A629001BBC000653D9 /* HomeCollectionViewCardCell.swift */; };
@@ -74,6 +79,11 @@
 		0A0B41062907C59600057FA7 /* LevelAndPFSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelAndPFSettingViewController.swift; sourceTree = "<group>"; };
 		0A0B410C2907C79200057FA7 /* VideoResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoResultType.swift; sourceTree = "<group>"; };
 		0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardVideoView.swift; sourceTree = "<group>"; };
+		341418B32922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VisitedClimbingGym+CoreDataClass.swift"; sourceTree = "<group>"; };
+		341418B5292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VisitedClimbingGym+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		341418B72922A2500033D851 /* GymSettingViewController+TableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GymSettingViewController+TableViewExtensions.swift"; sourceTree = "<group>"; };
+		341418BA2922A3800033D851 /* AutocompleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteTableViewCell.swift; sourceTree = "<group>"; };
+		341418BC2923A6FF0033D851 /* DateAndGymEditViewController+TableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateAndGymEditViewController+TableViewExtensions.swift"; sourceTree = "<group>"; };
 		342508A229001780000653D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		342508A42900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+CollectionViewExtensions.swift"; sourceTree = "<group>"; };
 		342508A629001BBC000653D9 /* HomeCollectionViewCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCardCell.swift; sourceTree = "<group>"; };
@@ -164,6 +174,14 @@
 			path = UIComponent;
 			sourceTree = "<group>";
 		};
+		341418B92922A3630033D851 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				341418BA2922A3800033D851 /* AutocompleteTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		342C4568290066810037D9E7 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +213,8 @@
 				3A2880FA2904290E00FBFB70 /* SortTestViewController.swift */,
 				3A15AC862907B1160058512F /* VideoInformation+CoreDataClass.swift */,
 				3A15AC872907B1160058512F /* VideoInformation+CoreDataProperties.swift */,
+				341418B32922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift */,
+				341418B5292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift */,
 				3A15AC7A290724620058512F /* DataManager.swift */,
 				3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */,
 				3A15AC7829071F710058512F /* DataRepository.swift */,
@@ -285,6 +305,7 @@
 				78CAA0672901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift */,
 				3A15AC7E2907262C0058512F /* VideoCollectionView+DataSorting.swift */,
 				78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */,
+				341418BC2923A6FF0033D851 /* DateAndGymEditViewController+TableViewExtensions.swift */,
 				78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */,
 				FB32280E29046B4500276A7D /* VideoDetailViewController.swift */,
 				78A035492901317600FF1913 /* Cell */,
@@ -313,8 +334,10 @@
 		3AEB3D64291C04CE00A989FF /* Upload */ = {
 			isa = PBXGroup;
 			children = (
+				341418B92922A3630033D851 /* Cell */,
 				70A44804290440E600BE18A5 /* DateSettingViewController.swift */,
 				70A44808290464BD00BE18A5 /* GymSettingViewController.swift */,
+				341418B72922A2500033D851 /* GymSettingViewController+TableViewExtensions.swift */,
 				0A0B41062907C59600057FA7 /* LevelAndPFSettingViewController.swift */,
 				0AAB77E0290274BE00EEEFFB /* UIComponent */,
 			);
@@ -465,12 +488,14 @@
 				3A2880EB29033C2500FBFB70 /* FilterOption.swift in Sources */,
 				707B2CBA2901382A0062C958 /* OrrPadding.swift in Sources */,
 				70A44809290464BD00BE18A5 /* GymSettingViewController.swift in Sources */,
+				341418B82922A2500033D851 /* GymSettingViewController+TableViewExtensions.swift in Sources */,
 				78F56F6A291A67D500174B74 /* OnBoardingViewControllerThird.swift in Sources */,
 				3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */,
 				3A15AC7F2907262C0058512F /* VideoCollectionView+DataSorting.swift in Sources */,
 				342508A929001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift in Sources */,
 				3AA4D42928FEBADE006C718A /* OrrRock.xcdatamodeld in Sources */,
 				78F93ED7290743DF00F3D9F3 /* LevelAndPFEditViewController.swift in Sources */,
+				341418B42922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift in Sources */,
 				78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */,
 				342508A329001780000653D9 /* HomeViewController.swift in Sources */,
 				78F56F68291A67CA00174B74 /* OnBoardingViewControllerSecond.swift in Sources */,
@@ -484,13 +509,16 @@
 				78F56F6C291A67FA00174B74 /* OnBoardingViewController.swift in Sources */,
 				342508AB29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift in Sources */,
 				78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */,
+				341418BD2923A6FF0033D851 /* DateAndGymEditViewController+TableViewExtensions.swift in Sources */,
 				3AEB3D5D291C003D00A989FF /* VideoCollectionViewMode.swift in Sources */,
 				78CAA06C290271E7003C3D77 /* VIdeoCollectionFooterCell.swift in Sources */,
+				341418BB2922A3800033D851 /* AutocompleteTableViewCell.swift in Sources */,
 				709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */,
 				3A2880FB2904290E00FBFB70 /* SortTestViewController.swift in Sources */,
 				FB3227FE2903FDA600276A7D /* String+.swift in Sources */,
 				78F93EDA2908D00F00F3D9F3 /* OnBoardingViewControllerFirst.swift in Sources */,
 				3A15AC7B290724620058512F /* DataManager.swift in Sources */,
+				341418B6292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift in Sources */,
 				70A8DF0A291A863F0061E36B /* UIView+.swift in Sources */,
 				A88805852907F5A0002CD52E /* LevelPickerView.swift in Sources */,
 				78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */,
