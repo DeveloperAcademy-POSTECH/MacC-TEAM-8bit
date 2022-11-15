@@ -135,6 +135,7 @@ extension LevelPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
     // 선택된 값
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         level = row - 1
+        delegate?.didLevelChanged(selectedLevel: level)
     }
 
     // 선택된 값을 리턴
