@@ -270,6 +270,7 @@ extension VideoDetailViewController {
             navigationItem.rightBarButtonItem = isShowKeyboard ? completeButton : favoriteButton
             feedbackText = videoInfoView.feedbackTextView.text!
             DataManager.shared.updateFeedback(videoInformation: videoInformation, feedback: feedbackText!)
+            navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         }
     }
     
@@ -283,6 +284,7 @@ extension VideoDetailViewController {
             navigationItem.rightBarButtonItem = isShowKeyboard ? completeButton : favoriteButton
             feedbackText = videoInfoView.feedbackTextView.text!
             DataManager.shared.updateFeedback(videoInformation: videoInformation, feedback: feedbackText!)
+            navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         }
     }
     
