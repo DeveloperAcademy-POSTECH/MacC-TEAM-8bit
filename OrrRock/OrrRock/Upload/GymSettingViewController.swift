@@ -92,7 +92,7 @@ extension GymSettingViewController {
     
     // 자동완성을 위한 테이블 내 클라이밍장 명 검색
     @objc
-    final private func searchGymName(textField: UITextField) {
+    final func searchGymName(textField: UITextField) {
         if (textField.text ?? "").isEmpty {
             filteredVisitedGymList = visitedGymList
             setTableViewHeaderLabel(text: "최근 방문")
@@ -101,8 +101,7 @@ extension GymSettingViewController {
             setTableViewHeaderLabel(text: filteredVisitedGymList.isEmpty ? "" : "이곳을 방문하셨나요?")
         }
         
-        autocompleteTableView.reloadData()
-        resetTableViewLayout()
+        resetAutocompleteTableView()
     }
     
     @objc
@@ -166,6 +165,8 @@ extension GymSettingViewController {
         autocompleteTableView.delegate = self
     }
     
+    // DataManager에게서 데이터를 새로 받아올 때 사용하는 메서드
+    // CoreData와 Repository 단에서 데이터 변화가 발생하는 경우에 본 메서드를 호출해 데이터를 동기화
     func setUpData() {
         visitedGymList = DataManager.shared.repository.visitedClimbingGyms
         filteredVisitedGymList = visitedGymList
@@ -175,6 +176,7 @@ extension GymSettingViewController {
         maxTableViewCellCount = 1 + Int((UIScreen.main.bounds.height - 500) / 140)
     }
     
+    // 자동완성 헤더 레이블의 텍스트를 수정
     func setTableViewHeaderLabel(text: String) {
         tableViewHeaderLabel.text = text
     }
@@ -220,12 +222,11 @@ extension GymSettingViewController {
         }
     }
     
-    func resetTableViewData() {
-        searchGymName(textField: gymTextField)
-        autocompleteTableView.reloadData()
-    }
     
-    func resetTableViewLayout() {
+    // 자동완성 테이블 뷰의 데이터 개수의 변화에 따른 테이블뷰의 레이아웃의 변화가 필요한 경우에 본 함수를 호출
+    func resetAutocompleteTableView() {
+        autocompleteTableView.reloadData()
+        
         autocompleteTableView.snp.removeConstraints()
         autocompleteTableView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()

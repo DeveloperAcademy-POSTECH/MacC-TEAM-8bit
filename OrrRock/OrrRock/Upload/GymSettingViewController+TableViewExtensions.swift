@@ -40,9 +40,9 @@ extension GymSettingViewController: AutocompleteTableViewCellDelegate {
     func tapDeleteButton(deleteTarget: VisitedClimbingGym) {
         DataManager.shared.deleteVisitedClimbingGym(deleteTarget: deleteTarget)
         visitedGymList = DataManager.shared.repository.visitedClimbingGyms
-
+        
         setUpData()
-        resetTableViewData()
-        resetTableViewLayout()
+        searchGymName(textField: gymTextField)
+        resetAutocompleteTableView()
     }
 }
