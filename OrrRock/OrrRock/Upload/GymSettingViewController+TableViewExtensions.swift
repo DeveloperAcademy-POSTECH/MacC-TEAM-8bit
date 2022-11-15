@@ -10,16 +10,15 @@ import UIKit
 
 extension GymSettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return min(maxTableViewCellCount, visitedGymList.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = autocompleteTableView.dequeueReusableCell(withIdentifier: AutocompleteTableViewCell.identifier, for: indexPath) as! AutocompleteTableViewCell
-//        cell.backgroundColor = .systemRed
+        cell.setUpData(data: visitedGymList[indexPath.row])
+        
         return cell
     }
-    
-    
 }
 
 extension GymSettingViewController: UITableViewDelegate {

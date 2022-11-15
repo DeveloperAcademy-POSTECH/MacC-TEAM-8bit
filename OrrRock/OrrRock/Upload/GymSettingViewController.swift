@@ -13,6 +13,8 @@ import SnapKit
 class GymSettingViewController: UIViewController {
     
     var gymVisitDate : Date?
+    var visitedGymList: [VisitedClimbingGym] = []
+    var maxTableViewCellCount: Int = 0
     
     let gymNameLabel : UILabel = {
         let label = UILabel()
@@ -48,9 +50,8 @@ class GymSettingViewController: UIViewController {
        let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        
+        tableView.isScrollEnabled = false
         tableView.register(AutocompleteTableViewCell.classForCoder(), forCellReuseIdentifier: AutocompleteTableViewCell.identifier)
-        tableView.backgroundColor = .systemBlue
         return tableView
     }()
     
@@ -66,6 +67,8 @@ class GymSettingViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
         self.navigationController?.navigationBar.topItem?.title = ""
+
+        setUpData()
         setUpLayout()
         setUITableViewDelegate()
     }
@@ -133,23 +136,30 @@ extension GymSettingViewController {
         autocompleteTableView.dataSource = self
         autocompleteTableView.delegate = self
     }
+    
+    private func setUpData() {
+        visitedGymList = DataManager.shared.repository.visitedClimbingGyms
+        
+        // 기기 대응한 테이블뷰셀의 개수
+        // SE 사이즈 - 2개 / 13 사이즈 - 3개 / max 사이즈 - 4개
+        maxTableViewCellCount = 1 + Int((UIScreen.main.bounds.height - 500) / 140)
+    }
 }
 
 //MARK: 오토레이아웃 설정 영역
 extension GymSettingViewController {
     
     func setUpLayout() {
-        
         view.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
             $0.centerX.equalTo(view)
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPadding.padding5.rawValue)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPadding.padding2.rawValue)
         }
         
         view.addSubview(gymTextField)
         gymTextField.snp.makeConstraints{
             $0.centerX.equalTo(view)
-            $0.top.equalTo(gymNameLabel.snp.bottom).offset(OrrPadding.padding7.rawValue)
+            $0.top.equalTo(gymNameLabel.snp.bottom).offset(OrrPadding.padding6.rawValue)
             $0.leading.equalTo(view).offset(OrrPadding.padding6.rawValue)
             $0.trailing.equalTo(view).offset(-OrrPadding.padding6.rawValue)
         }
@@ -165,7 +175,7 @@ extension GymSettingViewController {
         autocompleteTableView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(nextButton.snp.top)
-            $0.height.equalTo(150)
+            $0.height.equalTo(50 * min(maxTableViewCellCount, visitedGymList.count))
         }
         
         view.addSubview(tableViewHeaderLabel)

@@ -13,6 +13,7 @@ final class AutocompleteTableViewCell: UITableViewCell {
     static let identifier = "autocompleteTableViewCell"
 
     private var gymName: String = ""
+    private var gymData: VisitedClimbingGym? = nil
     
     // MARK: UI Components
     private lazy var locationIconView: UIImageView = {
@@ -56,8 +57,6 @@ final class AutocompleteTableViewCell: UITableViewCell {
         setUpLayout()
         contentView.backgroundColor = .systemRed
     }
-    
-    
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -65,6 +64,10 @@ final class AutocompleteTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func setUpData(data: VisitedClimbingGym) {
+        self.gymData = data
+        self.gymNameLabel.text = data.name
+    }
 }
 
 extension AutocompleteTableViewCell {
@@ -91,6 +94,5 @@ extension AutocompleteTableViewCell {
             $0.trailing.equalTo(deleteButton.snp.leading)
             $0.height.equalToSuperview()
         }
-        
     }
 }
