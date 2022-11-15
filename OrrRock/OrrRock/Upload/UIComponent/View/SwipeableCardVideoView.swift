@@ -15,9 +15,9 @@ final class SwipeableCardVideoView: UIView {
 	
 	var video: VideoInfo?
 	let cornerRadius: CGFloat = 10
+    var queuePlayer = AVQueuePlayer()
 	private var player = AVPlayer()
 	private var playerLayer: AVPlayerLayer?
-	private var queuePlayer = AVQueuePlayer()
 	private var playerLooper: AVPlayerLooper?
 	private var asset: AVAsset
 	
@@ -82,7 +82,7 @@ extension SwipeableCardVideoView {
 		self.videoBackgroundView.layer.addSublayer(playerLayer)
 		self.queuePlayer.isMuted = true
 		self.playerLooper = AVPlayerLooper(player: self.queuePlayer, templateItem: item)
-		self.queuePlayer.play()
+		self.queuePlayer.pause()
 	}
 }
 
