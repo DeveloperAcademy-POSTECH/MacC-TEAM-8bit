@@ -15,9 +15,9 @@ final class SwipeableCardVideoView: UIView {
 	
 	var video: VideoInfo?
 	let cornerRadius: CGFloat = 10
+    var queuePlayer = AVQueuePlayer()
 	private var player = AVPlayer()
 	private var playerLayer: AVPlayerLayer?
-	private var queuePlayer = AVQueuePlayer()
 	private var playerLooper: AVPlayerLooper?
 	private var asset: AVAsset
 	
