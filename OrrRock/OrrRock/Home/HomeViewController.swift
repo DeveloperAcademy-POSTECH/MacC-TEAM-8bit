@@ -204,6 +204,17 @@ final class HomeViewController : UIViewController {
         return view
     }()
     
+    lazy var homeTableView: UITableView = {
+        var view = UITableView(frame: CGRect.zero)
+        
+        
+        
+        view.showsVerticalScrollIndicator = false
+        view.backgroundColor = UIColor.clear
+        
+        return view
+    }
+    
     private lazy var placeholderView: UILabel = {
         let view = UILabel()
         view.text = "업로드한 비디오가 없습니다.\n비디오를 업로드 해주세요."

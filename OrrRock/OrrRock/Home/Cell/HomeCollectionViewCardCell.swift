@@ -9,8 +9,8 @@ import UIKit
 
 import SnapKit
 
-final class HomeCollectionViewCardCell: UICollectionViewCell {
-    static let identifier = "homeCollectionViewCardCell"
+final class HomeTableViewCardCell: UITableViewCell {
+    static let identifier = "homeTableViewCardCell"
     
     // MARK: Data
     private var visitedDate: String = "YYYY년 MM월 DD일"

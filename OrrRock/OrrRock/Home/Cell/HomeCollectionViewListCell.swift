@@ -7,8 +7,8 @@
 
 import UIKit
 
-final class HomeCollectionViewListCell: UICollectionViewCell {
-    static let identifier = "homeCollectionViewListCell"
+final class HomeTableViewListCell: UITableViewCell {
+    static let identifier = "homeTableViewListCell"
     
     private lazy var cellView: UIView = {
         let view = UIView()

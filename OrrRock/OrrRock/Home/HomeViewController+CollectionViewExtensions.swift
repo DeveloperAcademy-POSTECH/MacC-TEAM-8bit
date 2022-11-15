@@ -8,64 +8,6 @@
 import UIKit
 
 extension HomeViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return isCardView ? sortedVideoInfoData.count : flattenSortedVideoInfoData.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if isCardView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewCardCell", for: indexPath) as! HomeCollectionViewCardCell
-
-            var successCount: Int = 0
-            var thumbnails: [UIImage] = []
-            
-            let primaryTitle: String = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymVisitDate.timeToString() : sortedVideoInfoData[indexPath.row][0].gymName
-            
-            let secondaryTitle: String = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymName : "\(min(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString()) ~  \(max(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString())"
-
-            
-            sortedVideoInfoData[indexPath.row].forEach { videoInfo in
-                successCount += videoInfo.isSucceeded ? 1 : 0
-                
-                if let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail(
-                    targetSize: CGSize(width: cell.bounds.width, height: cell.bounds.height))
-                {
-                    thumbnails.append(thumbnail)
-                }
-            }
-            
-            cell.setUpData(primaryTitle: primaryTitle,
-                           secondaryTitle: secondaryTitle,
-                           PFCountDescription: "\(successCount)번의 성공, \(sortedVideoInfoData[indexPath.row].count - successCount)번의 실패",
-                           videoCountDescription: "\(sortedVideoInfoData[indexPath.row].count)개의 비디오",
-                           thumbnails: thumbnails,
-                           sortOption: sortOption
-            )
-            
-            cell.detailButton.tag = indexPath.row
-            cell.detailButton.gymName = sortedVideoInfoData[indexPath.row][0].gymName
-            cell.detailButton.primaryGymVisitDate = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymVisitDate : min(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate)
-            cell.detailButton.secondaryGymVisitDate = sortOption == .gymVisitDate ? nil : max(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate)
-            cell.detailButton.videoInformationArray = sortedVideoInfoData[indexPath.row]
-            
-
-            cell.detailButton.addTarget(self, action:  #selector(navigateToVideoCollectionView(sender:)), for: .touchUpInside)
-            
-            return cell
-            
-        } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewListCell", for: indexPath) as! HomeCollectionViewListCell
-            
-            cell.setUpData(visitedDate: flattenSortedVideoInfoData[indexPath.row].gymVisitDate.timeToString(),
-                           visitedGymName: flattenSortedVideoInfoData[indexPath.row].gymName,
-                           level: "V\(flattenSortedVideoInfoData[indexPath.row].problemLevel)",
-                           PF: flattenSortedVideoInfoData[indexPath.row].isSucceeded ? "성공" : "실패",
-                           thumbnail: flattenSortedVideoInfoData[indexPath.row].videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: 825, height: 825))!)
-
-            return cell
-        }
-    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if !isCardView{
@@ -145,5 +87,71 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         
         
         return CGSize(width: Double(width), height: Double(height))
+    }
+}
+
+extension HomeViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return isCardView ? sortedVideoInfoData.count : flattenSortedVideoInfoData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if isCardView {
+            let cell = homeTableView.dequeueReusableCell(withReuseIdentifier: "homeTableViewCardCell", for: indexPath) as! HomeTableViewCardCell
+            
+            var successCount: Int = 0
+            var thumbnails: [UIImage] = []
+            
+            let primaryTitle: String = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymVisitDate.timeToString() : sortedVideoInfoData[indexPath.row][0].gymName
+            
+            let secondaryTitle: String = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymName : "\(min(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString()) ~  \(max(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString())"
+            
+            
+            sortedVideoInfoData[indexPath.row].forEach { videoInfo in
+                successCount += videoInfo.isSucceeded ? 1 : 0
+                
+                if let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: cell.bounds.width, height: cell.bounds.height)) {
+                    thumbnails.append(thumbnail)
+                }
+            }
+            
+            cell.setUpData(primaryTitle: primaryTitle,
+                           secondaryTitle: secondaryTitle,
+                           PFCountDescription: "\(successCount)번의 성공, \(sortedVideoInfoData[indexPath.row].count - successCount)번의 실패",
+                           videoCountDescription: "\(sortedVideoInfoData[indexPath.row].count)개의 비디오",
+                           thumbnails: thumbnails,
+                           sortOption: sortOption
+            )
+            
+            cell.detailButton.tag = indexPath.row
+            cell.detailButton.gymName = sortedVideoInfoData[indexPath.row][0].gymName
+            cell.detailButton.primaryGymVisitDate = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymVisitDate : min(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate)
+            cell.detailButton.secondaryGymVisitDate = sortOption == .gymVisitDate ? nil : max(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate)
+            cell.detailButton.videoInformationArray = sortedVideoInfoData[indexPath.row]
+            
+            
+            cell.detailButton.addTarget(self, action:  #selector(navigateToVideoCollectionView(sender:)), for: .touchUpInside)
+            
+            return cell
+            
+        } else {
+            let cell = homeTableView.dequeueReusableCell(withReuseIdentifier: "homeTableViewListCell", for: indexPath) as! HomeTableViewListCell
+            
+            cell.setUpData(visitedDate: flattenSortedVideoInfoData[indexPath.row].gymVisitDate.timeToString(),
+                           visitedGymName: flattenSortedVideoInfoData[indexPath.row].gymName,
+                           level: "V\(flattenSortedVideoInfoData[indexPath.row].problemLevel)",
+                           PF: flattenSortedVideoInfoData[indexPath.row].isSucceeded ? "성공" : "실패",
+                           thumbnail: flattenSortedVideoInfoData[indexPath.row].videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: 825, height: 825))!)
+            
+            return cell
+        }
+    }
+    
+    
+}
+
+extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt: IndexPath) {
+        
     }
 }
