@@ -52,12 +52,12 @@ class SwipeOnboardingViewController: UIPageViewController {
 
 extension SwipeOnboardingViewController : SwipeOnboardingViewControllerDelegate {
     func changeNextView() {
-        print("ppap:??")
         self.goToNextPage()
     }
 }
 
 extension SwipeOnboardingViewController : UIPageViewControllerDelegate {
+    
     func setDelegate(){
         self.delegate = self
         self.dataSource = self
@@ -70,6 +70,7 @@ extension SwipeOnboardingViewController : UIPageViewControllerDelegate {
 }
 
 extension SwipeOnboardingViewController : UIPageViewControllerDataSource {
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let vcIndex = vcArray.firstIndex(of: viewController as! SwipeOnboardingFirstViewController) else { return nil }
         let prevIndex = vcIndex - 1
