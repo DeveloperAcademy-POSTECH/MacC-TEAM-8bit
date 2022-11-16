@@ -73,7 +73,7 @@ final class VideoInfoView: UIView {
 		button.setTitle("편집", for: .normal)
 		button.setTitleColor(.systemBlue, for: .normal)
 		button.setTitleColor(UIColor.systemBlue.withAlphaComponent(0.3), for: .highlighted)
-		button.addTarget(self, action: #selector(dateLocationEdit), for: .touchDown)
+		button.addTarget(self, action: #selector(dateLocationEdit), for: .touchUpInside)
 		return button
 	}()
 	
@@ -82,7 +82,7 @@ final class VideoInfoView: UIView {
 		button.setTitle("편집", for: .normal)
 		button.setTitleColor(.systemBlue, for: .normal)
 		button.setTitleColor(UIColor.systemBlue.withAlphaComponent(0.3), for: .highlighted)
-		button.addTarget(self, action: #selector(levelPFEdit), for: .touchDown)
+		button.addTarget(self, action: #selector(levelPFEdit), for: .touchUpInside)
 		return button
 	}()
 	

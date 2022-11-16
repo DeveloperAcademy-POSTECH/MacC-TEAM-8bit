@@ -264,6 +264,10 @@ private extension LevelAndPFSettingViewController {
                     
                     // Asset 카운팅 -1
                     countingGroup.leave()
+                    
+                    // 첫번째 카드를 재생시켜주는 코드
+                    let firstCard = self.cards[0] as? SwipeableCardVideoView
+                    firstCard?.queuePlayer.play()
                 }
                 // Asset 카운팅이 0이 되었을 때 completionHandler로 반환
                 countingGroup.notify(queue: DispatchQueue.main) {
@@ -366,6 +370,14 @@ private extension LevelAndPFSettingViewController {
                 let center: CGPoint
                 let isSuccess: Bool
                 let card = view as! SwipeableCardVideoView
+                
+                // 마지막 카드가 아닐 때 다음 카드를 재생
+                if counter != cards.count-1 {
+                    // 다음에 나올 카드
+                    guard let nextCard = cards[counter + 1] as? SwipeableCardVideoView else { return }
+                    // 이전 카드가 스와이프가 되었을 때 다음에 나올 카드가 재생
+                    nextCard.queuePlayer.play()
+                }
                 
                 switch videoResultType {
                 case .fail:

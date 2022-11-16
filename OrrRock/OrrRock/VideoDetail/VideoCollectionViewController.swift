@@ -33,11 +33,13 @@ class VideoCollectionViewController: UIViewController {
                 toolbarText.customView = indexCountLabel
                 navigationItem.leftBarButtonItem = backBarButton
                 videoCollectionView.allowsMultipleSelection = false
+                navigationController?.interactivePopGestureRecognizer?.isEnabled = true
                 self.navigationController?.setToolbarHidden(true, animated: true)
             case .select:
                 selectBarButton.title = "취소"
                 navigationItem.leftBarButtonItem = selectAllButton
                 videoCollectionView.allowsMultipleSelection = true
+                navigationController?.interactivePopGestureRecognizer?.isEnabled = false
                 self.navigationController?.setToolbarHidden(false, animated: true)
             }
         }
