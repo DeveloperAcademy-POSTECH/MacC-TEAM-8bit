@@ -7,55 +7,25 @@
 
 import UIKit
 
-extension HomeViewController: UITableViewDelegate{
-    
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        if !isCardView{
-    //            let vc = VideoDetailViewController()
-    //            vc.videoInformation = flattenSortedVideoInfoData[indexPath.row]
-    //            navigationController?.pushViewController(vc, animated: true)
-    //        } else {
-    //            let vc = VideoCollectionViewController()
-    //            let sectionData: SectionData = SectionData(orderOption: self.orderOption,
-    //                                                       sortOption: self.sortOption,
-    //                                                       filterOption: self.filterOption,
-    //                                                       gymName: sortedVideoInfoData[indexPath.row][0].gymName,
-    //                                                       primaryGymVisitDate: sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymVisitDate : min(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate),
-    //                                                       secondaryGymVisitDate: sortOption == .gymVisitDate ? nil : max(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate))
-    //            vc.videoInformationArray = sortedVideoInfoData[indexPath.row]
-    //            vc.sectionData = sectionData
-    //
-    //            navigationController?.pushViewController(vc, animated: true)
-    //        }
-    //    }
-    
-    
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let width = view.bounds.width - 2 * CGFloat(OrrPadding.padding3.rawValue)
-        let height = isCardView ? (sortedVideoInfoData[indexPath.row].count > 5 ? width / 1.33 : width / 1.80) + CGFloat(OrrPadding.padding3.rawValue) : 70
-        
-        
-        return CGFloat(height)
-    }
-}
-
 extension HomeViewController: UITableViewDataSource {
+    func numberOfSections(in: UITableView) -> Int {
+        return isCardView ? 1 : sortedVideoInfoData.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isCardView ? sortedVideoInfoData.count : flattenSortedVideoInfoData.count
+        return isCardView ? sortedVideoInfoData.count : sortedVideoInfoData[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if isCardView {
+            // 앨범형
             let cell = homeTableView.dequeueReusableCell(withIdentifier: HomeTableViewCardCell.identifier) as! HomeTableViewCardCell
             
             var successCount: Int = 0
             var thumbnails: [UIImage] = []
             
             let primaryTitle: String = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymVisitDate.timeToString() : sortedVideoInfoData[indexPath.row][0].gymName
-            
             let secondaryTitle: String = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymName : "\(min(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString()) ~  \(max(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString())"
-            
             
             sortedVideoInfoData[indexPath.row].forEach { videoInfo in
                 successCount += videoInfo.isSucceeded ? 1 : 0
@@ -73,31 +43,81 @@ extension HomeViewController: UITableViewDataSource {
                            sortOption: sortOption
             )
             
-            //            cell.detailButton.tag = indexPath.row
-            //            cell.detailButton.gymName = sortedVideoInfoData[indexPath.row][0].gymName
-            //            cell.detailButton.primaryGymVisitDate = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymVisitDate : min(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate)
-            //            cell.detailButton.secondaryGymVisitDate = sortOption == .gymVisitDate ? nil : max(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate)
-            //            cell.detailButton.videoInformationArray = sortedVideoInfoData[indexPath.row]
-            
-            
-            //            cell.detailButton.addTarget(self, action:  #selector(navigateToVideoCollectionView(sender:)), for: .touchUpInside)
+            cell.selectionStyle = .none
             
             return cell
             
         } else {
+            // 목록형
             let cell = homeTableView.dequeueReusableCell(withIdentifier: HomeTableViewListCell.identifier, for: indexPath) as! HomeTableViewListCell
             
-            cell.setUpData(visitedDate: flattenSortedVideoInfoData[indexPath.row].gymVisitDate.timeToString(),
-                           visitedGymName: flattenSortedVideoInfoData[indexPath.row].gymName,
-                           level: "V\(flattenSortedVideoInfoData[indexPath.row].problemLevel)",
-                           PF: flattenSortedVideoInfoData[indexPath.row].isSucceeded ? "성공" : "실패",
-                           thumbnail: flattenSortedVideoInfoData[indexPath.row].videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: 825, height: 825))!)
+            cell.setUpData(visitedDate: sortedVideoInfoData[indexPath.section][indexPath.row].gymVisitDate.timeToString(),
+                           visitedGymName: sortedVideoInfoData[indexPath.section][indexPath.row].gymName,
+                           level: "V\(sortedVideoInfoData[indexPath.section][indexPath.row].problemLevel)",
+                           PF: sortedVideoInfoData[indexPath.section][indexPath.row].isSucceeded ? "성공" : "실패",
+                           thumbnail: sortedVideoInfoData[indexPath.section][indexPath.row].videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: 825, height: 825))!)
             
             return cell
         }
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeTableViewHeader.identifier) as! HomeTableViewHeader
+        
+        let primaryTitleText: String = sortOption == .gymVisitDate ? sortedVideoInfoData[section][0].gymVisitDate.timeToString() : sortedVideoInfoData[section][0].gymName
+        let secondaryTitleText: String = sortOption == .gymVisitDate ? sortedVideoInfoData[section][0].gymName : "\(min(sortedVideoInfoData[section].first!.gymVisitDate, sortedVideoInfoData[section].last!.gymVisitDate).timeToString()) ~  \(max(sortedVideoInfoData[section].first!.gymVisitDate, sortedVideoInfoData[section].last!.gymVisitDate).timeToString())"
+        
+        header.setUpData(primaryTitle: primaryTitleText,
+                         secondaryTitle: secondaryTitleText)
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+
+        return isCardView ? 0 : 65
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeTableViewFooter.identifier) as! HomeTableViewFooter
+        footer.setUpLayout()
+        
+        return footer
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return isCardView ? 0 : CGFloat(OrrPadding.padding3.rawValue)
+    }
 }
 
+extension HomeViewController: UITableViewDelegate{
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if !isCardView {
+            let vc = VideoDetailViewController()
+            vc.videoInformation = flattenSortedVideoInfoData[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
+        } else {
+            let vc = VideoCollectionViewController()
+            let sectionData: SectionData = SectionData(orderOption: self.orderOption,
+                                                       sortOption: self.sortOption,
+                                                       filterOption: self.filterOption,
+                                                       gymName: sortedVideoInfoData[indexPath.row][0].gymName,
+                                                       primaryGymVisitDate: sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymVisitDate : min(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate),
+                                                       secondaryGymVisitDate: sortOption == .gymVisitDate ? nil : max(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate))
+            vc.videoInformationArray = sortedVideoInfoData[indexPath.row]
+            vc.sectionData = sectionData
+            
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let width = view.bounds.width - 2 * CGFloat(OrrPadding.padding3.rawValue)
+        let height = isCardView ? (sortedVideoInfoData[indexPath.row].count > 5 ? width / 1.33 : width / 1.80) + CGFloat(OrrPadding.padding3.rawValue) : 96
+        
+        return CGFloat(height)
+    }
+}
 
 //extension HomeViewController: UICollectionViewDelegate {
 //    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

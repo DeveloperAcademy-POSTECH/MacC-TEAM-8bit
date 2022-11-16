@@ -22,8 +22,8 @@ final class HomeViewController : UIViewController {
     var isCardView: Bool = true {
         didSet {
             homeTableView.reloadData()
-//            homeTableView.collectionViewLayout.invalidateLayout()
             quickActionButton.setImage(UIImage(systemName: isCardView ? "rectangle.stack" : "list.bullet"), for: .normal)
+            homeTableView.separatorStyle = isCardView ? .none : .singleLine
         }
     }
     
@@ -180,14 +180,17 @@ final class HomeViewController : UIViewController {
     }()
     
     lazy var homeTableView: UITableView = {
-        var view = UITableView(frame: CGRect.zero)
+        var view = UITableView(frame: CGRect.zero, style: .grouped)
         
         view.register(HomeTableViewCardCell.classForCoder(), forCellReuseIdentifier: HomeTableViewCardCell.identifier)
         view.register(HomeTableViewListCell.classForCoder(), forCellReuseIdentifier: HomeTableViewListCell.identifier)
-        
+        view.register(HomeTableViewHeader.classForCoder(), forHeaderFooterViewReuseIdentifier: HomeTableViewHeader.identifier)
+        view.register(HomeTableViewFooter.classForCoder(), forHeaderFooterViewReuseIdentifier: HomeTableViewFooter.identifier)
+
         view.showsVerticalScrollIndicator = false
         view.backgroundColor = UIColor.clear
-        view.separatorStyle = .none
+        view.separatorStyle = .singleLine
+        view.sectionHeaderTopPadding = CGFloat(OrrPadding.padding3.rawValue)
         
         return view
     }()
