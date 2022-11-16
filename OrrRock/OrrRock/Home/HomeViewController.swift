@@ -8,6 +8,7 @@
 import PhotosUI
 import UIKit
 
+import BetterSegmentedControl
 import NVActivityIndicatorView
 import SnapKit
 
@@ -82,20 +83,6 @@ final class HomeViewController : UIViewController {
         button.menu = UIMenu(options: .displayInline, children: [
             UIDeferredMenuElement.uncached { [weak self] completion in
                 let actions = [
-                    UIMenu(title: "", options: .displayInline, children: [
-                        // 앨범형으로 보기
-                        UIAction(title: "앨범",
-                                 image: UIImage(systemName: "rectangle.stack"),
-                                 state: self!.isCardView ? .on : .off) { [unowned self] _ in
-                                     self?.isCardView = true
-                                 },
-                        // 목록형으로 보기
-                        UIAction(title: "목록",
-                                 image: UIImage(systemName: "list.bullet"),
-                                 state: self!.isCardView ? .off : .on) { [unowned self] _ in
-                                     self?.isCardView = false
-                                 }
-                    ]),
                     UIMenu(title: "", options: .displayInline, children: [
                         // 날짜 기준으로 정렬
                         UIAction(title: "날짜",
@@ -217,12 +204,21 @@ final class HomeViewController : UIViewController {
     }()
     
     // 세그먼트 컨트롤
-    private lazy var tableViewSegmentControl: UISegmentedControl = {
-        let segmentItems = [UIImage(systemName: "square.split.2x2.fill"),
-                            UIImage(systemName: "list.bullet")]
-        let view = UISegmentedControl(items: segmentItems as [Any])
+    private lazy var tableViewSegmentControl: BetterSegmentedControl = {
+        //        let segmentItems = [UIImage(systemName: "square.split.2x2.fill"),
+        //                            UIImage(systemName: "list.bullet")]
+        //        let view = UISegmentedControl(items: segmentItems as [Any])
+        //        view.selectedSegmentIndex = 0
+        let view = BetterSegmentedControl(
+            frame: CGRect(x: 0.0, y: 380.0, width: 160, height: 30.0),
+            segments: IconSegment.segments(withIcons: [UIImage(systemName: "square.split.2x2.fill")!, UIImage(systemName:  "list.bullet")!],
+                                           iconSize: CGSize(width: 24.0, height: 24.0),
+                                           normalIconTintColor: .orrGray3!,
+                                           selectedIconTintColor: UIColor.orrUPBlue!),
+            options: [.cornerRadius(25.0),
+                      .backgroundColor(UIColor.orrGray2!),
+                      .indicatorViewBackgroundColor(.white)])
         view.addTarget(self, action: #selector(segmentControl(_:)), for: .valueChanged)
-        view.selectedSegmentIndex = 0
         
         return view
     }()
@@ -250,8 +246,14 @@ final class HomeViewController : UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.isHidden = true
         reloadTableViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     // MARK: Layout Function
@@ -327,8 +329,8 @@ final class HomeViewController : UIViewController {
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
-    @objc func segmentControl(_ segmentedControl: UISegmentedControl) {
-        print(segmentedControl.selectedSegmentIndex)
+    @objc func segmentControl(_ sender: BetterSegmentedControl) {
+        isCardView = sender.index == 0
     }
 }
 

@@ -53,11 +53,6 @@ class DateSettingViewController: UIViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
         setUpLayout()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.isHidden = false
-    }
 }
 
 //MARK:  @objc 함수모음

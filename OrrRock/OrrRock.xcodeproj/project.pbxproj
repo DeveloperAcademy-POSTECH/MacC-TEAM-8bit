@@ -23,6 +23,7 @@
 		342508AF29002F31000653D9 /* HomeCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508AE29002F31000653D9 /* HomeCollectionViewHeaderCell.swift */; };
 		342C456E290125260037D9E7 /* HomeTableViewListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C456D290125260037D9E7 /* HomeTableViewListCell.swift */; };
 		342C457029018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C456F29018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift */; };
+		34793F9F29251E4B00B74110 /* BetterSegmentedControl in Frameworks */ = {isa = PBXBuildFile; productRef = 34793F9E29251E4B00B74110 /* BetterSegmentedControl */; };
 		34E76F462924D33E00EBB92D /* HomeTableViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E76F452924D33E00EBB92D /* HomeTableViewFooter.swift */; };
 		34EC54582924C93B00EE558E /* HomeTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EC54572924C93B00EE558E /* HomeTableViewHeader.swift */; };
 		3A15AC7729071DD90058512F /* OrderOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC7629071DD90058512F /* OrderOption.swift */; };
@@ -155,6 +156,7 @@
 			files = (
 				707B2CAE28FFF7090062C958 /* NVActivityIndicatorView in Frameworks */,
 				3AA4D43728FEBE94006C718A /* SnapKit in Frameworks */,
+				34793F9F29251E4B00B74110 /* BetterSegmentedControl in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +203,13 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		34793F9D29251E4B00B74110 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		34B011412900158F0043951A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +247,7 @@
 			children = (
 				3AA4D41D28FEBADE006C718A /* OrrRock */,
 				3AA4D41C28FEBADE006C718A /* Products */,
+				34793F9D29251E4B00B74110 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -406,6 +416,7 @@
 			packageProductDependencies = (
 				3AA4D43628FEBE94006C718A /* SnapKit */,
 				707B2CAD28FFF7090062C958 /* NVActivityIndicatorView */,
+				34793F9E29251E4B00B74110 /* BetterSegmentedControl */,
 			);
 			productName = OrrRock;
 			productReference = 3AA4D41B28FEBADE006C718A /* OrrRock.app */;
@@ -438,6 +449,7 @@
 			packageReferences = (
 				3AA4D43528FEBE94006C718A /* XCRemoteSwiftPackageReference "SnapKit" */,
 				707B2CAC28FFF7090062C958 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
+				34E76F4729251E1100EBB92D /* XCRemoteSwiftPackageReference "BetterSegmentedControl" */,
 			);
 			productRefGroup = 3AA4D41C28FEBADE006C718A /* Products */;
 			projectDirPath = "";
@@ -756,6 +768,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		34E76F4729251E1100EBB92D /* XCRemoteSwiftPackageReference "BetterSegmentedControl" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gmarm/BetterSegmentedControl.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		3AA4D43528FEBE94006C718A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -775,6 +795,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		34793F9E29251E4B00B74110 /* BetterSegmentedControl */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34E76F4729251E1100EBB92D /* XCRemoteSwiftPackageReference "BetterSegmentedControl" */;
+			productName = BetterSegmentedControl;
+		};
 		3AA4D43628FEBE94006C718A /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3AA4D43528FEBE94006C718A /* XCRemoteSwiftPackageReference "SnapKit" */;
