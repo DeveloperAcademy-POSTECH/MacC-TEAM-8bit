@@ -54,6 +54,8 @@
 		70A8DF05291403EA0061E36B /* GymSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8DF04291403EA0061E36B /* GymSettingModel.swift */; };
 		70A8DF08291966E20061E36B /* SwipeableCardVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8DF07291966E20061E36B /* SwipeableCardVideoModel.swift */; };
 		70A8DF0A291A863F0061E36B /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8DF09291A863F0061E36B /* UIView+.swift */; };
+		70DE795A29250F480009AD43 /* SwipeOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE795929250F480009AD43 /* SwipeOnboardingViewController.swift */; };
+		70DE795C292517330009AD43 /* SwipeOnboardingFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE795B292517330009AD43 /* SwipeOnboardingFirstViewController.swift */; };
 		70E8E7542923865400793F91 /* OnBoardigSuperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E8E7532923865400793F91 /* OnBoardigSuperViewController.swift */; };
 		78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */; };
 		78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0354F290132D300FF1913 /* VideoCollectionViewCustomCell.swift */; };
@@ -121,6 +123,8 @@
 		70A8DF04291403EA0061E36B /* GymSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymSettingModel.swift; sourceTree = "<group>"; };
 		70A8DF07291966E20061E36B /* SwipeableCardVideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardVideoModel.swift; sourceTree = "<group>"; };
 		70A8DF09291A863F0061E36B /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		70DE795929250F480009AD43 /* SwipeOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnboardingViewController.swift; sourceTree = "<group>"; };
+		70DE795B292517330009AD43 /* SwipeOnboardingFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnboardingFirstViewController.swift; sourceTree = "<group>"; };
 		70E8E7532923865400793F91 /* OnBoardigSuperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardigSuperViewController.swift; sourceTree = "<group>"; };
 		78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewController.swift; sourceTree = "<group>"; };
 		78A0354F290132D300FF1913 /* VideoCollectionViewCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCustomCell.swift; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 		3AA4D41D28FEBADE006C718A /* OrrRock */ = {
 			isa = PBXGroup;
 			children = (
+				703145E629250E3E007A78F1 /* SwipeOnboarding */,
 				3AEB3D65291C080400A989FF /* Models */,
 				709A8C69290481F000CEA6F4 /* Utils */,
 				34B011412900158F0043951A /* Extensions */,
@@ -344,6 +349,15 @@
 				3AEB3D5B291BFEE000A989FF /* Enums */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		703145E629250E3E007A78F1 /* SwipeOnboarding */ = {
+			isa = PBXGroup;
+			children = (
+				70DE795929250F480009AD43 /* SwipeOnboardingViewController.swift */,
+				70DE795B292517330009AD43 /* SwipeOnboardingFirstViewController.swift */,
+			);
+			path = SwipeOnboarding;
 			sourceTree = "<group>";
 		};
 		709A8C69290481F000CEA6F4 /* Utils */ = {
@@ -474,9 +488,11 @@
 				3A15AC892907B1160058512F /* VideoInformation+CoreDataProperties.swift in Sources */,
 				70A8DF05291403EA0061E36B /* GymSettingModel.swift in Sources */,
 				70E8E7542923865400793F91 /* OnBoardigSuperViewController.swift in Sources */,
+				70DE795C292517330009AD43 /* SwipeOnboardingFirstViewController.swift in Sources */,
 				3A15AC7729071DD90058512F /* OrderOption.swift in Sources */,
 				0A0B41072907C59600057FA7 /* LevelAndPFSettingViewController.swift in Sources */,
 				3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */,
+				70DE795A29250F480009AD43 /* SwipeOnboardingViewController.swift in Sources */,
 				FB32280F29046B4500276A7D /* VideoDetailViewController.swift in Sources */,
 				3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */,
 				FB32281329046CDE00276A7D /* VideoPlayView.swift in Sources */,

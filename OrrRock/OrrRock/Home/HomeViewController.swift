@@ -299,11 +299,18 @@ final class HomeViewController : UIViewController {
     @objc func switchViewStyle() {
         isCardView.toggle()
     }
+    //MARK: Ruyha Test
+//    @objc func videoButtonPressed(sender: UIButton){
+//        let nextVC = DateSettingViewController()
+//        self.navigationController?.pushViewController(nextVC, animated: true)
+//    }
     
     @objc func videoButtonPressed(sender: UIButton){
-        let nextVC = DateSettingViewController()
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        let nextVC = SwipeOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+        nextVC.modalPresentationStyle = .fullScreen
+        self.present(nextVC, animated: true, completion: nil)
     }
+    
 }
 
 // QuickAction을 통한 정렬 및 필터링 시 함수를 아래에 구현
