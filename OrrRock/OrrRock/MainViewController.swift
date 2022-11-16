@@ -19,9 +19,9 @@ class MainViewController: UITabBarController {
         let routeFindingController = UIViewController()
         
         // Tab Bar의 아이템 생성
-        let myPageItem = UITabBarItem(title: "내 활동", image: UIImage(systemName: "house"), tag: 0)
-        let homeItem = UITabBarItem(title: "기록", image: UIImage(systemName: "house"), tag: 1)
-        let routeFindingItem = UITabBarItem(title: "루트파인딩", image: UIImage(systemName: "house"), tag: 2)
+        let myPageItem = UITabBarItem(title: "내 활동", image: UIImage(named: "tabbar mypage icon"), tag: 0)
+        let homeItem = UITabBarItem(title: "기록", image: UIImage(named: "tabbar home icon"), tag: 1)
+        let routeFindingItem = UITabBarItem(title: "루트파인딩", image: UIImage(named: "tabbar routefinding icon"), tag: 2)
         
         // 각 뷰 컨트롤러에 아이템 할당
         myPageViewController.tabBarItem = myPageItem
