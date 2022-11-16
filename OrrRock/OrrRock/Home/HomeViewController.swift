@@ -85,7 +85,7 @@ final class HomeViewController : UIViewController {
                 let actions = [
                     UIMenu(title: "", options: .displayInline, children: [
                         // 날짜 기준으로 정렬
-                        UIAction(title: "날짜",
+                        UIAction(title: "날짜순",
                                  image: self!.sortOption == .gymVisitDate ? ( self!.orderOption == .ascend ? UIImage(systemName: "chevron.down") : UIImage(systemName: "chevron.up")) : nil,
                                  state: self!.sortOption == .gymVisitDate ? .on : .off) { [unowned self] _ in
                                      if self!.sortOption == .gymVisitDate {
@@ -98,7 +98,7 @@ final class HomeViewController : UIViewController {
                                      }
                                  },
                         // 암장 기준으로 정렬하기
-                        UIAction(title: "클라이밍 장",
+                        UIAction(title: "클라이밍장순",
                                  image: self!.sortOption == .gymVisitDate ? nil : ( self!.orderOption == .ascend ? UIImage(systemName: "chevron.up") : UIImage(systemName: "chevron.down")),
                                  state: self!.sortOption == .gymVisitDate ? .off : .on) { [unowned self] _ in
                                      
@@ -114,26 +114,22 @@ final class HomeViewController : UIViewController {
                     ]),
                     UIMenu(title: "", options: .displayInline, children: [
                         // 모든 비디오 보여주기
-                        UIAction(title: "모든 비디오",
-                                 image: UIImage(systemName: "photo.on.rectangle.angled"),
+                        UIAction(title: "모든 기록",
                                  state: self!.filterOption == .all ? .on : .off) { [unowned self] _ in
                                      self!.filterOption = .all as FilterOption
                                  },
                         // 즐겨찾는 항목만 보여주기
-                        UIAction(title: "즐겨찾는 항목",
-                                 image: UIImage(systemName: "heart"),
+                        UIAction(title: "즐겨찾는 기록",
                                  state: self!.filterOption == .favorite ? .on : .off) { [unowned self] _ in
                                      self!.filterOption = .favorite as FilterOption
                                  },
                         // 성공 영상만 보여주기
-                        UIAction(title: "성공",
-                                 image: UIImage(systemName: "circle"),
+                        UIAction(title: "성공한 기록",
                                  state: self!.filterOption == .success ? .on : .off) { [unowned self] _ in
                                      self!.filterOption = .success as FilterOption
                                  },
                         // 실패 영상만 보여주기
-                        UIAction(title: "실패",
-                                 image: UIImage(systemName: "multiply"),
+                        UIAction(title: "실패한 기록",
                                  state: self!.filterOption == .failure ? .on : .off) { [unowned self] _ in
                                      self!.filterOption = .failure as FilterOption
                                  }
@@ -257,12 +253,14 @@ final class HomeViewController : UIViewController {
         self.view.addSubview(uploadButton)
         uploadButton.snp.makeConstraints {
             $0.centerY.equalTo(titleLabel.snp.centerY)
+            $0.width.height.equalTo(30)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-CGFloat(OrrPadding.padding3.rawValue))
         }
         
         self.view.addSubview(quickActionButton)
         quickActionButton.snp.makeConstraints {
             $0.centerY.equalTo(titleLabel.snp.centerY)
+            $0.width.height.equalTo(30)
             $0.trailing.equalTo(uploadButton.snp.leading).offset(-CGFloat(OrrPadding.padding2.rawValue))
         }
         
@@ -319,5 +317,16 @@ extension HomeViewController {
         homeTableView.alpha = flattenSortedVideoInfoData.isEmpty ? 0 : 1
         
         self.homeTableView.reloadData()
+        
+        switch filterOption {
+        case .all:
+            titleLabel.text = "모든 기록"
+        case .favorite:
+            titleLabel.text = "즐겨찾는 기록"
+        case .success:
+            titleLabel.text = "성공한 기록"
+        case .failure:
+            titleLabel.text = "실패한 기록"
+        }
     }
 }
