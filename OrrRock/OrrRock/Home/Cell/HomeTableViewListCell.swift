@@ -57,7 +57,7 @@ final class HomeTableViewListCell: UITableViewCell {
     
     private lazy var feedbackPlaceholder: UILabel = {
         let view = UILabel()
-        view.text = "작성된 피드백이 없습니다.\n"
+        view.text = "작성된 피드백이 없습니다."
         view.font = UIFont.systemFont(ofSize: 15)
         view.textColor = .orrGray3
         view.numberOfLines = 2
