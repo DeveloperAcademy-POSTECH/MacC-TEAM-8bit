@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "스와이프온보딩4 3.png",
+      "filename" : "SwipeOnboardingImage4.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "스와이프온보딩4 4.png",
+      "filename" : "SwipeOnboardingImage4 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "스와이프온보딩4 5.png",
+      "filename" : "SwipeOnboardingImage4 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
