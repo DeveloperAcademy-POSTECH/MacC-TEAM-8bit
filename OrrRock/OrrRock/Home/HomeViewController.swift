@@ -21,26 +21,26 @@ final class HomeViewController : UIViewController {
     // Quick Action 기능을 위한 조건 변수와 함수 호출 설정
     var isCardView: Bool = true {
         didSet {
-            collectionView.reloadData()
-            collectionView.collectionViewLayout.invalidateLayout()
+            homeTableView.reloadData()
+//            homeTableView.collectionViewLayout.invalidateLayout()
             quickActionButton.setImage(UIImage(systemName: isCardView ? "rectangle.stack" : "list.bullet"), for: .normal)
         }
     }
     
     var sortOption: SortOption = .gymVisitDate {
         didSet {
-            reloadCollectionViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
+            reloadTableViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
         }
     }
     
     var orderOption: OrderOption = .ascend {
         didSet {
-            reloadCollectionViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
+            reloadTableViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
         }
     }
     var filterOption: FilterOption = .all {
         didSet {
-            reloadCollectionViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
+            reloadTableViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
         }
     }
     
@@ -179,41 +179,18 @@ final class HomeViewController : UIViewController {
         return view
     }()
     
-    private lazy var collectionView: UICollectionView = {
-        let flow = UICollectionViewFlowLayout()
-        flow.minimumInteritemSpacing = 1
-        flow.minimumLineSpacing = 1
-        
-        var view = UICollectionView(frame: CGRect.zero, collectionViewLayout: flow)
-        
-        // CollectionView에서 사용할 Cell 등록
-        view.register(HomeCollectionViewCardCell.classForCoder(),
-                      forCellWithReuseIdentifier: HomeCollectionViewCardCell.identifier)
-        view.register(HomeCollectionViewListCell.classForCoder(),
-                      forCellWithReuseIdentifier: HomeCollectionViewListCell.identifier)
-        view.register(HomeCollectionViewHeaderCell.self,
-                      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                      withReuseIdentifier: HomeCollectionViewHeaderCell.identifier)
-        view.register(HomeCollectionViewFooterCell.self,
-                      forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
-                      withReuseIdentifier: HomeCollectionViewFooterCell.identifier)
-        
-        view.showsVerticalScrollIndicator = false
-        view.backgroundColor = UIColor.clear
-        
-        return view
-    }()
-    
     lazy var homeTableView: UITableView = {
         var view = UITableView(frame: CGRect.zero)
         
-        
+        view.register(HomeTableViewCardCell.classForCoder(), forCellReuseIdentifier: HomeTableViewCardCell.identifier)
+        view.register(HomeTableViewListCell.classForCoder(), forCellReuseIdentifier: HomeTableViewListCell.identifier)
         
         view.showsVerticalScrollIndicator = false
         view.backgroundColor = UIColor.clear
+        view.separatorStyle = .none
         
         return view
-    }
+    }()
     
     private lazy var placeholderView: UILabel = {
         let view = UILabel()
@@ -253,7 +230,7 @@ final class HomeViewController : UIViewController {
         super.viewWillAppear(animated)
         
         self.navigationController!.navigationBar.backgroundColor = .clear
-        reloadCollectionViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
+        reloadTableViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
     }
     
     // MARK: Layout Function
@@ -266,8 +243,8 @@ final class HomeViewController : UIViewController {
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
         }
         
-        self.view.addSubview(collectionView)
-        collectionView.snp.makeConstraints {
+        self.view.addSubview(homeTableView)
+        homeTableView.snp.makeConstraints {
             $0.top.equalTo(view.snp.top)
             $0.bottom.equalTo(toolbarView.snp.top)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(OrrPadding.padding3.rawValue)
@@ -292,8 +269,8 @@ final class HomeViewController : UIViewController {
     }
     
     private func setUICollectionViewDelegate() {
-        collectionView.dataSource = self
-        collectionView.delegate = self
+        homeTableView.dataSource = self
+        homeTableView.delegate = self
     }
     
     private func setUpNavigationBar() {
@@ -320,14 +297,14 @@ final class HomeViewController : UIViewController {
 // QuickAction을 통한 정렬 및 필터링 시 함수를 아래에 구현
 extension HomeViewController {
     // 정렬 기준 함수
-    private func reloadCollectionViewWithOptions(filterOption: FilterOption, sortOption: SortOption, orderOption: OrderOption) {
+    private func reloadTableViewWithOptions(filterOption: FilterOption, sortOption: SortOption, orderOption: OrderOption) {
         
         self.sortedVideoInfoData = DataManager.shared.sortRepository(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
         self.flattenSortedVideoInfoData = sortedVideoInfoData.flatMap { $0 }
         
         placeholderView.alpha = flattenSortedVideoInfoData.isEmpty ? 1 : 0
-        collectionView.alpha = flattenSortedVideoInfoData.isEmpty ? 0 : 1
+        homeTableView.alpha = flattenSortedVideoInfoData.isEmpty ? 0 : 1
 
-        self.collectionView.reloadData()
+        self.homeTableView.reloadData()
     }
 }

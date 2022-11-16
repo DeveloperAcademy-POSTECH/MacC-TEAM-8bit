@@ -77,10 +77,10 @@ final class HomeTableViewListCell: UITableViewCell {
         setUpLayout()
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
-        setUpLayout()
-    }
+//    override init(frame: CGRect) {
+//        super.init(frame: .zero)
+//        setUpLayout()
+//    }
     
     // MARK: Layout Function
     func setUpLayout() {

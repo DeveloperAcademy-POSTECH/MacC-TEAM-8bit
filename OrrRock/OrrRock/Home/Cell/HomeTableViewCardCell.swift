@@ -23,6 +23,7 @@ final class HomeTableViewCardCell: UITableViewCell {
     private lazy var cardView: UIView = {
         let view = UIView()
         view.backgroundColor = .orrWhite
+//        view.backgroundColor = .systemBlue
         view.layer.cornerRadius = 10
         return view
     }()
@@ -94,14 +95,16 @@ final class HomeTableViewCardCell: UITableViewCell {
     }()
     
     // MARK: View Lifecycle Function
+
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setUpLayout()
-        setCollectionViewDelegate()
+        fatalError("init(coder:) has not been implemented")
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.backgroundColor = .orrGray1
+        
         setUpLayout()
         setCollectionViewDelegate()
     }
@@ -110,7 +113,8 @@ final class HomeTableViewCardCell: UITableViewCell {
     func setUpLayout() {
         contentView.addSubview(cardView)
         cardView.snp.makeConstraints {
-            $0.edges.equalTo(contentView)
+            $0.leading.trailing.top.equalTo(contentView)
+            $0.bottom.equalTo(contentView).inset(OrrPadding.padding3.rawValue)
         }
         
         cardView.addSubview(thumbnailCollectionView)
