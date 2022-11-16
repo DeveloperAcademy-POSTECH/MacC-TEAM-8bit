@@ -54,11 +54,10 @@ extension HomeViewController: UITableViewDataSource {
             // 목록형
             let cell = homeTableView.dequeueReusableCell(withIdentifier: HomeTableViewListCell.identifier, for: indexPath) as! HomeTableViewListCell
             
-            cell.setUpData(visitedDate: sortedVideoInfoData[indexPath.section][indexPath.row].gymVisitDate.timeToString(),
-                           visitedGymName: sortedVideoInfoData[indexPath.section][indexPath.row].gymName,
-                           level: "V\(sortedVideoInfoData[indexPath.section][indexPath.row].problemLevel)",
+            cell.setUpData(level: "V\(sortedVideoInfoData[indexPath.section][indexPath.row].problemLevel)",
                            PF: sortedVideoInfoData[indexPath.section][indexPath.row].isSucceeded ? "성공" : "실패",
-                           thumbnail: sortedVideoInfoData[indexPath.section][indexPath.row].videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: 825, height: 825))!)
+                           thumbnail: sortedVideoInfoData[indexPath.section][indexPath.row].videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: 825, height: 825)),
+                           feedback: sortedVideoInfoData[indexPath.section][indexPath.row].feedback ?? "")
             
             return cell
         }

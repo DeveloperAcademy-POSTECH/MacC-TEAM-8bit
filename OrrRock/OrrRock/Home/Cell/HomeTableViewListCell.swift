@@ -48,10 +48,20 @@ final class HomeTableViewListCell: UITableViewCell {
     
     private lazy var feedbackLabel: UILabel = {
         let view = UILabel()
-        view.text = "잠든 너의 맨발을 가만히 보다 왠지 모르게 벅차올라 맺히는 마음 방 안 가득 달큰한 호흡"
+        view.text = ""
         view.font = UIFont.systemFont(ofSize: 15)
         view.textColor = .orrGray4
         view.numberOfLines = 2
+        return view
+    }()
+    
+    private lazy var feedbackPlaceholder: UILabel = {
+        let view = UILabel()
+        view.text = "작성된 피드백이 없습니다.\n"
+        view.font = UIFont.systemFont(ofSize: 15)
+        view.textColor = .orrGray3
+        view.numberOfLines = 2
+        view.textAlignment = .left
         return view
     }()
     
@@ -96,11 +106,27 @@ final class HomeTableViewListCell: UITableViewCell {
             $0.top.equalTo(levelAndPFLabel.snp.bottom).offset(CGFloat(OrrPadding.padding1.rawValue))
             $0.bottom.equalTo(cellView.snp.bottom)
         }
+        
+        cellView.addSubview(feedbackPlaceholder)
+        feedbackPlaceholder.snp.makeConstraints {
+            $0.leading.equalTo(thumbnailView.snp.trailing).offset(CGFloat(OrrPadding.padding3.rawValue))
+            $0.trailing.equalTo(cellView.snp.trailing)
+            $0.top.equalTo(levelAndPFLabel.snp.bottom).offset(CGFloat(OrrPadding.padding1.rawValue))
+            $0.bottom.equalTo(cellView.snp.bottom)
+        }
     }
     
-    func setUpData(visitedDate: String, visitedGymName: String, level: String, PF: String, thumbnail: UIImage) {
+    func setUpData(level: String, PF: String, thumbnail: UIImage?, feedback: String) {
         levelAndPFLabel.text = "\(level == "V-1" ? "V?" : level) \(PF)"
         PFLabel.text = PF
         thumbnailView.image = thumbnail
+        
+        if !feedback.isEmpty {
+            feedbackPlaceholder.isHidden = true
+            feedbackLabel.text = feedback
+        } else {
+            feedbackPlaceholder.isHidden = false
+            feedbackLabel.text = ""
+        }
     }
 }
