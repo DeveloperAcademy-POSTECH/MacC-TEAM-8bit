@@ -8,14 +8,17 @@
 import UIKit
 
 extension HomeViewController: UITableViewDataSource {
+    // TableView Section 개수 지정
     func numberOfSections(in: UITableView) -> Int {
         return isCardView ? 1 : sortedVideoInfoData.count
     }
     
+    // TableView Section 내 셀의 개수 지정
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return isCardView ? sortedVideoInfoData.count : sortedVideoInfoData[section].count
     }
     
+    // TableView Cell의 내용 지정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if isCardView {
             // 앨범형
@@ -61,6 +64,7 @@ extension HomeViewController: UITableViewDataSource {
         }
     }
     
+    // TableView Header 지정
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeTableViewHeader.identifier) as! HomeTableViewHeader
         
@@ -72,11 +76,13 @@ extension HomeViewController: UITableViewDataSource {
         return header
     }
     
+    // TableView Header의 높이 지정
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-
+        
         return isCardView ? 0 : 60
     }
     
+    // TableView Footer 지정
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeTableViewFooter.identifier) as! HomeTableViewFooter
         footer.setUpLayout()
@@ -84,13 +90,14 @@ extension HomeViewController: UITableViewDataSource {
         return footer
     }
     
+    // TableView Footer의 높이 지정
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return isCardView ? 0 : CGFloat(OrrPadding.padding3.rawValue)
     }
 }
 
 extension HomeViewController: UITableViewDelegate{
-    
+    // TableView Cell 선택 시 화면 전환 지정
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !isCardView {
             let vc = VideoDetailViewController()
@@ -111,6 +118,7 @@ extension HomeViewController: UITableViewDelegate{
         }
     }
     
+    // TableView Cell의 높이 지정
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let width = view.bounds.width - 2 * CGFloat(OrrPadding.padding3.rawValue)
         let height = isCardView ? (sortedVideoInfoData[indexPath.row].count > 5 ? width / 1.33 : width / 1.80) + CGFloat(OrrPadding.padding3.rawValue) : 96
@@ -118,60 +126,3 @@ extension HomeViewController: UITableViewDelegate{
         return CGFloat(height)
     }
 }
-
-//extension HomeViewController: UICollectionViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        if kind == UICollectionView.elementKindSectionHeader {
-//            let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-//                                                                             withReuseIdentifier: HomeCollectionViewHeaderCell.identifier,
-//                                                                             for: indexPath) as! HomeCollectionViewHeaderCell
-//
-//            var successCount = 0
-//            flattenSortedVideoInfoData.forEach { video in
-//                successCount += video.isSucceeded ? 1 : 0
-//            }
-//
-//            headerCell.isCardView = self.isCardView
-//            headerCell.setUpData(videoCount: flattenSortedVideoInfoData.count, successCount: successCount)
-//
-//            return headerCell
-//
-//        } else if kind == UICollectionView.elementKindSectionFooter {
-//            let footerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-//                                                                             withReuseIdentifier: HomeCollectionViewFooterCell.identifier,
-//                                                                             for: indexPath) as! HomeCollectionViewFooterCell
-//            footerCell.isCardView = self.isCardView
-//            return footerCell
-//
-//        } else {
-//            return UICollectionReusableView()
-//        }
-//    }
-//}
-//
-//extension HomeViewController: UICollectionViewDelegateFlowLayout {
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        // 카드 간 간격 16 지정 / 리스트 셀 간 간격 0 지정
-//        return isCardView ? CGFloat(OrrPadding.padding3.rawValue) : 0
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        // 앨범형, 목록형의 Header Cell의 높이를 별도로 지정
-//        return CGSize(width: collectionView.frame.width, height: isCardView ? 72 : 72 + CGFloat(OrrPadding.padding7.rawValue - OrrPadding.padding3.rawValue))
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-//        // 앨범형, 목록형의 Footer Cell의 높이를 별도로 지정
-//        return CGSize(width: collectionView.frame.width, height: CGFloat(OrrPadding.padding7.rawValue))
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        let width = view.bounds.width - 2 * CGFloat(OrrPadding.padding3.rawValue)
-//        let height = isCardView ? (sortedVideoInfoData[indexPath.row].count > 5 ? width / 1.33 : width / 1.80) : 70
-//
-//
-//        return CGSize(width: Double(width), height: Double(height))
-//    }
-//}

@@ -149,31 +149,6 @@ final class HomeViewController : UIViewController {
         return button
     }()
     
-    private lazy var toolbarView: UIToolbar = {
-        let view = UIToolbar()
-        
-        var items: [UIBarButtonItem] = []
-        
-        // 이번 스프린트에서는 기능이 없음
-        //        let myPageButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.rectangle"), style: .plain, target: self, action: nil)
-        
-        let addVideoButton = UIBarButtonItem(image: UIImage(systemName: "camera.fill"), style: .plain, target: self, action: #selector(videoButtonPressed))
-        
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: HomeViewController.self, action: nil)
-        
-        //        items.append(myPageButton)
-        items.append(flexibleSpace)
-        items.append(addVideoButton)
-        
-        items.forEach { (item) in
-            item.tintColor = .orrUPBlue
-        }
-        
-        view.setItems(items, animated: true)
-        
-        return view
-    }()
-    
     lazy var homeTableView: UITableView = {
         var view = UITableView(frame: CGRect.zero, style: .grouped)
         
@@ -207,10 +182,6 @@ final class HomeViewController : UIViewController {
     
     // 세그먼트 컨트롤
     private lazy var tableViewSegmentControl: BetterSegmentedControl = {
-        //        let segmentItems = [UIImage(systemName: "square.split.2x2.fill"),
-        //                            UIImage(systemName: "list.bullet")]
-        //        let view = UISegmentedControl(items: segmentItems as [Any])
-        //        view.selectedSegmentIndex = 0
         let view = BetterSegmentedControl(
             frame: CGRect(x: 0.0, y: 380.0, width: 160, height: 30.0),
             segments: IconSegment.segments(withIcons: [UIImage(systemName: "square.split.2x2.fill")!, UIImage(systemName:  "list.bullet")!],
@@ -272,7 +243,6 @@ final class HomeViewController : UIViewController {
         self.view.addSubview(headerView)
         headerView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-//            $0.bottom.equalTo(view.forLastBaselineLayout.snp_topMargin).offset(16)
             $0.height.equalTo(160)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)

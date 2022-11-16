@@ -20,7 +20,7 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
     }()
     
     private lazy var secondaryTitleLabel: UILabel = {
-       let view = UILabel()
+        let view = UILabel()
         view.font = .systemFont(ofSize: 15, weight: .regular)
         view.textColor = .orrGray4
         return view
@@ -37,7 +37,6 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
         super.awakeFromNib()
     }
     
-//
     func setUpData(primaryTitle: String, secondaryTitle: String) {
         primaryTitleLabel.text = primaryTitle
         secondaryTitleLabel.text = secondaryTitle
@@ -67,7 +66,5 @@ extension HomeTableViewHeader {
             $0.bottom.equalTo(secondaryTitleLabel.snp.top).offset(-CGFloat(OrrPadding.padding1.rawValue))
             $0.leading.equalTo(contentView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
         }
-        
-       
     }
 }

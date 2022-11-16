@@ -23,7 +23,6 @@ final class HomeTableViewCardCell: UITableViewCell {
     private lazy var cardView: UIView = {
         let view = UIView()
         view.backgroundColor = .orrWhite
-//        view.backgroundColor = .systemBlue
         view.layer.cornerRadius = 10
         return view
     }()
@@ -35,26 +34,11 @@ final class HomeTableViewCardCell: UITableViewCell {
         return view
     }()
     
-    private lazy var locationIconImageView: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(systemName: "location.square.fill")
-        view.tintColor = .orrGray3
-        view.contentMode = .scaleAspectFit
-        return view
-    }()
-    
     private lazy var gymLabel: UILabel = {
         let view = UILabel()
         view.text = "클라이밍장 정보"
         view.font = UIFont.systemFont(ofSize: 15)
         view.textColor = .orrGray4
-        return view
-    }()
-    
-    private lazy var gymStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [locationIconImageView, gymLabel])
-        view.spacing = 0
-        view.axis = .horizontal
         return view
     }()
     
@@ -68,13 +52,6 @@ final class HomeTableViewCardCell: UITableViewCell {
         view.register(HomeCardCollectionViewThumbnailCell.classForCoder(), forCellWithReuseIdentifier: "homeCardCollectionViewThumbnailCell")
         view.isUserInteractionEnabled = false
         
-        return view
-    }()
-    
-    private lazy var countPFLabel: UILabel = {
-        let view = UILabel()
-        view.text = "N번의 성공, N번의 실패"
-        view.font = UIFont.systemFont(ofSize: 12)
         return view
     }()
     
@@ -95,7 +72,6 @@ final class HomeTableViewCardCell: UITableViewCell {
     }()
     
     // MARK: View Lifecycle Function
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -137,12 +113,6 @@ final class HomeTableViewCardCell: UITableViewCell {
             $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
         }
         
-//        cardView.addSubview(countPFLabel)
-//        countPFLabel.snp.makeConstraints {
-//            $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(CGFloat(OrrPadding.padding2.rawValue))
-//            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
-//        }
-        
         cardView.addSubview(countTotalVideoLabel)
         countTotalVideoLabel.snp.makeConstraints {
             $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(CGFloat(OrrPadding.padding3.rawValue))
@@ -166,14 +136,6 @@ final class HomeTableViewCardCell: UITableViewCell {
         }
     }
     
-    func setLocationIconView(_ sortOption: SortOption) {
-        locationIconImageView.snp.removeConstraints()
-        locationIconImageView.snp.makeConstraints {
-            $0.width.equalTo(sortOption == .gymName ? 0 : 20)
-            $0.height.equalTo(18)
-        }
-    }
-    
     func setCollectionViewDelegate() {
         thumbnailCollectionView.delegate = self
         thumbnailCollectionView.dataSource = self
@@ -183,10 +145,8 @@ final class HomeTableViewCardCell: UITableViewCell {
     func setUpData(primaryTitle: String, secondaryTitle: String, PFCountDescription: String, videoCountDescription: String, thumbnails: [UIImage], sortOption: SortOption) {
         dateLabel.text = primaryTitle
         gymLabel.text = secondaryTitle
-        countPFLabel.text = PFCountDescription
         countTotalVideoLabel.text = videoCountDescription
         videoThumbnails = thumbnails
-        setLocationIconView(sortOption)
         
         self.thumbnailCollectionView.reloadData()
         setCollectionViewLayout()

@@ -21,7 +21,6 @@ final class HomeTableViewListCell: UITableViewCell {
         view.layer.masksToBounds = true
         view.backgroundColor = .orrGray3
         view.contentMode = .scaleAspectFill
-
         return view
     }()
     
@@ -97,13 +96,6 @@ final class HomeTableViewListCell: UITableViewCell {
             $0.top.equalTo(levelAndPFLabel.snp.bottom).offset(CGFloat(OrrPadding.padding1.rawValue))
             $0.bottom.equalTo(cellView.snp.bottom)
         }
-//        cellView.addSubview(dividerView)
-//        dividerView.snp.makeConstraints {
-//            $0.bottom.equalTo(cellView.snp.bottom).offset(-1)
-//            $0.leading.equalTo(thumbnailView.snp.trailing).offset(CGFloat(OrrPadding.padding3.rawValue))
-//            $0.trailing.equalTo(cellView.snp.trailing)
-//            $0.height.equalTo(1)
-//        }
     }
     
     func setUpData(visitedDate: String, visitedGymName: String, level: String, PF: String, thumbnail: UIImage) {
