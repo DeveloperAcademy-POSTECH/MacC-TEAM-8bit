@@ -45,11 +45,11 @@ final class HomeViewController : UIViewController {
     }
     
     private let headerView: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 190))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 160))
         
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [UIColor.orrGray1!.cgColor, UIColor.orrGray1!.withAlphaComponent(0).cgColor]
-        gradientLayer.locations = [0.9, 1.0]
+        gradientLayer.locations = [0.75, 0.9]
         gradientLayer.frame = view.bounds
         view.layer.addSublayer(gradientLayer)
         
@@ -184,8 +184,10 @@ final class HomeViewController : UIViewController {
         
         view.showsVerticalScrollIndicator = false
         view.backgroundColor = UIColor.clear
-        view.separatorStyle = .singleLine
-        view.sectionHeaderTopPadding = CGFloat(OrrPadding.padding3.rawValue)
+        view.separatorStyle = .none
+        
+        // 앨범형, 목록형 셀 간격을 맞추기 위한 offset을 적용
+        view.sectionHeaderTopPadding = CGFloat(OrrPadding.padding3.rawValue - 4)
         
         return view
     }()
@@ -261,7 +263,7 @@ final class HomeViewController : UIViewController {
         
         self.view.addSubview(homeTableView)
         homeTableView.snp.makeConstraints {
-            $0.top.equalTo(view.snp.top)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(115)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(OrrPadding.padding3.rawValue)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(OrrPadding.padding3.rawValue)
@@ -269,8 +271,9 @@ final class HomeViewController : UIViewController {
         
         self.view.addSubview(headerView)
         headerView.snp.makeConstraints {
-            $0.top.equalTo(view.snp.top)
-            $0.bottom.equalTo(view.forLastBaselineLayout.snp_topMargin).offset(16)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+//            $0.bottom.equalTo(view.forLastBaselineLayout.snp_topMargin).offset(16)
+            $0.height.equalTo(160)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
         }

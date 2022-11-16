@@ -46,8 +46,8 @@ final class HomeTableViewCardCell: UITableViewCell {
     private lazy var gymLabel: UILabel = {
         let view = UILabel()
         view.text = "클라이밍장 정보"
-        view.font = UIFont.systemFont(ofSize: 12)
-        view.textColor = .orrGray3
+        view.font = UIFont.systemFont(ofSize: 15)
+        view.textColor = .orrGray4
         return view
     }()
     
@@ -125,15 +125,15 @@ final class HomeTableViewCardCell: UITableViewCell {
             $0.height.equalTo(((UIScreen.main.bounds.width - CGFloat(OrrPadding.padding3.rawValue) * 2) / 5 * 2))
         }
         
-        cardView.addSubview(gymStackView)
-        gymStackView.snp.makeConstraints {
+        cardView.addSubview(gymLabel)
+        gymLabel.snp.makeConstraints {
             $0.bottom.equalTo(thumbnailCollectionView.snp.top).offset(-CGFloat(OrrPadding.padding2.rawValue))
             $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
         }
         
         cardView.addSubview(dateLabel)
         dateLabel.snp.makeConstraints {
-            $0.bottom.equalTo(gymStackView.snp.top).inset(-CGFloat(OrrPadding.padding1.rawValue))
+            $0.bottom.equalTo(gymLabel.snp.top).inset(-CGFloat(OrrPadding.padding1.rawValue))
             $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
         }
         
