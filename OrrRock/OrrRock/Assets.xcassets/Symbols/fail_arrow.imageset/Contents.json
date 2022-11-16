@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "실패화살표 3.png",
+      "filename" : "fail_arrow.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "실패화살표 4.png",
+      "filename" : "fail_arrow 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "실패화살표 5.png",
+      "filename" : "fail_arrow 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

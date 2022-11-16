@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "성공화살표 3.png",
+      "filename" : "success_arrow.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "성공화살표 4.png",
+      "filename" : "success_arrow 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "성공화살표 5.png",
+      "filename" : "success_arrow 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

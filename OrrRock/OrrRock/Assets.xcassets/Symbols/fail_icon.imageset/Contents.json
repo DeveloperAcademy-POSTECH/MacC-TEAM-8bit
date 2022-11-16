@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "실패아이콘 3.png",
+      "filename" : "fail_icon.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "실패아이콘 4.png",
+      "filename" : "fail_icon 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "실패아이콘 5.png",
+      "filename" : "fail_icon 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
