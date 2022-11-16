@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "성공화살표.png",
+      "filename" : "성공화살표 3.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "성공화살표 1.png",
+      "filename" : "성공화살표 4.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "성공화살표 2.png",
+      "filename" : "성공화살표 5.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
