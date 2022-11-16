@@ -22,7 +22,6 @@ final class HomeViewController : UIViewController {
     var isCardView: Bool = true {
         didSet {
             homeTableView.reloadData()
-            quickActionButton.setImage(UIImage(systemName: isCardView ? "rectangle.stack" : "list.bullet"), for: .normal)
             homeTableView.separatorStyle = isCardView ? .none : .singleLine
         }
     }
@@ -44,28 +43,37 @@ final class HomeViewController : UIViewController {
         }
     }
     
-    private lazy var headerView: UIView = {
-        let view = UIView()
+    private let headerView: UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 190))
         
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
-        view.addSubview(visualEffectView)
-        visualEffectView.snp.makeConstraints {
-            $0.edges.equalTo(view.snp.edges)
-        }
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.orrGray1!.cgColor, UIColor.orrGray1!.withAlphaComponent(0).cgColor]
+        gradientLayer.locations = [0.9, 1.0]
+        gradientLayer.frame = view.bounds
+        view.layer.addSublayer(gradientLayer)
         
         return view
     }()
     
-    private lazy var logoView: UIView = {
-        let view = UIImageView(image: UIImage(named: "orrrock_logo"))
-        
+    private lazy var titleLabel: UILabel = {
+        let view = UILabel()
+        view.text = "모든 기록"
+        view.font = .systemFont(ofSize: 22, weight: .bold)
         return view
     }()
+    
+    private let uploadButton: UIButton = {
+        let view = UIButton()
+        view.setImage(UIImage(named: "upload icon"), for: .normal)
+        view.addTarget(self, action: #selector(videoButtonPressed), for: .touchUpInside)
+        return view
+    }()
+    
     
     private lazy var quickActionButton: UIButton = {
         let button = UIButton(primaryAction: UIAction(title: "", handler: { _ in}))
-        button.setImage(UIImage(systemName: isCardView ? "rectangle.stack" : "list.bullet"), for: .normal)
-        button.tintColor = .orrUPBlue
+        button.setImage(UIImage(systemName: "line.3.horizontal.decrease.circle.fill"), for: .normal)
+        button.tintColor = .orrGray3
         
         // QuickAction은 UIMenu() 라는 컴포넌트로 구현할 수 있음
         // 버튼의 menu에 UIMenu로 감싼 UIAction들을 담아주기
@@ -160,13 +168,13 @@ final class HomeViewController : UIViewController {
         var items: [UIBarButtonItem] = []
         
         // 이번 스프린트에서는 기능이 없음
-//        let myPageButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.rectangle"), style: .plain, target: self, action: nil)
+        //        let myPageButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.rectangle"), style: .plain, target: self, action: nil)
         
         let addVideoButton = UIBarButtonItem(image: UIImage(systemName: "camera.fill"), style: .plain, target: self, action: #selector(videoButtonPressed))
         
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: HomeViewController.self, action: nil)
         
-//        items.append(myPageButton)
+        //        items.append(myPageButton)
         items.append(flexibleSpace)
         items.append(addVideoButton)
         
@@ -186,7 +194,7 @@ final class HomeViewController : UIViewController {
         view.register(HomeTableViewListCell.classForCoder(), forCellReuseIdentifier: HomeTableViewListCell.identifier)
         view.register(HomeTableViewHeader.classForCoder(), forHeaderFooterViewReuseIdentifier: HomeTableViewHeader.identifier)
         view.register(HomeTableViewFooter.classForCoder(), forHeaderFooterViewReuseIdentifier: HomeTableViewFooter.identifier)
-
+        
         view.showsVerticalScrollIndicator = false
         view.backgroundColor = UIColor.clear
         view.separatorStyle = .singleLine
@@ -195,6 +203,7 @@ final class HomeViewController : UIViewController {
         return view
     }()
     
+    // 영상이 없을 때 띄워주는 placeholder
     private lazy var placeholderView: UILabel = {
         let view = UILabel()
         view.text = "업로드한 비디오가 없습니다.\n비디오를 업로드 해주세요."
@@ -207,6 +216,17 @@ final class HomeViewController : UIViewController {
         return view
     }()
     
+    // 세그먼트 컨트롤
+    private lazy var tableViewSegmentControl: UISegmentedControl = {
+        let segmentItems = [UIImage(systemName: "square.split.2x2.fill"),
+                            UIImage(systemName: "list.bullet")]
+        let view = UISegmentedControl(items: segmentItems as [Any])
+        view.addTarget(self, action: #selector(segmentControl(_:)), for: .valueChanged)
+        view.selectedSegmentIndex = 0
+        
+        return view
+    }()
+    
     // MARK: Components
     private let dateFormatter: DateFormatter = {
         let df = DateFormatter()
@@ -216,14 +236,12 @@ final class HomeViewController : UIViewController {
     
     // MARK: View Lifecycle Function
     override func viewDidLoad() {
-		
+        
         super.viewDidLoad()
         view.backgroundColor = .orrGray1
-
+        
         showOnBoard()
-
         setUpLayout()
-        setUpNavigationBar()
         setUICollectionViewDelegate()
         sortedVideoInfoData = DataManager.shared.sortRepository(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
         flattenSortedVideoInfoData = sortedVideoInfoData.flatMap({ $0 })
@@ -232,24 +250,17 @@ final class HomeViewController : UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController!.navigationBar.backgroundColor = .clear
+        navigationController?.navigationBar.isHidden = true
         reloadTableViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
     }
     
     // MARK: Layout Function
     private func setUpLayout() {
-        self.view.addSubview(toolbarView)
-        toolbarView.snp.makeConstraints {
-            $0.height.equalTo(45)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
-        }
         
         self.view.addSubview(homeTableView)
         homeTableView.snp.makeConstraints {
             $0.top.equalTo(view.snp.top)
-            $0.bottom.equalTo(toolbarView.snp.top)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(OrrPadding.padding3.rawValue)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(OrrPadding.padding3.rawValue)
         }
@@ -262,10 +273,35 @@ final class HomeViewController : UIViewController {
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
         }
         
+        self.view.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(CGFloat(OrrPadding.padding2.rawValue))
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
+        }
+        
+        self.view.addSubview(uploadButton)
+        uploadButton.snp.makeConstraints {
+            $0.centerY.equalTo(titleLabel.snp.centerY)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-CGFloat(OrrPadding.padding3.rawValue))
+        }
+        
+        self.view.addSubview(quickActionButton)
+        quickActionButton.snp.makeConstraints {
+            $0.centerY.equalTo(titleLabel.snp.centerY)
+            $0.trailing.equalTo(uploadButton.snp.leading).offset(-CGFloat(OrrPadding.padding2.rawValue))
+        }
+        
+        self.view.addSubview(tableViewSegmentControl)
+        tableViewSegmentControl.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(CGFloat(OrrPadding.padding6.rawValue))
+            $0.leading.trailing.equalToSuperview().inset(CGFloat(OrrPadding.padding3.rawValue))
+            $0.height.equalTo(48)
+        }
+        
         self.view.addSubview(placeholderView)
         placeholderView.snp.makeConstraints {
             $0.top.equalTo(view.snp.top)
-            $0.bottom.equalTo(toolbarView.snp.top)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(OrrPadding.padding3.rawValue)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(OrrPadding.padding3.rawValue)
         }
@@ -274,11 +310,6 @@ final class HomeViewController : UIViewController {
     private func setUICollectionViewDelegate() {
         homeTableView.dataSource = self
         homeTableView.delegate = self
-    }
-    
-    private func setUpNavigationBar() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoView)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: quickActionButton)
     }
     
     private func showOnBoard(){
@@ -295,6 +326,10 @@ final class HomeViewController : UIViewController {
         let nextVC = DateSettingViewController()
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
+    
+    @objc func segmentControl(_ segmentedControl: UISegmentedControl) {
+        print(segmentedControl.selectedSegmentIndex)
+    }
 }
 
 // QuickAction을 통한 정렬 및 필터링 시 함수를 아래에 구현
@@ -307,7 +342,7 @@ extension HomeViewController {
         
         placeholderView.alpha = flattenSortedVideoInfoData.isEmpty ? 1 : 0
         homeTableView.alpha = flattenSortedVideoInfoData.isEmpty ? 0 : 1
-
+        
         self.homeTableView.reloadData()
     }
 }
