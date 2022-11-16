@@ -234,6 +234,7 @@ class VideoCollectionViewController: UIViewController {
         if videoInformationArray.count == 0 {
             self.navigationController?.popToRootViewController(animated: true)
         }
+        mMode = .view
     }
     
     @objc func didDeleteActionSheetClicked(_ sender: UIBarButtonItem) {
