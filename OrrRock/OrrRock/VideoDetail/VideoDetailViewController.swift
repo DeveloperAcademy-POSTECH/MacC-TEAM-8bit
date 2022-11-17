@@ -65,6 +65,7 @@ class VideoDetailViewController: UIViewController {
         setUpLayout()
         setKeyboardObserver()
         setDefaultData()
+        addUIGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
