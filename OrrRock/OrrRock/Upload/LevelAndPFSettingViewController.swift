@@ -261,7 +261,7 @@ private extension LevelAndPFSettingViewController {
                     
                     swipeCard.embedVideo()
                     
-                    self.cards[index] = swipeCard
+                    cards[index] = swipeCard
                     
                     // Asset 카운팅 -1
                     countingGroup.leave()
@@ -271,7 +271,7 @@ private extension LevelAndPFSettingViewController {
                     // '분류된 카드 / 선택된 카드' 형식의 문자열 값을 넘겨주는 메서드
                     swipeCard.getCardLabelText(labelText: "\(classifiedCard)/\(selectedCard)")
                     // 첫번째 카드를 재생시켜주는 코드
-                    let firstCard = self.cards[0] as? SwipeableCardVideoView
+                    let firstCard = cards[0] as? SwipeableCardVideoView
                     firstCard?.queuePlayer.play()
                 }
                 // Asset 카운팅이 0이 되었을 때 completionHandler로 반환
