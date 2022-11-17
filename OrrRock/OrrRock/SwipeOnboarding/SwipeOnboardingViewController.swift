@@ -20,20 +20,17 @@ class SwipeOnboardingViewController: UIPageViewController {
     //MARK: Ruyha Test
     var firstView : SwipeOnboardingFirstViewController = {
         let vc = SwipeOnboardingFirstViewController()
-        vc.ppap1()
         return vc
     }()
     
     
     var secondView : SwipeOnboardingFirstViewController = {
         let vc = SwipeOnboardingFirstViewController()
-        vc.ppap2()
         return vc
     }()
     
     var thirdView : SwipeOnboardingFirstViewController = {
         let vc = SwipeOnboardingFirstViewController()
-        vc.ppap3()
         return vc
     }()
     
