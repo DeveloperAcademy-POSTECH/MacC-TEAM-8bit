@@ -1,49 +1,30 @@
 //
-//  SwipeOnboardingFirstViewController.swift
+//  SwipeOnboardingFifthViewController.swift
 //  OrrRock
 //
-//  Created by Ruyha on 2022/11/16.
+//  Created by Ruyha on 2022/11/17.
 //
 
 import UIKit
 import SnapKit
 
-class SwipeOnboardingFirstViewController: UIViewController {
-    
+class SwipeOnboardingFifthViewController: UIViewController {
     // 오토레이아웃의 시작점이 되는 값입니다. 변경시 류하에게 문의 주세요.
     let padding = 68
-    var delegate: SwipeOnboardingViewControllerDelegate?
     
-    //closeButton의 밑줄을 처리 하기위한 커스텀
-    let closeButtonAttributes: [NSAttributedString.Key: Any] = [
-        .font: UIFont.systemFont(ofSize: 15),
-        .foregroundColor: UIColor(hex: "969696"),
-        .underlineStyle: NSUnderlineStyle.single.rawValue
-    ]
-    
-    private lazy var nextButton: UIButton = {
+    private lazy var closeButton: UIButton = {
         let btn = UIButton()
         btn.clipsToBounds = true
         btn.layer.cornerRadius = 15
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
         btn.setBackgroundColor(.orrGray2!, for: .disabled)
-        btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
-        btn.setTitle("방법 살펴보기", for: .normal)
+        btn.addTarget(self, action: #selector(pressCloseButton), for: .touchUpInside)
+        btn.setTitle("시작하기", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.titleLabel!.font = UIFont.boldSystemFont(ofSize: 17)
         return btn
     }()
     
-    private lazy var closeButton: UIButton = {
-        let attributeString = NSMutableAttributedString(
-            string: "이미 잘 할 수 있어요",
-            attributes: closeButtonAttributes
-        )
-        let btn = UIButton()
-        btn.addTarget(self, action: #selector(pressCloseButton), for: .touchUpInside)
-        btn.setAttributedTitle(attributeString, for: .normal)
-        return btn
-    }()
     
     private lazy var BackgroundView: EmptyBackgroundView = {
         let view = EmptyBackgroundView()
@@ -51,7 +32,7 @@ class SwipeOnboardingFirstViewController: UIViewController {
     }()
     
     private lazy var mainImageView: UIImageView = {
-        let image = UIImage(named: "SwipeOnboardingImage1")
+        let image = UIImage(named: "SwipeOnboardingImage5")
         let view = UIImageView(image: image)
         return view
     }()
@@ -64,13 +45,7 @@ class SwipeOnboardingFirstViewController: UIViewController {
 }
 
 //MARK: 함수 모음
-extension SwipeOnboardingFirstViewController {
-    
-    @objc
-    func pressNextButton() {
-        self.delegate?.changeNextView()
-    }
-    
+extension SwipeOnboardingFifthViewController {
     @objc
     func pressCloseButton() {
         //Ruyha 끝까지 본 것에 대한 처리 추가
@@ -79,7 +54,7 @@ extension SwipeOnboardingFirstViewController {
 }
 
 //MARK: 오토레이아웃
-extension SwipeOnboardingFirstViewController {
+extension SwipeOnboardingFifthViewController {
     
     private func setUpLayout(){
         
@@ -91,19 +66,13 @@ extension SwipeOnboardingFirstViewController {
             BackgroundView.setUpLayout()
         }
         
-        view.addSubview(nextButton)
-        nextButton.snp.makeConstraints{
+        view.addSubview(closeButton)
+        closeButton.snp.makeConstraints{
             $0.centerX.equalTo(view)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPadding.padding3.rawValue)
             $0.leading.equalTo(view).offset(OrrPadding.padding3.rawValue)
             $0.trailing.equalTo(view).offset(-OrrPadding.padding3.rawValue)
             $0.height.equalTo(56)
-        }
-        
-        view.addSubview(closeButton)
-        closeButton.snp.makeConstraints {
-            $0.centerX.equalTo(view)
-            $0.bottom.equalTo(nextButton.snp.top).offset(-OrrPadding.padding1.rawValue)
         }
         
         view.addSubview(mainImageView)

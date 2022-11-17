@@ -29,21 +29,33 @@ class SwipeOnboardingViewController: UIPageViewController {
         return vc
     }()
     
-    var thirdView : SwipeOnboardingFirstViewController = {
-        let vc = SwipeOnboardingFirstViewController()
+    var thirdView : SwipeOnboardingThirdViewController = {
+        let vc = SwipeOnboardingThirdViewController()
         return vc
     }()
+    
+    var fourthView : SwipeOnboardingFourthViewController = {
+        let vc = SwipeOnboardingFourthViewController()
+        return vc
+    }()
+    
+    var fifthView : SwipeOnboardingFifthViewController = {
+        let vc = SwipeOnboardingFifthViewController()
+        return vc
+    }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         firstView.delegate = self
         secondView.delegate = self
         thirdView.delegate = self
+        fourthView.delegate = self
         setDelegate()
         }
     
     lazy var vcArray: [UIViewController] = {
-        return [firstView,secondView,thirdView]
+        return [firstView,secondView,thirdView,fourthView,fifthView]
     }()
 }
 

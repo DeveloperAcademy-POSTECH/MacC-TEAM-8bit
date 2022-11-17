@@ -25,7 +25,7 @@ class SwipeOnboardingSecondViewController: UIViewController {
         return view
     }()
     
-    private lazy var imageView: UIImageView = {
+    private lazy var mainImageView: UIImageView = {
         let image = UIImage(named: "SwipeOnboardingImage2")
         let view = UIImageView(image: image)
         return view
@@ -61,13 +61,13 @@ extension SwipeOnboardingSecondViewController {
             BackgroundView.setUpLayout()
         }
 
-        view.addSubview(imageView)
-        imageView.snp.makeConstraints {
+        view.addSubview(mainImageView)
+        mainImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.centerY.equalToSuperview()
             $0.leading.equalTo(view.snp.leading).offset(padding)
             $0.trailing.equalTo(view.snp.trailing).offset(-padding)
-            $0.height.equalTo(imageView.snp.width).multipliedBy(1.641)
+            $0.height.equalTo(mainImageView.snp.width).multipliedBy(1.641)
         }
     }
 }
