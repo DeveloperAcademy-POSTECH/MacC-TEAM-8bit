@@ -57,6 +57,7 @@
 		70DE795A29250F480009AD43 /* SwipeOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE795929250F480009AD43 /* SwipeOnboardingViewController.swift */; };
 		70DE795C292517330009AD43 /* SwipeOnboardingFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE795B292517330009AD43 /* SwipeOnboardingFirstViewController.swift */; };
 		70DE795E29253F050009AD43 /* EmptyBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE795D29253F050009AD43 /* EmptyBackgroundView.swift */; };
+		70DE79602926383E0009AD43 /* SwipeOnboardingSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE795F2926383E0009AD43 /* SwipeOnboardingSecondViewController.swift */; };
 		70E8E7542923865400793F91 /* OnBoardigSuperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E8E7532923865400793F91 /* OnBoardigSuperViewController.swift */; };
 		78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */; };
 		78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0354F290132D300FF1913 /* VideoCollectionViewCustomCell.swift */; };
@@ -127,6 +128,7 @@
 		70DE795929250F480009AD43 /* SwipeOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnboardingViewController.swift; sourceTree = "<group>"; };
 		70DE795B292517330009AD43 /* SwipeOnboardingFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnboardingFirstViewController.swift; sourceTree = "<group>"; };
 		70DE795D29253F050009AD43 /* EmptyBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyBackgroundView.swift; sourceTree = "<group>"; };
+		70DE795F2926383E0009AD43 /* SwipeOnboardingSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnboardingSecondViewController.swift; sourceTree = "<group>"; };
 		70E8E7532923865400793F91 /* OnBoardigSuperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardigSuperViewController.swift; sourceTree = "<group>"; };
 		78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewController.swift; sourceTree = "<group>"; };
 		78A0354F290132D300FF1913 /* VideoCollectionViewCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCustomCell.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 			children = (
 				70DE795929250F480009AD43 /* SwipeOnboardingViewController.swift */,
 				70DE795B292517330009AD43 /* SwipeOnboardingFirstViewController.swift */,
+				70DE795F2926383E0009AD43 /* SwipeOnboardingSecondViewController.swift */,
 				70DE795D29253F050009AD43 /* EmptyBackgroundView.swift */,
 			);
 			path = SwipeOnboarding;
@@ -534,6 +537,7 @@
 				70DE795E29253F050009AD43 /* EmptyBackgroundView.swift in Sources */,
 				A88805852907F5A0002CD52E /* LevelPickerView.swift in Sources */,
 				78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */,
+				70DE79602926383E0009AD43 /* SwipeOnboardingSecondViewController.swift in Sources */,
 				70A44807290452B000BE18A5 /* Button+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

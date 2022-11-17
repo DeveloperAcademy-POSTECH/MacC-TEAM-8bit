@@ -24,8 +24,8 @@ class SwipeOnboardingViewController: UIPageViewController {
     }()
     
     
-    var secondView : SwipeOnboardingFirstViewController = {
-        let vc = SwipeOnboardingFirstViewController()
+    var secondView : SwipeOnboardingSecondViewController = {
+        let vc = SwipeOnboardingSecondViewController()
         return vc
     }()
     
@@ -42,7 +42,7 @@ class SwipeOnboardingViewController: UIPageViewController {
         setDelegate()
         }
     
-    lazy var vcArray: [SwipeOnboardingFirstViewController] = {
+    lazy var vcArray: [UIViewController] = {
         return [firstView,secondView,thirdView]
     }()
 }
@@ -69,7 +69,7 @@ extension SwipeOnboardingViewController : UIPageViewControllerDelegate {
 extension SwipeOnboardingViewController : UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let vcIndex = vcArray.firstIndex(of: viewController as! SwipeOnboardingFirstViewController) else { return nil }
+        guard let vcIndex = vcArray.firstIndex(of: viewController ) else { return nil }
         let prevIndex = vcIndex - 1
         guard prevIndex >= 0 else {
             return nil
@@ -79,7 +79,7 @@ extension SwipeOnboardingViewController : UIPageViewControllerDataSource {
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let vcIndex = vcArray.firstIndex(of: viewController as! SwipeOnboardingFirstViewController) else { return nil }
+        guard let vcIndex = vcArray.firstIndex(of: viewController ) else { return nil }
         let nextIndex = vcIndex + 1
         guard nextIndex < vcArray.count else {
             return nil
@@ -89,7 +89,7 @@ extension SwipeOnboardingViewController : UIPageViewControllerDataSource {
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        pendingIndex = vcArray.firstIndex(of: pendingViewControllers.first! as! SwipeOnboardingFirstViewController)
+        pendingIndex = vcArray.firstIndex(of: pendingViewControllers.first! )
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
