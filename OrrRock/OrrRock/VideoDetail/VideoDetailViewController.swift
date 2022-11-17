@@ -27,6 +27,8 @@ class VideoDetailViewController: UIViewController {
     
     var feedbackText: String?
     
+    lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(respondToTapGesture(_:)))
+    
     private var infoButton: UIBarButtonItem!
     private var feedbackButton: UIBarButtonItem!
     private var trashButton: UIBarButtonItem!
@@ -60,11 +62,11 @@ class VideoDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadVideoAsset()
-
         setNavigationBar()
         setUpLayout()
         setKeyboardObserver()
         setDefaultData()
+        addUIGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,6 +127,7 @@ class VideoDetailViewController: UIViewController {
         feedbackText = videoInfoView.feedbackTextView.text!
         feedbackButton.title = videoInfoView.feedbackTextView.textColor == .placeholderText ? "피드백 입력하기" : "피드백 확인하기"
         if isShowInfo {
+            addTapGestureToVideoPlayView()
             UIView.animate(withDuration: 0.2, animations: {
                 self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -500)
                 self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: -100)
@@ -132,6 +135,7 @@ class VideoDetailViewController: UIViewController {
                 self.topSafeAreaView.layer.opacity = 0
             })
         } else {
+            removeTapGestureFromVideoPlayView()
             UIView.animate(withDuration: 0.2, animations: {
                 self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
                 self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: 0)
