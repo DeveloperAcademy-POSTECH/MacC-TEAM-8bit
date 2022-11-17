@@ -52,6 +52,9 @@ class SwipeOnboardingViewController: UIPageViewController {
         thirdView.delegate = self
         fourthView.delegate = self
         setDelegate()
+        //MARK: Ruyha 스크롤링을 막음
+        self.isPagingEnabled = false
+
         }
     
     lazy var vcArray: [UIViewController] = {
@@ -107,6 +110,27 @@ extension SwipeOnboardingViewController : UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
             currentIndex = pendingIndex
+        }
+    }
+}
+
+extension UIPageViewController {
+    var isPagingEnabled: Bool {
+        get {
+            var isEnabled: Bool = true
+            for view in view.subviews {
+                if let subView = view as? UIScrollView {
+                    isEnabled = subView.isScrollEnabled
+                }
+            }
+            return isEnabled
+        }
+        set {
+            for view in view.subviews {
+                if let subView = view as? UIScrollView {
+                    subView.isScrollEnabled = newValue
+                }
+            }
         }
     }
 }
