@@ -310,11 +310,11 @@ private extension LevelAndPFSettingViewController {
             
             if gesture.state == .ended {
                 // 카드의 x축을 통한 성패 결정 스와이프 정도
-                if card.center.x > self.view.bounds.width - 30 {
+                if card.center.x > self.view.bounds.width / 3 * 2 {
                     animateCard(rotationAngle: rotationAngle, videoResultType: .success)
                     return
                 }
-                if card.center.x < 30 {
+                if card.center.x <  self.view.bounds.width / 3 * 1 {
                     animateCard(rotationAngle: rotationAngle, videoResultType: .fail)
                     return
                 }
