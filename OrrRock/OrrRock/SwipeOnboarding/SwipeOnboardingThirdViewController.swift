@@ -62,7 +62,6 @@ class SwipeOnboardingThirdViewController: UIViewController {
 //MARK: 함수 모음
 extension SwipeOnboardingThirdViewController {
     
-    //Ruyha 레벨링이 변경될 때 추가 반영되어야함
     @objc
     func pressNextButton() {
         self.delegate?.changeNextView()

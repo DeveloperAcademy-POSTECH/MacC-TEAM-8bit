@@ -73,7 +73,6 @@ extension SwipeOnboardingFirstViewController {
     
     @objc
     func pressCloseButton() {
-        //Ruyha 끝까지 본 것에 대한 처리 추가
         self.presentingViewController?.dismiss(animated: true, completion:nil)
     }
 }

@@ -299,17 +299,17 @@ final class HomeViewController : UIViewController {
     @objc func switchViewStyle() {
         isCardView.toggle()
     }
-    //MARK: Ruyha Test
-//    @objc func videoButtonPressed(sender: UIButton){
-//        let nextVC = DateSettingViewController()
-//        self.navigationController?.pushViewController(nextVC, animated: true)
-//    }
     
     @objc func videoButtonPressed(sender: UIButton){
-        let nextVC = SwipeOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
-        nextVC.modalPresentationStyle = .fullScreen
-        self.present(nextVC, animated: true, completion: nil)
+        let nextVC = DateSettingViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
+    //MARK: 스와이프 온보딩을 보고 싶다면 해당 상단의 코드를 주석처리후 하단 주석을 풀어주세요.
+//    @objc func videoButtonPressed(sender: UIButton){
+//        let nextVC = SwipeOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+//        nextVC.modalPresentationStyle = .fullScreen
+//        self.present(nextVC, animated: true, completion: nil)
+//    }
     
 }
 
