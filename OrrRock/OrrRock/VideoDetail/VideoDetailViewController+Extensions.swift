@@ -39,8 +39,7 @@ extension VideoDetailViewController{
             case UISwipeGestureRecognizer.Direction.down :
                 if !isShowInfo{
                     self.navigationController?.popViewController(animated: true)
-                }
-                else{
+                }else{
                     showInfo()
                 }
             case UISwipeGestureRecognizer.Direction.left :
