@@ -310,26 +310,23 @@ private extension LevelAndPFSettingViewController {
             
             if gesture.state == .ended {
                 // 카드의 x축을 통한 성패 결정 스와이프 정도
-                if card.center.x > self.view.bounds.width / 3 * 2 {
+                
+                var cardPositionX = card.center.x
+                
+                switch cardPositionX {
+                case self.view.bounds.width / 3 * 2..<self.view.bounds.width:
                     animateCard(rotationAngle: rotationAngle, videoResultType: .success)
                     return
-                }
-                if card.center.x <  self.view.bounds.width / 3 * 1 {
+                case 0..<self.view.bounds.width / 3:
                     animateCard(rotationAngle: rotationAngle, videoResultType: .fail)
                     return
-                }
-                
-                UIView.animate(withDuration: 0.2) {
+                default:
                     card.center = self.emptyVideoView.center
                     card.transform = .identity
                     card.successImageView.alpha = 0
                     card.failImageView.alpha = 0
                     card.setVideoBackgroundViewBorderColor(color: .clear, alpha: 1)
-                    // 터치가 해제되고 카드가 돌아가는 도중에 터치 제한
-                    UIApplication.shared.beginIgnoringInteractionEvents()
-                } completion: {_ in
-                    // completion을 통해 애니메이션이 끝났을 때 터치 제한 해제
-                    UIApplication.shared.endIgnoringInteractionEvents()
+                    return
                 }
             }
         }
