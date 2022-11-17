@@ -85,6 +85,11 @@ final class SwipeableCardVideoView: UIView {
         self.playerLayer?.masksToBounds = true
         self.playerLayer?.cornerRadius = cornerRadius
     }
+    
+    func getCardLabelText(labelText:String){
+        countVideoLabel.text = labelText
+    }
+    
 }
 
 extension SwipeableCardVideoView {
