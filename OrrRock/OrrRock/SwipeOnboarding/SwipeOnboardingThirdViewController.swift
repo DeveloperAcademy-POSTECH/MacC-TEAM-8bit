@@ -28,6 +28,7 @@ class SwipeOnboardingThirdViewController: UIViewController {
         view.layer.borderWidth = 3
         view.layer.cornerRadius = cornerRadius
         view.layer.borderColor = UIColor.white.cgColor
+        view.layer.zPosition = 1
         view.isUserInteractionEnabled = true
         gesture.addTarget(self, action: #selector(self.handlerCard))
         view.addGestureRecognizer(gesture)
@@ -43,13 +44,9 @@ class SwipeOnboardingThirdViewController: UIViewController {
     private lazy var successButton: CustomButton = {
         let btn = CustomButton()
         btn.setImage(UIImage(named: "success_icon"), for: .normal)
-        //        btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
-        
         btn.addTarget(self, action: #selector(didFailButton), for: .touchUpInside)
         return btn
     }()
-    
-    
     
     private lazy var paddigView: UIView = {
         let view = UIView()
@@ -107,6 +104,7 @@ extension SwipeOnboardingThirdViewController {
     }
     
     @objc func didFailButton() {
+        mainImageView.layer.borderColor = UIColor.orrPass?.cgColor
         UIView.animate(withDuration: 0.3, animations: { [self] in
             mainImageView.transform = CGAffineTransform(rotationAngle: 0.4)
             mainImageView.center = CGPoint(x: mainImageView.center.x + view.bounds.width, y: mainImageView.center.y + 30)
