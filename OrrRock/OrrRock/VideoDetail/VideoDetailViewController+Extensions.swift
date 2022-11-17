@@ -10,6 +10,7 @@ import SnapKit
 
 extension VideoDetailViewController{
     func addUIGesture(){
+        //다이렉션과 호출할 함수,감지할 액션를 정해 해당뷰에 더해주면 Gesture 완성!
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(_:)))
         swipeDown.direction = UISwipeGestureRecognizer.Direction.down
         view.addGestureRecognizer(swipeDown)
@@ -44,8 +45,10 @@ extension VideoDetailViewController{
                 }
             case UISwipeGestureRecognizer.Direction.left :
                 print("left")
+                //다음 기능을 위해 남겨놓음
             case UISwipeGestureRecognizer.Direction.right :
                 print("right")
+                //다음 기능을 위해 남겨놓음
             default:
                 break
             }
