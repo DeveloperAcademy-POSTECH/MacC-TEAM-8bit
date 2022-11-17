@@ -17,10 +17,18 @@ extension VideoDetailViewController{
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(_:)))
         swipeUp.direction = UISwipeGestureRecognizer.Direction.up
         view.addGestureRecognizer(swipeUp)
+        
+    }
+    
+    func addTapGestureToVideoPlayView(){
+        videoPlayView.addGestureRecognizer(tapGesture)
+    }
+    
+    func removeTapGestureFromVideoPlayView(){
+        videoPlayView.removeGestureRecognizer(tapGesture)
     }
     
     @objc func respondToSwipeGesture(_ gesture: UIGestureRecognizer) {
-        // 만일 제스쳐가 있다면
         if let swipeGesture = gesture as? UISwipeGestureRecognizer{
             switch swipeGesture.direction {
             case UISwipeGestureRecognizer.Direction.up :
@@ -28,7 +36,6 @@ extension VideoDetailViewController{
                     showInfo()
                 }
             case UISwipeGestureRecognizer.Direction.down :
-                print("down")
                 if !isShowInfo{
                     self.navigationController?.popViewController(animated: true)
                 }
@@ -42,8 +49,10 @@ extension VideoDetailViewController{
             default:
                 break
             }
-            
         }
-        
+    }
+    
+    @objc func respondToTapGesture(_ gesture: UITapGestureRecognizer){
+        showInfo()
     }
 }
