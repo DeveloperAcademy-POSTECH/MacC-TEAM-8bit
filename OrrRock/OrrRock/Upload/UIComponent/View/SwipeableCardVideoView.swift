@@ -49,6 +49,23 @@ final class SwipeableCardVideoView: UIView {
         return imageView
     }()
     
+    private lazy var countVideoView:  UIView = {
+        let view = UIView()
+        view.backgroundColor = .orrBlack?.withAlphaComponent(0.6)
+        view.layer.cornerRadius = 10
+        
+        return view
+    }()
+    
+    lazy var countVideoLabel: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        label.textColor = .orrWhite
+        label.font = .systemFont(ofSize: 12.0, weight: .regular)
+        
+        return label
+    }()
+    
     init(asset: AVAsset) {
         self.asset = asset
         super.init(frame: .zero)
@@ -108,6 +125,19 @@ private extension SwipeableCardVideoView {
             $0.trailing.equalTo(videoBackgroundView.snp.trailing).offset(-16.0)
             $0.height.equalTo(30.0)
             $0.width.equalTo(100.0)
+        }
+        
+        self.addSubview(countVideoView)
+        countVideoView.snp.makeConstraints {
+            $0.bottom.equalTo(videoBackgroundView.snp.bottom).inset(OrrPadding.padding3.rawValue)
+            $0.centerX.equalTo(videoBackgroundView.snp.centerX)
+            $0.height.equalTo(24)
+            $0.width.equalTo(71)
+        }
+        
+        countVideoView.addSubview(countVideoLabel)
+        countVideoLabel.snp.makeConstraints {
+            $0.center.equalTo(countVideoView.snp.center)
         }
     }
 }
