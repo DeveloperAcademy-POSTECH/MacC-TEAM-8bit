@@ -85,7 +85,7 @@ class VideoDetailViewController: UIViewController {
     func setNavigationBar() {
         // 네비게이션바 버튼 아이템 생성
         flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        goBackButton = CustomBarButtonItem(target: self, action: #selector(goBackAction))
+        goBackButton = CustomBackBarButtomItem(target: self, action: #selector(goBackAction))
         favoriteButton = UIBarButtonItem(image: UIImage(systemName: videoInformation.isFavorite ? "heart.fill" : "heart"), style: .plain, target: self, action: #selector(favoriteAction))
         cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelAction))
         completeButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(completeAction))

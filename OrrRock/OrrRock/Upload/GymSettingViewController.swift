@@ -69,7 +69,7 @@ class GymSettingViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
         self.navigationController?.navigationBar.topItem?.title = ""
-        navigationItem.leftBarButtonItem = CustomBarButtonItem(target: self, action: #selector(didBackButtonClicked))
+        navigationItem.leftBarButtonItem = CustomBackBarButtomItem(target: self, action: #selector(didBackButtonClicked))
         navigationItem.leftBarButtonItem?.tintColor = .orrUPBlue
         
         setUpData()

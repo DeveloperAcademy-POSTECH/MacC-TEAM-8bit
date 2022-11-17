@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomBarButtonItem: UIBarButtonItem {
+class CustomBackBarButtomItem: UIBarButtonItem {
     
     override init() {
         super.init()
