@@ -50,7 +50,11 @@ class DateSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
+        
         self.navigationController?.navigationBar.topItem?.title = ""
+        navigationItem.leftBarButtonItem = CustomBarButtonItem(target: self, action: #selector(didBackButtonClicked))
+        navigationItem.leftBarButtonItem?.tintColor = .orrUPBlue
+        
         setUpLayout()
     }
 }
@@ -70,6 +74,9 @@ extension DateSettingViewController {
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
+    @objc func didBackButtonClicked(_ sender: UIBarButtonItem) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
 }
 
 //MARK: 오토레이아웃 설정 영역

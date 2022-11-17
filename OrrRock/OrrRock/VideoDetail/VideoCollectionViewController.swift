@@ -90,7 +90,7 @@ class VideoCollectionViewController: UIViewController {
     }()
     
     lazy var backBarButton: UIBarButtonItem = {
-        let barButtonItem = UIBarButtonItem(image:UIImage(systemName: "chevron.backward"),style: .plain, target: self, action: #selector(didBackButtonClicked(_:)))
+        let barButtonItem = CustomBarButtonItem(target: self, action: #selector(didBackButtonClicked(_:)))
         return barButtonItem
     }()
     
