@@ -30,7 +30,7 @@ class SwipeOnboardingFourthViewController: UIViewController {
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.zPosition = 1
         view.isUserInteractionEnabled = true
-        gesture.addTarget(self, action: #selector(self.handlerCard))
+        gesture.addTarget(self, action: #selector(handlerCard))
         view.addGestureRecognizer(gesture)
         return view
     }()
@@ -45,7 +45,6 @@ class SwipeOnboardingFourthViewController: UIViewController {
         let btn = CustomButton()
         btn.setImage(UIImage(named: "fail_icon"), for: .normal)
         btn.addTarget(self, action: #selector(didFailButton), for: .touchUpInside)
-
         return btn
     }()
     
@@ -65,37 +64,38 @@ extension SwipeOnboardingFourthViewController {
     
     //Ruyha 레벨링이 변경될 때 추가 반영되어야함
     @objc
-    func pressNextButton() {
+    private func pressNextButton() {
         self.delegate?.changeNextView()
     }
     
-    @objc func handlerCard(_ gesture: UIPanGestureRecognizer) {
-        if let card = gesture.view as? UIImageView {
+    @objc
+    private func handlerCard(_ gesture: UIPanGestureRecognizer) {
+        if let mainImageCard = gesture.view as? UIImageView {
             let point = gesture.translation(in: view)
             
-            card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
+            mainImageCard.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
             
             let rotationAngle = point.x / view.bounds.width * 0.4
             
             if point.x < 0 {
-                card.setVideoBackgroundViewBorderColor(color: .fail, alpha: -rotationAngle * 10) //5
+                mainImageCard.setVideoBackgroundViewBorderColor(color: .fail, alpha: -rotationAngle * 10) //5
             } else {
-                card.setVideoBackgroundViewBorderColor(color: .clear, alpha: 1.0) // -rotationAngle * 5
+                mainImageCard.setVideoBackgroundViewBorderColor(color: .clear, alpha: 1.0) // -rotationAngle * 5
             }
             
-            card.transform = CGAffineTransform(rotationAngle: rotationAngle)
+            mainImageCard.transform = CGAffineTransform(rotationAngle: rotationAngle)
             
             if gesture.state == .ended {
-                if card.center.x < self.view.bounds.width / 3 {
-                    card.alpha = 0
+                if mainImageCard.center.x < self.view.bounds.width / 3 {
+                    mainImageCard.alpha = 0
                     self.delegate?.changeNextView()
                     return
                 }
                 
                 UIView.animate(withDuration: 0.2) {
-                    card.center = self.BackgroundView.center
-                    card.transform = .identity
-                    card.setVideoBackgroundViewBorderColor(color: .clear, alpha: 1)
+                    mainImageCard.center = self.BackgroundView.center
+                    mainImageCard.transform = .identity
+                    mainImageCard.setVideoBackgroundViewBorderColor(color: .clear, alpha: 1)
                     self.view.isUserInteractionEnabled = false
                 } completion: {_ in
                     self.view.isUserInteractionEnabled = true
@@ -104,12 +104,12 @@ extension SwipeOnboardingFourthViewController {
         }
     }
     
-    @objc func didFailButton() {
+    @objc
+    private func didFailButton() {
         mainImageView.layer.borderColor = UIColor.orrFail?.cgColor
         UIView.animate(withDuration: 0.3, animations: { [self] in
             mainImageView.transform = CGAffineTransform(rotationAngle: -0.4)
             mainImageView.center = CGPoint(x: mainImageView.center.x - view.bounds.width, y: mainImageView.center.y + 30)
-
         }){ [self] _ in
             mainImageView.alpha = 0.0
             pressNextButton()
@@ -162,8 +162,6 @@ extension SwipeOnboardingFourthViewController {
             $0.height.equalTo(90)
             $0.width.equalTo(90)
         }
-        
-        
     }
 }
 

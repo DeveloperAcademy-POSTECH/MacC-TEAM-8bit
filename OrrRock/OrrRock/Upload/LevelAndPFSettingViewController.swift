@@ -115,7 +115,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .semibold)
         button.backgroundColor = .orrFail
         button.layer.cornerRadius = 37.0
-        button.addTarget(self, action: #selector(didFailButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didSuccessButton), for: .touchUpInside)
         
         return button
     }()

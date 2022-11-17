@@ -30,7 +30,7 @@ class SwipeOnboardingThirdViewController: UIViewController {
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.zPosition = 1
         view.isUserInteractionEnabled = true
-        gesture.addTarget(self, action: #selector(self.handlerCard))
+        gesture.addTarget(self, action: #selector(handlerCard))
         view.addGestureRecognizer(gesture)
         return view
     }()
@@ -44,7 +44,7 @@ class SwipeOnboardingThirdViewController: UIViewController {
     private lazy var successButton: CustomButton = {
         let btn = CustomButton()
         btn.setImage(UIImage(named: "success_icon"), for: .normal)
-        btn.addTarget(self, action: #selector(didFailButton), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(didSuccessButton), for: .touchUpInside)
         return btn
     }()
     
@@ -68,33 +68,34 @@ extension SwipeOnboardingThirdViewController {
         self.delegate?.changeNextView()
     }
     
-    @objc func handlerCard(_ gesture: UIPanGestureRecognizer) {
-        if let card = gesture.view as? UIImageView {
+    @objc
+    private func handlerCard(_ gesture: UIPanGestureRecognizer) {
+        if let mainImageCard = gesture.view as? UIImageView {
             let point = gesture.translation(in: view)
             
-            card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
+            mainImageCard.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
             
             let rotationAngle = point.x / view.bounds.width * 0.4
             
             if point.x > 0 {
-                card.setVideoBackgroundViewBorderColor(color: .pass, alpha: rotationAngle * 10) //5
+                mainImageCard.setVideoBackgroundViewBorderColor(color: .pass, alpha: rotationAngle * 10)
             } else {
-                card.setVideoBackgroundViewBorderColor(color: .clear, alpha: 1.0) // -rotationAngle * 5
+                mainImageCard.setVideoBackgroundViewBorderColor(color: .clear, alpha: 1.0)
             }
             
-            card.transform = CGAffineTransform(rotationAngle: rotationAngle)
+            mainImageCard.transform = CGAffineTransform(rotationAngle: rotationAngle)
             
             if gesture.state == .ended {
-                if card.center.x > self.view.bounds.width / 3 * 2 {
-                    card.alpha = 0
+                if mainImageCard.center.x > self.view.bounds.width / 3 * 2 {
+                    mainImageCard.alpha = 0
                     self.delegate?.changeNextView()
                     return
                 }
                 
                 UIView.animate(withDuration: 0.2) {
-                    card.center = self.BackgroundView.center
-                    card.transform = .identity
-                    card.setVideoBackgroundViewBorderColor(color: .clear, alpha: 1)
+                    mainImageCard.center = self.BackgroundView.center
+                    mainImageCard.transform = .identity
+                    mainImageCard.setVideoBackgroundViewBorderColor(color: .clear, alpha: 1)
                     self.view.isUserInteractionEnabled = false
                 } completion: {_ in
                     self.view.isUserInteractionEnabled = true
@@ -103,7 +104,8 @@ extension SwipeOnboardingThirdViewController {
         }
     }
     
-    @objc func didFailButton() {
+    @objc
+    private func didSuccessButton() {
         mainImageView.layer.borderColor = UIColor.orrPass?.cgColor
         UIView.animate(withDuration: 0.3, animations: { [self] in
             mainImageView.transform = CGAffineTransform(rotationAngle: 0.4)
@@ -161,24 +163,5 @@ extension SwipeOnboardingThirdViewController {
             $0.height.equalTo(90)
             $0.width.equalTo(90)
         }
-        
-    }
-}
-
-extension UIImageView {
-    func setVideoBackgroundViewBorderColor(color: VideoBackgroundViewBorderColor,alpha: CGFloat) {
-        var r : CGFloat = 0.0
-        var g : CGFloat = 0.0
-        var b : CGFloat = 0.0
-        
-        switch color {
-        case.pass :
-            r = 48; g = 176; b = 199
-        case .fail :
-            r = 242; g = 52; b = 52
-        case .clear :
-            r = 255; g = 255; b = 255
-        }
-        self.layer.borderColor = UIColor(red:r/255.0, green:g/255.0, blue:b/255.0, alpha: alpha).cgColor
     }
 }
