@@ -12,6 +12,12 @@ import SnapKit
 class HomeTableViewHeader: UITableViewHeaderFooterView {
     static let identifier: String = "HomeTableViewHeader"
     
+    private lazy var backgroundSubview: UIView = {
+       let view = UIView()
+        view.backgroundColor = .orrWhite
+        return view
+    }()
+    
     private lazy var primaryTitleLabel: UILabel = {
         let view = UILabel()
         view.font = .systemFont(ofSize: 20, weight: .bold)
@@ -29,7 +35,7 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
     private lazy var roundCornerView: UIView = {
         let view = UIView()
         view.backgroundColor = .orrWhite
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = 8
         return view
     }()
     
@@ -42,17 +48,24 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
         secondaryTitleLabel.text = secondaryTitle
         
         setUpLayout()
-        contentView.backgroundColor = .orrWhite
+        contentView.backgroundColor = .clear
     }
 }
 
 extension HomeTableViewHeader {
     func setUpLayout() {
+        contentView.addSubview(backgroundSubview)
+        backgroundSubview.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalToSuperview().inset(5)
+        }
+        
+        
         contentView.addSubview(roundCornerView)
         roundCornerView.snp.makeConstraints {
             $0.width.equalTo(contentView.snp.width)
             $0.height.equalTo(10)
-            $0.bottom.equalTo(contentView.snp.top).offset(5)
+            $0.bottom.equalTo(backgroundSubview.snp.top).offset(5)
         }
         
         contentView.addSubview(secondaryTitleLabel)
