@@ -19,6 +19,8 @@ final class LevelAndPFSettingViewController: UIViewController {
     private var cards: [SwipeableCardVideoView?] = []
     private var counter: Int = 0
     private var currentSelectedLevel = -1
+    private var selectedCard: Int = 0
+    private var classifiedCard: Int = 0
     
     private lazy var headerView: UIView = {
         let view = UIView()
@@ -209,6 +211,8 @@ private extension LevelAndPFSettingViewController {
         let assets = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: option)
         // PHFetchResult<PHAsset>의 Asset 개수만큼 배열 공간 할당
         cards = Array(repeating: nil, count: assets.count)
+        // 선택된 카드의 개수
+        selectedCard = cards.count
         // Asset 카운팅을 위한 디스패치 그룹
         let countingGroup = DispatchGroup()
         
@@ -251,7 +255,7 @@ private extension LevelAndPFSettingViewController {
                 }
                 
                 // Main Thread에서 View를 디스패치 그룹
-                DispatchQueue.main.async(group: countingGroup) {
+                DispatchQueue.main.async(group: countingGroup) { [self] in
                     
                     let swipeCard = SwipeableCardVideoView(asset: AVAsset(url: url))
                     
@@ -262,6 +266,10 @@ private extension LevelAndPFSettingViewController {
                     // Asset 카운팅 -1
                     countingGroup.leave()
                     
+                    // 분류된 카드 번호 넘버링
+                    classifiedCard = index + 1
+                    // '분류된 카드 / 선택된 카드' 형식의 문자열 값을 넘겨주는 메서드
+                    swipeCard.getCardLabelText(labelText: "\(classifiedCard)/\(selectedCard)")
                     // 첫번째 카드를 재생시켜주는 코드
                     let firstCard = self.cards[0] as? SwipeableCardVideoView
                     firstCard?.queuePlayer.play()
