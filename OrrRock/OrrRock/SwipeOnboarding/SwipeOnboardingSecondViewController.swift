@@ -31,11 +31,25 @@ class SwipeOnboardingSecondViewController: UIViewController {
         return view
     }()
     
+    private lazy var testButton: UIButton = {
+        let btn = UIButton()
+        btn.clipsToBounds = true
+        btn.layer.cornerRadius = 15
+        btn.setBackgroundColor(.orrUPBlue!, for: .normal)
+        btn.setBackgroundColor(.orrGray2!, for: .disabled)
+        btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
+        btn.setTitle("테스트버튼 입니다.", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel!.font = UIFont.boldSystemFont(ofSize: 17)
+        return btn
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpLayout()
     }
+    
+    
 }
 
 //MARK: 함수 모음
@@ -69,6 +83,16 @@ extension SwipeOnboardingSecondViewController {
             $0.trailing.equalTo(view.snp.trailing).offset(-padding)
             $0.height.equalTo(mainImageView.snp.width).multipliedBy(1.641)
         }
+        
+        view.addSubview(testButton)
+        testButton.snp.makeConstraints{
+            $0.centerX.equalTo(view)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPadding.padding3.rawValue)
+            $0.leading.equalTo(view).offset(OrrPadding.padding3.rawValue)
+            $0.trailing.equalTo(view).offset(-OrrPadding.padding3.rawValue)
+            $0.height.equalTo(56)
+        }
+        
     }
 }
 
