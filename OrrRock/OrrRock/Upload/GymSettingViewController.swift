@@ -19,7 +19,7 @@ class GymSettingViewController: UIViewController {
     
     let gymNameLabel : UILabel = {
         let label = UILabel()
-        label.text = "해당 암장의 이름을 적어주세요"
+        label.text = "해당 클라이밍장의 이름을 적어주세요"
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.textColor = .orrBlack
         label.backgroundColor = .orrWhite
@@ -59,7 +59,7 @@ class GymSettingViewController: UIViewController {
     
     lazy var tableViewHeaderLabel: UILabel = {
         let label = UILabel()
-        label.text = "최근 방문"
+        label.text = ""
         label.font = .systemFont(ofSize: 22, weight: .regular)
         return label
     }()
@@ -69,6 +69,8 @@ class GymSettingViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
         self.navigationController?.navigationBar.topItem?.title = ""
+        navigationItem.leftBarButtonItem = CustomBackBarButtomItem(target: self, action: #selector(didBackButtonClicked))
+        navigationItem.leftBarButtonItem?.tintColor = .orrUPBlue
         
         setUpData()
         setUpLayout()
@@ -95,7 +97,7 @@ extension GymSettingViewController {
     final func searchGymName(textField: UITextField) {
         if (textField.text ?? "").isEmpty {
             filteredVisitedGymList = visitedGymList
-            setTableViewHeaderLabel(text: "최근 방문")
+            setTableViewHeaderLabel(text: filteredVisitedGymList.isEmpty ? "" : "최근 방문")
         } else {
             filteredVisitedGymList = visitedGymList.filter { $0.name.contains(textField.text!) }
             setTableViewHeaderLabel(text: filteredVisitedGymList.isEmpty ? "" : "이곳을 방문하셨나요?")
@@ -146,6 +148,10 @@ extension GymSettingViewController {
         }
     }
     
+    @objc func didBackButtonClicked(_ sender: UIBarButtonItem) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
     final private func authSettingOpen(alertType: AuthSettingAlert) {
         let message = alertType.rawValue
         let alert = UIAlertController(title: "설정", message: message, preferredStyle: .alert)
@@ -171,6 +177,7 @@ extension GymSettingViewController {
         visitedGymList = DataManager.shared.repository.visitedClimbingGyms
         filteredVisitedGymList = visitedGymList
         
+        setTableViewHeaderLabel(text: filteredVisitedGymList.isEmpty ? "" : "최근 방문")
         // 기기 대응한 테이블뷰셀의 개수
         // SE 사이즈 - 2개 / 13 사이즈 - 3개 / max 사이즈 - 4개
         maxTableViewCellCount = 1 + Int((UIScreen.main.bounds.height - 500) / 140)

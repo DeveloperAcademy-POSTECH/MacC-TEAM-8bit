@@ -9,8 +9,8 @@ import UIKit
 
 import SnapKit
 
-final class HomeCollectionViewCardCell: UICollectionViewCell {
-    static let identifier = "homeCollectionViewCardCell"
+final class HomeTableViewCardCell: UITableViewCell {
+    static let identifier = "homeTableViewCardCell"
     
     // MARK: Data
     private var visitedDate: String = "YYYY년 MM월 DD일"
@@ -34,30 +34,15 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         return view
     }()
     
-    private lazy var locationIconImageView: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(systemName: "location.square.fill")
-        view.tintColor = .orrGray3
-        view.contentMode = .scaleAspectFit
-        return view
-    }()
-    
     private lazy var gymLabel: UILabel = {
         let view = UILabel()
         view.text = "클라이밍장 정보"
-        view.font = UIFont.systemFont(ofSize: 12)
-        view.textColor = .orrGray3
+        view.font = UIFont.systemFont(ofSize: 15)
+        view.textColor = .orrGray4
         return view
     }()
     
-    private lazy var gymStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [locationIconImageView, gymLabel])
-        view.spacing = 0
-        view.axis = .horizontal
-        return view
-    }()
-    
-    private lazy var thumbnailCollectionView: UICollectionView = {
+    lazy var thumbnailCollectionView: UICollectionView = {
         let flow = UICollectionViewFlowLayout()
         flow.minimumInteritemSpacing = 1
         flow.minimumLineSpacing = 1
@@ -70,17 +55,10 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         return view
     }()
     
-    private lazy var countPFLabel: UILabel = {
-        let view = UILabel()
-        view.text = "N번의 성공, N번의 실패"
-        view.font = UIFont.systemFont(ofSize: 12)
-        return view
-    }()
-    
     private lazy var countTotalVideoLabel: UILabel = {
         let view = UILabel()
         view.text = "N개의 비디오"
-        view.font = UIFont.systemFont(ofSize: 12)
+        view.font = UIFont.systemFont(ofSize: 15)
         view.textColor = .orrGray3
         return view
     }()
@@ -95,13 +73,14 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
     
     // MARK: View Lifecycle Function
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setUpLayout()
-        setCollectionViewDelegate()
+        fatalError("init(coder:) has not been implemented")
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.backgroundColor = .orrGray1
+        
         setUpLayout()
         setCollectionViewDelegate()
     }
@@ -110,39 +89,33 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
     func setUpLayout() {
         contentView.addSubview(cardView)
         cardView.snp.makeConstraints {
-            $0.edges.equalTo(contentView)
+            $0.leading.trailing.top.equalTo(contentView)
+            $0.bottom.equalTo(contentView).inset(OrrPadding.padding3.rawValue)
         }
         
         cardView.addSubview(thumbnailCollectionView)
         thumbnailCollectionView.snp.makeConstraints {
-            $0.leading.equalTo(cardView.snp.leading)
-            $0.trailing.equalTo(cardView.snp.trailing)
+            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPadding.padding1.rawValue))
+            $0.trailing.equalTo(cardView.snp.trailing).offset(-CGFloat(OrrPadding.padding1.rawValue))
             $0.centerY.equalTo(cardView.snp.centerY).offset(CGFloat(OrrPadding.padding1.rawValue))
             $0.height.equalTo(((UIScreen.main.bounds.width - CGFloat(OrrPadding.padding3.rawValue) * 2) / 5 * 2))
-            
         }
         
-        cardView.addSubview(gymStackView)
-        gymStackView.snp.makeConstraints {
+        cardView.addSubview(gymLabel)
+        gymLabel.snp.makeConstraints {
             $0.bottom.equalTo(thumbnailCollectionView.snp.top).offset(-CGFloat(OrrPadding.padding2.rawValue))
             $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
         }
         
         cardView.addSubview(dateLabel)
         dateLabel.snp.makeConstraints {
-            $0.bottom.equalTo(gymStackView.snp.top).inset(-CGFloat(OrrPadding.padding1.rawValue))
-            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
-        }
-        
-        cardView.addSubview(countPFLabel)
-        countPFLabel.snp.makeConstraints {
-            $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(CGFloat(OrrPadding.padding2.rawValue))
+            $0.bottom.equalTo(gymLabel.snp.top).inset(-CGFloat(OrrPadding.padding1.rawValue))
             $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
         }
         
         cardView.addSubview(countTotalVideoLabel)
         countTotalVideoLabel.snp.makeConstraints {
-            $0.top.equalTo(countPFLabel.snp.bottom).offset(CGFloat(OrrPadding.padding1.rawValue))
+            $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(CGFloat(OrrPadding.padding3.rawValue))
             $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
         }
         
@@ -153,11 +126,13 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
         }
     }
     
-    func setLocationIconView(_ sortOption: SortOption) {
-        locationIconImageView.snp.removeConstraints()
-        locationIconImageView.snp.makeConstraints {
-            $0.width.equalTo(sortOption == .gymName ? 0 : 20)
-            $0.height.equalTo(18)
+    func setCollectionViewLayout() {
+        thumbnailCollectionView.snp.removeConstraints()
+        thumbnailCollectionView.snp.makeConstraints {
+            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPadding.padding1.rawValue))
+            $0.trailing.equalTo(cardView.snp.trailing).offset(-CGFloat(OrrPadding.padding1.rawValue))
+            $0.centerY.equalTo(cardView.snp.centerY).offset(CGFloat(OrrPadding.padding1.rawValue))
+            $0.height.equalTo((UIScreen.main.bounds.width - CGFloat(OrrPadding.padding3.rawValue) * 2) / 5 * (videoThumbnails.count > 5 ? 2 : 1))
         }
     }
     
@@ -170,11 +145,10 @@ final class HomeCollectionViewCardCell: UICollectionViewCell {
     func setUpData(primaryTitle: String, secondaryTitle: String, PFCountDescription: String, videoCountDescription: String, thumbnails: [UIImage], sortOption: SortOption) {
         dateLabel.text = primaryTitle
         gymLabel.text = secondaryTitle
-        countPFLabel.text = PFCountDescription
         countTotalVideoLabel.text = videoCountDescription
         videoThumbnails = thumbnails
-        setLocationIconView(sortOption)
         
         self.thumbnailCollectionView.reloadData()
+        setCollectionViewLayout()
     }
 }

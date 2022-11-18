@@ -8,6 +8,7 @@
 import PhotosUI
 import UIKit
 
+import BetterSegmentedControl
 import NVActivityIndicatorView
 import SnapKit
 
@@ -21,51 +22,61 @@ final class HomeViewController : UIViewController {
     // Quick Action 기능을 위한 조건 변수와 함수 호출 설정
     var isCardView: Bool = true {
         didSet {
-            collectionView.reloadData()
-            collectionView.collectionViewLayout.invalidateLayout()
-            quickActionButton.setImage(UIImage(systemName: isCardView ? "rectangle.stack" : "list.bullet"), for: .normal)
+            homeTableView.reloadData()
+            homeTableView.separatorStyle = isCardView ? .none : .singleLine
         }
     }
     
     var sortOption: SortOption = .gymVisitDate {
         didSet {
-            reloadCollectionViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
+            reloadTableViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
         }
     }
     
     var orderOption: OrderOption = .ascend {
         didSet {
-            reloadCollectionViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
+            reloadTableViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
         }
     }
     var filterOption: FilterOption = .all {
         didSet {
-            reloadCollectionViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
+            reloadTableViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
         }
     }
     
-    private lazy var headerView: UIView = {
-        let view = UIView()
+    private let headerView: UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 170))
         
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
-        view.addSubview(visualEffectView)
-        visualEffectView.snp.makeConstraints {
-            $0.edges.equalTo(view.snp.edges)
-        }
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.orrGray1!.cgColor, UIColor.orrGray1!.withAlphaComponent(0).cgColor]
+        gradientLayer.locations = [0.61, 0.82]
+        gradientLayer.frame = view.bounds
+        
+        view.layer.addSublayer(gradientLayer)
+        view.isUserInteractionEnabled = false
         
         return view
     }()
     
-    private lazy var logoView: UIView = {
-        let view = UIImageView(image: UIImage(named: "orrrock_logo"))
-        
+    private lazy var titleLabel: UILabel = {
+        let view = UILabel()
+        view.text = "모든 기록"
+        view.font = .systemFont(ofSize: 22, weight: .bold)
         return view
     }()
+    
+    private let uploadButton: UIButton = {
+        let view = UIButton()
+        view.setImage(UIImage(named: "upload icon"), for: .normal)
+        view.addTarget(self, action: #selector(videoButtonPressed), for: .touchUpInside)
+        return view
+    }()
+    
     
     private lazy var quickActionButton: UIButton = {
         let button = UIButton(primaryAction: UIAction(title: "", handler: { _ in}))
-        button.setImage(UIImage(systemName: isCardView ? "rectangle.stack" : "list.bullet"), for: .normal)
-        button.tintColor = .orrUPBlue
+        button.setImage(UIImage(systemName: "line.3.horizontal.decrease.circle.fill"), for: .normal)
+        button.tintColor = .orrGray3
         
         // QuickAction은 UIMenu() 라는 컴포넌트로 구현할 수 있음
         // 버튼의 menu에 UIMenu로 감싼 UIAction들을 담아주기
@@ -75,22 +86,8 @@ final class HomeViewController : UIViewController {
             UIDeferredMenuElement.uncached { [weak self] completion in
                 let actions = [
                     UIMenu(title: "", options: .displayInline, children: [
-                        // 앨범형으로 보기
-                        UIAction(title: "앨범",
-                                 image: UIImage(systemName: "rectangle.stack"),
-                                 state: self!.isCardView ? .on : .off) { [unowned self] _ in
-                                     self?.isCardView = true
-                                 },
-                        // 목록형으로 보기
-                        UIAction(title: "목록",
-                                 image: UIImage(systemName: "list.bullet"),
-                                 state: self!.isCardView ? .off : .on) { [unowned self] _ in
-                                     self?.isCardView = false
-                                 }
-                    ]),
-                    UIMenu(title: "", options: .displayInline, children: [
                         // 날짜 기준으로 정렬
-                        UIAction(title: "날짜",
+                        UIAction(title: "날짜순",
                                  image: self!.sortOption == .gymVisitDate ? ( self!.orderOption == .ascend ? UIImage(systemName: "chevron.down") : UIImage(systemName: "chevron.up")) : nil,
                                  state: self!.sortOption == .gymVisitDate ? .on : .off) { [unowned self] _ in
                                      if self!.sortOption == .gymVisitDate {
@@ -103,7 +100,7 @@ final class HomeViewController : UIViewController {
                                      }
                                  },
                         // 암장 기준으로 정렬하기
-                        UIAction(title: "클라이밍 장",
+                        UIAction(title: "클라이밍장순",
                                  image: self!.sortOption == .gymVisitDate ? nil : ( self!.orderOption == .ascend ? UIImage(systemName: "chevron.up") : UIImage(systemName: "chevron.down")),
                                  state: self!.sortOption == .gymVisitDate ? .off : .on) { [unowned self] _ in
                                      
@@ -119,26 +116,22 @@ final class HomeViewController : UIViewController {
                     ]),
                     UIMenu(title: "", options: .displayInline, children: [
                         // 모든 비디오 보여주기
-                        UIAction(title: "모든 비디오",
-                                 image: UIImage(systemName: "photo.on.rectangle.angled"),
+                        UIAction(title: "모든 기록",
                                  state: self!.filterOption == .all ? .on : .off) { [unowned self] _ in
                                      self!.filterOption = .all as FilterOption
                                  },
                         // 즐겨찾는 항목만 보여주기
-                        UIAction(title: "즐겨찾는 항목",
-                                 image: UIImage(systemName: "heart"),
+                        UIAction(title: "즐겨찾는 기록",
                                  state: self!.filterOption == .favorite ? .on : .off) { [unowned self] _ in
                                      self!.filterOption = .favorite as FilterOption
                                  },
                         // 성공 영상만 보여주기
-                        UIAction(title: "성공",
-                                 image: UIImage(systemName: "circle"),
+                        UIAction(title: "성공한 기록",
                                  state: self!.filterOption == .success ? .on : .off) { [unowned self] _ in
                                      self!.filterOption = .success as FilterOption
                                  },
                         // 실패 영상만 보여주기
-                        UIAction(title: "실패",
-                                 image: UIImage(systemName: "multiply"),
+                        UIAction(title: "실패한 기록",
                                  state: self!.filterOption == .failure ? .on : .off) { [unowned self] _ in
                                      self!.filterOption = .failure as FilterOption
                                  }
@@ -154,56 +147,28 @@ final class HomeViewController : UIViewController {
         return button
     }()
     
-    private lazy var toolbarView: UIToolbar = {
-        let view = UIToolbar()
+    lazy var homeTableView: UITableView = {
+        var view = UITableView(frame: CGRect.zero, style: .grouped)
         
-        var items: [UIBarButtonItem] = []
-        
-        // 이번 스프린트에서는 기능이 없음
-//        let myPageButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.rectangle"), style: .plain, target: self, action: nil)
-        
-        let addVideoButton = UIBarButtonItem(image: UIImage(systemName: "camera.fill"), style: .plain, target: self, action: #selector(videoButtonPressed))
-        
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: HomeViewController.self, action: nil)
-        
-//        items.append(myPageButton)
-        items.append(flexibleSpace)
-        items.append(addVideoButton)
-        
-        items.forEach { (item) in
-            item.tintColor = .orrUPBlue
-        }
-        
-        view.setItems(items, animated: true)
-        
-        return view
-    }()
-    
-    private lazy var collectionView: UICollectionView = {
-        let flow = UICollectionViewFlowLayout()
-        flow.minimumInteritemSpacing = 1
-        flow.minimumLineSpacing = 1
-        
-        var view = UICollectionView(frame: CGRect.zero, collectionViewLayout: flow)
-        
-        // CollectionView에서 사용할 Cell 등록
-        view.register(HomeCollectionViewCardCell.classForCoder(),
-                      forCellWithReuseIdentifier: HomeCollectionViewCardCell.identifier)
-        view.register(HomeCollectionViewListCell.classForCoder(),
-                      forCellWithReuseIdentifier: HomeCollectionViewListCell.identifier)
-        view.register(HomeCollectionViewHeaderCell.self,
-                      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                      withReuseIdentifier: HomeCollectionViewHeaderCell.identifier)
-        view.register(HomeCollectionViewFooterCell.self,
-                      forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
-                      withReuseIdentifier: HomeCollectionViewFooterCell.identifier)
+        view.register(HomeTableViewCardCell.classForCoder(), forCellReuseIdentifier: HomeTableViewCardCell.identifier)
+        view.register(HomeTableViewListCell.classForCoder(), forCellReuseIdentifier: HomeTableViewListCell.identifier)
+        view.register(HomeTableViewHeader.classForCoder(), forHeaderFooterViewReuseIdentifier: HomeTableViewHeader.identifier)
+        view.register(HomeTableViewFooter.classForCoder(), forHeaderFooterViewReuseIdentifier: HomeTableViewFooter.identifier)
         
         view.showsVerticalScrollIndicator = false
         view.backgroundColor = UIColor.clear
+        view.separatorStyle = .none
+
+        // 테이블뷰의 카드들이 시작되는 지점을 아래로 옮겨, UI 구성
+        view.tableHeaderView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 0, height: 20)))
+        
+        // 앨범형, 목록형 셀 간격을 맞추기 위한 offset을 적용
+        view.sectionHeaderTopPadding = CGFloat(OrrPadding.padding3.rawValue - 4)
         
         return view
     }()
     
+    // 영상이 없을 때 띄워주는 placeholder
     private lazy var placeholderView: UILabel = {
         let view = UILabel()
         view.text = "업로드한 비디오가 없습니다.\n비디오를 업로드 해주세요."
@@ -216,6 +181,22 @@ final class HomeViewController : UIViewController {
         return view
     }()
     
+    // 세그먼트 컨트롤
+    private lazy var tableViewSegmentControl: BetterSegmentedControl = {
+        let view = BetterSegmentedControl(
+            frame: CGRect(x: 0.0, y: 380.0, width: 160, height: 30.0),
+            segments: IconSegment.segments(withIcons: [UIImage(systemName: "square.split.2x2.fill")!, UIImage(systemName:  "list.bullet")!],
+                                           iconSize: CGSize(width: 24.0, height: 24.0),
+                                           normalIconTintColor: .orrGray3!,
+                                           selectedIconTintColor: UIColor.orrUPBlue!),
+            options: [.cornerRadius(25.0),
+                      .backgroundColor(UIColor.orrGray2!),
+                      .indicatorViewBackgroundColor(.white)])
+        view.addTarget(self, action: #selector(segmentControl(_:)), for: .valueChanged)
+        
+        return view
+    }()
+    
     // MARK: Components
     private let dateFormatter: DateFormatter = {
         let df = DateFormatter()
@@ -225,14 +206,12 @@ final class HomeViewController : UIViewController {
     
     // MARK: View Lifecycle Function
     override func viewDidLoad() {
-		
+        
         super.viewDidLoad()
         view.backgroundColor = .orrGray1
-
+        
         showOnBoard()
-
         setUpLayout()
-        setUpNavigationBar()
         setUICollectionViewDelegate()
         sortedVideoInfoData = DataManager.shared.sortRepository(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
         flattenSortedVideoInfoData = sortedVideoInfoData.flatMap({ $0 })
@@ -241,53 +220,74 @@ final class HomeViewController : UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController!.navigationBar.backgroundColor = .clear
-        reloadCollectionViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
+        self.navigationController?.navigationBar.isHidden = true
+        reloadTableViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     // MARK: Layout Function
     private func setUpLayout() {
-        self.view.addSubview(toolbarView)
-        toolbarView.snp.makeConstraints {
-            $0.height.equalTo(45)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
-        }
         
-        self.view.addSubview(collectionView)
-        collectionView.snp.makeConstraints {
-            $0.top.equalTo(view.snp.top)
-            $0.bottom.equalTo(toolbarView.snp.top)
+        self.view.addSubview(homeTableView)
+        homeTableView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(104)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(OrrPadding.padding3.rawValue)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(OrrPadding.padding3.rawValue)
         }
         
         self.view.addSubview(headerView)
         headerView.snp.makeConstraints {
-            $0.top.equalTo(view.snp.top)
-            $0.bottom.equalTo(view.forLastBaselineLayout.snp_topMargin).offset(16)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.height.equalTo(170)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
+        }
+        
+        self.view.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(CGFloat(OrrPadding.padding2.rawValue))
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
+        }
+        
+        self.view.addSubview(uploadButton)
+        uploadButton.snp.makeConstraints {
+            $0.centerY.equalTo(titleLabel.snp.centerY)
+            $0.width.height.equalTo(30)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-CGFloat(OrrPadding.padding3.rawValue))
+        }
+        
+        self.view.addSubview(quickActionButton)
+        quickActionButton.snp.makeConstraints {
+            $0.centerY.equalTo(titleLabel.snp.centerY)
+            $0.width.height.equalTo(30)
+            $0.trailing.equalTo(uploadButton.snp.leading).offset(-CGFloat(OrrPadding.padding2.rawValue))
+        }
+        
+        self.view.addSubview(tableViewSegmentControl)
+        tableViewSegmentControl.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(CGFloat(OrrPadding.padding4.rawValue))
+            $0.leading.trailing.equalToSuperview().inset(CGFloat(OrrPadding.padding3.rawValue))
+            $0.height.equalTo(48)
         }
         
         self.view.addSubview(placeholderView)
         placeholderView.snp.makeConstraints {
             $0.top.equalTo(view.snp.top)
-            $0.bottom.equalTo(toolbarView.snp.top)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(OrrPadding.padding3.rawValue)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(OrrPadding.padding3.rawValue)
         }
     }
     
     private func setUICollectionViewDelegate() {
-        collectionView.dataSource = self
-        collectionView.delegate = self
-    }
-    
-    private func setUpNavigationBar() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoView)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: quickActionButton)
+        homeTableView.dataSource = self
+        homeTableView.delegate = self
     }
     
     private func showOnBoard(){
@@ -304,6 +304,7 @@ final class HomeViewController : UIViewController {
         let nextVC = DateSettingViewController()
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
+
     //MARK: 스와이프 온보딩을 보고 싶다면 해당 상단의 코드를 주석처리후 하단 주석을 풀어주세요.
 //    @objc func videoButtonPressed(sender: UIButton){
 //        let nextVC = SwipeOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
@@ -311,19 +312,33 @@ final class HomeViewController : UIViewController {
 //        self.present(nextVC, animated: true, completion: nil)
 //    }
     
+    @objc func segmentControl(_ sender: BetterSegmentedControl) {
+        isCardView = sender.index == 0
+    }
 }
 
 // QuickAction을 통한 정렬 및 필터링 시 함수를 아래에 구현
 extension HomeViewController {
     // 정렬 기준 함수
-    private func reloadCollectionViewWithOptions(filterOption: FilterOption, sortOption: SortOption, orderOption: OrderOption) {
+    private func reloadTableViewWithOptions(filterOption: FilterOption, sortOption: SortOption, orderOption: OrderOption) {
         
         self.sortedVideoInfoData = DataManager.shared.sortRepository(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
         self.flattenSortedVideoInfoData = sortedVideoInfoData.flatMap { $0 }
         
         placeholderView.alpha = flattenSortedVideoInfoData.isEmpty ? 1 : 0
-        collectionView.alpha = flattenSortedVideoInfoData.isEmpty ? 0 : 1
-
-        self.collectionView.reloadData()
+        homeTableView.alpha = flattenSortedVideoInfoData.isEmpty ? 0 : 1
+        
+        self.homeTableView.reloadData()
+        
+        switch filterOption {
+        case .all:
+            titleLabel.text = "모든 기록"
+        case .favorite:
+            titleLabel.text = "즐겨찾는 기록"
+        case .success:
+            titleLabel.text = "성공한 기록"
+        case .failure:
+            titleLabel.text = "실패한 기록"
+        }
     }
 }
