@@ -42,7 +42,7 @@ class LevelPickerView: UIViewController, UISheetPresentationControllerDelegate {
     lazy var pickerView: UIPickerView = {
         let picker = UIPickerView()
         picker.frame = CGRect(x: 0, y: 150, width: self.view.bounds.width, height: 180.0)
-        picker.backgroundColor = .orrGray1
+        picker.backgroundColor = .orrGray100
         picker.delegate = self
         picker.dataSource = self
         return picker
@@ -51,7 +51,7 @@ class LevelPickerView: UIViewController, UISheetPresentationControllerDelegate {
     private lazy var saveButton : UIButton = {
         let button = UIButton()
         button.setBackgroundColor(.orrUPBlue ?? .red, for: .normal)
-        button.setBackgroundColor(.orrGray2 ?? .red, for: .disabled)
+        button.setBackgroundColor(.orrGray300 ?? .red, for: .disabled)
         button.clipsToBounds = true
         button.layer.cornerRadius = 15
         button.addTarget(self, action: #selector(tapSaveButton), for: .touchUpInside)
@@ -82,7 +82,7 @@ class LevelPickerView: UIViewController, UISheetPresentationControllerDelegate {
 extension LevelPickerView {
 
     private func setUpLayout(){
-        view.backgroundColor = .orrGray1
+        view.backgroundColor = .orrGray100
 
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {

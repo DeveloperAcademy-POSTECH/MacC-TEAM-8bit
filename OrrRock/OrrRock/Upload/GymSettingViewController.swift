@@ -40,7 +40,7 @@ class GymSettingViewController: UIViewController {
     let nextButton : UIButton = {
         let btn = UIButton()
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
-        btn.setBackgroundColor(.orrGray2!, for: .disabled)
+        btn.setBackgroundColor(.orrGray300!, for: .disabled)
         btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
         btn.setTitle("저장", for: .normal)
         btn.setTitleColor(.white, for: .normal)

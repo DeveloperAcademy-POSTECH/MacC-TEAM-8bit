@@ -28,7 +28,7 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
     private lazy var secondaryTitleLabel: UILabel = {
         let view = UILabel()
         view.font = .systemFont(ofSize: 15, weight: .regular)
-        view.textColor = .orrGray4
+        view.textColor = .orrGray500
         return view
     }()
     

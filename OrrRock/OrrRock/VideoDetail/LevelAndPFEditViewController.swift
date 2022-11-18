@@ -64,14 +64,14 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         label.text = "해당 문제의 레벨을 선택해 주세요."
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.textColor = .orrBlack
-        label.backgroundColor = .orrGray1
+        label.backgroundColor = .orrGray100
         return label
     }()
     
     lazy var pickerView: UIPickerView = {
         let picker = UIPickerView()
         picker.frame = CGRect(x: 0, y: 150, width: self.view.bounds.width, height: 180.0)
-        picker.backgroundColor = .orrGray1
+        picker.backgroundColor = .orrGray100
         picker.delegate = self
         picker.dataSource = self
         return picker
@@ -110,7 +110,7 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
     private lazy var saveButton : UIButton = {
         let btn = UIButton()
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
-        btn.setBackgroundColor(.orrGray2!, for: .disabled)
+        btn.setBackgroundColor(.orrGray300!, for: .disabled)
         btn.clipsToBounds = true
         btn.layer.cornerRadius = 15
         btn.addTarget(self, action: #selector(pressSaveButton), for: .touchUpInside)
@@ -132,7 +132,7 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
 extension LevelAndPFEditViewController {
     
     private func setUpLayout(){
-        view.backgroundColor = .orrGray1
+        view.backgroundColor = .orrGray100
         view.addSubview(levelTopView)
         levelTopView.snp.makeConstraints {
             $0.width.equalToSuperview()

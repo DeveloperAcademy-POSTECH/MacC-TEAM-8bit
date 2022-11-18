@@ -38,7 +38,7 @@ final class HomeTableViewCardCell: UITableViewCell {
         let view = UILabel()
         view.text = "클라이밍장 정보"
         view.font = UIFont.systemFont(ofSize: 15)
-        view.textColor = .orrGray4
+        view.textColor = .orrGray500
         return view
     }()
     
@@ -59,7 +59,7 @@ final class HomeTableViewCardCell: UITableViewCell {
         let view = UILabel()
         view.text = "N개의 비디오"
         view.font = UIFont.systemFont(ofSize: 15)
-        view.textColor = .orrGray3
+        view.textColor = .orrGray400
         return view
     }()
     
@@ -79,7 +79,7 @@ final class HomeTableViewCardCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.backgroundColor = .orrGray1
+        self.backgroundColor = .orrGray100
         
         setUpLayout()
         setCollectionViewDelegate()

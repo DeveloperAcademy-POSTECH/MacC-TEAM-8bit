@@ -32,14 +32,14 @@ final class AutocompleteTableViewCell: UITableViewCell {
        let view = UILabel()
         view.text = "최근에 방문한 클라이밍장"
         view.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        view.textColor = UIColor.orrGray4
+        view.textColor = UIColor.orrGray500
         return view
     }()
     
     private lazy var deleteButton: UIButton = {
         let view = UIButton()
         view.setImage(UIImage(systemName: "multiply"), for: .normal)
-        view.tintColor = UIColor.orrGray4
+        view.tintColor = UIColor.orrGray500
         view.addTarget(self, action: #selector(tapDeleteButton(_:)), for: .touchUpInside)
         return view
     }()

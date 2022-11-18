@@ -34,7 +34,7 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         label.text = "해당 암장의 이름을 적어주세요"
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.textColor = .orrBlack
-        label.backgroundColor = .orrGray1
+        label.backgroundColor = .orrGray100
         return label
     }()
     
@@ -51,7 +51,7 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
     lazy var saveButton : UIButton = {
         let btn = UIButton()
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
-        btn.setBackgroundColor(.orrGray2!, for: .disabled)
+        btn.setBackgroundColor(.orrGray300!, for: .disabled)
         btn.addTarget(self, action: #selector(pressSaveButton), for: .touchUpInside)
         btn.setTitle("저장", for: .normal)
         btn.setTitleColor(.white, for: .normal)
@@ -63,8 +63,8 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         let label = UILabel()
         label.text = Date().timeToString()
         label.font = UIFont.boldSystemFont(ofSize: 17)
-        label.textColor = .orrGray3
-        label.backgroundColor = .orrGray1
+        label.textColor = .orrGray400
+        label.backgroundColor = .orrGray100
         return label
     }()
     
@@ -76,7 +76,7 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         datePicker.timeZone = .autoupdatingCurrent
         datePicker.locale = Locale(identifier:"ko_KR")
         datePicker.addTarget(self, action: #selector(handleDatePicker(_:)), for: .valueChanged)
-        datePicker.backgroundColor = .orrGray1
+        datePicker.backgroundColor = .orrGray100
         datePicker.maximumDate = Date()
         return datePicker
     }()
@@ -86,7 +86,7 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         btn.clipsToBounds = true
         btn.layer.cornerRadius = 15
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
-        btn.setBackgroundColor(.orrGray2!, for: .disabled)
+        btn.setBackgroundColor(.orrGray300!, for: .disabled)
         btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
         btn.setTitle("계속", for: .normal)
         btn.setTitleColor(.white, for: .normal)
@@ -157,7 +157,7 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
     }
     
     private func setUpLayout(){
-        view.backgroundColor = .orrGray1
+        view.backgroundColor = .orrGray100
         self.navigationController?.isToolbarHidden = false
         
         view.addSubview(dateTopView)

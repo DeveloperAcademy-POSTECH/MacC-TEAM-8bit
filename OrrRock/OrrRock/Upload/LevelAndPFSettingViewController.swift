@@ -60,7 +60,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     private lazy var levelButtonImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "chevron.down")
-        imageView.tintColor = .orrGray3
+        imageView.tintColor = .orrGray400
         
         return imageView
     }()
@@ -94,7 +94,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     private lazy var emptyVideoView: UIView = {
         let view = UIView()
-        view.backgroundColor = .orrGray2
+        view.backgroundColor = .orrGray300
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
         
@@ -104,7 +104,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     private lazy var emptyVideoInformation: UILabel = {
         let label = UILabel()
         label.text = "모든 비디오를 분류했습니다!"
-        label.textColor = .orrGray3
+        label.textColor = .orrGray400
         label.font = .systemFont(ofSize: 15.0, weight: .regular)
         
         return label
@@ -435,8 +435,8 @@ private extension LevelAndPFSettingViewController {
         titleLabel.text = "분류 완료! 저장하기를 눌러주세요."
         buttonStackView.isUserInteractionEnabled = false
         
-        titleLabel.textColor = .orrGray3
-        levelButton.tintColor = .orrGray3
+        titleLabel.textColor = .orrGray400
+        levelButton.tintColor = .orrGray400
     }
 }
 

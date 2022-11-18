@@ -19,14 +19,14 @@ final class HomeTableViewListCell: UITableViewCell {
         let view = UIImageView()
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
-        view.backgroundColor = .orrGray3
+        view.backgroundColor = .orrGray400
         view.contentMode = .scaleAspectFill
         return view
     }()
     
     private lazy var dividerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .orrGray2
+        view.backgroundColor = .orrGray300
         return view
     }()
     
@@ -50,7 +50,7 @@ final class HomeTableViewListCell: UITableViewCell {
         let view = UILabel()
         view.text = ""
         view.font = UIFont.systemFont(ofSize: 15)
-        view.textColor = .orrGray4
+        view.textColor = .orrGray500
         view.numberOfLines = 2
         return view
     }()
@@ -59,7 +59,7 @@ final class HomeTableViewListCell: UITableViewCell {
         let view = UILabel()
         view.text = "작성된 피드백이 없습니다."
         view.font = UIFont.systemFont(ofSize: 15)
-        view.textColor = .orrGray3
+        view.textColor = .orrGray400
         view.numberOfLines = 2
         view.textAlignment = .left
         return view

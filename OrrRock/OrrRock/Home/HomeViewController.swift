@@ -48,7 +48,7 @@ final class HomeViewController : UIViewController {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 170))
         
         let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor.orrGray1!.cgColor, UIColor.orrGray1!.withAlphaComponent(0).cgColor]
+        gradientLayer.colors = [UIColor.orrGray100!.cgColor, UIColor.orrGray100!.withAlphaComponent(0).cgColor]
         gradientLayer.locations = [0.61, 0.82]
         gradientLayer.frame = view.bounds
         
@@ -76,7 +76,7 @@ final class HomeViewController : UIViewController {
     private lazy var quickActionButton: UIButton = {
         let button = UIButton(primaryAction: UIAction(title: "", handler: { _ in}))
         button.setImage(UIImage(systemName: "line.3.horizontal.decrease.circle.fill"), for: .normal)
-        button.tintColor = .orrGray3
+        button.tintColor = .orrGray400
         
         // QuickAction은 UIMenu() 라는 컴포넌트로 구현할 수 있음
         // 버튼의 menu에 UIMenu로 감싼 UIAction들을 담아주기
@@ -174,7 +174,7 @@ final class HomeViewController : UIViewController {
         view.text = "업로드한 비디오가 없습니다.\n비디오를 업로드 해주세요."
         view.numberOfLines = 0
         view.textAlignment = .center
-        view.textColor = .orrGray4
+        view.textColor = .orrGray500
         view.font = .systemFont(ofSize: 15)
         
         view.alpha = 0.0
@@ -187,10 +187,10 @@ final class HomeViewController : UIViewController {
             frame: CGRect(x: 0.0, y: 380.0, width: 160, height: 30.0),
             segments: IconSegment.segments(withIcons: [UIImage(systemName: "square.split.2x2.fill")!, UIImage(systemName:  "list.bullet")!],
                                            iconSize: CGSize(width: 24.0, height: 24.0),
-                                           normalIconTintColor: .orrGray3!,
+                                           normalIconTintColor: .orrGray400!,
                                            selectedIconTintColor: UIColor.orrUPBlue!),
             options: [.cornerRadius(25.0),
-                      .backgroundColor(UIColor.orrGray2!),
+                      .backgroundColor(UIColor.orrGray300!),
                       .indicatorViewBackgroundColor(.white)])
         view.addTarget(self, action: #selector(segmentControl(_:)), for: .valueChanged)
         
@@ -208,7 +208,7 @@ final class HomeViewController : UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        view.backgroundColor = .orrGray1
+        view.backgroundColor = .orrGray100
         
         showOnBoard()
         setUpLayout()
