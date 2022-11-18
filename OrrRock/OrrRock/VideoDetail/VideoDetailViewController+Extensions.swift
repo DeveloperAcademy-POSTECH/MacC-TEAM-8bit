@@ -29,7 +29,7 @@ extension VideoDetailViewController{
         if let swipeGesture = gesture as? UISwipeGestureRecognizer{
             switch swipeGesture.direction {
             case UISwipeGestureRecognizer.Direction.up :
-                if !isShowInfo{
+                if !isShowInfo && !self.navigationController!.isToolbarHidden{
                     showInfo()
                 }
             case UISwipeGestureRecognizer.Direction.down :
