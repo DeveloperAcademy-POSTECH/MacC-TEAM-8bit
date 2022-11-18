@@ -95,10 +95,11 @@ final class HomeTableViewCardCell: UITableViewCell {
         
         cardView.addSubview(thumbnailCollectionView)
         thumbnailCollectionView.snp.makeConstraints {
-            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPadding.padding1.rawValue))
-            $0.trailing.equalTo(cardView.snp.trailing).offset(-CGFloat(OrrPadding.padding1.rawValue))
+            let horizontalPadding: CGFloat = 2
+            $0.leading.equalTo(cardView.snp.leading).offset(horizontalPadding)
+            $0.trailing.equalTo(cardView.snp.trailing).offset(-horizontalPadding)
             $0.centerY.equalTo(cardView.snp.centerY).offset(CGFloat(OrrPadding.padding1.rawValue))
-            $0.height.equalTo(((UIScreen.main.bounds.width - CGFloat(OrrPadding.padding3.rawValue) * 2) / 5 * 2))
+            $0.height.equalTo(((UIScreen.main.bounds.width - horizontalPadding * 2) / 5 * 2))
         }
         
         cardView.addSubview(gymLabel)
