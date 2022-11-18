@@ -77,16 +77,16 @@ extension OnBoardingViewController : UIPageViewControllerDelegate {
         view.addSubview(nextButton)
         nextButton.snp.makeConstraints{
             $0.centerX.equalTo(view)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPadding.padding3.rawValue)
-            $0.leading.equalTo(view).offset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalTo(view).offset(-OrrPadding.padding3.rawValue)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
+            $0.leading.equalTo(view).offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalTo(view).offset(-OrrPd.pd16.rawValue)
             $0.height.equalTo(56)
         }
         
         view.addSubview(pageControl)
         pageControl.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(nextButton.snp.top).offset(-OrrPadding.padding3.rawValue)
+            $0.bottom.equalTo(nextButton.snp.top).offset(-OrrPd.pd16.rawValue)
         }
     }
     

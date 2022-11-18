@@ -196,15 +196,15 @@ extension GymSettingViewController {
         view.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
             $0.centerX.equalTo(view)
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPadding.padding2.rawValue)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd8.rawValue)
         }
         
         view.addSubview(gymTextField)
         gymTextField.snp.makeConstraints{
             $0.centerX.equalTo(view)
-            $0.top.equalTo(gymNameLabel.snp.bottom).offset(OrrPadding.padding6.rawValue)
-            $0.leading.equalTo(view).offset(OrrPadding.padding6.rawValue)
-            $0.trailing.equalTo(view).offset(-OrrPadding.padding6.rawValue)
+            $0.top.equalTo(gymNameLabel.snp.bottom).offset(OrrPd.pd40.rawValue)
+            $0.leading.equalTo(view).offset(OrrPd.pd40.rawValue)
+            $0.trailing.equalTo(view).offset(-OrrPd.pd40.rawValue)
         }
         
         view.addSubview(nextButton)
@@ -223,9 +223,9 @@ extension GymSettingViewController {
         
         view.addSubview(tableViewHeaderLabel)
         tableViewHeaderLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalToSuperview().offset(OrrPadding.padding3.rawValue)
-            $0.bottom.equalTo(autocompleteTableView.snp.top).offset(-OrrPadding.padding3.rawValue)
+            $0.leading.equalToSuperview().offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalToSuperview().offset(OrrPd.pd16.rawValue)
+            $0.bottom.equalTo(autocompleteTableView.snp.top).offset(-OrrPd.pd16.rawValue)
         }
     }
         

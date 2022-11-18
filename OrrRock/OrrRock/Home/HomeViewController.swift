@@ -163,7 +163,7 @@ final class HomeViewController : UIViewController {
         view.tableHeaderView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 0, height: 20)))
         
         // 앨범형, 목록형 셀 간격을 맞추기 위한 offset을 적용
-        view.sectionHeaderTopPadding = CGFloat(OrrPadding.padding3.rawValue - 4)
+        view.sectionHeaderTopPadding = CGFloat(OrrPd.pd16.rawValue - 4)
         
         return view
     }()
@@ -237,8 +237,8 @@ final class HomeViewController : UIViewController {
         homeTableView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(104)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(OrrPadding.padding3.rawValue)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(OrrPd.pd16.rawValue)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(OrrPd.pd16.rawValue)
         }
         
         self.view.addSubview(headerView)
@@ -251,28 +251,28 @@ final class HomeViewController : UIViewController {
         
         self.view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(CGFloat(OrrPadding.padding2.rawValue))
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(CGFloat(OrrPd.pd8.rawValue))
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(CGFloat(OrrPd.pd16.rawValue))
         }
         
         self.view.addSubview(uploadButton)
         uploadButton.snp.makeConstraints {
             $0.centerY.equalTo(titleLabel.snp.centerY)
             $0.width.height.equalTo(30)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-CGFloat(OrrPadding.padding3.rawValue))
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-CGFloat(OrrPd.pd16.rawValue))
         }
         
         self.view.addSubview(quickActionButton)
         quickActionButton.snp.makeConstraints {
             $0.centerY.equalTo(titleLabel.snp.centerY)
             $0.width.height.equalTo(30)
-            $0.trailing.equalTo(uploadButton.snp.leading).offset(-CGFloat(OrrPadding.padding2.rawValue))
+            $0.trailing.equalTo(uploadButton.snp.leading).offset(-CGFloat(OrrPd.pd8.rawValue))
         }
         
         self.view.addSubview(tableViewSegmentControl)
         tableViewSegmentControl.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(CGFloat(OrrPadding.padding4.rawValue))
-            $0.leading.trailing.equalToSuperview().inset(CGFloat(OrrPadding.padding3.rawValue))
+            $0.top.equalTo(titleLabel.snp.bottom).offset(CGFloat(OrrPd.pd20.rawValue))
+            $0.leading.trailing.equalToSuperview().inset(CGFloat(OrrPd.pd16.rawValue))
             $0.height.equalTo(48)
         }
         
@@ -280,8 +280,8 @@ final class HomeViewController : UIViewController {
         placeholderView.snp.makeConstraints {
             $0.top.equalTo(view.snp.top)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(OrrPadding.padding3.rawValue)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(OrrPd.pd16.rawValue)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(OrrPd.pd16.rawValue)
         }
     }
     

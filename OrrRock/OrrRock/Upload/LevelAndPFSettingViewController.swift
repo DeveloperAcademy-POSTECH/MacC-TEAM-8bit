@@ -475,7 +475,7 @@ private extension LevelAndPFSettingViewController {
         headerView.addSubview(levelStackView)
         levelStackView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(titleLabel.snp.bottom).offset(OrrPadding.padding3.rawValue)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(OrrPd.pd16.rawValue)
             $0.centerX.equalToSuperview()
         }
         
@@ -495,7 +495,7 @@ private extension LevelAndPFSettingViewController {
         
         view.addSubview(failButton)
         failButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPadding.padding3.rawValue)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
             $0.leading.equalToSuperview().inset(48.0)
             $0.height.equalTo(74.0)
             $0.width.equalTo(74.0)
@@ -503,7 +503,7 @@ private extension LevelAndPFSettingViewController {
         
         view.addSubview(successButton)
         successButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPadding.padding3.rawValue)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
             $0.trailing.equalToSuperview().inset(48.0)
             $0.height.equalTo(74.0)
             $0.width.equalTo(74.0)
@@ -512,8 +512,8 @@ private extension LevelAndPFSettingViewController {
         view.addSubview(emptyVideoView)
         emptyVideoView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(separator.snp.bottom).offset(OrrPadding.padding4.rawValue)
-            $0.bottom.equalTo(successButton.snp.top).offset(-OrrPadding.padding4.rawValue)
+            $0.top.equalTo(separator.snp.bottom).offset(OrrPd.pd20.rawValue)
+            $0.bottom.equalTo(successButton.snp.top).offset(-OrrPd.pd20.rawValue)
             $0.width.equalTo(emptyVideoView.snp.height).multipliedBy(0.5625)
         }
         
@@ -524,9 +524,9 @@ private extension LevelAndPFSettingViewController {
         
         view.addSubview(saveButton)
         saveButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPadding.padding3.rawValue)
-            $0.leading.equalTo(view).offset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalTo(view).offset(-OrrPadding.padding3.rawValue)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
+            $0.leading.equalTo(view).offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalTo(view).offset(-OrrPd.pd16.rawValue)
             $0.height.equalTo(56)
         }
     }

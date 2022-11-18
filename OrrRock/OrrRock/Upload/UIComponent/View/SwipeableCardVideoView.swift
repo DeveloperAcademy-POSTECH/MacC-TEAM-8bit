@@ -134,7 +134,7 @@ private extension SwipeableCardVideoView {
         
         self.addSubview(countVideoView)
         countVideoView.snp.makeConstraints {
-            $0.bottom.equalTo(videoBackgroundView.snp.bottom).inset(OrrPadding.padding3.rawValue)
+            $0.bottom.equalTo(videoBackgroundView.snp.bottom).inset(OrrPd.pd16.rawValue)
             $0.centerX.equalTo(videoBackgroundView.snp.centerX)
             $0.height.equalTo(24)
             $0.width.equalTo(71)

@@ -178,23 +178,23 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         dateContentView.addSubview(datePickerLabel)
         datePickerLabel.snp.makeConstraints {
             $0.centerX.equalTo(dateContentView)
-            $0.top.equalTo(dateContentView.snp.top).offset(OrrPadding.padding5.rawValue)
+            $0.top.equalTo(dateContentView.snp.top).offset(OrrPd.pd24.rawValue)
         }
         
         dateContentView.addSubview(datePicker)
         datePicker.snp.makeConstraints{
             $0.centerX.equalTo(dateContentView)
-            $0.top.equalTo(datePickerLabel.snp.bottom).offset(OrrPadding.padding5.rawValue)
-            $0.leading.equalTo(dateContentView).offset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalTo(dateContentView).offset(-OrrPadding.padding3.rawValue)
+            $0.top.equalTo(datePickerLabel.snp.bottom).offset(OrrPd.pd24.rawValue)
+            $0.leading.equalTo(dateContentView).offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalTo(dateContentView).offset(-OrrPd.pd16.rawValue)
         }
         
         dateContentView.addSubview(nextButton)
         nextButton.snp.makeConstraints{
             $0.centerX.equalTo(dateContentView)
             $0.bottom.equalTo(dateContentView).offset(-34)
-            $0.leading.equalTo(dateContentView).offset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalTo(dateContentView).offset(-OrrPadding.padding3.rawValue)
+            $0.leading.equalTo(dateContentView).offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalTo(dateContentView).offset(-OrrPd.pd16.rawValue)
             $0.height.equalTo(56)
         }
         
@@ -209,15 +209,15 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         gymContentView.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
             $0.centerX.equalTo(dateContentView)
-            $0.top.equalTo(dateContentView.snp.top).offset(OrrPadding.padding5.rawValue)
+            $0.top.equalTo(dateContentView.snp.top).offset(OrrPd.pd24.rawValue)
         }
         
         gymContentView.addSubview(gymTextField)
         gymTextField.snp.makeConstraints{
             $0.centerX.equalTo(gymContentView)
-            $0.top.equalTo(gymNameLabel.snp.bottom).offset(OrrPadding.padding3.rawValue)
-            $0.leading.equalTo(gymContentView).offset(OrrPadding.padding6.rawValue)
-            $0.trailing.equalTo(gymContentView).offset(-OrrPadding.padding6.rawValue)
+            $0.top.equalTo(gymNameLabel.snp.bottom).offset(OrrPd.pd16.rawValue)
+            $0.leading.equalTo(gymContentView).offset(OrrPd.pd40.rawValue)
+            $0.trailing.equalTo(gymContentView).offset(-OrrPd.pd40.rawValue)
         }
         
         gymContentView.addSubview(saveButton)
@@ -236,9 +236,9 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         
         gymContentView.addSubview(tableViewHeaderLabel)
         tableViewHeaderLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalToSuperview().offset(OrrPadding.padding3.rawValue)
-            $0.bottom.equalTo(autocompleteTableView.snp.top).offset(-OrrPadding.padding3.rawValue)
+            $0.leading.equalToSuperview().offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalToSuperview().offset(OrrPd.pd16.rawValue)
+            $0.bottom.equalTo(autocompleteTableView.snp.top).offset(-OrrPd.pd16.rawValue)
         }
     }
     

@@ -70,14 +70,14 @@ extension HomeTableViewHeader {
         
         contentView.addSubview(secondaryTitleLabel)
         secondaryTitleLabel.snp.makeConstraints {
-            $0.bottom.equalTo(contentView.snp.bottom).offset(-CGFloat(OrrPadding.padding1.rawValue))
-            $0.leading.equalTo(contentView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
+            $0.bottom.equalTo(contentView.snp.bottom).offset(-CGFloat(OrrPd.pd4.rawValue))
+            $0.leading.equalTo(contentView.snp.leading).offset(CGFloat(OrrPd.pd16.rawValue))
         }
         
         contentView.addSubview(primaryTitleLabel)
         primaryTitleLabel.snp.makeConstraints {
-            $0.bottom.equalTo(secondaryTitleLabel.snp.top).offset(-CGFloat(OrrPadding.padding1.rawValue))
-            $0.leading.equalTo(contentView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
+            $0.bottom.equalTo(secondaryTitleLabel.snp.top).offset(-CGFloat(OrrPd.pd4.rawValue))
+            $0.leading.equalTo(contentView.snp.leading).offset(CGFloat(OrrPd.pd16.rawValue))
         }
     }
 }

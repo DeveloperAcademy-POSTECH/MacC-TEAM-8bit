@@ -82,7 +82,7 @@ final class HomeTableViewListCell: UITableViewCell {
         
         contentView.addSubview(cellView)
         cellView.snp.makeConstraints {
-            $0.edges.equalTo(contentView.snp.edges).inset(CGFloat(OrrPadding.padding3.rawValue))
+            $0.edges.equalTo(contentView.snp.edges).inset(CGFloat(OrrPd.pd16.rawValue))
         }
         
         cellView.addSubview(thumbnailView)
@@ -95,23 +95,23 @@ final class HomeTableViewListCell: UITableViewCell {
         
         cellView.addSubview(levelAndPFLabel)
         levelAndPFLabel.snp.makeConstraints {
-            $0.leading.equalTo(thumbnailView.snp.trailing).offset(CGFloat(OrrPadding.padding3.rawValue))
+            $0.leading.equalTo(thumbnailView.snp.trailing).offset(CGFloat(OrrPd.pd16.rawValue))
             $0.top.equalTo(thumbnailView.snp.top)
         }
         
         cellView.addSubview(feedbackLabel)
         feedbackLabel.snp.makeConstraints {
-            $0.leading.equalTo(thumbnailView.snp.trailing).offset(CGFloat(OrrPadding.padding3.rawValue))
+            $0.leading.equalTo(thumbnailView.snp.trailing).offset(CGFloat(OrrPd.pd16.rawValue))
             $0.trailing.equalTo(cellView.snp.trailing)
-            $0.top.equalTo(levelAndPFLabel.snp.bottom).offset(CGFloat(OrrPadding.padding1.rawValue))
+            $0.top.equalTo(levelAndPFLabel.snp.bottom).offset(CGFloat(OrrPd.pd4.rawValue))
             $0.bottom.equalTo(cellView.snp.bottom)
         }
         
         cellView.addSubview(feedbackPlaceholder)
         feedbackPlaceholder.snp.makeConstraints {
-            $0.leading.equalTo(thumbnailView.snp.trailing).offset(CGFloat(OrrPadding.padding3.rawValue))
+            $0.leading.equalTo(thumbnailView.snp.trailing).offset(CGFloat(OrrPd.pd16.rawValue))
             $0.trailing.equalTo(cellView.snp.trailing)
-            $0.top.equalTo(levelAndPFLabel.snp.bottom).offset(CGFloat(OrrPadding.padding1.rawValue))
+            $0.top.equalTo(levelAndPFLabel.snp.bottom).offset(CGFloat(OrrPd.pd4.rawValue))
             $0.bottom.equalTo(cellView.snp.bottom)
         }
     }
