@@ -19,15 +19,11 @@ extension VideoDetailViewController{
         swipeUp.direction = UISwipeGestureRecognizer.Direction.up
         view.addGestureRecognizer(swipeUp)
         
+        let tapgesture = UITapGestureRecognizer(target: self, action: #selector(respondToTapGesture(_:)))
+        view.addGestureRecognizer(tapgesture)
+        
     }
     
-    func addTapGestureToVideoPlayView(){
-        videoPlayView.addGestureRecognizer(tapGesture)
-    }
-    
-    func removeTapGestureFromVideoPlayView(){
-        videoPlayView.removeGestureRecognizer(tapGesture)
-    }
     
     @objc func respondToSwipeGesture(_ gesture: UIGestureRecognizer) {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer{
@@ -55,6 +51,16 @@ extension VideoDetailViewController{
     }
     
     @objc func respondToTapGesture(_ gesture: UITapGestureRecognizer){
-        showInfo()
+        if !isShowInfo{
+            self.topSafeAreaView.layer.opacity = self.navigationController!.isToolbarHidden ? 1.0 : 0.0
+            self.bottomSafeAreaView.layer.opacity = self.navigationController!.isToolbarHidden ? 1.0 : 0.0
+            self.navigationController?.isNavigationBarHidden = self.navigationController!.isToolbarHidden ? false : true
+            self.navigationController?.isToolbarHidden = self.navigationController!.isToolbarHidden ? false : true
+        }
+        
+        
+        
+        
+        print("touched")
     }
 }

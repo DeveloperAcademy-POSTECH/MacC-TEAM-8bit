@@ -48,13 +48,13 @@ class VideoDetailViewController: UIViewController {
     private var cancelButton: UIBarButtonItem!
     private var completeButton: UIBarButtonItem!
     
-    private lazy var topSafeAreaView: UIView = {
+    lazy var topSafeAreaView: UIView = {
         let view = UIView()
         view.backgroundColor = .orrWhite
         return view
     }()
     
-    private lazy var bottomSafeAreaView: UIView = {
+    lazy var bottomSafeAreaView: UIView = {
         let view = UIView()
         view.backgroundColor = .orrWhite
         return view
@@ -79,6 +79,7 @@ class VideoDetailViewController: UIViewController {
         addUIGesture()
         videoDetailPageViewController.videoInformationArray = videoInformationArray
         videoDetailPageViewController.currentIndex = currentIndex
+        
         self.addChild(videoDetailPageViewController)
         self.view.addSubview(videoDetailPageViewController.view)
         self.view.addConstraints(videoDetailPageViewController.view.constraints)
@@ -87,6 +88,22 @@ class VideoDetailViewController: UIViewController {
             $0.leading.equalTo(self.view)
             $0.trailing.equalTo(self.view)
             $0.top.equalTo(self.view)
+            $0.bottom.equalTo(self.view)
+        }
+        
+        view.addSubview(topSafeAreaView)
+        topSafeAreaView.snp.makeConstraints {
+            $0.leading.equalTo(self.view)
+            $0.trailing.equalTo(self.view)
+            $0.top.equalTo(self.view)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+        }
+        // 하단 safe area를 가려주는 뷰
+        view.addSubview(bottomSafeAreaView)
+        bottomSafeAreaView.snp.makeConstraints {
+            $0.leading.equalTo(self.view)
+            $0.trailing.equalTo(self.view)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
             $0.bottom.equalTo(self.view)
         }
         
@@ -150,15 +167,15 @@ class VideoDetailViewController: UIViewController {
         feedbackText = videoInfoView.feedbackTextView.text!
         feedbackButton.title = videoInfoView.feedbackTextView.textColor == .placeholderText ? "피드백 입력하기" : "피드백 확인하기"
         if isShowInfo {
-            addTapGestureToVideoPlayView()
             UIView.animate(withDuration: 0.2, animations: {
                 self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -430)
                 self.videoDetailPageViewController.view.transform = CGAffineTransform(translationX: 0, y: -430)
                 self.navigationController?.navigationBar.layer.opacity = 0
                 self.topSafeAreaView.layer.opacity = 0
+                self.navigationController?.isToolbarHidden = false
+                self.bottomSafeAreaView.layer.opacity = 1.0
             })
         } else {
-            removeTapGestureFromVideoPlayView()
             UIView.animate(withDuration: 0.2, animations: {
                 self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
                 self.videoDetailPageViewController.view.transform = CGAffineTransform(translationX: 0, y: 0)
@@ -384,20 +401,6 @@ extension VideoDetailViewController {
             $0.bottom.equalTo(self.view).offset(650)
         }
         // 상단 safe area를 가려주는 뷰
-        view.addSubview(topSafeAreaView)
-        topSafeAreaView.snp.makeConstraints {
-            $0.leading.equalTo(self.view)
-            $0.trailing.equalTo(self.view)
-            $0.top.equalTo(self.view)
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-        }
-        // 하단 safe area를 가려주는 뷰
-        view.addSubview(bottomSafeAreaView)
-        bottomSafeAreaView.snp.makeConstraints {
-            $0.leading.equalTo(self.view)
-            $0.trailing.equalTo(self.view)
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
-            $0.bottom.equalTo(self.view)
-        }
+        
     }
 }
