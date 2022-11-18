@@ -9,10 +9,13 @@ import SwiftUI
 
 struct ChallengeChartView: View {
     var body: some View {
-        VStack {
-            Text("차트 페이지 1")
+        ZStack {
+            VStack {
+                
+            }
         }
-        .frame(width: UIScreen.main.bounds.width - 32, height: 400)
+        .frame(width: UIScreen.main.bounds.width - 32, height: 100)
+        .border(.black, width: 3)
         .background(Color.yellow)
     }
 }

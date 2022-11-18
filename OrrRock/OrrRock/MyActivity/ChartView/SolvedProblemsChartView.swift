@@ -10,7 +10,7 @@ import SwiftUI
 struct SolvedProblemsChartView: View {
     var body: some View {
         Text("차트 페이지 2")
-            .frame(width: UIScreen.main.bounds.width - 32, height: 400)
+            .frame(width: UIScreen.main.bounds.width - 32, height: 700)
             .background(Color.green)
     }
 }

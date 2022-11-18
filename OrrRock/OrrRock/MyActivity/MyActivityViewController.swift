@@ -50,6 +50,10 @@ class MyActivityViewController: UIViewController {
         return VC.view
     }()
     
+    private lazy var paddingView: UIView = {
+        return UIView()
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,7 +79,8 @@ extension MyActivityViewController {
         scrollView.addSubview(contentView)
         contentView.snp.makeConstraints {
             $0.width.equalToSuperview()
-            $0.centerX.top.bottom.equalToSuperview()
+            $0.centerX.top.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
         
         contentView.addSubview(summaryView)
@@ -94,7 +99,18 @@ extension MyActivityViewController {
         solvedProblemsChartView.snp.makeConstraints {
             $0.leading.trailing.equalTo(contentView)
             $0.top.equalTo(challengeChartView.snp.bottom).offset(16)
-            $0.bottom.equalToSuperview()
+        }
+        
+        if contentView.bounds.height < scrollView.bounds.height {
+            contentView.addSubview(paddingView)
+            paddingView.snp.makeConstraints {
+                $0.top.equalTo(solvedProblemsChartView)
+                $0.bottom.equalToSuperview()
+            }
+        } else {
+            solvedProblemsChartView.snp.makeConstraints {
+                $0.bottom.equalToSuperview()
+            }
         }
     }
 }
