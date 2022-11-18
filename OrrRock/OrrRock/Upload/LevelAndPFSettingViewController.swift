@@ -134,6 +134,17 @@ final class LevelAndPFSettingViewController: UIViewController {
         return button
     }()
     
+    private lazy var videoSlider: VideoSlider = {
+        let slider = VideoSlider()
+        slider.minimumTrackTintColor = .orrUPBlue
+        slider.maximumTrackTintColor = .orrGray1
+//        slider.addTarget(self, action: #selector(didChangeSlide), for: .valueChanged)
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(slider)
+        
+        return slider
+    }()
+    
     private lazy var saveButton : UIButton = {
         let button = UIButton()
         button.setBackgroundColor(.orrUPBlue!, for: .normal)
@@ -431,6 +442,7 @@ private extension LevelAndPFSettingViewController {
         saveButton.isHidden = false
         successButton.isHidden = true
         failButton.isHidden = true
+        videoSlider.isHidden = true
         
         titleLabel.text = "분류 완료! 저장하기를 눌러주세요."
         buttonStackView.isUserInteractionEnabled = false
@@ -493,9 +505,17 @@ private extension LevelAndPFSettingViewController {
             $0.width.equalTo(90.0)
         }
         
+        view.addSubview(videoSlider)
+        videoSlider.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPadding.padding3.rawValue)
+            $0.leading.equalTo(view).offset(OrrPadding.padding3.rawValue)
+            $0.trailing.equalTo(view).offset(-OrrPadding.padding3.rawValue)
+            $0.height.equalTo(56)
+        }
+        
         view.addSubview(failButton)
         failButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPadding.padding3.rawValue)
+            $0.bottom.equalTo(videoSlider).offset(-OrrPadding.padding3.rawValue)
             $0.leading.equalToSuperview().inset(48.0)
             $0.height.equalTo(74.0)
             $0.width.equalTo(74.0)
@@ -503,7 +523,7 @@ private extension LevelAndPFSettingViewController {
         
         view.addSubview(successButton)
         successButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPadding.padding3.rawValue)
+            $0.bottom.equalTo(videoSlider).offset(-OrrPadding.padding3.rawValue)
             $0.trailing.equalToSuperview().inset(48.0)
             $0.height.equalTo(74.0)
             $0.width.equalTo(74.0)
