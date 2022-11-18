@@ -45,13 +45,15 @@ final class HomeViewController : UIViewController {
     }
     
     private let headerView: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 160))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 170))
         
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [UIColor.orrGray1!.cgColor, UIColor.orrGray1!.withAlphaComponent(0).cgColor]
-        gradientLayer.locations = [0.75, 0.9]
+        gradientLayer.locations = [0.61, 0.82]
         gradientLayer.frame = view.bounds
+        
         view.layer.addSublayer(gradientLayer)
+        view.isUserInteractionEnabled = false
         
         return view
     }()
@@ -156,6 +158,9 @@ final class HomeViewController : UIViewController {
         view.showsVerticalScrollIndicator = false
         view.backgroundColor = UIColor.clear
         view.separatorStyle = .none
+
+        // 테이블뷰의 카드들이 시작되는 지점을 아래로 옮겨, UI 구성
+        view.tableHeaderView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 0, height: 20)))
         
         // 앨범형, 목록형 셀 간격을 맞추기 위한 offset을 적용
         view.sectionHeaderTopPadding = CGFloat(OrrPadding.padding3.rawValue - 4)
@@ -230,7 +235,7 @@ final class HomeViewController : UIViewController {
         
         self.view.addSubview(homeTableView)
         homeTableView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(115)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(104)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(OrrPadding.padding3.rawValue)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(OrrPadding.padding3.rawValue)
@@ -239,7 +244,7 @@ final class HomeViewController : UIViewController {
         self.view.addSubview(headerView)
         headerView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            $0.height.equalTo(160)
+            $0.height.equalTo(170)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
         }
@@ -266,7 +271,7 @@ final class HomeViewController : UIViewController {
         
         self.view.addSubview(tableViewSegmentControl)
         tableViewSegmentControl.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(CGFloat(OrrPadding.padding6.rawValue))
+            $0.top.equalTo(titleLabel.snp.bottom).offset(CGFloat(OrrPadding.padding4.rawValue))
             $0.leading.trailing.equalToSuperview().inset(CGFloat(OrrPadding.padding3.rawValue))
             $0.height.equalTo(48)
         }
