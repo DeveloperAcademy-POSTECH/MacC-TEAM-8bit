@@ -27,6 +27,14 @@ class VideoDetailViewController: UIViewController {
     
     var feedbackText: String?
     
+    
+    //for the test
+    var videoInformationArray: [VideoInformation] = []
+    var currentIndex = 0
+    lazy var videoDetailPageViewController = VideoDetailPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+    
+    //for the test
+    
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(respondToTapGesture(_:)))
     
     private var infoButton: UIBarButtonItem!
@@ -59,6 +67,8 @@ class VideoDetailViewController: UIViewController {
         return view
     }()
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadVideoAsset()
@@ -67,6 +77,19 @@ class VideoDetailViewController: UIViewController {
         setKeyboardObserver()
         setDefaultData()
         addUIGesture()
+        videoDetailPageViewController.videoInformationArray = videoInformationArray
+        videoDetailPageViewController.currentIndex = currentIndex
+        self.addChild(videoDetailPageViewController)
+        self.view.addSubview(videoDetailPageViewController.view)
+        self.view.addConstraints(videoDetailPageViewController.view.constraints)
+        videoDetailPageViewController.didMove(toParent: self)
+        videoDetailPageViewController.view.snp.makeConstraints {
+            $0.leading.equalTo(self.view)
+            $0.trailing.equalTo(self.view)
+            $0.top.equalTo(self.view)
+            $0.bottom.equalTo(self.view)
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -129,8 +152,8 @@ class VideoDetailViewController: UIViewController {
         if isShowInfo {
             addTapGestureToVideoPlayView()
             UIView.animate(withDuration: 0.2, animations: {
-                self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -500)
-                self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: -100)
+                self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -430)
+                self.videoDetailPageViewController.view.transform = CGAffineTransform(translationX: 0, y: -430)
                 self.navigationController?.navigationBar.layer.opacity = 0
                 self.topSafeAreaView.layer.opacity = 0
             })
@@ -138,7 +161,7 @@ class VideoDetailViewController: UIViewController {
             removeTapGestureFromVideoPlayView()
             UIView.animate(withDuration: 0.2, animations: {
                 self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
-                self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: 0)
+                self.videoDetailPageViewController.view.transform = CGAffineTransform(translationX: 0, y: 0)
                 self.navigationController?.navigationBar.layer.opacity = 1
                 self.topSafeAreaView.layer.opacity = 1
             })
@@ -196,14 +219,14 @@ class VideoDetailViewController: UIViewController {
             UIView.animate(withDuration: 0.2, animations: {
                 self.videoInfoView.feedbackTextView.becomeFirstResponder()
                 self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -430)
-                self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: -100)
+                self.videoDetailPageViewController.view.transform = CGAffineTransform(translationX: 0, y: -430)
                 self.navigationController?.navigationBar.layer.opacity = 0
                 self.topSafeAreaView.layer.opacity = 0
             })
         } else {
             UIView.animate(withDuration: 0.2, animations: {
                 self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
-                self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: 0)
+                self.videoDetailPageViewController.view.transform = CGAffineTransform(translationX: 0, y: 0)
                 self.navigationController?.navigationBar.layer.opacity = 1
                 self.topSafeAreaView.layer.opacity = 1
             })
@@ -343,13 +366,14 @@ extension VideoDetailViewController {
 extension VideoDetailViewController {
     private func setUpLayout() {
         // 영상을 보여주는 뷰
-        view.addSubview(videoPlayView)
-        videoPlayView.snp.makeConstraints {
-            $0.leading.equalTo(self.view)
-            $0.trailing.equalTo(self.view)
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
-        }
+        
+//        view.addSubview(videoPlayView)
+//        videoPlayView.snp.makeConstraints {
+//            $0.leading.equalTo(self.view)
+//            $0.trailing.equalTo(self.view)
+//            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+//            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+//        }
         // 정보를 보여주는 뷰
         videoInfoView = VideoInfoView(frame: .zero, videoInfo: videoInformation)
         view.addSubview(videoInfoView)
@@ -357,7 +381,7 @@ extension VideoDetailViewController {
             $0.leading.equalTo(self.view)
             $0.trailing.equalTo(self.view)
             $0.height.equalTo(650)
-            $0.bottom.equalTo(self.view).offset(700)
+            $0.bottom.equalTo(self.view).offset(650)
         }
         // 상단 safe area를 가려주는 뷰
         view.addSubview(topSafeAreaView)

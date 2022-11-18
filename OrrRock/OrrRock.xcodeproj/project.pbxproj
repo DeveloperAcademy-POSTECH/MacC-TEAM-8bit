@@ -68,6 +68,8 @@
 		78F93ED32906EFC500F3D9F3 /* DateAndGymEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */; };
 		78F93ED7290743DF00F3D9F3 /* LevelAndPFEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */; };
 		78FEE88B292616BC007B67BD /* VideoDetailViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */; };
+		78FEE88F2926A23B007B67BD /* VideoPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE88E2926A23B007B67BD /* VideoPlayViewController.swift */; };
+		78FEE8912926A599007B67BD /* VideoDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE8902926A599007B67BD /* VideoDetailPageViewController.swift */; };
 		A88805852907F5A0002CD52E /* LevelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88805842907F5A0002CD52E /* LevelPickerView.swift */; };
 		FB3227FC2903FD9C00276A7D /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3227FB2903FD9C00276A7D /* Date+.swift */; };
 		FB3227FE2903FDA600276A7D /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3227FD2903FDA600276A7D /* String+.swift */; };
@@ -138,6 +140,8 @@
 		78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAndGymEditViewController.swift; sourceTree = "<group>"; };
 		78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelAndPFEditViewController.swift; sourceTree = "<group>"; };
 		78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoDetailViewController+Extensions.swift"; sourceTree = "<group>"; };
+		78FEE88E2926A23B007B67BD /* VideoPlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayViewController.swift; sourceTree = "<group>"; };
+		78FEE8902926A599007B67BD /* VideoDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailPageViewController.swift; sourceTree = "<group>"; };
 		A88805842907F5A0002CD52E /* LevelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelPickerView.swift; sourceTree = "<group>"; };
 		FB3227FB2903FD9C00276A7D /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		FB3227FD2903FDA600276A7D /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
@@ -260,13 +264,13 @@
 		3AA4D41D28FEBADE006C718A /* OrrRock */ = {
 			isa = PBXGroup;
 			children = (
-				78FEE88929261641007B67BD /* VideoCollection */,
 				3AEB3D65291C080400A989FF /* Models */,
 				709A8C69290481F000CEA6F4 /* Utils */,
 				34B011412900158F0043951A /* Extensions */,
 				3A08879E29012CC300EFFDBB /* CoreData */,
 				3AEB3D5E291C01B000A989FF /* OnBoarding */,
 				3AEB3D5F291C027B00A989FF /* Home */,
+				78FEE88929261641007B67BD /* VideoCollection */,
 				3AEB3D60291C02F000A989FF /* VideoDetail */,
 				3AEB3D64291C04CE00A989FF /* Upload */,
 				3AA4D41E28FEBADE006C718A /* AppDelegate.swift */,
@@ -320,6 +324,8 @@
 				FB32280E29046B4500276A7D /* VideoDetailViewController.swift */,
 				78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */,
 				3AEB3D61291C03A900A989FF /* UIComponent */,
+				78FEE8902926A599007B67BD /* VideoDetailPageViewController.swift */,
+				78FEE88E2926A23B007B67BD /* VideoPlayViewController.swift */,
 			);
 			path = VideoDetail;
 			sourceTree = "<group>";
@@ -524,6 +530,7 @@
 				78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */,
 				342508A329001780000653D9 /* HomeViewController.swift in Sources */,
 				342508A52900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift in Sources */,
+				78FEE88F2926A23B007B67BD /* VideoPlayViewController.swift in Sources */,
 				FBA5DBFD291AE32A00422A17 /* ButtonClickEffect.swift in Sources */,
 				34E76F462924D33E00EBB92D /* HomeTableViewFooter.swift in Sources */,
 				3A15AC882907B1160058512F /* VideoInformation+CoreDataClass.swift in Sources */,
@@ -544,6 +551,7 @@
 				3A15AC7B290724620058512F /* DataManager.swift in Sources */,
 				341418B6292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift in Sources */,
 				70A8DF0A291A863F0061E36B /* UIView+.swift in Sources */,
+				78FEE8912926A599007B67BD /* VideoDetailPageViewController.swift in Sources */,
 				A88805852907F5A0002CD52E /* LevelPickerView.swift in Sources */,
 				78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */,
 				70A44807290452B000BE18A5 /* Button+.swift in Sources */,
@@ -685,7 +693,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = MSUF83HQ8R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
@@ -720,7 +728,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = MSUF83HQ8R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
