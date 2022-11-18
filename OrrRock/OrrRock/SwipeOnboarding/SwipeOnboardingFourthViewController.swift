@@ -77,9 +77,9 @@ extension SwipeOnboardingFourthViewController {
             let rotationAngle = point.x / view.bounds.width * 0.4
             
             if point.x < 0 {
-                mainImageCard.setVideoBackgroundViewBorderColor(color: .fail, alpha: -rotationAngle * 10) //5
+                mainImageCard.setVideoBackgroundViewBorderColor(color: .fail, alpha: -rotationAngle * 10)
             } else {
-                mainImageCard.setVideoBackgroundViewBorderColor(color: .clear, alpha: 1.0) // -rotationAngle * 5
+                mainImageCard.setVideoBackgroundViewBorderColor(color: .clear, alpha: 1.0)
             }
             
             mainImageCard.transform = CGAffineTransform(rotationAngle: rotationAngle)
