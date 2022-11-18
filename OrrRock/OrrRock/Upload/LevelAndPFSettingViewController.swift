@@ -152,7 +152,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         
         view.backgroundColor = .orrWhite
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonClicked))
+        navigationItem.leftBarButtonItem = CustomBackBarButtomItem(target: self, action: #selector(backButtonClicked))
         navigationItem.leftBarButtonItem?.tintColor = .orrUPBlue
         
         // card UI

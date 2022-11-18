@@ -69,6 +69,8 @@ class GymSettingViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
         self.navigationController?.navigationBar.topItem?.title = ""
+        navigationItem.leftBarButtonItem = CustomBackBarButtomItem(target: self, action: #selector(didBackButtonClicked))
+        navigationItem.leftBarButtonItem?.tintColor = .orrUPBlue
         
         setUpData()
         setUpLayout()
@@ -144,6 +146,10 @@ extension GymSettingViewController {
                 }
             }
         }
+    }
+    
+    @objc func didBackButtonClicked(_ sender: UIBarButtonItem) {
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     final private func authSettingOpen(alertType: AuthSettingAlert) {
