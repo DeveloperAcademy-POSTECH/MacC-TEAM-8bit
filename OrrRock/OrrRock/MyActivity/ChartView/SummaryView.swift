@@ -13,7 +13,7 @@ struct SummaryView: View {
             Text("나의 정보 제공")
         }
         .frame(width: UIScreen.main.bounds.width - 32, height: 200)
-        .background(Color.orange)
+        .background(RoundedRectangle(cornerRadius: 10).foregroundColor(Color(UIColor.orrWhite!)))
     }
 }
 

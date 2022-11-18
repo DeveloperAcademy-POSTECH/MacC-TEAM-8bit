@@ -14,14 +14,14 @@ class MyActivityViewController: UIViewController {
     
     private lazy var DEBUGBackgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemPink
+        view.backgroundColor = .orrGray2
         return view
     }()
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .white
+        scrollView.backgroundColor = .orrGray2
         scrollView.showsVerticalScrollIndicator = false
         
         return scrollView
@@ -29,7 +29,7 @@ class MyActivityViewController: UIViewController {
     
     private lazy var contentView: UIView = {
         let contentView = UIView()
-         contentView.backgroundColor = .green
+         contentView.backgroundColor = .orrGray2
          contentView.translatesAutoresizingMaskIntoConstraints = false
         
          return contentView
@@ -37,16 +37,19 @@ class MyActivityViewController: UIViewController {
     
     private lazy var summaryView: UIView = {
         let VC = UIHostingController(rootView: SummaryView())
+        VC.view.backgroundColor = .clear
         return VC.view
     }()
     
     private lazy var challengeChartView: UIView = {
         let VC = UIHostingController(rootView: ChallengeChartView())
+        VC.view.backgroundColor = .clear
         return VC.view
     }()
     
     private lazy var solvedProblemsChartView: UIView = {
         let VC = UIHostingController(rootView: SolvedProblemsChartView())
+        VC.view.backgroundColor = .clear
         return VC.view
     }()
     
@@ -59,6 +62,12 @@ class MyActivityViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         setUpLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.backgroundColor = .clear
     }
 }
 
@@ -78,9 +87,10 @@ extension MyActivityViewController {
         
         scrollView.addSubview(contentView)
         contentView.snp.makeConstraints {
-            $0.width.equalToSuperview()
-            $0.centerX.top.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.centerX.width.equalToSuperview()
+            $0.top.bottom.equalToSuperview()
+            
+            $0.height.greaterThanOrEqualTo(UIScreen.main.bounds.height + 100)
         }
         
         contentView.addSubview(summaryView)
@@ -101,16 +111,11 @@ extension MyActivityViewController {
             $0.top.equalTo(challengeChartView.snp.bottom).offset(16)
         }
         
-        if contentView.bounds.height < scrollView.bounds.height {
-            contentView.addSubview(paddingView)
-            paddingView.snp.makeConstraints {
-                $0.top.equalTo(solvedProblemsChartView)
-                $0.bottom.equalToSuperview()
-            }
-        } else {
-            solvedProblemsChartView.snp.makeConstraints {
-                $0.bottom.equalToSuperview()
-            }
+        contentView.addSubview(paddingView)
+        paddingView.snp.makeConstraints {
+            $0.leading.trailing.equalTo(contentView)
+            $0.top.equalTo(solvedProblemsChartView.snp.bottom)
+            $0.bottom.equalToSuperview()
         }
     }
 }
