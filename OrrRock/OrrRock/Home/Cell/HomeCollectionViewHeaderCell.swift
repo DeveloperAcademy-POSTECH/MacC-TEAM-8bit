@@ -46,7 +46,7 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
         let view = UILabel()
         view.text = "NNN개의 비디오"
         view.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        view.textColor = .orrGray400
+        view.textColor = .orrGray500
         return view
     }()
     

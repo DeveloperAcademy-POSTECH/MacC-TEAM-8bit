@@ -63,7 +63,7 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         let label = UILabel()
         label.text = Date().timeToString()
         label.font = UIFont.boldSystemFont(ofSize: 17)
-        label.textColor = .orrGray400
+        label.textColor = .orrGray500
         label.backgroundColor = .orrGray100
         return label
     }()

@@ -19,7 +19,7 @@ final class HomeTableViewListCell: UITableViewCell {
         let view = UIImageView()
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
-        view.backgroundColor = .orrGray400
+        view.backgroundColor = .orrGray500
         view.contentMode = .scaleAspectFill
         return view
     }()
@@ -50,7 +50,7 @@ final class HomeTableViewListCell: UITableViewCell {
         let view = UILabel()
         view.text = ""
         view.font = UIFont.systemFont(ofSize: 15)
-        view.textColor = .orrGray500
+        view.textColor = .orrGray600
         view.numberOfLines = 2
         return view
     }()
@@ -59,7 +59,7 @@ final class HomeTableViewListCell: UITableViewCell {
         let view = UILabel()
         view.text = "작성된 피드백이 없습니다."
         view.font = UIFont.systemFont(ofSize: 15)
-        view.textColor = .orrGray400
+        view.textColor = .orrGray500
         view.numberOfLines = 2
         view.textAlignment = .left
         return view

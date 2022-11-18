@@ -38,7 +38,7 @@ final class HomeTableViewCardCell: UITableViewCell {
         let view = UILabel()
         view.text = "클라이밍장 정보"
         view.font = UIFont.systemFont(ofSize: 15)
-        view.textColor = .orrGray500
+        view.textColor = .orrGray600
         return view
     }()
     
@@ -59,7 +59,7 @@ final class HomeTableViewCardCell: UITableViewCell {
         let view = UILabel()
         view.text = "N개의 비디오"
         view.font = UIFont.systemFont(ofSize: 15)
-        view.textColor = .orrGray400
+        view.textColor = .orrGray500
         return view
     }()
     

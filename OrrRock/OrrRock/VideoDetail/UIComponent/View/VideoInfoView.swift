@@ -55,7 +55,7 @@ final class VideoInfoView: UIView {
 	private lazy var locationLabel: UILabel = {
 		let label = UILabel()
 		label.font = .systemFont(ofSize: 12.0, weight: .regular)
-		label.textColor = .orrGray400
+		label.textColor = .orrGray500
 		label.text = videoLocation
 		return label
 	}()
@@ -63,7 +63,7 @@ final class VideoInfoView: UIView {
 	private lazy var isSucceeded: UILabel = {
 		let label = UILabel()
 		label.font = .systemFont(ofSize: 12.0, weight: .regular)
-		label.textColor = .orrGray400
+		label.textColor = .orrGray500
 		label.text = videoIsSucceeded ? "성공" : "실패"
 		return label
 	}()
