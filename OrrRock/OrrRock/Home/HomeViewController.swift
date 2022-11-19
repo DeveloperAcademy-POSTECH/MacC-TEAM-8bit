@@ -300,8 +300,14 @@ final class HomeViewController : UIViewController {
         isCardView.toggle()
     }
     
+//    @objc func videoButtonPressed(sender: UIButton){
+//        let nextVC = DateSettingViewController()
+//        self.navigationController?.pushViewController(nextVC, animated: true)
+//    }
+    
+    //Ruyha
     @objc func videoButtonPressed(sender: UIButton){
-        let nextVC = DateSettingViewController()
+        let nextVC = TestLevelPickerViewController()
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
