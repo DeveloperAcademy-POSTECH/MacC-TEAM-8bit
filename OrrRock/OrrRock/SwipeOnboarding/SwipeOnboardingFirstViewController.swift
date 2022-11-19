@@ -26,7 +26,7 @@ class SwipeOnboardingFirstViewController: UIViewController {
         btn.clipsToBounds = true
         btn.layer.cornerRadius = 15
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
-        btn.setBackgroundColor(.orrGray2!, for: .disabled)
+        btn.setBackgroundColor(.orrGray300!, for: .disabled)
         btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
         btn.setTitle("방법 살펴보기", for: .normal)
         btn.setTitleColor(.white, for: .normal)
@@ -93,16 +93,16 @@ extension SwipeOnboardingFirstViewController {
         view.addSubview(nextButton)
         nextButton.snp.makeConstraints{
             $0.centerX.equalTo(view)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPadding.padding3.rawValue)
-            $0.leading.equalTo(view).offset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalTo(view).offset(-OrrPadding.padding3.rawValue)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
+            $0.leading.equalTo(view).offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalTo(view).offset(-OrrPd.pd16.rawValue)
             $0.height.equalTo(56)
         }
         
         view.addSubview(closeButton)
         closeButton.snp.makeConstraints {
             $0.centerX.equalTo(view)
-            $0.bottom.equalTo(nextButton.snp.top).offset(-OrrPadding.padding1.rawValue)
+            $0.bottom.equalTo(nextButton.snp.top).offset(-OrrPd.pd4.rawValue)
         }
         
         view.addSubview(mainImageView)
