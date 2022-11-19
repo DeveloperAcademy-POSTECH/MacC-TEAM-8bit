@@ -46,7 +46,7 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
         let view = UILabel()
         view.text = "NNN개의 비디오"
         view.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        view.textColor = .orrGray3
+        view.textColor = .orrGray500
         return view
     }()
     
@@ -70,7 +70,7 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
         
         addSubview(headerTitle)
         headerTitle.snp.makeConstraints {
-            $0.bottom.equalTo(snp_topMargin).offset(CGFloat(OrrPadding.padding6.rawValue))
+            $0.bottom.equalTo(snp_topMargin).offset(CGFloat(OrrPd.pd40.rawValue))
         }
         
         setUpConstraints()
@@ -89,19 +89,19 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
             
         } else {
             headerRoundedSquare.snp.makeConstraints {
-                $0.bottom.equalTo(snp_bottomMargin).offset(CGFloat(OrrPadding.padding3.rawValue))
-                $0.height.equalTo(CGFloat(OrrPadding.padding3.rawValue))
-                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(OrrPadding.padding3.rawValue) * 2)
+                $0.bottom.equalTo(snp_bottomMargin).offset(CGFloat(OrrPd.pd16.rawValue))
+                $0.height.equalTo(CGFloat(OrrPd.pd16.rawValue))
+                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 2)
             }
             
             PFCountLabel.snp.makeConstraints {
-                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(OrrPadding.padding3.rawValue) * 2)
-                $0.top.equalTo(headerTitle.snp.bottom).offset(CGFloat(OrrPadding.padding3.rawValue))
+                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 2)
+                $0.top.equalTo(headerTitle.snp.bottom).offset(CGFloat(OrrPd.pd16.rawValue))
             }
             
             videoCountLabel.snp.makeConstraints {
-                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(OrrPadding.padding3.rawValue) * 2)
-                $0.top.equalTo(PFCountLabel.snp.bottom).offset(CGFloat(OrrPadding.padding1.rawValue))
+                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 2)
+                $0.top.equalTo(PFCountLabel.snp.bottom).offset(CGFloat(OrrPd.pd4.rawValue))
             }
         }
     }

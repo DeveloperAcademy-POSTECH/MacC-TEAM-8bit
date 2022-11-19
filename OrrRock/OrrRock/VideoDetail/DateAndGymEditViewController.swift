@@ -34,7 +34,7 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         label.text = "해당 암장의 이름을 적어주세요"
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.textColor = .orrBlack
-        label.backgroundColor = .orrGray1
+        label.backgroundColor = .orrGray100
         return label
     }()
     
@@ -51,7 +51,7 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
     lazy var saveButton : UIButton = {
         let btn = UIButton()
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
-        btn.setBackgroundColor(.orrGray2!, for: .disabled)
+        btn.setBackgroundColor(.orrGray300!, for: .disabled)
         btn.addTarget(self, action: #selector(pressSaveButton), for: .touchUpInside)
         btn.setTitle("저장", for: .normal)
         btn.setTitleColor(.white, for: .normal)
@@ -63,8 +63,8 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         let label = UILabel()
         label.text = Date().timeToString()
         label.font = UIFont.boldSystemFont(ofSize: 17)
-        label.textColor = .orrGray3
-        label.backgroundColor = .orrGray1
+        label.textColor = .orrGray500
+        label.backgroundColor = .orrGray100
         return label
     }()
     
@@ -76,7 +76,7 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         datePicker.timeZone = .autoupdatingCurrent
         datePicker.locale = Locale(identifier:"ko_KR")
         datePicker.addTarget(self, action: #selector(handleDatePicker(_:)), for: .valueChanged)
-        datePicker.backgroundColor = .orrGray1
+        datePicker.backgroundColor = .orrGray100
         datePicker.maximumDate = Date()
         return datePicker
     }()
@@ -86,7 +86,7 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         btn.clipsToBounds = true
         btn.layer.cornerRadius = 15
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
-        btn.setBackgroundColor(.orrGray2!, for: .disabled)
+        btn.setBackgroundColor(.orrGray300!, for: .disabled)
         btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
         btn.setTitle("계속", for: .normal)
         btn.setTitleColor(.white, for: .normal)
@@ -157,7 +157,7 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
     }
     
     private func setUpLayout(){
-        view.backgroundColor = .orrGray1
+        view.backgroundColor = .orrGray100
         self.navigationController?.isToolbarHidden = false
         
         view.addSubview(dateTopView)
@@ -178,23 +178,23 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         dateContentView.addSubview(datePickerLabel)
         datePickerLabel.snp.makeConstraints {
             $0.centerX.equalTo(dateContentView)
-            $0.top.equalTo(dateContentView.snp.top).offset(OrrPadding.padding5.rawValue)
+            $0.top.equalTo(dateContentView.snp.top).offset(OrrPd.pd24.rawValue)
         }
         
         dateContentView.addSubview(datePicker)
         datePicker.snp.makeConstraints{
             $0.centerX.equalTo(dateContentView)
-            $0.top.equalTo(datePickerLabel.snp.bottom).offset(OrrPadding.padding5.rawValue)
-            $0.leading.equalTo(dateContentView).offset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalTo(dateContentView).offset(-OrrPadding.padding3.rawValue)
+            $0.top.equalTo(datePickerLabel.snp.bottom).offset(OrrPd.pd24.rawValue)
+            $0.leading.equalTo(dateContentView).offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalTo(dateContentView).offset(-OrrPd.pd16.rawValue)
         }
         
         dateContentView.addSubview(nextButton)
         nextButton.snp.makeConstraints{
             $0.centerX.equalTo(dateContentView)
             $0.bottom.equalTo(dateContentView).offset(-34)
-            $0.leading.equalTo(dateContentView).offset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalTo(dateContentView).offset(-OrrPadding.padding3.rawValue)
+            $0.leading.equalTo(dateContentView).offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalTo(dateContentView).offset(-OrrPd.pd16.rawValue)
             $0.height.equalTo(56)
         }
         
@@ -209,15 +209,15 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         gymContentView.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
             $0.centerX.equalTo(dateContentView)
-            $0.top.equalTo(dateContentView.snp.top).offset(OrrPadding.padding5.rawValue)
+            $0.top.equalTo(dateContentView.snp.top).offset(OrrPd.pd24.rawValue)
         }
         
         gymContentView.addSubview(gymTextField)
         gymTextField.snp.makeConstraints{
             $0.centerX.equalTo(gymContentView)
-            $0.top.equalTo(gymNameLabel.snp.bottom).offset(OrrPadding.padding3.rawValue)
-            $0.leading.equalTo(gymContentView).offset(OrrPadding.padding6.rawValue)
-            $0.trailing.equalTo(gymContentView).offset(-OrrPadding.padding6.rawValue)
+            $0.top.equalTo(gymNameLabel.snp.bottom).offset(OrrPd.pd16.rawValue)
+            $0.leading.equalTo(gymContentView).offset(OrrPd.pd40.rawValue)
+            $0.trailing.equalTo(gymContentView).offset(-OrrPd.pd40.rawValue)
         }
         
         gymContentView.addSubview(saveButton)
@@ -236,9 +236,9 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         
         gymContentView.addSubview(tableViewHeaderLabel)
         tableViewHeaderLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalToSuperview().offset(OrrPadding.padding3.rawValue)
-            $0.bottom.equalTo(autocompleteTableView.snp.top).offset(-OrrPadding.padding3.rawValue)
+            $0.leading.equalToSuperview().offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalToSuperview().offset(OrrPd.pd16.rawValue)
+            $0.bottom.equalTo(autocompleteTableView.snp.top).offset(-OrrPd.pd16.rawValue)
         }
     }
     
