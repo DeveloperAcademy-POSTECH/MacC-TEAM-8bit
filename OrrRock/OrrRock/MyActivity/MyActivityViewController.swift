@@ -13,6 +13,9 @@ import SnapKit
 class MyActivityViewController: UIViewController {
     
     var entireSolvedProblemsForBarChart: [[SolvedProblemsOfEachLevel]] = [[],[],[]]
+    var entireProblemsForDonutChart: [ChartCellModel] = []
+    var validTotalCountForDonutChart: Int = 0
+    var validSuccessCountForDonutChart: Int = 0
     
     private lazy var DEBUGBackgroundView: UIView = {
         let view = UIView()
@@ -44,7 +47,7 @@ class MyActivityViewController: UIViewController {
     }()
     
     private lazy var challengeChartView: UIView = {
-        let VC = UIHostingController(rootView: ChallengeChartView())
+        let VC = UIHostingController(rootView: ChallengeChartView(chartData: ChartDataModel(dataModel: entireProblemsForDonutChart), totalCount: validTotalCountForDonutChart, successCount: validSuccessCountForDonutChart))
         VC.view.backgroundColor = .clear
         return VC.view
     }()
@@ -76,12 +79,51 @@ class MyActivityViewController: UIViewController {
     
     func setUpData() {
         let entireVideoInformations: [[VideoInformation]] = DataManager.shared.repository.sortVideoInformation(filterOption: .all, sortOption: .gymVisitDate)
-        entireSolvedProblemsForBarChart[0] = getSolvedProblemsPerPeriod(from: entireVideoInformations, period: .weekday)
+        
+        // DonutChart
+        (entireProblemsForDonutChart, validTotalCountForDonutChart, validSuccessCountForDonutChart) = getProblemsPerLevel(from: entireVideoInformations)
+        
+        // BarChart
+        entireSolvedProblemsForBarChart[0] = getSolvedProblemsPerPeriod(from: entireVideoInformations, period: .week)
         entireSolvedProblemsForBarChart[1] = getSolvedProblemsPerPeriod(from: entireVideoInformations, period: .month)
         entireSolvedProblemsForBarChart[2] = getSolvedProblemsPerPeriod(from: entireVideoInformations, period: .year)
     }
     
-    func getSolvedProblemsPerPeriod(from: [[VideoInformation]], period: Calendar.Component) -> [SolvedProblemsOfEachLevel] {
+    // [[VideoInformation]]을 인자로 받아와 차트를 그릴 데이터 모델, 레벨 분류가 된 영상의 전체 개수, 성공한 개수를 반환
+    func getProblemsPerLevel(from: [[VideoInformation]]) -> ([ChartCellModel], Int, Int) {
+        var result: [ChartCellModel] = []
+        var validCount = 0
+        var successCount = 0
+        
+        for level in 0...9 {
+            result.append(ChartCellModel(numOfSolvedProblems: 0, level: "v\(level)"))
+        }
+        
+        let flatten = from.flatMap { $0 }
+        flatten.forEach { videoInformation in
+            if videoInformation.problemLevel >= 0 {
+                result[Int(videoInformation.problemLevel)].numOfSolvedProblems += 1
+                validCount += 1
+                successCount += videoInformation.isSucceeded ? 1 : 0
+            }
+        }
+        
+        return (result, validCount, successCount)
+    }
+    
+    // [[VideoInformation]]와 기간을 인자로 받아와 차트를 그릴 데이터 모델을 반환
+    func getSolvedProblemsPerPeriod(from: [[VideoInformation]], period: TimePeriodEnum) -> [SolvedProblemsOfEachLevel] {
+        let timePeriodInterval: Int = {
+            switch period {
+            case .week:
+                return 7
+            case .month:
+                return 28
+            case .year:
+                return 365
+            }
+        }()
+        
         var result: [SolvedProblemsOfEachLevel] = []
         for level in 0...9 {
             result.append(SolvedProblemsOfEachLevel(name: "v\(level)", problems: []))
@@ -92,7 +134,7 @@ class MyActivityViewController: UIViewController {
         }
         
         // DateComponent Type의 경우에는 nil이 될 수 있으나, Date Type은 모든 값을 반드시 가지고 있기 때문에 nil이 되지 않아 강제 언래핑이 안전합니다!
-        var lastDayOfThisPeriod: Date = Calendar.current.date(byAdding: period, value: -1, to: Date())!.timeToString().stringToDate()!
+        var lastDayOfThisPeriod: Date = Calendar.current.date(byAdding: .day, value: -timePeriodInterval, to: Date())!.timeToString().stringToDate()!
         var periodIndex: Int = 5
         
         // videoInformationUnit은 "같은 날짜에 같은 클라이밍장을 방문하여 기록한 영상의 뭉치"임
@@ -102,7 +144,7 @@ class MyActivityViewController: UIViewController {
             
             // 해당 데이터가 속한 time period를 찾아감
             while (sample.gymVisitDate < lastDayOfThisPeriod) {
-                lastDayOfThisPeriod = Calendar.current.date(byAdding: period, value: -1, to: lastDayOfThisPeriod)!
+                lastDayOfThisPeriod = Calendar.current.date(byAdding: .day, value: -timePeriodInterval, to: lastDayOfThisPeriod)!
                 periodIndex -= 1
             }
             

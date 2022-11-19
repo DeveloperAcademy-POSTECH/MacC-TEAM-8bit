@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct ChallengeChartView: View {
-    let chartData = ChartDataModel.init(dataModel: sampleData)
+    let chartData: ChartDataModel
+//    = ChartDataModel.init(dataModel: sampleData)
+    let totalCount: Int
+    let successCount: Int
     
     var body: some View {
         ZStack {
@@ -23,13 +26,13 @@ struct ChallengeChartView: View {
                 HStack{
                     VStack(alignment: .trailing) {
                         HStack(alignment: .bottom) {
-                            Text("378")
+                            Text("\(totalCount)")
                                 .font(.system(size: 50))
                             Text("도전")
                                 .font(.system(size: 30))
                         }
                         HStack(alignment: .bottom) {
-                            Text("64")
+                            Text("\(successCount)")
                                 .font(.system(size: 50))
                             Text("성공")
                                 .font(.system(size: 30))
@@ -46,21 +49,22 @@ struct ChallengeChartView: View {
 
 struct ChallengeChartView_Previews: PreviewProvider {
     static var previews: some View {
-        ChallengeChartView()
+        ChallengeChartView(chartData: ChartDataModel(dataModel: sampleData), totalCount: 378, successCount: 64)
     }
 }
 
 
 struct PieChart: View {
     @State private var selectedCell: UUID = UUID()
-    
+    let chartColor: [Color] = [Color(uiColor: .lightGray), .yellow, .orange, .green, .blue, .red, .purple, Color(uiColor: .darkGray), .brown, .black]
+
     let dataSource: ChartDataModel
     var body: some View {
         ZStack {
-            ForEach(dataSource.chartCellModel) { solvedProblemOfLevel in
-                PieChartCell(startAngle: self.dataSource.angle(for: solvedProblemOfLevel.numOfSolvedProblems),
+            ForEach(dataSource.chartCellModel.indices) { index in
+                PieChartCell(startAngle: self.dataSource.angle(for: dataSource.chartCellModel[index].numOfSolvedProblems),
                              endAngle: self.dataSource.startingAngle)
-                    .foregroundColor(solvedProblemOfLevel.color)
+                .foregroundColor(chartColor[index])
             }
         }
     }
@@ -90,9 +94,8 @@ struct PieChartCell: Shape {
 
 struct ChartCellModel: Identifiable {
     let id = UUID()
-    let color: Color
     
-    let numOfSolvedProblems: CGFloat
+    var numOfSolvedProblems: CGFloat
     let level: String
 }
 
@@ -122,9 +125,9 @@ final class ChartDataModel: ObservableObject {
 }
 
 let sampleData: [ChartCellModel] = [
-    ChartCellModel(color: .red, numOfSolvedProblems: 13, level: "v1"),
-    ChartCellModel(color: .orange, numOfSolvedProblems: 13, level: "v2"),
-    ChartCellModel(color: .yellow, numOfSolvedProblems: 13, level: "v3"),
-    ChartCellModel(color: .blue, numOfSolvedProblems: 13, level: "v4"),
-    ChartCellModel(color: .green, numOfSolvedProblems: 13, level: "v5"),
+    ChartCellModel(numOfSolvedProblems: 13, level: "v1"),
+    ChartCellModel(numOfSolvedProblems: 13, level: "v2"),
+    ChartCellModel(numOfSolvedProblems: 13, level: "v3"),
+    ChartCellModel(numOfSolvedProblems: 13, level: "v4"),
+    ChartCellModel(numOfSolvedProblems: 13, level: "v5"),
 ]
