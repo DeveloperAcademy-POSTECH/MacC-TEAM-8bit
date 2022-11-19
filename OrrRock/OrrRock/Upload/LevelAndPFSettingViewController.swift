@@ -21,6 +21,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     private var currentSelectedLevel = -1
     private var selectedCard: Int = 0
     private var classifiedCard: Int = 0
+    private var timeObserverToken: Any?
     
     private lazy var headerView: UIView = {
         let view = UIView()
@@ -140,6 +141,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         slider.maximumTrackTintColor = .orrGray1
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.thumbTintColor = .clear
+//        slider.addTarget(self, action: #selector(didChangedSlider(_:)), for: .valueChanged)
         
         return slider
     }()
@@ -190,6 +192,49 @@ final class LevelAndPFSettingViewController: UIViewController {
     }
 }
 
+// Slider
+private extension LevelAndPFSettingViewController {
+    
+    // 비디오 재생 시간 변화에 따른 슬라이더 업데이트
+    func updateVideoSlider(card: SwipeableCardVideoView, time currentTime: CMTime) {
+        if let currentItem = card.queuePlayer.currentItem {
+            let duration = currentItem.duration
+            if CMTIME_IS_INVALID(duration) { return }
+            videoSlider.value = Float(CMTimeGetSeconds(currentTime) / CMTimeGetSeconds(duration))
+        }
+    }
+    
+    // 슬라이더 터치에 따른 비디오 업데이트
+//    @objc func didChangedSlider(_ sender: UISlider) {
+//        guard let duration = player?.currentItem?.duration else { return }
+//        let value = Float64(sender.value) * CMTimeGetSeconds(duration)
+//        let seekTime = CMTime(value: CMTimeValue(value), timescale: 1)
+//        player?.seek(to: seekTime)
+//    }
+    
+    func addPeriodicTimeObserver(card: SwipeableCardVideoView){
+        let interval = CMTime(seconds: 0.001, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        // time observer 생성 후 token에 저장
+        timeObserverToken = card.queuePlayer.addPeriodicTimeObserver(
+            forInterval:interval,
+            queue: DispatchQueue.main,
+            using: { [weak self] currentTime in
+                self?.updateVideoSlider(card: card, time: currentTime)
+//              남은 시간 표시
+//              self?.updateTimeRemaining(currentTime)
+            }
+        )
+    }
+    
+    func removePeriodicTimeObserver(card: SwipeableCardVideoView){
+        if let timeObserverToken = timeObserverToken {
+            card.queuePlayer.removeTimeObserver(timeObserverToken)
+            self.timeObserverToken
+        }
+    }
+}
+
+// Level
 extension LevelAndPFSettingViewController: LevelPickerViewDelegate {
     func setSeparatorColor() {
         self.separator.backgroundColor = .orrBlack
@@ -378,6 +423,7 @@ private extension LevelAndPFSettingViewController {
         let cardViews = view.subviews.filter({ ($0 as? SwipeableCardVideoView) != nil })
         
         for view in cardViews {
+            
             if view == cards[counter] {
                 let center: CGPoint
                 let isSuccess: Bool
@@ -385,11 +431,19 @@ private extension LevelAndPFSettingViewController {
                 
                 // 마지막 카드가 아닐 때 다음 카드를 재생
                 if counter != cards.count-1 {
+                    // 현재 카드의 time observer 제거
+                    guard let currentCard = cards[counter] else { return }
+                    removePeriodicTimeObserver(card: currentCard)
                     // 다음에 나올 카드
                     guard let nextCard = cards[counter + 1] as? SwipeableCardVideoView else { return }
                     // 이전 카드가 스와이프가 되었을 때 다음에 나올 카드가 재생
-                    setVideoSlider(card: nextCard)
                     nextCard.queuePlayer.play()
+                    
+                    // 슬라이더 세팅
+//                    setVideoSlider(card: nextCard)
+                    
+                    // Slider에 시간 정보를 업데이트하기 위한 Observer 추가
+                    addPeriodicTimeObserver(card: nextCard)
                 }
                 
                 switch videoResultType {
@@ -436,9 +490,11 @@ private extension LevelAndPFSettingViewController {
     }
     
     @objc func setVideoSlider(card: SwipeableCardVideoView){
-        videoSlider.minimumValue = 0
-        videoSlider.maximumValue = Float(CMTimeGetSeconds(card.queuePlayer.currentItem?.duration ?? CMTime()))
-        videoSlider.value = Float(CMTimeGetSeconds(card.queuePlayer.currentItem?.currentTime() ?? CMTime()))
+        if let currentItem = card.queuePlayer.currentItem {
+            let duration = currentItem.duration
+            videoSlider.minimumValue = 0
+            videoSlider.maximumValue = Float(CMTimeGetSeconds(duration))
+        }
     }
     
     // 모든 카드를 스와이핑 했을 때 호출되는 메서드
