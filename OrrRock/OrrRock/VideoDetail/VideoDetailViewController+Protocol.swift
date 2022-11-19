@@ -22,6 +22,7 @@ extension VideoDetailViewController : SendtoVideoDetailViewControllerDelegate{
         playButton.image = UIImage(systemName: "pause.fill")
         isSounded = false
         soundButton.image = UIImage(systemName: "speaker.slash.fill")
+        favoriteButton.image = UIImage(systemName: currentVideoInformation!.isFavorite ? "heart.fill" : "heart")
     }
     
     func sendQueuePlayer(quque: AVQueuePlayer) {

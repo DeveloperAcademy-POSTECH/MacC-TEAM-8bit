@@ -46,7 +46,7 @@ class VideoDetailViewController: UIViewController {
     private var trashButton: UIBarButtonItem!
     var soundButton: UIBarButtonItem!
     var playButton: UIBarButtonItem!
-    private var favoriteButton: UIBarButtonItem!
+    var favoriteButton: UIBarButtonItem!
     private var goBackButton: UIBarButtonItem!
     private var flexibleSpace: UIBarButtonItem!
     private var cancelButton: UIBarButtonItem!
@@ -255,9 +255,9 @@ class VideoDetailViewController: UIViewController {
     
     // 좋아요 버튼을 눌렀을 때 로직
     @objc func favoriteAction() {
-        videoInformation.isFavorite.toggle()
-        favoriteButton.image = UIImage(systemName: videoInformation.isFavorite ? "heart.fill" : "heart")
-        DataManager.shared.updateFavorite(videoInformation: videoInformation, isFavorite: videoInformation.isFavorite)
+        currentVideoInformation!.isFavorite.toggle()
+        favoriteButton.image = UIImage(systemName: currentVideoInformation!.isFavorite ? "heart.fill" : "heart")
+        DataManager.shared.updateFavorite(videoInformation: currentVideoInformation!, isFavorite: currentVideoInformation!.isFavorite)
         print(#function)
     }
     

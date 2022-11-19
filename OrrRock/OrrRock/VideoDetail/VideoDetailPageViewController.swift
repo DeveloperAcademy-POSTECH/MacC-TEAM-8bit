@@ -78,6 +78,7 @@ extension VideoDetailPageViewController : UIPageViewControllerDelegate, UIPageVi
         self.nextIndex = nextVC.index
         sendtoVideoDetailViewControllerDelegate?.sendQueuePlayer(quque: (videoDetailPageViewControllerDelegate?.getCurrentQueuePlayer())!)
         sendtoVideoDetailViewControllerDelegate?.sendVideoInfomation(videoInformation: (videoDetailPageViewControllerDelegate?.getCurrentVideoInformation())!)
+        print("sending videoinfo",videoDetailPageViewControllerDelegate?.getCurrentVideoInformation())
         
     }
     
