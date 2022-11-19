@@ -31,8 +31,6 @@ class VideoDetailPageViewController: UIPageViewController {
         vc.index = currentIndex
         self.setViewControllers([vc], direction: .forward, animated: false)
         // Do any additional setup after loading the view.
-        print("videoarrCount: \(videoInformationArray.count)")
-        print("assetarrCount: \(videoAssetArray.count)")
     }
 
 }
@@ -43,8 +41,6 @@ extension VideoDetailPageViewController : UIPageViewControllerDelegate, UIPageVi
         if currentIndex == 0 {
             return nil
         }
-        print("bfore vc")
-        print(currentIndex)
         let vc = VideoPlayViewController()
         vc.videoAsset = checkVideoAsset(videoLocalIdentifier: self.videoInformationArray[currentIndex - 1].videoLocalIdentifier ?? "")
         vc.index = currentIndex - 1
@@ -57,7 +53,6 @@ extension VideoDetailPageViewController : UIPageViewControllerDelegate, UIPageVi
         if currentIndex == (self.videoInformationArray.count - 1) {
             return nil
         }
-        print("next vc\(currentIndex)")
         let vc = VideoPlayViewController()
         vc.videoAsset = checkVideoAsset(videoLocalIdentifier: self.videoInformationArray[currentIndex + 1].videoLocalIdentifier ?? "")
         vc.index = currentIndex + 1
@@ -66,7 +61,6 @@ extension VideoDetailPageViewController : UIPageViewControllerDelegate, UIPageVi
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        print("willtransition")
         guard let nextVC = pendingViewControllers.first as? VideoPlayViewController else {
             return
         }
@@ -76,7 +70,6 @@ extension VideoDetailPageViewController : UIPageViewControllerDelegate, UIPageVi
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        print("didfinishanimating")
         if (completed && self.nextIndex != nil) {
             self.currentIndex = self.nextIndex!
         }
@@ -91,7 +84,6 @@ extension VideoDetailPageViewController{
     func checkVideoAsset(videoLocalIdentifier : String)-> PHAsset?{
         guard let videoAsset = videoDataFomatter(videoLocalIdentifier: videoLocalIdentifier) else {
             // 영상이 없어 fetch를 하지 못한 경우
-            print("영상이 없음")
             return nil
         }
         
