@@ -37,8 +37,6 @@ class VideoDetailPageViewController: UIPageViewController {
         // Do any additional setup after loading the view.
     }
     
-    
-    
 }
 
 extension VideoDetailPageViewController : UIPageViewControllerDelegate, UIPageViewControllerDataSource{

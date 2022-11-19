@@ -71,53 +71,10 @@ class VideoDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
-        setUpLayout()
         setKeyboardObserver()
         setDefaultData()
         addUIGesture()
-        videoDetailPageViewController.videoInformationArray = videoInformationArray
-        videoDetailPageViewController.currentIndex = currentIndex
-        self.addChild(videoDetailPageViewController)
-        self.view.addSubview(videoDetailPageViewController.view)
-        self.view.addConstraints(videoDetailPageViewController.view.constraints)
-        videoDetailPageViewController.didMove(toParent: self)
-        videoDetailPageViewController.view.snp.makeConstraints {
-            $0.leading.equalTo(self.view)
-            $0.trailing.equalTo(self.view)
-            $0.top.equalTo(self.view)
-            $0.bottom.equalTo(self.view)
-        }
-        self.VideoDetailViewControllerDelegate = videoDetailPageViewController
-        videoDetailPageViewController.sendtoVideoDetailViewControllerDelegate = self
-        view.addSubview(topSafeAreaView)
-        topSafeAreaView.snp.makeConstraints {
-            $0.leading.equalTo(self.view)
-            $0.trailing.equalTo(self.view)
-            $0.top.equalTo(self.view)
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-        }
-        // 하단 safe area를 가려주는 뷰
-        view.addSubview(bottomSafeAreaView)
-        bottomSafeAreaView.snp.makeConstraints {
-            $0.leading.equalTo(self.view)
-            $0.trailing.equalTo(self.view)
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
-            $0.bottom.equalTo(self.view)
-        }
-        
-        currentQueuePlayer =  VideoDetailViewControllerDelegate?.getCurrentQueuePlayer()
-        currentVideoInformation =  VideoDetailViewControllerDelegate?.getCurrentVideoInformation()
-        
-        // 정보를 보여주는 뷰
-        videoInfoView = VideoInfoView(frame: .zero, videoInfo: currentVideoInformation!)
-        view.addSubview(videoInfoView)
-        videoInfoView.snp.makeConstraints {
-            $0.leading.equalTo(self.view)
-            $0.trailing.equalTo(self.view)
-            $0.height.equalTo(650)
-            $0.bottom.equalTo(self.view).offset(650)
-        }
-        
+        setUpLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -380,16 +337,47 @@ private extension VideoDetailViewController {
 
 extension VideoDetailViewController {
     private func setUpLayout() {
-        // 영상을 보여주는 뷰
+        videoDetailPageViewController.videoInformationArray = videoInformationArray
+        videoDetailPageViewController.currentIndex = currentIndex
+        self.addChild(videoDetailPageViewController)
+        self.view.addSubview(videoDetailPageViewController.view)
+        self.view.addConstraints(videoDetailPageViewController.view.constraints)
+        videoDetailPageViewController.didMove(toParent: self)
+        videoDetailPageViewController.view.snp.makeConstraints {
+            $0.leading.equalTo(self.view)
+            $0.trailing.equalTo(self.view)
+            $0.top.equalTo(self.view)
+            $0.bottom.equalTo(self.view)
+        }
+        self.VideoDetailViewControllerDelegate = videoDetailPageViewController
+        videoDetailPageViewController.sendtoVideoDetailViewControllerDelegate = self
+        view.addSubview(topSafeAreaView)
+        topSafeAreaView.snp.makeConstraints {
+            $0.leading.equalTo(self.view)
+            $0.trailing.equalTo(self.view)
+            $0.top.equalTo(self.view)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+        }
+        // 하단 safe area를 가려주는 뷰
+        view.addSubview(bottomSafeAreaView)
+        bottomSafeAreaView.snp.makeConstraints {
+            $0.leading.equalTo(self.view)
+            $0.trailing.equalTo(self.view)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+            $0.bottom.equalTo(self.view)
+        }
         
-        //        view.addSubview(videoPlayView)
-        //        videoPlayView.snp.makeConstraints {
-        //            $0.leading.equalTo(self.view)
-        //            $0.trailing.equalTo(self.view)
-        //            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-        //            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
-        //        }
-        // 상단 safe area를 가려주는 뷰
+        currentQueuePlayer =  VideoDetailViewControllerDelegate?.getCurrentQueuePlayer()
+        currentVideoInformation =  VideoDetailViewControllerDelegate?.getCurrentVideoInformation()
         
+        // 정보를 보여주는 뷰
+        videoInfoView = VideoInfoView(frame: .zero, videoInfo: currentVideoInformation!)
+        view.addSubview(videoInfoView)
+        videoInfoView.snp.makeConstraints {
+            $0.leading.equalTo(self.view)
+            $0.trailing.equalTo(self.view)
+            $0.height.equalTo(650)
+            $0.bottom.equalTo(self.view).offset(650)
+        }
     }
 }

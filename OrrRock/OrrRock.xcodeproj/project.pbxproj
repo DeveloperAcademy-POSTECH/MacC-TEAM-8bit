@@ -330,7 +330,6 @@
 				341418BC2923A6FF0033D851 /* DateAndGymEditViewController+TableViewExtensions.swift */,
 				78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */,
 				78FEE89D292976FA007B67BD /* VideoDetailViewController */,
-				78FEE89C292976D6007B67BD /* VideoDetailPageViewController */,
 				3AEB3D61291C03A900A989FF /* UIComponent */,
 			);
 			path = VideoDetail;
@@ -422,6 +421,7 @@
 				FB32280E29046B4500276A7D /* VideoDetailViewController.swift */,
 				78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */,
 				78FEE89629291A19007B67BD /* VideoDetailViewController+Protocol.swift */,
+				78FEE89C292976D6007B67BD /* VideoDetailPageViewController */,
 			);
 			path = VideoDetailViewController;
 			sourceTree = "<group>";
