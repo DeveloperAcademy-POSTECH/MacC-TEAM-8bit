@@ -68,6 +68,7 @@
 		78F93ED32906EFC500F3D9F3 /* DateAndGymEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */; };
 		78F93ED7290743DF00F3D9F3 /* LevelAndPFEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */; };
 		78FEE88B292616BC007B67BD /* VideoDetailViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */; };
+		A81992C42927E48B00F024CA /* VideoSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81992C32927E48B00F024CA /* VideoSlider.swift */; };
 		A88805852907F5A0002CD52E /* LevelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88805842907F5A0002CD52E /* LevelPickerView.swift */; };
 		FB3227FC2903FD9C00276A7D /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3227FB2903FD9C00276A7D /* Date+.swift */; };
 		FB3227FE2903FDA600276A7D /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3227FD2903FDA600276A7D /* String+.swift */; };
@@ -138,6 +139,7 @@
 		78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAndGymEditViewController.swift; sourceTree = "<group>"; };
 		78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelAndPFEditViewController.swift; sourceTree = "<group>"; };
 		78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoDetailViewController+Extensions.swift"; sourceTree = "<group>"; };
+		A81992C32927E48B00F024CA /* VideoSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoSlider.swift; sourceTree = "<group>"; };
 		A88805842907F5A0002CD52E /* LevelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelPickerView.swift; sourceTree = "<group>"; };
 		FB3227FB2903FD9C00276A7D /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		FB3227FD2903FDA600276A7D /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		0A0B41082907C62200057FA7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A81992C32927E48B00F024CA /* VideoSlider.swift */,
 				0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */,
 				A88805842907F5A0002CD52E /* LevelPickerView.swift */,
 			);
@@ -532,6 +535,7 @@
 				FB32281529046CED00276A7D /* VideoInfoView.swift in Sources */,
 				3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */,
 				78F56F6C291A67FA00174B74 /* OnBoardingViewController.swift in Sources */,
+				A81992C42927E48B00F024CA /* VideoSlider.swift in Sources */,
 				342508AB29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift in Sources */,
 				78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */,
 				341418BD2923A6FF0033D851 /* DateAndGymEditViewController+TableViewExtensions.swift in Sources */,
@@ -685,7 +689,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 22A6RK2943;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
@@ -720,7 +724,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 22A6RK2943;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";

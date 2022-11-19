@@ -138,9 +138,8 @@ final class LevelAndPFSettingViewController: UIViewController {
         let slider = VideoSlider()
         slider.minimumTrackTintColor = .orrUPBlue
         slider.maximumTrackTintColor = .orrGray1
-//        slider.addTarget(self, action: #selector(didChangeSlide), for: .valueChanged)
         slider.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(slider)
+        slider.thumbTintColor = .clear
         
         return slider
     }()
@@ -389,6 +388,7 @@ private extension LevelAndPFSettingViewController {
                     // 다음에 나올 카드
                     guard let nextCard = cards[counter + 1] as? SwipeableCardVideoView else { return }
                     // 이전 카드가 스와이프가 되었을 때 다음에 나올 카드가 재생
+                    setVideoSlider(card: nextCard)
                     nextCard.queuePlayer.play()
                 }
                 
@@ -433,6 +433,12 @@ private extension LevelAndPFSettingViewController {
     
     @objc func backButtonClicked() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func setVideoSlider(card: SwipeableCardVideoView){
+        videoSlider.minimumValue = 0
+        videoSlider.maximumValue = Float(CMTimeGetSeconds(card.queuePlayer.currentItem?.duration ?? CMTime()))
+        videoSlider.value = Float(CMTimeGetSeconds(card.queuePlayer.currentItem?.currentTime() ?? CMTime()))
     }
     
     // 모든 카드를 스와이핑 했을 때 호출되는 메서드
@@ -508,14 +514,14 @@ private extension LevelAndPFSettingViewController {
         view.addSubview(videoSlider)
         videoSlider.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPadding.padding3.rawValue)
-            $0.leading.equalTo(view).offset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalTo(view).offset(-OrrPadding.padding3.rawValue)
+            $0.leading.equalTo(view)
+            $0.trailing.equalTo(view)
             $0.height.equalTo(56)
         }
         
         view.addSubview(failButton)
         failButton.snp.makeConstraints {
-            $0.bottom.equalTo(videoSlider).offset(-OrrPadding.padding3.rawValue)
+            $0.bottom.equalTo(videoSlider.snp.top).offset(-OrrPadding.padding3.rawValue)
             $0.leading.equalToSuperview().inset(48.0)
             $0.height.equalTo(74.0)
             $0.width.equalTo(74.0)
@@ -523,7 +529,7 @@ private extension LevelAndPFSettingViewController {
         
         view.addSubview(successButton)
         successButton.snp.makeConstraints {
-            $0.bottom.equalTo(videoSlider).offset(-OrrPadding.padding3.rawValue)
+            $0.bottom.equalTo(videoSlider.snp.top).offset(-OrrPadding.padding3.rawValue)
             $0.trailing.equalToSuperview().inset(48.0)
             $0.height.equalTo(74.0)
             $0.width.equalTo(74.0)
