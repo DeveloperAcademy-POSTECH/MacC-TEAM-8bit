@@ -10,5 +10,11 @@ import AVKit
 protocol VideoDetailPageViewControllerDelegate : AnyObject{
     func getCurrentVideoInformation() -> VideoInformation
     func getCurrentQueuePlayer() -> AVQueuePlayer
+    func changeVideoPlayAndStop()
+    func changeVideoSoundPlayAndStop()
 }
 
+protocol SendtoVideoDetailViewControllerDelegate: AnyObject{
+    func sendVideoInfomation(videoInformation : VideoInformation)
+    func sendQueuePlayer(quque : AVQueuePlayer)
+}

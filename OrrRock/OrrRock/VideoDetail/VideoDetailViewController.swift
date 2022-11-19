@@ -88,6 +88,7 @@ class VideoDetailViewController: UIViewController {
             $0.bottom.equalTo(self.view)
         }
         self.VideoDetailViewControllerDelegate = videoDetailPageViewController
+        videoDetailPageViewController.sendtoVideoDetailViewControllerDelegate = self
         view.addSubview(topSafeAreaView)
         topSafeAreaView.snp.makeConstraints {
             $0.leading.equalTo(self.view)
@@ -213,7 +214,7 @@ class VideoDetailViewController: UIViewController {
         isSounded.toggle()
         iconSpace.width = isSounded ? 0 : 8.4
         soundButton.image = UIImage(systemName: isSounded ? "speaker.wave.2.fill" : "speaker.slash.fill")
-//        videoPlayView.queuePlayer.isMuted = isSounded ? false : true
+        VideoDetailViewControllerDelegate?.changeVideoSoundPlayAndStop()
         print(#function)
     }
     
@@ -221,8 +222,10 @@ class VideoDetailViewController: UIViewController {
     @objc func playVideoAction() {
         isPlayed.toggle()
         playButton.image = UIImage(systemName: isPlayed ? "play.fill" : "pause.fill")
-//        isPlayed ? videoPlayView.queuePlayer.pause() : videoPlayView.queuePlayer.play()
+//        isPlayed ? currentQueuePlayer!.pause() : currentQueuePlayer!.play()
+        VideoDetailViewControllerDelegate?.changeVideoPlayAndStop()
         print(#function)
+        
     }
     
     // 피드백 버튼을 눌렀을 때 로직

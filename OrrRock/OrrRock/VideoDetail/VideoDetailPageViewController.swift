@@ -19,6 +19,7 @@ class VideoDetailPageViewController: UIPageViewController {
     var videoAsset: PHAsset?
     
     var videoDetailPageViewControllerDelegate : VideoDetailPageViewControllerDelegate?
+    var sendtoVideoDetailViewControllerDelegate : SendtoVideoDetailViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,8 +76,9 @@ extension VideoDetailPageViewController : UIPageViewControllerDelegate, UIPageVi
         
         self.videoDetailPageViewControllerDelegate = nextVC
         self.nextIndex = nextVC.index
-        videoDetailPageViewControllerDelegate?.getCurrentQueuePlayer()
-        videoDetailPageViewControllerDelegate?.getCurrentVideoInformation()
+        sendtoVideoDetailViewControllerDelegate?.sendQueuePlayer(quque: (videoDetailPageViewControllerDelegate?.getCurrentQueuePlayer())!)
+        sendtoVideoDetailViewControllerDelegate?.sendVideoInfomation(videoInformation: (videoDetailPageViewControllerDelegate?.getCurrentVideoInformation())!)
+        
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {

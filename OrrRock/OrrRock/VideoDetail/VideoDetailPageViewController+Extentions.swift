@@ -9,6 +9,13 @@ import UIKit
 import AVFoundation
 
 extension VideoDetailPageViewController : VideoDetailViewControllerDelegate{
+    func changeVideoSoundPlayAndStop() {
+        videoDetailPageViewControllerDelegate!.changeVideoSoundPlayAndStop()
+    }
+    
+    func changeVideoPlayAndStop() {
+        videoDetailPageViewControllerDelegate?.changeVideoPlayAndStop()
+    }
     
     func getCurrentVideoInformation() -> VideoInformation {
         print((videoDetailPageViewControllerDelegate?.getCurrentVideoInformation())!)
