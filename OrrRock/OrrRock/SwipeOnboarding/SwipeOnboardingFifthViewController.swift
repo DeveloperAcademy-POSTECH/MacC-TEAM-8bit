@@ -17,7 +17,7 @@ class SwipeOnboardingFifthViewController: UIViewController {
         btn.clipsToBounds = true
         btn.layer.cornerRadius = 15
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
-        btn.setBackgroundColor(.orrGray2!, for: .disabled)
+        btn.setBackgroundColor(.orrGray300!, for: .disabled)
         btn.addTarget(self, action: #selector(pressCloseButton), for: .touchUpInside)
         btn.setTitle("시작하기", for: .normal)
         btn.setTitleColor(.white, for: .normal)
@@ -68,9 +68,9 @@ extension SwipeOnboardingFifthViewController {
         view.addSubview(closeButton)
         closeButton.snp.makeConstraints{
             $0.centerX.equalTo(view)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPadding.padding3.rawValue)
-            $0.leading.equalTo(view).offset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalTo(view).offset(-OrrPadding.padding3.rawValue)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
+            $0.leading.equalTo(view).offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalTo(view).offset(-OrrPd.pd16.rawValue)
             $0.height.equalTo(56)
         }
         

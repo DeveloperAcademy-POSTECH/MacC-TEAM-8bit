@@ -98,7 +98,7 @@ final class HomeTableViewCardCell: UITableViewCell {
             let horizontalPadding: CGFloat = 2
             $0.leading.equalTo(cardView.snp.leading).offset(horizontalPadding)
             $0.trailing.equalTo(cardView.snp.trailing).offset(-horizontalPadding)
-            $0.centerY.equalTo(cardView.snp.centerY).offset(CGFloat(OrrPadding.padding1.rawValue))
+            $0.centerY.equalTo(cardView.snp.centerY).offset(CGFloat(OrrPd.pd4.rawValue))
             $0.height.equalTo(((UIScreen.main.bounds.width - horizontalPadding * 2) / 5 * 2))
         }
         
