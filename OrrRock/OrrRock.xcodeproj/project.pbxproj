@@ -329,15 +329,9 @@
 				78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */,
 				341418BC2923A6FF0033D851 /* DateAndGymEditViewController+TableViewExtensions.swift */,
 				78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */,
-				FB32280E29046B4500276A7D /* VideoDetailViewController.swift */,
-				78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */,
-				78FEE89629291A19007B67BD /* VideoDetailViewController+Protocol.swift */,
+				78FEE89D292976FA007B67BD /* VideoDetailViewController */,
+				78FEE89C292976D6007B67BD /* VideoDetailPageViewController */,
 				3AEB3D61291C03A900A989FF /* UIComponent */,
-				78FEE8902926A599007B67BD /* VideoDetailPageViewController.swift */,
-				78FEE89A29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift */,
-				78FEE89829291AC9007B67BD /* VideoDetailPageViewController+Protocol.swift */,
-				78FEE88E2926A23B007B67BD /* VideoPlayViewController.swift */,
-				78FEE894292916E4007B67BD /* VideoPlayViewController+Extensions.swift */,
 			);
 			path = VideoDetail;
 			sourceTree = "<group>";
@@ -409,6 +403,36 @@
 				78A035492901317600FF1913 /* Cell */,
 			);
 			path = VideoCollection;
+			sourceTree = "<group>";
+		};
+		78FEE89C292976D6007B67BD /* VideoDetailPageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				78FEE8902926A599007B67BD /* VideoDetailPageViewController.swift */,
+				78FEE89A29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift */,
+				78FEE89829291AC9007B67BD /* VideoDetailPageViewController+Protocol.swift */,
+				78FEE89E29297717007B67BD /* VideoPlayViewController */,
+			);
+			path = VideoDetailPageViewController;
+			sourceTree = "<group>";
+		};
+		78FEE89D292976FA007B67BD /* VideoDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FB32280E29046B4500276A7D /* VideoDetailViewController.swift */,
+				78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */,
+				78FEE89629291A19007B67BD /* VideoDetailViewController+Protocol.swift */,
+			);
+			path = VideoDetailViewController;
+			sourceTree = "<group>";
+		};
+		78FEE89E29297717007B67BD /* VideoPlayViewController */ = {
+			isa = PBXGroup;
+			children = (
+				78FEE88E2926A23B007B67BD /* VideoPlayViewController.swift */,
+				78FEE894292916E4007B67BD /* VideoPlayViewController+Extensions.swift */,
+			);
+			path = VideoPlayViewController;
 			sourceTree = "<group>";
 		};
 		FB32281129046CBF00276A7D /* View */ = {
