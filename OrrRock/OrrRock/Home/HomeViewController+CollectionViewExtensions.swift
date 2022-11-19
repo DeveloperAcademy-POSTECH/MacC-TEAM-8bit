@@ -91,7 +91,7 @@ extension HomeViewController: UITableViewDataSource {
     
     // TableView Footer의 높이 지정
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return isCardView ? 0 : CGFloat(OrrPadding.padding3.rawValue)
+        return isCardView ? 0 : CGFloat(OrrPd.pd16.rawValue)
     }
 }
 
@@ -119,8 +119,8 @@ extension HomeViewController: UITableViewDelegate{
     
     // TableView Cell의 높이 지정
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let width = view.bounds.width - 2 * CGFloat(OrrPadding.padding3.rawValue)
-        let height = isCardView ? (sortedVideoInfoData[indexPath.row].count > 5 ? width / 1.33 : width / 1.80) + CGFloat(OrrPadding.padding3.rawValue) : 96
+        let width = view.bounds.width - 2 * CGFloat(OrrPd.pd16.rawValue)
+        let height = isCardView ? (sortedVideoInfoData[indexPath.row].count > 5 ? width / 1.33 : width / 1.80) + CGFloat(OrrPd.pd16.rawValue) : 96
         
         return CGFloat(height)
     }

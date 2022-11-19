@@ -38,7 +38,7 @@ final class HomeTableViewCardCell: UITableViewCell {
         let view = UILabel()
         view.text = "클라이밍장 정보"
         view.font = UIFont.systemFont(ofSize: 15)
-        view.textColor = .orrGray4
+        view.textColor = .orrGray600
         return view
     }()
     
@@ -59,7 +59,7 @@ final class HomeTableViewCardCell: UITableViewCell {
         let view = UILabel()
         view.text = "N개의 비디오"
         view.font = UIFont.systemFont(ofSize: 15)
-        view.textColor = .orrGray3
+        view.textColor = .orrGray500
         return view
     }()
     
@@ -79,7 +79,7 @@ final class HomeTableViewCardCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.backgroundColor = .orrGray1
+        self.backgroundColor = .orrGray100
         
         setUpLayout()
         setCollectionViewDelegate()
@@ -90,7 +90,7 @@ final class HomeTableViewCardCell: UITableViewCell {
         contentView.addSubview(cardView)
         cardView.snp.makeConstraints {
             $0.leading.trailing.top.equalTo(contentView)
-            $0.bottom.equalTo(contentView).inset(OrrPadding.padding3.rawValue)
+            $0.bottom.equalTo(contentView).inset(OrrPd.pd16.rawValue)
         }
         
         cardView.addSubview(thumbnailCollectionView)
@@ -104,36 +104,36 @@ final class HomeTableViewCardCell: UITableViewCell {
         
         cardView.addSubview(gymLabel)
         gymLabel.snp.makeConstraints {
-            $0.bottom.equalTo(thumbnailCollectionView.snp.top).offset(-CGFloat(OrrPadding.padding2.rawValue))
-            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
+            $0.bottom.equalTo(thumbnailCollectionView.snp.top).offset(-CGFloat(OrrPd.pd8.rawValue))
+            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPd.pd16.rawValue))
         }
         
         cardView.addSubview(dateLabel)
         dateLabel.snp.makeConstraints {
-            $0.bottom.equalTo(gymLabel.snp.top).inset(-CGFloat(OrrPadding.padding1.rawValue))
-            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
+            $0.bottom.equalTo(gymLabel.snp.top).inset(-CGFloat(OrrPd.pd4.rawValue))
+            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPd.pd16.rawValue))
         }
         
         cardView.addSubview(countTotalVideoLabel)
         countTotalVideoLabel.snp.makeConstraints {
-            $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(CGFloat(OrrPadding.padding3.rawValue))
-            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
+            $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(CGFloat(OrrPd.pd16.rawValue))
+            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPd.pd16.rawValue))
         }
         
         cardView.addSubview(detailLabel)
         detailLabel.snp.makeConstraints {
-            $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(CGFloat(OrrPadding.padding3.rawValue))
-            $0.trailing.equalTo(cardView.snp.trailing).offset(-CGFloat(OrrPadding.padding3.rawValue))
+            $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(CGFloat(OrrPd.pd16.rawValue))
+            $0.trailing.equalTo(cardView.snp.trailing).offset(-CGFloat(OrrPd.pd16.rawValue))
         }
     }
     
     func setCollectionViewLayout() {
         thumbnailCollectionView.snp.removeConstraints()
         thumbnailCollectionView.snp.makeConstraints {
-            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPadding.padding1.rawValue))
-            $0.trailing.equalTo(cardView.snp.trailing).offset(-CGFloat(OrrPadding.padding1.rawValue))
-            $0.centerY.equalTo(cardView.snp.centerY).offset(CGFloat(OrrPadding.padding1.rawValue))
-            $0.height.equalTo((UIScreen.main.bounds.width - CGFloat(OrrPadding.padding3.rawValue) * 2) / 5 * (videoThumbnails.count > 5 ? 2 : 1))
+            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPd.pd4.rawValue))
+            $0.trailing.equalTo(cardView.snp.trailing).offset(-CGFloat(OrrPd.pd4.rawValue))
+            $0.centerY.equalTo(cardView.snp.centerY).offset(CGFloat(OrrPd.pd4.rawValue))
+            $0.height.equalTo((UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 2) / 5 * (videoThumbnails.count > 5 ? 2 : 1))
         }
     }
     

@@ -24,14 +24,14 @@ final class VideoInfoView: UIView {
 	
 	private lazy var dateView: UIView = {
 		let view = UIView()
-		view.backgroundColor = .orrGray1
+		view.backgroundColor = .orrGray100
 		view.layer.cornerRadius = 10
 		return view
 	}()
 	
 	private lazy var levelView: UIView = {
 		let view = UIView()
-		view.backgroundColor = .orrGray1
+		view.backgroundColor = .orrGray100
 		view.layer.cornerRadius = 10
 		return view
 	}()
@@ -55,7 +55,7 @@ final class VideoInfoView: UIView {
 	private lazy var locationLabel: UILabel = {
 		let label = UILabel()
 		label.font = .systemFont(ofSize: 12.0, weight: .regular)
-		label.textColor = .orrGray3
+		label.textColor = .orrGray500
 		label.text = videoLocation
 		return label
 	}()
@@ -63,7 +63,7 @@ final class VideoInfoView: UIView {
 	private lazy var isSucceeded: UILabel = {
 		let label = UILabel()
 		label.font = .systemFont(ofSize: 12.0, weight: .regular)
-		label.textColor = .orrGray3
+		label.textColor = .orrGray500
 		label.text = videoIsSucceeded ? "성공" : "실패"
 		return label
 	}()
@@ -161,59 +161,59 @@ extension VideoInfoView {
 		// textView
 		self.addSubview(feedbackTextView)
 		feedbackTextView.snp.makeConstraints {
-			$0.leading.trailing.equalToSuperview().inset(OrrPadding.padding3.rawValue)
-			$0.top.equalTo(self.snp.top).offset(OrrPadding.padding3.rawValue)
+			$0.leading.trailing.equalToSuperview().inset(OrrPd.pd16.rawValue)
+			$0.top.equalTo(self.snp.top).offset(OrrPd.pd16.rawValue)
 			$0.height.equalTo(110)
 		}
 		// 날짜 입력 뷰
 		self.addSubview(dateView)
 		dateView.snp.makeConstraints {
 			$0.height.equalTo(80)
-			$0.leading.trailing.equalToSuperview().inset(OrrPadding.padding3.rawValue)
-			$0.top.equalTo(feedbackTextView.snp.bottom).offset(OrrPadding.padding3.rawValue)
+			$0.leading.trailing.equalToSuperview().inset(OrrPd.pd16.rawValue)
+			$0.top.equalTo(feedbackTextView.snp.bottom).offset(OrrPd.pd16.rawValue)
 		}
 		// 문제 난이도 뷰
 		self.addSubview(levelView)
 		levelView.snp.makeConstraints {
 			$0.height.equalTo(80)
-			$0.leading.trailing.equalToSuperview().inset(OrrPadding.padding3.rawValue)
-			$0.top.equalTo(dateView.snp.bottom).offset(OrrPadding.padding3.rawValue)
+			$0.leading.trailing.equalToSuperview().inset(OrrPd.pd16.rawValue)
+			$0.top.equalTo(dateView.snp.bottom).offset(OrrPd.pd16.rawValue)
 		}
 		// 날짜 레이블
 		dateView.addSubview(dateLabel)
 		dateLabel.snp.makeConstraints {
-			$0.top.equalTo(dateView.snp.top).offset(OrrPadding.padding4.rawValue)
-			$0.leading.equalTo(dateView.snp.leading).offset(OrrPadding.padding4.rawValue)
+			$0.top.equalTo(dateView.snp.top).offset(OrrPd.pd20.rawValue)
+			$0.leading.equalTo(dateView.snp.leading).offset(OrrPd.pd20.rawValue)
 		}
 		// 클라이밍장 정보
 		dateView.addSubview(locationLabel)
 		locationLabel.snp.makeConstraints {
-			$0.bottom.equalTo(dateView.snp.bottom).inset(OrrPadding.padding4.rawValue)
-			$0.leading.equalTo(dateView.snp.leading).inset(OrrPadding.padding4.rawValue)
+			$0.bottom.equalTo(dateView.snp.bottom).inset(OrrPd.pd20.rawValue)
+			$0.leading.equalTo(dateView.snp.leading).inset(OrrPd.pd20.rawValue)
 		}
 		// 난이도 레이블
 		levelView.addSubview(levelLabel)
 		levelLabel.snp.makeConstraints {
-			$0.top.equalTo(levelView.snp.top).offset(OrrPadding.padding4.rawValue)
-			$0.leading.equalTo(levelView.snp.leading).offset(OrrPadding.padding4.rawValue)
+			$0.top.equalTo(levelView.snp.top).offset(OrrPd.pd20.rawValue)
+			$0.leading.equalTo(levelView.snp.leading).offset(OrrPd.pd20.rawValue)
 		}
 		// 성공 여부 레이블
 		levelView.addSubview(isSucceeded)
 		isSucceeded.snp.makeConstraints {
-			$0.bottom.equalTo(levelView.snp.bottom).inset(OrrPadding.padding4.rawValue)
-			$0.leading.equalTo(levelView.snp.leading).inset(OrrPadding.padding4.rawValue)
+			$0.bottom.equalTo(levelView.snp.bottom).inset(OrrPd.pd20.rawValue)
+			$0.leading.equalTo(levelView.snp.leading).inset(OrrPd.pd20.rawValue)
 		}
 		// 날짜, 클라이밍장 편집 버튼
 		dateView.addSubview(dateLocationEditButton)
 		dateLocationEditButton.snp.makeConstraints {
 			$0.centerY.equalTo(dateView.snp.centerY)
-			$0.trailing.equalTo(dateView.snp.trailing).inset(OrrPadding.padding4.rawValue)
+			$0.trailing.equalTo(dateView.snp.trailing).inset(OrrPd.pd20.rawValue)
 		}
 		// 난이도, 성패여부 편집 버튼
 		levelView.addSubview(levelPFEditButton)
 		levelPFEditButton.snp.makeConstraints {
 			$0.centerY.equalTo(levelView.snp.centerY)
-			$0.trailing.equalTo(levelView.snp.trailing).inset(OrrPadding.padding4.rawValue)
+			$0.trailing.equalTo(levelView.snp.trailing).inset(OrrPd.pd20.rawValue)
 		}
 	}
 }
