@@ -308,7 +308,8 @@ final class HomeViewController : UIViewController {
     //Ruyha
     @objc func videoButtonPressed(sender: UIButton){
         let nextVC = TestLevelPickerViewController()
-        self.navigationController?.pushViewController(nextVC, animated: true)
+//        self.navigationController?.pushViewController(nextVC, animated: true)
+        self.present(nextVC, animated: true, completion: nil)
     }
 
     //MARK: 스와이프 온보딩을 보고 싶다면 해당 상단의 코드를 주석처리후 하단 주석을 풀어주세요.
