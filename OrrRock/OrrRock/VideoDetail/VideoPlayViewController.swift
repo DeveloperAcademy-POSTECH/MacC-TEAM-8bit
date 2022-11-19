@@ -43,9 +43,11 @@ class VideoPlayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpLayout()
         loadVideo(videoAsset: videoAsset)
+        self.playerLayer?.frame = self.videoBackgroundView.bounds
         // Do any additional setup after loading the view.
+        setUpLayout()
+        print("playviewcontroller seeitnf")
     }
     
     override func viewWillLayoutSubviews() {
@@ -74,7 +76,9 @@ extension VideoPlayViewController{
     }
     
     func loadVideo(videoAsset: PHAsset?) {
-        guard let videoAsset = videoAsset else { return }
+        guard let videoAsset = videoAsset else {
+            print("novideoasset")
+            return }
         // 비디오 Asset의 콘텐츠 및 상태를 나타내는 AVFoundation 개체가 비동기식으로 로드되도록 요청
         // AVAsset?, AVAudioMix?, [AnyHashable : Any]? 타입으로 반환
         PHCachingImageManager().requestAVAsset(forVideo: videoAsset, options: nil) { (assets, audioMix, info) in
@@ -92,6 +96,8 @@ extension VideoPlayViewController{
                 self.queuePlayer.isMuted = true
                 self.playerLooper = AVPlayerLooper(player: self.queuePlayer, templateItem: item)
                 self.queuePlayer.play()
+                
+                print("-------")
             }
         }
     }

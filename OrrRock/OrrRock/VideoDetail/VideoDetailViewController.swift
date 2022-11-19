@@ -23,7 +23,6 @@ class VideoDetailViewController: UIViewController {
     var videoInfoView = VideoInfoView()
     
     var videoInformation: VideoInformation!
-    var videoAsset: PHAsset?
     
     var feedbackText: String?
     
@@ -61,17 +60,11 @@ class VideoDetailViewController: UIViewController {
     }()
     
     // 영상 재생하는 뷰 (VideoPlayerView)
-    lazy var videoPlayView: VideoPlayView = {
-        let view = VideoPlayView(videoAsset: videoAsset)
-        self.view.addSubview(view)
-        return view
-    }()
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadVideoAsset()
         setNavigationBar()
         setUpLayout()
         setKeyboardObserver()
@@ -213,7 +206,7 @@ class VideoDetailViewController: UIViewController {
         isSounded.toggle()
         iconSpace.width = isSounded ? 0 : 8.4
         soundButton.image = UIImage(systemName: isSounded ? "speaker.wave.2.fill" : "speaker.slash.fill")
-        videoPlayView.queuePlayer.isMuted = isSounded ? false : true
+//        videoPlayView.queuePlayer.isMuted = isSounded ? false : true
         print(#function)
     }
     
@@ -221,7 +214,7 @@ class VideoDetailViewController: UIViewController {
     @objc func playVideoAction() {
         isPlayed.toggle()
         playButton.image = UIImage(systemName: isPlayed ? "play.fill" : "pause.fill")
-        isPlayed ? videoPlayView.queuePlayer.pause() : videoPlayView.queuePlayer.play()
+//        isPlayed ? videoPlayView.queuePlayer.pause() : videoPlayView.queuePlayer.play()
         print(#function)
     }
     
@@ -340,15 +333,6 @@ extension VideoDetailViewController {
 
 // Video 처리 관련 functions
 private extension VideoDetailViewController {
-    func loadVideoAsset() {
-        guard let videoAsset = videoDataFomatter(videoLocalIdentifier: videoInformation.videoLocalIdentifier ?? "") else {
-            // 영상이 없어 fetch를 하지 못한 경우
-            print("영상이 없음")
-            return
-        }
-        
-        self.videoAsset = videoAsset
-    }
     
     func videoDataFomatter(videoLocalIdentifier: String) -> PHAsset? {
         var videoIDArray: [String] = []

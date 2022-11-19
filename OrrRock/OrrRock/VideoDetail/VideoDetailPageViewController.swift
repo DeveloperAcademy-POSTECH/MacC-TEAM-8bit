@@ -18,6 +18,7 @@ class VideoDetailPageViewController: UIPageViewController {
     var nextIndex: Int?
     var videoInformation : VideoInformation?
     var videoAsset: PHAsset?
+    var videoAssetArray : [PHAsset] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +30,13 @@ class VideoDetailPageViewController: UIPageViewController {
         let vc = VideoPlayViewController()
         vc.videoAsset = checkVideoAsset(videoLocalIdentifier: self.videoInformationArray[currentIndex].videoLocalIdentifier ?? "")
         vc.index = currentIndex
+        for i in 0...videoInformationArray.count-1{
+            videoAssetArray.append(checkVideoAsset(videoLocalIdentifier: self.videoInformationArray[i].videoLocalIdentifier ?? "")!)
+        }
         self.setViewControllers([vc], direction: .forward, animated: false)
         // Do any additional setup after loading the view.
+        print("videoarrCount: \(videoInformationArray.count)")
+        print("assetarrCount: \(videoAssetArray.count)")
     }
 
 }
@@ -41,9 +47,10 @@ extension VideoDetailPageViewController : UIPageViewControllerDelegate, UIPageVi
         if currentIndex == 0 {
             return nil
         }
-        
+        print("bfore vc")
+        print(currentIndex)
         let vc = VideoPlayViewController()
-        vc.videoAsset = checkVideoAsset(videoLocalIdentifier: self.videoInformationArray[currentIndex - 1].videoLocalIdentifier ?? "")
+        vc.videoAsset = videoAssetArray[currentIndex - 1]
         vc.index = currentIndex - 1
         return vc
         
@@ -54,24 +61,26 @@ extension VideoDetailPageViewController : UIPageViewControllerDelegate, UIPageVi
         if currentIndex == (self.videoInformationArray.count - 1) {
             return nil
         }
-        
+        print("next vc\(currentIndex)")
         let vc = VideoPlayViewController()
-        vc.videoAsset = checkVideoAsset(videoLocalIdentifier: self.videoInformationArray[currentIndex + 1].videoLocalIdentifier ?? "")
+        vc.videoAsset = videoAssetArray[currentIndex + 1]
         vc.index = currentIndex + 1
         return vc
         
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        
+        print("willtransition")
         guard let nextVC = pendingViewControllers.first as? VideoPlayViewController else {
             return
         }
+        nextVC.videoAsset = videoAssetArray[nextVC.index]
+        nextVC.loadVideo(videoAsset: nextVC.videoAsset)
         self.nextIndex = nextVC.index
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        
+        print("didfinishanimating")
         if (completed && self.nextIndex != nil) {
             self.currentIndex = self.nextIndex!
         }
@@ -124,7 +133,7 @@ extension VideoDetailPageViewController{
             print("DEBUG: 비디오 미디어가 존재하지 않습니다.")
             return nil
         }
-        
+        print(phAsset[0])
         return phAsset[0]
     }
 }
