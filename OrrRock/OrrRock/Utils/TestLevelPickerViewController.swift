@@ -31,8 +31,6 @@ class TestLevelPickerViewController: UIViewController{
     override func viewDidLayoutSubviews() {
         //피커뷰 회색 증발 마술
         pickerView.subviews[1].isHidden = true
-
-
     }
     
     override func viewDidLoad() {
@@ -40,6 +38,7 @@ class TestLevelPickerViewController: UIViewController{
         view.backgroundColor = .red
         self.pickerView.delegate?.pickerView?(self.pickerView, didSelectRow: pickerSelectValue, inComponent: 0)
         self.pickerView.selectRow(pickerSelectValue, inComponent: 0, animated: true)
+        
         view.addSubview(pickerView)
         pickerView.snp.makeConstraints {
             $0.height.equalTo(view.snp.height)
