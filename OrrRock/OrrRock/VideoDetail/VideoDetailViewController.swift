@@ -198,7 +198,7 @@ class VideoDetailViewController: UIViewController {
     @objc func deleteVideoAction(_ sender: UIBarButtonItem) {
         let optionMenu = UIAlertController(title: "선택한 영상 삭제하기", message: "정말로 삭제하시겠어요?", preferredStyle: .actionSheet)
         let deleteAction = UIAlertAction(title: "삭제하기", style: .destructive) {_ in
-            DataManager.shared.deleteData(videoInformation: self.videoInformation)
+            DataManager.shared.deleteData(videoInformation: self.currentVideoInformation!)
             self.goBackAction()
         }
         let cancelAction = UIAlertAction(title: "취소하기", style: .cancel)
