@@ -44,8 +44,6 @@ class VideoPlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadVideo(videoAsset: videoAsset)
-        self.playerLayer?.frame = self.videoBackgroundView.bounds
-        // Do any additional setup after loading the view.
         setUpLayout()
         print("playviewcontroller seeitnf")
     }
