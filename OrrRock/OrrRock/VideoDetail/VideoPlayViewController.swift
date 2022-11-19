@@ -45,7 +45,6 @@ class VideoPlayViewController: UIViewController {
         super.viewDidLoad()
         loadVideo(videoAsset: videoAsset)
         setUpLayout()
-        print("playviewcontroller seeitnf")
     }
     
     override func viewWillLayoutSubviews() {
@@ -94,8 +93,6 @@ extension VideoPlayViewController{
                 self.queuePlayer.isMuted = true
                 self.playerLooper = AVPlayerLooper(player: self.queuePlayer, templateItem: item)
                 self.queuePlayer.play()
-                
-                print("-------")
             }
         }
     }

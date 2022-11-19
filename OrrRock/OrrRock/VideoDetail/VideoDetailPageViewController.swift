@@ -19,6 +19,7 @@ class VideoDetailPageViewController: UIPageViewController {
     var videoInformation : VideoInformation?
     var videoAsset: PHAsset?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        videoInformation = videoInformationArray[currentIndex]

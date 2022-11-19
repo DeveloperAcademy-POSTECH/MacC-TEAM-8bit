@@ -24,7 +24,12 @@ class VideoDetailViewController: UIViewController {
     
     var videoInformation: VideoInformation!
     
+    var currentVideoInformation : VideoInformation?
+    var currentQueuePlayer : AVQueuePlayer?
+    var VideoDetailViewControllerDelegate : VideoDetailViewControllerDelegate?
+    
     var feedbackText: String?
+    
     
     
     //for the test
@@ -357,11 +362,6 @@ private extension VideoDetailViewController {
         
         return phAsset[0]
     }
-}
-
-// PHAsset 타입의 영상 데이터를 videoLocalIdentifier를 통해서 AVAsset으로 포매팅하는 매서드
-extension VideoDetailViewController {
-    
 }
 
 extension VideoDetailViewController {
