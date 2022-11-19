@@ -11,7 +11,7 @@ import Photos
 import SnapKit
 
 class VideoPlayViewController: UIViewController {
-
+    
     var queuePlayer = AVQueuePlayer()
     var playerLooper: AVPlayerLooper?
     var playerLayer: AVPlayerLayer?

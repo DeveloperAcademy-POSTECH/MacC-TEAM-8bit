@@ -382,13 +382,13 @@ extension VideoDetailViewController {
     private func setUpLayout() {
         // 영상을 보여주는 뷰
         
-//        view.addSubview(videoPlayView)
-//        videoPlayView.snp.makeConstraints {
-//            $0.leading.equalTo(self.view)
-//            $0.trailing.equalTo(self.view)
-//            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-//            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
-//        }
+        //        view.addSubview(videoPlayView)
+        //        videoPlayView.snp.makeConstraints {
+        //            $0.leading.equalTo(self.view)
+        //            $0.trailing.equalTo(self.view)
+        //            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+        //            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+        //        }
         // 상단 safe area를 가려주는 뷰
         
     }

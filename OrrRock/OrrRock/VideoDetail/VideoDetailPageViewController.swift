@@ -10,7 +10,7 @@ import Photos
 import SnapKit
 
 class VideoDetailPageViewController: UIPageViewController {
-
+    
     var videoInformationArray: [VideoInformation] = []
     var photos: [UIImage]!
     var currentIndex = 0
@@ -23,7 +23,7 @@ class VideoDetailPageViewController: UIPageViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        videoInformation = videoInformationArray[currentIndex]
+        //        videoInformation = videoInformationArray[currentIndex]
         view.backgroundColor = .orrWhite
         
         self.delegate = self
@@ -38,7 +38,7 @@ class VideoDetailPageViewController: UIPageViewController {
     }
     
     
-
+    
 }
 
 extension VideoDetailPageViewController : UIPageViewControllerDelegate, UIPageViewControllerDataSource{
@@ -137,5 +137,5 @@ extension VideoDetailPageViewController{
         return phAsset[0]
     }
     
-
+    
 }
