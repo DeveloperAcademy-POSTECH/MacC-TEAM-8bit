@@ -98,4 +98,8 @@ extension VideoPlayViewController{
             }
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.queuePlayer.isMuted = true
+    }
 }

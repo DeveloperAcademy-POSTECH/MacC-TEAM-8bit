@@ -18,12 +18,14 @@ protocol VideoDetailViewControllerDelegate{
 extension VideoDetailViewController : SendtoVideoDetailViewControllerDelegate{
     func sendVideoInfomation(videoInformation: VideoInformation) {
         self.currentVideoInformation = videoInformation
-        print(currentVideoInformation)
+        isPlayed = false
+        playButton.image = UIImage(systemName: "pause.fill")
+        isSounded = false
+        soundButton.image = UIImage(systemName: "speaker.slash.fill")
     }
     
     func sendQueuePlayer(quque: AVQueuePlayer) {
         self.currentQueuePlayer = quque
-        print(currentQueuePlayer,"213")
     }
     
     

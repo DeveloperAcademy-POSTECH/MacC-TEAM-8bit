@@ -44,8 +44,8 @@ class VideoDetailViewController: UIViewController {
     private var infoButton: UIBarButtonItem!
     private var feedbackButton: UIBarButtonItem!
     private var trashButton: UIBarButtonItem!
-    private var soundButton: UIBarButtonItem!
-    private var playButton: UIBarButtonItem!
+    var soundButton: UIBarButtonItem!
+    var playButton: UIBarButtonItem!
     private var favoriteButton: UIBarButtonItem!
     private var goBackButton: UIBarButtonItem!
     private var flexibleSpace: UIBarButtonItem!
@@ -222,7 +222,6 @@ class VideoDetailViewController: UIViewController {
     @objc func playVideoAction() {
         isPlayed.toggle()
         playButton.image = UIImage(systemName: isPlayed ? "play.fill" : "pause.fill")
-//        isPlayed ? currentQueuePlayer!.pause() : currentQueuePlayer!.play()
         VideoDetailViewControllerDelegate?.changeVideoPlayAndStop()
         print(#function)
         
