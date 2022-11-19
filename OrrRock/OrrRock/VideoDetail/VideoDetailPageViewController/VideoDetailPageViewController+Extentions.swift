@@ -18,7 +18,6 @@ extension VideoDetailPageViewController : VideoDetailViewControllerDelegate{
     }
     
     func getCurrentVideoInformation() -> VideoInformation {
-        print((videoDetailPageViewControllerDelegate?.getCurrentVideoInformation())!)
         return (videoDetailPageViewControllerDelegate?.getCurrentVideoInformation())!
     }
     

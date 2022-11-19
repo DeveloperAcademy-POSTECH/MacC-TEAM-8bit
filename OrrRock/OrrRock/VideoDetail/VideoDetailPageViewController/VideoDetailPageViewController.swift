@@ -78,8 +78,6 @@ extension VideoDetailPageViewController : UIPageViewControllerDelegate, UIPageVi
         self.nextIndex = nextVC.index
         sendtoVideoDetailViewControllerDelegate?.sendQueuePlayer(quque: (videoDetailPageViewControllerDelegate?.getCurrentQueuePlayer())!)
         sendtoVideoDetailViewControllerDelegate?.sendVideoInfomation(videoInformation: (videoDetailPageViewControllerDelegate?.getCurrentVideoInformation())!)
-        print("sending videoinfo",videoDetailPageViewControllerDelegate?.getCurrentVideoInformation())
-        
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
@@ -107,7 +105,6 @@ extension VideoDetailPageViewController{
     func loadVideoAsset() {
         guard let videoAsset = videoDataFomatter(videoLocalIdentifier: videoInformation!.videoLocalIdentifier ?? "") else {
             // 영상이 없어 fetch를 하지 못한 경우
-            print("영상이 없음")
             return
         }
         

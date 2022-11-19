@@ -38,12 +38,6 @@ extension VideoDetailViewController{
                 }else{
                     showInfo()
                 }
-            case UISwipeGestureRecognizer.Direction.left :
-                print("left")
-                //다음 기능을 위해 남겨놓음
-            case UISwipeGestureRecognizer.Direction.right :
-                print("right")
-                //다음 기능을 위해 남겨놓음
             default:
                 break
             }
@@ -57,10 +51,5 @@ extension VideoDetailViewController{
             self.navigationController?.isNavigationBarHidden = self.navigationController!.isToolbarHidden ? false : true
             self.navigationController?.isToolbarHidden = self.navigationController!.isToolbarHidden ? false : true
         }
-        
-        
-        
-        
-        print("touched")
     }
 }
