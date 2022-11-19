@@ -438,10 +438,7 @@ private extension LevelAndPFSettingViewController {
                     guard let nextCard = cards[counter + 1] as? SwipeableCardVideoView else { return }
                     // 이전 카드가 스와이프가 되었을 때 다음에 나올 카드가 재생
                     nextCard.queuePlayer.play()
-                    
-                    // 슬라이더 세팅
-//                    setVideoSlider(card: nextCard)
-                    
+
                     // Slider에 시간 정보를 업데이트하기 위한 Observer 추가
                     addPeriodicTimeObserver(card: nextCard)
                 }
@@ -487,14 +484,6 @@ private extension LevelAndPFSettingViewController {
     
     @objc func backButtonClicked() {
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    @objc func setVideoSlider(card: SwipeableCardVideoView){
-        if let currentItem = card.queuePlayer.currentItem {
-            let duration = currentItem.duration
-            videoSlider.minimumValue = 0
-            videoSlider.maximumValue = Float(CMTimeGetSeconds(duration))
-        }
     }
     
     // 모든 카드를 스와이핑 했을 때 호출되는 메서드
