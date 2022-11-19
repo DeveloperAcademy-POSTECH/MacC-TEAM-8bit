@@ -10,30 +10,39 @@ import SwiftUI
 
 struct SolvedProblemsChartView: View {
     @State private var selectedTimePeriod: TimePeriodEnum = .week
+    var chartData: [[SolvedProblemsOfEachLevel]]
     
     var body: some View {
         ZStack {
             VStack{
                 Picker("피커", selection: $selectedTimePeriod) {
                     ForEach(TimePeriodEnum.allCases, id: \.self) { period in
-                        Text(period.rawValue).tag(period)
+                        Text("\(period.toString())").tag(period)
                     }
                 }
                 .pickerStyle(.segmented)
                 
                 Spacer()
                 
-                Chart(totalSolvedProblems) { solvedProblemsOfEachLevel in
+                Chart(chartData[selectedTimePeriod.rawValue]) { solvedProblemsOfEachLevel in
                     ForEach(solvedProblemsOfEachLevel.problems) { solvedProblemsOfEachPeriod in
-                        BarMark(x: .value("name", solvedProblemsOfEachPeriod.weekday),
+                        BarMark(x: .value("name", solvedProblemsOfEachPeriod.periodName),
                                 y: .value("count", solvedProblemsOfEachPeriod.count))
                         .foregroundStyle(by: .value("name", solvedProblemsOfEachLevel.name))
                     }
                 }
                 .frame(height: 220)
                 .chartForegroundStyleScale([
+                    "v0": Color(uiColor: .lightGray),
                     "v1": .yellow,
                     "v2": .orange,
+                    "v3": .green,
+                    "v4": .blue,
+                    "v5": .red,
+                    "v6": .purple,
+                    "v7": Color(uiColor: .darkGray),
+                    "v8": .brown,
+                    "v9": .black,
                 ])
             }
             .padding()
@@ -43,55 +52,19 @@ struct SolvedProblemsChartView: View {
     }
 }
 
-enum TimePeriodEnum: String, CaseIterable {
-    case week
-    case month
-    case entire
-}
-
-struct SolvedProblemsChartView_Previews: PreviewProvider {
-    static var previews: some View {
-        SolvedProblemsChartView()
+enum TimePeriodEnum: Int, CaseIterable {
+    case week = 0
+    case month = 1
+    case year = 2
+    
+    func toString() -> String {
+        switch self {
+        case .week:
+            return "주"
+        case .month:
+            return "월"
+        case .year:
+            return "년"
+        }
     }
 }
-
-struct SolvedProblemsOfEachPeriod: Identifiable {
-    let weekday: String
-    let count: Int
-    
-    var id: String { weekday }
-}
-
-let v1: [SolvedProblemsOfEachPeriod] = [
-    .init(weekday: "SUN", count: 123),
-    .init(weekday: "MON", count: 234),
-    .init(weekday: "TUE", count: 345),
-    .init(weekday: "WED", count: 456),
-    .init(weekday: "THU", count: 247),
-    .init(weekday: "FRI", count: 543),
-    .init(weekday: "SAT", count: 163),
-]
-
-let v2: [SolvedProblemsOfEachPeriod] = [
-    .init(weekday: "SUN", count: 432),
-    .init(weekday: "MON", count: 466),
-    .init(weekday: "TUE", count: 732),
-    .init(weekday: "WED", count: 126),
-    .init(weekday: "THU", count: 442),
-    .init(weekday: "FRI", count: 247),
-    .init(weekday: "SAT", count: 111),
-]
-
-struct SolvedProblemsOfEachLevel: Identifiable {
-    var id: String {
-        name
-    }
-    
-    let name: String
-    let problems: [SolvedProblemsOfEachPeriod]
-}
-
-let totalSolvedProblems: [SolvedProblemsOfEachLevel] = [
-    .init(name: "v1", problems: v1),
-    .init(name: "v2", problems: v2)
-]

@@ -12,6 +12,8 @@ import SnapKit
 
 class MyActivityViewController: UIViewController {
     
+    var entireSolvedProblemsForBarChart: [[SolvedProblemsOfEachLevel]] = [[],[],[]]
+    
     private lazy var DEBUGBackgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = .orrGray2
@@ -29,10 +31,10 @@ class MyActivityViewController: UIViewController {
     
     private lazy var contentView: UIView = {
         let contentView = UIView()
-         contentView.backgroundColor = .orrGray2
-         contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.backgroundColor = .orrGray2
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         
-         return contentView
+        return contentView
     }()
     
     private lazy var summaryView: UIView = {
@@ -48,7 +50,7 @@ class MyActivityViewController: UIViewController {
     }()
     
     private lazy var solvedProblemsChartView: UIView = {
-        let VC = UIHostingController(rootView: SolvedProblemsChartView())
+        let VC = UIHostingController(rootView: SolvedProblemsChartView(chartData: entireSolvedProblemsForBarChart))
         VC.view.backgroundColor = .clear
         return VC.view
     }()
@@ -61,19 +63,66 @@ class MyActivityViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        setUpLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         self.navigationController?.navigationBar.backgroundColor = .clear
+        
+        setUpData()
+        setUpLayout()
+    }
+    
+    func setUpData() {
+        let entireVideoInformations: [[VideoInformation]] = DataManager.shared.repository.sortVideoInformation(filterOption: .all, sortOption: .gymVisitDate)
+        entireSolvedProblemsForBarChart[0] = getSolvedProblemsPerPeriod(from: entireVideoInformations, period: .weekday)
+        entireSolvedProblemsForBarChart[1] = getSolvedProblemsPerPeriod(from: entireVideoInformations, period: .month)
+        entireSolvedProblemsForBarChart[2] = getSolvedProblemsPerPeriod(from: entireVideoInformations, period: .year)
+    }
+    
+    func getSolvedProblemsPerPeriod(from: [[VideoInformation]], period: Calendar.Component) -> [SolvedProblemsOfEachLevel] {
+        var result: [SolvedProblemsOfEachLevel] = []
+        for level in 0...9 {
+            result.append(SolvedProblemsOfEachLevel(name: "v\(level)", problems: []))
+            for periodIndex in 0...5 {
+                //
+                result[level].problems.append(SolvedProblemsOfEachPeriod(periodName: periodIndex == 5 ? "이번 \(period.toString())" : "\(5 - periodIndex)\(period.toString()) 전", count: 0))
+            }
+        }
+        
+        // DateComponent Type의 경우에는 nil이 될 수 있으나, Date Type은 모든 값을 반드시 가지고 있기 때문에 nil이 되지 않아 강제 언래핑이 안전합니다!
+        var lastDayOfThisPeriod: Date = Calendar.current.date(byAdding: period, value: -1, to: Date())!.timeToString().stringToDate()!
+        var periodIndex: Int = 5
+        
+        // videoInformationUnit은 "같은 날짜에 같은 클라이밍장을 방문하여 기록한 영상의 뭉치"임
+        searchVideoLoop: for videoInformationUnit in from {
+            // 해당 배열에 아무 값도 없는 경우 continue (error)
+            guard let sample = videoInformationUnit.first else { continue searchVideoLoop }
+            
+            // 해당 데이터가 속한 time period를 찾아감
+            while (sample.gymVisitDate < lastDayOfThisPeriod) {
+                lastDayOfThisPeriod = Calendar.current.date(byAdding: period, value: -1, to: lastDayOfThisPeriod)!
+                periodIndex -= 1
+            }
+            
+            // 영상 정보의 날짜가 차트로 만들고자 하는 time period를 넘어선 경우부터는 이후 영상 정보들을 데이터에 포함하지 않음
+            if periodIndex < 0 { break }
+            
+            // 차트에 포함되어야 하는 데이터이므로, Unit에 포함된 영상 데이터들 중 성공한 영상의 개수를 count 합니다.
+            videoInformationUnit.forEach { videoInformation in
+                if videoInformation.problemLevel >= 0 {
+                    result[Int(videoInformation.problemLevel)].problems[periodIndex].count += videoInformation.isSucceeded ? 1 : 0
+                }
+            }
+        }
+        
+        return result
     }
 }
 
 extension MyActivityViewController {
     func setUpLayout() {
-        
         view.addSubview(DEBUGBackgroundView)
         DEBUGBackgroundView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -118,4 +167,19 @@ extension MyActivityViewController {
             $0.bottom.equalToSuperview()
         }
     }
+}
+
+
+struct SolvedProblemsOfEachLevel: Identifiable {
+    var id: String { name }
+    
+    let name: String
+    var problems: [SolvedProblemsOfEachPeriod]
+}
+
+struct SolvedProblemsOfEachPeriod: Identifiable {
+    var id: String { periodName }
+
+    let periodName: String
+    var count: Int
 }

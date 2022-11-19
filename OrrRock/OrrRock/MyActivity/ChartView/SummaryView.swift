@@ -9,7 +9,10 @@ import SwiftUI
 
 struct SummaryView: View {
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
+            Text("나의 정보 제공")
+            Text("나의 정보 제공")
+            Text("나의 정보 제공")
             Text("나의 정보 제공")
         }
         .frame(width: UIScreen.main.bounds.width - 32, height: 200)
