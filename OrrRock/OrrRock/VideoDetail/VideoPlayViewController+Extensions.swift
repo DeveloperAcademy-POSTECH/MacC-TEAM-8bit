@@ -10,11 +10,11 @@ import AVFoundation
 
 extension VideoPlayViewController : VideoDetailPageViewControllerDelegate{
     func getCurrentVideoInformation() -> VideoInformation {
-        <#code#>
+        return videoInformation!
     }
     
     func getCurrentQueuePlayer() -> AVQueuePlayer {
-        <#code#>
+        return queuePlayer
     }
     
     

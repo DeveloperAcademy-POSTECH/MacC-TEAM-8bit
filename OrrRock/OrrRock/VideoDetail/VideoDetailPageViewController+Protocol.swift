@@ -11,3 +11,4 @@ protocol VideoDetailPageViewControllerDelegate : AnyObject{
     func getCurrentVideoInformation() -> VideoInformation
     func getCurrentQueuePlayer() -> AVQueuePlayer
 }
+

@@ -17,6 +17,8 @@ class VideoPlayViewController: UIViewController {
     var playerLayer: AVPlayerLayer?
     var videoAsset: PHAsset?
     
+    var videoInformation : VideoInformation?
+    
     var index: Int = 0
     
     private lazy var videoBackgroundView: UIView = {

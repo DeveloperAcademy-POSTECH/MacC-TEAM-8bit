@@ -11,7 +11,6 @@ import SnapKit
 
 class VideoDetailPageViewController: UIPageViewController {
 
-    
     var videoInformationArray: [VideoInformation] = []
     var photos: [UIImage]!
     var currentIndex = 0
@@ -19,6 +18,7 @@ class VideoDetailPageViewController: UIPageViewController {
     var videoInformation : VideoInformation?
     var videoAsset: PHAsset?
     
+    var videoDetailPageViewControllerDelegate : VideoDetailPageViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +28,15 @@ class VideoDetailPageViewController: UIPageViewController {
         self.delegate = self
         self.dataSource = self
         let vc = VideoPlayViewController()
+        vc.videoInformation = videoInformationArray[currentIndex]
         vc.videoAsset = checkVideoAsset(videoLocalIdentifier: self.videoInformationArray[currentIndex].videoLocalIdentifier ?? "")
         vc.index = currentIndex
+        self.videoDetailPageViewControllerDelegate = vc
         self.setViewControllers([vc], direction: .forward, animated: false)
         // Do any additional setup after loading the view.
     }
+    
+    
 
 }
 
@@ -67,7 +71,12 @@ extension VideoDetailPageViewController : UIPageViewControllerDelegate, UIPageVi
         }
         nextVC.videoAsset = checkVideoAsset(videoLocalIdentifier: self.videoInformationArray[nextVC.index].videoLocalIdentifier ?? "")
         nextVC.loadVideo(videoAsset: nextVC.videoAsset)
+        nextVC.videoInformation = videoInformationArray[nextVC.index]
+        
+        self.videoDetailPageViewControllerDelegate = nextVC
         self.nextIndex = nextVC.index
+        videoDetailPageViewControllerDelegate?.getCurrentQueuePlayer()
+        videoDetailPageViewControllerDelegate?.getCurrentVideoInformation()
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
@@ -124,4 +133,6 @@ extension VideoDetailPageViewController{
         }
         return phAsset[0]
     }
+    
+
 }

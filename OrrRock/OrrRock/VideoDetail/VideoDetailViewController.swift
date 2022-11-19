@@ -77,7 +77,6 @@ class VideoDetailViewController: UIViewController {
         addUIGesture()
         videoDetailPageViewController.videoInformationArray = videoInformationArray
         videoDetailPageViewController.currentIndex = currentIndex
-        
         self.addChild(videoDetailPageViewController)
         self.view.addSubview(videoDetailPageViewController.view)
         self.view.addConstraints(videoDetailPageViewController.view.constraints)
@@ -88,7 +87,7 @@ class VideoDetailViewController: UIViewController {
             $0.top.equalTo(self.view)
             $0.bottom.equalTo(self.view)
         }
-        
+        self.VideoDetailViewControllerDelegate = videoDetailPageViewController
         view.addSubview(topSafeAreaView)
         topSafeAreaView.snp.makeConstraints {
             $0.leading.equalTo(self.view)
@@ -104,6 +103,9 @@ class VideoDetailViewController: UIViewController {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
             $0.bottom.equalTo(self.view)
         }
+        
+        currentQueuePlayer =  VideoDetailViewControllerDelegate?.getCurrentQueuePlayer()
+        currentVideoInformation =  VideoDetailViewControllerDelegate?.getCurrentVideoInformation()
         
     }
     

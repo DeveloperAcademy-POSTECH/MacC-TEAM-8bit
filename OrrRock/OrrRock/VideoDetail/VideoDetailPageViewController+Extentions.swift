@@ -6,15 +6,17 @@
 //
 
 import UIKit
+import AVFoundation
 
 extension VideoDetailPageViewController : VideoDetailViewControllerDelegate{
+    
     func getCurrentVideoInformation() -> VideoInformation {
-        <#code#>
+        print((videoDetailPageViewControllerDelegate?.getCurrentVideoInformation())!)
+        return (videoDetailPageViewControllerDelegate?.getCurrentVideoInformation())!
     }
     
     func getCurrentQueuePlayer() -> AVQueuePlayer {
-        <#code#>
+        (videoDetailPageViewControllerDelegate?.getCurrentQueuePlayer())!
     }
-    
     
 }
