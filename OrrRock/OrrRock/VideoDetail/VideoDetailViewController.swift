@@ -108,6 +108,16 @@ class VideoDetailViewController: UIViewController {
         currentQueuePlayer =  VideoDetailViewControllerDelegate?.getCurrentQueuePlayer()
         currentVideoInformation =  VideoDetailViewControllerDelegate?.getCurrentVideoInformation()
         
+        // 정보를 보여주는 뷰
+        videoInfoView = VideoInfoView(frame: .zero, videoInfo: currentVideoInformation!)
+        view.addSubview(videoInfoView)
+        videoInfoView.snp.makeConstraints {
+            $0.leading.equalTo(self.view)
+            $0.trailing.equalTo(self.view)
+            $0.height.equalTo(650)
+            $0.bottom.equalTo(self.view).offset(650)
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -379,15 +389,6 @@ extension VideoDetailViewController {
 //            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
 //            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
 //        }
-        // 정보를 보여주는 뷰
-        videoInfoView = VideoInfoView(frame: .zero, videoInfo: videoInformation)
-        view.addSubview(videoInfoView)
-        videoInfoView.snp.makeConstraints {
-            $0.leading.equalTo(self.view)
-            $0.trailing.equalTo(self.view)
-            $0.height.equalTo(650)
-            $0.bottom.equalTo(self.view).offset(650)
-        }
         // 상단 safe area를 가려주는 뷰
         
     }
