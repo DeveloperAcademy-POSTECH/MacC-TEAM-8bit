@@ -33,7 +33,7 @@ extension HomeViewController: UITableViewDataSource {
             sortedVideoInfoData[indexPath.row].forEach { videoInfo in
                 successCount += videoInfo.isSucceeded ? 1 : 0
                 
-                if let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: cell.bounds.width, height: cell.bounds.height)) {
+                if let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: 825, height: 825)) {
                     thumbnails.append(thumbnail)
                 }
             }
