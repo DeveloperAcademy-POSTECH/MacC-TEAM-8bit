@@ -22,8 +22,7 @@ class LevelPickerViewController: UIView{
     //피커뷰에 들어갈 리스트들
     let levelValues: [Int] = [0,1,2,3,4,5,6,7,8,9]
     
-    //피커가 선택한 레벨
-    var selectLevel : Int?
+    
     
     //회전각도
     var rotationAngle: CGFloat! = -90  * (.pi/180)
@@ -49,32 +48,24 @@ class LevelPickerViewController: UIView{
         imageAttachment.image = UIImage(systemName: "arrowtriangle.down.fill")?.withTintColor(.black)
         arrowtriangle.append(NSAttributedString(attachment: imageAttachment))
         label.attributedText = arrowtriangle
-
+        
         return label
     }()
     
-    lazy var ppaplbl: UILabel = {
+    lazy var pickerSetLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .gray
         return label
     }()
-    
-//    override func viewDidLayoutSubviews() {
-//    }
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        setUpLayout()
-//
-//    }
-//
+    //
     func setpicker(){
         setUpLayout()
         self.backgroundColor = .red
         self.pickerView.delegate?.pickerView?(self.pickerView, didSelectRow: pickerSelectValue, inComponent: 0)
         pickerSelectValue =  pickerSelectValue < 0 ? 0 : pickerSelectValue
-        //        self.pickerView.selectRow(pickerSelectValue + 1, inComponent: 0, animated: true)
         self.pickerView.selectRow(pickerSelectValue, inComponent: 0, animated: true)
+        
+        //        self.pickerView.subviews[0].backgroundColor = .gray
+        
     }
 }
 
@@ -94,28 +85,25 @@ extension LevelPickerViewController : UIPickerViewDelegate,UIPickerViewDataSourc
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectLevel = row
         guard let view = pickerView.view(forRow: row, forComponent: component) else {
             return
         }
         pickerView.subviews[1].isHidden = true
-
+        
         view.subviews[0].backgroundColor = .orrUPBlue
-
-        //        delegate?.didLevelChanged(selectedLevel: selectLevel)
+        
+        //        delegate?.didLevelChanged(selectedLevel: row)
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return levelValues[row] == -1 ? "선택안함" : "V\(levelValues[row])"
     }
     
-    
-    
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-            
+        
         let pickerRow = UIView()
         pickerRow.frame = CGRect(x: 0, y: 0, width: pickerWidth, height: 32)
-
+        
         lazy var rowLabel: UILabel = {
             let label = UILabel()
             label.textColor = .black
@@ -135,37 +123,39 @@ extension LevelPickerViewController : UIPickerViewDelegate,UIPickerViewDataSourc
             $0.height.equalTo(pickerRow.snp.height)
         }
         
-        rowLabel.text = "\(levelValues[row])"
+        rowLabel.text = "V\(levelValues[row])"
         pickerRow.transform = CGAffineTransform(rotationAngle: 90 * (.pi/180))
+        
+        print("ppap: \(component)")
         return pickerRow
     }
-
+    
 }
 
 extension LevelPickerViewController {
     
     private func setUpLayout(){
         
-        self.addSubview(ppaplbl)
-        ppaplbl.snp.makeConstraints {
+        self.addSubview(pickerSetLabel)
+        pickerSetLabel.snp.makeConstraints {
             $0.height.equalTo(pickerWidth)
             $0.width.equalTo(self.snp.width)
             $0.bottom.equalTo(self.snp.bottom)
         }
         
         self.addSubview(pickerView)
-        pickerView.backgroundColor = .yellow
+        pickerView.backgroundColor = .white
         pickerView.snp.makeConstraints {
-            $0.height.equalTo(ppaplbl.snp.width)// width
-            $0.width.equalTo(ppaplbl.snp.height)//height
-            $0.centerX.equalTo(ppaplbl.snp.centerX)
-            $0.centerY.equalTo(ppaplbl.snp.centerY)
+            $0.height.equalTo(pickerSetLabel.snp.width)// width
+            $0.width.equalTo(pickerSetLabel.snp.height)//height
+            $0.centerX.equalTo(pickerSetLabel.snp.centerX)
+            $0.centerY.equalTo(pickerSetLabel.snp.centerY)
         }
-
+        
         self.addSubview(invertedTriangleLabel)
         invertedTriangleLabel.snp.makeConstraints {
-            $0.centerX.equalTo(ppaplbl.snp.centerX)
-            $0.bottom.equalTo(ppaplbl.snp.top).offset(-OrrPd.pd8.rawValue)
+            $0.centerX.equalTo(pickerSetLabel.snp.centerX)
+            $0.bottom.equalTo(pickerSetLabel.snp.top).offset(-OrrPd.pd8.rawValue)
         }
         
     }
