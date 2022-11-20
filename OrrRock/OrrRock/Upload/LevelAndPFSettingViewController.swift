@@ -62,7 +62,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     private lazy var levelButtonImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "chevron.down")
-        imageView.tintColor = .orrGray3
+        imageView.tintColor = .orrGray500
         
         return imageView
     }()
@@ -96,7 +96,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     private lazy var emptyVideoView: UIView = {
         let view = UIView()
-        view.backgroundColor = .orrGray2
+        view.backgroundColor = .orrGray300
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
         
@@ -106,7 +106,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     private lazy var emptyVideoInformation: UILabel = {
         let label = UILabel()
         label.text = "모든 비디오를 분류했습니다!"
-        label.textColor = .orrGray3
+        label.textColor = .orrGray500
         label.font = .systemFont(ofSize: 15.0, weight: .regular)
         
         return label
@@ -165,7 +165,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         
         view.backgroundColor = .orrWhite
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonClicked))
+        navigationItem.leftBarButtonItem = CustomBackBarButtomItem(target: self, action: #selector(backButtonClicked))
         navigationItem.leftBarButtonItem?.tintColor = .orrUPBlue
         
         // card UI
@@ -350,6 +350,9 @@ private extension LevelAndPFSettingViewController {
                     classifiedCard = index + 1
                     // '분류된 카드 / 선택된 카드' 형식의 문자열 값을 넘겨주는 메서드
                     swipeCard.getCardLabelText(labelText: "\(classifiedCard)/\(selectedCard)")
+                    // 첫번째 카드를 재생시켜주는 코드
+                    let firstCard = cards[0] as? SwipeableCardVideoView
+                    firstCard?.queuePlayer.play()
                 }
                 // Asset 카운팅이 0이 되었을 때 completionHandler로 반환
                 countingGroup.notify(queue: DispatchQueue.main) {
@@ -530,8 +533,8 @@ private extension LevelAndPFSettingViewController {
         titleLabel.text = "분류 완료! 저장하기를 눌러주세요."
         buttonStackView.isUserInteractionEnabled = false
         
-        titleLabel.textColor = .orrGray3
-        levelButton.tintColor = .orrGray3
+        titleLabel.textColor = .orrGray500
+        levelButton.tintColor = .orrGray500
     }
 }
 
@@ -570,7 +573,7 @@ private extension LevelAndPFSettingViewController {
         headerView.addSubview(levelStackView)
         levelStackView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(titleLabel.snp.bottom).offset(OrrPadding.padding3.rawValue)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(OrrPd.pd16.rawValue)
             $0.centerX.equalToSuperview()
         }
         
@@ -599,7 +602,7 @@ private extension LevelAndPFSettingViewController {
         
         view.addSubview(failButton)
         failButton.snp.makeConstraints {
-            $0.bottom.equalTo(videoSlider.snp.top).offset(-OrrPadding.padding3.rawValue)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
             $0.leading.equalToSuperview().inset(48.0)
             $0.height.equalTo(74.0)
             $0.width.equalTo(74.0)
@@ -607,7 +610,7 @@ private extension LevelAndPFSettingViewController {
         
         view.addSubview(successButton)
         successButton.snp.makeConstraints {
-            $0.bottom.equalTo(videoSlider.snp.top).offset(-OrrPadding.padding3.rawValue)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
             $0.trailing.equalToSuperview().inset(48.0)
             $0.height.equalTo(74.0)
             $0.width.equalTo(74.0)
@@ -616,8 +619,8 @@ private extension LevelAndPFSettingViewController {
         view.addSubview(emptyVideoView)
         emptyVideoView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(separator.snp.bottom).offset(OrrPadding.padding4.rawValue)
-            $0.bottom.equalTo(successButton.snp.top).offset(-OrrPadding.padding4.rawValue)
+            $0.top.equalTo(separator.snp.bottom).offset(OrrPd.pd20.rawValue)
+            $0.bottom.equalTo(successButton.snp.top).offset(-OrrPd.pd20.rawValue)
             $0.width.equalTo(emptyVideoView.snp.height).multipliedBy(0.5625)
         }
         
@@ -628,9 +631,9 @@ private extension LevelAndPFSettingViewController {
         
         view.addSubview(saveButton)
         saveButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPadding.padding3.rawValue)
-            $0.leading.equalTo(view).offset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalTo(view).offset(-OrrPadding.padding3.rawValue)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
+            $0.leading.equalTo(view).offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalTo(view).offset(-OrrPd.pd16.rawValue)
             $0.height.equalTo(56)
         }
     }

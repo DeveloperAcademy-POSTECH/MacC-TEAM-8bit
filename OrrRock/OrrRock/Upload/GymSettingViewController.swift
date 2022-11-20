@@ -40,7 +40,7 @@ class GymSettingViewController: UIViewController {
     let nextButton : UIButton = {
         let btn = UIButton()
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
-        btn.setBackgroundColor(.orrGray2!, for: .disabled)
+        btn.setBackgroundColor(.orrGray300!, for: .disabled)
         btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
         btn.setTitle("저장", for: .normal)
         btn.setTitleColor(.white, for: .normal)
@@ -69,6 +69,8 @@ class GymSettingViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
         self.navigationController?.navigationBar.topItem?.title = ""
+        navigationItem.leftBarButtonItem = CustomBackBarButtomItem(target: self, action: #selector(didBackButtonClicked))
+        navigationItem.leftBarButtonItem?.tintColor = .orrUPBlue
         
         setUpData()
         setUpLayout()
@@ -146,6 +148,10 @@ extension GymSettingViewController {
         }
     }
     
+    @objc func didBackButtonClicked(_ sender: UIBarButtonItem) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
     final private func authSettingOpen(alertType: AuthSettingAlert) {
         let message = alertType.rawValue
         let alert = UIAlertController(title: "설정", message: message, preferredStyle: .alert)
@@ -190,15 +196,15 @@ extension GymSettingViewController {
         view.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
             $0.centerX.equalTo(view)
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPadding.padding2.rawValue)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd8.rawValue)
         }
         
         view.addSubview(gymTextField)
         gymTextField.snp.makeConstraints{
             $0.centerX.equalTo(view)
-            $0.top.equalTo(gymNameLabel.snp.bottom).offset(OrrPadding.padding6.rawValue)
-            $0.leading.equalTo(view).offset(OrrPadding.padding6.rawValue)
-            $0.trailing.equalTo(view).offset(-OrrPadding.padding6.rawValue)
+            $0.top.equalTo(gymNameLabel.snp.bottom).offset(OrrPd.pd40.rawValue)
+            $0.leading.equalTo(view).offset(OrrPd.pd40.rawValue)
+            $0.trailing.equalTo(view).offset(-OrrPd.pd40.rawValue)
         }
         
         view.addSubview(nextButton)
@@ -217,9 +223,9 @@ extension GymSettingViewController {
         
         view.addSubview(tableViewHeaderLabel)
         tableViewHeaderLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalToSuperview().offset(OrrPadding.padding3.rawValue)
-            $0.bottom.equalTo(autocompleteTableView.snp.top).offset(-OrrPadding.padding3.rawValue)
+            $0.leading.equalToSuperview().offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalToSuperview().offset(OrrPd.pd16.rawValue)
+            $0.bottom.equalTo(autocompleteTableView.snp.top).offset(-OrrPd.pd16.rawValue)
         }
     }
         

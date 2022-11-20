@@ -24,6 +24,7 @@ final class SwipeableCardVideoView: UIView {
     private lazy var videoBackgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = .orrGray3
+        view.backgroundColor = .orrGray500
         view.layer.borderWidth = 3
         view.layer.cornerRadius = cornerRadius
         view.layer.borderColor = UIColor.white.cgColor
@@ -134,7 +135,7 @@ private extension SwipeableCardVideoView {
         
         self.addSubview(countVideoView)
         countVideoView.snp.makeConstraints {
-            $0.bottom.equalTo(videoBackgroundView.snp.bottom).inset(OrrPadding.padding3.rawValue)
+            $0.bottom.equalTo(videoBackgroundView.snp.bottom).inset(OrrPd.pd16.rawValue)
             $0.centerX.equalTo(videoBackgroundView.snp.centerX)
             $0.height.equalTo(24)
             $0.width.equalTo(71)
