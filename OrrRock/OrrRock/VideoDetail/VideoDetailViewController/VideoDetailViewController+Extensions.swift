@@ -34,6 +34,9 @@ extension VideoDetailViewController{
                 }
             case UISwipeGestureRecognizer.Direction.down :
                 if !isShowInfo{
+                    navigationController?.isNavigationBarHidden = false
+                    navigationController?.isToolbarHidden = true
+                    navigationController?.hidesBarsOnTap = false
                     self.navigationController?.popViewController(animated: true)
                 }else{
                     if !isShowKeyboard{
@@ -55,7 +58,6 @@ extension VideoDetailViewController{
             self.navigationController?.isToolbarHidden = self.navigationController!.isToolbarHidden ? false : true
         }
         if isShowKeyboard{
-            print("tap!")
             feedbackText = videoInfoView.feedbackTextView.text!
             DataManager.shared.updateFeedback(videoInformation: currentVideoInformation!, feedback: feedbackText!)
             self.view.endEditing(true)
