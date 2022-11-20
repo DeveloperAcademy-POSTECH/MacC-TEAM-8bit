@@ -34,7 +34,6 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         label.text = "방문한 클라이밍장을 입력해주세요"
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.textColor = .orrBlack
-        label.backgroundColor = .orrGray100
         return label
     }()
     
@@ -64,7 +63,6 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         label.text = "방문한 날짜를 선택해주세요"
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.textColor = .orrBlack
-        label.backgroundColor = .orrGray100
         return label
     }()
     
@@ -75,7 +73,6 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         datePicker.datePickerMode = .date
         datePicker.timeZone = .autoupdatingCurrent
         datePicker.locale = Locale(identifier:"ko_KR")
-        datePicker.backgroundColor = .orrGray100
         datePicker.maximumDate = Date()
         return datePicker
     }()
@@ -100,7 +97,7 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
     
     private lazy var dateTopView : UIView = {
         let view = UIView()
-        view.backgroundColor = .orrWhite
+        view.backgroundColor = .orrGray100
         
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
@@ -156,7 +153,7 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
     }
     
     private func setUpLayout(){
-        view.backgroundColor = .orrGray100
+        view.backgroundColor = .orrWhite
         self.navigationController?.isToolbarHidden = false
         
         view.addSubview(dateTopView)
