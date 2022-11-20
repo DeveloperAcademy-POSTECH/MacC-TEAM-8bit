@@ -36,7 +36,9 @@ extension VideoDetailViewController{
                 if !isShowInfo{
                     self.navigationController?.popViewController(animated: true)
                 }else{
-                    showInfo()
+                    if !isShowKeyboard{
+                        showInfo()
+                    }
                 }
             default:
                 break

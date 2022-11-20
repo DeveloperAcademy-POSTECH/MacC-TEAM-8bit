@@ -230,7 +230,7 @@ class VideoDetailViewController: UIViewController {
     
     // 취소 버튼을 눌렀을 때 로직
     @objc func cancelAction() {
-        feedbackText = videoInformation.feedback
+        feedbackText = currentVideoInformation!.feedback
         self.view.endEditing(true)
     }
     
@@ -239,7 +239,7 @@ class VideoDetailViewController: UIViewController {
         //TODO: 피드백 입력 구현 마무리
         
         feedbackText = videoInfoView.feedbackTextView.text!
-        DataManager.shared.updateFeedback(videoInformation: videoInformation, feedback: feedbackText!)
+        DataManager.shared.updateFeedback(videoInformation: currentVideoInformation!, feedback: feedbackText!)
         self.view.endEditing(true)
     }
     
@@ -282,7 +282,7 @@ extension VideoDetailViewController {
             navigationItem.leftBarButtonItem = isShowKeyboard ? cancelButton : goBackButton
             navigationItem.rightBarButtonItem = isShowKeyboard ? completeButton : favoriteButton
             feedbackText = videoInfoView.feedbackTextView.text!
-            DataManager.shared.updateFeedback(videoInformation: videoInformation, feedback: feedbackText!)
+            DataManager.shared.updateFeedback(videoInformation: currentVideoInformation!, feedback: feedbackText!)
             navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         }
     }
@@ -296,7 +296,7 @@ extension VideoDetailViewController {
             navigationItem.leftBarButtonItem = isShowKeyboard ? cancelButton : goBackButton
             navigationItem.rightBarButtonItem = isShowKeyboard ? completeButton : favoriteButton
             feedbackText = videoInfoView.feedbackTextView.text!
-            DataManager.shared.updateFeedback(videoInformation: videoInformation, feedback: feedbackText!)
+            DataManager.shared.updateFeedback(videoInformation: currentVideoInformation!, feedback: feedbackText!)
             navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         }
     }
