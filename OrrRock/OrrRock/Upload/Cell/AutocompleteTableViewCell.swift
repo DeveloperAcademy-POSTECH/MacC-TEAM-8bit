@@ -32,14 +32,14 @@ final class AutocompleteTableViewCell: UITableViewCell {
        let view = UILabel()
         view.text = "최근에 방문한 클라이밍장"
         view.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        view.textColor = UIColor.orrGray4
+        view.textColor = UIColor.orrGray600
         return view
     }()
     
     private lazy var deleteButton: UIButton = {
         let view = UIButton()
         view.setImage(UIImage(systemName: "multiply"), for: .normal)
-        view.tintColor = UIColor.orrGray4
+        view.tintColor = UIColor.orrGray600
         view.addTarget(self, action: #selector(tapDeleteButton(_:)), for: .touchUpInside)
         return view
     }()
@@ -83,7 +83,7 @@ extension AutocompleteTableViewCell {
         contentView.addSubview(locationIconView)
         locationIconView.snp.makeConstraints {
             $0.centerY.equalTo(contentView.snp.centerY)
-            $0.leading.equalTo(contentView.snp.leading).offset(CGFloat(OrrPadding.padding3.rawValue))
+            $0.leading.equalTo(contentView.snp.leading).offset(CGFloat(OrrPd.pd16.rawValue))
             $0.height.equalToSuperview()
             $0.width.equalTo(20)
         }
@@ -91,14 +91,14 @@ extension AutocompleteTableViewCell {
         contentView.addSubview(deleteButton)
         deleteButton.snp.makeConstraints {
             $0.centerY.equalTo(contentView.snp.centerY)
-            $0.trailing.equalTo(contentView.snp.trailing).offset(-CGFloat(OrrPadding.padding3.rawValue))
+            $0.trailing.equalTo(contentView.snp.trailing).offset(-CGFloat(OrrPd.pd16.rawValue))
             $0.height.equalToSuperview()
             $0.width.equalTo(20)
         }
         
         contentView.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
-            $0.leading.equalTo(locationIconView.snp.trailing).offset(CGFloat(OrrPadding.padding2.rawValue))
+            $0.leading.equalTo(locationIconView.snp.trailing).offset(CGFloat(OrrPd.pd8.rawValue))
             $0.trailing.equalTo(deleteButton.snp.leading)
             $0.height.equalToSuperview()
         }
