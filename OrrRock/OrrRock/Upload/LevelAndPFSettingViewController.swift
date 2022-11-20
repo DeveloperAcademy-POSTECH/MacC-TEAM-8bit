@@ -141,7 +141,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         slider.minimumTrackTintColor = .orrUPBlue
         slider.maximumTrackTintColor = .orrGray1
         slider.translatesAutoresizingMaskIntoConstraints = false
-        slider.thumbTintColor = .clear
+        slider.setThumbImage(UIImage(named: "sliderThumb"), for: .normal)
         slider.addTarget(self, action: #selector(didChangedSlider(_:)), for: .valueChanged)
         
         return slider
