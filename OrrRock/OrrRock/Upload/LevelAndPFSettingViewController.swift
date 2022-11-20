@@ -94,6 +94,12 @@ final class LevelAndPFSettingViewController: UIViewController {
         return separator
     }()
     
+    private lazy var backgroundCardStackView: EmptyBackgroundView = {
+        let view = EmptyBackgroundView()
+        view.layer.zPosition = -1
+        return view
+    }()
+    
     private lazy var emptyVideoView: UIView = {
         let view = UIView()
         view.backgroundColor = .orrGray300
@@ -139,7 +145,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     private lazy var videoSlider: VideoSlider = {
         let slider = VideoSlider()
         slider.minimumTrackTintColor = .orrUPBlue
-        slider.maximumTrackTintColor = .orrGray1
+        slider.maximumTrackTintColor = .orrGray100
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.setThumbImage(UIImage(named: "sliderThumb"), for: .normal)
         slider.addTarget(self, action: #selector(didChangedSlider(_:)), for: .valueChanged)
@@ -182,6 +188,7 @@ final class LevelAndPFSettingViewController: UIViewController {
                 }
                 
                 self.view.sendSubviewToBack(self.emptyVideoView)
+                self.view.sendSubviewToBack(self.backgroundCardStackView)
                 
                 // gesture
                 let gesture = UIPanGestureRecognizer()
@@ -471,10 +478,11 @@ private extension LevelAndPFSettingViewController {
                     
                     // 다음에 나올 카드
                     guard let nextCard = cards[counter + 1] as? SwipeableCardVideoView else { return }
-                    // 이전 카드가 스와이프가 되었을 때 다음에 나올 카드가 재생
-                    nextCard.queuePlayer.play()
                     // Slider에 시간 정보를 업데이트하기 위한 Observer 추가
                     addPeriodicTimeObserver(card: nextCard, isFirstCard: false)
+                    // 이전 카드가 스와이프가 되었을 때 다음에 나올 카드가 재생
+                    nextCard.queuePlayer.play()
+                    
                     
                 }
                 
@@ -591,18 +599,19 @@ private extension LevelAndPFSettingViewController {
             $0.width.equalTo(90.0)
         }
         
+        // TODO: Slider가 너무 빨리 그려지는 이슈
         view.addSubview(videoSlider)
         videoSlider.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(OrrPadding.padding4.rawValue)
-            // TODO: Slider 초기, 후기에 급하게 값이 변동되어 offset으로 해당 영역 숨김. 슬라이더 디테일 작업 보관 예정.
-            $0.leading.equalTo(view.safeAreaLayoutGuide).offset(-OrrPadding.padding5.rawValue)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide).offset(OrrPadding.padding5.rawValue)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(OrrPd.pd16.rawValue)
+            // TODO: Slider 초기, 후기에 급하게 값이 변동되어 offset으로 해당 영역 숨김. 슬라이더 디테일 작업 보완 예정.
+            $0.leading.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd24.rawValue)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd24.rawValue)
             $0.height.equalTo(56)
         }
         
         view.addSubview(failButton)
         failButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
+            $0.bottom.equalTo(videoSlider.snp.top).offset(-OrrPd.pd16.rawValue)
             $0.leading.equalToSuperview().inset(48.0)
             $0.height.equalTo(74.0)
             $0.width.equalTo(74.0)
@@ -610,7 +619,7 @@ private extension LevelAndPFSettingViewController {
         
         view.addSubview(successButton)
         successButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
+            $0.bottom.equalTo(videoSlider.snp.top).offset(-OrrPd.pd16.rawValue)
             $0.trailing.equalToSuperview().inset(48.0)
             $0.height.equalTo(74.0)
             $0.width.equalTo(74.0)
@@ -623,6 +632,17 @@ private extension LevelAndPFSettingViewController {
             $0.bottom.equalTo(successButton.snp.top).offset(-OrrPd.pd20.rawValue)
             $0.width.equalTo(emptyVideoView.snp.height).multipliedBy(0.5625)
         }
+        
+        // TODO: 카드 스택 스켈레톤 값 조정 필요
+//        view.addSubview(backgroundCardStackView)
+//        backgroundCardStackView.snp.makeConstraints {
+//            $0.center.equalTo(view.center)
+//            $0.height.equalTo(view.snp.height)
+//            $0.width.equalTo(view.snp.width)
+//            $0.top.equalTo(emptyVideoView.snp.top)
+//            $0.bottom.equalTo(emptyVideoView.snp.bottom)
+//            backgroundCardStackView.setUpLayout()
+//        }
         
         emptyVideoView.addSubview(emptyVideoInformation)
         emptyVideoInformation.snp.makeConstraints {

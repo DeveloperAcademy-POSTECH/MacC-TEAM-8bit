@@ -23,7 +23,6 @@ final class SwipeableCardVideoView: UIView {
     
     private lazy var videoBackgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .orrGray3
         view.backgroundColor = .orrGray500
         view.layer.borderWidth = 3
         view.layer.cornerRadius = cornerRadius
