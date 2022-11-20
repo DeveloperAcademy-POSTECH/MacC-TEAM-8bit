@@ -31,7 +31,7 @@ class VideoPlayViewController: UIViewController {
         
         let warningLabel = UILabel()
         warningLabel.text = "앨범에서 영상이 삭제되어\n해당 영상을 재생할 수 없습니다."
-        warningLabel.textColor = .orrGray4
+        warningLabel.textColor = .orrGray400
         warningLabel.textAlignment = .center
         warningLabel.numberOfLines = 2
         
