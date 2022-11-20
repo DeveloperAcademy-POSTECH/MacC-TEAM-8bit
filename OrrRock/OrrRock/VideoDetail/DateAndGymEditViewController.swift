@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class DateAndGymEditViewController: UIViewController , UISheetPresentationControllerDelegate{
+final class GymEditViewController: UIViewController , UISheetPresentationControllerDelegate{
     override var sheetPresentationController: UISheetPresentationController {
         presentationController as! UISheetPresentationController
     }
@@ -290,7 +290,7 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
     }
 }
 
-extension DateAndGymEditViewController {
+extension GymEditViewController {
     
     @objc
     private func handleDatePicker(_ sender: UIDatePicker) {
