@@ -47,11 +47,18 @@ extension VideoDetailViewController{
     }
     
     @objc func respondToTapGesture(_ gesture: UITapGestureRecognizer){
+        
         if !isShowInfo{
             self.topSafeAreaView.layer.opacity = self.navigationController!.isToolbarHidden ? 1.0 : 0.0
             self.bottomSafeAreaView.layer.opacity = self.navigationController!.isToolbarHidden ? 1.0 : 0.0
             self.navigationController?.isNavigationBarHidden = self.navigationController!.isToolbarHidden ? false : true
             self.navigationController?.isToolbarHidden = self.navigationController!.isToolbarHidden ? false : true
+        }
+        if isShowKeyboard{
+            print("tap!")
+            feedbackText = videoInfoView.feedbackTextView.text!
+            DataManager.shared.updateFeedback(videoInformation: currentVideoInformation!, feedback: feedbackText!)
+            self.view.endEditing(true)
         }
     }
 }

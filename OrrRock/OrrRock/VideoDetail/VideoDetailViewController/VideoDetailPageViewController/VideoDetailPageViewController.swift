@@ -12,7 +12,6 @@ import SnapKit
 class VideoDetailPageViewController: UIPageViewController {
     
     var videoInformationArray: [VideoInformation] = []
-    var photos: [UIImage]!
     var currentIndex = 0
     var nextIndex: Int?
     var videoInformation : VideoInformation?

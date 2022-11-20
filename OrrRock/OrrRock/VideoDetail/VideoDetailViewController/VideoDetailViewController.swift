@@ -30,14 +30,9 @@ class VideoDetailViewController: UIViewController {
     
     var feedbackText: String?
     
-    
-    
-    //for the test
     var videoInformationArray: [VideoInformation] = []
     var currentIndex = 0
     lazy var videoDetailPageViewController = VideoDetailPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
-    
-    //for the test
     
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(respondToTapGesture(_:)))
     
