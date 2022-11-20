@@ -128,9 +128,8 @@ final class VideoInfoView: UIView {
         let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
         let vc = DateEditViewController()
         vc.videoInformation = videoInformation
-        vc.completioHandler = { [self] gymName, date in
+        vc.completioHandler = { [self] date in
             self.dateLabel.text = date.timeToString()
-            self.gymNameLabel.text = gymName
         }
         viewController.present(vc, animated: true)
     }
@@ -140,8 +139,7 @@ final class VideoInfoView: UIView {
         let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
         let vc = GymEditViewController()
         vc.videoInformation = videoInformation
-        vc.completioHandler = { [self] gymName, date in
-            self.dateLabel.text = date.timeToString()
+        vc.completioHandler = { [self] gymName in
             self.gymNameLabel.text = gymName
         }
         viewController.present(vc, animated: true)
@@ -171,15 +169,7 @@ final class VideoInfoView: UIView {
     
     convenience init(frame: CGRect, videoInfo : VideoInformation) {
         self.init(frame: frame)
-        self.videoInformation = videoInfo
-        dateLabel.text = videoInformation?.gymVisitDate.timeToString()
-        levelIcon.text = videoInformation?.problemLevel == -1 ? "선택안함" : "V\(videoInformation?.problemLevel ?? -3)"
-        isSucceeded.text = videoInformation!.isSucceeded ? "성공" : "실패"
-        gymNameLabel.text = videoInformation?.gymName
-        feedbackTextView.text = videoInformation?.feedback
-        feedbackTextView.delegate = self  // 플레이스 홀더를 위한 델리게이트
-        feedbackTextView.textColor = feedbackTextView.text.isEmpty || feedbackTextView.text == nil ? .placeholderText : .orrBlack
-        //make here what you want
+        refreshData(videoInfo: videoInfo)
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -207,7 +197,7 @@ extension VideoInfoView{
     func refreshData(videoInfo : VideoInformation){
         self.videoInformation = videoInfo
         dateLabel.text = videoInformation?.gymVisitDate.timeToString()
-        levelIcon.text = videoInformation?.problemLevel == -1 ? "선택안함" : "V\(videoInformation?.problemLevel ?? -3)"
+        levelIcon.text = videoInformation?.problemLevel == -1 ? "V?" : "V\(videoInformation?.problemLevel ?? -3)"
         isSucceeded.text = videoInformation!.isSucceeded ? "성공" : "실패"
         gymNameLabel.text = videoInformation?.gymName
         feedbackTextView.text = videoInformation?.feedback

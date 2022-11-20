@@ -16,7 +16,7 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
     var videoInformation : VideoInformation!
     var selectDate : Date?
     var selectGymName : String?
-    var completioHandler : ((String,Date) -> (Void))?
+    var completioHandler : ((String) -> (Void))?
     
     var visitedGymList: [VisitedClimbingGym] = []
     var filteredVisitedGymList: [VisitedClimbingGym] = []
@@ -234,10 +234,10 @@ extension GymEditViewController {
     func pressSaveButton() {
         if gymTextField.text == "" {
             DataManager.shared.updateGymData(videoInformation: videoInformation, gymName: videoInformation.gymName)
-//            completioHandler?(videoInformation.gymName,selectDate!)
+            completioHandler?(videoInformation.gymName)
         } else {
             DataManager.shared.updateGymData(videoInformation: videoInformation, gymName: gymTextField.text!)
-//            completioHandler?(gymTextField.text!,selectDate!)
+            completioHandler?(gymTextField.text!)
         }
         self.dismiss(animated: true)
     }

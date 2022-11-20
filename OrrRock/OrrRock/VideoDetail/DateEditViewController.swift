@@ -18,7 +18,7 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
     var videoInformation : VideoInformation!
     var selectDate : Date?
     var selectGymName : String?
-    var completioHandler : ((String,Date) -> (Void))?
+    var completioHandler : ((Date) -> (Void))?
     
     var visitedGymList: [VisitedClimbingGym] = []
     var filteredVisitedGymList: [VisitedClimbingGym] = []
@@ -58,6 +58,8 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
         let btn = UIButton()
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
         btn.setBackgroundColor(.orrGray300!, for: .disabled)
+        btn.clipsToBounds = true
+        btn.layer.cornerRadius = 15
         btn.addTarget(self, action: #selector(pressSaveButton), for: .touchUpInside)
         btn.setTitle("저장", for: .normal)
         btn.setTitleColor(.white, for: .normal)
@@ -178,7 +180,7 @@ extension DateEditViewController {
     @objc
     func pressSaveButton() {
         DataManager.shared.updateDateData(videoInformation: videoInformation, gymVisitDate: datePicker.date)
-        completioHandler?(videoInformation.gymName, selectDate!)
+        completioHandler?(datePicker.date)
         self.dismiss(animated: true)
     }
     
