@@ -19,8 +19,8 @@ class GymSettingViewController: UIViewController {
     
     let gymNameLabel : UILabel = {
         let label = UILabel()
-        label.text = "해당 클라이밍장의 이름을 적어주세요"
-        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.text = "방문한 클라이밍장을 입력해주세요"
+        label.font = UIFont.boldSystemFont(ofSize: 22)
         label.textColor = .orrBlack
         label.backgroundColor = .orrWhite
         return label
@@ -195,7 +195,7 @@ extension GymSettingViewController {
     func setUpLayout() {
         view.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
-            $0.centerX.equalTo(view)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(OrrPd.pd16.rawValue)
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd8.rawValue)
         }
         
@@ -203,8 +203,7 @@ extension GymSettingViewController {
         gymTextField.snp.makeConstraints{
             $0.centerX.equalTo(view)
             $0.top.equalTo(gymNameLabel.snp.bottom).offset(OrrPd.pd40.rawValue)
-            $0.leading.equalTo(view).offset(OrrPd.pd40.rawValue)
-            $0.trailing.equalTo(view).offset(-OrrPd.pd40.rawValue)
+            $0.horizontalEdges.equalTo(view).inset(OrrPd.pd16.rawValue)
         }
         
         view.addSubview(nextButton)

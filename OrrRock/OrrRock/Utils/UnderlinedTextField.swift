@@ -15,7 +15,7 @@ class UnderlinedTextField: UITextField {
     func setUpUnderlineLayer() {
         var frame = self.bounds
         frame.origin.y = frame.size.height - 1
-        frame.size.height = 1
+        frame.size.height = 2
         
         underlineLayer.frame = frame
         underlineLayer.backgroundColor = UIColor.orrUPBlue?.cgColor
