@@ -23,50 +23,53 @@ class VideoDetailViewController: UIViewController {
     var videoInfoView = VideoInfoView()
     
     var videoInformation: VideoInformation!
-    var videoAsset: PHAsset?
+    
+    var currentVideoInformation : VideoInformation?
+    var currentQueuePlayer : AVQueuePlayer?
+    var VideoDetailViewControllerDelegate : VideoDetailViewControllerDelegate?
     
     var feedbackText: String?
+    
+    var videoInformationArray: [VideoInformation] = []
+    var currentIndex = 0
+    lazy var videoDetailPageViewController = VideoDetailPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
     
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(respondToTapGesture(_:)))
     
     private var infoButton: UIBarButtonItem!
     private var feedbackButton: UIBarButtonItem!
     private var trashButton: UIBarButtonItem!
-    private var soundButton: UIBarButtonItem!
-    private var playButton: UIBarButtonItem!
-    private var favoriteButton: UIBarButtonItem!
+    var soundButton: UIBarButtonItem!
+    var playButton: UIBarButtonItem!
+    var favoriteButton: UIBarButtonItem!
     private var goBackButton: UIBarButtonItem!
     private var flexibleSpace: UIBarButtonItem!
     private var cancelButton: UIBarButtonItem!
     private var completeButton: UIBarButtonItem!
     
-    private lazy var topSafeAreaView: UIView = {
+    lazy var topSafeAreaView: UIView = {
         let view = UIView()
         view.backgroundColor = .orrWhite
         return view
     }()
     
-    private lazy var bottomSafeAreaView: UIView = {
+    lazy var bottomSafeAreaView: UIView = {
         let view = UIView()
         view.backgroundColor = .orrWhite
         return view
     }()
     
     // 영상 재생하는 뷰 (VideoPlayerView)
-    lazy var videoPlayView: VideoPlayView = {
-        let view = VideoPlayView(videoAsset: videoAsset)
-        self.view.addSubview(view)
-        return view
-    }()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadVideoAsset()
         setNavigationBar()
-        setUpLayout()
         setKeyboardObserver()
         setDefaultData()
         addUIGesture()
+        setUpLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -127,18 +130,18 @@ class VideoDetailViewController: UIViewController {
         feedbackText = videoInfoView.feedbackTextView.text!
         feedbackButton.title = videoInfoView.feedbackTextView.textColor == .placeholderText ? "피드백 입력하기" : "피드백 확인하기"
         if isShowInfo {
-            addTapGestureToVideoPlayView()
             UIView.animate(withDuration: 0.2, animations: {
-                self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -500)
-                self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: -100)
+                self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -430)
+                self.videoDetailPageViewController.view.transform = CGAffineTransform(translationX: 0, y: -430)
                 self.navigationController?.navigationBar.layer.opacity = 0
                 self.topSafeAreaView.layer.opacity = 0
+                self.navigationController?.isToolbarHidden = false
+                self.bottomSafeAreaView.layer.opacity = 1.0
             })
         } else {
-            removeTapGestureFromVideoPlayView()
             UIView.animate(withDuration: 0.2, animations: {
                 self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
-                self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: 0)
+                self.videoDetailPageViewController.view.transform = CGAffineTransform(translationX: 0, y: 0)
                 self.navigationController?.navigationBar.layer.opacity = 1
                 self.topSafeAreaView.layer.opacity = 1
             })
@@ -157,7 +160,7 @@ class VideoDetailViewController: UIViewController {
     @objc func deleteVideoAction(_ sender: UIBarButtonItem) {
         let optionMenu = UIAlertController(title: "선택한 영상 삭제하기", message: "정말로 삭제하시겠어요?", preferredStyle: .actionSheet)
         let deleteAction = UIAlertAction(title: "삭제하기", style: .destructive) {_ in
-            DataManager.shared.deleteData(videoInformation: self.videoInformation)
+            DataManager.shared.deleteData(videoInformation: self.currentVideoInformation!)
             self.goBackAction()
         }
         let cancelAction = UIAlertAction(title: "취소하기", style: .cancel)
@@ -173,7 +176,7 @@ class VideoDetailViewController: UIViewController {
         isSounded.toggle()
         iconSpace.width = isSounded ? 0 : 8.4
         soundButton.image = UIImage(systemName: isSounded ? "speaker.wave.2.fill" : "speaker.slash.fill")
-        videoPlayView.queuePlayer.isMuted = isSounded ? false : true
+        VideoDetailViewControllerDelegate?.changeVideoSoundPlayAndStop()
         print(#function)
     }
     
@@ -181,8 +184,9 @@ class VideoDetailViewController: UIViewController {
     @objc func playVideoAction() {
         isPlayed.toggle()
         playButton.image = UIImage(systemName: isPlayed ? "play.fill" : "pause.fill")
-        isPlayed ? videoPlayView.queuePlayer.pause() : videoPlayView.queuePlayer.play()
+        VideoDetailViewControllerDelegate?.changeVideoPlayAndStop()
         print(#function)
+        
     }
     
     // 피드백 버튼을 눌렀을 때 로직
@@ -196,14 +200,14 @@ class VideoDetailViewController: UIViewController {
             UIView.animate(withDuration: 0.2, animations: {
                 self.videoInfoView.feedbackTextView.becomeFirstResponder()
                 self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -430)
-                self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: -100)
+                self.videoDetailPageViewController.view.transform = CGAffineTransform(translationX: 0, y: -430)
                 self.navigationController?.navigationBar.layer.opacity = 0
                 self.topSafeAreaView.layer.opacity = 0
             })
         } else {
             UIView.animate(withDuration: 0.2, animations: {
                 self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
-                self.videoPlayView.transform = CGAffineTransform(translationX: 0, y: 0)
+                self.videoDetailPageViewController.view.transform = CGAffineTransform(translationX: 0, y: 0)
                 self.navigationController?.navigationBar.layer.opacity = 1
                 self.topSafeAreaView.layer.opacity = 1
             })
@@ -213,15 +217,15 @@ class VideoDetailViewController: UIViewController {
     
     // 좋아요 버튼을 눌렀을 때 로직
     @objc func favoriteAction() {
-        videoInformation.isFavorite.toggle()
-        favoriteButton.image = UIImage(systemName: videoInformation.isFavorite ? "heart.fill" : "heart")
-        DataManager.shared.updateFavorite(videoInformation: videoInformation, isFavorite: videoInformation.isFavorite)
+        currentVideoInformation!.isFavorite.toggle()
+        favoriteButton.image = UIImage(systemName: currentVideoInformation!.isFavorite ? "heart.fill" : "heart")
+        DataManager.shared.updateFavorite(videoInformation: currentVideoInformation!, isFavorite: currentVideoInformation!.isFavorite)
         print(#function)
     }
     
     // 취소 버튼을 눌렀을 때 로직
     @objc func cancelAction() {
-        feedbackText = videoInformation.feedback
+        feedbackText = currentVideoInformation!.feedback
         self.view.endEditing(true)
     }
     
@@ -230,7 +234,7 @@ class VideoDetailViewController: UIViewController {
         //TODO: 피드백 입력 구현 마무리
         
         feedbackText = videoInfoView.feedbackTextView.text!
-        DataManager.shared.updateFeedback(videoInformation: videoInformation, feedback: feedbackText!)
+        DataManager.shared.updateFeedback(videoInformation: currentVideoInformation!, feedback: feedbackText!)
         self.view.endEditing(true)
     }
     
@@ -273,7 +277,7 @@ extension VideoDetailViewController {
             navigationItem.leftBarButtonItem = isShowKeyboard ? cancelButton : goBackButton
             navigationItem.rightBarButtonItem = isShowKeyboard ? completeButton : favoriteButton
             feedbackText = videoInfoView.feedbackTextView.text!
-            DataManager.shared.updateFeedback(videoInformation: videoInformation, feedback: feedbackText!)
+            DataManager.shared.updateFeedback(videoInformation: currentVideoInformation!, feedback: feedbackText!)
             navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         }
     }
@@ -287,7 +291,7 @@ extension VideoDetailViewController {
             navigationItem.leftBarButtonItem = isShowKeyboard ? cancelButton : goBackButton
             navigationItem.rightBarButtonItem = isShowKeyboard ? completeButton : favoriteButton
             feedbackText = videoInfoView.feedbackTextView.text!
-            DataManager.shared.updateFeedback(videoInformation: videoInformation, feedback: feedbackText!)
+            DataManager.shared.updateFeedback(videoInformation: currentVideoInformation!, feedback: feedbackText!)
             navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         }
     }
@@ -300,15 +304,6 @@ extension VideoDetailViewController {
 
 // Video 처리 관련 functions
 private extension VideoDetailViewController {
-    func loadVideoAsset() {
-        guard let videoAsset = videoDataFomatter(videoLocalIdentifier: videoInformation.videoLocalIdentifier ?? "") else {
-            // 영상이 없어 fetch를 하지 못한 경우
-            print("영상이 없음")
-            return
-        }
-        
-        self.videoAsset = videoAsset
-    }
     
     func videoDataFomatter(videoLocalIdentifier: String) -> PHAsset? {
         var videoIDArray: [String] = []
@@ -335,31 +330,22 @@ private extension VideoDetailViewController {
     }
 }
 
-// PHAsset 타입의 영상 데이터를 videoLocalIdentifier를 통해서 AVAsset으로 포매팅하는 매서드
-extension VideoDetailViewController {
-    
-}
-
 extension VideoDetailViewController {
     private func setUpLayout() {
-        // 영상을 보여주는 뷰
-        view.addSubview(videoPlayView)
-        videoPlayView.snp.makeConstraints {
+        videoDetailPageViewController.videoInformationArray = videoInformationArray
+        videoDetailPageViewController.currentIndex = currentIndex
+        self.addChild(videoDetailPageViewController)
+        self.view.addSubview(videoDetailPageViewController.view)
+        self.view.addConstraints(videoDetailPageViewController.view.constraints)
+        videoDetailPageViewController.didMove(toParent: self)
+        videoDetailPageViewController.view.snp.makeConstraints {
             $0.leading.equalTo(self.view)
             $0.trailing.equalTo(self.view)
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+            $0.top.equalTo(self.view)
+            $0.bottom.equalTo(self.view)
         }
-        // 정보를 보여주는 뷰
-        videoInfoView = VideoInfoView(frame: .zero, videoInfo: videoInformation)
-        view.addSubview(videoInfoView)
-        videoInfoView.snp.makeConstraints {
-            $0.leading.equalTo(self.view)
-            $0.trailing.equalTo(self.view)
-            $0.height.equalTo(650)
-            $0.bottom.equalTo(self.view).offset(700)
-        }
-        // 상단 safe area를 가려주는 뷰
+        self.VideoDetailViewControllerDelegate = videoDetailPageViewController
+        videoDetailPageViewController.sendtoVideoDetailViewControllerDelegate = self
         view.addSubview(topSafeAreaView)
         topSafeAreaView.snp.makeConstraints {
             $0.leading.equalTo(self.view)
@@ -374,6 +360,19 @@ extension VideoDetailViewController {
             $0.trailing.equalTo(self.view)
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
             $0.bottom.equalTo(self.view)
+        }
+        
+        currentQueuePlayer =  VideoDetailViewControllerDelegate?.getCurrentQueuePlayer()
+        currentVideoInformation =  VideoDetailViewControllerDelegate?.getCurrentVideoInformation()
+        
+        // 정보를 보여주는 뷰
+        videoInfoView = VideoInfoView(frame: .zero, videoInfo: currentVideoInformation!)
+        view.addSubview(videoInfoView)
+        videoInfoView.snp.makeConstraints {
+            $0.leading.equalTo(self.view)
+            $0.trailing.equalTo(self.view)
+            $0.height.equalTo(650)
+            $0.bottom.equalTo(self.view).offset(650)
         }
     }
 }
