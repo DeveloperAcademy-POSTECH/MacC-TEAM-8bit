@@ -39,7 +39,7 @@ class DateSettingViewController: UIViewController {
         btn.clipsToBounds = true
         btn.layer.cornerRadius = 15
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
-        btn.setBackgroundColor(.orrGray2!, for: .disabled)
+        btn.setBackgroundColor(.orrGray300!, for: .disabled)
         btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
         btn.setTitle("계속", for: .normal)
         btn.setTitleColor(.white, for: .normal)
@@ -87,23 +87,23 @@ extension DateSettingViewController {
         view.addSubview(datePickerLabel)
         datePickerLabel.snp.makeConstraints {
             $0.centerX.equalTo(view)
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPadding.padding2.rawValue)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd8.rawValue)
         }
         
         view.addSubview(datePicker)
         datePicker.snp.makeConstraints{
             $0.centerX.equalTo(view)
-            $0.top.equalTo(datePickerLabel.snp.bottom).offset(OrrPadding.padding5.rawValue)
-            $0.leading.equalTo(view).offset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalTo(view).offset(-OrrPadding.padding3.rawValue)
+            $0.top.equalTo(datePickerLabel.snp.bottom).offset(OrrPd.pd24.rawValue)
+            $0.leading.equalTo(view).offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalTo(view).offset(-OrrPd.pd16.rawValue)
         }
         
         view.addSubview(nextButton)
         nextButton.snp.makeConstraints{
             $0.centerX.equalTo(view)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPadding.padding3.rawValue)
-            $0.leading.equalTo(view).offset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalTo(view).offset(-OrrPadding.padding3.rawValue)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
+            $0.leading.equalTo(view).offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalTo(view).offset(-OrrPd.pd16.rawValue)
             $0.height.equalTo(56)
         }
     }

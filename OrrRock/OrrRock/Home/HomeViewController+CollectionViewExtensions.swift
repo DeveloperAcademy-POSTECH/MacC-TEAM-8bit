@@ -33,7 +33,7 @@ extension HomeViewController: UITableViewDataSource {
             sortedVideoInfoData[indexPath.row].forEach { videoInfo in
                 successCount += videoInfo.isSucceeded ? 1 : 0
                 
-                if let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: cell.bounds.width, height: cell.bounds.height)) {
+                if let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: 825, height: 825)) {
                     thumbnails.append(thumbnail)
                 }
             }
@@ -91,7 +91,7 @@ extension HomeViewController: UITableViewDataSource {
     
     // TableView Footer의 높이 지정
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return isCardView ? 0 : CGFloat(OrrPadding.padding3.rawValue)
+        return isCardView ? 0 : CGFloat(OrrPd.pd16.rawValue)
     }
 }
 
@@ -100,7 +100,9 @@ extension HomeViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !isCardView {
             let vc = VideoDetailViewController()
-            vc.videoInformation = flattenSortedVideoInfoData[indexPath.row]
+            vc.videoInformation = sortedVideoInfoData[indexPath.section][indexPath.row]
+            vc.videoInformationArray = sortedVideoInfoData[indexPath.section]
+            vc.currentIndex = indexPath.row
             navigationController?.pushViewController(vc, animated: true)
         } else {
             let vc = VideoCollectionViewController()
@@ -119,8 +121,8 @@ extension HomeViewController: UITableViewDelegate{
     
     // TableView Cell의 높이 지정
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let width = view.bounds.width - 2 * CGFloat(OrrPadding.padding3.rawValue)
-        let height = isCardView ? (sortedVideoInfoData[indexPath.row].count > 5 ? width / 1.33 : width / 1.80) + CGFloat(OrrPadding.padding3.rawValue) : 96
+        let width = view.bounds.width - 2 * CGFloat(OrrPd.pd16.rawValue)
+        let height = isCardView ? (sortedVideoInfoData[indexPath.row].count > 5 ? width / 1.33 : width / 1.80) + CGFloat(OrrPd.pd16.rawValue) : 96
         
         return CGFloat(height)
     }

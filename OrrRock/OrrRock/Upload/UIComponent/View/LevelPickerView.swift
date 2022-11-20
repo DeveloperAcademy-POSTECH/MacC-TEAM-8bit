@@ -42,7 +42,7 @@ class LevelPickerView: UIViewController, UISheetPresentationControllerDelegate {
     lazy var pickerView: UIPickerView = {
         let picker = UIPickerView()
         picker.frame = CGRect(x: 0, y: 150, width: self.view.bounds.width, height: 180.0)
-        picker.backgroundColor = .orrGray1
+        picker.backgroundColor = .orrGray100
         picker.delegate = self
         picker.dataSource = self
         return picker
@@ -51,7 +51,7 @@ class LevelPickerView: UIViewController, UISheetPresentationControllerDelegate {
     private lazy var saveButton : UIButton = {
         let button = UIButton()
         button.setBackgroundColor(.orrUPBlue ?? .red, for: .normal)
-        button.setBackgroundColor(.orrGray2 ?? .red, for: .disabled)
+        button.setBackgroundColor(.orrGray300 ?? .red, for: .disabled)
         button.clipsToBounds = true
         button.layer.cornerRadius = 15
         button.addTarget(self, action: #selector(tapSaveButton), for: .touchUpInside)
@@ -82,22 +82,22 @@ class LevelPickerView: UIViewController, UISheetPresentationControllerDelegate {
 extension LevelPickerView {
 
     private func setUpLayout(){
-        view.backgroundColor = .orrGray1
+        view.backgroundColor = .orrGray100
 
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(OrrPadding.padding4.rawValue)
-            $0.leading.equalToSuperview().offset(OrrPadding.padding4.rawValue)
-            $0.trailing.equalToSuperview().offset(-OrrPadding.padding4.rawValue)
+            $0.top.equalToSuperview().offset(OrrPd.pd20.rawValue)
+            $0.leading.equalToSuperview().offset(OrrPd.pd20.rawValue)
+            $0.trailing.equalToSuperview().offset(-OrrPd.pd20.rawValue)
         }
 
         view.addSubview(pickerView)
         pickerView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(titleLabel.snp.bottom).offset(OrrPadding.padding1.rawValue)
-            $0.leading.equalToSuperview().offset(OrrPadding.padding4.rawValue)
-            $0.trailing.equalToSuperview().offset(-OrrPadding.padding4.rawValue)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(OrrPd.pd4.rawValue)
+            $0.leading.equalToSuperview().offset(OrrPd.pd20.rawValue)
+            $0.trailing.equalToSuperview().offset(-OrrPd.pd20.rawValue)
             $0.height.equalTo(300)
         }
 
@@ -105,8 +105,8 @@ extension LevelPickerView {
         saveButton.snp.makeConstraints{
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().offset(-34)
-            $0.leading.trailing.equalToSuperview().offset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalToSuperview().offset(-OrrPadding.padding3.rawValue)
+            $0.leading.trailing.equalToSuperview().offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalToSuperview().offset(-OrrPd.pd16.rawValue)
             $0.height.equalTo(56)
         }
     }

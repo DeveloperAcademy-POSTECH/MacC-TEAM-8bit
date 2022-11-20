@@ -53,8 +53,8 @@ class OnBoardigSuperViewController: UIViewController {
         view.addSubview(labelImage)
         labelImage.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.leading.equalTo(self.view.snp.leading).offset(OrrPadding.padding4.rawValue)
-            $0.trailing.equalTo(self.view.snp.trailing).offset(-OrrPadding.padding4.rawValue)
+            $0.leading.equalTo(self.view.snp.leading).offset(OrrPd.pd20.rawValue)
+            $0.trailing.equalTo(self.view.snp.trailing).offset(-OrrPd.pd20.rawValue)
             $0.height.equalTo(labelImage.snp.width).multipliedBy(1.1)
         }
         
@@ -67,13 +67,13 @@ class OnBoardigSuperViewController: UIViewController {
         paddigView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.centerX.equalTo(paddigView)
-            $0.bottom.equalTo(paddigView.snp.centerY).offset(-OrrPadding.padding1.rawValue)
+            $0.bottom.equalTo(paddigView.snp.centerY).offset(-OrrPd.pd4.rawValue)
         }
         
         paddigView.addSubview(subLabel)
         subLabel.snp.makeConstraints {
             $0.centerX.equalTo(paddigView)
-            $0.top.equalTo(paddigView.snp.centerY).offset(OrrPadding.padding1.rawValue)
+            $0.top.equalTo(paddigView.snp.centerY).offset(OrrPd.pd4.rawValue)
         }
         
     }

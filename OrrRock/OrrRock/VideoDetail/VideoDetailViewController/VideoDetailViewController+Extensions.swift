@@ -19,35 +19,27 @@ extension VideoDetailViewController{
         swipeUp.direction = UISwipeGestureRecognizer.Direction.up
         view.addGestureRecognizer(swipeUp)
         
+        let tapgesture = UITapGestureRecognizer(target: self, action: #selector(respondToTapGesture(_:)))
+        view.addGestureRecognizer(tapgesture)
+        
     }
     
-    func addTapGestureToVideoPlayView(){
-        videoPlayView.addGestureRecognizer(tapGesture)
-    }
-    
-    func removeTapGestureFromVideoPlayView(){
-        videoPlayView.removeGestureRecognizer(tapGesture)
-    }
     
     @objc func respondToSwipeGesture(_ gesture: UIGestureRecognizer) {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer{
             switch swipeGesture.direction {
             case UISwipeGestureRecognizer.Direction.up :
-                if !isShowInfo{
+                if !isShowInfo && !self.navigationController!.isToolbarHidden{
                     showInfo()
                 }
             case UISwipeGestureRecognizer.Direction.down :
                 if !isShowInfo{
                     self.navigationController?.popViewController(animated: true)
                 }else{
-                    showInfo()
+                    if !isShowKeyboard{
+                        showInfo()
+                    }
                 }
-            case UISwipeGestureRecognizer.Direction.left :
-                print("left")
-                //다음 기능을 위해 남겨놓음
-            case UISwipeGestureRecognizer.Direction.right :
-                print("right")
-                //다음 기능을 위해 남겨놓음
             default:
                 break
             }
@@ -55,6 +47,18 @@ extension VideoDetailViewController{
     }
     
     @objc func respondToTapGesture(_ gesture: UITapGestureRecognizer){
-        showInfo()
+        
+        if !isShowInfo{
+            self.topSafeAreaView.layer.opacity = self.navigationController!.isToolbarHidden ? 1.0 : 0.0
+            self.bottomSafeAreaView.layer.opacity = self.navigationController!.isToolbarHidden ? 1.0 : 0.0
+            self.navigationController?.isNavigationBarHidden = self.navigationController!.isToolbarHidden ? false : true
+            self.navigationController?.isToolbarHidden = self.navigationController!.isToolbarHidden ? false : true
+        }
+        if isShowKeyboard{
+            print("tap!")
+            feedbackText = videoInfoView.feedbackTextView.text!
+            DataManager.shared.updateFeedback(videoInformation: currentVideoInformation!, feedback: feedbackText!)
+            self.view.endEditing(true)
+        }
     }
 }

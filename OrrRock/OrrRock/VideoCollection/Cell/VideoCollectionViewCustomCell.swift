@@ -91,8 +91,8 @@ class VideoCollectionViewCell : UICollectionViewCell {
         }
         self.addSubview(heartImage)
         heartImage.snp.makeConstraints {
-            $0.trailing.equalTo(self.snp.trailing).offset(-OrrPadding.padding2.rawValue)
-            $0.top.equalTo(self.snp.top).offset(OrrPadding.padding2.rawValue)
+            $0.trailing.equalTo(self.snp.trailing).offset(-OrrPd.pd8.rawValue)
+            $0.top.equalTo(self.snp.top).offset(OrrPd.pd8.rawValue)
         }
         self.addSubview(cellBlurView)
         cellBlurView.snp.makeConstraints {
