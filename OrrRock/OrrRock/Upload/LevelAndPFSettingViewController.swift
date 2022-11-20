@@ -223,22 +223,22 @@ private extension LevelAndPFSettingViewController {
         case true:
             print("THIS ONE MAKE")
             firstCardtimeObserverToken = card.queuePlayer.addPeriodicTimeObserver(
-            forInterval:interval,
-            queue: DispatchQueue.main,
-            using: { [weak self] currentTime in
-                self?.updateVideoSlider(card: card, time: currentTime)
-              // TODO: 남은 시간 표시
-              // self?.updateTimeRemaining(currentTime)
-            })
+                forInterval:interval,
+                queue: DispatchQueue.main,
+                using: { [weak self] currentTime in
+                    self?.updateVideoSlider(card: card, time: currentTime)
+                    // TODO: 남은 시간 표시
+                    // self?.updateTimeRemaining(currentTime)
+                })
         case false:
             timeObserverToken = card.queuePlayer.addPeriodicTimeObserver(
-            forInterval:interval,
-            queue: DispatchQueue.main,
-            using: { [weak self] currentTime in
-                self?.updateVideoSlider(card: card, time: currentTime)
-              // TODO: 남은 시간 표시
-              // self?.updateTimeRemaining(currentTime)
-            })
+                forInterval:interval,
+                queue: DispatchQueue.main,
+                using: { [weak self] currentTime in
+                    self?.updateVideoSlider(card: card, time: currentTime)
+                    // TODO: 남은 시간 표시
+                    // self?.updateTimeRemaining(currentTime)
+                })
         }
     }
     
