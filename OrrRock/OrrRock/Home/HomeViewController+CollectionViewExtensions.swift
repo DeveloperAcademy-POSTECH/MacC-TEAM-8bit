@@ -100,7 +100,9 @@ extension HomeViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !isCardView {
             let vc = VideoDetailViewController()
-            vc.videoInformation = flattenSortedVideoInfoData[indexPath.row]
+            vc.videoInformation = sortedVideoInfoData[indexPath.section][indexPath.row]
+            vc.videoInformationArray = sortedVideoInfoData[indexPath.section]
+            vc.currentIndex = indexPath.row
             navigationController?.pushViewController(vc, animated: true)
         } else {
             let vc = VideoCollectionViewController()
