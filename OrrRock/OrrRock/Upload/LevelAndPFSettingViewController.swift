@@ -221,6 +221,7 @@ private extension LevelAndPFSettingViewController {
         // time observer 생성 후 token에 저장
         switch isFirstCard{
         case true:
+            print("THIS ONE MAKE")
             firstCardtimeObserverToken = card.queuePlayer.addPeriodicTimeObserver(
             forInterval:interval,
             queue: DispatchQueue.main,
@@ -349,15 +350,17 @@ private extension LevelAndPFSettingViewController {
                     classifiedCard = index + 1
                     // '분류된 카드 / 선택된 카드' 형식의 문자열 값을 넘겨주는 메서드
                     swipeCard.getCardLabelText(labelText: "\(classifiedCard)/\(selectedCard)")
-                    // 첫번째 카드를 재생시켜주는 코드
-                    let firstCard = cards[0] as? SwipeableCardVideoView
-                    guard let card = firstCard else { return }
-                    addPeriodicTimeObserver(card: card, isFirstCard: true)
-                    firstCard?.queuePlayer.play()
                 }
                 // Asset 카운팅이 0이 되었을 때 completionHandler로 반환
                 countingGroup.notify(queue: DispatchQueue.main) {
                     completion()
+                }
+                if self.firstCardtimeObserverToken == nil {
+                    let firstCard = self.cards[0] as? SwipeableCardVideoView
+                    guard let card = firstCard else { return }
+                    self.addPeriodicTimeObserver(card: card, isFirstCard: true)
+                    // 첫번째 카드를 재생시켜주는 코드
+                    firstCard?.queuePlayer.play()
                 }
             }
         }
@@ -448,11 +451,6 @@ private extension LevelAndPFSettingViewController {
     // swipeCard의 애니매이션 효과를 담당합니다.
     func animateCard(rotationAngle: CGFloat, videoResultType: VideoResultType) {
         
-        if counter == 0 {
-            guard let card = cards[0] else { return }
-            removePeriodicTimeObserver(card:  card, isFirstCard: true)
-        }
-        
         let cardViews = view.subviews.filter({ ($0 as? SwipeableCardVideoView) != nil })
         
         for view in cardViews {
@@ -469,10 +467,11 @@ private extension LevelAndPFSettingViewController {
                     
                     // 다음에 나올 카드
                     guard let nextCard = cards[counter + 1] as? SwipeableCardVideoView else { return }
-                    // 이전 카드가 스와이프가 되었을 때 다음에 나올 카드가 재생
-                    nextCard.queuePlayer.play()
                     // Slider에 시간 정보를 업데이트하기 위한 Observer 추가
                     addPeriodicTimeObserver(card: nextCard, isFirstCard: false)
+                    // 이전 카드가 스와이프가 되었을 때 다음에 나올 카드가 재생
+                    nextCard.queuePlayer.play()
+                    
                 }
                 
                 switch videoResultType {
@@ -504,6 +503,8 @@ private extension LevelAndPFSettingViewController {
                     
                 }) { [self] _ in
                     if counter != cards.count-1 {
+                        guard let firstCard = cards[0] else { return }
+                        removePeriodicTimeObserver(card:  firstCard, isFirstCard: true)
                         removeCard(card: card)
                     } else {
                         didVideoClassificationComplete()
