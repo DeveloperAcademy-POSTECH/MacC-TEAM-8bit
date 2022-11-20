@@ -75,7 +75,7 @@
 		78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA069290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift */; };
 		78CAA06C290271E7003C3D77 /* VIdeoCollectionFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA06B290271E7003C3D77 /* VIdeoCollectionFooterCell.swift */; };
 		78F56F6C291A67FA00174B74 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F56F6B291A67FA00174B74 /* OnBoardingViewController.swift */; };
-		78F93ED32906EFC500F3D9F3 /* DateAndGymEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */; };
+		78F93ED32906EFC500F3D9F3 /* GymEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED22906EFC500F3D9F3 /* GymEditViewController.swift */; };
 		78F93ED7290743DF00F3D9F3 /* LevelAndPFEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */; };
 		78FEE88B292616BC007B67BD /* VideoDetailViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */; };
 		78FEE88F2926A23B007B67BD /* VideoPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE88E2926A23B007B67BD /* VideoPlayViewController.swift */; };
@@ -162,7 +162,7 @@
 		78CAA069290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
 		78CAA06B290271E7003C3D77 /* VIdeoCollectionFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIdeoCollectionFooterCell.swift; sourceTree = "<group>"; };
 		78F56F6B291A67FA00174B74 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
-		78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAndGymEditViewController.swift; sourceTree = "<group>"; };
+		78F93ED22906EFC500F3D9F3 /* GymEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymEditViewController.swift; sourceTree = "<group>"; };
 		78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelAndPFEditViewController.swift; sourceTree = "<group>"; };
 		78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoDetailViewController+Extensions.swift"; sourceTree = "<group>"; };
 		78FEE88E2926A23B007B67BD /* VideoPlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayViewController.swift; sourceTree = "<group>"; };
@@ -351,7 +351,7 @@
 		3AEB3D60291C02F000A989FF /* VideoDetail */ = {
 			isa = PBXGroup;
 			children = (
-				78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */,
+				78F93ED22906EFC500F3D9F3 /* GymEditViewController.swift */,
 				34172EAE292AAD3E009DAAB8 /* DateEditViewController.swift */,
 				341418BC2923A6FF0033D851 /* DateAndGymEditViewController+TableViewExtensions.swift */,
 				78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */,
@@ -580,7 +580,7 @@
 				70A8DF08291966E20061E36B /* SwipeableCardVideoModel.swift in Sources */,
 				342C456E290125260037D9E7 /* HomeTableViewListCell.swift in Sources */,
 				FB3227FC2903FD9C00276A7D /* Date+.swift in Sources */,
-				78F93ED32906EFC500F3D9F3 /* DateAndGymEditViewController.swift in Sources */,
+				78F93ED32906EFC500F3D9F3 /* GymEditViewController.swift in Sources */,
 				78FEE895292916E4007B67BD /* VideoPlayViewController+Extensions.swift in Sources */,
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
 				78CAA0662901F7A9003C3D77 /* BasePaddingLabel.swift in Sources */,

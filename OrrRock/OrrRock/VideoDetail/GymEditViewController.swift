@@ -25,7 +25,23 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
     // MARK: gym view compenents
     private lazy var gymContentView : UIView = {
         let view = UIView()
-        view.alpha = 0.0
+        return view
+    }()
+    
+    private lazy var gymTopView : UIView = {
+        let view = UIView()
+        view.backgroundColor = .orrWhite
+        
+        view.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
+        view.addSubview(cancelButton)
+        cancelButton.snp.makeConstraints {
+            $0.centerY.equalTo(titleLabel.snp.centerY)
+            $0.left.equalToSuperview().inset(15)
+        }
         return view
     }()
     
@@ -58,64 +74,6 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
         return btn
     }()
     
-    //MARK: date view 관련 components
-    private lazy var datePickerLabel : UILabel = {
-        let label = UILabel()
-        label.text = Date().timeToString()
-        label.font = UIFont.boldSystemFont(ofSize: 17)
-        label.textColor = .orrGray500
-        label.backgroundColor = .orrGray100
-        return label
-    }()
-    
-    private lazy var datePicker : UIDatePicker = {
-        let datePicker = UIDatePicker()
-        datePicker.overrideUserInterfaceStyle = .light
-        datePicker.preferredDatePickerStyle = .inline
-        datePicker.datePickerMode = .date
-        datePicker.timeZone = .autoupdatingCurrent
-        datePicker.locale = Locale(identifier:"ko_KR")
-        datePicker.addTarget(self, action: #selector(handleDatePicker(_:)), for: .valueChanged)
-        datePicker.backgroundColor = .orrGray100
-        datePicker.maximumDate = Date()
-        return datePicker
-    }()
-    
-    private lazy var nextButton : UIButton = {
-        let btn = UIButton()
-        btn.clipsToBounds = true
-        btn.layer.cornerRadius = 15
-        btn.setBackgroundColor(.orrUPBlue!, for: .normal)
-        btn.setBackgroundColor(.orrGray300!, for: .disabled)
-        btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
-        btn.setTitle("계속", for: .normal)
-        btn.setTitleColor(.white, for: .normal)
-        return btn
-    }()
-    
-    private lazy var dateContentView : UIView = {
-        let view = UIView()
-        return view
-    }()
-    
-    
-    private lazy var dateTopView : UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrWhite
-        
-        view.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
-        
-        view.addSubview(cancelButton)
-        cancelButton.snp.makeConstraints {
-            $0.centerY.equalTo(titleLabel.snp.centerY)
-            $0.left.equalToSuperview().inset(15)
-        }
-        return view
-    }()
-    
     lazy var cancelButton : UIButton = {
         let btn = UIButton()
         btn.setTitle("취소", for: .normal)
@@ -126,7 +84,7 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
     
     lazy var titleLabel : UILabel = {
         let title = UILabel()
-        title.text = "날짜 편집"
+        title.text = "클라이밍장 편집"
         title.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         title.textColor = .black
         return title
@@ -160,47 +118,16 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
         view.backgroundColor = .orrGray100
         self.navigationController?.isToolbarHidden = false
         
-        view.addSubview(dateTopView)
-        dateTopView.snp.makeConstraints {
+        view.addSubview(gymTopView)
+        gymTopView.snp.makeConstraints {
             $0.width.equalToSuperview()
             $0.height.equalTo(60)
             $0.top.equalToSuperview()
         }
         
-        view.addSubview(dateContentView)
-        dateContentView.snp.makeConstraints {
-            $0.top.equalTo(dateTopView.snp.bottom)
-            $0.bottom.equalToSuperview()
-            $0.width.equalToSuperview()
-            $0.leading.equalToSuperview()
-        }
-        
-        dateContentView.addSubview(datePickerLabel)
-        datePickerLabel.snp.makeConstraints {
-            $0.centerX.equalTo(dateContentView)
-            $0.top.equalTo(dateContentView.snp.top).offset(OrrPd.pd24.rawValue)
-        }
-        
-        dateContentView.addSubview(datePicker)
-        datePicker.snp.makeConstraints{
-            $0.centerX.equalTo(dateContentView)
-            $0.top.equalTo(datePickerLabel.snp.bottom).offset(OrrPd.pd24.rawValue)
-            $0.leading.equalTo(dateContentView).offset(OrrPd.pd16.rawValue)
-            $0.trailing.equalTo(dateContentView).offset(-OrrPd.pd16.rawValue)
-        }
-        
-        dateContentView.addSubview(nextButton)
-        nextButton.snp.makeConstraints{
-            $0.centerX.equalTo(dateContentView)
-            $0.bottom.equalTo(dateContentView).offset(-34)
-            $0.leading.equalTo(dateContentView).offset(OrrPd.pd16.rawValue)
-            $0.trailing.equalTo(dateContentView).offset(-OrrPd.pd16.rawValue)
-            $0.height.equalTo(56)
-        }
-        
         view.addSubview(gymContentView)
         gymContentView.snp.makeConstraints {
-            $0.top.equalTo(dateTopView.snp.bottom)
+            $0.top.equalTo(gymTopView.snp.bottom)
             $0.bottom.equalToSuperview()
             $0.width.equalToSuperview()
             $0.leading.equalToSuperview()
@@ -208,8 +135,8 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
         
         gymContentView.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
-            $0.centerX.equalTo(dateContentView)
-            $0.top.equalTo(dateContentView.snp.top).offset(OrrPd.pd24.rawValue)
+            $0.centerX.equalTo(gymContentView)
+            $0.top.equalTo(gymContentView.snp.top).offset(OrrPd.pd24.rawValue)
         }
         
         gymContentView.addSubview(gymTextField)
@@ -253,11 +180,8 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
     }
     
     private func setData(){
-        datePicker.date = videoInformation.gymVisitDate
         gymTextField.text = videoInformation.gymName
         gymTextField.placeholder = videoInformation.gymName
-        datePickerLabel.text = videoInformation.gymVisitDate.timeToString()
-        selectDate = videoInformation.gymVisitDate
         selectGymName = videoInformation.gymName
     }
     
@@ -284,30 +208,13 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
         autocompleteTableView.snp.removeConstraints()
         autocompleteTableView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(nextButton.snp.top)
+            $0.bottom.equalTo(saveButton.snp.top)
             $0.height.equalTo(50 * min(maxTableViewCellCount, filteredVisitedGymList.count))
         }
     }
 }
 
 extension GymEditViewController {
-    
-    @objc
-    private func handleDatePicker(_ sender: UIDatePicker) {
-        datePickerLabel.text = sender.date.timeToString()
-        datePickerLabel.textColor = .black
-    }
-    
-    @objc
-    private func pressNextButton(_ sender: UIButton) {
-        selectDate = datePicker.date
-        UIView.animate(withDuration: 0.5) {
-            self.dateContentView.alpha = 0.0
-            self.gymContentView.alpha = 1.0
-            self.gymTextField.becomeFirstResponder()
-            self.titleLabel.text = "위치 편집"
-        }
-    }
     
     // 자동완성을 위한 테이블 내 클라이밍장 명 검색
     @objc
@@ -325,13 +232,14 @@ extension GymEditViewController {
     
     @objc
     func pressSaveButton() {
-        if gymTextField.text == "" {
-            DataManager.shared.updateDateAndGymData(videoInformation: videoInformation, gymVisitDate: selectDate!, gymName: videoInformation.gymName)
-            completioHandler?(videoInformation.gymName,selectDate!)
-        } else {
-            DataManager.shared.updateDateAndGymData(videoInformation: videoInformation, gymVisitDate: selectDate!, gymName: gymTextField.text!)
-            completioHandler?(gymTextField.text!,selectDate!)
-        }
+        // 로직 수정 필요
+//        if gymTextField.text == "" {
+//            DataManager.shared.updateDateAndGymData(videoInformation: videoInformation, gymVisitDate: selectDate!, gymName: videoInformation.gymName)
+//            completioHandler?(videoInformation.gymName,selectDate!)
+//        } else {
+//            DataManager.shared.updateDateAndGymData(videoInformation: videoInformation, gymVisitDate: selectDate!, gymName: gymTextField.text!)
+//            completioHandler?(gymTextField.text!,selectDate!)
+//        }
         self.dismiss(animated: true)
     }
     
@@ -339,4 +247,3 @@ extension GymEditViewController {
         self.dismiss(animated: true)
     }
 }
-

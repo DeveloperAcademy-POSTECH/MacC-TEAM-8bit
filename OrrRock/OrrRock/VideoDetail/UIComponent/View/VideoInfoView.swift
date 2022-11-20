@@ -126,7 +126,7 @@ final class VideoInfoView: UIView {
     @objc private func dateEdit() {
         // 날짜, 클라이밍장 편집 뷰 네비게이션
         let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
-        let vc = GymEditViewController()
+        let vc = DateEditViewController()
         vc.videoInformation = videoInformation
         vc.completioHandler = { [self] gymName, date in
             self.dateLabel.text = date.timeToString()
