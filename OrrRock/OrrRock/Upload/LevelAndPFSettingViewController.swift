@@ -448,8 +448,11 @@ private extension LevelAndPFSettingViewController {
         self.navigationController?.popToRootViewController(animated: true)
     }
     
-    // swipeCard의 애니매이션 효과를 담당합니다.
+    // swipeCard의 애니메이션 효과를 담당합니다.
     func animateCard(rotationAngle: CGFloat, videoResultType: VideoResultType) {
+        
+        guard let card = cards[counter] else { return }
+        removePeriodicTimeObserver(card:  card, isFirstCard: counter == 0 ? true : false)
         
         let cardViews = view.subviews.filter({ ($0 as? SwipeableCardVideoView) != nil })
         
@@ -462,15 +465,13 @@ private extension LevelAndPFSettingViewController {
                 
                 // 마지막 카드가 아닐 때 다음 카드를 재생
                 if counter != cards.count-1 {
-                    guard let card = cards[counter] else { return }
-                    removePeriodicTimeObserver(card: card, isFirstCard: false)
                     
                     // 다음에 나올 카드
                     guard let nextCard = cards[counter + 1] as? SwipeableCardVideoView else { return }
-                    // Slider에 시간 정보를 업데이트하기 위한 Observer 추가
-                    addPeriodicTimeObserver(card: nextCard, isFirstCard: false)
                     // 이전 카드가 스와이프가 되었을 때 다음에 나올 카드가 재생
                     nextCard.queuePlayer.play()
+                    // Slider에 시간 정보를 업데이트하기 위한 Observer 추가
+                    addPeriodicTimeObserver(card: nextCard, isFirstCard: false)
                     
                 }
                 
@@ -503,8 +504,6 @@ private extension LevelAndPFSettingViewController {
                     
                 }) { [self] _ in
                     if counter != cards.count-1 {
-                        guard let firstCard = cards[0] else { return }
-                        removePeriodicTimeObserver(card:  firstCard, isFirstCard: true)
                         removeCard(card: card)
                     } else {
                         didVideoClassificationComplete()
