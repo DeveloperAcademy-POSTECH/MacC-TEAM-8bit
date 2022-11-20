@@ -307,7 +307,7 @@ final class HomeViewController : UIViewController {
     
     //Ruyha
     @objc func videoButtonPressed(sender: UIButton){
-        let nextVC = TestLevelPickerViewController()
+        let nextVC = ppapViewController()
 //        self.navigationController?.pushViewController(nextVC, animated: true)
         self.present(nextVC, animated: true, completion: nil)
     }

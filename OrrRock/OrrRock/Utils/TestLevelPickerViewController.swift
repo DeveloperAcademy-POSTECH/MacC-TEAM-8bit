@@ -9,13 +9,13 @@ import UIKit
 import SnapKit
 
 
-protocol TestLevelPickerViewDelegate {
+protocol NewLevelPickerViewDelegate {
     func didLevelChanged(selectedLevel: Int)
 }
 
-class TestLevelPickerViewController: UIViewController{
+class LevelPickerViewController: UIView{
     //피커뷰의 고정적으로 쓰이는 넓이
-    var pickerWidth = 48 + 16
+    var pickerWidth = 64
     //피커뷰가 시작 될때 선택 되어 있어야 하는 값
     var pickerSelectValue = 0
     
@@ -28,11 +28,11 @@ class TestLevelPickerViewController: UIViewController{
     //회전각도
     var rotationAngle: CGFloat! = -90  * (.pi/180)
     
-    var delegate: TestLevelPickerViewDelegate?
+    var delegate: NewLevelPickerViewDelegate?
     
     lazy var pickerView: UIPickerView = {
         let picker = UIPickerView()
-        picker.frame = CGRect(x: 0, y: 150, width: self.view.bounds.width, height: 180.0)
+        picker.frame = CGRect(x: 0, y: 150, width: self.bounds.width, height: 180.0)
         picker.backgroundColor = .orrGray100
         picker.delegate = self
         picker.dataSource = self
@@ -40,28 +40,46 @@ class TestLevelPickerViewController: UIViewController{
         return picker
     }()
     
+    lazy var invertedTriangleLabel: UILabel = {
+        let imageAttachment = NSTextAttachment()
+        let arrowtriangle = NSMutableAttributedString(string: "")
+        let label = UILabel()
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 8, weight: .light)
+        imageAttachment.image = UIImage(systemName: "arrowtriangle.down.fill")?.withTintColor(.black)
+        arrowtriangle.append(NSAttributedString(attachment: imageAttachment))
+        label.attributedText = arrowtriangle
+
+        return label
+    }()
     
+    lazy var ppaplbl: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .gray
+        return label
+    }()
     
-    override func viewDidLayoutSubviews() {
-        //피커뷰 회색 증발 마술
-        pickerView.subviews[1].isHidden = true
-       // setFirstSelectRowLabelColor(isFirst: true)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+//    override func viewDidLayoutSubviews() {
+//    }
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        setUpLayout()
+//
+//    }
+//
+    func setpicker(){
         setUpLayout()
-        view.backgroundColor = .red
+        self.backgroundColor = .red
         self.pickerView.delegate?.pickerView?(self.pickerView, didSelectRow: pickerSelectValue, inComponent: 0)
         pickerSelectValue =  pickerSelectValue < 0 ? 0 : pickerSelectValue
         //        self.pickerView.selectRow(pickerSelectValue + 1, inComponent: 0, animated: true)
         self.pickerView.selectRow(pickerSelectValue, inComponent: 0, animated: true)
     }
-    
 }
 
 
-extension TestLevelPickerViewController : UIPickerViewDelegate,UIPickerViewDataSource{
+extension LevelPickerViewController : UIPickerViewDelegate,UIPickerViewDataSource{
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -80,8 +98,10 @@ extension TestLevelPickerViewController : UIPickerViewDelegate,UIPickerViewDataS
         guard let view = pickerView.view(forRow: row, forComponent: component) else {
             return
         }
-        
+        pickerView.subviews[1].isHidden = true
+
         view.subviews[0].backgroundColor = .orrUPBlue
+
         //        delegate?.didLevelChanged(selectedLevel: selectLevel)
     }
     
@@ -95,7 +115,7 @@ extension TestLevelPickerViewController : UIPickerViewDelegate,UIPickerViewDataS
             
         let pickerRow = UIView()
         pickerRow.frame = CGRect(x: 0, y: 0, width: pickerWidth, height: 32)
-        
+
         lazy var rowLabel: UILabel = {
             let label = UILabel()
             label.textColor = .black
@@ -119,20 +139,35 @@ extension TestLevelPickerViewController : UIPickerViewDelegate,UIPickerViewDataS
         pickerRow.transform = CGAffineTransform(rotationAngle: 90 * (.pi/180))
         return pickerRow
     }
-    
-    
+
 }
 
-extension TestLevelPickerViewController {
+extension LevelPickerViewController {
     
     private func setUpLayout(){
         
-        view.addSubview(pickerView)
+        self.addSubview(ppaplbl)
+        ppaplbl.snp.makeConstraints {
+            $0.height.equalTo(pickerWidth)
+            $0.width.equalTo(self.snp.width)
+            $0.bottom.equalTo(self.snp.bottom)
+        }
+        
+        self.addSubview(pickerView)
+        pickerView.backgroundColor = .yellow
         pickerView.snp.makeConstraints {
-            $0.height.equalTo(view.snp.height)
-            $0.width.equalTo(pickerWidth)
-            $0.center.equalTo(view.center)
+            $0.height.equalTo(ppaplbl.snp.width)// width
+            $0.width.equalTo(ppaplbl.snp.height)//height
+            $0.centerX.equalTo(ppaplbl.snp.centerX)
+            $0.centerY.equalTo(ppaplbl.snp.centerY)
+        }
+
+        self.addSubview(invertedTriangleLabel)
+        invertedTriangleLabel.snp.makeConstraints {
+            $0.centerX.equalTo(ppaplbl.snp.centerX)
+            $0.bottom.equalTo(ppaplbl.snp.top).offset(-OrrPd.pd8.rawValue)
         }
         
     }
 }
+
