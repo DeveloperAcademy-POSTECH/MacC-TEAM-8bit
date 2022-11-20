@@ -232,14 +232,13 @@ extension GymEditViewController {
     
     @objc
     func pressSaveButton() {
-        // 로직 수정 필요
-//        if gymTextField.text == "" {
-//            DataManager.shared.updateDateAndGymData(videoInformation: videoInformation, gymVisitDate: selectDate!, gymName: videoInformation.gymName)
+        if gymTextField.text == "" {
+            DataManager.shared.updateGymData(videoInformation: videoInformation, gymName: videoInformation.gymName)
 //            completioHandler?(videoInformation.gymName,selectDate!)
-//        } else {
-//            DataManager.shared.updateDateAndGymData(videoInformation: videoInformation, gymVisitDate: selectDate!, gymName: gymTextField.text!)
+        } else {
+            DataManager.shared.updateGymData(videoInformation: videoInformation, gymName: gymTextField.text!)
 //            completioHandler?(gymTextField.text!,selectDate!)
-//        }
+        }
         self.dismiss(animated: true)
     }
     

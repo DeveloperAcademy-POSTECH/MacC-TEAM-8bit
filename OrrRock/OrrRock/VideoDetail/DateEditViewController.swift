@@ -177,15 +177,8 @@ extension DateEditViewController {
     
     @objc
     func pressSaveButton() {
-        selectDate = datePicker.date
-        // 데이터에 대한 처리 해주기
-//        if gymTextField.text == "" {
-//            DataManager.shared.updateDateAndGymData(videoInformation: videoInformation, gymVisitDate: selectDate!, gymName: videoInformation.gymName)
-//            completioHandler?(videoInformation.gymName,selectDate!)
-//        } else {
-//            DataManager.shared.updateDateAndGymData(videoInformation: videoInformation, gymVisitDate: selectDate!, gymName: gymTextField.text!)
-//            completioHandler?(gymTextField.text!,selectDate!)
-//        }
+        DataManager.shared.updateDateData(videoInformation: videoInformation, gymVisitDate: datePicker.date)
+        completioHandler?(videoInformation.gymName, selectDate!)
         self.dismiss(animated: true)
     }
     
