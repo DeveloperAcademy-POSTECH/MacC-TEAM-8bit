@@ -120,10 +120,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     private lazy var failButton: CustomButton = {
         let button = CustomButton()
-        button.setTitle("실패", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .semibold)
-        button.backgroundColor = .orrFail
+        button.setImage(UIImage(named: "fail_icon"), for: .normal)
         button.layer.cornerRadius = 37.0
         button.addTarget(self, action: #selector(didFailButton), for: .touchUpInside)
         
@@ -132,10 +129,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     private lazy var successButton: CustomButton = {
         let button = CustomButton()
-        button.setTitle("성공", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .semibold)
-        button.backgroundColor = .orrPass
+        button.setImage(UIImage(named: "success_icon"), for: .normal)
         button.layer.cornerRadius = 37.0
         button.addTarget(self, action: #selector(didSuccessButton), for: .touchUpInside)
         
