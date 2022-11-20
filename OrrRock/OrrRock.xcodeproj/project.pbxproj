@@ -77,6 +77,12 @@
 		78F93ED32906EFC500F3D9F3 /* DateAndGymEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */; };
 		78F93ED7290743DF00F3D9F3 /* LevelAndPFEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */; };
 		78FEE88B292616BC007B67BD /* VideoDetailViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */; };
+		78FEE88F2926A23B007B67BD /* VideoPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE88E2926A23B007B67BD /* VideoPlayViewController.swift */; };
+		78FEE8912926A599007B67BD /* VideoDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE8902926A599007B67BD /* VideoDetailPageViewController.swift */; };
+		78FEE895292916E4007B67BD /* VideoPlayViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE894292916E4007B67BD /* VideoPlayViewController+Extensions.swift */; };
+		78FEE89729291A19007B67BD /* VideoDetailViewController+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE89629291A19007B67BD /* VideoDetailViewController+Protocol.swift */; };
+		78FEE89929291AC9007B67BD /* VideoDetailPageViewController+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE89829291AC9007B67BD /* VideoDetailPageViewController+Protocol.swift */; };
+		78FEE89B29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE89A29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift */; };
 		A88805852907F5A0002CD52E /* LevelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88805842907F5A0002CD52E /* LevelPickerView.swift */; };
 		FB3227FC2903FD9C00276A7D /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3227FB2903FD9C00276A7D /* Date+.swift */; };
 		FB3227FE2903FDA600276A7D /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3227FD2903FDA600276A7D /* String+.swift */; };
@@ -156,6 +162,12 @@
 		78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAndGymEditViewController.swift; sourceTree = "<group>"; };
 		78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelAndPFEditViewController.swift; sourceTree = "<group>"; };
 		78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoDetailViewController+Extensions.swift"; sourceTree = "<group>"; };
+		78FEE88E2926A23B007B67BD /* VideoPlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayViewController.swift; sourceTree = "<group>"; };
+		78FEE8902926A599007B67BD /* VideoDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailPageViewController.swift; sourceTree = "<group>"; };
+		78FEE894292916E4007B67BD /* VideoPlayViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoPlayViewController+Extensions.swift"; sourceTree = "<group>"; };
+		78FEE89629291A19007B67BD /* VideoDetailViewController+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoDetailViewController+Protocol.swift"; sourceTree = "<group>"; };
+		78FEE89829291AC9007B67BD /* VideoDetailPageViewController+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoDetailPageViewController+Protocol.swift"; sourceTree = "<group>"; };
+		78FEE89A29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoDetailPageViewController+Extentions.swift"; sourceTree = "<group>"; };
 		A88805842907F5A0002CD52E /* LevelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelPickerView.swift; sourceTree = "<group>"; };
 		FB3227FB2903FD9C00276A7D /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		FB3227FD2903FDA600276A7D /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
@@ -280,13 +292,13 @@
 			isa = PBXGroup;
 			children = (
 				703145E629250E3E007A78F1 /* SwipeOnboarding */,
-				78FEE88929261641007B67BD /* VideoCollection */,
 				3AEB3D65291C080400A989FF /* Models */,
 				709A8C69290481F000CEA6F4 /* Utils */,
 				34B011412900158F0043951A /* Extensions */,
 				3A08879E29012CC300EFFDBB /* CoreData */,
 				3AEB3D5E291C01B000A989FF /* OnBoarding */,
 				3AEB3D5F291C027B00A989FF /* Home */,
+				78FEE88929261641007B67BD /* VideoCollection */,
 				3AEB3D60291C02F000A989FF /* VideoDetail */,
 				3AEB3D64291C04CE00A989FF /* Upload */,
 				3AA4D41E28FEBADE006C718A /* AppDelegate.swift */,
@@ -337,8 +349,7 @@
 				78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */,
 				341418BC2923A6FF0033D851 /* DateAndGymEditViewController+TableViewExtensions.swift */,
 				78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */,
-				FB32280E29046B4500276A7D /* VideoDetailViewController.swift */,
-				78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */,
+				78FEE89D292976FA007B67BD /* VideoDetailViewController */,
 				3AEB3D61291C03A900A989FF /* UIComponent */,
 			);
 			path = VideoDetail;
@@ -426,6 +437,37 @@
 				78A035492901317600FF1913 /* Cell */,
 			);
 			path = VideoCollection;
+			sourceTree = "<group>";
+		};
+		78FEE89C292976D6007B67BD /* VideoDetailPageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				78FEE8902926A599007B67BD /* VideoDetailPageViewController.swift */,
+				78FEE89A29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift */,
+				78FEE89829291AC9007B67BD /* VideoDetailPageViewController+Protocol.swift */,
+				78FEE89E29297717007B67BD /* VideoPlayViewController */,
+			);
+			path = VideoDetailPageViewController;
+			sourceTree = "<group>";
+		};
+		78FEE89D292976FA007B67BD /* VideoDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FB32280E29046B4500276A7D /* VideoDetailViewController.swift */,
+				78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */,
+				78FEE89629291A19007B67BD /* VideoDetailViewController+Protocol.swift */,
+				78FEE89C292976D6007B67BD /* VideoDetailPageViewController */,
+			);
+			path = VideoDetailViewController;
+			sourceTree = "<group>";
+		};
+		78FEE89E29297717007B67BD /* VideoPlayViewController */ = {
+			isa = PBXGroup;
+			children = (
+				78FEE88E2926A23B007B67BD /* VideoPlayViewController.swift */,
+				78FEE894292916E4007B67BD /* VideoPlayViewController+Extensions.swift */,
+			);
+			path = VideoPlayViewController;
 			sourceTree = "<group>";
 		};
 		FB32281129046CBF00276A7D /* View */ = {
@@ -533,6 +575,7 @@
 				342C456E290125260037D9E7 /* HomeTableViewListCell.swift in Sources */,
 				FB3227FC2903FD9C00276A7D /* Date+.swift in Sources */,
 				78F93ED32906EFC500F3D9F3 /* DateAndGymEditViewController.swift in Sources */,
+				78FEE895292916E4007B67BD /* VideoPlayViewController+Extensions.swift in Sources */,
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
 				78CAA0662901F7A9003C3D77 /* BasePaddingLabel.swift in Sources */,
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
@@ -543,6 +586,7 @@
 				70DE795C292517330009AD43 /* SwipeOnboardingFirstViewController.swift in Sources */,
 				3A15AC7729071DD90058512F /* OrderOption.swift in Sources */,
 				0A0B41072907C59600057FA7 /* LevelAndPFSettingViewController.swift in Sources */,
+				78FEE89929291AC9007B67BD /* VideoDetailPageViewController+Protocol.swift in Sources */,
 				3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */,
 				70DE795A29250F480009AD43 /* SwipeOnboardingViewController.swift in Sources */,
 				FB32280F29046B4500276A7D /* VideoDetailViewController.swift in Sources */,
@@ -561,6 +605,7 @@
 				78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */,
 				342508A329001780000653D9 /* HomeViewController.swift in Sources */,
 				342508A52900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift in Sources */,
+				78FEE88F2926A23B007B67BD /* VideoPlayViewController.swift in Sources */,
 				FBA5DBFD291AE32A00422A17 /* ButtonClickEffect.swift in Sources */,
 				70DE796229263A570009AD43 /* SwipeOnboardingThirdViewController.swift in Sources */,
 				700AC6212926A1DA003DF5AF /* UIImageView+.swift in Sources */,
@@ -568,6 +613,7 @@
 				34E76F462924D33E00EBB92D /* HomeTableViewFooter.swift in Sources */,
 				3A15AC882907B1160058512F /* VideoInformation+CoreDataClass.swift in Sources */,
 				3AA4D42128FEBADE006C718A /* SceneDelegate.swift in Sources */,
+				78FEE89B29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift in Sources */,
 				3A15AC7D2907258A0058512F /* SectionData.swift in Sources */,
 				34793FA329262A8800B74110 /* CustomBackBarButtomItem.swift in Sources */,
 				FB32281529046CED00276A7D /* VideoInfoView.swift in Sources */,
@@ -580,11 +626,13 @@
 				78CAA06C290271E7003C3D77 /* VIdeoCollectionFooterCell.swift in Sources */,
 				341418BB2922A3800033D851 /* AutocompleteTableViewCell.swift in Sources */,
 				709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */,
+				78FEE89729291A19007B67BD /* VideoDetailViewController+Protocol.swift in Sources */,
 				3A2880FB2904290E00FBFB70 /* SortTestViewController.swift in Sources */,
 				FB3227FE2903FDA600276A7D /* String+.swift in Sources */,
 				3A15AC7B290724620058512F /* DataManager.swift in Sources */,
 				341418B6292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift in Sources */,
 				70A8DF0A291A863F0061E36B /* UIView+.swift in Sources */,
+				78FEE8912926A599007B67BD /* VideoDetailPageViewController.swift in Sources */,
 				70DE7964292640FF0009AD43 /* SwipeOnboardingFourthViewController.swift in Sources */,
 				70DE795E29253F050009AD43 /* EmptyBackgroundView.swift in Sources */,
 				A88805852907F5A0002CD52E /* LevelPickerView.swift in Sources */,
