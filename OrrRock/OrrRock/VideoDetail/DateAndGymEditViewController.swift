@@ -31,8 +31,8 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
     
     private lazy var gymNameLabel : UILabel = {
         let label = UILabel()
-        label.text = "해당 암장의 이름을 적어주세요"
-        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.text = "방문한 클라이밍장을 입력해주세요"
+        label.font = UIFont.boldSystemFont(ofSize: 22)
         label.textColor = .orrBlack
         label.backgroundColor = .orrGray100
         return label
@@ -61,9 +61,9 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
     //MARK: date view 관련 components
     private lazy var datePickerLabel : UILabel = {
         let label = UILabel()
-        label.text = Date().timeToString()
-        label.font = UIFont.boldSystemFont(ofSize: 17)
-        label.textColor = .orrGray500
+        label.text = "방문한 날짜를 선택해주세요"
+        label.font = UIFont.boldSystemFont(ofSize: 22)
+        label.textColor = .orrBlack
         label.backgroundColor = .orrGray100
         return label
     }()
@@ -75,7 +75,6 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         datePicker.datePickerMode = .date
         datePicker.timeZone = .autoupdatingCurrent
         datePicker.locale = Locale(identifier:"ko_KR")
-        datePicker.addTarget(self, action: #selector(handleDatePicker(_:)), for: .valueChanged)
         datePicker.backgroundColor = .orrGray100
         datePicker.maximumDate = Date()
         return datePicker
@@ -177,8 +176,8 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         
         dateContentView.addSubview(datePickerLabel)
         datePickerLabel.snp.makeConstraints {
-            $0.centerX.equalTo(dateContentView)
-            $0.top.equalTo(dateContentView.snp.top).offset(OrrPd.pd24.rawValue)
+            $0.horizontalEdges.equalTo(dateContentView).inset(OrrPd.pd16.rawValue)
+            $0.top.equalTo(dateContentView.snp.top).offset(OrrPd.pd72.rawValue)
         }
         
         dateContentView.addSubview(datePicker)
@@ -208,16 +207,15 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         
         gymContentView.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
-            $0.centerX.equalTo(dateContentView)
-            $0.top.equalTo(dateContentView.snp.top).offset(OrrPd.pd24.rawValue)
+            $0.horizontalEdges.equalTo(dateContentView).inset(OrrPd.pd16.rawValue)
+            $0.top.equalTo(dateContentView.snp.top).offset(OrrPd.pd72.rawValue)
         }
         
         gymContentView.addSubview(gymTextField)
         gymTextField.snp.makeConstraints{
             $0.centerX.equalTo(gymContentView)
-            $0.top.equalTo(gymNameLabel.snp.bottom).offset(OrrPd.pd16.rawValue)
-            $0.leading.equalTo(gymContentView).offset(OrrPd.pd40.rawValue)
-            $0.trailing.equalTo(gymContentView).offset(-OrrPd.pd40.rawValue)
+            $0.top.equalTo(gymNameLabel.snp.bottom).offset(OrrPd.pd36.rawValue)
+            $0.horizontalEdges.equalTo(gymContentView).inset(OrrPd.pd16.rawValue)
         }
         
         gymContentView.addSubview(saveButton)
@@ -256,7 +254,6 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
         datePicker.date = videoInformation.gymVisitDate
         gymTextField.text = videoInformation.gymName
         gymTextField.placeholder = videoInformation.gymName
-        datePickerLabel.text = videoInformation.gymVisitDate.timeToString()
         selectDate = videoInformation.gymVisitDate
         selectGymName = videoInformation.gymName
     }
@@ -291,12 +288,6 @@ final class DateAndGymEditViewController: UIViewController , UISheetPresentation
 }
 
 extension DateAndGymEditViewController {
-    
-    @objc
-    private func handleDatePicker(_ sender: UIDatePicker) {
-        datePickerLabel.text = sender.date.timeToString()
-        datePickerLabel.textColor = .black
-    }
     
     @objc
     private func pressNextButton(_ sender: UIButton) {
