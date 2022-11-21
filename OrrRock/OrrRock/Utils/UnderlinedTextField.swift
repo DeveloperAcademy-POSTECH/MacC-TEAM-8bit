@@ -14,9 +14,9 @@ class UnderlinedTextField: UITextField, UITextFieldDelegate {
     let underlineLayer = CALayer()
     let warningLabel: UILabel = {
         let view = UILabel()
-        view.text = "최대 20자까지 입력이 가능해요"
+        view.text = "20자 이내로 적어주세요"
         view.textColor = .orrGray400
-        view.textAlignment = .right
+        view.textAlignment = .left
         return view
     }()
     
@@ -62,7 +62,8 @@ class UnderlinedTextField: UITextField, UITextFieldDelegate {
     // adjust the size and placement of the underline layer too
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+        self.autocorrectionType = .no
+        self.spellCheckingType = .no
         self.delegate = self
         setUpUnderlineLayer()
         setLimitWarningLabel()

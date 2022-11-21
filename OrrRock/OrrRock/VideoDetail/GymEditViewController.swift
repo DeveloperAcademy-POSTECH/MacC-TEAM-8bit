@@ -135,7 +135,7 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
         gymContentView.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
             $0.centerX.equalTo(gymContentView)
-            $0.top.equalTo(gymContentView.snp.top).offset(OrrPd.pd24.rawValue)
+            $0.top.equalTo(gymContentView.snp.top).offset(OrrPd.pd72.rawValue)
         }
         
         gymContentView.addSubview(gymTextField)
