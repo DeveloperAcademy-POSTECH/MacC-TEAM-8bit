@@ -37,8 +37,6 @@ struct ChallengeChartView: View {
                     .overlay(Rectangle().frame(width: 1, height: nil, alignment: .leading).foregroundColor(Color(uiColor: UIColor.orrGray400!)), alignment: .leading)
                     .overlay(Rectangle().frame(width: 1, height: nil, alignment: .trailing).foregroundColor(Color(uiColor: UIColor.orrGray400!)), alignment: .trailing)
 
-                    
-                    
                     Chart {
                         BarMark(x: .value("name", successCount))
                             .cornerRadius(10)

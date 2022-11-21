@@ -12,7 +12,6 @@
 		0AAB780A290424A300EEEFFB /* SwipeableCardVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */; };
 		3405BE5F2927DA9600D6E15A /* MyActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3405BE5E2927DA9600D6E15A /* MyActivityViewController.swift */; };
 		3405BE632927DD2E00D6E15A /* ChallengeChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3405BE622927DD2E00D6E15A /* ChallengeChartView.swift */; };
-		3405BE652927DE9F00D6E15A /* SolvedProblemsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3405BE642927DE9F00D6E15A /* SolvedProblemsChartView.swift */; };
 		3405BE672927E03300D6E15A /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3405BE662927E03300D6E15A /* SummaryView.swift */; };
 		341418B42922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341418B32922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift */; };
 		341418B6292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341418B5292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift */; };
@@ -108,7 +107,6 @@
 		0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardVideoView.swift; sourceTree = "<group>"; };
 		3405BE5E2927DA9600D6E15A /* MyActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyActivityViewController.swift; sourceTree = "<group>"; };
 		3405BE622927DD2E00D6E15A /* ChallengeChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeChartView.swift; sourceTree = "<group>"; };
-		3405BE642927DE9F00D6E15A /* SolvedProblemsChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolvedProblemsChartView.swift; sourceTree = "<group>"; };
 		3405BE662927E03300D6E15A /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		341418B32922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VisitedClimbingGym+CoreDataClass.swift"; sourceTree = "<group>"; };
 		341418B5292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VisitedClimbingGym+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -247,7 +245,6 @@
 				34172EB4292B3FEC009DAAB8 /* GrowthChartView.swift */,
 				34172EB6292B41D1009DAAB8 /* HomeGymChartView.swift */,
 				34172EB8292B41F8009DAAB8 /* HistoryView.swift */,
-				3405BE642927DE9F00D6E15A /* SolvedProblemsChartView.swift */,
 			);
 			path = ChartView;
 			sourceTree = "<group>";
@@ -685,7 +682,6 @@
 				34172EB9292B41F8009DAAB8 /* HistoryView.swift in Sources */,
 				FB3227FE2903FDA600276A7D /* String+.swift in Sources */,
 				3A15AC7B290724620058512F /* DataManager.swift in Sources */,
-				3405BE652927DE9F00D6E15A /* SolvedProblemsChartView.swift in Sources */,
 				341418B6292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift in Sources */,
 				70A8DF0A291A863F0061E36B /* UIView+.swift in Sources */,
 				78FEE8912926A599007B67BD /* VideoDetailPageViewController.swift in Sources */,

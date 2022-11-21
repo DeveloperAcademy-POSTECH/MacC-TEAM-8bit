@@ -12,17 +12,19 @@ import SnapKit
 
 class MyActivityViewController: UIViewController {
     
-    var firstDateForSummary: Date? = nil
+    var firstDateOfClimbing: Date? = nil
     var highestLevelForSummary: Int = -1
     var mostVisitedGymNameForSummary: String = ""
     var mostVisitedGymCountForSummary: Int = 0
-    
     
     var entireSolvedProblemsForBarChart: [[SolvedProblemsOfEachLevel]] = [[],[],[]]
     
     var entireProblemsForDonutChart: [ChartCellModel] = []
     var validTotalCountForDonutChart: Int = 0
     var validSuccessCountForDonutChart: Int = 0
+    
+    var frequentlyVisitedGymList: [(String, Int)] = []
+    var totalGymVisitedDate: Int = 0
     
     private lazy var DEBUGBackgroundView: UIView = {
         let view = UIView()
@@ -93,8 +95,7 @@ class MyActivityViewController: UIViewController {
         mostFrequentLevelForPeriod[1] = getMostFrequentLevelOfList(from: entireSolvedProblemsForBarChart[1])
         mostFrequentLevelForPeriod[2] = getMostFrequentLevelOfList(from: entireSolvedProblemsForBarChart[2])
         
-        let VC = UIHostingController(rootView: GrowthChartView(chartData: entireSolvedProblemsForBarChart,
-                                                               mostFrequentLevelForPeriod: mostFrequentLevelForPeriod))
+        let VC = UIHostingController(rootView: GrowthChartView(chartData: entireSolvedProblemsForBarChart, mostFrequentLevelForPeriod: mostFrequentLevelForPeriod))
         VC.view.backgroundColor = .clear
         return VC.view
     }()
@@ -108,30 +109,16 @@ class MyActivityViewController: UIViewController {
     }()
     
     private lazy var homeGymChartView: UIView = {
-        let VC = UIHostingController(rootView: HomeGymChartView())
+        let VC = UIHostingController(rootView: HomeGymChartView(mostFrequentlyVisitedGymList: frequentlyVisitedGymList, totalGymVisitedDate: totalGymVisitedDate))
         VC.view.backgroundColor = .clear
         return VC.view
     }()
     
     private lazy var historyView: UIView = {
-        let VC = UIHostingController(rootView: HistoryView())
+        let VC = UIHostingController(rootView: HistoryView(fromDate: firstDateOfClimbing))
         VC.view.backgroundColor = .clear
         return VC.view
     }()
-    
-    
-//    private lazy var summaryView: UIView = {
-//        let VC = UIHostingController(rootView: SummaryView(firstDate: firstDateForSummary, highestLevel: highestLevelForSummary, mostVisitedGymName: mostVisitedGymNameForSummary, mostVisitedGymCount: mostVisitedGymCountForSummary))
-//        VC.view.backgroundColor = .clear
-//        return VC.view
-//    }()
-    
-//    private lazy var myChallengeChartView: UIView = {
-//        let VC = UIHostingController(rootView: SolvedProblemsChartView(chartData: entireSolvedProblemsForBarChart))
-//        VC.view.backgroundColor = .clear
-//        return VC.view
-//    }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -153,20 +140,17 @@ class MyActivityViewController: UIViewController {
         let entireVideoInformationsByDate: [[VideoInformation]] = DataManager.shared.repository.sortVideoInformation(filterOption: .all, sortOption: .gymVisitDate)
         let entireVideoInformationsByName: [[VideoInformation]] = DataManager.shared.repository.sortVideoInformation(filterOption: .all, sortOption: .gymName)
         
-        // summaryView
-        (firstDateForSummary, highestLevelForSummary, (mostVisitedGymCountForSummary, mostVisitedGymNameForSummary)) = getSummaryData(fromDate: entireVideoInformationsByDate, fromName: entireVideoInformationsByName)
+        (firstDateOfClimbing, highestLevelForSummary, frequentlyVisitedGymList, totalGymVisitedDate) = getSummaryData(fromDate: entireVideoInformationsByDate, fromName: entireVideoInformationsByName)
         
-        // DonutChart
         (entireProblemsForDonutChart, validTotalCountForDonutChart, validSuccessCountForDonutChart) = getProblemsPerLevel(from: entireVideoInformationsByDate)
         
-        // BarChart
         entireSolvedProblemsForBarChart[0] = getSolvedProblemsPerPeriod(from: entireVideoInformationsByDate, period: .week)
         entireSolvedProblemsForBarChart[1] = getSolvedProblemsPerPeriod(from: entireVideoInformationsByDate, period: .month)
         entireSolvedProblemsForBarChart[2] = getSolvedProblemsPerPeriod(from: entireVideoInformationsByDate, period: .year)
     }
     
     // 가장 처음 클라이밍장을 방문한 날짜, 혹은 사용자가 작성한 최초 클라이밍장 방문 날짜를 반환
-    func getSummaryData(fromDate: [[VideoInformation]], fromName: [[VideoInformation]]) -> (Date?, Int, (Int, String)) {
+    func getSummaryData(fromDate: [[VideoInformation]], fromName: [[VideoInformation]]) -> (Date?, Int, [(String, Int)], Int) {
         // 가장 처음 방문한 날짜를 반환, 기록이 없는 경우 nil 값을 반환
         // TODO: 사용자의 설정에 의한 값이 받아와질 수 있도록 이후 추가해야함
         let firstDate = fromDate.last?.first?.gymVisitDate ?? nil
@@ -177,9 +161,11 @@ class MyActivityViewController: UIViewController {
         let flatten = fromDate.flatMap { $0 }
         flatten.forEach { highestLevel = max(Int($0.problemLevel), highestLevel) }
         
-        // 기록된 영상들의 정보 중 가장 많이 방문한 클라이밍장명을 반환
+        // 기록된 영상들의 정보 중 많이 방문한 클라이밍장명 Top3를 반환
         // 이후 개선을 통해 UserDefault에 가장 많이 방문한 클라이밍장을 저장할 수 있도록 한다면 성능 최적화가 용이하다고 생각됨
-        var (mostVisitedCount, mostVisitiedGymName): (Int, String) = (0, "")
+        var visitedGymCount: [(String, Int)] = []
+        var totalVisitCount: Int = 0
+//        var (mostVisitedCount, mostVisitiedGymName): (Int, String) = (0, "")
         fromName.forEach { videoListOfEachGym in
             var visitedCount = 0
             var tempDate = Calendar.current.date(byAdding: .day, value: -1, to: firstDate!)
@@ -191,15 +177,16 @@ class MyActivityViewController: UIViewController {
                 }
             }
             
-            if visitedCount > mostVisitedCount {
-                mostVisitedCount = visitedCount
-                mostVisitiedGymName = videoListOfEachGym.first?.gymName ?? ""
-            }
+            visitedGymCount.append((videoListOfEachGym.first!.gymName, visitedCount))
+            totalVisitCount += visitedCount
         }
         
-        return (firstDate, highestLevel, (mostVisitedCount, mostVisitiedGymName))
+        visitedGymCount.sort { $0.1 > $1.1 }
+        
+        visitedGymCount.removeSubrange(3..<visitedGymCount.count)
+        
+        return (firstDate, highestLevel, visitedGymCount, totalVisitCount)
     }
-    
     
     // [[VideoInformation]]을 인자로 받아와 차트를 그릴 데이터 모델, 레벨 분류가 된 영상의 전체 개수, 성공한 개수를 반환
     func getProblemsPerLevel(from: [[VideoInformation]]) -> ([ChartCellModel], Int, Int) {
@@ -291,6 +278,7 @@ class MyActivityViewController: UIViewController {
         
         from.forEach { setForLevel in
             mostFrequentLevel = setForLevel.problems.count > maxCount ? setForLevel.name : mostFrequentLevel
+            maxCount = setForLevel.problems.count > maxCount ? setForLevel.problems.count : maxCount
         }
         
         return mostFrequentLevel
