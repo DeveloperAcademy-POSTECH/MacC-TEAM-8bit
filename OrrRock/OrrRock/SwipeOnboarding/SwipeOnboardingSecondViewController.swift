@@ -19,6 +19,7 @@ class SwipeOnboardingSecondViewController: UIViewController {
     // 오토레이아웃의 시작점이 되는 값입니다. 변경시 류하에게 문의 주세요.
     let padding = 68
     var delegate: SwipeOnboardingViewControllerDelegate?
+    var changedLevelPicker = false
     
     private lazy var BackgroundView: EmptyBackgroundView = {
         let view = EmptyBackgroundView()
@@ -28,6 +29,14 @@ class SwipeOnboardingSecondViewController: UIViewController {
     private lazy var mainImageView: UIImageView = {
         let image = UIImage(named: "SwipeOnboardingImage2")
         let view = UIImageView(image: image)
+        return view
+    }()
+    
+//    let newLevelPickerView = LevelPickerViewController()
+    private lazy var newLevelPickerView: LevelPickerViewController = {
+        let view = LevelPickerViewController()
+        view.pickerSelectValue = 0
+        view.delegate = self
         return view
     }()
     
@@ -49,9 +58,21 @@ class SwipeOnboardingSecondViewController: UIViewController {
         setUpLayout()
     }
     
-    
 }
 
+extension SwipeOnboardingSecondViewController: NewLevelPickerViewDelegate{
+    
+    func didLevelChanged(selectedLevel: Int) {
+        guard changedLevelPicker else{
+            self.changedLevelPicker = true
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                self.pressNextButton()
+            }
+            return
+        }
+    }
+    
+}
 //MARK: 함수 모음
 extension SwipeOnboardingSecondViewController {
     
@@ -82,6 +103,14 @@ extension SwipeOnboardingSecondViewController {
             $0.trailing.equalTo(view.snp.trailing).offset(-padding)
             $0.height.equalTo(mainImageView.snp.width).multipliedBy(1.641)
         }
+
+        view.addSubview(newLevelPickerView)
+        newLevelPickerView.snp.makeConstraints {
+            $0.leading.equalTo(view.snp.leading)
+            $0.trailing.equalTo(view.snp.trailing)
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.equalTo(mainImageView.snp.top)
+        }
         
         view.addSubview(testButton)
         testButton.snp.makeConstraints{
@@ -94,4 +123,5 @@ extension SwipeOnboardingSecondViewController {
         
     }
 }
+
 
