@@ -61,7 +61,7 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
     
     private lazy var LevelLabel : UILabel = {
         let label = UILabel()
-        label.text = "레벨을 선택해 주세요."
+        label.text = "레벨을 선택해 주세요"
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.textColor = .orrBlack
         label.backgroundColor = .orrWhite
@@ -88,22 +88,16 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
     
     private lazy var failCheckButton : UIButton = {
         let button = UIButton()
-        button.layer.cornerRadius = isSuccess ? 30.5 : 37.5
-        button.alpha = isSuccess ? 0.3 : 1.0
         button.clipsToBounds = true
-        button.backgroundColor = .orrFail
-        button.setTitle("실패", for: .normal)
+        button.setImage(UIImage(named: "fail_icon"), for: .normal)
         button.addTarget(self, action: #selector(didFailButtonClicked), for: .touchUpInside)
         return button
     }()
     
     private lazy var successCheckButton : UIButton = {
         let button = UIButton()
-        button.layer.cornerRadius = isSuccess ? 37.5 : 30.5
-        button.alpha = isSuccess ? 1.0 : 0.3
         button.clipsToBounds = true
-        button.backgroundColor = .orrPass
-        button.setTitle("성공", for: .normal)
+        button.setImage(UIImage(named: "success_icon"), for: .normal)
         button.addTarget(self, action: #selector(didSuccessButtonClicked), for: .touchUpInside)
         return button
     }()
@@ -112,7 +106,6 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         let label = UILabel()
         label.textColor = .orrBlack
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        label.text = "이 문제는 완등하지 못했어요"
         return label
     }()
     
@@ -125,6 +118,7 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         btn.addTarget(self, action: #selector(pressSaveButton), for: .touchUpInside)
         btn.setTitle("저장", for: .normal)
         btn.setTitleColor(.white, for: .normal)
+        btn.isEnabled = false
         return btn
     }()
     
@@ -180,16 +174,16 @@ extension LevelAndPFEditViewController {
         successCheckButton.snp.makeConstraints {
             $0.centerY.equalTo(successLabel.snp.bottom).offset(61.5)
             $0.centerX.equalTo(LevelLabel.snp.centerX).offset(52)
-            $0.width.equalTo(isSuccess ? 75 : 61)
-            $0.height.equalTo(isSuccess ? 75 : 61)
+            $0.width.equalTo(80)
+            $0.height.equalTo(80)
         }
         
         levelContentView.addSubview(failCheckButton)
         failCheckButton.snp.makeConstraints {
             $0.centerY.equalTo(successLabel.snp.bottom).offset(61.5)
             $0.centerX.equalTo(LevelLabel.snp.centerX).offset(-52)
-            $0.width.equalTo(isSuccess ? 61 : 75)
-            $0.height.equalTo(isSuccess ? 61 : 75)
+            $0.width.equalTo(80)
+            $0.height.equalTo(80)
         }
         
         levelContentView.addSubview(saveButton)
@@ -203,7 +197,7 @@ extension LevelAndPFEditViewController {
         
         levelContentView.addSubview(indicateLabel)
         indicateLabel.snp.makeConstraints {
-            $0.top.equalTo(failCheckButton.snp.bottom).offset(OrrPd.pd16.rawValue)
+            $0.top.equalTo(successLabel).offset(145)
             $0.centerX.equalTo(levelContentView)
         }
         
@@ -222,41 +216,44 @@ extension LevelAndPFEditViewController {
     
     @objc func didSuccessButtonClicked(_ sender: UIButton){
         isSuccess = true
+        saveButton.isEnabled = true
         self.successCheckButton.snp.updateConstraints {
-            $0.height.equalTo(75)
-            $0.width.equalTo(75)
+            $0.height.equalTo(100)
+            $0.width.equalTo(100)
         }
         self.failCheckButton.snp.updateConstraints {
-            $0.height.equalTo(61)
-            $0.width.equalTo(61)
+            $0.height.equalTo(60)
+            $0.width.equalTo(60)
         }
         UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()
             self.successCheckButton.alpha = 1.0
             self.failCheckButton.alpha = 0.3
-            self.successCheckButton.layer.cornerRadius = 37.5
-            self.failCheckButton.layer.cornerRadius = 30.5
-            
+            self.successCheckButton.setImage(UIImage(named: "success_select"), for: .normal)
+            self.failCheckButton.setImage(UIImage(named: "fail_icon"), for: .normal)
+            self.indicateLabel.text = "이 문제는 완등했어요"
         }
         
     }
     
     @objc func didFailButtonClicked(_ sender: UIButton){
         isSuccess = false
+        saveButton.isEnabled = true
         self.failCheckButton.snp.updateConstraints {
-            $0.height.equalTo(75)
-            $0.width.equalTo(75)
+            $0.height.equalTo(100)
+            $0.width.equalTo(100)
         }
         self.successCheckButton.snp.updateConstraints {
-            $0.height.equalTo(61)
-            $0.width.equalTo(61)
+            $0.height.equalTo(60)
+            $0.width.equalTo(60)
         }
         UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()
             self.failCheckButton.alpha = 1.0
             self.successCheckButton.alpha = 0.3
-            self.failCheckButton.layer.cornerRadius = 37.5
-            self.successCheckButton.layer.cornerRadius = 30.5
+            self.failCheckButton.setImage(UIImage(named: "fail_select"), for: .normal)
+            self.successCheckButton.setImage(UIImage(named: "success_icon"), for: .normal)
+            self.indicateLabel.text = "이 문제는 완등하지 못했어요"
         }
     }
     
@@ -264,23 +261,6 @@ extension LevelAndPFEditViewController {
         isSuccess = videoInformation.isSucceeded
         selectLevel = Int(videoInformation.problemLevel)
         pickerView.selectRow(Int(videoInformation.problemLevel), inComponent: 0, animated: true)
-        if isSuccess{
-            self.successCheckButton.snp.updateConstraints {
-                $0.height.equalTo(75)
-                $0.width.equalTo(75)
-            }
-            self.failCheckButton.snp.updateConstraints {
-                $0.height.equalTo(61)
-                $0.width.equalTo(61)
-            }
-            UIView.animate(withDuration: 0.2) {
-                self.view.layoutIfNeeded()
-                self.successCheckButton.alpha = 1.0
-                self.failCheckButton.alpha = 0.3
-                self.successCheckButton.layer.cornerRadius = 37.5
-                self.failCheckButton.layer.cornerRadius = 30.5
-            }
-        }
     }
 }
 
