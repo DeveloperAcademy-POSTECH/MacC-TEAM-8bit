@@ -30,7 +30,7 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
     
     private lazy var gymTopView : UIView = {
         let view = UIView()
-        view.backgroundColor = .orrWhite
+        view.backgroundColor = .orrGray100
         
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {

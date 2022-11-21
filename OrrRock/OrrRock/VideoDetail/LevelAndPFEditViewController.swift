@@ -156,8 +156,8 @@ extension LevelAndPFEditViewController {
         
         levelContentView.addSubview(pickerView)
         pickerView.snp.makeConstraints {
-            $0.width.equalTo(levelContentView)
-            $0.leading.equalTo(levelContentView)
+            $0.leading.equalTo(levelContentView).offset(47)
+            $0.trailing.equalTo(levelContentView).offset(-47)
             $0.top.equalTo(LevelLabel.snp.bottom).offset(OrrPd.pd24.rawValue)
         }
         
