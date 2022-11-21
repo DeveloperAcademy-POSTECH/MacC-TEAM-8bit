@@ -72,7 +72,7 @@ class MyActivityViewController: UIViewController {
     }()
     
     private lazy var cardView: UIView = {
-        let VC = UIHostingController(rootView: MyCardView())
+        let VC = UIHostingController(rootView: MyCardView(firstDate: firstDateOfClimbing))
         VC.view.backgroundColor = .clear
         return VC.view
     }()
@@ -118,7 +118,7 @@ class MyActivityViewController: UIViewController {
     }()
     
     private lazy var historyView: UIView = {
-        let VC = UIHostingController(rootView: HistoryView(fromDate: firstDateOfClimbing))
+        let VC = UIHostingController(rootView: HistoryView(fromDate: firstDateOfClimbing, tapEditButton: editFirstDateOfClimbing))
         VC.view.backgroundColor = .clear
         return VC.view
     }()
@@ -137,6 +137,7 @@ class MyActivityViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         
         setUpData()
+        setUpSubViews()
         setUpLayout()
     }
     
@@ -144,7 +145,10 @@ class MyActivityViewController: UIViewController {
         let entireVideoInformationsByDate: [[VideoInformation]] = DataManager.shared.repository.sortVideoInformation(filterOption: .all, sortOption: .gymVisitDate)
         let entireVideoInformationsByName: [[VideoInformation]] = DataManager.shared.repository.sortVideoInformation(filterOption: .all, sortOption: .gymName)
         
-        (firstDateOfClimbing, highestLevelForSummary, frequentlyVisitedGymList, totalGymVisitedDate) = getSummaryData(fromDate: entireVideoInformationsByDate, fromName: entireVideoInformationsByName)
+        resetFirstDateOfClimbing(from: entireVideoInformationsByDate)
+        firstDateOfClimbing = UserDefaults.standard.string(forKey: "firstDateOfClimbing")?.stringToDate()
+        
+        (highestLevelForSummary, frequentlyVisitedGymList, totalGymVisitedDate) = getSummaryData(fromDate: entireVideoInformationsByDate, fromName: entireVideoInformationsByName)
         
         (entireProblemsForDonutChart, validTotalCountForDonutChart, validSuccessCountForDonutChart) = getProblemsPerLevel(from: entireVideoInformationsByDate)
         
@@ -153,12 +157,23 @@ class MyActivityViewController: UIViewController {
         entireSolvedProblemsForBarChart[2] = getSolvedProblemsPerPeriod(from: entireVideoInformationsByDate, period: .year)
     }
     
-    // 가장 처음 클라이밍장을 방문한 날짜, 혹은 사용자가 작성한 최초 클라이밍장 방문 날짜를 반환
-    func getSummaryData(fromDate: [[VideoInformation]], fromName: [[VideoInformation]]) -> (Date?, Int, [(String, Int)], Int) {
-        // 가장 처음 방문한 날짜를 반환, 기록이 없는 경우 nil 값을 반환
-        // TODO: 사용자의 설정에 의한 값이 받아와질 수 있도록 이후 추가해야함
-        let firstDate = fromDate.last?.first?.gymVisitDate ?? nil
+    func resetFirstDateOfClimbing(from: [[VideoInformation]]) {
+        guard let firstDate = from.last?.first?.gymVisitDate else {
+            UserDefaults.standard.set(Date().timeToString(), forKey: "firstDateOfClimbing")
+            return
+        }
         
+        if let userData = UserDefaults.standard.string(forKey: "firstDateOfClimbing") {
+            if firstDate < userData.stringToDate()! {
+                UserDefaults.standard.set(firstDate.timeToString(), forKey: "firstDateOfClimbing")
+            }
+        } else {
+            UserDefaults.standard.set(firstDate.timeToString(), forKey: "firstDateOfClimbing")
+        }
+    }
+    
+    // 가장 처음 클라이밍장을 방문한 날짜, 혹은 사용자가 작성한 최초 클라이밍장 방문 날짜를 반환
+    func getSummaryData(fromDate: [[VideoInformation]], fromName: [[VideoInformation]]) -> (Int, [(String, Int)], Int) {
         // 기록된 영상들의 정보 중 가장 높은 레벨을 반환
         // 이후 개선을 통해 UserDefault에 최고점에 대한 정보를 저장할 수 있도록 한다면 성능 최적화가 용이하다고 생각됨
         var highestLevel = -1
@@ -172,7 +187,7 @@ class MyActivityViewController: UIViewController {
         //        var (mostVisitedCount, mostVisitiedGymName): (Int, String) = (0, "")
         fromName.forEach { videoListOfEachGym in
             var visitedCount = 0
-            var tempDate = Calendar.current.date(byAdding: .day, value: -1, to: firstDate!)
+            var tempDate = Calendar.current.date(byAdding: .day, value: -1, to: firstDateOfClimbing!)
             
             videoListOfEachGym.forEach {
                 if tempDate != $0.gymVisitDate {
@@ -189,7 +204,7 @@ class MyActivityViewController: UIViewController {
         
         visitedGymCount.removeSubrange(3..<visitedGymCount.count)
         
-        return (firstDate, highestLevel, visitedGymCount, totalVisitCount)
+        return (highestLevel, visitedGymCount, totalVisitCount)
     }
     
     // [[VideoInformation]]을 인자로 받아와 차트를 그릴 데이터 모델, 레벨 분류가 된 영상의 전체 개수, 성공한 개수를 반환
@@ -288,25 +303,96 @@ class MyActivityViewController: UIViewController {
         return mostFrequentLevel
     }
     
+    private func editFirstDateOfClimbing() {
+        let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
+        let vc = FirstDateSettingViewController()
+        vc.completioHandler = { [self] date in
+            self.firstDateOfClimbing = date
+            redrawViewWithFirstDateOfClimbing()
+        }
+        viewController.present(vc, animated: true)
+    }
+    
+    func redrawViewWithFirstDateOfClimbing() {
+        
+        // myCardView
+        cardView.removeFromSuperview()
+        
+        let myCardVC = UIHostingController(rootView: MyCardView(firstDate: firstDateOfClimbing))
+        myCardVC.view.backgroundColor = .clear
+        cardView = myCardVC.view
+        
+        contentView.addSubview(cardView)
+        
+        // historyView
+        historyView.removeFromSuperview()
+        
+        let historyVC = UIHostingController(rootView: HistoryView(fromDate: firstDateOfClimbing, tapEditButton: editFirstDateOfClimbing))
+        historyVC.view.backgroundColor = .clear
+        historyView = historyVC.view
+        
+        contentView.addSubview(historyView)
+        
+        removeLayout()
+        setUpLayout()
+    }
+    
     @objc func tapCardSaveButton(_ sender: UIButton) {
         print("tap Save Button")
     }
 }
 
 extension MyActivityViewController {
-    func setUpLayout() {
+    func setUpSubViews() {
+        // Layout
         view.addSubview(DEBUGBackgroundView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(paddingView)
+        
+        // 내 활동
+        [cardTitle, cardSaveButton, cardView].forEach() {
+            contentView.addSubview($0)
+        }
+        
+        // 도전
+        [challengeTitle, challengeChartView, growthChartView].forEach() {
+            contentView.addSubview($0)
+        }
+        
+        // 정보
+        [informationTitle, homeGymChartView, historyView].forEach() {
+            contentView.addSubview($0)
+        }
+    }
+    
+    func removeLayout() {
+        // 내 활동
+        [cardTitle, cardSaveButton, cardView].forEach() {
+            $0.snp.removeConstraints()
+        }
+        
+        // 도전
+        [challengeTitle, challengeChartView, growthChartView].forEach() {
+            $0.snp.removeConstraints()
+        }
+        
+        // 정보
+        [informationTitle, homeGymChartView, historyView].forEach() {
+            $0.snp.removeConstraints()
+        }
+    }
+    
+    func setUpLayout() {
         DEBUGBackgroundView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
-        view.addSubview(scrollView)
         scrollView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(OrrPd.pd16.rawValue)
             $0.top.bottom.equalToSuperview()
         }
         
-        scrollView.addSubview(contentView)
         contentView.snp.makeConstraints {
             $0.centerX.width.equalToSuperview()
             $0.top.bottom.equalToSuperview()
@@ -315,62 +401,52 @@ extension MyActivityViewController {
         }
         
         // 내 활동
-        contentView.addSubview(cardTitle)
         cardTitle.snp.makeConstraints {
             $0.leading.top.equalToSuperview()
         }
         
-        contentView.addSubview(cardSaveButton)
         cardSaveButton.snp.makeConstraints {
             $0.trailing.top.equalToSuperview()
             $0.height.equalTo(cardTitle.snp.height)
         }
         
-        contentView.addSubview(cardView)
         cardView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(cardTitle.snp.bottom).offset(OrrPd.pd16.rawValue)
         }
         
         // 도전
-        contentView.addSubview(challengeTitle)
         challengeTitle.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(cardView.snp.bottom).offset(OrrPd.pd36.rawValue)
         }
         
-        contentView.addSubview(challengeChartView)
         challengeChartView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(challengeTitle.snp.bottom).offset(OrrPd.pd16.rawValue)
         }
         
-        contentView.addSubview(growthChartView)
         growthChartView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(challengeChartView.snp.bottom).offset(OrrPd.pd16.rawValue)
         }
         
         // 정보
-        contentView.addSubview(informationTitle)
         informationTitle.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(growthChartView.snp.bottom).offset(OrrPd.pd36.rawValue)
         }
         
-        contentView.addSubview(homeGymChartView)
         homeGymChartView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(informationTitle.snp.bottom).offset(OrrPd.pd16.rawValue)
         }
         
-        contentView.addSubview(historyView)
         historyView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(homeGymChartView.snp.bottom).offset(OrrPd.pd16.rawValue)
         }
         
-        contentView.addSubview(paddingView)
         paddingView.snp.makeConstraints {
             $0.leading.trailing.equalTo(contentView)
             $0.top.equalTo(historyView.snp.bottom)

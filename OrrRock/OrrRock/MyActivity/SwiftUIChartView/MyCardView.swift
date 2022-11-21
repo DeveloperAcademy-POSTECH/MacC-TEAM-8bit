@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MyCardView: View {
+    let firstDate: Date?
+    
     var body: some View {
         ZStack(alignment: .center) {
             Image("CardLevel0")
@@ -18,7 +20,7 @@ struct MyCardView: View {
                     .font(.system(size: 17, weight: .regular))
                     .foregroundColor(Color(uiColor: UIColor.orrWhite!))
                 
-                Text("\(352)일")
+                Text("\(Calendar.current.dateComponents([.day], from: firstDate ?? Date(), to: Date()).day! + 1)일")
                     .font(.system(size: 28, weight: .bold))
                     .foregroundColor(Color(uiColor: UIColor.orrWhite!))
                 

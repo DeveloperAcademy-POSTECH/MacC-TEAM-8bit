@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HistoryView: View {
     let fromDate: Date?
-//    let tapEditButton: (() -> Void)
+    let tapEditButton: (() -> Void)
     
     var body: some View {
         ZStack {
@@ -33,7 +33,7 @@ struct HistoryView: View {
                     }
                     Spacer()
                     Button {
-//                        tapEditButton()
+                        tapEditButton()
                     } label: {
                         Text("편집")
                     }
