@@ -71,7 +71,6 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
         return view
     }()
     
-    
     private lazy var dateTopView : UIView = {
         let view = UIView()
         view.backgroundColor = .orrWhite
@@ -184,7 +183,8 @@ extension DateEditViewController {
         self.dismiss(animated: true)
     }
     
-    @objc func didCancelButtonClicked(_ sender: UIBarButtonItem){
+    @objc
+    func didCancelButtonClicked(_ sender: UIBarButtonItem){
         self.dismiss(animated: true)
     }
 }

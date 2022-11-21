@@ -242,7 +242,8 @@ extension GymEditViewController {
         self.dismiss(animated: true)
     }
     
-    @objc func didCancelButtonClicked(_ sender: UIBarButtonItem){
+    @objc
+    func didCancelButtonClicked(_ sender: UIBarButtonItem){
         self.dismiss(animated: true)
     }
 }
