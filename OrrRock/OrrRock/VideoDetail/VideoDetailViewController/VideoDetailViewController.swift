@@ -114,7 +114,7 @@ class VideoDetailViewController: UIViewController {
         playButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(playVideoAction))
         iconSpace.width = 8.4
         
-        [soundButton,iconSpace,flexibleSpace,playButton,flexibleSpace,flexibleSpace,infoButton,flexibleSpace,trashButton].forEach {
+        [playButton,iconSpace,flexibleSpace,soundButton,flexibleSpace,flexibleSpace,infoButton,flexibleSpace,trashButton].forEach {
             items.append($0)
         }
         self.toolbarItems = items
