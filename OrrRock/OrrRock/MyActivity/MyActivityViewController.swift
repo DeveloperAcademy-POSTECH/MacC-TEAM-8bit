@@ -52,6 +52,10 @@ class MyActivityViewController: UIViewController {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.contentInset = UIEdgeInsets(top: 70, left: 0, bottom: 0, right: 0)
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshView(_:)), for: .valueChanged)
+        scrollView.refreshControl = refreshControl
+        
         return scrollView
     }()
     
@@ -145,7 +149,7 @@ class MyActivityViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        self.navigationController?.navigationBar.isHidden = true
+        //        self.navigationController?.navigationBar.isHidden = true
         self.navigationController?.navigationBar.backgroundColor = .clear
         self.navigationController?.isNavigationBarHidden = true
         
@@ -350,7 +354,7 @@ class MyActivityViewController: UIViewController {
         setUpLayout()
     }
     
-    @objc func tapCardSaveButton(_ sender: UIButton) {        
+    @objc func tapCardSaveButton(_ sender: UIButton) {
         let card: UIView = {
             let VC = UIHostingController(rootView: ExportCardView(firstDate: firstDateOfClimbing, highestLevel: highestLevel, homeGymName: frequentlyVisitedGymList[0].0))
             VC.view.backgroundColor = .clear
@@ -365,12 +369,19 @@ class MyActivityViewController: UIViewController {
         shareObject.append(card.asImage())
         card.removeFromSuperview()
         
-
+        
         let activityViewController = UIActivityViewController(activityItems : shareObject, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
-
+        
         self.present(activityViewController, animated: true, completion: nil)
-//        UIImageWriteToSavedPhotosAlbum(card.asImage(), self, nil, nil)
+    }
+    
+    @objc func refreshView(_ sender: UIRefreshControl) {
+        print("refresh")
+        
+        refreshView()
+        
+        sender.endRefreshing()
     }
 }
 
@@ -500,6 +511,53 @@ extension MyActivityViewController {
             $0.bottom.equalToSuperview()
             $0.height.equalTo(OrrPd.pd72.rawValue)
         }
+    }
+    
+    func refreshView() {
+        // 도전 차트
+        challengeChartView.removeFromSuperview()
+        
+        let challengeChartVC = UIHostingController(rootView: ChallengeChartView(chartData: ChartDataModel(dataModel: entireProblemsForDonutChart), totalCount: validTotalCountForDonutChart, successCount: validSuccessCountForDonutChart))
+        challengeChartVC.view.backgroundColor = .clear
+        challengeChartView = challengeChartVC.view
+        
+        contentView.addSubview(challengeChartView)
+        
+        // 성장 차트
+        growthChartView.removeFromSuperview()
+        
+        var mostFrequentLevelForPeriod: [String] = ["", "", ""]
+        mostFrequentLevelForPeriod[0] = getMostFrequentLevelOfList(from: entireSolvedProblemsForBarChart[0])
+        mostFrequentLevelForPeriod[1] = getMostFrequentLevelOfList(from: entireSolvedProblemsForBarChart[1])
+        mostFrequentLevelForPeriod[2] = getMostFrequentLevelOfList(from: entireSolvedProblemsForBarChart[2])
+        
+        let growthChartVC = UIHostingController(rootView: GrowthChartView(chartData: entireSolvedProblemsForBarChart, mostFrequentLevelForPeriod: mostFrequentLevelForPeriod))
+        growthChartVC.view.backgroundColor = .clear
+        growthChartView = growthChartVC.view
+        
+        contentView.addSubview(growthChartView)
+        
+        // 홈짐 차트
+        homeGymChartView.removeFromSuperview()
+        
+        let homeGymChartVC = UIHostingController(rootView: HomeGymChartView(mostFrequentlyVisitedGymList: frequentlyVisitedGymList, totalGymVisitedDate: totalGymVisitedDate))
+        homeGymChartVC.view.backgroundColor = .clear
+        homeGymChartView = homeGymChartVC.view
+        
+        contentView.addSubview(homeGymChartView)
+        
+        // 경력 차트
+        historyView.removeFromSuperview()
+        
+        let historyVC = UIHostingController(rootView: HistoryView(fromDate: firstDateOfClimbing, tapEditButton: editFirstDateOfClimbing))
+        historyVC.view.backgroundColor = .clear
+        historyView = historyVC.view
+        
+        contentView.addSubview(historyView)
+        
+        // 레이아웃 재배치
+        removeLayout()
+        setUpLayout()
     }
 }
 
