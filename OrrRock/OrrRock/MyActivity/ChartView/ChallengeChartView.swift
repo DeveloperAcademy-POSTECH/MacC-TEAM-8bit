@@ -5,44 +5,74 @@
 //  Created by Park Sungmin on 2022/11/19.
 //  https://tutorial101.blogspot.com/2021/08/swiftui-pie-chart.html
 
+import Charts
 import SwiftUI
 
 struct ChallengeChartView: View {
     let chartData: ChartDataModel
-//    = ChartDataModel.init(dataModel: sampleData)
+    //    = ChartDataModel.init(dataModel: sampleData)
     let totalCount: Int
     let successCount: Int
     
     var body: some View {
         ZStack {
-            HStack {
+            VStack(alignment: .leading) {
+                Label("모든 도전", systemImage: "wallet.pass.fill")
+                    .font(.system(size: 17, weight: .bold))
+                    .foregroundColor(Color(uiColor: UIColor.orrBlack!))
+                
+                // 차트
                 ZStack{
-                    PieChart(dataSource: chartData)
-                    Circle()
-                        .foregroundColor(Color.white)
-                        .padding(40)
-                }
-                Spacer()
-                HStack{
-                    VStack(alignment: .trailing) {
-                        HStack(alignment: .bottom) {
-                            Text("\(totalCount)")
-                                .font(.system(size: 50))
-                            Text("도전")
-                                .font(.system(size: 30))
-                        }
-                        HStack(alignment: .bottom) {
-                            Text("\(successCount)")
-                                .font(.system(size: 50))
-                            Text("성공")
-                                .font(.system(size: 30))
+                    HStack {
+                        Text("\(0)")
+                            .font(.system(size: 12, weight: .regular))
+                            .foregroundColor(Color(uiColor: UIColor.orrGray400!))
+                        Spacer()
+                        Text("\(totalCount)")
+                            .font(.system(size: 12, weight: .regular))
+                            .foregroundColor(Color(uiColor: UIColor.orrGray400!))
+                    }
+                    .padding(.horizontal, 4)
+                    .frame(height: 28, alignment: .bottom)
+                    .overlay(Rectangle().frame(width: 1, height: nil, alignment: .leading).foregroundColor(Color(uiColor: UIColor.orrGray400!)), alignment: .leading)
+                    .overlay(Rectangle().frame(width: 1, height: nil, alignment: .trailing).foregroundColor(Color(uiColor: UIColor.orrGray400!)), alignment: .trailing)
+
+                    
+                    
+                    Chart {
+                        BarMark(x: .value("name", successCount))
+                            .cornerRadius(10)
+                    }
+                    .frame(height: 28)
+                    .chartXScale(domain: 0...totalCount)
+                    .chartXAxis {
+                        AxisMarks(position: .bottom) { value in
+                            AxisGridLine(centered: true, stroke: StrokeStyle(dash: [1, 3]))
+                            AxisTick(centered: true, stroke: StrokeStyle(dash: [1, 2]))
+                            AxisValueLabel() {                                
+                                if let intValue = value.as(Int.self) {
+                                    Text("")
+                                        .font(.system(size: 10))
+                                }
+                            }
                         }
                     }
+                    .chartYAxis(.hidden)
+                }
+                
+                HStack() {
+                    Text("\(successCount)번의 성공")
+                        .font(.system(size: 15, weight: .regular))
+                        .foregroundColor(Color(uiColor: UIColor.orrGray700!))
+                    Spacer()
+                    Text("\(totalCount)번의 도전")
+                        .font(.system(size: 15, weight: .regular))
+                        .foregroundColor(Color(uiColor: UIColor.orrGray700!))
                 }
             }
             .padding()
         }
-        .frame(width: UIScreen.main.bounds.width - 32, height: 240)
+        .frame(width: UIScreen.main.bounds.width - 32, height: 130)
         .background(RoundedRectangle(cornerRadius: 15).foregroundColor(.white))
     }
 }
@@ -57,7 +87,7 @@ struct ChallengeChartView_Previews: PreviewProvider {
 struct PieChart: View {
     @State private var selectedCell: UUID = UUID()
     let chartColor: [Color] = [Color(uiColor: .lightGray), .yellow, .orange, .green, .blue, .red, .purple, Color(uiColor: .darkGray), .brown, .black]
-
+    
     let dataSource: ChartDataModel
     var body: some View {
         ZStack {

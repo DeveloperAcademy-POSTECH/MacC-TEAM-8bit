@@ -344,7 +344,6 @@
 				3A08879E29012CC300EFFDBB /* CoreData */,
 				3AEB3D5E291C01B000A989FF /* OnBoarding */,
 				3AEB3D5F291C027B00A989FF /* Home */,
-				78FEE88929261641007B67BD /* VideoCollection */,
 				3AEB3D60291C02F000A989FF /* VideoDetail */,
 				3AEB3D64291C04CE00A989FF /* Upload */,
 				3AA4D41E28FEBADE006C718A /* AppDelegate.swift */,
@@ -392,6 +391,7 @@
 		3AEB3D60291C02F000A989FF /* VideoDetail */ = {
 			isa = PBXGroup;
 			children = (
+				78FEE88929261641007B67BD /* VideoCollection */,
 				78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */,
 				341418BC2923A6FF0033D851 /* DateAndGymEditViewController+TableViewExtensions.swift */,
 				78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */,
