@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension DateAndGymEditViewController: UITableViewDataSource {
+extension GymEditViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return min(maxTableViewCellCount, filteredVisitedGymList.count)
     }
@@ -22,7 +22,7 @@ extension DateAndGymEditViewController: UITableViewDataSource {
     }
 }
 
-extension DateAndGymEditViewController: UITableViewDelegate {
+extension GymEditViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
@@ -35,7 +35,7 @@ extension DateAndGymEditViewController: UITableViewDelegate {
     }
 }
 
-extension DateAndGymEditViewController: AutocompleteTableViewCellDelegate {
+extension GymEditViewController: AutocompleteTableViewCellDelegate {
     func tapDeleteButton(deleteTarget: VisitedClimbingGym) {
         DataManager.shared.deleteVisitedClimbingGym(deleteTarget: deleteTarget)
         visitedGymList = DataManager.shared.repository.visitedClimbingGyms

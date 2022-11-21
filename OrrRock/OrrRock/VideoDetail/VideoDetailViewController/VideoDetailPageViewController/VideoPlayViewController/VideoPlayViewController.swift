@@ -102,4 +102,8 @@ extension VideoPlayViewController{
     override func viewWillDisappear(_ animated: Bool) {
         self.queuePlayer.isMuted = true
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.queuePlayer.removeAllItems()
+    }
 }
