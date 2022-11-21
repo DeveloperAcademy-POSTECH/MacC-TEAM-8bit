@@ -231,12 +231,13 @@
 			isa = PBXGroup;
 			children = (
 				3405BE5E2927DA9600D6E15A /* MyActivityViewController.swift */,
-				3405BE602927DC6700D6E15A /* ChartView */,
+				3405BE602927DC6700D6E15A /* SwiftUIChartView */,
+				34E11EC0292BEBF200787316 /* View */,
 			);
 			path = MyActivity;
 			sourceTree = "<group>";
 		};
-		3405BE602927DC6700D6E15A /* ChartView */ = {
+		3405BE602927DC6700D6E15A /* SwiftUIChartView */ = {
 			isa = PBXGroup;
 			children = (
 				3405BE662927E03300D6E15A /* SummaryView.swift */,
@@ -246,7 +247,7 @@
 				34172EB6292B41D1009DAAB8 /* HomeGymChartView.swift */,
 				34172EB8292B41F8009DAAB8 /* HistoryView.swift */,
 			);
-			path = ChartView;
+			path = SwiftUIChartView;
 			sourceTree = "<group>";
 		};
 		341418B92922A3630033D851 /* Cell */ = {
@@ -291,6 +292,13 @@
 				700AC6202926A1DA003DF5AF /* UIImageView+.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		34E11EC0292BEBF200787316 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		3A08879E29012CC300EFFDBB /* CoreData */ = {
