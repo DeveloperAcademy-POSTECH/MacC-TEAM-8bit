@@ -104,7 +104,7 @@ class VideoDetailViewController: UIViewController {
         navigationController?.toolbar.backgroundColor = .orrWhite
         
         navigationItem.leftBarButtonItem = goBackButton
-        navigationItem.rightBarButtonItem = favoriteButton
+       
         
         // 툴바 버튼 아이템 생성
         infoButton = UIBarButtonItem(image: UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle"), style: .plain, target: self, action: #selector(showInfo))
@@ -114,7 +114,7 @@ class VideoDetailViewController: UIViewController {
         playButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(playVideoAction))
         iconSpace.width = 8.4
         
-        [playButton,iconSpace,flexibleSpace,soundButton,flexibleSpace,flexibleSpace,infoButton,flexibleSpace,trashButton].forEach {
+        [favoriteButton,flexibleSpace,playButton,iconSpace,flexibleSpace,soundButton,flexibleSpace,infoButton,flexibleSpace,trashButton].forEach {
             items.append($0)
         }
         self.toolbarItems = items
@@ -246,7 +246,6 @@ extension VideoDetailViewController {
             self.topSafeAreaView.layer.opacity = 1
             // 키보드의 유무에 따라 버튼 옵션 변경
             navigationItem.leftBarButtonItem = isShowKeyboard ? cancelButton : goBackButton
-            navigationItem.rightBarButtonItem = isShowKeyboard ? completeButton : favoriteButton
             feedbackText = videoInfoView.feedbackTextView.text!
             DataManager.shared.updateFeedback(videoInformation: currentVideoInformation!, feedback: feedbackText!)
             navigationController?.interactivePopGestureRecognizer?.isEnabled = false
@@ -260,7 +259,6 @@ extension VideoDetailViewController {
             self.topSafeAreaView.layer.opacity = 0
             // 키보드의 유무에 따라 버튼 옵션 변경
             navigationItem.leftBarButtonItem = isShowKeyboard ? cancelButton : goBackButton
-            navigationItem.rightBarButtonItem = isShowKeyboard ? completeButton : favoriteButton
             feedbackText = videoInfoView.feedbackTextView.text!
             DataManager.shared.updateFeedback(videoInformation: currentVideoInformation!, feedback: feedbackText!)
             navigationController?.interactivePopGestureRecognizer?.isEnabled = true
