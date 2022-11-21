@@ -10,14 +10,23 @@
 		0A0B41072907C59600057FA7 /* LevelAndPFSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B41062907C59600057FA7 /* LevelAndPFSettingViewController.swift */; };
 		0A0B410D2907C79200057FA7 /* VideoResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B410C2907C79200057FA7 /* VideoResultType.swift */; };
 		0AAB780A290424A300EEEFFB /* SwipeableCardVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */; };
+		341418B42922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341418B32922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift */; };
+		341418B6292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341418B5292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift */; };
+		341418B82922A2500033D851 /* GymSettingViewController+TableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341418B72922A2500033D851 /* GymSettingViewController+TableViewExtensions.swift */; };
+		341418BB2922A3800033D851 /* AutocompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341418BA2922A3800033D851 /* AutocompleteTableViewCell.swift */; };
+		341418BD2923A6FF0033D851 /* DateAndGymEditViewController+TableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341418BC2923A6FF0033D851 /* DateAndGymEditViewController+TableViewExtensions.swift */; };
 		342508A329001780000653D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A229001780000653D9 /* HomeViewController.swift */; };
 		342508A52900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A42900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift */; };
-		342508A729001BBC000653D9 /* HomeCollectionViewCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A629001BBC000653D9 /* HomeCollectionViewCardCell.swift */; };
-		342508A929001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A829001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift */; };
+		342508A729001BBC000653D9 /* HomeTableViewCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A629001BBC000653D9 /* HomeTableViewCardCell.swift */; };
+		342508A929001C2E000653D9 /* HomeTableViewCardCell+CollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A829001C2E000653D9 /* HomeTableViewCardCell+CollectionViewExtensions.swift */; };
 		342508AB29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508AA29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift */; };
 		342508AF29002F31000653D9 /* HomeCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508AE29002F31000653D9 /* HomeCollectionViewHeaderCell.swift */; };
-		342C456E290125260037D9E7 /* HomeCollectionViewListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C456D290125260037D9E7 /* HomeCollectionViewListCell.swift */; };
+		342C456E290125260037D9E7 /* HomeTableViewListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C456D290125260037D9E7 /* HomeTableViewListCell.swift */; };
 		342C457029018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C456F29018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift */; };
+		34793F9F29251E4B00B74110 /* BetterSegmentedControl in Frameworks */ = {isa = PBXBuildFile; productRef = 34793F9E29251E4B00B74110 /* BetterSegmentedControl */; };
+		34793FA329262A8800B74110 /* CustomBackBarButtomItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34793FA229262A8800B74110 /* CustomBackBarButtomItem.swift */; };
+		34E76F462924D33E00EBB92D /* HomeTableViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E76F452924D33E00EBB92D /* HomeTableViewFooter.swift */; };
+		34EC54582924C93B00EE558E /* HomeTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EC54572924C93B00EE558E /* HomeTableViewHeader.swift */; };
 		3A15AC7729071DD90058512F /* OrderOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC7629071DD90058512F /* OrderOption.swift */; };
 		3A15AC7929071F710058512F /* DataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC7829071F710058512F /* DataRepository.swift */; };
 		3A15AC7B290724620058512F /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC7A290724620058512F /* DataManager.swift */; };
@@ -38,9 +47,10 @@
 		3AA4D42E28FEBADF006C718A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA4D42C28FEBADF006C718A /* LaunchScreen.storyboard */; };
 		3AA4D43728FEBE94006C718A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA4D43628FEBE94006C718A /* SnapKit */; };
 		3AEB3D5D291C003D00A989FF /* VideoCollectionViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */; };
+		700AC6212926A1DA003DF5AF /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700AC6202926A1DA003DF5AF /* UIImageView+.swift */; };
 		707B2CAE28FFF7090062C958 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 707B2CAD28FFF7090062C958 /* NVActivityIndicatorView */; };
 		707B2CB829012BFE0062C958 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB729012BFE0062C958 /* Color+.swift */; };
-		707B2CBA2901382A0062C958 /* OrrPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB92901382A0062C958 /* OrrPadding.swift */; };
+		707B2CBA2901382A0062C958 /* OrrPd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB92901382A0062C958 /* OrrPd.swift */; };
 		709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709A8C6A2904827B00CEA6F4 /* UnderlinedTextField.swift */; };
 		709A8C6D2904A3E800CEA6F4 /* CustomIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709A8C6C2904A3E800CEA6F4 /* CustomIndicator.swift */; };
 		70A44805290440E600BE18A5 /* DateSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A44804290440E600BE18A5 /* DateSettingViewController.swift */; };
@@ -49,18 +59,31 @@
 		70A8DF05291403EA0061E36B /* GymSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8DF04291403EA0061E36B /* GymSettingModel.swift */; };
 		70A8DF08291966E20061E36B /* SwipeableCardVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8DF07291966E20061E36B /* SwipeableCardVideoModel.swift */; };
 		70A8DF0A291A863F0061E36B /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8DF09291A863F0061E36B /* UIView+.swift */; };
+		70DE795A29250F480009AD43 /* SwipeOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE795929250F480009AD43 /* SwipeOnboardingViewController.swift */; };
+		70DE795C292517330009AD43 /* SwipeOnboardingFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE795B292517330009AD43 /* SwipeOnboardingFirstViewController.swift */; };
+		70DE795E29253F050009AD43 /* EmptyBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE795D29253F050009AD43 /* EmptyBackgroundView.swift */; };
+		70DE79602926383E0009AD43 /* SwipeOnboardingSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE795F2926383E0009AD43 /* SwipeOnboardingSecondViewController.swift */; };
+		70DE796229263A570009AD43 /* SwipeOnboardingThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE796129263A570009AD43 /* SwipeOnboardingThirdViewController.swift */; };
+		70DE7964292640FF0009AD43 /* SwipeOnboardingFourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE7963292640FF0009AD43 /* SwipeOnboardingFourthViewController.swift */; };
+		70DE79662926524D0009AD43 /* SwipeOnboardingFifthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE79652926524D0009AD43 /* SwipeOnboardingFifthViewController.swift */; };
+		70E8E7542923865400793F91 /* OnBoardigSuperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E8E7532923865400793F91 /* OnBoardigSuperViewController.swift */; };
 		78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */; };
 		78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0354F290132D300FF1913 /* VideoCollectionViewCustomCell.swift */; };
 		78CAA0662901F7A9003C3D77 /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA0652901F7A9003C3D77 /* BasePaddingLabel.swift */; };
 		78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA0672901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift */; };
 		78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA069290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift */; };
 		78CAA06C290271E7003C3D77 /* VIdeoCollectionFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA06B290271E7003C3D77 /* VIdeoCollectionFooterCell.swift */; };
-		78F56F68291A67CA00174B74 /* OnBoardingViewControllerSecond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F56F67291A67CA00174B74 /* OnBoardingViewControllerSecond.swift */; };
-		78F56F6A291A67D500174B74 /* OnBoardingViewControllerThird.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F56F69291A67D500174B74 /* OnBoardingViewControllerThird.swift */; };
 		78F56F6C291A67FA00174B74 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F56F6B291A67FA00174B74 /* OnBoardingViewController.swift */; };
 		78F93ED32906EFC500F3D9F3 /* DateAndGymEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */; };
 		78F93ED7290743DF00F3D9F3 /* LevelAndPFEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */; };
-		78F93EDA2908D00F00F3D9F3 /* OnBoardingViewControllerFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED92908D00F00F3D9F3 /* OnBoardingViewControllerFirst.swift */; };
+		78FEE88B292616BC007B67BD /* VideoDetailViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */; };
+		78FEE88F2926A23B007B67BD /* VideoPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE88E2926A23B007B67BD /* VideoPlayViewController.swift */; };
+		78FEE8912926A599007B67BD /* VideoDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE8902926A599007B67BD /* VideoDetailPageViewController.swift */; };
+		78FEE895292916E4007B67BD /* VideoPlayViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE894292916E4007B67BD /* VideoPlayViewController+Extensions.swift */; };
+		78FEE89729291A19007B67BD /* VideoDetailViewController+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE89629291A19007B67BD /* VideoDetailViewController+Protocol.swift */; };
+		78FEE89929291AC9007B67BD /* VideoDetailPageViewController+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE89829291AC9007B67BD /* VideoDetailPageViewController+Protocol.swift */; };
+		78FEE89B29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE89A29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift */; };
+		A81992C42927E48B00F024CA /* VideoSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81992C32927E48B00F024CA /* VideoSlider.swift */; };
 		A88805852907F5A0002CD52E /* LevelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88805842907F5A0002CD52E /* LevelPickerView.swift */; };
 		FB3227FC2903FD9C00276A7D /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3227FB2903FD9C00276A7D /* Date+.swift */; };
 		FB3227FE2903FDA600276A7D /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3227FD2903FDA600276A7D /* String+.swift */; };
@@ -74,14 +97,22 @@
 		0A0B41062907C59600057FA7 /* LevelAndPFSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelAndPFSettingViewController.swift; sourceTree = "<group>"; };
 		0A0B410C2907C79200057FA7 /* VideoResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoResultType.swift; sourceTree = "<group>"; };
 		0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardVideoView.swift; sourceTree = "<group>"; };
+		341418B32922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VisitedClimbingGym+CoreDataClass.swift"; sourceTree = "<group>"; };
+		341418B5292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VisitedClimbingGym+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		341418B72922A2500033D851 /* GymSettingViewController+TableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GymSettingViewController+TableViewExtensions.swift"; sourceTree = "<group>"; };
+		341418BA2922A3800033D851 /* AutocompleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteTableViewCell.swift; sourceTree = "<group>"; };
+		341418BC2923A6FF0033D851 /* DateAndGymEditViewController+TableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateAndGymEditViewController+TableViewExtensions.swift"; sourceTree = "<group>"; };
 		342508A229001780000653D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		342508A42900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+CollectionViewExtensions.swift"; sourceTree = "<group>"; };
-		342508A629001BBC000653D9 /* HomeCollectionViewCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCardCell.swift; sourceTree = "<group>"; };
-		342508A829001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeCollectionViewCardCell+CollectionViewExtensions.swift"; sourceTree = "<group>"; };
+		342508A629001BBC000653D9 /* HomeTableViewCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCardCell.swift; sourceTree = "<group>"; };
+		342508A829001C2E000653D9 /* HomeTableViewCardCell+CollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeTableViewCardCell+CollectionViewExtensions.swift"; sourceTree = "<group>"; };
 		342508AA29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardCollectionViewThumbnailCell.swift; sourceTree = "<group>"; };
 		342508AE29002F31000653D9 /* HomeCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
-		342C456D290125260037D9E7 /* HomeCollectionViewListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewListCell.swift; sourceTree = "<group>"; };
+		342C456D290125260037D9E7 /* HomeTableViewListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewListCell.swift; sourceTree = "<group>"; };
 		342C456F29018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewFooterCell.swift; sourceTree = "<group>"; };
+		34793FA229262A8800B74110 /* CustomBackBarButtomItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackBarButtomItem.swift; sourceTree = "<group>"; };
+		34E76F452924D33E00EBB92D /* HomeTableViewFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewFooter.swift; sourceTree = "<group>"; };
+		34EC54572924C93B00EE558E /* HomeTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewHeader.swift; sourceTree = "<group>"; };
 		3A15AC7629071DD90058512F /* OrderOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderOption.swift; sourceTree = "<group>"; };
 		3A15AC7829071F710058512F /* DataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepository.swift; sourceTree = "<group>"; };
 		3A15AC7A290724620058512F /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -103,8 +134,9 @@
 		3AA4D42D28FEBADF006C718A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AA4D42F28FEBADF006C718A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewMode.swift; sourceTree = "<group>"; };
+		700AC6202926A1DA003DF5AF /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		707B2CB729012BFE0062C958 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
-		707B2CB92901382A0062C958 /* OrrPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrrPadding.swift; sourceTree = "<group>"; };
+		707B2CB92901382A0062C958 /* OrrPd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrrPd.swift; sourceTree = "<group>"; };
 		709A8C6A2904827B00CEA6F4 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		709A8C6C2904A3E800CEA6F4 /* CustomIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIndicator.swift; sourceTree = "<group>"; };
 		70A44804290440E600BE18A5 /* DateSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSettingViewController.swift; sourceTree = "<group>"; };
@@ -113,18 +145,31 @@
 		70A8DF04291403EA0061E36B /* GymSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymSettingModel.swift; sourceTree = "<group>"; };
 		70A8DF07291966E20061E36B /* SwipeableCardVideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardVideoModel.swift; sourceTree = "<group>"; };
 		70A8DF09291A863F0061E36B /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		70DE795929250F480009AD43 /* SwipeOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnboardingViewController.swift; sourceTree = "<group>"; };
+		70DE795B292517330009AD43 /* SwipeOnboardingFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnboardingFirstViewController.swift; sourceTree = "<group>"; };
+		70DE795D29253F050009AD43 /* EmptyBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyBackgroundView.swift; sourceTree = "<group>"; };
+		70DE795F2926383E0009AD43 /* SwipeOnboardingSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnboardingSecondViewController.swift; sourceTree = "<group>"; };
+		70DE796129263A570009AD43 /* SwipeOnboardingThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnboardingThirdViewController.swift; sourceTree = "<group>"; };
+		70DE7963292640FF0009AD43 /* SwipeOnboardingFourthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnboardingFourthViewController.swift; sourceTree = "<group>"; };
+		70DE79652926524D0009AD43 /* SwipeOnboardingFifthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnboardingFifthViewController.swift; sourceTree = "<group>"; };
+		70E8E7532923865400793F91 /* OnBoardigSuperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardigSuperViewController.swift; sourceTree = "<group>"; };
 		78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewController.swift; sourceTree = "<group>"; };
 		78A0354F290132D300FF1913 /* VideoCollectionViewCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCustomCell.swift; sourceTree = "<group>"; };
 		78CAA0652901F7A9003C3D77 /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
 		78CAA0672901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoCollectionView+VideoCollectionViewExtensions.swift"; sourceTree = "<group>"; };
 		78CAA069290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
 		78CAA06B290271E7003C3D77 /* VIdeoCollectionFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIdeoCollectionFooterCell.swift; sourceTree = "<group>"; };
-		78F56F67291A67CA00174B74 /* OnBoardingViewControllerSecond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewControllerSecond.swift; sourceTree = "<group>"; };
-		78F56F69291A67D500174B74 /* OnBoardingViewControllerThird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewControllerThird.swift; sourceTree = "<group>"; };
 		78F56F6B291A67FA00174B74 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAndGymEditViewController.swift; sourceTree = "<group>"; };
 		78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelAndPFEditViewController.swift; sourceTree = "<group>"; };
-		78F93ED92908D00F00F3D9F3 /* OnBoardingViewControllerFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewControllerFirst.swift; sourceTree = "<group>"; };
+		78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoDetailViewController+Extensions.swift"; sourceTree = "<group>"; };
+		78FEE88E2926A23B007B67BD /* VideoPlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayViewController.swift; sourceTree = "<group>"; };
+		78FEE8902926A599007B67BD /* VideoDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailPageViewController.swift; sourceTree = "<group>"; };
+		78FEE894292916E4007B67BD /* VideoPlayViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoPlayViewController+Extensions.swift"; sourceTree = "<group>"; };
+		78FEE89629291A19007B67BD /* VideoDetailViewController+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoDetailViewController+Protocol.swift"; sourceTree = "<group>"; };
+		78FEE89829291AC9007B67BD /* VideoDetailPageViewController+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoDetailPageViewController+Protocol.swift"; sourceTree = "<group>"; };
+		78FEE89A29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoDetailPageViewController+Extentions.swift"; sourceTree = "<group>"; };
+		A81992C32927E48B00F024CA /* VideoSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoSlider.swift; sourceTree = "<group>"; };
 		A88805842907F5A0002CD52E /* LevelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelPickerView.swift; sourceTree = "<group>"; };
 		FB3227FB2903FD9C00276A7D /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		FB3227FD2903FDA600276A7D /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
@@ -141,6 +186,7 @@
 			files = (
 				707B2CAE28FFF7090062C958 /* NVActivityIndicatorView in Frameworks */,
 				3AA4D43728FEBE94006C718A /* SnapKit in Frameworks */,
+				34793F9F29251E4B00B74110 /* BetterSegmentedControl in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +196,7 @@
 		0A0B41082907C62200057FA7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A81992C32927E48B00F024CA /* VideoSlider.swift */,
 				0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */,
 				A88805842907F5A0002CD52E /* LevelPickerView.swift */,
 			);
@@ -164,17 +211,34 @@
 			path = UIComponent;
 			sourceTree = "<group>";
 		};
+		341418B92922A3630033D851 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				341418BA2922A3800033D851 /* AutocompleteTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		342C4568290066810037D9E7 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				342508AE29002F31000653D9 /* HomeCollectionViewHeaderCell.swift */,
-				342508A629001BBC000653D9 /* HomeCollectionViewCardCell.swift */,
-				342508A829001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift */,
+				342508A629001BBC000653D9 /* HomeTableViewCardCell.swift */,
+				34EC54572924C93B00EE558E /* HomeTableViewHeader.swift */,
+				34E76F452924D33E00EBB92D /* HomeTableViewFooter.swift */,
+				342508A829001C2E000653D9 /* HomeTableViewCardCell+CollectionViewExtensions.swift */,
 				342508AA29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift */,
-				342C456D290125260037D9E7 /* HomeCollectionViewListCell.swift */,
+				342C456D290125260037D9E7 /* HomeTableViewListCell.swift */,
+				342508AE29002F31000653D9 /* HomeCollectionViewHeaderCell.swift */,
 				342C456F29018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		34793F9D29251E4B00B74110 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		34B011412900158F0043951A /* Extensions */ = {
@@ -185,6 +249,7 @@
 				FB3227FD2903FDA600276A7D /* String+.swift */,
 				70A44806290452B000BE18A5 /* Button+.swift */,
 				70A8DF09291A863F0061E36B /* UIView+.swift */,
+				700AC6202926A1DA003DF5AF /* UIImageView+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -195,6 +260,8 @@
 				3A2880FA2904290E00FBFB70 /* SortTestViewController.swift */,
 				3A15AC862907B1160058512F /* VideoInformation+CoreDataClass.swift */,
 				3A15AC872907B1160058512F /* VideoInformation+CoreDataProperties.swift */,
+				341418B32922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift */,
+				341418B5292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift */,
 				3A15AC7A290724620058512F /* DataManager.swift */,
 				3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */,
 				3A15AC7829071F710058512F /* DataRepository.swift */,
@@ -212,6 +279,7 @@
 			children = (
 				3AA4D41D28FEBADE006C718A /* OrrRock */,
 				3AA4D41C28FEBADE006C718A /* Products */,
+				34793F9D29251E4B00B74110 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -226,12 +294,14 @@
 		3AA4D41D28FEBADE006C718A /* OrrRock */ = {
 			isa = PBXGroup;
 			children = (
+				703145E629250E3E007A78F1 /* SwipeOnboarding */,
 				3AEB3D65291C080400A989FF /* Models */,
 				709A8C69290481F000CEA6F4 /* Utils */,
 				34B011412900158F0043951A /* Extensions */,
 				3A08879E29012CC300EFFDBB /* CoreData */,
 				3AEB3D5E291C01B000A989FF /* OnBoarding */,
 				3AEB3D5F291C027B00A989FF /* Home */,
+				78FEE88929261641007B67BD /* VideoCollection */,
 				3AEB3D60291C02F000A989FF /* VideoDetail */,
 				3AEB3D64291C04CE00A989FF /* Upload */,
 				3AA4D41E28FEBADE006C718A /* AppDelegate.swift */,
@@ -250,7 +320,7 @@
 			children = (
 				70A8DF07291966E20061E36B /* SwipeableCardVideoModel.swift */,
 				70A8DF04291403EA0061E36B /* GymSettingModel.swift */,
-				707B2CB92901382A0062C958 /* OrrPadding.swift */,
+				707B2CB92901382A0062C958 /* OrrPd.swift */,
 				0A0B410C2907C79200057FA7 /* VideoResultType.swift */,
 				3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */,
 			);
@@ -261,9 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				78F56F6B291A67FA00174B74 /* OnBoardingViewController.swift */,
-				78F93ED92908D00F00F3D9F3 /* OnBoardingViewControllerFirst.swift */,
-				78F56F67291A67CA00174B74 /* OnBoardingViewControllerSecond.swift */,
-				78F56F69291A67D500174B74 /* OnBoardingViewControllerThird.swift */,
+				70E8E7532923865400793F91 /* OnBoardigSuperViewController.swift */,
 			);
 			path = OnBoarding;
 			sourceTree = "<group>";
@@ -281,13 +349,10 @@
 		3AEB3D60291C02F000A989FF /* VideoDetail */ = {
 			isa = PBXGroup;
 			children = (
-				78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */,
-				78CAA0672901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift */,
-				3A15AC7E2907262C0058512F /* VideoCollectionView+DataSorting.swift */,
 				78F93ED22906EFC500F3D9F3 /* DateAndGymEditViewController.swift */,
+				341418BC2923A6FF0033D851 /* DateAndGymEditViewController+TableViewExtensions.swift */,
 				78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */,
-				FB32280E29046B4500276A7D /* VideoDetailViewController.swift */,
-				78A035492901317600FF1913 /* Cell */,
+				78FEE89D292976FA007B67BD /* VideoDetailViewController */,
 				3AEB3D61291C03A900A989FF /* UIComponent */,
 			);
 			path = VideoDetail;
@@ -297,7 +362,6 @@
 			isa = PBXGroup;
 			children = (
 				FB32281129046CBF00276A7D /* View */,
-				3AEB3D62291C041600A989FF /* Label */,
 			);
 			path = UIComponent;
 			sourceTree = "<group>";
@@ -313,8 +377,10 @@
 		3AEB3D64291C04CE00A989FF /* Upload */ = {
 			isa = PBXGroup;
 			children = (
+				341418B92922A3630033D851 /* Cell */,
 				70A44804290440E600BE18A5 /* DateSettingViewController.swift */,
 				70A44808290464BD00BE18A5 /* GymSettingViewController.swift */,
+				341418B72922A2500033D851 /* GymSettingViewController+TableViewExtensions.swift */,
 				0A0B41062907C59600057FA7 /* LevelAndPFSettingViewController.swift */,
 				0AAB77E0290274BE00EEEFFB /* UIComponent */,
 			);
@@ -329,12 +395,27 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		703145E629250E3E007A78F1 /* SwipeOnboarding */ = {
+			isa = PBXGroup;
+			children = (
+				70DE795929250F480009AD43 /* SwipeOnboardingViewController.swift */,
+				70DE795B292517330009AD43 /* SwipeOnboardingFirstViewController.swift */,
+				70DE795F2926383E0009AD43 /* SwipeOnboardingSecondViewController.swift */,
+				70DE796129263A570009AD43 /* SwipeOnboardingThirdViewController.swift */,
+				70DE7963292640FF0009AD43 /* SwipeOnboardingFourthViewController.swift */,
+				70DE79652926524D0009AD43 /* SwipeOnboardingFifthViewController.swift */,
+				70DE795D29253F050009AD43 /* EmptyBackgroundView.swift */,
+			);
+			path = SwipeOnboarding;
+			sourceTree = "<group>";
+		};
 		709A8C69290481F000CEA6F4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				FBA5DBFC291AE32A00422A17 /* ButtonClickEffect.swift */,
 				709A8C6A2904827B00CEA6F4 /* UnderlinedTextField.swift */,
 				709A8C6C2904A3E800CEA6F4 /* CustomIndicator.swift */,
+				34793FA229262A8800B74110 /* CustomBackBarButtomItem.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -347,6 +428,49 @@
 				78CAA06B290271E7003C3D77 /* VIdeoCollectionFooterCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		78FEE88929261641007B67BD /* VideoCollection */ = {
+			isa = PBXGroup;
+			children = (
+				78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */,
+				78CAA0672901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift */,
+				3A15AC7E2907262C0058512F /* VideoCollectionView+DataSorting.swift */,
+				3AEB3D62291C041600A989FF /* Label */,
+				78A035492901317600FF1913 /* Cell */,
+			);
+			path = VideoCollection;
+			sourceTree = "<group>";
+		};
+		78FEE89C292976D6007B67BD /* VideoDetailPageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				78FEE8902926A599007B67BD /* VideoDetailPageViewController.swift */,
+				78FEE89A29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift */,
+				78FEE89829291AC9007B67BD /* VideoDetailPageViewController+Protocol.swift */,
+				78FEE89E29297717007B67BD /* VideoPlayViewController */,
+			);
+			path = VideoDetailPageViewController;
+			sourceTree = "<group>";
+		};
+		78FEE89D292976FA007B67BD /* VideoDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FB32280E29046B4500276A7D /* VideoDetailViewController.swift */,
+				78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */,
+				78FEE89629291A19007B67BD /* VideoDetailViewController+Protocol.swift */,
+				78FEE89C292976D6007B67BD /* VideoDetailPageViewController */,
+			);
+			path = VideoDetailViewController;
+			sourceTree = "<group>";
+		};
+		78FEE89E29297717007B67BD /* VideoPlayViewController */ = {
+			isa = PBXGroup;
+			children = (
+				78FEE88E2926A23B007B67BD /* VideoPlayViewController.swift */,
+				78FEE894292916E4007B67BD /* VideoPlayViewController+Extensions.swift */,
+			);
+			path = VideoPlayViewController;
 			sourceTree = "<group>";
 		};
 		FB32281129046CBF00276A7D /* View */ = {
@@ -377,6 +501,7 @@
 			packageProductDependencies = (
 				3AA4D43628FEBE94006C718A /* SnapKit */,
 				707B2CAD28FFF7090062C958 /* NVActivityIndicatorView */,
+				34793F9E29251E4B00B74110 /* BetterSegmentedControl */,
 			);
 			productName = OrrRock;
 			productReference = 3AA4D41B28FEBADE006C718A /* OrrRock.app */;
@@ -409,6 +534,7 @@
 			packageReferences = (
 				3AA4D43528FEBE94006C718A /* XCRemoteSwiftPackageReference "SnapKit" */,
 				707B2CAC28FFF7090062C958 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
+				34E76F4729251E1100EBB92D /* XCRemoteSwiftPackageReference "BetterSegmentedControl" */,
 			);
 			productRefGroup = 3AA4D41C28FEBADE006C718A /* Products */;
 			projectDirPath = "";
@@ -441,59 +567,81 @@
 				3A15AC7929071F710058512F /* DataRepository.swift in Sources */,
 				342508AF29002F31000653D9 /* HomeCollectionViewHeaderCell.swift in Sources */,
 				709A8C6D2904A3E800CEA6F4 /* CustomIndicator.swift in Sources */,
-				342508A729001BBC000653D9 /* HomeCollectionViewCardCell.swift in Sources */,
+				342508A729001BBC000653D9 /* HomeTableViewCardCell.swift in Sources */,
+				78FEE88B292616BC007B67BD /* VideoDetailViewController+Extensions.swift in Sources */,
 				0A0B410D2907C79200057FA7 /* VideoResultType.swift in Sources */,
+				34EC54582924C93B00EE558E /* HomeTableViewHeader.swift in Sources */,
 				70A44805290440E600BE18A5 /* DateSettingViewController.swift in Sources */,
 				342C457029018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift in Sources */,
 				3A2880E929033C0D00FBFB70 /* SortOption.swift in Sources */,
 				70A8DF08291966E20061E36B /* SwipeableCardVideoModel.swift in Sources */,
-				342C456E290125260037D9E7 /* HomeCollectionViewListCell.swift in Sources */,
+				342C456E290125260037D9E7 /* HomeTableViewListCell.swift in Sources */,
 				FB3227FC2903FD9C00276A7D /* Date+.swift in Sources */,
 				78F93ED32906EFC500F3D9F3 /* DateAndGymEditViewController.swift in Sources */,
+				78FEE895292916E4007B67BD /* VideoPlayViewController+Extensions.swift in Sources */,
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
 				78CAA0662901F7A9003C3D77 /* BasePaddingLabel.swift in Sources */,
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
 				78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */,
 				3A15AC892907B1160058512F /* VideoInformation+CoreDataProperties.swift in Sources */,
 				70A8DF05291403EA0061E36B /* GymSettingModel.swift in Sources */,
+				70E8E7542923865400793F91 /* OnBoardigSuperViewController.swift in Sources */,
+				70DE795C292517330009AD43 /* SwipeOnboardingFirstViewController.swift in Sources */,
 				3A15AC7729071DD90058512F /* OrderOption.swift in Sources */,
 				0A0B41072907C59600057FA7 /* LevelAndPFSettingViewController.swift in Sources */,
+				78FEE89929291AC9007B67BD /* VideoDetailPageViewController+Protocol.swift in Sources */,
 				3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */,
+				70DE795A29250F480009AD43 /* SwipeOnboardingViewController.swift in Sources */,
 				FB32280F29046B4500276A7D /* VideoDetailViewController.swift in Sources */,
 				3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */,
 				FB32281329046CDE00276A7D /* VideoPlayView.swift in Sources */,
 				3A2880EB29033C2500FBFB70 /* FilterOption.swift in Sources */,
-				707B2CBA2901382A0062C958 /* OrrPadding.swift in Sources */,
+				707B2CBA2901382A0062C958 /* OrrPd.swift in Sources */,
 				70A44809290464BD00BE18A5 /* GymSettingViewController.swift in Sources */,
-				78F56F6A291A67D500174B74 /* OnBoardingViewControllerThird.swift in Sources */,
+				341418B82922A2500033D851 /* GymSettingViewController+TableViewExtensions.swift in Sources */,
 				3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */,
 				3A15AC7F2907262C0058512F /* VideoCollectionView+DataSorting.swift in Sources */,
-				342508A929001C2E000653D9 /* HomeCollectionViewCardCell+CollectionViewExtensions.swift in Sources */,
+				342508A929001C2E000653D9 /* HomeTableViewCardCell+CollectionViewExtensions.swift in Sources */,
 				3AA4D42928FEBADE006C718A /* OrrRock.xcdatamodeld in Sources */,
 				78F93ED7290743DF00F3D9F3 /* LevelAndPFEditViewController.swift in Sources */,
+				341418B42922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift in Sources */,
 				78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */,
 				342508A329001780000653D9 /* HomeViewController.swift in Sources */,
-				78F56F68291A67CA00174B74 /* OnBoardingViewControllerSecond.swift in Sources */,
 				342508A52900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift in Sources */,
+				78FEE88F2926A23B007B67BD /* VideoPlayViewController.swift in Sources */,
 				FBA5DBFD291AE32A00422A17 /* ButtonClickEffect.swift in Sources */,
+				70DE796229263A570009AD43 /* SwipeOnboardingThirdViewController.swift in Sources */,
+				700AC6212926A1DA003DF5AF /* UIImageView+.swift in Sources */,
+				70DE79662926524D0009AD43 /* SwipeOnboardingFifthViewController.swift in Sources */,
+				34E76F462924D33E00EBB92D /* HomeTableViewFooter.swift in Sources */,
 				3A15AC882907B1160058512F /* VideoInformation+CoreDataClass.swift in Sources */,
 				3AA4D42128FEBADE006C718A /* SceneDelegate.swift in Sources */,
+				78FEE89B29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift in Sources */,
 				3A15AC7D2907258A0058512F /* SectionData.swift in Sources */,
+				34793FA329262A8800B74110 /* CustomBackBarButtomItem.swift in Sources */,
 				FB32281529046CED00276A7D /* VideoInfoView.swift in Sources */,
 				3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */,
 				78F56F6C291A67FA00174B74 /* OnBoardingViewController.swift in Sources */,
+				A81992C42927E48B00F024CA /* VideoSlider.swift in Sources */,
 				342508AB29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift in Sources */,
 				78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */,
+				341418BD2923A6FF0033D851 /* DateAndGymEditViewController+TableViewExtensions.swift in Sources */,
 				3AEB3D5D291C003D00A989FF /* VideoCollectionViewMode.swift in Sources */,
 				78CAA06C290271E7003C3D77 /* VIdeoCollectionFooterCell.swift in Sources */,
+				341418BB2922A3800033D851 /* AutocompleteTableViewCell.swift in Sources */,
 				709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */,
+				78FEE89729291A19007B67BD /* VideoDetailViewController+Protocol.swift in Sources */,
 				3A2880FB2904290E00FBFB70 /* SortTestViewController.swift in Sources */,
 				FB3227FE2903FDA600276A7D /* String+.swift in Sources */,
-				78F93EDA2908D00F00F3D9F3 /* OnBoardingViewControllerFirst.swift in Sources */,
 				3A15AC7B290724620058512F /* DataManager.swift in Sources */,
+				341418B6292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift in Sources */,
 				70A8DF0A291A863F0061E36B /* UIView+.swift in Sources */,
+				78FEE8912926A599007B67BD /* VideoDetailPageViewController.swift in Sources */,
+				70DE7964292640FF0009AD43 /* SwipeOnboardingFourthViewController.swift in Sources */,
+				70DE795E29253F050009AD43 /* EmptyBackgroundView.swift in Sources */,
 				A88805852907F5A0002CD52E /* LevelPickerView.swift in Sources */,
 				78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */,
+				70DE79602926383E0009AD43 /* SwipeOnboardingSecondViewController.swift in Sources */,
 				70A44807290452B000BE18A5 /* Button+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -720,6 +868,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		34E76F4729251E1100EBB92D /* XCRemoteSwiftPackageReference "BetterSegmentedControl" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gmarm/BetterSegmentedControl.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		3AA4D43528FEBE94006C718A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -739,6 +895,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		34793F9E29251E4B00B74110 /* BetterSegmentedControl */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34E76F4729251E1100EBB92D /* XCRemoteSwiftPackageReference "BetterSegmentedControl" */;
+			productName = BetterSegmentedControl;
+		};
 		3AA4D43628FEBE94006C718A /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3AA4D43528FEBE94006C718A /* XCRemoteSwiftPackageReference "SnapKit" */;

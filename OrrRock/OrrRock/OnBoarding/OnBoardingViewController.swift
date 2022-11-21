@@ -9,10 +9,32 @@ import UIKit
 
 class OnBoardingViewController: UIPageViewController {
     
-    lazy var vcArray: [UIViewController] = {
-        return [OnBoardingViewControllerFirst(),
-                OnBoardingViewControllerSecond(),
-                OnBoardingViewControllerThird()]
+    var firstView : OnBoardigSuperViewController = {
+        let vc = OnBoardigSuperViewController()
+        vc.titleLabelText = "오르락과 함께"
+        vc.subLabelText = "볼더링 클라이밍을 즐겨요"
+        vc.labelImageName = "OnboardingImage1"
+        return vc
+    }()
+    
+    var secondView : OnBoardigSuperViewController = {
+        let vc = OnBoardigSuperViewController()
+        vc.titleLabelText = "홀드를 잡고 오르는"
+        vc.subLabelText = "모습을 기록해서"
+        vc.labelImageName = "OnboardingImage2"
+        return vc
+    }()
+    
+    var thirdView : OnBoardigSuperViewController = {
+        let vc = OnBoardigSuperViewController()
+        vc.titleLabelText = "더 높이, 더 어려운 문제에"
+        vc.subLabelText = "함께 도전해요"
+        vc.labelImageName = "OnboardingImage3"
+        return vc
+    }()
+    
+    lazy var vcArray: [OnBoardigSuperViewController] = {
+        return [firstView,secondView,thirdView]
     }()
     
     lazy var pageControl : UIPageControl = {
@@ -31,8 +53,8 @@ class OnBoardingViewController: UIPageViewController {
         btn.clipsToBounds = true
         btn.layer.cornerRadius = 15
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
-        btn.setBackgroundColor(.orrGray2!, for: .disabled)
-        btn.addTarget(self, action: #selector(pressNextButton), for: .touchDown)
+        btn.setBackgroundColor(.orrGray300!, for: .disabled)
+        btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
         btn.setTitle("계속", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         return btn
@@ -52,18 +74,19 @@ class OnBoardingViewController: UIPageViewController {
 extension OnBoardingViewController : UIPageViewControllerDelegate {
     
     private func setLayout() {
-        view.addSubview(pageControl)
-        pageControl.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(158)
-        }
         view.addSubview(nextButton)
         nextButton.snp.makeConstraints{
             $0.centerX.equalTo(view)
-            $0.bottom.equalTo(view).offset(-34)
-            $0.leading.equalTo(view).offset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalTo(view).offset(-OrrPadding.padding3.rawValue)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
+            $0.leading.equalTo(view).offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalTo(view).offset(-OrrPd.pd16.rawValue)
             $0.height.equalTo(56)
+        }
+        
+        view.addSubview(pageControl)
+        pageControl.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(nextButton.snp.top).offset(-OrrPd.pd16.rawValue)
         }
     }
     
@@ -93,7 +116,7 @@ extension OnBoardingViewController : UIPageViewControllerDelegate {
 
 extension OnBoardingViewController : UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let vcIndex = vcArray.firstIndex(of: viewController) else { return nil }
+        guard let vcIndex = vcArray.firstIndex(of: viewController as! OnBoardigSuperViewController) else { return nil }
         let prevIndex = vcIndex - 1
         guard prevIndex >= 0 else {
             return nil
@@ -103,7 +126,7 @@ extension OnBoardingViewController : UIPageViewControllerDataSource {
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let vcIndex = vcArray.firstIndex(of: viewController) else { return nil }
+        guard let vcIndex = vcArray.firstIndex(of: viewController as! OnBoardigSuperViewController) else { return nil }
         let nextIndex = vcIndex + 1
         guard nextIndex < vcArray.count else {
             return nil
@@ -111,21 +134,9 @@ extension OnBoardingViewController : UIPageViewControllerDataSource {
         guard vcArray.count > nextIndex else { return nil }
         return vcArray[nextIndex]
     }
-    //MARK: 기본 인디케이터 사용시 코드 - 혹시 몰라서 일단 남겨놓음
-    //    func presentationCount(for pageViewController: UIPageViewController) -> Int {
-    //        let appearance = UIPageControl.appearance()
-    //        appearance.pageIndicatorTintColor = UIColor.gray
-    //        appearance.currentPageIndicatorTintColor = UIColor.white
-    //        appearance.backgroundColor = UIColor.darkGray
-    //        return 3
-    //    }
-    //
-    //    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-    //        return 0
-    //    }
     
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        pendingIndex = vcArray.firstIndex(of: pendingViewControllers.first!)
+        pendingIndex = vcArray.firstIndex(of: pendingViewControllers.first! as! OnBoardigSuperViewController)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {

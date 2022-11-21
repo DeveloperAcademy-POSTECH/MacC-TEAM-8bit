@@ -156,4 +156,69 @@ class CoreDataDAO {
             print("CoreDataDAO SaveData Method \(error.localizedDescription)")
         }
     }
+    
+    // MARK: VisitedClimbingGym CoreData
+    // 최근 방문한 클라이밍장명 자동완성을 위한 코어데이터 함수
+    // 클라이밍장명을 매개변수로 받아 VisitedClimbingGym NSManagedObject에 추가
+    func createVisitedClimbingGym(gymName: String) -> NSManagedObject {
+        let entity = NSEntityDescription.insertNewObject(forEntityName: "VisitedClimbingGym", into: context)
+        
+        entity.setValue(UUID(), forKey: "id")
+        entity.setValue(gymName, forKey: "name")
+        entity.setValue(Date(), forKey: "createdDate")
+        
+        saveData()
+        
+        return entity
+    }
+    
+    // CoreData를 읽어, VisitedClimbingGym 배열을 반환
+    func readVisitedClimbingGym() -> [VisitedClimbingGym] {
+        var result: [VisitedClimbingGym] = []
+        
+        do {
+            result = try context.fetch(VisitedClimbingGym.fetchRequest())
+        } catch {
+            print("CoreDataDAO readVisitedClimbingGym Method \(error.localizedDescription)")
+        }
+        
+        result.sort { $0.createdDate < $1.createdDate }
+        
+        return result
+    }
+    
+    // 매개변수로 받아온 단일 데이터 삭제
+    func deleteVisitedClimbingGym(deleteTarget: VisitedClimbingGym) {
+        guard let id = deleteTarget.id else { return }
+        let request = VisitedClimbingGym.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        
+        do {
+            let visitedClimbingGym = try context.fetch(request)
+            if let foundGym = visitedClimbingGym.first {
+                context.delete(foundGym)
+                saveData()
+            }
+        } catch {
+            print("CoreDataDAO deleteVisitedClimbingGym Method \(error.localizedDescription)")
+        }
+    }
+    
+    // 단일 데이터 날짜를 최신으로 변경
+    func updateVisitedClimbingGym(updateTarget: VisitedClimbingGym) {
+        guard let id = updateTarget.id else { return }
+        let request = VisitedClimbingGym.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        do {
+            let info = try context.fetch(request)
+            if let target = info.first {
+                target.setValue(Date(), forKey: "createdDate")
+            }
+        } catch {
+            print("CoreDataDAO updateVisitedClimbingGym Method \(error.localizedDescription)")
+        }
+        saveData()
+    }
 }

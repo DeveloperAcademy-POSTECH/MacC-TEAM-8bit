@@ -64,14 +64,14 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         label.text = "해당 문제의 레벨을 선택해 주세요."
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.textColor = .orrBlack
-        label.backgroundColor = .orrGray1
+        label.backgroundColor = .orrGray100
         return label
     }()
     
     lazy var pickerView: UIPickerView = {
         let picker = UIPickerView()
         picker.frame = CGRect(x: 0, y: 150, width: self.view.bounds.width, height: 180.0)
-        picker.backgroundColor = .orrGray1
+        picker.backgroundColor = .orrGray100
         picker.delegate = self
         picker.dataSource = self
         return picker
@@ -110,10 +110,10 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
     private lazy var saveButton : UIButton = {
         let btn = UIButton()
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
-        btn.setBackgroundColor(.orrGray2!, for: .disabled)
+        btn.setBackgroundColor(.orrGray300!, for: .disabled)
         btn.clipsToBounds = true
         btn.layer.cornerRadius = 15
-        btn.addTarget(self, action: #selector(pressSaveButton), for: .touchDown)
+        btn.addTarget(self, action: #selector(pressSaveButton), for: .touchUpInside)
         btn.setTitle("저장", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         return btn
@@ -132,7 +132,7 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
 extension LevelAndPFEditViewController {
     
     private func setUpLayout(){
-        view.backgroundColor = .orrGray1
+        view.backgroundColor = .orrGray100
         view.addSubview(levelTopView)
         levelTopView.snp.makeConstraints {
             $0.width.equalToSuperview()
@@ -151,19 +151,19 @@ extension LevelAndPFEditViewController {
         levelContentView.addSubview(LevelLabel)
         LevelLabel.snp.makeConstraints {
             $0.centerX.equalTo(levelContentView)
-            $0.top.equalTo(levelContentView.snp.top).offset(OrrPadding.padding6.rawValue)
+            $0.top.equalTo(levelContentView.snp.top).offset(OrrPd.pd40.rawValue)
         }
         
         levelContentView.addSubview(pickerView)
         pickerView.snp.makeConstraints {
             $0.width.equalTo(levelContentView)
             $0.leading.equalTo(levelContentView)
-            $0.top.equalTo(LevelLabel.snp.bottom).offset(OrrPadding.padding5.rawValue)
+            $0.top.equalTo(LevelLabel.snp.bottom).offset(OrrPd.pd24.rawValue)
         }
         
         levelContentView.addSubview(successLabel)
         successLabel.snp.makeConstraints {
-            $0.top.equalTo(pickerView.snp.bottom).offset(OrrPadding.padding7.rawValue)
+            $0.top.equalTo(pickerView.snp.bottom).offset(OrrPd.pd72.rawValue)
             $0.centerX.equalToSuperview()
         }
         
@@ -187,8 +187,8 @@ extension LevelAndPFEditViewController {
         saveButton.snp.makeConstraints{
             $0.centerX.equalTo(levelContentView)
             $0.bottom.equalTo(levelContentView).offset(-34)
-            $0.leading.equalTo(levelContentView).offset(OrrPadding.padding3.rawValue)
-            $0.trailing.equalTo(levelContentView).offset(-OrrPadding.padding3.rawValue)
+            $0.leading.equalTo(levelContentView).offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalTo(levelContentView).offset(-OrrPd.pd16.rawValue)
             $0.height.equalTo(56)
         }
         

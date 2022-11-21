@@ -55,10 +55,10 @@ final class HomeCollectionViewFooterCell: UICollectionReusableView {
             addSubview(footerRoundedSquare)
             
             footerRoundedSquare.snp.makeConstraints {
-                $0.top.equalTo(anchorView.snp.top).offset(-CGFloat(OrrPadding.padding2.rawValue))
+                $0.top.equalTo(anchorView.snp.top).offset(-CGFloat(OrrPd.pd8.rawValue))
                 
-                $0.height.equalTo(CGFloat(OrrPadding.padding3.rawValue))
-                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(OrrPadding.padding3.rawValue)*2)
+                $0.height.equalTo(CGFloat(OrrPd.pd16.rawValue))
+                $0.width.equalTo(UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue)*2)
             }
         }
     }
