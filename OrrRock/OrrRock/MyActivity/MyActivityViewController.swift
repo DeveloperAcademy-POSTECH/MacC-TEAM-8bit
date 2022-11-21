@@ -339,6 +339,7 @@ class MyActivityViewController: UIViewController {
     
     @objc func tapCardSaveButton(_ sender: UIButton) {
         print("tap Save Button")
+        UIImageWriteToSavedPhotosAlbum(cardView.asImage(), self, nil, nil)
     }
 }
 
