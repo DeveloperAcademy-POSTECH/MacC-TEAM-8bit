@@ -13,8 +13,7 @@ import SnapKit
 class MyActivityViewController: UIViewController {
     
     var firstDateOfClimbing: Date? = nil
-    var highestLevelForSummary: Int = -1
-    var mostVisitedGymNameForSummary: String = ""
+    var highestLevel: Int = -1
     var mostVisitedGymCountForSummary: Int = 0
     
     var entireSolvedProblemsForBarChart: [[SolvedProblemsOfEachLevel]] = [[],[],[]]
@@ -72,7 +71,7 @@ class MyActivityViewController: UIViewController {
     }()
     
     private lazy var cardView: UIView = {
-        let VC = UIHostingController(rootView: MyCardView(firstDate: firstDateOfClimbing))
+        let VC = UIHostingController(rootView: MyCardView(firstDate: firstDateOfClimbing, highestLevel: highestLevel, homeGymName: frequentlyVisitedGymList[0].0))
         VC.view.backgroundColor = .clear
         return VC.view
     }()
@@ -148,7 +147,7 @@ class MyActivityViewController: UIViewController {
         resetFirstDateOfClimbing(from: entireVideoInformationsByDate)
         firstDateOfClimbing = UserDefaults.standard.string(forKey: "firstDateOfClimbing")?.stringToDate()
         
-        (highestLevelForSummary, frequentlyVisitedGymList, totalGymVisitedDate) = getSummaryData(fromDate: entireVideoInformationsByDate, fromName: entireVideoInformationsByName)
+        (highestLevel, frequentlyVisitedGymList, totalGymVisitedDate) = getSummaryData(fromDate: entireVideoInformationsByDate, fromName: entireVideoInformationsByName)
         
         (entireProblemsForDonutChart, validTotalCountForDonutChart, validSuccessCountForDonutChart) = getProblemsPerLevel(from: entireVideoInformationsByDate)
         
@@ -318,7 +317,7 @@ class MyActivityViewController: UIViewController {
         // myCardView
         cardView.removeFromSuperview()
         
-        let myCardVC = UIHostingController(rootView: MyCardView(firstDate: firstDateOfClimbing))
+        let myCardVC = UIHostingController(rootView: MyCardView(firstDate: firstDateOfClimbing, highestLevel: highestLevel, homeGymName: frequentlyVisitedGymList[0].0))
         myCardVC.view.backgroundColor = .clear
         cardView = myCardVC.view
         
@@ -339,7 +338,18 @@ class MyActivityViewController: UIViewController {
     
     @objc func tapCardSaveButton(_ sender: UIButton) {
         print("tap Save Button")
-        UIImageWriteToSavedPhotosAlbum(cardView.asImage(), self, nil, nil)
+        
+        let card: UIView = {
+            let VC = UIHostingController(rootView: ExportCardView(firstDate: firstDateOfClimbing, highestLevel: highestLevel, homeGymName: frequentlyVisitedGymList[0].0))
+            VC.view.backgroundColor = .clear
+            VC.view.layer.cornerRadius = 4
+            VC.view.frame = CGRect(x: 0, y: 0, width: 262, height: 398)
+            return VC.view
+        }()
+        
+        contentView.addSubview(card)
+        UIImageWriteToSavedPhotosAlbum(card.asImage(), self, nil, nil)
+        card.removeFromSuperview()
     }
 }
 

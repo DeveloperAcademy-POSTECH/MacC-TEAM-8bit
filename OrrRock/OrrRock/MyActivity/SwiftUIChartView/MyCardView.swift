@@ -9,10 +9,12 @@ import SwiftUI
 
 struct MyCardView: View {
     let firstDate: Date?
+    let highestLevel: Int
+    let homeGymName: String
     
     var body: some View {
         ZStack(alignment: .center) {
-            Image("CardLevel0")
+            Image("CardLevel\(highestLevel)")
                 .resizable()
             
             VStack {
@@ -29,14 +31,14 @@ struct MyCardView: View {
                 HStack {
                     Image("homegym icon")
                         .renderingMode(.template)
-                        .foregroundColor(Color(uiColor: UIColor.orrWhite!))
+                        .foregroundColor(Color(uiColor: UIColor.orrGray100!))
                         
                     Text("나의 홈짐은?")
                         .font(.system(size: 12, weight: .bold))
-                        .foregroundColor(Color(uiColor: UIColor.orrWhite!))
+                        .foregroundColor(Color(uiColor: UIColor.orrGray100!))
                 }
                 
-                Text("\("아띠 클라이밍")")
+                Text("\(homeGymName)")
                     .font(.system(size: 17, weight: .regular))
                     .foregroundColor(Color(uiColor: UIColor.orrWhite!))
             }
