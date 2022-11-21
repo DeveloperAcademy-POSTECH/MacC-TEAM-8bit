@@ -32,11 +32,31 @@ class MyActivityViewController: UIViewController {
 //    }()
     
     // 레이아웃
+    private lazy var headerView: UIView = {
+        let view = UIView()
+        
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
+        view.addSubview(visualEffectView)
+        visualEffectView.snp.makeConstraints {
+            $0.edges.equalTo(view.snp.edges)
+        }
+        
+        return view
+    }()
+    
+    private lazy var logoView: UIView = {
+        let view = UIImageView(image: UIImage(named: "orrrock_logo"))
+        view.frame = CGRect(x: 0, y: 0, width: 193, height: 40)
+        return view
+    }()
+    
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.backgroundColor = .orrGray100
         scrollView.showsVerticalScrollIndicator = false
+        scrollView.contentInset = UIEdgeInsets(top: 70, left: 0, bottom: 0, right: 0)
         
         return scrollView
     }()
@@ -374,9 +394,18 @@ extension MyActivityViewController {
         [informationTitle, homeGymChartView, historyView].forEach() {
             contentView.addSubview($0)
         }
+        
+        // Header
+        view.addSubview(headerView)
+        headerView.addSubview(logoView)
     }
     
     func removeLayout() {
+        // Layout
+        [headerView, logoView, scrollView, contentView].forEach {
+            $0.snp.removeConstraints()
+        }
+        
         // 내 활동
         [cardTitle, cardSaveButton, cardView].forEach() {
             $0.snp.removeConstraints()
@@ -394,6 +423,17 @@ extension MyActivityViewController {
     }
     
     func setUpLayout() {
+        headerView.snp.makeConstraints {
+            $0.top.equalTo(view.snp.top)
+            $0.bottom.equalTo(view.forLastBaselineLayout.snp_topMargin).offset(60)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
+        }
+        
+        logoView.snp.makeConstraints {
+            $0.bottom.leading.equalToSuperview().inset(OrrPd.pd16.rawValue)
+        }
+        
         scrollView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(OrrPd.pd16.rawValue)
             $0.top.bottom.equalToSuperview()
