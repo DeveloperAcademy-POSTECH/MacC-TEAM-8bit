@@ -63,14 +63,17 @@ class MyActivityViewController: UIViewController {
     }()
     
     private lazy var cardSaveButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 28, height: 24))
-        button.setImage(UIImage(systemName: "square.and.arrow.down.fill"), for: .normal)
-//            button.addTarget(self, action: T##Selector, for: .touchUpInside)
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        button.setImage(UIImage(systemName: "square.and.arrow.down.fill", withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
+        button.tintColor = .orrGray600
+        
+        button.addTarget(self, action: #selector(tapCardSaveButton(_:)), for: .touchUpInside)
         return button
     }()
     
     private lazy var cardView: UIImageView = {
         let view = UIImageView(image: UIImage(named: "CardLevel0"))
+        
         return view
     }()
     
@@ -123,14 +126,15 @@ class MyActivityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
-
+        
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.isHidden = true
+//        self.navigationController?.navigationBar.isHidden = true
         self.navigationController?.navigationBar.backgroundColor = .clear
+        self.navigationController?.isNavigationBarHidden = true
         
         setUpData()
         setUpLayout()
@@ -165,7 +169,7 @@ class MyActivityViewController: UIViewController {
         // 이후 개선을 통해 UserDefault에 가장 많이 방문한 클라이밍장을 저장할 수 있도록 한다면 성능 최적화가 용이하다고 생각됨
         var visitedGymCount: [(String, Int)] = []
         var totalVisitCount: Int = 0
-//        var (mostVisitedCount, mostVisitiedGymName): (Int, String) = (0, "")
+        //        var (mostVisitedCount, mostVisitiedGymName): (Int, String) = (0, "")
         fromName.forEach { videoListOfEachGym in
             var visitedCount = 0
             var tempDate = Calendar.current.date(byAdding: .day, value: -1, to: firstDate!)
@@ -248,26 +252,26 @@ class MyActivityViewController: UIViewController {
         var periodIndex: Int = iterationForPeriod-1
         
         // videoInformationUnit은 "같은 날짜에 같은 클라이밍장을 방문하여 기록한 영상의 뭉치"임
-        searchVideoLoop: for videoInformationUnit in from {
-            // 해당 배열에 아무 값도 없는 경우 continue (error)
-            guard let sample = videoInformationUnit.first else { continue searchVideoLoop }
-            
-            // 해당 데이터가 속한 time period를 찾아감
-            while (sample.gymVisitDate < lastDayOfThisPeriod) {
-                lastDayOfThisPeriod = Calendar.current.date(byAdding: .day, value: -timePeriodInterval, to: lastDayOfThisPeriod)!
-                periodIndex -= 1
-            }
-            
-            // 영상 정보의 날짜가 차트로 만들고자 하는 time period를 넘어선 경우부터는 이후 영상 정보들을 데이터에 포함하지 않음
-            if periodIndex < 0 { break }
-            
-            // 차트에 포함되어야 하는 데이터이므로, Unit에 포함된 영상 데이터들의 개수를 count 합니다.
-            videoInformationUnit.forEach { videoInformation in
-                if videoInformation.problemLevel >= 0 {
-                    result[Int(videoInformation.problemLevel)].problems[periodIndex].count += 1
-                }
+    searchVideoLoop: for videoInformationUnit in from {
+        // 해당 배열에 아무 값도 없는 경우 continue (error)
+        guard let sample = videoInformationUnit.first else { continue searchVideoLoop }
+        
+        // 해당 데이터가 속한 time period를 찾아감
+        while (sample.gymVisitDate < lastDayOfThisPeriod) {
+            lastDayOfThisPeriod = Calendar.current.date(byAdding: .day, value: -timePeriodInterval, to: lastDayOfThisPeriod)!
+            periodIndex -= 1
+        }
+        
+        // 영상 정보의 날짜가 차트로 만들고자 하는 time period를 넘어선 경우부터는 이후 영상 정보들을 데이터에 포함하지 않음
+        if periodIndex < 0 { break }
+        
+        // 차트에 포함되어야 하는 데이터이므로, Unit에 포함된 영상 데이터들의 개수를 count 합니다.
+        videoInformationUnit.forEach { videoInformation in
+            if videoInformation.problemLevel >= 0 {
+                result[Int(videoInformation.problemLevel)].problems[periodIndex].count += 1
             }
         }
+    }
         
         return result
     }
@@ -282,6 +286,10 @@ class MyActivityViewController: UIViewController {
         }
         
         return mostFrequentLevel
+    }
+    
+    @objc func tapCardSaveButton(_ sender: UIButton) {
+        print("tap Save Button")
     }
 }
 
@@ -382,7 +390,7 @@ struct SolvedProblemsOfEachLevel: Identifiable {
 
 struct SolvedProblemsOfEachPeriod: Identifiable {
     var id: String { periodName }
-
+    
     let periodName: String
     var count: Int
 }
