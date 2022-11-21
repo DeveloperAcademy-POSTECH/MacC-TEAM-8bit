@@ -21,6 +21,8 @@ final class LevelAndPFSettingViewController: UIViewController {
     private var currentSelectedLevel = -1
     private var selectedCard: Int = 0
     private var classifiedCard: Int = 0
+    private var timeObserverToken: Any?
+    private var firstCardtimeObserverToken: Any?
     
     private lazy var headerView: UIView = {
         let view = UIView()
@@ -92,6 +94,12 @@ final class LevelAndPFSettingViewController: UIViewController {
         return separator
     }()
     
+    private lazy var backgroundCardStackView: EmptyBackgroundView = {
+        let view = EmptyBackgroundView()
+        view.layer.zPosition = -1
+        return view
+    }()
+    
     private lazy var emptyVideoView: UIView = {
         let view = UIView()
         view.backgroundColor = .orrGray300
@@ -112,10 +120,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     private lazy var failButton: CustomButton = {
         let button = CustomButton()
-        button.setTitle("실패", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .semibold)
-        button.backgroundColor = .orrFail
+        button.setImage(UIImage(named: "fail_icon"), for: .normal)
         button.layer.cornerRadius = 37.0
         button.addTarget(self, action: #selector(didFailButton), for: .touchUpInside)
         
@@ -124,14 +129,22 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     private lazy var successButton: CustomButton = {
         let button = CustomButton()
-        button.setTitle("성공", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .semibold)
-        button.backgroundColor = .orrPass
+        button.setImage(UIImage(named: "success_icon"), for: .normal)
         button.layer.cornerRadius = 37.0
         button.addTarget(self, action: #selector(didSuccessButton), for: .touchUpInside)
         
         return button
+    }()
+    
+    private lazy var videoSlider: VideoSlider = {
+        let slider = VideoSlider()
+        slider.minimumTrackTintColor = .orrUPBlue
+        slider.maximumTrackTintColor = .orrGray100
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.setThumbImage(UIImage(named: "sliderThumb"), for: .normal)
+        slider.addTarget(self, action: #selector(didChangedSlider(_:)), for: .valueChanged)
+        
+        return slider
     }()
     
     private lazy var saveButton : UIButton = {
@@ -169,6 +182,7 @@ final class LevelAndPFSettingViewController: UIViewController {
                 }
                 
                 self.view.sendSubviewToBack(self.emptyVideoView)
+                self.view.sendSubviewToBack(self.backgroundCardStackView)
                 
                 // gesture
                 let gesture = UIPanGestureRecognizer()
@@ -180,6 +194,76 @@ final class LevelAndPFSettingViewController: UIViewController {
     }
 }
 
+// Slider
+private extension LevelAndPFSettingViewController {
+    
+    // 비디오 재생 시간 변화에 따른 슬라이더 업데이트
+    func updateVideoSlider(card: SwipeableCardVideoView, time currentTime: CMTime) {
+        if let currentItem = card.queuePlayer.currentItem {
+            let duration = currentItem.duration
+            if CMTIME_IS_INVALID(duration) { return }
+            videoSlider.value = Float(CMTimeGetSeconds(currentTime) / CMTimeGetSeconds(duration))
+        }
+    }
+    
+    // 슬라이더 터치에 따른 비디오 업데이트
+    @objc func didChangedSlider(_ sender: UISlider) {
+        let card = cards[counter]?.queuePlayer
+        
+        guard let duration = card?.currentItem?.duration else { return }
+        let value = Float64(sender.value) * CMTimeGetSeconds(duration)
+        let seekTime = CMTime(value: CMTimeValue(value), timescale: 1)
+        card?.currentItem?.seek(to: seekTime)
+    }
+    
+    func addPeriodicTimeObserver(card: SwipeableCardVideoView, isFirstCard: Bool){
+        
+        let interval = CMTime(seconds: 0.0001, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        // time observer 생성 후 token에 저장
+        switch isFirstCard{
+        case true:
+            NSLog("add first observer")
+            firstCardtimeObserverToken = card.queuePlayer.addPeriodicTimeObserver(
+                forInterval:interval,
+                queue: DispatchQueue.main,
+                using: { [weak self] currentTime in
+                    self?.updateVideoSlider(card: card, time: currentTime)
+                    // TODO: 남은 시간 표시
+                    // self?.updateTimeRemaining(currentTime)
+                })
+        case false:
+            NSLog("add other observer")
+            timeObserverToken = card.queuePlayer.addPeriodicTimeObserver(
+                forInterval:interval,
+                queue: DispatchQueue.main,
+                using: { [weak self] currentTime in
+                    self?.updateVideoSlider(card: card, time: currentTime)
+                    // TODO: 남은 시간 표시
+                    // self?.updateTimeRemaining(currentTime)
+                })
+        }
+    }
+    
+    func removePeriodicTimeObserver(card: SwipeableCardVideoView, isFirstCard: Bool){
+        
+        switch isFirstCard {
+        case true:
+            if let timeObserverToken = firstCardtimeObserverToken {
+                card.queuePlayer.removeTimeObserver(timeObserverToken)
+                self.firstCardtimeObserverToken = nil
+                NSLog("romove first observer")
+            }
+        case false:
+            if let timeObserverToken = timeObserverToken {
+                card.queuePlayer.removeTimeObserver(timeObserverToken)
+                self.timeObserverToken = nil
+                NSLog("romove observer")
+            }
+        }
+    }
+}
+
+// Level
 extension LevelAndPFSettingViewController: LevelPickerViewDelegate {
     func setSeparatorColor() {
         self.separator.backgroundColor = .orrBlack
@@ -270,12 +354,15 @@ private extension LevelAndPFSettingViewController {
                     classifiedCard = index + 1
                     // '분류된 카드 / 선택된 카드' 형식의 문자열 값을 넘겨주는 메서드
                     swipeCard.getCardLabelText(labelText: "\(classifiedCard)/\(selectedCard)")
-                    // 첫번째 카드를 재생시켜주는 코드
-                    let firstCard = cards[0] as? SwipeableCardVideoView
-                    firstCard?.queuePlayer.play()
                 }
                 // Asset 카운팅이 0이 되었을 때 completionHandler로 반환
                 countingGroup.notify(queue: DispatchQueue.main) {
+                    if self.firstCardtimeObserverToken == nil {
+                        let firstCard = self.cards[0] as? SwipeableCardVideoView
+                        guard let card = firstCard else { return }
+                        self.addPeriodicTimeObserver(card: card, isFirstCard: true)
+                        firstCard?.queuePlayer.play()
+                    }
                     completion()
                 }
             }
@@ -284,6 +371,7 @@ private extension LevelAndPFSettingViewController {
     
     // swipeCard가 SuperView에서 제거됩니다.
     @objc func removeCard(card: UIView) {
+        
         card.removeFromSuperview()
         // 스와이프가 완료되고 removeCard가 호출될 때 버튼 활성화
         successButton.isEnabled = true
@@ -363,11 +451,16 @@ private extension LevelAndPFSettingViewController {
         self.navigationController?.popToRootViewController(animated: true)
     }
     
-    // swipeCard의 애니매이션 효과를 담당합니다.
+    // swipeCard의 애니메이션 효과를 담당합니다.
     func animateCard(rotationAngle: CGFloat, videoResultType: VideoResultType) {
+        
+        guard let card = cards[counter] else { return }
+        removePeriodicTimeObserver(card:  card, isFirstCard: counter == 0 ? true : false)
+        
         let cardViews = view.subviews.filter({ ($0 as? SwipeableCardVideoView) != nil })
         
         for view in cardViews {
+            
             if view == cards[counter] {
                 let center: CGPoint
                 let isSuccess: Bool
@@ -377,6 +470,8 @@ private extension LevelAndPFSettingViewController {
                 if counter != cards.count-1 {
                     // 다음에 나올 카드
                     guard let nextCard = cards[counter + 1] as? SwipeableCardVideoView else { return }
+                    // Slider에 시간 정보를 업데이트하기 위한 Observer 추가
+                    addPeriodicTimeObserver(card: nextCard, isFirstCard: false)
                     // 이전 카드가 스와이프가 되었을 때 다음에 나올 카드가 재생
                     nextCard.queuePlayer.play()
                 }
@@ -431,6 +526,7 @@ private extension LevelAndPFSettingViewController {
         saveButton.isHidden = false
         successButton.isHidden = true
         failButton.isHidden = true
+        videoSlider.isHidden = true
         
         titleLabel.text = "분류 완료! 저장하기를 눌러주세요."
         buttonStackView.isUserInteractionEnabled = false
@@ -493,9 +589,19 @@ private extension LevelAndPFSettingViewController {
             $0.width.equalTo(90.0)
         }
         
+        // TODO: Slider가 너무 빨리 그려지는 이슈
+        view.addSubview(videoSlider)
+        videoSlider.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(OrrPd.pd16.rawValue)
+            // TODO: Slider 초기, 후기에 급하게 값이 변동되어 offset으로 해당 영역 숨김. 슬라이더 디테일 작업 보완 예정.
+            $0.leading.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd24.rawValue)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd24.rawValue)
+            $0.height.equalTo(56)
+        }
+        
         view.addSubview(failButton)
         failButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
+            $0.bottom.equalTo(videoSlider.snp.top).offset(-OrrPd.pd16.rawValue)
             $0.leading.equalToSuperview().inset(48.0)
             $0.height.equalTo(74.0)
             $0.width.equalTo(74.0)
@@ -503,7 +609,7 @@ private extension LevelAndPFSettingViewController {
         
         view.addSubview(successButton)
         successButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
+            $0.bottom.equalTo(videoSlider.snp.top).offset(-OrrPd.pd16.rawValue)
             $0.trailing.equalToSuperview().inset(48.0)
             $0.height.equalTo(74.0)
             $0.width.equalTo(74.0)
@@ -516,6 +622,17 @@ private extension LevelAndPFSettingViewController {
             $0.bottom.equalTo(successButton.snp.top).offset(-OrrPd.pd20.rawValue)
             $0.width.equalTo(emptyVideoView.snp.height).multipliedBy(0.5625)
         }
+        
+        // TODO: 카드 스택 스켈레톤 값 조정 필요
+//        view.addSubview(backgroundCardStackView)
+//        backgroundCardStackView.snp.makeConstraints {
+//            $0.center.equalTo(view.center)
+//            $0.height.equalTo(view.snp.height)
+//            $0.width.equalTo(view.snp.width)
+//            $0.top.equalTo(emptyVideoView.snp.top)
+//            $0.bottom.equalTo(emptyVideoView.snp.bottom)
+//            backgroundCardStackView.setUpLayout()
+//        }
         
         emptyVideoView.addSubview(emptyVideoInformation)
         emptyVideoInformation.snp.makeConstraints {
