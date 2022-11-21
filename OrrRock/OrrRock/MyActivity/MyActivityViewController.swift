@@ -71,10 +71,10 @@ class MyActivityViewController: UIViewController {
         return button
     }()
     
-    private lazy var cardView: UIImageView = {
-        let view = UIImageView(image: UIImage(named: "CardLevel0"))
-        
-        return view
+    private lazy var cardView: UIView = {
+        let VC = UIHostingController(rootView: MyCardView())
+        VC.view.backgroundColor = .clear
+        return VC.view
     }()
     
     // 도전

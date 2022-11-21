@@ -5,8 +5,42 @@
 //  Created by Park Sungmin on 2022/11/21.
 //
 
-import UIKit
+import SwiftUI
 
-class MyCardView: UIView {
-    
+struct MyCardView: View {
+    var body: some View {
+        ZStack(alignment: .center) {
+            Image("CardLevel0")
+                .resizable()
+            
+            VStack {
+                Text("볼더링 클라이밍을 시작한 지")
+                    .font(.system(size: 17, weight: .regular))
+                    .foregroundColor(Color(uiColor: UIColor.orrWhite!))
+                
+                Text("\(352)일")
+                    .font(.system(size: 28, weight: .bold))
+                    .foregroundColor(Color(uiColor: UIColor.orrWhite!))
+                
+                Spacer()
+                
+                HStack {
+                    Image("homegym icon")
+                        .renderingMode(.template)
+                        .foregroundColor(Color(uiColor: UIColor.orrWhite!))
+                        
+                    Text("나의 홈짐은?")
+                        .font(.system(size: 12, weight: .bold))
+                        .foregroundColor(Color(uiColor: UIColor.orrWhite!))
+                }
+                
+                Text("\("아띠 클라이밍")")
+                    .font(.system(size: 17, weight: .regular))
+                    .foregroundColor(Color(uiColor: UIColor.orrWhite!))
+            }
+            .padding(.top, 30)
+            .padding(.bottom, 24)
+        }
+        .frame(width: UIScreen.main.bounds.width - 32, height: UIScreen.main.bounds.width - 32, alignment: .leading)
+    }
 }
