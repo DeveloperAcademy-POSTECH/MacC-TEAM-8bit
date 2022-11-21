@@ -25,12 +25,6 @@ class MyActivityViewController: UIViewController {
     var frequentlyVisitedGymList: [(String, Int)] = []
     var totalGymVisitedDate: Int = 0
     
-//    private lazy var DEBUGBackgroundView: UIView = {
-//        let view = UIView()
-//        view.backgroundColor = .orrGray300
-//        return view
-//    }()
-    
     // 레이아웃
     private lazy var headerView: UIView = {
         let view = UIView()
@@ -356,9 +350,7 @@ class MyActivityViewController: UIViewController {
         setUpLayout()
     }
     
-    @objc func tapCardSaveButton(_ sender: UIButton) {
-        print("tap Save Button")
-        
+    @objc func tapCardSaveButton(_ sender: UIButton) {        
         let card: UIView = {
             let VC = UIHostingController(rootView: ExportCardView(firstDate: firstDateOfClimbing, highestLevel: highestLevel, homeGymName: frequentlyVisitedGymList[0].0))
             VC.view.backgroundColor = .clear
@@ -367,9 +359,18 @@ class MyActivityViewController: UIViewController {
             return VC.view
         }()
         
+        // 공유하기
+        var shareObject = [Any]()
         contentView.addSubview(card)
-        UIImageWriteToSavedPhotosAlbum(card.asImage(), self, nil, nil)
+        shareObject.append(card.asImage())
         card.removeFromSuperview()
+        
+
+        let activityViewController = UIActivityViewController(activityItems : shareObject, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+
+        self.present(activityViewController, animated: true, completion: nil)
+//        UIImageWriteToSavedPhotosAlbum(card.asImage(), self, nil, nil)
     }
 }
 
