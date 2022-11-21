@@ -1,5 +1,5 @@
 //
-//  TestLevelPickerViewController.swift
+//  NewLevelPickerView.swift
 //  OrrRock
 //
 //  Created by Ruyha on 2022/11/19.
@@ -13,7 +13,7 @@ protocol NewLevelPickerViewDelegate {
     func didLevelChanged(selectedLevel: Int)
 }
 
-class LevelPickerViewController: UIView{
+class NewLevelPickerView: UIView{
     //피커뷰의 고정적으로 쓰이는 넓이
     private var pickerWidth = 64
     //피커뷰가 시작 될때 선택 되어 있어야 하는 값
@@ -97,7 +97,7 @@ class LevelPickerViewController: UIView{
 }
 
 
-extension LevelPickerViewController : UIPickerViewDelegate,UIPickerViewDataSource{
+extension NewLevelPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -156,7 +156,7 @@ extension LevelPickerViewController : UIPickerViewDelegate,UIPickerViewDataSourc
     
 }
 
-extension LevelPickerViewController {
+extension NewLevelPickerView {
     
     private func setUpLayout(){
         

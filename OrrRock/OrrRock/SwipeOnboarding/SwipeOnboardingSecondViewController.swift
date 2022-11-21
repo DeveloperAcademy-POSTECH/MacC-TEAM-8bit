@@ -32,8 +32,8 @@ class SwipeOnboardingSecondViewController: UIViewController {
         return view
     }()
     
-    private lazy var newLevelPickerView: LevelPickerViewController = {
-        let view = LevelPickerViewController()
+    private lazy var newLevelPickerView: NewLevelPickerView = {
+        let view = NewLevelPickerView()
         view.pickerSelectValue = 0
         view.delegate = self
         return view
