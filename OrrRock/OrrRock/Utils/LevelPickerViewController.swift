@@ -168,7 +168,6 @@ extension LevelPickerViewController {
         }
         
         self.addSubview(pickerView)
-        //        pickerView.backgroundColor = .red
         pickerView.snp.makeConstraints {
             $0.height.equalTo(pickerSetLabel.snp.width)// width
             $0.width.equalTo(pickerSetLabel.snp.height)//height
