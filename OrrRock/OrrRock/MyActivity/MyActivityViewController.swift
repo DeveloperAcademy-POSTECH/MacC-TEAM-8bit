@@ -16,7 +16,7 @@ class MyActivityViewController: UIViewController {
     var highestLevelForSummary: Int = -1
     var mostVisitedGymNameForSummary: String = ""
     var mostVisitedGymCountForSummary: Int = 0
-
+    
     
     var entireSolvedProblemsForBarChart: [[SolvedProblemsOfEachLevel]] = [[],[],[]]
     
@@ -26,14 +26,15 @@ class MyActivityViewController: UIViewController {
     
     private lazy var DEBUGBackgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .orrGray2
+        view.backgroundColor = .orrGray300
         return view
     }()
     
+    // 레이아웃
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .orrGray2
+        scrollView.backgroundColor = .orrGray300
         scrollView.showsVerticalScrollIndicator = false
         
         return scrollView
@@ -41,16 +42,42 @@ class MyActivityViewController: UIViewController {
     
     private lazy var contentView: UIView = {
         let contentView = UIView()
-        contentView.backgroundColor = .orrGray2
+        contentView.backgroundColor = .orrGray300
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
         return contentView
     }()
     
-    private lazy var summaryView: UIView = {
-        let VC = UIHostingController(rootView: SummaryView(firstDate: firstDateForSummary, highestLevel: highestLevelForSummary, mostVisitedGymName: mostVisitedGymNameForSummary, mostVisitedGymCount: mostVisitedGymCountForSummary))
-        VC.view.backgroundColor = .clear
-        return VC.view
+    private lazy var paddingView: UIView = {
+        return UIView()
+    }()
+    
+    // 내 활동
+    private lazy var cardTitle: UILabel = {
+        let view = UILabel()
+        view.text = "내 활동"
+        view.font = .systemFont(ofSize: 22, weight: .bold)
+        return view
+    }()
+    
+    private lazy var cardSaveButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 28, height: 24))
+        button.setImage(UIImage(systemName: "square.and.arrow.down.fill"), for: .normal)
+//            button.addTarget(self, action: T##Selector, for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var cardView: UIImageView = {
+        let view = UIImageView(image: UIImage(named: "CardLevel0"))
+        return view
+    }()
+    
+    // 도전
+    private lazy var challengeTitle: UILabel = {
+        let view = UILabel()
+        view.text = "도전"
+        view.font = .systemFont(ofSize: 22, weight: .bold)
+        return view
     }()
     
     private lazy var challengeChartView: UIView = {
@@ -59,15 +86,42 @@ class MyActivityViewController: UIViewController {
         return VC.view
     }()
     
-    private lazy var solvedProblemsChartView: UIView = {
-        let VC = UIHostingController(rootView: SolvedProblemsChartView(chartData: entireSolvedProblemsForBarChart))
-        VC.view.backgroundColor = .clear
+    private lazy var growthChartView: UIView = {
+        let VC = UIHostingController(rootView: GrowthChartView())
         return VC.view
     }()
     
-    private lazy var paddingView: UIView = {
-        return UIView()
+    // 정보
+    private lazy var informationTitle: UILabel = {
+        let view = UILabel()
+        view.text = "정보"
+        view.font = .systemFont(ofSize: 22, weight: .bold)
+        return view
     }()
+    
+    private lazy var homeGymChartView: UIView = {
+        let VC = UIHostingController(rootView: HomeGymChartView())
+        return VC.view
+    }()
+    
+    private lazy var historyView: UIView = {
+        let VC = UIHostingController(rootView: HistoryView())
+        return VC.view
+    }()
+    
+    
+//    private lazy var summaryView: UIView = {
+//        let VC = UIHostingController(rootView: SummaryView(firstDate: firstDateForSummary, highestLevel: highestLevelForSummary, mostVisitedGymName: mostVisitedGymNameForSummary, mostVisitedGymCount: mostVisitedGymCountForSummary))
+//        VC.view.backgroundColor = .clear
+//        return VC.view
+//    }()
+    
+//    private lazy var myChallengeChartView: UIView = {
+//        let VC = UIHostingController(rootView: SolvedProblemsChartView(chartData: entireSolvedProblemsForBarChart))
+//        VC.view.backgroundColor = .clear
+//        return VC.view
+//    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -220,7 +274,7 @@ extension MyActivityViewController {
         
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.leading.trailing.equalToSuperview().inset(OrrPd.pd16.rawValue)
             $0.top.bottom.equalToSuperview()
         }
         
@@ -232,29 +286,68 @@ extension MyActivityViewController {
             $0.height.greaterThanOrEqualTo(UIScreen.main.bounds.height + 100)
         }
         
-        contentView.addSubview(summaryView)
-        summaryView.snp.makeConstraints {
+        // 내 활동
+        contentView.addSubview(cardTitle)
+        cardTitle.snp.makeConstraints {
+            $0.leading.top.equalToSuperview()
+        }
+        
+        contentView.addSubview(cardSaveButton)
+        cardSaveButton.snp.makeConstraints {
+            $0.trailing.top.equalToSuperview()
+            $0.height.equalTo(cardTitle.snp.height)
+        }
+        
+        contentView.addSubview(cardView)
+        cardView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
-            $0.top.equalTo(contentView)
+            $0.top.equalTo(cardTitle.snp.bottom).offset(OrrPd.pd16.rawValue)
+        }
+        
+        // 도전
+        contentView.addSubview(challengeTitle)
+        challengeTitle.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(cardView.snp.bottom).offset(OrrPd.pd36.rawValue)
         }
         
         contentView.addSubview(challengeChartView)
         challengeChartView.snp.makeConstraints {
-            $0.leading.trailing.equalTo(contentView)
-            $0.top.equalTo(summaryView.snp.bottom).offset(16)
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(challengeTitle.snp.bottom).offset(OrrPd.pd16.rawValue)
         }
         
-        contentView.addSubview(solvedProblemsChartView)
-        solvedProblemsChartView.snp.makeConstraints {
-            $0.leading.trailing.equalTo(contentView)
-            $0.top.equalTo(challengeChartView.snp.bottom).offset(16)
+        contentView.addSubview(growthChartView)
+        growthChartView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(challengeChartView.snp.bottom).offset(OrrPd.pd16.rawValue)
+        }
+        
+        // 정보
+        contentView.addSubview(informationTitle)
+        informationTitle.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(growthChartView.snp.bottom).offset(OrrPd.pd36.rawValue)
+        }
+        
+        contentView.addSubview(homeGymChartView)
+        homeGymChartView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(informationTitle.snp.bottom).offset(OrrPd.pd16.rawValue)
+        }
+        
+        contentView.addSubview(historyView)
+        historyView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(homeGymChartView.snp.bottom).offset(OrrPd.pd16.rawValue)
         }
         
         contentView.addSubview(paddingView)
         paddingView.snp.makeConstraints {
             $0.leading.trailing.equalTo(contentView)
-            $0.top.equalTo(solvedProblemsChartView.snp.bottom)
+            $0.top.equalTo(historyView.snp.bottom)
             $0.bottom.equalToSuperview()
+            $0.height.equalTo(OrrPd.pd72.rawValue)
         }
     }
 }
