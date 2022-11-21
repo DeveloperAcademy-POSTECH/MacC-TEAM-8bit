@@ -15,8 +15,8 @@ class DateSettingViewController: UIViewController {
     
     let datePickerLabel : UILabel = {
         let label = UILabel()
-        label.text = "업로드할 영상의 날짜를 선택해주세요"
-        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.text = "방문한 날짜를 선택해주세요"
+        label.font = UIFont.boldSystemFont(ofSize: 22)
         label.textColor = .orrBlack
         label.backgroundColor = .orrWhite
         return label
@@ -86,7 +86,7 @@ extension DateSettingViewController {
         
         view.addSubview(datePickerLabel)
         datePickerLabel.snp.makeConstraints {
-            $0.centerX.equalTo(view)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(OrrPd.pd16.rawValue)
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd8.rawValue)
         }
         
