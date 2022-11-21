@@ -72,6 +72,10 @@ struct ChallengeChartView: View {
         }
         .frame(width: UIScreen.main.bounds.width - 32, height: 130)
         .background(RoundedRectangle(cornerRadius: 15).foregroundColor(.white))
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color(uiColor: .orrGray200!), lineWidth: 1)
+        )
     }
 }
 

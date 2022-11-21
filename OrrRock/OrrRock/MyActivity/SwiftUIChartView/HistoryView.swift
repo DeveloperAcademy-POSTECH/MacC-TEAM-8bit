@@ -45,5 +45,9 @@ struct HistoryView: View {
         }
         .frame(width: UIScreen.main.bounds.width - 32, height: 180)
         .background(RoundedRectangle(cornerRadius: 15).foregroundColor(.white))
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color(uiColor: .orrGray200!), lineWidth: 1)
+        )
     }
 }

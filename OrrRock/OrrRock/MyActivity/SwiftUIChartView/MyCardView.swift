@@ -46,5 +46,9 @@ struct MyCardView: View {
             .padding(.bottom, 24)
         }
         .frame(width: UIScreen.main.bounds.width - 32, height: UIScreen.main.bounds.width - 32, alignment: .leading)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color(uiColor: .orrGray200!), lineWidth: 1)
+        )
     }
 }

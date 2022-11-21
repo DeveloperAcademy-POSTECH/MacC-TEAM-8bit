@@ -43,5 +43,6 @@ struct ExportCardView: View {
         }
         .frame(width: 262, height: 398)
         .background(.clear)
+        
     }
 }

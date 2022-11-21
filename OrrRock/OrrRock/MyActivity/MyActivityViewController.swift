@@ -25,17 +25,17 @@ class MyActivityViewController: UIViewController {
     var frequentlyVisitedGymList: [(String, Int)] = []
     var totalGymVisitedDate: Int = 0
     
-    private lazy var DEBUGBackgroundView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrGray300
-        return view
-    }()
+//    private lazy var DEBUGBackgroundView: UIView = {
+//        let view = UIView()
+//        view.backgroundColor = .orrGray300
+//        return view
+//    }()
     
     // 레이아웃
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .orrGray300
+        scrollView.backgroundColor = .orrGray100
         scrollView.showsVerticalScrollIndicator = false
         
         return scrollView
@@ -43,7 +43,7 @@ class MyActivityViewController: UIViewController {
     
     private lazy var contentView: UIView = {
         let contentView = UIView()
-        contentView.backgroundColor = .orrGray300
+        contentView.backgroundColor = .orrGray100
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
         return contentView
@@ -125,7 +125,7 @@ class MyActivityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
-        
+        self.view.backgroundColor = .orrGray100
         // Do any additional setup after loading the view.
     }
     
@@ -356,7 +356,6 @@ class MyActivityViewController: UIViewController {
 extension MyActivityViewController {
     func setUpSubViews() {
         // Layout
-        view.addSubview(DEBUGBackgroundView)
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(paddingView)
@@ -395,10 +394,6 @@ extension MyActivityViewController {
     }
     
     func setUpLayout() {
-        DEBUGBackgroundView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
         scrollView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(OrrPd.pd16.rawValue)
             $0.top.bottom.equalToSuperview()
