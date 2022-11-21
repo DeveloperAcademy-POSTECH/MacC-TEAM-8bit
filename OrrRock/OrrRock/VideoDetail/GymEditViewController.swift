@@ -175,6 +175,8 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
         
         autocompleteTableView.delegate = self
         autocompleteTableView.dataSource = self
+        
+        gymTextField.becomeFirstResponder()
     }
     
     private func setData(){
