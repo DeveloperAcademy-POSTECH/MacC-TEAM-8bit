@@ -48,7 +48,7 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
     
     private lazy var titleLabel : UILabel = {
         let title = UILabel()
-        title.text = "레벨 및 성공 여부 편집"
+        title.text = "문제 편집"
         title.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         title.textColor = .black
         return title
@@ -61,7 +61,7 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
     
     private lazy var LevelLabel : UILabel = {
         let label = UILabel()
-        label.text = "해당 문제의 레벨을 선택해 주세요."
+        label.text = "레벨을 선택해 주세요."
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.textColor = .orrBlack
         label.backgroundColor = .orrWhite
@@ -79,9 +79,10 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
     
     lazy var successLabel : UILabel = {
         let label = UILabel()
+        label.text = "완등 여부를 설정해주세요"
         label.textColor = .orrBlack
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        label.text = "성공 여부를 설정해주세요"
+        label.backgroundColor = .orrWhite
         return label
     }()
     
@@ -105,6 +106,14 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         button.setTitle("성공", for: .normal)
         button.addTarget(self, action: #selector(didSuccessButtonClicked), for: .touchUpInside)
         return button
+    }()
+    
+    private lazy var indicateLabel : UILabel = {
+        let label = UILabel()
+        label.textColor = .orrBlack
+        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        label.text = "이 문제는 완등하지 못했어요"
+        return label
     }()
     
     private lazy var saveButton : UIButton = {
@@ -190,6 +199,12 @@ extension LevelAndPFEditViewController {
             $0.leading.equalTo(levelContentView).offset(OrrPd.pd16.rawValue)
             $0.trailing.equalTo(levelContentView).offset(-OrrPd.pd16.rawValue)
             $0.height.equalTo(56)
+        }
+        
+        levelContentView.addSubview(indicateLabel)
+        indicateLabel.snp.makeConstraints {
+            $0.top.equalTo(failCheckButton.snp.bottom).offset(OrrPd.pd16.rawValue)
+            $0.centerX.equalTo(levelContentView)
         }
         
     }

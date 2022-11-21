@@ -133,7 +133,7 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
         
         dateContentView.addSubview(datePickerLabel)
         datePickerLabel.snp.makeConstraints {
-            $0.leading.equalTo(dateContentView).offset(15.5)
+            $0.leading.equalTo(dateContentView).offset(OrrPd.pd24.rawValue)
             $0.top.equalTo(dateContentView.snp.top).offset(OrrPd.pd72.rawValue)
         }
         
