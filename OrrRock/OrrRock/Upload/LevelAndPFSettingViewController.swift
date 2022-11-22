@@ -165,6 +165,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         button.clipsToBounds = true
         button.layer.cornerRadius = 10.0
         button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
         button.isHidden = true
         
         return button
@@ -172,6 +173,12 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if !UserDefaults.standard.bool(forKey: "SwipeOnboardingClear"){
+            let nextVC = SwipeOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+            nextVC.modalPresentationStyle = .fullScreen
+            self.present(nextVC, animated: true, completion: nil)
+        }
         
         view.backgroundColor = .orrWhite
         

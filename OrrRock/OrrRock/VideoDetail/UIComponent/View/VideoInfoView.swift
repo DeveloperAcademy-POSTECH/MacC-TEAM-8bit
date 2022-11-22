@@ -153,7 +153,7 @@ final class VideoInfoView: UIView {
         vc.pickerSelectValue = Int(videoInformation!.problemLevel) + 1
         vc.completioHandler = { isSuccess, level in
             
-            self.levelIcon.text = level == -1 ? "선택안함" : "V\(level)"
+            self.levelIcon.text = level == -1 ? "V?" : "V\(level)"
             
             self.isSucceeded.text = isSuccess ? "성공" : "실패"
             
