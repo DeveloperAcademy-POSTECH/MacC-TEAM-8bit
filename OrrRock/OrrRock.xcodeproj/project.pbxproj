@@ -94,6 +94,7 @@
 		FB32280F29046B4500276A7D /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32280E29046B4500276A7D /* VideoDetailViewController.swift */; };
 		FB32281329046CDE00276A7D /* VideoPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32281229046CDE00276A7D /* VideoPlayView.swift */; };
 		FB32281529046CED00276A7D /* VideoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32281429046CED00276A7D /* VideoInfoView.swift */; };
+		FB8A9E0F292D840C003F44D3 /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8A9E0E292D840C003F44D3 /* ExportViewController.swift */; };
 		FBA5DBFD291AE32A00422A17 /* ButtonClickEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA5DBFC291AE32A00422A17 /* ButtonClickEffect.swift */; };
 /* End PBXBuildFile section */
 
@@ -184,6 +185,7 @@
 		FB32280E29046B4500276A7D /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		FB32281229046CDE00276A7D /* VideoPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayView.swift; sourceTree = "<group>"; };
 		FB32281429046CED00276A7D /* VideoInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfoView.swift; sourceTree = "<group>"; };
+		FB8A9E0E292D840C003F44D3 /* ExportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
 		FBA5DBFC291AE32A00422A17 /* ButtonClickEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonClickEffect.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -361,6 +363,7 @@
 				78F93ED22906EFC500F3D9F3 /* GymEditViewController.swift */,
 				34172EAE292AAD3E009DAAB8 /* DateEditViewController.swift */,
 				78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */,
+				FB8A9E0E292D840C003F44D3 /* ExportViewController.swift */,
 				78FEE89D292976FA007B67BD /* VideoDetailViewController */,
 				3AEB3D61291C03A900A989FF /* UIComponent */,
 			);
@@ -576,6 +579,7 @@
 			files = (
 				707B2CB829012BFE0062C958 /* Color+.swift in Sources */,
 				0AAB780A290424A300EEEFFB /* SwipeableCardVideoView.swift in Sources */,
+				FB8A9E0F292D840C003F44D3 /* ExportViewController.swift in Sources */,
 				3A15AC7929071F710058512F /* DataRepository.swift in Sources */,
 				342508AF29002F31000653D9 /* HomeCollectionViewHeaderCell.swift in Sources */,
 				709A8C6D2904A3E800CEA6F4 /* CustomIndicator.swift in Sources */,
