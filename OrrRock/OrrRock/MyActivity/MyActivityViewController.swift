@@ -19,9 +19,9 @@ class MyActivityViewController: UIViewController {
     var entireSolvedProblemsForGrowthChart: [[SolvedProblemsOfEachLevel]] = [[],[],[]]
     var periodDataForGrowthChart: [(Date, Date)] = [(Date(), Date()), (Date(), Date()), (Date(), Date())]
     
-    var entireProblemsForDonutChart: [ChartCellModel] = []
-    var validTotalCountForDonutChart: Int = 0
-    var validSuccessCountForDonutChart: Int = 0
+    var entireProblemsForChallengeChart: [ChartCellModel] = []
+    var validTotalCountForChallengeChart: Int = 0
+    var validSuccessCountForChallengeChart: Int = 0
     
     var frequentlyVisitedGymList: [(String, Int)] = [("", 0), ("", 0), ("", 0)]
     var totalGymVisitedDate: Int = 0
@@ -104,7 +104,7 @@ class MyActivityViewController: UIViewController {
     }()
     
     private lazy var challengeChartView: UIView = {
-        let VC = UIHostingController(rootView: ChallengeChartView(chartData: ChartDataModel(dataModel: entireProblemsForDonutChart), totalCount: validTotalCountForDonutChart, successCount: validSuccessCountForDonutChart))
+        let VC = UIHostingController(rootView: ChallengeChartView(chartData: ChartDataModel(dataModel: entireProblemsForChallengeChart), totalCount: validTotalCountForChallengeChart, successCount: validSuccessCountForChallengeChart))
         VC.view.backgroundColor = .clear
         return VC.view
     }()
@@ -145,12 +145,10 @@ class MyActivityViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
         self.view.backgroundColor = .orrGray100
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //        self.navigationController?.navigationBar.isHidden = true
         self.navigationController?.navigationBar.backgroundColor = .clear
         self.navigationController?.isNavigationBarHidden = true
         
@@ -161,7 +159,6 @@ class MyActivityViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        self.navigationController?.isNavigationBarHidden = false
     }
     
     func setUpData() {
@@ -173,7 +170,7 @@ class MyActivityViewController: UIViewController {
         
         (highestLevel, frequentlyVisitedGymList, totalGymVisitedDate) = getSummaryData(fromDate: entireVideoInformationsByDate, fromName: entireVideoInformationsByName)
         
-        (entireProblemsForDonutChart, validTotalCountForDonutChart, validSuccessCountForDonutChart) = getProblemsPerLevel(from: entireVideoInformationsByDate)
+        (entireProblemsForChallengeChart, validTotalCountForChallengeChart, validSuccessCountForChallengeChart) = getProblemsPerLevel(from: entireVideoInformationsByDate)
         
         (entireSolvedProblemsForGrowthChart[0], periodDataForGrowthChart[0]) = getSolvedProblemsPerPeriod(from: entireVideoInformationsByDate, period: .week)
         (entireSolvedProblemsForGrowthChart[1], periodDataForGrowthChart[1]) = getSolvedProblemsPerPeriod(from: entireVideoInformationsByDate, period: .month)
@@ -224,7 +221,6 @@ class MyActivityViewController: UIViewController {
         }
         
         visitedGymCount.sort { $0.1 > $1.1 }
-        
         
         if visitedGymCount.count > 3 {
             // 방문한 클라이밍장이 3군데가 넘는다면 3개로 맞춰주기
@@ -354,7 +350,6 @@ class MyActivityViewController: UIViewController {
     }
     
     func redrawViewWithFirstDateOfClimbing() {
-        
         // myCardView
         cardView.removeFromSuperview()
         
@@ -540,7 +535,7 @@ extension MyActivityViewController {
         // 도전 차트
         challengeChartView.removeFromSuperview()
         
-        let challengeChartVC = UIHostingController(rootView: ChallengeChartView(chartData: ChartDataModel(dataModel: entireProblemsForDonutChart), totalCount: validTotalCountForDonutChart, successCount: validSuccessCountForDonutChart))
+        let challengeChartVC = UIHostingController(rootView: ChallengeChartView(chartData: ChartDataModel(dataModel: entireProblemsForChallengeChart), totalCount: validTotalCountForChallengeChart, successCount: validSuccessCountForChallengeChart))
         challengeChartVC.view.backgroundColor = .clear
         challengeChartView = challengeChartVC.view
         

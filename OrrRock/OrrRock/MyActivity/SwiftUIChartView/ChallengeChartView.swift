@@ -69,13 +69,21 @@ struct ChallengeChartView: View {
                 }
                 
                 HStack() {
-                    Text("\(successCount)번의 성공")
-                        .font(.system(size: 15, weight: .regular))
-                        .foregroundColor(Color(uiColor: UIColor.orrGray700!))
-                    Spacer()
-                    Text("\(totalCount)번의 도전")
-                        .font(.system(size: 15, weight: .regular))
-                        .foregroundColor(Color(uiColor: UIColor.orrGray700!))
+                    if totalCount == 0 {
+                        Text("기록을 추가하면 도전 그래프가 자동으로 작성됩니다")
+                            .font(.system(size: 12, weight: .regular))
+                            .foregroundColor(Color(uiColor: UIColor.orrGray500!))
+                        Spacer()
+                    } else {
+                        Text("\(successCount)번의 성공")
+                            .font(.system(size: 15, weight: .regular))
+                            .foregroundColor(Color(uiColor: UIColor.orrGray700!))
+                        Spacer()
+                        
+                        Text("\(totalCount)번의 도전")
+                            .font(.system(size: 15, weight: .regular))
+                            .foregroundColor(Color(uiColor: UIColor.orrGray700!))
+                    }
                 }
             }
             .frame(width: UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 4, height: 98, alignment: .topLeading)

@@ -92,7 +92,7 @@ struct GrowthChartView: View {
             .frame(width: UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 4, height: 418, alignment: .topLeading)
         }
         .frame(width: UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 2, height: 450)
-        .background(RoundedRectangle(cornerRadius: 15).foregroundColor(.white))
+        .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.white))
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color(uiColor: .orrGray200!), lineWidth: 1)

@@ -75,7 +75,7 @@ struct HomeGymChartView: View {
             .frame(width: UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 4, height: isChartDataEmpty() ? 136 : 188, alignment: .topLeading)
         }
         .frame(width: UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 2, height: isChartDataEmpty() ? 168 : 220)
-        .background(RoundedRectangle(cornerRadius: 15).foregroundColor(.white))
+        .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.white))
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color(uiColor: .orrGray200!), lineWidth: 1)

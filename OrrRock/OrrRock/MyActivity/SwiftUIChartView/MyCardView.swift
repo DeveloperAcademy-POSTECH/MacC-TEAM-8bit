@@ -53,7 +53,7 @@ struct MyCardView: View {
                         .font(.system(size: 17, weight: .regular))
                         .foregroundColor(Color(uiColor: UIColor.orrWhite!))
                     
-                    Text("아직 기록이 없어요")
+                    Text("\(Calendar.current.dateComponents([.day], from: firstDate ?? Date(), to: Date()).day! + 1)일")
                         .font(.system(size: 28, weight: .bold))
                         .foregroundColor(Color(uiColor: UIColor.orrWhite!))
                     
