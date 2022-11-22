@@ -141,10 +141,6 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
         sheetPresentationController.selectedDetentIdentifier = .large
         sheetPresentationController.prefersGrabberVisible = false
         sheetPresentationController.detents = [.large()]
-        
-        autocompleteTableView.delegate = self
-        autocompleteTableView.dataSource = self
-        
         gymTextField.becomeFirstResponder()
     }
     
