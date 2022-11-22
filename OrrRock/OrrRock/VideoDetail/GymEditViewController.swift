@@ -29,7 +29,7 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
     
     private lazy var gymTopView : UIView = {
         let view = UIView()
-        view.backgroundColor = .orrWhite
+        view.backgroundColor = .orrGray100
         
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
@@ -68,6 +68,7 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
         btn.addTarget(self, action: #selector(pressSaveButton), for: .touchUpInside)
         btn.setTitle("저장", for: .normal)
         btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
         return btn
     }()
     
@@ -115,8 +116,8 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
         
         gymContentView.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
-            $0.centerX.equalTo(gymContentView)
-            $0.top.equalTo(gymContentView.snp.top).offset(OrrPd.pd24.rawValue)
+            $0.leading.equalTo(gymContentView).offset(15.5)
+            $0.top.equalTo(gymContentView.snp.top).offset(OrrPd.pd72.rawValue)
         }
         
         gymContentView.addSubview(gymTextField)
@@ -141,6 +142,10 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
         sheetPresentationController.prefersGrabberVisible = false
         sheetPresentationController.detents = [.large()]
         
+        autocompleteTableView.delegate = self
+        autocompleteTableView.dataSource = self
+        
+        gymTextField.becomeFirstResponder()
     }
     
     private func setData(){
