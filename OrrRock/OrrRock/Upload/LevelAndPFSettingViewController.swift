@@ -18,6 +18,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     private var cards: [SwipeableCardVideoView?] = []
     private var counter: Int = 0
+    private var deleteConter: Int = 0
     private var currentSelectedLevel = -1
     private var selectedCard: Int = 0
     private var classifiedCard: Int = 0
@@ -231,7 +232,6 @@ private extension LevelAndPFSettingViewController {
         // time observer 생성 후 token에 저장
         switch isFirstCard{
         case true:
-            NSLog("💙 add first observer")
             firstCardtimeObserverToken = card.queuePlayer.addPeriodicTimeObserver(
                 forInterval:interval,
                 queue: DispatchQueue.main,
@@ -240,8 +240,8 @@ private extension LevelAndPFSettingViewController {
                     // TODO: 남은 시간 표시
                     // self?.updateTimeRemaining(currentTime)
                 })
+            NSLog("💙 add first observer: \(String(describing: firstCardtimeObserverToken))")
         case false:
-            NSLog("💚 add other observer")
             timeObserverToken = card.queuePlayer.addPeriodicTimeObserver(
                 forInterval:interval,
                 queue: DispatchQueue.main,
@@ -250,6 +250,7 @@ private extension LevelAndPFSettingViewController {
                     // TODO: 남은 시간 표시
                     // self?.updateTimeRemaining(currentTime)
                 })
+            NSLog("💚 add other observer: \(String(describing: timeObserverToken))")
         }
     }
     
@@ -369,6 +370,7 @@ private extension LevelAndPFSettingViewController {
                     if self.firstCardtimeObserverToken == nil {
                         let firstCard = self.cards[0] as? SwipeableCardVideoView
                         guard let card = firstCard else { return }
+                        // 첫번째 Observer
                         self.addPeriodicTimeObserver(card: card, isFirstCard: true)
                         firstCard?.queuePlayer.play()
                     }
@@ -385,8 +387,7 @@ private extension LevelAndPFSettingViewController {
         // 스와이프가 완료되고 removeCard가 호출될 때 버튼 활성화
         successButton.isEnabled = true
         failButton.isEnabled = true
-        // 카드가 사라질 때 카운팅
-        counter += 1
+
     }
     
     // Gesture
@@ -450,6 +451,7 @@ private extension LevelAndPFSettingViewController {
     
     // 삭제 버튼을 눌렀을 때 로직
     @objc func didDeleteButton() {
+        print("tapped")
         animateCard(rotationAngle: 0, videoResultType: .delete)
     }
     
@@ -468,9 +470,17 @@ private extension LevelAndPFSettingViewController {
     // swipeCard의 애니메이션 효과를 담당합니다.
     func animateCard(rotationAngle: CGFloat, videoResultType: VideoResultType) {
         
-        guard let card = cards[counter] else { return }
-        removePeriodicTimeObserver(card:  card, isFirstCard: counter == 0 ? true : false)
+//        if counter == 0 {
+//            guard let card = cards[counter] else { return }
+//            removePeriodicTimeObserver(card: card, isFirstCard: counter == 0)
+//        }
         
+        if counter == 0 {
+            guard let card = cards[counter] else { return }
+            removePeriodicTimeObserver(card:  card, isFirstCard: counter == 0)
+        }
+        
+
         let cardViews = view.subviews.filter({ ($0 as? SwipeableCardVideoView) != nil })
         
         for view in cardViews {
@@ -483,6 +493,7 @@ private extension LevelAndPFSettingViewController {
                 
                 // 마지막 카드가 아닐 때 다음 카드를 재생
                 if counter != cards.count-1 {
+                    
                     // 다음에 나올 카드
                     guard let nextCard = cards[counter + 1] as? SwipeableCardVideoView else { return }
                     // Slider에 시간 정보를 업데이트하기 위한 Observer 추가
@@ -506,7 +517,10 @@ private extension LevelAndPFSettingViewController {
                     isDeleted = true
                 }
                 
-                if !isDeleted {
+                if isDeleted {
+                    // 지웠으면 정보 저장하지 않고 카드 지워주기
+                    cards.remove(at: counter)
+                } else {
                     // 성공이나 실패로 분류되면 성패 여부와 레벨 정보 저장
                     videoInfoArray[counter].isSucceeded = isSuccess
                     videoInfoArray[counter].problemLevel = currentSelectedLevel ?? 0
@@ -537,13 +551,23 @@ private extension LevelAndPFSettingViewController {
                         self.failButton.isEnabled = false
                         
                     }) { [self] _ in
-                        if counter != cards.count-1 {
+                        // 마지막 카드가 아니면
+                        if !isDeleted {
+                            // 카드가 사라질 때 카운팅
+                            counter += 1
+                        }
+//                        if firstCardtimeObserverToken == nil {
+//                            removePeriodicTimeObserver(card:  card, isFirstCard: false)
+//                        }
+                        if counter != cards.count {
                             removeCard(card: card)
                         } else {
                             didVideoClassificationComplete()
                             removeCard(card: card)
                         }
+                        print("\n✨ counter: \(counter)\n", "👏 videoInfoArray: \(videoInfoArray)\n" )
                     }
+                
             }
         }
     }
@@ -554,11 +578,15 @@ private extension LevelAndPFSettingViewController {
     
     // 모든 카드를 스와이핑 했을 때 호출되는 메서드
     func didVideoClassificationComplete() {
+        // 한번 더 제거해주는 로직
+        cards.removeAll()
+
         levelButton.isEnabled = false
         
         saveButton.isHidden = false
         successButton.isHidden = true
         failButton.isHidden = true
+        deleteButton.isHidden = true
         videoSlider.isHidden = true
         
         titleLabel.text = "분류 완료! 저장하기를 눌러주세요."
