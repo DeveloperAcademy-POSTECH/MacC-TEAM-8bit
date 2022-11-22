@@ -525,7 +525,6 @@ private extension LevelAndPFSettingViewController {
         
         view.addSubview(newLevelPickerView)
         newLevelPickerView.snp.makeConstraints {
-            newLevelPickerView.backgroundColor = .red
             $0.leading.equalTo(view.snp.leading)
             $0.trailing.equalTo(view.snp.trailing)
             $0.top.equalTo(view.safeAreaLayoutGuide)
