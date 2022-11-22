@@ -49,6 +49,7 @@
 		3AA4D43728FEBE94006C718A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA4D43628FEBE94006C718A /* SnapKit */; };
 		3AEB3D5D291C003D00A989FF /* VideoCollectionViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */; };
 		700AC6212926A1DA003DF5AF /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700AC6202926A1DA003DF5AF /* UIImageView+.swift */; };
+		704BAB5E292834DB004D987A /* NewLevelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704BAB5D292834DB004D987A /* NewLevelPickerView.swift */; };
 		707B2CAE28FFF7090062C958 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 707B2CAD28FFF7090062C958 /* NVActivityIndicatorView */; };
 		707B2CB829012BFE0062C958 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB729012BFE0062C958 /* Color+.swift */; };
 		707B2CBA2901382A0062C958 /* OrrPd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB92901382A0062C958 /* OrrPd.swift */; };
@@ -60,6 +61,7 @@
 		70A8DF05291403EA0061E36B /* GymSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8DF04291403EA0061E36B /* GymSettingModel.swift */; };
 		70A8DF08291966E20061E36B /* SwipeableCardVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8DF07291966E20061E36B /* SwipeableCardVideoModel.swift */; };
 		70A8DF0A291A863F0061E36B /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8DF09291A863F0061E36B /* UIView+.swift */; };
+		70AE8138292CA24500B4DB3F /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AE8137292CA24500B4DB3F /* Font+.swift */; };
 		70DE795A29250F480009AD43 /* SwipeOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE795929250F480009AD43 /* SwipeOnboardingViewController.swift */; };
 		70DE795C292517330009AD43 /* SwipeOnboardingFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE795B292517330009AD43 /* SwipeOnboardingFirstViewController.swift */; };
 		70DE795E29253F050009AD43 /* EmptyBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE795D29253F050009AD43 /* EmptyBackgroundView.swift */; };
@@ -137,6 +139,7 @@
 		3AA4D42F28FEBADF006C718A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewMode.swift; sourceTree = "<group>"; };
 		700AC6202926A1DA003DF5AF /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		704BAB5D292834DB004D987A /* NewLevelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLevelPickerView.swift; sourceTree = "<group>"; };
 		707B2CB729012BFE0062C958 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		707B2CB92901382A0062C958 /* OrrPd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrrPd.swift; sourceTree = "<group>"; };
 		709A8C6A2904827B00CEA6F4 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
@@ -147,6 +150,7 @@
 		70A8DF04291403EA0061E36B /* GymSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymSettingModel.swift; sourceTree = "<group>"; };
 		70A8DF07291966E20061E36B /* SwipeableCardVideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardVideoModel.swift; sourceTree = "<group>"; };
 		70A8DF09291A863F0061E36B /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		70AE8137292CA24500B4DB3F /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		70DE795929250F480009AD43 /* SwipeOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnboardingViewController.swift; sourceTree = "<group>"; };
 		70DE795B292517330009AD43 /* SwipeOnboardingFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnboardingFirstViewController.swift; sourceTree = "<group>"; };
 		70DE795D29253F050009AD43 /* EmptyBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyBackgroundView.swift; sourceTree = "<group>"; };
@@ -252,6 +256,7 @@
 				70A44806290452B000BE18A5 /* Button+.swift */,
 				70A8DF09291A863F0061E36B /* UIView+.swift */,
 				700AC6202926A1DA003DF5AF /* UIImageView+.swift */,
+				70AE8137292CA24500B4DB3F /* Font+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -419,6 +424,7 @@
 				709A8C6A2904827B00CEA6F4 /* UnderlinedTextField.swift */,
 				709A8C6C2904A3E800CEA6F4 /* CustomIndicator.swift */,
 				34793FA229262A8800B74110 /* CustomBackBarButtomItem.swift */,
+				704BAB5D292834DB004D987A /* NewLevelPickerView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -588,6 +594,7 @@
 				78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */,
 				3A15AC892907B1160058512F /* VideoInformation+CoreDataProperties.swift in Sources */,
 				70A8DF05291403EA0061E36B /* GymSettingModel.swift in Sources */,
+				704BAB5E292834DB004D987A /* NewLevelPickerView.swift in Sources */,
 				70E8E7542923865400793F91 /* OnBoardigSuperViewController.swift in Sources */,
 				70DE795C292517330009AD43 /* SwipeOnboardingFirstViewController.swift in Sources */,
 				3A15AC7729071DD90058512F /* OrderOption.swift in Sources */,
@@ -628,6 +635,7 @@
 				34172EAF292AAD3E009DAAB8 /* DateEditViewController.swift in Sources */,
 				A81992C42927E48B00F024CA /* VideoSlider.swift in Sources */,
 				342508AB29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift in Sources */,
+				70AE8138292CA24500B4DB3F /* Font+.swift in Sources */,
 				78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */,
 				341418BD2923A6FF0033D851 /* GymEditViewController+TableViewExtensions.swift in Sources */,
 				3AEB3D5D291C003D00A989FF /* VideoCollectionViewMode.swift in Sources */,
