@@ -240,7 +240,6 @@ private extension LevelAndPFSettingViewController {
                     // TODO: 남은 시간 표시
                     // self?.updateTimeRemaining(currentTime)
                 })
-            NSLog("💙 add first observer: \(String(describing: firstCardtimeObserverToken))")
         case false:
             timeObserverToken = card.queuePlayer.addPeriodicTimeObserver(
                 forInterval:interval,
@@ -250,7 +249,6 @@ private extension LevelAndPFSettingViewController {
                     // TODO: 남은 시간 표시
                     // self?.updateTimeRemaining(currentTime)
                 })
-            NSLog("💚 add other observer: \(String(describing: timeObserverToken))")
         }
     }
     
@@ -261,13 +259,11 @@ private extension LevelAndPFSettingViewController {
             if let timeObserverToken = firstCardtimeObserverToken {
                 card.queuePlayer.removeTimeObserver(timeObserverToken)
                 self.firstCardtimeObserverToken = nil
-                NSLog("💜 romove first observer")
             }
         case false:
             if let timeObserverToken = timeObserverToken {
                 card.queuePlayer.removeTimeObserver(timeObserverToken)
                 self.timeObserverToken = nil
-                NSLog("💛 romove observer")
             }
         }
     }
@@ -365,6 +361,7 @@ private extension LevelAndPFSettingViewController {
                     // '분류된 카드 / 선택된 카드' 형식의 문자열 값을 넘겨주는 메서드
                     swipeCard.getCardLabelText(labelText: "\(classifiedCard)/\(selectedCard)")
                 }
+                
                 // Asset 카운팅이 0이 되었을 때 completionHandler로 반환
                 countingGroup.notify(queue: DispatchQueue.main) {
                     if self.firstCardtimeObserverToken == nil {
@@ -382,13 +379,12 @@ private extension LevelAndPFSettingViewController {
     
     // swipeCard가 SuperView에서 제거됩니다.
     @objc func removeCard(card: UIView) {
-        
         card.removeFromSuperview()
         // 스와이프가 완료되고 removeCard가 호출될 때 버튼 활성화
         successButton.isEnabled = true
         failButton.isEnabled = true
         counter += 1
-
+        
     }
     
     // Gesture
@@ -415,7 +411,7 @@ private extension LevelAndPFSettingViewController {
             if gesture.state == .ended {
                 // 카드의 x축을 통한 성패 결정 스와이프 정도
                 
-                var cardPositionX = card.center.x
+                let cardPositionX = card.center.x
                 
                 switch cardPositionX {
                 case self.view.bounds.width / 3 * 2..<self.view.bounds.width:
@@ -429,6 +425,20 @@ private extension LevelAndPFSettingViewController {
                     card.transform = .identity
                     card.successImageView.alpha = 0
                     card.failImageView.alpha = 0
+                    card.setVideoBackgroundViewBorderColor(color: .clear, alpha: 1)
+                    return
+                }
+                
+                // 카드의 y축을 통한 영상 삭제 스와이프 정도
+                let cardPositionY = card.center.y
+                
+                switch cardPositionY {
+                case self.view.bounds.height / 3 * 2..<self.view.bounds.height:
+                    animateCard(rotationAngle: 0, videoResultType: .delete)
+                    return
+                default:
+                    card.center = self.emptyVideoView.center
+                    card.transform = .identity
                     card.setVideoBackgroundViewBorderColor(color: .clear, alpha: 1)
                     return
                 }
@@ -452,7 +462,6 @@ private extension LevelAndPFSettingViewController {
     
     // 삭제 버튼을 눌렀을 때 로직
     @objc func didDeleteButton() {
-        print("tapped")
         animateCard(rotationAngle: 0, videoResultType: .delete)
     }
     
@@ -471,17 +480,9 @@ private extension LevelAndPFSettingViewController {
     // swipeCard의 애니메이션 효과를 담당합니다.
     func animateCard(rotationAngle: CGFloat, videoResultType: VideoResultType) {
         
-//        if counter == 0 {
-//            guard let card = cards[counter] else { return }
-//            removePeriodicTimeObserver(card: card, isFirstCard: counter == 0)
-//        }
+        guard let card = cards[counter] else { return }
+        removePeriodicTimeObserver(card: card, isFirstCard:  counter == 0 ? true : false)
         
-        if counter == 0 {
-            guard let card = cards[counter] else { return }
-            removePeriodicTimeObserver(card:  card, isFirstCard: counter == 0)
-        }
-        
-
         let cardViews = view.subviews.filter({ ($0 as? SwipeableCardVideoView) != nil })
         
         for view in cardViews {
@@ -503,6 +504,7 @@ private extension LevelAndPFSettingViewController {
                     nextCard.queuePlayer.play()
                 }
                 
+                // TODO: case 분기 개선 필요
                 switch videoResultType {
                 case .fail:
                     center = CGPoint(x: card.center.x - view.bounds.width, y: card.center.y + 30)
@@ -525,43 +527,35 @@ private extension LevelAndPFSettingViewController {
                     videoInfoArray[counter].isSucceeded = isSuccess
                     videoInfoArray[counter].problemLevel = currentSelectedLevel ?? 0
                 }
-                    
-                    UIView.animate(withDuration: 0.3, animations: {
+                
+                UIView.animate(
+                    withDuration: 0.3,
+                    animations: {
+                        
                         card.center = center
                         card.transform = CGAffineTransform(rotationAngle: rotationAngle)
+                        
                         if !isDeleted{
                             card.successImageView.alpha = isSuccess == true ? 1 : 0
                             card.failImageView.alpha = isSuccess == false ? 1 : 0
-                            
-                            if isSuccess{
-                                card.setVideoBackgroundViewBorderColor(color: .pass, alpha: 1)
-                            } else {
-                                card.setVideoBackgroundViewBorderColor(color: .fail, alpha: 1)
-                            }
-                            
+                            card.setVideoBackgroundViewBorderColor(color: isSuccess ? .pass : .fail, alpha: 1)
                         } else {
                             // 카드 삭제시 애니메이션
                             // TODO: 삭제 라벨 alpha
                             // TODO: 삭제 보더 alpha
                             card.setVideoBackgroundViewBorderColor(color: .delete, alpha: 1)
-                            
                         }
                         // 카드 스와이프 애니매이션이 진행 중일 때 버튼 비활성화
                         self.successButton.isEnabled = false
                         self.failButton.isEnabled = false
                         
                     }) { [self] _ in
-                        // 마지막 카드가 아니면
-//                        if firstCardtimeObserverToken == nil {
-//                            removePeriodicTimeObserver(card:  card, isFirstCard: false)
-//                        }
                         if counter != cards.count-1 {
                             removeCard(card: card)
                         } else {
                             didVideoClassificationComplete()
                             removeCard(card: card)
                         }
-                        print("\n✨ counter: \(counter)\n", "👏 videoInfoArray: \(videoInfoArray)\n" )
                     }
                 
             }
@@ -576,7 +570,7 @@ private extension LevelAndPFSettingViewController {
     func didVideoClassificationComplete() {
         // 한번 더 제거해주는 로직
         cards.removeAll()
-
+        
         levelButton.isEnabled = false
         
         saveButton.isHidden = false
@@ -689,15 +683,15 @@ private extension LevelAndPFSettingViewController {
         }
         
         // TODO: 카드 스택 스켈레톤 값 조정 필요
-//        view.addSubview(backgroundCardStackView)
-//        backgroundCardStackView.snp.makeConstraints {
-//            $0.center.equalTo(view.center)
-//            $0.height.equalTo(view.snp.height)
-//            $0.width.equalTo(view.snp.width)
-//            $0.top.equalTo(emptyVideoView.snp.top)
-//            $0.bottom.equalTo(emptyVideoView.snp.bottom)
-//            backgroundCardStackView.setUpLayout()
-//        }
+        //        view.addSubview(backgroundCardStackView)
+        //        backgroundCardStackView.snp.makeConstraints {
+        //            $0.center.equalTo(view.center)
+        //            $0.height.equalTo(view.snp.height)
+        //            $0.width.equalTo(view.snp.width)
+        //            $0.top.equalTo(emptyVideoView.snp.top)
+        //            $0.bottom.equalTo(emptyVideoView.snp.bottom)
+        //            backgroundCardStackView.setUpLayout()
+        //        }
         
         emptyVideoView.addSubview(emptyVideoInformation)
         emptyVideoInformation.snp.makeConstraints {
