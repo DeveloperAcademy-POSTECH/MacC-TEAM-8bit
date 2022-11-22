@@ -21,7 +21,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     private var cards: [SwipeableCardVideoView?] = []
     private var counter: Int = 0
-    private var currentSelectedLevel = -1
+    private var currentSelectedLevel = 0
     private var selectedCard: Int = 0
     private var classifiedCard: Int = 0
     private var timeObserverToken: Any?
@@ -41,16 +41,6 @@ final class LevelAndPFSettingViewController: UIViewController {
         view.layer.zPosition = -1
 
         return view
-    }()
-    
-    private lazy var levelButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("선택안함", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 17.0, weight: .semibold)
-//        button.addTarget(self, action: #selector(pickLevel), for: .touchUpInside)
-        
-        return button
     }()
     
     private lazy var levelButtonImage: UIImageView = {
@@ -81,18 +71,11 @@ final class LevelAndPFSettingViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var separator: UIView = {
-        let separator = UIView()
-        separator.backgroundColor = .orrBlack
+    private lazy var paddigView: UIView = {
+        let view = UIView()
         
-        return separator
+        return view
     }()
-    
-//    private lazy var backgroundCardStackView: EmptyBackgroundView = {
-//        let view = EmptyBackgroundView()
-//        view.layer.zPosition = -1
-//        return view
-//    }()
     
     private lazy var emptyVideoView: UIView = {
         let view = UIView()
@@ -264,23 +247,10 @@ private extension LevelAndPFSettingViewController {
     }
 }
 
-// Level
-//extension LevelAndPFSettingViewController: LevelPickerViewDelegate {
-//    func setSeparatorColor() {
-//        self.separator.backgroundColor = .orrBlack
-//    }
-//
-//    func didLevelChanged(selectedLevel: Int) {
-//        let levelButtonTiltle = selectedLevel == -1 ? "선택안함" : "V\(selectedLevel)"
-//        levelButton.setTitle(levelButtonTiltle, for: .normal)
-//        currentSelectedLevel = selectedLevel
-//    }
-//}
-
 extension LevelAndPFSettingViewController: NewLevelPickerViewDelegate {
     
     func didLevelChanged(selectedLevel: Int) {
-        print("ppap: 레벨이 선택 되었다!!")
+        currentSelectedLevel = selectedLevel
     }
     
 }
@@ -414,7 +384,7 @@ private extension LevelAndPFSettingViewController {
             if gesture.state == .ended {
                 // 카드의 x축을 통한 성패 결정 스와이프 정도
                 
-                var cardPositionX = card.center.x
+                let cardPositionX = card.center.x
                 
                 switch cardPositionX {
                 case self.view.bounds.width / 3 * 2..<self.view.bounds.width:
@@ -434,14 +404,6 @@ private extension LevelAndPFSettingViewController {
             }
         }
     }
-    
-//    @objc func pickLevel() {
-//        let nextViewController = LevelPickerView()
-//        nextViewController.pickerSelectValue = currentSelectedLevel + 1
-//        self.navigationController?.present(nextViewController, animated: true)
-//        separator.backgroundColor = .orrUPBlue
-//        nextViewController.delegate = self
-//    }
     
     // 실패 버튼을 눌렀을 때 로직
     @objc func didFailButton() {
@@ -530,19 +492,12 @@ private extension LevelAndPFSettingViewController {
     }
     
     // 모든 카드를 스와이핑 했을 때 호출되는 메서드
+    // MARK: RuyHa
     func didVideoClassificationComplete() {
-        levelButton.isEnabled = false
-        
         saveButton.isHidden = false
-        successButton.isHidden = true
-        failButton.isHidden = true
+        paddigView.isHidden = true
         videoSlider.isHidden = true
-        
-//        titleLabel.text = "분류 완료! 저장하기를 눌러주세요."
         buttonStackView.isUserInteractionEnabled = false
-        
-//        titleLabel.textColor = .orrGray500
-//        levelButton.tintColor = .orrGray500
     }
 }
 
@@ -570,10 +525,16 @@ private extension LevelAndPFSettingViewController {
         
         view.addSubview(newLevelPickerView)
         newLevelPickerView.snp.makeConstraints {
+            newLevelPickerView.backgroundColor = .red
             $0.leading.equalTo(view.snp.leading)
             $0.trailing.equalTo(view.snp.trailing)
             $0.top.equalTo(view.safeAreaLayoutGuide)
-            $0.bottom.equalTo(emptyVideoView.snp.top)
+            $0.bottom.equalTo(emptyVideoView.snp.top).offset(-OrrPd.pd16.rawValue)
+        }
+        
+        emptyVideoView.addSubview(emptyVideoInformation)
+        emptyVideoInformation.snp.makeConstraints {
+            $0.center.equalTo(emptyVideoView.snp.center)
         }
         
         // TODO: Slider가 너무 빨리 그려지는 이슈
@@ -586,38 +547,28 @@ private extension LevelAndPFSettingViewController {
             $0.height.equalTo(56)
         }
         
-        view.addSubview(failButton)
+        view.addSubview(paddigView)
+        paddigView.snp.makeConstraints {
+            $0.top.equalTo(emptyVideoView.snp.bottom)
+            $0.bottom.equalTo(videoSlider.snp.top)
+            $0.leading.equalTo(emptyVideoView.snp.leading)
+            $0.trailing.equalTo(emptyVideoView.snp.trailing)
+        }
+        
+        paddigView.addSubview(failButton)
         failButton.snp.makeConstraints {
-            $0.bottom.equalTo(videoSlider.snp.top).offset(-OrrPd.pd16.rawValue)
-            $0.leading.equalToSuperview().inset(48.0)
-            $0.height.equalTo(74.0)
-            $0.width.equalTo(74.0)
+            $0.centerY.equalTo(paddigView.snp.centerY).multipliedBy(0.9)
+            $0.leading.equalTo(paddigView.snp.leading)
+            $0.height.equalTo(90)
+            $0.width.equalTo(90)
         }
         
-        view.addSubview(successButton)
+        paddigView.addSubview(successButton)
         successButton.snp.makeConstraints {
-            $0.bottom.equalTo(videoSlider.snp.top).offset(-OrrPd.pd16.rawValue)
-            $0.trailing.equalToSuperview().inset(48.0)
-            $0.height.equalTo(74.0)
-            $0.width.equalTo(74.0)
-        }
-        
-
-        
-        // TODO: 카드 스택 스켈레톤 값 조정 필요
-//        view.addSubview(backgroundCardStackView)
-//        backgroundCardStackView.snp.makeConstraints {
-//            $0.center.equalTo(view.center)
-//            $0.height.equalTo(view.snp.height)
-//            $0.width.equalTo(view.snp.width)
-//            $0.top.equalTo(emptyVideoView.snp.top)
-//            $0.bottom.equalTo(emptyVideoView.snp.bottom)
-//            backgroundCardStackView.setUpLayout()
-//        }
-        
-        emptyVideoView.addSubview(emptyVideoInformation)
-        emptyVideoInformation.snp.makeConstraints {
-            $0.center.equalTo(emptyVideoView.snp.center)
+            $0.centerY.equalTo(paddigView.snp.centerY).multipliedBy(0.9)
+            $0.trailing.equalTo(paddigView.snp.trailing)
+            $0.height.equalTo(90)
+            $0.width.equalTo(90)
         }
         
         view.addSubview(saveButton)

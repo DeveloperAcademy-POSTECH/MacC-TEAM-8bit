@@ -103,7 +103,6 @@ extension SwipeOnboardingSecondViewController {
             $0.leading.equalTo(view.snp.leading)
             $0.trailing.equalTo(view.snp.trailing)
             $0.top.equalTo(view.safeAreaLayoutGuide)
-            newLevelPickerView.backgroundColor = .red
             $0.bottom.equalTo(mainImageView.snp.top).offset(-10)
         }
         

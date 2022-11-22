@@ -94,7 +94,7 @@ class NewLevelPickerView: UIView{
                 titleLabel.text = "V\(pickerSelectValue)\(titleText)"
             }
             
-            if self.frame.height < 100 {
+            if self.frame.height < 110 {
                 titleLabel.removeFromSuperview()
             }
             changedLevelPicker = true
