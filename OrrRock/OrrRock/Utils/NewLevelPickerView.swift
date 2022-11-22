@@ -5,6 +5,7 @@
 //  Created by Ruyha on 2022/11/19.
 //  NewLevelPickerViewDelegate 설정을 꼭 해야지만 값을 전달 받을 수 있습니다.
 //  자세한 설명은 하단 주석 참고
+//  *주의사항* 여기를 수정하실 생각이라면 컬렉션뷰로 새로 만드는것을 권장합니다.
 
 import UIKit
 import SnapKit
@@ -18,7 +19,7 @@ class NewLevelPickerView: UIView{
     private var pickerWidth = 64
     //피커뷰가 시작 될때 선택 되어 있어야 하는 값
     var pickerSelectValue = 0
-    
+    //초기선택된 레이블을 설정에 사용되는 값
     var isFirstLoad : Bool?
     
     //피커뷰에 들어갈 리스트들
@@ -70,8 +71,6 @@ class NewLevelPickerView: UIView{
         super.init(frame: frame)
         setPicker()
         pickerView.subviews[1].isHidden = true
-//        pickerView.subviews[1].backgroundColor = .orrUPBlue
-//        pickerView.subviews[1].alpha = 0.5
     }
     
     required init?(coder: NSCoder) {
@@ -141,14 +140,12 @@ extension NewLevelPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
         }
         
         guard let myBool = isFirstLoad else{
-            print("ppap 낄낄낄")
             isFirstLoad = false
             return
         }
         
         if !myBool{
             isFirstLoad = true
-            print("ppap 깔깔깔")
         }
     }
     
