@@ -16,13 +16,14 @@ class MyActivityViewController: UIViewController {
     var highestLevel: Int = -1
     var mostVisitedGymCountForSummary: Int = 0
     
-    var entireSolvedProblemsForBarChart: [[SolvedProblemsOfEachLevel]] = [[],[],[]]
+    var entireSolvedProblemsForGrowthChart: [[SolvedProblemsOfEachLevel]] = [[],[],[]]
+    var periodDataForGrowthChart: [(Date, Date)] = [(Date(), Date()), (Date(), Date()), (Date(), Date())]
     
     var entireProblemsForDonutChart: [ChartCellModel] = []
     var validTotalCountForDonutChart: Int = 0
     var validSuccessCountForDonutChart: Int = 0
     
-    var frequentlyVisitedGymList: [(String, Int)] = []
+    var frequentlyVisitedGymList: [(String, Int)] = [("", 0), ("", 0), ("", 0)]
     var totalGymVisitedDate: Int = 0
     
     // 레이아웃
@@ -109,13 +110,13 @@ class MyActivityViewController: UIViewController {
     }()
     
     private lazy var growthChartView: UIView = {
-        var mostFrequentLevelForPeriod: [String] = ["", "", ""]
+        var mostFrequentLevelForPeriod: [Int] = [-1, -1, -1]
         
-        mostFrequentLevelForPeriod[0] = getMostFrequentLevelOfList(from: entireSolvedProblemsForBarChart[0])
-        mostFrequentLevelForPeriod[1] = getMostFrequentLevelOfList(from: entireSolvedProblemsForBarChart[1])
-        mostFrequentLevelForPeriod[2] = getMostFrequentLevelOfList(from: entireSolvedProblemsForBarChart[2])
+        mostFrequentLevelForPeriod[0] = getMostFrequentLevelOfList(from: entireSolvedProblemsForGrowthChart[0])
+        mostFrequentLevelForPeriod[1] = getMostFrequentLevelOfList(from: entireSolvedProblemsForGrowthChart[1])
+        mostFrequentLevelForPeriod[2] = getMostFrequentLevelOfList(from: entireSolvedProblemsForGrowthChart[2])
         
-        let VC = UIHostingController(rootView: GrowthChartView(chartData: entireSolvedProblemsForBarChart, mostFrequentLevelForPeriod: mostFrequentLevelForPeriod))
+        let VC = UIHostingController(rootView: GrowthChartView(chartData: entireSolvedProblemsForGrowthChart, periodData: periodDataForGrowthChart, mostFrequentLevelForPeriod: mostFrequentLevelForPeriod))
         VC.view.backgroundColor = .clear
         return VC.view
     }()
@@ -174,9 +175,9 @@ class MyActivityViewController: UIViewController {
         
         (entireProblemsForDonutChart, validTotalCountForDonutChart, validSuccessCountForDonutChart) = getProblemsPerLevel(from: entireVideoInformationsByDate)
         
-        entireSolvedProblemsForBarChart[0] = getSolvedProblemsPerPeriod(from: entireVideoInformationsByDate, period: .week)
-        entireSolvedProblemsForBarChart[1] = getSolvedProblemsPerPeriod(from: entireVideoInformationsByDate, period: .month)
-        entireSolvedProblemsForBarChart[2] = getSolvedProblemsPerPeriod(from: entireVideoInformationsByDate, period: .year)
+        (entireSolvedProblemsForGrowthChart[0], periodDataForGrowthChart[0]) = getSolvedProblemsPerPeriod(from: entireVideoInformationsByDate, period: .week)
+        (entireSolvedProblemsForGrowthChart[1], periodDataForGrowthChart[1]) = getSolvedProblemsPerPeriod(from: entireVideoInformationsByDate, period: .month)
+        (entireSolvedProblemsForGrowthChart[2], periodDataForGrowthChart[2]) = getSolvedProblemsPerPeriod(from: entireVideoInformationsByDate, period: .year)
     }
     
     func resetFirstDateOfClimbing(from: [[VideoInformation]]) {
@@ -224,7 +225,16 @@ class MyActivityViewController: UIViewController {
         
         visitedGymCount.sort { $0.1 > $1.1 }
         
-        visitedGymCount.removeSubrange(3..<visitedGymCount.count)
+        
+        if visitedGymCount.count > 3 {
+            // 방문한 클라이밍장이 3군데가 넘는다면 3개로 맞춰주기
+            visitedGymCount.removeSubrange(3..<visitedGymCount.count)
+        } else {
+            // 방문한 클라이밍장이 3군데가 안된다면, 3개로 채워주기
+            while visitedGymCount.count != 3 {
+                visitedGymCount.append(("", 0))
+            }
+        }
         
         return (highestLevel, visitedGymCount, totalVisitCount)
     }
@@ -252,7 +262,7 @@ class MyActivityViewController: UIViewController {
     }
     
     // [[VideoInformation]]와 기간을 인자로 받아와 차트를 그릴 데이터 모델을 반환
-    func getSolvedProblemsPerPeriod(from: [[VideoInformation]], period: TimePeriodEnum) -> [SolvedProblemsOfEachLevel] {
+    func getSolvedProblemsPerPeriod(from: [[VideoInformation]], period: TimePeriodEnum) -> ([SolvedProblemsOfEachLevel], (Date, Date)) {
         let iterationForPeriod: Int = {
             switch period {
             case .week:
@@ -276,8 +286,9 @@ class MyActivityViewController: UIViewController {
         }()
         
         var result: [SolvedProblemsOfEachLevel] = []
+        
         for level in 0...9 {
-            result.append(SolvedProblemsOfEachLevel(name: "v\(level)", problems: []))
+            result.append(SolvedProblemsOfEachLevel(level: level, name: "v\(level)", problems: []))
             for periodIndex in 0..<iterationForPeriod {
                 //
                 result[level].problems.append(SolvedProblemsOfEachPeriod(periodName: periodIndex == iterationForPeriod-1 ? period.thisString() : "\(iterationForPeriod - 1 - periodIndex)\(period.unitString()) 전", count: 0))
@@ -289,37 +300,44 @@ class MyActivityViewController: UIViewController {
         var periodIndex: Int = iterationForPeriod-1
         
         // videoInformationUnit은 "같은 날짜에 같은 클라이밍장을 방문하여 기록한 영상의 뭉치"임
-    searchVideoLoop: for videoInformationUnit in from {
-        // 해당 배열에 아무 값도 없는 경우 continue (error)
-        guard let sample = videoInformationUnit.first else { continue searchVideoLoop }
-        
-        // 해당 데이터가 속한 time period를 찾아감
-        while (sample.gymVisitDate < lastDayOfThisPeriod) {
-            lastDayOfThisPeriod = Calendar.current.date(byAdding: .day, value: -timePeriodInterval, to: lastDayOfThisPeriod)!
-            periodIndex -= 1
-        }
-        
-        // 영상 정보의 날짜가 차트로 만들고자 하는 time period를 넘어선 경우부터는 이후 영상 정보들을 데이터에 포함하지 않음
-        if periodIndex < 0 { break }
-        
-        // 차트에 포함되어야 하는 데이터이므로, Unit에 포함된 영상 데이터들의 개수를 count 합니다.
-        videoInformationUnit.forEach { videoInformation in
-            if videoInformation.problemLevel >= 0 {
-                result[Int(videoInformation.problemLevel)].problems[periodIndex].count += 1
+        searchVideoLoop: for videoInformationUnit in from {
+            // 해당 배열에 아무 값도 없는 경우 continue (error)
+            guard let sample = videoInformationUnit.first else { continue searchVideoLoop }
+            
+            // 해당 데이터가 속한 time period를 찾아감
+            while (sample.gymVisitDate < lastDayOfThisPeriod) {
+                lastDayOfThisPeriod = Calendar.current.date(byAdding: .day, value: -timePeriodInterval, to: lastDayOfThisPeriod)!
+                periodIndex -= 1
+            }
+            
+            // 영상 정보의 날짜가 차트로 만들고자 하는 time period를 넘어선 경우부터는 이후 영상 정보들을 데이터에 포함하지 않음
+            if periodIndex < 0 { break }
+            
+            // 차트에 포함되어야 하는 데이터이므로, Unit에 포함된 영상 데이터들의 개수를 count 합니다.
+            videoInformationUnit.forEach { videoInformation in
+                if videoInformation.problemLevel >= 0 {
+                    result[Int(videoInformation.problemLevel)].problems[periodIndex].count += 1
+                }
             }
         }
-    }
         
-        return result
+        let periodData: (Date, Date) = (Calendar.current.date(byAdding: .day, value: -(iterationForPeriod * timePeriodInterval), to: Date())!, Date())
+        
+        return (result, periodData)
     }
     
-    func getMostFrequentLevelOfList(from: [SolvedProblemsOfEachLevel]) -> String {
+    func getMostFrequentLevelOfList(from: [SolvedProblemsOfEachLevel]) -> Int {
         var maxCount = 0
-        var mostFrequentLevel = ""
+        var mostFrequentLevel = -1
         
         from.forEach { setForLevel in
-            mostFrequentLevel = setForLevel.problems.count > maxCount ? setForLevel.name : mostFrequentLevel
-            maxCount = setForLevel.problems.count > maxCount ? setForLevel.problems.count : maxCount
+            var problemCount: Int = 0
+            setForLevel.problems.forEach { solvedForEachDay in
+                problemCount += solvedForEachDay.count
+            }
+            
+            mostFrequentLevel = problemCount > maxCount ? setForLevel.level : mostFrequentLevel
+            maxCount = problemCount > maxCount ? problemCount : maxCount
         }
         
         return mostFrequentLevel
@@ -531,12 +549,12 @@ extension MyActivityViewController {
         // 성장 차트
         growthChartView.removeFromSuperview()
         
-        var mostFrequentLevelForPeriod: [String] = ["", "", ""]
-        mostFrequentLevelForPeriod[0] = getMostFrequentLevelOfList(from: entireSolvedProblemsForBarChart[0])
-        mostFrequentLevelForPeriod[1] = getMostFrequentLevelOfList(from: entireSolvedProblemsForBarChart[1])
-        mostFrequentLevelForPeriod[2] = getMostFrequentLevelOfList(from: entireSolvedProblemsForBarChart[2])
+        var mostFrequentLevelForPeriod: [Int] = [-1, -1, -1]
+        mostFrequentLevelForPeriod[0] = getMostFrequentLevelOfList(from: entireSolvedProblemsForGrowthChart[0])
+        mostFrequentLevelForPeriod[1] = getMostFrequentLevelOfList(from: entireSolvedProblemsForGrowthChart[1])
+        mostFrequentLevelForPeriod[2] = getMostFrequentLevelOfList(from: entireSolvedProblemsForGrowthChart[2])
         
-        let growthChartVC = UIHostingController(rootView: GrowthChartView(chartData: entireSolvedProblemsForBarChart, mostFrequentLevelForPeriod: mostFrequentLevelForPeriod))
+        let growthChartVC = UIHostingController(rootView: GrowthChartView(chartData: entireSolvedProblemsForGrowthChart, periodData: periodDataForGrowthChart, mostFrequentLevelForPeriod: mostFrequentLevelForPeriod))
         growthChartVC.view.backgroundColor = .clear
         growthChartView = growthChartVC.view
         
@@ -570,6 +588,7 @@ extension MyActivityViewController {
 struct SolvedProblemsOfEachLevel: Identifiable {
     var id: String { name }
     
+    let level: Int
     let name: String
     var problems: [SolvedProblemsOfEachPeriod]
 }

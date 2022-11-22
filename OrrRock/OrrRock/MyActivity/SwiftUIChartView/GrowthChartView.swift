@@ -11,7 +11,8 @@ import SwiftUI
 struct GrowthChartView: View {
     @State private var selectedTimePeriod: TimePeriodEnum = .week
     var chartData: [[SolvedProblemsOfEachLevel]]
-    let mostFrequentLevelForPeriod: [String]
+    var periodData: [(Date, Date)]
+    let mostFrequentLevelForPeriod: [Int]
 
     var body: some View {
         ZStack {
@@ -29,10 +30,30 @@ struct GrowthChartView: View {
                     }
                     .pickerStyle(.segmented)
                     
-                    Text("지난 \(selectedTimePeriod.toString())동안 가장 많이 도전한 문제는\n\(mostFrequentLevelForPeriod[selectedTimePeriod.rawValue])입니다.")
-                        .font(.system(size: 17, weight: .bold))
-                        .foregroundColor(Color(uiColor: UIColor.orrBlack!))
-                        .padding(.vertical, CGFloat(OrrPd.pd16.rawValue))
+                    if isChartDataEmpty(timePeriod: selectedTimePeriod) {
+                        Text("데이터 없음")
+                            .font(.system(size: 17, weight: .bold))
+                            .foregroundColor(Color(uiColor: UIColor.orrBlack!))
+                            .padding(.top, CGFloat(OrrPd.pd16.rawValue))
+                            .padding(.bottom, CGFloat(OrrPd.pd4.rawValue))
+                        
+                        Text("기록을 추가하면 성장 그래프가 자동으로 작성됩니다")
+                            .font(.system(size: 12, weight: .regular))
+                            .foregroundColor(Color(uiColor: UIColor.orrGray500!))
+                            .padding(.bottom, CGFloat(OrrPd.pd16.rawValue))
+
+                    } else {
+                        Text("지난 \(selectedTimePeriod.toString())동안 가장 많이 도전한 레벨은\nV\(mostFrequentLevelForPeriod[selectedTimePeriod.rawValue])입니다.")
+                            .font(.system(size: 17, weight: .bold))
+                            .foregroundColor(Color(uiColor: UIColor.orrBlack!))
+                            .padding(.top, CGFloat(OrrPd.pd16.rawValue))
+                            .padding(.bottom, CGFloat(OrrPd.pd4.rawValue))
+                        
+                        Text("\(periodData[selectedTimePeriod.rawValue].0.timeToString()) ~ \(periodData[selectedTimePeriod.rawValue].1.timeToString())")
+                            .font(.system(size: 12, weight: .regular))
+                            .foregroundColor(Color(uiColor: UIColor.orrGray500!))
+                            .padding(.bottom, CGFloat(OrrPd.pd16.rawValue))
+                    }
                     
                     Chart(chartData[selectedTimePeriod.rawValue]) { solvedProblemsOfEachLevel in
                         ForEach(solvedProblemsOfEachLevel.problems) { solvedProblemsOfEachPeriod in
@@ -75,6 +96,13 @@ struct GrowthChartView: View {
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color(uiColor: .orrGray200!), lineWidth: 1)
         )
+        .onAppear {
+            
+        }
+    }
+    
+    func isChartDataEmpty(timePeriod: TimePeriodEnum) -> Bool {
+        return mostFrequentLevelForPeriod[timePeriod.rawValue] == -1
     }
 }
 
