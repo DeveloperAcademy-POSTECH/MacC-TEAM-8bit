@@ -387,6 +387,7 @@ private extension LevelAndPFSettingViewController {
         // 스와이프가 완료되고 removeCard가 호출될 때 버튼 활성화
         successButton.isEnabled = true
         failButton.isEnabled = true
+        counter += 1
 
     }
     
@@ -463,7 +464,7 @@ private extension LevelAndPFSettingViewController {
     
     // 다음 뷰로 넘어가는 로직
     @objc func tapSaveButton() {
-        DataManager.shared.createMultipleData(infoList: videoInfoArray)
+        DataManager.shared.createMultipleData(infoList: videoInfoArray.filter{ $0.isDeleted == false })
         self.navigationController?.popToRootViewController(animated: true)
     }
     
@@ -518,8 +519,7 @@ private extension LevelAndPFSettingViewController {
                 }
                 
                 if isDeleted {
-                    // 지웠으면 정보 저장하지 않고 카드 지워주기
-                    cards.remove(at: counter)
+                    videoInfoArray[counter].isDeleted = true
                 } else {
                     // 성공이나 실패로 분류되면 성패 여부와 레벨 정보 저장
                     videoInfoArray[counter].isSucceeded = isSuccess
@@ -552,14 +552,10 @@ private extension LevelAndPFSettingViewController {
                         
                     }) { [self] _ in
                         // 마지막 카드가 아니면
-                        if !isDeleted {
-                            // 카드가 사라질 때 카운팅
-                            counter += 1
-                        }
 //                        if firstCardtimeObserverToken == nil {
 //                            removePeriodicTimeObserver(card:  card, isFirstCard: false)
 //                        }
-                        if counter != cards.count {
+                        if counter != cards.count-1 {
                             removeCard(card: card)
                         } else {
                             didVideoClassificationComplete()
