@@ -47,6 +47,7 @@ class SwipeOnboardingViewController: UIPageViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .orrWhite
         firstView.delegate = self
         secondView.delegate = self
         thirdView.delegate = self
