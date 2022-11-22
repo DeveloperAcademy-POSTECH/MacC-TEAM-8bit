@@ -24,6 +24,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     private var classifiedCard: Int = 0
     private var timeObserverToken: Any?
     private var firstCardtimeObserverToken: Any?
+    private let padding = 68
     
     private lazy var headerView: UIView = {
         let view = UIView()
@@ -171,6 +172,12 @@ final class LevelAndPFSettingViewController: UIViewController {
         return button
     }()
     
+    private lazy var emptyBackgroundView: EmptyBackgroundView = {
+        let view = EmptyBackgroundView()
+        view.layer.zPosition = -2
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -188,14 +195,15 @@ final class LevelAndPFSettingViewController: UIViewController {
         // card UI
         setUpLayout()
         
-        createSwipeableCard() {
+        createSwipeableCard() { [self] in
             self.cards.forEach { swipeCard in
                 self.view.insertSubview(swipeCard!, at: 0)
                 swipeCard!.snp.makeConstraints {
-                    $0.top.equalTo(self.emptyVideoView.snp.top)
-                    $0.bottom.equalTo(self.emptyVideoView.snp.bottom)
-                    $0.leading.equalTo(self.emptyVideoView.snp.leading)
-                    $0.trailing.equalTo(self.emptyVideoView.snp.trailing)
+                    $0.centerX.equalToSuperview()
+                    $0.centerY.equalToSuperview()
+                    $0.leading.equalTo(view.snp.leading).offset(padding)
+                    $0.trailing.equalTo(view.snp.trailing).offset(-padding)
+                    $0.height.equalTo(swipeCard!.snp.width).multipliedBy(1.641)
                 }
                 
                 self.view.sendSubviewToBack(self.emptyVideoView)
@@ -224,7 +232,8 @@ private extension LevelAndPFSettingViewController {
     }
     
     // 슬라이더 터치에 따른 비디오 업데이트
-    @objc func didChangedSlider(_ sender: UISlider) {
+    @objc
+    func didChangedSlider(_ sender: UISlider) {
         let card = cards[counter]?.queuePlayer
         
         guard let duration = card?.currentItem?.duration else { return }
@@ -385,7 +394,8 @@ private extension LevelAndPFSettingViewController {
     }
     
     // swipeCard가 SuperView에서 제거됩니다.
-    @objc func removeCard(card: UIView) {
+    @objc
+    func removeCard(card: UIView) {
         card.removeFromSuperview()
         // 스와이프가 완료되고 removeCard가 호출될 때 버튼 활성화
         successButton.isEnabled = true
@@ -395,7 +405,8 @@ private extension LevelAndPFSettingViewController {
     }
     
     // Gesture
-    @objc func handlerCard(_ gesture: UIPanGestureRecognizer) {
+    @objc
+    func handlerCard(_ gesture: UIPanGestureRecognizer) {
         if let card = gesture.view as? SwipeableCardVideoView {
             let point = gesture.translation(in: view)
             
@@ -436,24 +447,13 @@ private extension LevelAndPFSettingViewController {
                     return
                 }
                 
-                // 카드의 y축을 통한 영상 삭제 스와이프 정도
-                let cardPositionY = card.center.y
-                
-                switch cardPositionY {
-                case self.view.bounds.height / 3 * 2..<self.view.bounds.height:
-                    animateCard(rotationAngle: 0, videoResultType: .delete)
-                    return
-                default:
-                    card.center = self.emptyVideoView.center
-                    card.transform = .identity
-                    card.setVideoBackgroundViewBorderColor(color: .clear, alpha: 1)
-                    return
-                }
+                // TODO: - 영상 삭제 제스처
             }
         }
     }
     
-    @objc func pickLevel() {
+    @objc
+    func pickLevel() {
         let nextViewController = LevelPickerView()
         nextViewController.pickerSelectValue = currentSelectedLevel + 1
         self.navigationController?.present(nextViewController, animated: true)
@@ -462,24 +462,28 @@ private extension LevelAndPFSettingViewController {
     }
     
     // 실패 버튼을 눌렀을 때 로직
-    @objc func didFailButton() {
+    @objc
+    func didFailButton() {
         animateCard(rotationAngle: -0.4, videoResultType: .fail)
         failButton.isActivated.toggle()
     }
     
     // 삭제 버튼을 눌렀을 때 로직
-    @objc func didDeleteButton() {
+    @objc
+    func didDeleteButton() {
         animateCard(rotationAngle: 0, videoResultType: .delete)
     }
     
     // 성공 버튼을 눌렀을 때 로직
-    @objc func didSuccessButton() {
+    @objc
+    func didSuccessButton() {
         animateCard(rotationAngle: 0.4, videoResultType: .success)
         successButton.isActivated.toggle()
     }
     
     // 다음 뷰로 넘어가는 로직
-    @objc func tapSaveButton() {
+    @objc
+    func tapSaveButton() {
         DataManager.shared.createMultipleData(infoList: videoInfoArray.filter{ $0.isDeleted == false })
         self.navigationController?.popToRootViewController(animated: true)
     }
@@ -569,7 +573,8 @@ private extension LevelAndPFSettingViewController {
         }
     }
     
-    @objc func backButtonClicked() {
+    @objc
+    func backButtonClicked() {
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -614,6 +619,15 @@ private extension LevelAndPFSettingViewController {
         headerView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        view.addSubview(emptyBackgroundView)
+        view.sendSubviewToBack(emptyBackgroundView)
+        emptyBackgroundView.snp.makeConstraints {
+            $0.center.equalTo(view.center)
+            $0.height.equalTo(view.snp.height)
+            $0.width.equalTo(view.snp.width)
+            emptyBackgroundView.setUpLayout()
         }
         
         headerView.addSubview(titleLabel)
@@ -684,21 +698,11 @@ private extension LevelAndPFSettingViewController {
         view.addSubview(emptyVideoView)
         emptyVideoView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(separator.snp.bottom).offset(OrrPd.pd20.rawValue)
-            $0.bottom.equalTo(successButton.snp.top).offset(-OrrPd.pd20.rawValue)
-            $0.width.equalTo(emptyVideoView.snp.height).multipliedBy(0.5625)
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(view.snp.leading).offset(padding)
+            $0.trailing.equalTo(view.snp.trailing).offset(-padding)
+            $0.height.equalTo(emptyVideoView.snp.width).multipliedBy(1.641)
         }
-        
-        // TODO: 카드 스택 스켈레톤 값 조정 필요
-        //        view.addSubview(backgroundCardStackView)
-        //        backgroundCardStackView.snp.makeConstraints {
-        //            $0.center.equalTo(view.center)
-        //            $0.height.equalTo(view.snp.height)
-        //            $0.width.equalTo(view.snp.width)
-        //            $0.top.equalTo(emptyVideoView.snp.top)
-        //            $0.bottom.equalTo(emptyVideoView.snp.bottom)
-        //            backgroundCardStackView.setUpLayout()
-        //        }
         
         emptyVideoView.addSubview(emptyVideoInformation)
         emptyVideoInformation.snp.makeConstraints {
