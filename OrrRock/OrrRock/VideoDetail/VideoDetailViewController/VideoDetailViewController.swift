@@ -36,6 +36,7 @@ class VideoDetailViewController: UIViewController {
     
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(respondToTapGesture(_:)))
     
+    private var exportButton: UIBarButtonItem!
     private var infoButton: UIBarButtonItem!
     private var trashButton: UIBarButtonItem!
     var soundButton: UIBarButtonItem!
@@ -107,6 +108,7 @@ class VideoDetailViewController: UIViewController {
        
         
         // 툴바 버튼 아이템 생성
+        exportButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(exportAction))
         infoButton = UIBarButtonItem(image: UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle"), style: .plain, target: self, action: #selector(showInfo))
         trashButton = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteVideoAction))
         soundButton = UIBarButtonItem(image: UIImage(systemName: "speaker.slash.fill"), style: .plain, target: self, action: #selector(soundVideoAction))
@@ -114,10 +116,18 @@ class VideoDetailViewController: UIViewController {
         playButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(playVideoAction))
         iconSpace.width = 8.4
         
-        [favoriteButton,flexibleSpace,playButton,iconSpace,flexibleSpace,soundButton,flexibleSpace,infoButton,flexibleSpace,trashButton].forEach {
+        [exportButton,iconSpace,favoriteButton,flexibleSpace,playButton,iconSpace,flexibleSpace,soundButton,flexibleSpace,infoButton,flexibleSpace,trashButton].forEach {
             items.append($0)
         }
         self.toolbarItems = items
+    }
+    // 공유하기 버튼을 눌렀을 때 로직
+    @objc func exportAction() {
+        //FIXME: Dodo 파트 수정 이후 데이터 연결 수정 필요
+        let exportViewController = ExportViewController()
+        exportViewController.videoInformation = currentVideoInformation
+        exportViewController.videoAsset = videoDetailPageViewController.videoDataFomatter(videoLocalIdentifier: videoInformation.videoLocalIdentifier!)
+        self.present(exportViewController, animated: true)
     }
     
     // 정보를 보여주는 뷰를 띄워주는 함수
