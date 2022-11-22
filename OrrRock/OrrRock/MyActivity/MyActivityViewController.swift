@@ -159,6 +159,7 @@ class MyActivityViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     func setUpData() {
@@ -532,6 +533,15 @@ extension MyActivityViewController {
     }
     
     func refreshView() {
+        // 내 정보 카드
+        cardView.removeFromSuperview()
+        
+        let cardVC = UIHostingController(rootView: MyCardView(firstDate: firstDateOfClimbing, highestLevel: highestLevel, homeGymName: frequentlyVisitedGymList[0].0))
+        cardVC.view.backgroundColor = .clear
+        cardView = cardVC.view
+        
+        contentView.addSubview(cardView)
+        
         // 도전 차트
         challengeChartView.removeFromSuperview()
         
