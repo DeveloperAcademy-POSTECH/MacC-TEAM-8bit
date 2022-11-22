@@ -10,4 +10,5 @@ import Foundation
 enum VideoResultType {
     case success
     case fail
+    case delete
 }
