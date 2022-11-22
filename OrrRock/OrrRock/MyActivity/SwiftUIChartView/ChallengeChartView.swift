@@ -36,25 +36,36 @@ struct ChallengeChartView: View {
                     .overlay(Rectangle().frame(width: 1, height: nil, alignment: .leading).foregroundColor(Color(uiColor: UIColor.orrGray400!)), alignment: .leading)
                     .overlay(Rectangle().frame(width: 1, height: nil, alignment: .trailing).foregroundColor(Color(uiColor: UIColor.orrGray400!)), alignment: .trailing)
 
-                    Chart {
-                        BarMark(x: .value("name", successCount))
-                            .cornerRadius(10)
-                    }
-                    .frame(height: 28)
-                    .chartXScale(domain: 0...totalCount)
-                    .chartXAxis {
-                        AxisMarks(position: .bottom) { value in
-                            AxisGridLine(centered: true, stroke: StrokeStyle(dash: [1, 3]))
-                            AxisTick(centered: true, stroke: StrokeStyle(dash: [1, 2]))
-                            AxisValueLabel() {                                
-                                if let intValue = value.as(Int.self) {
-                                    Text("")
-                                        .font(.system(size: 10))
+                    ZStack(alignment: .top){
+                        HStack(spacing: (UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 4 - 100) / 100) {
+                            ForEach(0..<100) { index in
+                                Rectangle().frame(width: 1, height: (index % 10 == 0) ? 10 : 3)
+                                    .border(Color(uiColor: UIColor.orrGray200!))
+                                    .padding(0)
+                            }
+                        }
+                        .frame(width: UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 4, height: 10)
+                        
+                        Chart {
+                            BarMark(x: .value("name", successCount))
+                                .cornerRadius(10)
+                        }
+                        .frame(height: 28)
+                        .chartXScale(domain: 0...totalCount)
+                        .chartXAxis {
+                            AxisMarks(position: .bottom) { value in
+                                AxisGridLine(centered: true, stroke: StrokeStyle(dash: [1, 3]))
+                                AxisTick(centered: true, stroke: StrokeStyle(dash: [1, 2]))
+                                AxisValueLabel() {
+                                    if let intValue = value.as(Int.self) {
+                                        Text("")
+                                            .font(.system(size: 10))
+                                    }
                                 }
                             }
                         }
+                        .chartYAxis(.hidden)
                     }
-                    .chartYAxis(.hidden)
                 }
                 
                 HStack() {
