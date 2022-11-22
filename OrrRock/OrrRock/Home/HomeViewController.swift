@@ -66,17 +66,25 @@ final class HomeViewController : UIViewController {
     }()
     
     private let uploadButton: UIButton = {
-        let view = UIButton()
-        view.setImage(UIImage(named: "upload icon"), for: .normal)
-        view.addTarget(self, action: #selector(videoButtonPressed), for: .touchUpInside)
-        return view
+        let button = UIButton()
+        
+        let icon = UIImage(named: "upload icon")?.resized(to: CGSize(width: 30, height: 19)).withRenderingMode(.alwaysTemplate)
+        
+        button.setImage(icon, for: .normal)
+        button.tintColor = .orrGray600
+        
+        button.addTarget(self, action: #selector(videoButtonPressed), for: .touchUpInside)
+        
+        return button
     }()
-    
     
     private lazy var quickActionButton: UIButton = {
         let button = UIButton(primaryAction: UIAction(title: "", handler: { _ in}))
-        button.setImage(UIImage(systemName: "line.3.horizontal.decrease.circle.fill"), for: .normal)
-        button.tintColor = .orrGray500
+        
+        let icon = UIImage(systemName: "line.3.horizontal.decrease.circle.fill")?.resized(to: CGSize(width: 25, height: 25)).withRenderingMode(.alwaysTemplate)
+        
+        button.setImage(icon, for: .normal)
+        button.tintColor = .orrGray600
         
         // QuickAction은 UIMenu() 라는 컴포넌트로 구현할 수 있음
         // 버튼의 menu에 UIMenu로 감싼 UIAction들을 담아주기
