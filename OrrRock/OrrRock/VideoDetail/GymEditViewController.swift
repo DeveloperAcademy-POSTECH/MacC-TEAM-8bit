@@ -20,7 +20,6 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
     
     var visitedGymList: [VisitedClimbingGym] = []
     var filteredVisitedGymList: [VisitedClimbingGym] = []
-    var maxTableViewCellCount: Int = 0
 
     // MARK: gym view compenents
     private lazy var gymContentView : UIView = {
@@ -59,7 +58,6 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
         view.placeholder = "김대우 암벽교실"
         view.tintColor = .orrUPBlue
         view.font = UIFont.systemFont(ofSize: 22)
-        view.addTarget(self, action: #selector(searchGymName(textField:)), for: .editingChanged)
         return view
     }()
     
@@ -90,26 +88,9 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
         return title
     }()
     
-    lazy var autocompleteTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.isScrollEnabled = false
-        tableView.register(AutocompleteTableViewCell.classForCoder(), forCellReuseIdentifier: AutocompleteTableViewCell.identifier)
-        return tableView
-    }()
-    
-    lazy var tableViewHeaderLabel: UILabel = {
-        let label = UILabel()
-        label.text = "최근 방문"
-        label.font = .systemFont(ofSize: 22, weight: .regular)
-        return label
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpDelegate()
-        setUpTableViewData()
         setUpLayout()
         setData()
     }
@@ -153,19 +134,6 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
             $0.height.equalTo(56)
         }
         
-        gymContentView.addSubview(autocompleteTableView)
-        autocompleteTableView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(saveButton.snp.top)
-            $0.height.equalTo(50 * min(maxTableViewCellCount, filteredVisitedGymList.count))
-        }
-        
-        gymContentView.addSubview(tableViewHeaderLabel)
-        tableViewHeaderLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(OrrPd.pd16.rawValue)
-            $0.trailing.equalToSuperview().offset(OrrPd.pd16.rawValue)
-            $0.bottom.equalTo(autocompleteTableView.snp.top).offset(-OrrPd.pd16.rawValue)
-        }
     }
     
     private func setUpDelegate(){
@@ -173,10 +141,6 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
         sheetPresentationController.selectedDetentIdentifier = .large
         sheetPresentationController.prefersGrabberVisible = false
         sheetPresentationController.detents = [.large()]
-        
-        autocompleteTableView.delegate = self
-        autocompleteTableView.dataSource = self
-        
         gymTextField.becomeFirstResponder()
     }
     
@@ -185,51 +149,10 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
         gymTextField.placeholder = videoInformation.gymName
         selectGymName = videoInformation.gymName
     }
-    
-    // DataManager에게서 데이터를 새로 받아올 때 사용하는 메서드
-    // CoreData와 Repository 단에서 데이터 변화가 발생하는 경우에 본 메서드를 호출해 데이터를 동기화
-    func setUpTableViewData() {
-        visitedGymList = DataManager.shared.repository.visitedClimbingGyms
-        filteredVisitedGymList = visitedGymList
-        
-        // 기기 대응한 테이블뷰셀의 개수
-        // SE 사이즈 - 2개 / 13 사이즈 - 3개 / max 사이즈 - 4개
-        maxTableViewCellCount = 1 + Int((UIScreen.main.bounds.height - 500) / 140)
-    }
-    
-    // 자동완성 헤더 레이블의 텍스트를 수정
-    func setTableViewHeaderLabel(text: String) {
-        tableViewHeaderLabel.text = text
-    }
-    
-    // 자동완성 테이블 뷰의 데이터 개수의 변화에 따른 테이블뷰의 레이아웃의 변화가 필요한 경우에 본 함수를 호출
-    func resetAutocompleteTableView() {
-        autocompleteTableView.reloadData()
-        
-        autocompleteTableView.snp.removeConstraints()
-        autocompleteTableView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(saveButton.snp.top)
-            $0.height.equalTo(50 * min(maxTableViewCellCount, filteredVisitedGymList.count))
-        }
-    }
+   
 }
 
 extension GymEditViewController {
-    
-    // 자동완성을 위한 테이블 내 클라이밍장 명 검색
-    @objc
-    final func searchGymName(textField: UITextField) {
-        if (textField.text ?? "").isEmpty {
-            filteredVisitedGymList = visitedGymList
-            setTableViewHeaderLabel(text: "최근 방문")
-        } else {
-            filteredVisitedGymList = visitedGymList.filter { $0.name.contains(textField.text!) }
-            setTableViewHeaderLabel(text: filteredVisitedGymList.isEmpty ? "" : "이곳을 방문하셨나요?")
-        }
-        
-        resetAutocompleteTableView()
-    }
     
     @objc
     func pressSaveButton() {
