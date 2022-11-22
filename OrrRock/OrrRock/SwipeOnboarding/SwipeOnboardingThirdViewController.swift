@@ -84,7 +84,7 @@ extension SwipeOnboardingThirdViewController {
     
     @objc
     func pressNextButton() {
-        guard chekNextbuttonClick else{
+        guard chekNextbuttonClick else {
             self.chekNextbuttonClick = true
             self.delegate?.changeNextView()
             return
@@ -115,7 +115,6 @@ extension SwipeOnboardingThirdViewController {
             mainImageCard.transform = CGAffineTransform(rotationAngle: rotationAngle)
             
             if gesture.state == .ended {
-                print("ppapRmx")
                 if mainImageCard.center.x > self.view.bounds.width / 3 * 2 {
                     mainImageCard.alpha = 0
                     pressNextButton()

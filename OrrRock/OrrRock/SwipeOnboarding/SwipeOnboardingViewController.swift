@@ -73,7 +73,6 @@ extension SwipeOnboardingViewController : SwipeOnboardingViewControllerDelegate 
     }
     
     func skipOnboarding() {
-        print("스킵완료")
         UserDefaults.standard.set(true, forKey: "SwipeOnboardingClear")
         self.presentingViewController?.dismiss(animated: true, completion:nil)
     }

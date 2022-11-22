@@ -58,7 +58,7 @@ extension SwipeOnboardingFirstViewController {
     
     @objc
     func pressNextButton() {
-        guard chekNextbuttonClick else{
+        guard chekNextbuttonClick else {
             self.chekNextbuttonClick = true
             self.delegate?.changeNextView()
             return
