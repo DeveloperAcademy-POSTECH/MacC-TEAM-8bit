@@ -171,7 +171,7 @@ extension SwipeOnboardingThirdViewController {
         view.addSubview(successArrowImageView)
         successArrowImageView.snp.makeConstraints {
             $0.centerY.equalTo(view.snp.centerY).multipliedBy(0.93)
-            $0.leading.equalTo(mainImageView.snp.trailing).offset(OrrPd.pd40.rawValue)
+            $0.leading.equalTo(mainImageView.snp.trailing).offset(OrrPd.pd24.rawValue)
             $0.trailing.equalTo(view.snp.trailing).offset(-OrrPd.pd16.rawValue)
             $0.height.equalTo(successArrowImageView.snp.width).multipliedBy(0.708)
         }

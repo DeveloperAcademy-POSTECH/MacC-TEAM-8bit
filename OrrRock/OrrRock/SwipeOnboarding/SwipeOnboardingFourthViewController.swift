@@ -171,7 +171,7 @@ extension SwipeOnboardingFourthViewController {
         failArrowImageView.snp.makeConstraints {
             $0.centerY.equalTo(view.snp.centerY).multipliedBy(0.93)
             $0.leading.equalTo(view.snp.leading).offset(OrrPd.pd16.rawValue)
-            $0.trailing.equalTo(mainImageView.snp.leading).offset(-OrrPd.pd40.rawValue)
+            $0.trailing.equalTo(mainImageView.snp.leading).offset(-OrrPd.pd24.rawValue)
             $0.height.equalTo(failArrowImageView.snp.width).multipliedBy(0.708)
         }
         
