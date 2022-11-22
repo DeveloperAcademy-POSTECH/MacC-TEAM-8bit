@@ -9,6 +9,23 @@ import UIKit
 import Photos
 
 extension String {
+  
+    func underLineAttribute() -> NSMutableAttributedString {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 15),
+            .foregroundColor: UIColor(hex: "969696"),
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+        
+        let attributeString = NSMutableAttributedString(
+            string: self,
+            attributes: attributes
+        )
+        
+        return attributeString
+    }
+    
+    
 	//MARK: String -> Date 타입 변환 메서드
 	func stringToDate() -> Date? { // "yyyy-MM-dd 00:00:00"
 		let dateFormatter = DateFormatter()

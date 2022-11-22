@@ -34,10 +34,10 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
     //MARK: date view 관련 components
     private lazy var datePickerLabel : UILabel = {
         let label = UILabel()
-        label.text = Date().timeToString()
-        label.font = UIFont.boldSystemFont(ofSize: 17)
-        label.textColor = .orrGray500
-        label.backgroundColor = .orrGray100
+        label.text = "방문한 날짜를 선택해주세요"
+        label.font = UIFont.boldSystemFont(ofSize: 22)
+        label.textColor = .orrBlack
+        label.backgroundColor = .orrWhite
         return label
     }()
     
@@ -49,7 +49,7 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
         datePicker.timeZone = .autoupdatingCurrent
         datePicker.locale = Locale(identifier:"ko_KR")
         datePicker.addTarget(self, action: #selector(handleDatePicker(_:)), for: .valueChanged)
-        datePicker.backgroundColor = .orrGray100
+        datePicker.backgroundColor = .orrWhite
         datePicker.maximumDate = Date()
         return datePicker
     }()
@@ -63,6 +63,8 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
         btn.addTarget(self, action: #selector(pressSaveButton), for: .touchUpInside)
         btn.setTitle("저장", for: .normal)
         btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
+        btn.isEnabled = false
         return btn
     }()
     
@@ -73,7 +75,7 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
     
     private lazy var dateTopView : UIView = {
         let view = UIView()
-        view.backgroundColor = .orrWhite
+        view.backgroundColor = .orrGray100
         
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
@@ -112,7 +114,7 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
     }
     
     private func setUpLayout(){
-        view.backgroundColor = .orrGray100
+        view.backgroundColor = .orrWhite
         self.navigationController?.isToolbarHidden = false
         
         view.addSubview(dateTopView)
@@ -132,8 +134,8 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
         
         dateContentView.addSubview(datePickerLabel)
         datePickerLabel.snp.makeConstraints {
-            $0.centerX.equalTo(dateContentView)
-            $0.top.equalTo(dateContentView.snp.top).offset(OrrPd.pd24.rawValue)
+            $0.leading.equalTo(dateContentView).offset(OrrPd.pd24.rawValue)
+            $0.top.equalTo(dateContentView.snp.top).offset(OrrPd.pd72.rawValue)
         }
         
         dateContentView.addSubview(datePicker)
@@ -163,7 +165,6 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
     
     private func setData(){
         datePicker.date = videoInformation.gymVisitDate
-        datePickerLabel.text = videoInformation.gymVisitDate.timeToString()
         selectDate = videoInformation.gymVisitDate
     }
 }
@@ -172,8 +173,7 @@ extension DateEditViewController {
     
     @objc
     private func handleDatePicker(_ sender: UIDatePicker) {
-        datePickerLabel.text = sender.date.timeToString()
-        datePickerLabel.textColor = .black
+        saveButton.isEnabled = true
     }
     
     @objc
