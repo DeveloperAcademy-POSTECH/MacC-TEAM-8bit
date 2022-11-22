@@ -23,7 +23,7 @@ final class HomeViewController : UIViewController {
     var isCardView: Bool = true {
         didSet {
             homeTableView.reloadData()
-            homeTableView.separatorStyle = isCardView ? .none : .singleLine
+            homeTableView.separatorStyle = isCardView ? .none : .none
         }
     }
     
