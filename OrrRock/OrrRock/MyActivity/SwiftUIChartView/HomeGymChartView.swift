@@ -15,10 +15,9 @@ struct HomeGymChartView: View {
     var body: some View {
         ZStack {
             VStack(alignment: .leading) {
-                Label("홈짐", systemImage: "house")
+                Label("홈짐", systemImage: "house.fill")
                     .font(.system(size: 17, weight: .bold))
                     .foregroundColor(Color(uiColor: UIColor.orrBlack!))
-                .padding(.top, CGFloat(OrrPd.pd16.rawValue))
 
                 if isChartDataEmpty() {
                     Text("데이터 없음")
@@ -46,7 +45,9 @@ struct HomeGymChartView: View {
                         .lineLimit(2)
                         .font(.system(size: 17, weight: .bold))
                         .foregroundColor(Color(uiColor: UIColor.orrBlack!))
-                        .padding(.top, CGFloat(OrrPd.pd8.rawValue))
+                        .frame(height: 50)
+                    
+                    Spacer()
                     
                     VStack(alignment: .trailing){
                         Text("\(mostFrequentlyVisitedGymList[0].1)/\(totalGymVisitedDate)회 방문함")
@@ -63,7 +64,6 @@ struct HomeGymChartView: View {
                             BarMark(x: .value("기타", totalGymVisitedDate - mostFrequentlyVisitedGymList[0].1 - mostFrequentlyVisitedGymList[1].1 - mostFrequentlyVisitedGymList[2].1))
                                 .foregroundStyle(by: .value("color", "기타"))
                         }
-                        
                         .chartXScale(domain: 0...totalGymVisitedDate)
                         .chartForegroundStyleScale(
                             createColorSetForChart()
@@ -72,9 +72,9 @@ struct HomeGymChartView: View {
                     }
                 }
             }
-            .padding()
+            .frame(width: UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 4, height: isChartDataEmpty() ? 136 : 188, alignment: .topLeading)
         }
-        .frame(width: UIScreen.main.bounds.width - 32, height: isChartDataEmpty() ? 168 : 210)
+        .frame(width: UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 2, height: isChartDataEmpty() ? 168 : 220)
         .background(RoundedRectangle(cornerRadius: 15).foregroundColor(.white))
         .overlay(
             RoundedRectangle(cornerRadius: 10)

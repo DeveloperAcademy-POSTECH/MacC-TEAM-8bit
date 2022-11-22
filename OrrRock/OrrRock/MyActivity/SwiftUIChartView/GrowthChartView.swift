@@ -88,17 +88,14 @@ struct GrowthChartView: View {
                     .chartLegend(.hidden)
                 }
             }
-            .padding()
+            .frame(width: UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 4, height: 418, alignment: .topLeading)
         }
-        .frame(width: UIScreen.main.bounds.width - 32, height: 450)
+        .frame(width: UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 2, height: 450)
         .background(RoundedRectangle(cornerRadius: 15).foregroundColor(.white))
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color(uiColor: .orrGray200!), lineWidth: 1)
         )
-        .onAppear {
-            
-        }
     }
     
     func isChartDataEmpty(timePeriod: TimePeriodEnum) -> Bool {

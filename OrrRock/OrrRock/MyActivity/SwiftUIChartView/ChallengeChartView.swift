@@ -10,7 +10,6 @@ import SwiftUI
 
 struct ChallengeChartView: View {
     let chartData: ChartDataModel
-    //    = ChartDataModel.init(dataModel: sampleData)
     let totalCount: Int
     let successCount: Int
     
@@ -68,59 +67,14 @@ struct ChallengeChartView: View {
                         .foregroundColor(Color(uiColor: UIColor.orrGray700!))
                 }
             }
-            .padding()
+            .frame(width: UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 4, height: 98, alignment: .topLeading)
         }
-        .frame(width: UIScreen.main.bounds.width - 32, height: 130)
+        .frame(width: UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 2, height: 130)
         .background(RoundedRectangle(cornerRadius: 15).foregroundColor(.white))
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color(uiColor: .orrGray200!), lineWidth: 1)
         )
-    }
-}
-
-struct ChallengeChartView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChallengeChartView(chartData: ChartDataModel(dataModel: sampleData), totalCount: 378, successCount: 64)
-    }
-}
-
-
-struct PieChart: View {
-    @State private var selectedCell: UUID = UUID()
-    let chartColor: [Color] = [Color(uiColor: .lightGray), .yellow, .orange, .green, .blue, .red, .purple, Color(uiColor: .darkGray), .brown, .black]
-    
-    let dataSource: ChartDataModel
-    var body: some View {
-        ZStack {
-            ForEach(dataSource.chartCellModel.indices) { index in
-                PieChartCell(startAngle: self.dataSource.angle(for: dataSource.chartCellModel[index].numOfSolvedProblems),
-                             endAngle: self.dataSource.startingAngle)
-                .foregroundColor(chartColor[index])
-            }
-        }
-    }
-}
-
-struct PieChartCell: Shape {
-    let startAngle: Angle
-    let endAngle: Angle
-    
-    func path(in rect: CGRect) -> Path {
-        // 중심점을 기준으로, 반지름만큼의 원을, startAngle -> endAngle로 시계방향으로 그리기
-        let center = CGPoint.init(x: (rect.origin.x + rect.width)/2,
-                                  y: (rect.origin.y + rect.height)/2)
-        let radii = min(center.x, center.y)
-        let path = Path { p in
-            p.addArc(center: center,
-                     radius: radii,
-                     startAngle: startAngle,
-                     endAngle: endAngle,
-                     clockwise: true)
-            p.addLine(to: center)
-        }
-        
-        return path
     }
 }
 
@@ -133,9 +87,6 @@ struct ChartCellModel: Identifiable {
 
 final class ChartDataModel: ObservableObject {
     var chartCellModel: [ChartCellModel]
-    var startingAngle = Angle(degrees: 0)
-    private var lastBarEndAngle = Angle(degrees: 0)
-    
     
     init(dataModel: [ChartCellModel]) {
         chartCellModel = dataModel
@@ -146,20 +97,4 @@ final class ChartDataModel: ObservableObject {
             result + data.numOfSolvedProblems
         }
     }
-    
-    func angle(for value: CGFloat) -> Angle {
-        if startingAngle != lastBarEndAngle {
-            startingAngle = lastBarEndAngle
-        }
-        lastBarEndAngle += Angle(degrees: Double(value / totalNumberOfSolvedProblems) * 360 )
-        return lastBarEndAngle
-    }
 }
-
-let sampleData: [ChartCellModel] = [
-    ChartCellModel(numOfSolvedProblems: 13, level: "v1"),
-    ChartCellModel(numOfSolvedProblems: 13, level: "v2"),
-    ChartCellModel(numOfSolvedProblems: 13, level: "v3"),
-    ChartCellModel(numOfSolvedProblems: 13, level: "v4"),
-    ChartCellModel(numOfSolvedProblems: 13, level: "v5"),
-]
