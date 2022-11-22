@@ -55,7 +55,6 @@ struct ChallengeChartView: View {
                         .chartXAxis {
                             AxisMarks(position: .bottom) { value in
                                 AxisGridLine(centered: true, stroke: StrokeStyle(dash: [1, 3]))
-                                AxisTick(centered: true, stroke: StrokeStyle(dash: [1, 2]))
                                 AxisValueLabel() {
                                     if let intValue = value.as(Int.self) {
                                         Text("")
