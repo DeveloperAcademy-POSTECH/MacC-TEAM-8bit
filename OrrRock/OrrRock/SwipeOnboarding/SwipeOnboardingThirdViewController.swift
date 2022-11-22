@@ -16,6 +16,7 @@ class SwipeOnboardingThirdViewController: UIViewController {
     // 제스쳐를 추가하는코드
     let gesture = UIPanGestureRecognizer()
     let cornerRadius: CGFloat = 10
+    var chekNextbuttonClick =  false
     
     private lazy var BackgroundView: EmptyBackgroundView = {
         let view = EmptyBackgroundView()
@@ -48,6 +49,13 @@ class SwipeOnboardingThirdViewController: UIViewController {
         return btn
     }()
     
+    private lazy var skipButton: UIButton = {
+        let btn = UIButton()
+        btn.addTarget(self, action: #selector(pressSkipButton), for: .touchUpInside)
+        btn.setAttributedTitle("SKIP".underLineAttribute(), for: .normal)
+        return btn
+    }()
+    
     private lazy var paddigView: UIView = {
         let view = UIView()
         return view
@@ -63,13 +71,35 @@ class SwipeOnboardingThirdViewController: UIViewController {
 extension SwipeOnboardingThirdViewController {
     
     @objc
+    private func didSuccessButton() {
+        mainImageView.layer.borderColor = UIColor.orrPass?.cgColor
+        UIView.animate(withDuration: 0.3, animations: { [self] in
+            mainImageView.transform = CGAffineTransform(rotationAngle: 0.4)
+            mainImageView.center = CGPoint(x: mainImageView.center.x + view.bounds.width, y: mainImageView.center.y + 30)
+        }){ [self] _ in
+            mainImageView.alpha = 0.0
+            pressNextButton()
+        }
+    }
+    
+    @objc
     func pressNextButton() {
-        self.delegate?.changeNextView()
+        guard chekNextbuttonClick else{
+            self.chekNextbuttonClick = true
+            self.delegate?.changeNextView()
+            return
+        }
+    }
+    
+    @objc
+    func pressSkipButton() {
+        self.delegate?.skipOnboarding()
     }
     
     @objc
     private func handlerCard(_ gesture: UIPanGestureRecognizer) {
         if let mainImageCard = gesture.view as? UIImageView {
+            blockButton()
             let point = gesture.translation(in: view)
             
             mainImageCard.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
@@ -85,36 +115,35 @@ extension SwipeOnboardingThirdViewController {
             mainImageCard.transform = CGAffineTransform(rotationAngle: rotationAngle)
             
             if gesture.state == .ended {
+                print("ppapRmx")
                 if mainImageCard.center.x > self.view.bounds.width / 3 * 2 {
                     mainImageCard.alpha = 0
-                    self.delegate?.changeNextView()
+                    pressNextButton()
                     return
                 }
                 
-                UIView.animate(withDuration: 0.2) {
+                UIView.animate(withDuration: 0.2) { [self] in
                     mainImageCard.center = self.BackgroundView.center
                     mainImageCard.transform = .identity
                     mainImageCard.setVideoBackgroundViewBorderColor(color: .clear, alpha: 1)
                     self.view.isUserInteractionEnabled = false
-                } completion: {_ in
-                    self.view.isUserInteractionEnabled = true
+                } completion: { [self]_ in
+                    unblockButton()
+                    view.isUserInteractionEnabled = true
                 }
             }
         }
     }
     
-    @objc
-    private func didSuccessButton() {
-        mainImageView.layer.borderColor = UIColor.orrPass?.cgColor
-        UIView.animate(withDuration: 0.3, animations: { [self] in
-            mainImageView.transform = CGAffineTransform(rotationAngle: 0.4)
-            mainImageView.center = CGPoint(x: mainImageView.center.x + view.bounds.width, y: mainImageView.center.y + 30)
-        }){ [self] _ in
-            mainImageView.alpha = 0.0
-            pressNextButton()
-        }
+    func blockButton(){
+        self.successButton.isEnabled = false
+        self.skipButton.isEnabled = false
     }
     
+    func unblockButton(){
+        self.successButton.isEnabled = true
+        self.skipButton.isEnabled = true
+    }
 }
 
 //MARK: 오토레이아웃
@@ -162,5 +191,15 @@ extension SwipeOnboardingThirdViewController {
             $0.height.equalTo(90)
             $0.width.equalTo(90)
         }
+        
+        view.addSubview(skipButton)
+        skipButton.snp.makeConstraints{
+            $0.centerX.equalTo(view)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
+            $0.leading.equalTo(view).offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalTo(view).offset(-OrrPd.pd16.rawValue)
+            $0.height.equalTo(56)
+        }
+        
     }
 }

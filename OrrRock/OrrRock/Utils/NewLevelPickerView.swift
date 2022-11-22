@@ -25,6 +25,8 @@ class NewLevelPickerView: UIView{
     private var rotationAngle: CGFloat! = -90  * (.pi/180)
     
     private var titleText = "에 도전했어요"
+    //타이틀에 다른 문구를 넣고 싶을때
+    var customTitle : String?
     
     private var changedLevelPicker = false
     
@@ -85,7 +87,13 @@ class NewLevelPickerView: UIView{
         guard changedLevelPicker else{
             pickerSelectValue =  pickerSelectValue < 0 ? 0 : pickerSelectValue
             self.pickerView.selectRow(pickerSelectValue, inComponent: 0, animated: true)
-            titleLabel.text = "V\(pickerSelectValue)\(titleText)"
+            
+            if customTitle != nil {
+                titleLabel.text = customTitle
+            } else{
+                titleLabel.text = "V\(pickerSelectValue)\(titleText)"
+            }
+            
             if self.frame.height < 110 {
                 titleLabel.removeFromSuperview()
             }
