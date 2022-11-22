@@ -46,10 +46,15 @@ final class DataManager {
     }
     
     // 암장 방문 날짜 및 이름 변경과 관련된 메소드
-    func updateDateAndGymData(videoInformation: VideoInformation, gymVisitDate: Date, gymName: String) {
-        coreDataManager.updateDateAndGymData(videoInformation: videoInformation, gymVisitDate: gymVisitDate, gymName: gymName)
-        repository.updateDateAndGymData(videoInformation: videoInformation, gymVisitDate: gymVisitDate, gymName: gymName)
+    func updateDateData(videoInformation: VideoInformation, gymVisitDate: Date) {
+        coreDataManager.updateDateData(videoInformation: videoInformation, gymVisitDate: gymVisitDate)
+        repository.updateDateData(videoInformation: videoInformation, gymVisitDate: gymVisitDate)
     }
+    func updateGymData(videoInformation: VideoInformation, gymName: String) {
+        coreDataManager.updateGymData(videoInformation: videoInformation, gymName: gymName)
+        repository.updateGymData(videoInformation: videoInformation, gymName: gymName)
+    }
+    
     
     // 문제 난이도 및 성패 변경과 관련된 메소드
     func updateLevelAndPF(videoInformation: VideoInformation, problemLevel: Int, isSucceeded: Bool) {

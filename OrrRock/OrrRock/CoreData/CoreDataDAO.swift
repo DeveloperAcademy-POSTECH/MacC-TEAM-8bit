@@ -45,7 +45,7 @@ class CoreDataDAO {
     }
     
     // 암장 방문 날짜 및 이름 변경과 관련된 메소드
-    func updateDateAndGymData(videoInformation: VideoInformation, gymVisitDate: Date, gymName: String) {
+    func updateDateData(videoInformation: VideoInformation, gymVisitDate: Date) {
         
         guard let id = videoInformation.id else { return }
         let request = VideoInformation.fetchRequest()
@@ -55,10 +55,26 @@ class CoreDataDAO {
             let info = try context.fetch(request)
             if let tempInfo = info.first {
                 tempInfo.setValue(gymVisitDate, forKey: "gymVisitDate")
+            }
+        } catch {
+            print("CoreDataDAO updateDateData Method \(error.localizedDescription)")
+        }
+        saveData()
+    }
+    
+    func updateGymData(videoInformation: VideoInformation, gymName: String) {
+        
+        guard let id = videoInformation.id else { return }
+        let request = VideoInformation.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        do {
+            let info = try context.fetch(request)
+            if let tempInfo = info.first {
                 tempInfo.setValue(gymName, forKey: "gymName")
             }
         } catch {
-            print("CoreDataDAO UpdateDateAndGymData Method \(error.localizedDescription)")
+            print("CoreDataDAO updateGymData Method \(error.localizedDescription)")
         }
         saveData()
     }
