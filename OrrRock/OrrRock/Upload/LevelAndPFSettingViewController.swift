@@ -14,6 +14,9 @@ import Photos
 
 final class LevelAndPFSettingViewController: UIViewController {
     
+    // 오토레이아웃의 시작점이 되는 값입니다. 변경시 류하에게 문의 주세요.
+    let padding = 68
+    
     var videoInfoArray: [VideoInfo] = []
     
     private var cards: [SwipeableCardVideoView?] = []
@@ -24,29 +27,17 @@ final class LevelAndPFSettingViewController: UIViewController {
     private var timeObserverToken: Any?
     private var firstCardtimeObserverToken: Any?
     
-    private lazy var headerView: UIView = {
-        let view = UIView()
+    private lazy var BackgroundView: EmptyBackgroundView = {
+        let view = EmptyBackgroundView()
         view.layer.zPosition = -1
-        
         return view
     }()
     
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "스와이프를 통해 비디오를 분류해주세요."
-        label.textColor = .orrBlack
-        label.font = .systemFont(ofSize: 17.0, weight: .semibold)
-        
-        return label
-    }()
-    
-    private lazy var levelLabel: UILabel = {
-        let label = UILabel()
-        label.text = "레벨"
-        label.textColor = .orrBlack
-        label.font = .systemFont(ofSize: 17.0, weight: .semibold)
-        
-        return label
+    private lazy var newLevelPickerView: NewLevelPickerView = {
+        let view = NewLevelPickerView()
+        view.pickerSelectValue = 0
+        view.delegate = self
+        return view
     }()
     
     private lazy var levelButton: UIButton = {
@@ -54,7 +45,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         button.setTitle("선택안함", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 17.0, weight: .semibold)
-        button.addTarget(self, action: #selector(pickLevel), for: .touchUpInside)
+//        button.addTarget(self, action: #selector(pickLevel), for: .touchUpInside)
         
         return button
     }()
@@ -271,17 +262,26 @@ private extension LevelAndPFSettingViewController {
 }
 
 // Level
-extension LevelAndPFSettingViewController: LevelPickerViewDelegate {
-    func setSeparatorColor() {
-        self.separator.backgroundColor = .orrBlack
-    }
+//extension LevelAndPFSettingViewController: LevelPickerViewDelegate {
+//    func setSeparatorColor() {
+//        self.separator.backgroundColor = .orrBlack
+//    }
+//
+//    func didLevelChanged(selectedLevel: Int) {
+//        let levelButtonTiltle = selectedLevel == -1 ? "선택안함" : "V\(selectedLevel)"
+//        levelButton.setTitle(levelButtonTiltle, for: .normal)
+//        currentSelectedLevel = selectedLevel
+//    }
+//}
+
+extension LevelAndPFSettingViewController: NewLevelPickerViewDelegate {
     
     func didLevelChanged(selectedLevel: Int) {
-        let levelButtonTiltle = selectedLevel == -1 ? "선택안함" : "V\(selectedLevel)"
-        levelButton.setTitle(levelButtonTiltle, for: .normal)
-        currentSelectedLevel = selectedLevel
+        print("ppap: 레벨이 선택 되었다!!")
     }
+    
 }
+
 
 // Gesture
 private extension LevelAndPFSettingViewController {
@@ -432,13 +432,13 @@ private extension LevelAndPFSettingViewController {
         }
     }
     
-    @objc func pickLevel() {
-        let nextViewController = LevelPickerView()
-        nextViewController.pickerSelectValue = currentSelectedLevel + 1
-        self.navigationController?.present(nextViewController, animated: true)
-        separator.backgroundColor = .orrUPBlue
-        nextViewController.delegate = self
-    }
+//    @objc func pickLevel() {
+//        let nextViewController = LevelPickerView()
+//        nextViewController.pickerSelectValue = currentSelectedLevel + 1
+//        self.navigationController?.present(nextViewController, animated: true)
+//        separator.backgroundColor = .orrUPBlue
+//        nextViewController.delegate = self
+//    }
     
     // 실패 버튼을 눌렀을 때 로직
     @objc func didFailButton() {
@@ -535,11 +535,11 @@ private extension LevelAndPFSettingViewController {
         failButton.isHidden = true
         videoSlider.isHidden = true
         
-        titleLabel.text = "분류 완료! 저장하기를 눌러주세요."
+//        titleLabel.text = "분류 완료! 저장하기를 눌러주세요."
         buttonStackView.isUserInteractionEnabled = false
         
-        titleLabel.textColor = .orrGray500
-        levelButton.tintColor = .orrGray500
+//        titleLabel.textColor = .orrGray500
+//        levelButton.tintColor = .orrGray500
     }
 }
 
@@ -547,53 +547,30 @@ private extension LevelAndPFSettingViewController {
     
     func setUpLayout() {
         
-        [levelButton, levelButtonImage].forEach {
-            self.buttonStackView.addArrangedSubview($0)
+        view.addSubview(BackgroundView)
+        BackgroundView.snp.makeConstraints {
+            $0.center.equalTo(view.center)
+            $0.height.equalTo(view.snp.height)
+            $0.width.equalTo(view.snp.width)
+            BackgroundView.setUpLayout()
         }
         
-        [levelLabel, buttonStackView].forEach {
-            self.levelStackView.addArrangedSubview($0)
+        view.addSubview(emptyVideoView)
+        emptyVideoView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(view.snp.leading).offset(padding)
+            $0.trailing.equalTo(view.snp.trailing).offset(-padding)
+            $0.height.equalTo(emptyVideoView.snp.width).multipliedBy(1.641)
         }
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(pickLevel))
-        buttonStackView.isUserInteractionEnabled = true
-        buttonStackView.addGestureRecognizer(tapGestureRecognizer)
         
-        view.addSubview(headerView)
-        headerView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
+        view.addSubview(newLevelPickerView)
+        newLevelPickerView.snp.makeConstraints {
+            $0.leading.equalTo(view.snp.leading)
+            $0.trailing.equalTo(view.snp.trailing)
             $0.top.equalTo(view.safeAreaLayoutGuide)
-        }
-        
-        headerView.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints {
-            $0.centerX.equalTo(headerView.snp.centerX)
-            $0.top.equalTo(headerView.snp.top)
-        }
-        
-        buttonStackView.snp.makeConstraints {
-            $0.width.equalTo(90.0)
-        }
-        
-        headerView.addSubview(levelStackView)
-        levelStackView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(titleLabel.snp.bottom).offset(OrrPd.pd16.rawValue)
-            $0.centerX.equalToSuperview()
-        }
-        
-        levelButtonImage.snp.makeConstraints {
-            $0.height.equalTo(20.0)
-            $0.width.equalTo(20.0)
-        }
-        
-        headerView.addSubview(separator)
-        separator.snp.makeConstraints {
-            $0.centerX.equalTo(buttonStackView.snp.centerX)
-            $0.top.equalTo(buttonStackView.snp.bottom).offset(8.0)
-            $0.bottom.equalTo(headerView.snp.bottom)
-            $0.height.equalTo(2.0)
-            $0.width.equalTo(90.0)
+            $0.bottom.equalTo(emptyVideoView.snp.top)
         }
         
         // TODO: Slider가 너무 빨리 그려지는 이슈
@@ -622,13 +599,7 @@ private extension LevelAndPFSettingViewController {
             $0.width.equalTo(74.0)
         }
         
-        view.addSubview(emptyVideoView)
-        emptyVideoView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(separator.snp.bottom).offset(OrrPd.pd20.rawValue)
-            $0.bottom.equalTo(successButton.snp.top).offset(-OrrPd.pd20.rawValue)
-            $0.width.equalTo(emptyVideoView.snp.height).multipliedBy(0.5625)
-        }
+
         
         // TODO: 카드 스택 스켈레톤 값 조정 필요
 //        view.addSubview(backgroundCardStackView)
