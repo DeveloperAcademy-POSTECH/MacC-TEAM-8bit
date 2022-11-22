@@ -10,6 +10,8 @@ import SnapKit
 
 protocol SwipeOnboardingViewControllerDelegate {
     func changeNextView()
+    func skipOnboarding()
+
 }
 
 class SwipeOnboardingViewController: UIPageViewController {
@@ -47,10 +49,13 @@ class SwipeOnboardingViewController: UIPageViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .orrWhite
         firstView.delegate = self
         secondView.delegate = self
         thirdView.delegate = self
         fourthView.delegate = self
+        fifthView.delegate = self
+        
         setDelegate()
         //MARK: Ruyha 스크롤링을 막음
         self.isPagingEnabled = false
@@ -66,6 +71,12 @@ extension SwipeOnboardingViewController : SwipeOnboardingViewControllerDelegate 
     func changeNextView() {
         self.goToNextPage()
     }
+    
+    func skipOnboarding() {
+        UserDefaults.standard.set(true, forKey: "SwipeOnboardingClear")
+        self.presentingViewController?.dismiss(animated: true, completion:nil)
+    }
+
 }
 
 extension SwipeOnboardingViewController : UIPageViewControllerDelegate {

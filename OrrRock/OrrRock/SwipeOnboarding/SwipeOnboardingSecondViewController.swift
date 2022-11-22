@@ -36,19 +36,15 @@ class SwipeOnboardingSecondViewController: UIViewController {
         let view = NewLevelPickerView()
         view.pickerSelectValue = 0
         view.delegate = self
+        view.customTitle = "슬라이드 해주세요"
         return view
     }()
     
-    private lazy var testButton: UIButton = {
+    
+    private lazy var skipButton: UIButton = {
         let btn = UIButton()
-        btn.clipsToBounds = true
-        btn.layer.cornerRadius = 15
-        btn.setBackgroundColor(.orrUPBlue!, for: .normal)
-        btn.setBackgroundColor(.orrGray300!, for: .disabled)
-        btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
-        btn.setTitle("테스트버튼 입니다.", for: .normal)
-        btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel!.font = UIFont.boldSystemFont(ofSize: 17)
+        btn.addTarget(self, action: #selector(pressSkipButton), for: .touchUpInside)
+        btn.setAttributedTitle("SKIP".underLineAttribute(), for: .normal)
         return btn
     }()
     
@@ -78,6 +74,11 @@ extension SwipeOnboardingSecondViewController {
     @objc
     func pressNextButton() {
         self.delegate?.changeNextView()
+    }
+    
+    @objc
+    func pressSkipButton() {
+        self.delegate?.skipOnboarding()
     }
 }
 
@@ -111,13 +112,12 @@ extension SwipeOnboardingSecondViewController {
             $0.bottom.equalTo(mainImageView.snp.top)
         }
         
-        view.addSubview(testButton)
-        testButton.snp.makeConstraints{
+        view.addSubview(skipButton)
+        skipButton.snp.makeConstraints{
             $0.centerX.equalTo(view)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
             $0.leading.equalTo(view).offset(OrrPd.pd16.rawValue)
             $0.trailing.equalTo(view).offset(-OrrPd.pd16.rawValue)
-            $0.height.equalTo(56)
         }
         
     }

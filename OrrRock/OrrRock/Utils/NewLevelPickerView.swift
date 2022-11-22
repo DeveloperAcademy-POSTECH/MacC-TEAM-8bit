@@ -6,14 +6,11 @@
 //  NewLevelPickerViewDelegate 설정을 꼭 해야지만 값을 전달 받을 수 있습니다.
 //  자세한 설명은 하단 주석 참고
 //  *주의사항* 여기를 수정하실 생각이라면 컬렉션뷰로 새로 만드는것을 권장합니다.
-
 import UIKit
 import SnapKit
-
 protocol NewLevelPickerViewDelegate {
     func didLevelChanged(selectedLevel: Int)
 }
-
 class NewLevelPickerView: UIView{
     //피커뷰의 고정적으로 쓰이는 넓이
     private var pickerWidth = 64
@@ -28,6 +25,8 @@ class NewLevelPickerView: UIView{
     private var rotationAngle: CGFloat! = -90  * (.pi/180)
     
     private var titleText = "에 도전했어요"
+    //타이틀에 다른 문구를 넣고 싶을때
+    var customTitle : String?
     
     private var changedLevelPicker = false
     
@@ -88,7 +87,13 @@ class NewLevelPickerView: UIView{
         guard changedLevelPicker else{
             pickerSelectValue =  pickerSelectValue < 0 ? 0 : pickerSelectValue
             self.pickerView.selectRow(pickerSelectValue, inComponent: 0, animated: true)
-            titleLabel.text = "V\(pickerSelectValue)\(titleText)"
+            
+            if customTitle != nil {
+                titleLabel.text = customTitle
+            } else{
+                titleLabel.text = "V\(pickerSelectValue)\(titleText)"
+            }
+            
             if self.frame.height < 110 {
                 titleLabel.removeFromSuperview()
             }
@@ -98,8 +103,6 @@ class NewLevelPickerView: UIView{
     }
     
 }
-
-
 extension NewLevelPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -114,9 +117,13 @@ extension NewLevelPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
         return levelValues.count
     }
     
+    
     //MARK: 여기
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        delegate?.didLevelChanged(selectedLevel: row)
+        titleLabel.text = "V\(row)\(titleText)"
         guard let selectView = pickerView.view(forRow: row, forComponent: component) else {
+            isFirstLoad = false
             return
         }
         
@@ -131,7 +138,6 @@ extension NewLevelPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
             beforeLabel.font = .systemRoundedFont(ofSize: 17, weight: .light)
             beforeLabel.textColor = .black
         }
-
         if let afterView = pickerView.view(forRow: row + 1, forComponent: component) {
             let afterLabel = afterView.subviews[0] as! UILabel
             afterLabel.backgroundColor = .orrWhite
@@ -149,7 +155,6 @@ extension NewLevelPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
         }
     }
     
-
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         
@@ -177,29 +182,23 @@ extension NewLevelPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
         rowLabel.text = "V\(levelValues[row])"
         pickerRow.transform = CGAffineTransform(rotationAngle: 90 * (.pi/180))
         
-        
         guard let myBool = isFirstLoad else{
             return pickerRow
         }
-        
         guard !myBool else{
             return pickerRow
         }
-        
         guard let selectView = pickerView.view(forRow: pickerSelectValue, forComponent: component) else {
             return pickerRow
         }
-        
         let selectLabel = selectView.subviews[0] as! UILabel
         selectLabel.textColor = .orrWhite
         selectLabel.font = .systemRoundedFont(ofSize: 18, weight: .bold)
         selectLabel.backgroundColor = .orrUPBlue
-
         return pickerRow
     }
     
 }
-
 extension NewLevelPickerView {
     
     private func setUpLayout(){
@@ -232,7 +231,6 @@ extension NewLevelPickerView {
         }
     }
 }
-
 /* MARK: 설명서
     1. LevelPicker의 초기 선택 값이 필요하다면 pickerSelectValue의 값을 변경시켜 주세요.
     ex) private lazy var newLevelPickerView: LevelPickerViewController = {
@@ -252,6 +250,3 @@ extension NewLevelPickerView {
     
     3. LevelPickerView의 높이가 110보다 작을 경우 titleLabel가 보이지 않습니다.
  */
-
-
-
