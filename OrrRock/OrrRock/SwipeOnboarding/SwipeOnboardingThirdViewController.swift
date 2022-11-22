@@ -198,7 +198,6 @@ extension SwipeOnboardingThirdViewController {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
             $0.leading.equalTo(view).offset(OrrPd.pd16.rawValue)
             $0.trailing.equalTo(view).offset(-OrrPd.pd16.rawValue)
-            $0.height.equalTo(56)
         }
         
     }
