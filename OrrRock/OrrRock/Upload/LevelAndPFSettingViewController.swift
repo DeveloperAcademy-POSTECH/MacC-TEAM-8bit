@@ -155,6 +155,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         button.clipsToBounds = true
         button.layer.cornerRadius = 10.0
         button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
         button.isHidden = true
         
         return button
