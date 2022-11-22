@@ -65,6 +65,7 @@ struct GrowthChartView: View {
                     }
                     .chartXAxis {
                         AxisMarks(position: .bottom) { value in
+                            AxisGridLine()
                             AxisValueLabel(collisionResolution: .greedy(minimumSpacing: 10)) {
                                 if let intValue = value.as(String.self) {
                                     Text(intValue)
