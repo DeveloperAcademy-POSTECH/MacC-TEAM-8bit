@@ -222,8 +222,8 @@ extension LevelAndPFEditViewController {
             $0.width.equalTo(100)
         }
         self.failCheckButton.snp.updateConstraints {
-            $0.height.equalTo(60)
-            $0.width.equalTo(60)
+            $0.height.equalTo(80)
+            $0.width.equalTo(80)
         }
         UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()
@@ -244,8 +244,8 @@ extension LevelAndPFEditViewController {
             $0.width.equalTo(100)
         }
         self.successCheckButton.snp.updateConstraints {
-            $0.height.equalTo(60)
-            $0.width.equalTo(60)
+            $0.height.equalTo(80)
+            $0.width.equalTo(80)
         }
         UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()
