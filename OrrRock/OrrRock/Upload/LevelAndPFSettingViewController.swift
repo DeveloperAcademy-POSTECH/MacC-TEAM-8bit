@@ -30,6 +30,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     private lazy var BackgroundView: EmptyBackgroundView = {
         let view = EmptyBackgroundView()
         view.layer.zPosition = -1
+        
         return view
     }()
     
@@ -37,6 +38,8 @@ final class LevelAndPFSettingViewController: UIViewController {
         let view = NewLevelPickerView()
         view.pickerSelectValue = 0
         view.delegate = self
+        view.layer.zPosition = -1
+
         return view
     }()
     
@@ -85,11 +88,11 @@ final class LevelAndPFSettingViewController: UIViewController {
         return separator
     }()
     
-    private lazy var backgroundCardStackView: EmptyBackgroundView = {
-        let view = EmptyBackgroundView()
-        view.layer.zPosition = -1
-        return view
-    }()
+//    private lazy var backgroundCardStackView: EmptyBackgroundView = {
+//        let view = EmptyBackgroundView()
+//        view.layer.zPosition = -1
+//        return view
+//    }()
     
     private lazy var emptyVideoView: UIView = {
         let view = UIView()
@@ -180,7 +183,7 @@ final class LevelAndPFSettingViewController: UIViewController {
                 }
                 
                 self.view.sendSubviewToBack(self.emptyVideoView)
-                self.view.sendSubviewToBack(self.backgroundCardStackView)
+                self.view.sendSubviewToBack(self.BackgroundView)
                 
                 // gesture
                 let gesture = UIPanGestureRecognizer()
