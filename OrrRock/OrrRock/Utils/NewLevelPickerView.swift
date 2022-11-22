@@ -18,6 +18,9 @@ class NewLevelPickerView: UIView{
     private var pickerWidth = 64
     //피커뷰가 시작 될때 선택 되어 있어야 하는 값
     var pickerSelectValue = 0
+    
+    var isFirstLoad : Bool?
+    
     //피커뷰에 들어갈 리스트들
     private let levelValues: [Int] = [0,1,2,3,4,5,6,7,8,9]
     //회전각도
@@ -67,7 +70,8 @@ class NewLevelPickerView: UIView{
         super.init(frame: frame)
         setPicker()
         pickerView.subviews[1].isHidden = true
-        
+//        pickerView.subviews[1].backgroundColor = .orrUPBlue
+//        pickerView.subviews[1].alpha = 0.5
     }
     
     required init?(coder: NSCoder) {
@@ -111,18 +115,44 @@ extension NewLevelPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
         return levelValues.count
     }
     
+    //MARK: 여기
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        guard let view = pickerView.view(forRow: row, forComponent: component) else {
+        guard let selectView = pickerView.view(forRow: row, forComponent: component) else {
             return
         }
-        view.subviews[0].backgroundColor = .orrUPBlue
-        titleLabel.text = "V\(row)\(titleText)"
-        delegate?.didLevelChanged(selectedLevel: row)
+        
+        let selectLabel = selectView.subviews[0] as! UILabel
+        selectLabel.textColor = .orrWhite
+        selectLabel.font  = .systemRoundedFont(ofSize: 18, weight: .bold)
+        selectLabel.backgroundColor = .orrUPBlue
+        
+        if let beforeView = pickerView.view(forRow: row - 1, forComponent: component) {
+            let beforeLabel = beforeView.subviews[0] as! UILabel
+            beforeLabel.backgroundColor = .orrWhite
+            beforeLabel.font = .systemRoundedFont(ofSize: 17, weight: .light)
+            beforeLabel.textColor = .black
+        }
+
+        if let afterView = pickerView.view(forRow: row + 1, forComponent: component) {
+            let afterLabel = afterView.subviews[0] as! UILabel
+            afterLabel.backgroundColor = .orrWhite
+            afterLabel.font = .systemRoundedFont(ofSize: 17, weight: .light)
+            afterLabel.textColor = .black
+        }
+        
+        guard let myBool = isFirstLoad else{
+            print("ppap 낄낄낄")
+            isFirstLoad = false
+            return
+        }
+        
+        if !myBool{
+            isFirstLoad = true
+            print("ppap 깔깔깔")
+        }
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return levelValues[row] == -1 ? "선택안함" : "V\(levelValues[row])"
-    }
+
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         
@@ -132,12 +162,11 @@ extension NewLevelPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
         lazy var rowLabel: UILabel = {
             let label = UILabel()
             label.textColor = .black
-            label.font = UIFont.systemFont(ofSize: 14, weight: .light)
+            label.font = UIFont.systemRoundedFont(ofSize: 17, weight: .light)
             label.textAlignment = .center
-            label.layer.borderWidth = 1.0
             label.layer.cornerRadius = 15
             label.layer.masksToBounds = true
-            label.layer.borderColor = UIColor.orrGray400?.cgColor
+            label.backgroundColor = .orrWhite
             return label
         }()
         
@@ -151,6 +180,24 @@ extension NewLevelPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
         rowLabel.text = "V\(levelValues[row])"
         pickerRow.transform = CGAffineTransform(rotationAngle: 90 * (.pi/180))
         
+        
+        guard let myBool = isFirstLoad else{
+            return pickerRow
+        }
+        
+        guard !myBool else{
+            return pickerRow
+        }
+        
+        guard let selectView = pickerView.view(forRow: pickerSelectValue, forComponent: component) else {
+            return pickerRow
+        }
+        
+        let selectLabel = selectView.subviews[0] as! UILabel
+        selectLabel.textColor = .orrWhite
+        selectLabel.font = .systemRoundedFont(ofSize: 18, weight: .bold)
+        selectLabel.backgroundColor = .orrUPBlue
+
         return pickerRow
     }
     
@@ -208,4 +255,6 @@ extension NewLevelPickerView {
     
     3. LevelPickerView의 높이가 110보다 작을 경우 titleLabel가 보이지 않습니다.
  */
+
+
 
