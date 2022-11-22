@@ -35,7 +35,7 @@ class UnderlinedTextField: UITextField, UITextFieldDelegate {
         
         warningLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview()
-            $0.top.equalTo(self.snp.bottom).offset(OrrPd.pd4.rawValue)
+            $0.top.equalTo(self.snp.bottom).offset(12)
         }
     }
     

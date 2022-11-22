@@ -63,6 +63,7 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
         btn.addTarget(self, action: #selector(pressSaveButton), for: .touchUpInside)
         btn.setTitle("저장", for: .normal)
         btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
         btn.isEnabled = false
         return btn
     }()
