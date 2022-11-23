@@ -82,6 +82,15 @@ class ExportViewController: UIViewController, UINavigationBarDelegate {
         return view
     }()
     
+    private lazy var colorPickerView: ColorPickerView = {
+        let view = ColorPickerView()
+        //배열에서 선택되어야 하는값
+        view.pickerSelectValue = 99
+        view.delegate = self
+        
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
@@ -122,7 +131,7 @@ class ExportViewController: UIViewController, UINavigationBarDelegate {
                 let avUrlAsset = asset as! AVURLAsset
                 
                 DispatchQueue.main.async {
-                    self.merge(videoUrlAsset: avUrlAsset) { url in
+                    self.exportVideo(videoUrlAsset: avUrlAsset) { url in
                         UISaveVideoAtPathToSavedPhotosAlbum(url!.path, self, #selector(self.saveCheck), nil)
                     }
                 }
@@ -147,13 +156,22 @@ class ExportViewController: UIViewController, UINavigationBarDelegate {
     
 extension ExportViewController {
     private func setLayout() {
+        view.addSubview(colorPickerView)
+        colorPickerView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(72)
+            $0.height.equalTo(40)
+        }
+        
         view.addSubview(previewVideoView)
         previewVideoView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(view.snp.top).offset(100)
-            $0.bottom.equalTo(view.snp.bottom).inset(100)
+            $0.bottom.equalTo(colorPickerView.snp.top).offset(-32)
             $0.width.equalTo(previewVideoView.snp.height).multipliedBy(0.5625)
         }
+        
         
         previewVideoView.addSubview(videoPlayView)
         videoPlayView.snp.makeConstraints {
@@ -220,7 +238,7 @@ extension ExportViewController {
 }
 
 extension ExportViewController {
-    func merge(
+    func exportVideo(
         videoUrlAsset: AVURLAsset, completion: @escaping (URL?) -> Void) -> () {
             
             // 변경 가능한 컴포지션 생성
@@ -361,4 +379,10 @@ extension ExportViewController {
                 }
             }
         }
+}
+
+extension ExportViewController : ColorPickerViewDelegate{
+    func didColorChanged(selectedColor: UIColor) {
+        view.backgroundColor = selectedColor
+    }
 }
