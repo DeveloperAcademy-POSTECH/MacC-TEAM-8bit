@@ -82,15 +82,15 @@ final class HomeTableViewListCell: UITableViewCell {
         
         contentView.addSubview(cellView)
         cellView.snp.makeConstraints {
-            $0.edges.equalTo(contentView.snp.edges).inset(CGFloat(OrrPd.pd16.rawValue))
+            $0.verticalEdges.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(CGFloat(OrrPd.pd16.rawValue))
         }
         
         cellView.addSubview(thumbnailView)
         thumbnailView.snp.makeConstraints {
             $0.leading.equalTo(cellView.snp.leading)
-            $0.centerY.equalTo(cellView.snp.centerY)
-            $0.height.equalTo(cellView.snp.height)
-            $0.width.equalTo(cellView.snp.height)
+            $0.top.bottom.equalToSuperview().inset(CGFloat(OrrPd.pd16.rawValue))
+            $0.width.equalTo(thumbnailView.snp.height)
         }
         
         cellView.addSubview(levelAndPFLabel)
@@ -104,7 +104,7 @@ final class HomeTableViewListCell: UITableViewCell {
             $0.leading.equalTo(thumbnailView.snp.trailing).offset(CGFloat(OrrPd.pd16.rawValue))
             $0.trailing.equalTo(cellView.snp.trailing)
             $0.top.equalTo(levelAndPFLabel.snp.bottom).offset(CGFloat(OrrPd.pd4.rawValue))
-            $0.bottom.equalTo(cellView.snp.bottom)
+            $0.bottom.equalTo(thumbnailView.snp.bottom)
         }
         
         cellView.addSubview(feedbackPlaceholder)
@@ -112,7 +112,15 @@ final class HomeTableViewListCell: UITableViewCell {
             $0.leading.equalTo(thumbnailView.snp.trailing).offset(CGFloat(OrrPd.pd16.rawValue))
             $0.trailing.equalTo(cellView.snp.trailing)
             $0.top.equalTo(levelAndPFLabel.snp.bottom).offset(CGFloat(OrrPd.pd4.rawValue))
-            $0.bottom.equalTo(cellView.snp.bottom)
+            $0.bottom.equalTo(thumbnailView.snp.bottom)
+        }
+        
+        cellView.addSubview(dividerView)
+        dividerView.snp.makeConstraints {
+            $0.leading.equalTo(thumbnailView.snp.trailing).offset(10)
+            $0.trailing.equalTo(cellView.snp.trailing)
+            $0.height.equalTo(1)
+            $0.bottom.equalToSuperview()
         }
     }
     
