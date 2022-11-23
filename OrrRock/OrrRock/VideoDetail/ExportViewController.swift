@@ -131,7 +131,13 @@ class ExportViewController: UIViewController, UINavigationBarDelegate {
     
     @objc func saveCheck(_ videoPath: String, didFinishSavingWithError error: Error?, contextInfo:  UnsafeMutableRawPointer?) {
             if let error = error {
-                print(error)
+                let alert = UIAlertController(title: "영상을 저장할 수 없습니다.", message: "영상을 저장하는 데 오류가 발생하였습니다.\n다시 시도해 주세요\n\n에러 번호 \n\(error)", preferredStyle: .alert)
+                
+                let confirm = UIAlertAction(title: "확인", style: .default) { _ in
+                    self.dismiss(animated: true)
+                }
+                
+                alert.addAction(confirm)
                 return
             }
             CustomIndicator.stopLoading()
