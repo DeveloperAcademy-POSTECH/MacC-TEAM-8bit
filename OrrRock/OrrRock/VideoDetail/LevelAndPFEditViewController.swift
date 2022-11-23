@@ -155,19 +155,19 @@ extension LevelAndPFEditViewController {
         levelContentView.addSubview(LevelLabel)
         LevelLabel.snp.makeConstraints {
             $0.centerX.equalTo(levelContentView)
-            $0.top.equalTo(levelContentView.snp.top).offset(OrrPd.pd40.rawValue)
+            $0.top.equalTo(levelContentView.snp.top).offset(UIScreen.main.bounds.height<700 ? OrrPd.pd24.rawValue : OrrPd.pd40.rawValue)
         }
         
         levelContentView.addSubview(pickerView)
         pickerView.snp.makeConstraints {
             $0.leading.equalTo(levelContentView).offset(47)
             $0.trailing.equalTo(levelContentView).offset(-47)
-            $0.top.equalTo(LevelLabel.snp.bottom).offset(OrrPd.pd24.rawValue)
+            $0.top.equalTo(LevelLabel.snp.bottom).offset(UIScreen.main.bounds.height<700 ? OrrPd.pd16.rawValue : OrrPd.pd24.rawValue)
         }
         
         levelContentView.addSubview(successLabel)
         successLabel.snp.makeConstraints {
-            $0.top.equalTo(pickerView.snp.bottom).offset(OrrPd.pd72.rawValue)
+            $0.top.equalTo(pickerView.snp.bottom).offset(UIScreen.main.bounds.height<700 ? OrrPd.pd24.rawValue : OrrPd.pd72.rawValue)
             $0.centerX.equalToSuperview()
         }
         
