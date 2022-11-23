@@ -110,6 +110,7 @@ class ExportViewController: UIViewController, UINavigationBarDelegate {
     
     @objc private func completeAction() {
         saveVideo()
+        CustomIndicator.startLoading()
     }
     
     @objc private func cancelAction() {
@@ -133,7 +134,8 @@ class ExportViewController: UIViewController, UINavigationBarDelegate {
                 print(error)
                 return
             }
-            print("success")
+            CustomIndicator.stopLoading()
+            self.dismiss(animated: true)
         }
 }
     
