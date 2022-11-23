@@ -14,51 +14,33 @@ import Photos
 
 final class LevelAndPFSettingViewController: UIViewController {
     
+    // 오토레이아웃의 시작점이 되는 값입니다. 변경시 류하에게 문의 주세요.
+    private let padding = 68
+    
     var videoInfoArray: [VideoInfo] = []
     
     private var cards: [SwipeableCardVideoView?] = []
     private var counter: Int = 0
-    private var deleteConter: Int = 0
-    private var currentSelectedLevel = -1
+    private var currentSelectedLevel = 0
     private var selectedCard: Int = 0
     private var classifiedCard: Int = 0
     private var timeObserverToken: Any?
     private var firstCardtimeObserverToken: Any?
-    private let padding = 68
     
-    private lazy var headerView: UIView = {
-        let view = UIView()
+    private lazy var BackgroundView: EmptyBackgroundView = {
+        let view = EmptyBackgroundView()
         view.layer.zPosition = -1
         
         return view
     }()
     
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "스와이프를 통해 비디오를 분류해주세요."
-        label.textColor = .orrBlack
-        label.font = .systemFont(ofSize: 17.0, weight: .semibold)
-        
-        return label
-    }()
-    
-    private lazy var levelLabel: UILabel = {
-        let label = UILabel()
-        label.text = "레벨"
-        label.textColor = .orrBlack
-        label.font = .systemFont(ofSize: 17.0, weight: .semibold)
-        
-        return label
-    }()
-    
-    private lazy var levelButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("선택안함", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 17.0, weight: .semibold)
-        button.addTarget(self, action: #selector(pickLevel), for: .touchUpInside)
-        
-        return button
+    private lazy var newLevelPickerView: NewLevelPickerView = {
+        let view = NewLevelPickerView()
+        view.pickerSelectValue = 0
+        view.delegate = self
+        view.layer.zPosition = -1
+
+        return view
     }()
     
     private lazy var levelButtonImage: UIImageView = {
@@ -89,11 +71,10 @@ final class LevelAndPFSettingViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var separator: UIView = {
-        let separator = UIView()
-        separator.backgroundColor = .orrBlack
+    private lazy var paddigView: UIView = {
+        let view = UIView()
         
-        return separator
+        return view
     }()
     
     private lazy var emptyVideoView: UIView = {
@@ -212,7 +193,7 @@ final class LevelAndPFSettingViewController: UIViewController {
                 }
                 
                 self.view.sendSubviewToBack(self.emptyVideoView)
-                self.view.sendSubviewToBack(self.emptyBackgroundView)
+                self.view.sendSubviewToBack(self.BackgroundView)
                 
                 // gesture
                 let gesture = UIPanGestureRecognizer()
@@ -300,18 +281,14 @@ private extension LevelAndPFSettingViewController {
     }
 }
 
-// Level
-extension LevelAndPFSettingViewController: LevelPickerViewDelegate {
-    func setSeparatorColor() {
-        self.separator.backgroundColor = .orrBlack
-    }
+extension LevelAndPFSettingViewController: NewLevelPickerViewDelegate {
     
     func didLevelChanged(selectedLevel: Int) {
-        let levelButtonTiltle = selectedLevel == -1 ? "선택안함" : "V\(selectedLevel)"
-        levelButton.setTitle(levelButtonTiltle, for: .normal)
         currentSelectedLevel = selectedLevel
     }
+    
 }
+
 
 // Gesture
 private extension LevelAndPFSettingViewController {
@@ -467,15 +444,6 @@ private extension LevelAndPFSettingViewController {
         }
     }
     
-    @objc
-    func pickLevel() {
-        let nextViewController = LevelPickerView()
-        nextViewController.pickerSelectValue = currentSelectedLevel + 1
-        self.navigationController?.present(nextViewController, animated: true)
-        separator.backgroundColor = .orrUPBlue
-        nextViewController.delegate = self
-    }
-    
     // 실패 버튼을 눌렀을 때 로직
     @objc
     func didFailButton() {
@@ -594,23 +562,16 @@ private extension LevelAndPFSettingViewController {
     }
     
     // 모든 카드를 스와이핑 했을 때 호출되는 메서드
+    // MARK: RuyHa
     func didVideoClassificationComplete() {
         // 한번 더 제거해주는 로직
         cards.removeAll()
-        
-        levelButton.isEnabled = false
-        
         saveButton.isHidden = false
         successButton.isHidden = true
         failButton.isHidden = true
         deleteButton.isHidden = true
         videoSlider.isHidden = true
-        
-        titleLabel.text = "분류 완료! 저장하기를 눌러주세요."
         buttonStackView.isUserInteractionEnabled = false
-        
-        titleLabel.textColor = .orrGray500
-        levelButton.tintColor = .orrGray500
     }
 }
 
@@ -618,61 +579,35 @@ private extension LevelAndPFSettingViewController {
     
     func setUpLayout() {
         
-        [levelButton, levelButtonImage].forEach {
-            self.buttonStackView.addArrangedSubview($0)
-        }
-        
-        [levelLabel, buttonStackView].forEach {
-            self.levelStackView.addArrangedSubview($0)
-        }
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(pickLevel))
-        buttonStackView.isUserInteractionEnabled = true
-        buttonStackView.addGestureRecognizer(tapGestureRecognizer)
-        
-        view.addSubview(headerView)
-        headerView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.top.equalTo(view.safeAreaLayoutGuide)
-        }
-        
-        view.addSubview(emptyBackgroundView)
-        emptyBackgroundView.snp.makeConstraints {
+        view.addSubview(BackgroundView)
+        BackgroundView.snp.makeConstraints {
             $0.center.equalTo(view.center)
             $0.height.equalTo(view.snp.height)
             $0.width.equalTo(view.snp.width)
-            emptyBackgroundView.setUpLayout()
+            BackgroundView.setUpLayout()
         }
         
-        headerView.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints {
-            $0.centerX.equalTo(headerView.snp.centerX)
-            $0.top.equalTo(headerView.snp.top)
-        }
-        
-        buttonStackView.snp.makeConstraints {
-            $0.width.equalTo(90.0)
-        }
-        
-        headerView.addSubview(levelStackView)
-        levelStackView.snp.makeConstraints {
+        view.addSubview(emptyVideoView)
+        emptyVideoView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(titleLabel.snp.bottom).offset(OrrPd.pd16.rawValue)
-            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(view.snp.leading).offset(padding)
+            $0.trailing.equalTo(view.snp.trailing).offset(-padding)
+            $0.height.equalTo(emptyVideoView.snp.width).multipliedBy(1.641)
         }
         
-        levelButtonImage.snp.makeConstraints {
-            $0.height.equalTo(20.0)
-            $0.width.equalTo(20.0)
+        
+        view.addSubview(newLevelPickerView)
+        newLevelPickerView.snp.makeConstraints {
+            $0.leading.equalTo(view.snp.leading)
+            $0.trailing.equalTo(view.snp.trailing)
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.equalTo(emptyVideoView.snp.top).offset(-OrrPd.pd16.rawValue)
         }
         
-        headerView.addSubview(separator)
-        separator.snp.makeConstraints {
-            $0.centerX.equalTo(buttonStackView.snp.centerX)
-            $0.top.equalTo(buttonStackView.snp.bottom).offset(8.0)
-            $0.bottom.equalTo(headerView.snp.bottom)
-            $0.height.equalTo(2.0)
-            $0.width.equalTo(90.0)
+        emptyVideoView.addSubview(emptyVideoInformation)
+        emptyVideoInformation.snp.makeConstraints {
+            $0.center.equalTo(emptyVideoView.snp.center)
         }
         
         // TODO: Slider가 너무 빨리 그려지는 이슈
@@ -685,42 +620,28 @@ private extension LevelAndPFSettingViewController {
             $0.height.equalTo(56)
         }
         
-        view.addSubview(failButton)
+        view.addSubview(paddigView)
+        paddigView.snp.makeConstraints {
+            $0.top.equalTo(emptyVideoView.snp.bottom)
+            $0.bottom.equalTo(videoSlider.snp.top)
+            $0.leading.equalTo(emptyVideoView.snp.leading)
+            $0.trailing.equalTo(emptyVideoView.snp.trailing)
+        }
+        
+        paddigView.addSubview(failButton)
         failButton.snp.makeConstraints {
-            $0.bottom.equalTo(videoSlider.snp.top).offset(-OrrPd.pd16.rawValue)
-            $0.leading.equalToSuperview().inset(48.0)
-            $0.height.equalTo(74.0)
-            $0.width.equalTo(74.0)
+            $0.centerY.equalTo(paddigView.snp.centerY).multipliedBy(0.9)
+            $0.leading.equalTo(paddigView.snp.leading)
+            $0.height.equalTo(90)
+            $0.width.equalTo(90)
         }
         
-        view.addSubview(deleteButton)
-        deleteButton.snp.makeConstraints {
-            $0.bottom.equalTo(videoSlider.snp.top).offset(-OrrPd.pd16.rawValue)
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(74.0)
-            $0.width.equalTo(74.0)
-        }
-        
-        view.addSubview(successButton)
+        paddigView.addSubview(successButton)
         successButton.snp.makeConstraints {
-            $0.bottom.equalTo(videoSlider.snp.top).offset(-OrrPd.pd16.rawValue)
-            $0.trailing.equalToSuperview().inset(48.0)
-            $0.height.equalTo(74.0)
-            $0.width.equalTo(74.0)
-        }
-        
-        view.addSubview(emptyVideoView)
-        emptyVideoView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview()
-            $0.leading.equalTo(view.snp.leading).offset(padding)
-            $0.trailing.equalTo(view.snp.trailing).offset(-padding)
-            $0.height.equalTo(emptyVideoView.snp.width).multipliedBy(1.641)
-        }
-        
-        emptyVideoView.addSubview(emptyVideoInformation)
-        emptyVideoInformation.snp.makeConstraints {
-            $0.center.equalTo(emptyVideoView.snp.center)
+            $0.centerY.equalTo(paddigView.snp.centerY).multipliedBy(0.9)
+            $0.trailing.equalTo(paddigView.snp.trailing)
+            $0.height.equalTo(90)
+            $0.width.equalTo(90)
         }
         
         view.addSubview(saveButton)
