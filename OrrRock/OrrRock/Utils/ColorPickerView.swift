@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol ColorPickerViewDelegate {
-    func didColorChanged(selectedColor: UIColor)
+    func didColorChanged(selectedColorValue: Int)
 }
 
 class ColorPickerView: UIView{
@@ -21,7 +21,7 @@ class ColorPickerView: UIView{
     var isFirstLoad : Bool?
     
     //피커뷰에 들어갈 리스트들
-    private let colorValues: [UIColor] = [.red,.yellow,.cyan,.systemPink,.green,.red,.yellow,.cyan,.systemPink,.green]
+    private let colorValues: [UIColor?] = [.holder0, .holder1, .holder2, .holder3, .holder4, .holder5, .holder6, .holder7, .holder8, .holder9]
     //회전각도
     private var rotationAngle: CGFloat! = -90  * (.pi/180)
         
@@ -56,7 +56,6 @@ class ColorPickerView: UIView{
     
     func setPicker() {
         setUpLayout()
-        self.backgroundColor = .orrGray400
         self.pickerView.delegate?.pickerView?(self.pickerView, didSelectRow: pickerSelectValue, inComponent: 0)
     }
     
@@ -85,18 +84,20 @@ extension ColorPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
         return colorValues.count
     }
     
-    
     //MARK: 여기
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        delegate?.didColorChanged(selectedColor: colorValues[row])
+        delegate?.didColorChanged(selectedColorValue: row)
         guard let selectView = pickerView.view(forRow: row, forComponent: component) else {
             isFirstLoad = false
             return
         }
 
-
         let selectLabel = selectView.subviews[0] as! UILabel
-        selectLabel.backgroundColor = .white
+        selectLabel.backgroundColor = .orrWhite
+        selectLabel.layer.shadowColor = UIColor.orrBlack?.cgColor
+        selectLabel.layer.shadowOpacity = 1.0
+        selectLabel.layer.shadowOffset = CGSize.zero
+        selectLabel.layer.shadowRadius = 10
 
 
         if let beforeView = pickerView.view(forRow: row - 1, forComponent: component) {
@@ -119,7 +120,6 @@ extension ColorPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
         }
     }
     
-    
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         
         let pickerRow = UIView()
@@ -139,7 +139,6 @@ extension ColorPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
             label.layer.masksToBounds = true
             return label
         }()
-        
         
         pickerRow.addSubview(backLabel)
         backLabel.snp.makeConstraints {
@@ -179,18 +178,17 @@ extension ColorPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
 extension ColorPickerView {
     
     private func setUpLayout(){
-        
         self.addSubview(pickerSetLabel)
         pickerSetLabel.snp.makeConstraints {
-            $0.height.equalTo(pickerWidth) //width
+            $0.height.equalTo(pickerWidth) // width
             $0.width.equalTo(self.snp.width) //
             $0.center.equalToSuperview()
         }
         
         self.addSubview(pickerView)
         pickerView.snp.makeConstraints {
-            $0.height.equalTo(pickerSetLabel.snp.width)// width
-            $0.width.equalTo(pickerSetLabel.snp.height)//height
+            $0.height.equalTo(pickerSetLabel.snp.width) // width
+            $0.width.equalTo(pickerSetLabel.snp.height) // height
             $0.centerX.equalTo(pickerSetLabel.snp.centerX)
             $0.centerY.equalTo(pickerSetLabel.snp.centerY)
         }

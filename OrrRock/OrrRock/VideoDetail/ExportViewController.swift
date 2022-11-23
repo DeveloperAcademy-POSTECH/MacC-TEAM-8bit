@@ -12,6 +12,7 @@ class ExportViewController: UIViewController, UINavigationBarDelegate {
     
     var videoInformation: VideoInformation!
     var videoAsset: PHAsset?
+    var level: Int = 0
     
     private lazy var previewVideoView: UIView = {
         let view = UIView()
@@ -85,7 +86,7 @@ class ExportViewController: UIViewController, UINavigationBarDelegate {
     private lazy var colorPickerView: ColorPickerView = {
         let view = ColorPickerView()
         //배열에서 선택되어야 하는값
-        view.pickerSelectValue = 99
+        view.pickerSelectValue = 0
         view.delegate = self
         
         return view
@@ -95,7 +96,7 @@ class ExportViewController: UIViewController, UINavigationBarDelegate {
         super.viewDidLoad()
         setLayout()
         setNavigationBar()
-        view.backgroundColor = .orrWhite
+        view.backgroundColor = .orrGray100
     }
     
     override func viewDidLayoutSubviews() {
@@ -104,7 +105,6 @@ class ExportViewController: UIViewController, UINavigationBarDelegate {
     
     func setNavigationBar() {
         let navbar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 75))
-        navbar.backgroundColor = UIColor.orrWhite
         navbar.delegate = self
         
         let navItem = UINavigationItem()
@@ -127,33 +127,33 @@ class ExportViewController: UIViewController, UINavigationBarDelegate {
     }
     
     private func saveVideo() {
-            PHImageManager().requestAVAsset(forVideo: videoAsset!, options: nil) { (asset, audioMix, info) in
-                let avUrlAsset = asset as! AVURLAsset
-                
-                DispatchQueue.main.async {
-                    self.exportVideo(videoUrlAsset: avUrlAsset) { url in
-                        UISaveVideoAtPathToSavedPhotosAlbum(url!.path, self, #selector(self.saveCheck), nil)
-                    }
+        PHImageManager().requestAVAsset(forVideo: videoAsset!, options: nil) { (asset, audioMix, info) in
+            let avUrlAsset = asset as! AVURLAsset
+            
+            DispatchQueue.main.async {
+                self.exportVideo(videoUrlAsset: avUrlAsset, level: self.level) { url in
+                    UISaveVideoAtPathToSavedPhotosAlbum(url!.path, self, #selector(self.saveCheck), nil)
                 }
             }
         }
+    }
     
     @objc func saveCheck(_ videoPath: String, didFinishSavingWithError error: Error?, contextInfo:  UnsafeMutableRawPointer?) {
-            if let error = error {
-                let alert = UIAlertController(title: "영상을 저장할 수 없습니다.", message: "영상을 저장하는 데 오류가 발생하였습니다.\n다시 시도해 주세요\n\n에러 번호 \n\(error)", preferredStyle: .alert)
-                
-                let confirm = UIAlertAction(title: "확인", style: .default) { _ in
-                    self.dismiss(animated: true)
-                }
-                
-                alert.addAction(confirm)
-                return
+        if let error = error {
+            let alert = UIAlertController(title: "영상을 저장할 수 없습니다.", message: "영상을 저장하는 데 오류가 발생하였습니다.\n다시 시도해 주세요\n\n에러 번호 \n\(error)", preferredStyle: .alert)
+            
+            let confirm = UIAlertAction(title: "확인", style: .default) { _ in
+                self.dismiss(animated: true)
             }
-            CustomIndicator.stopLoading()
-            self.dismiss(animated: true)
+            
+            alert.addAction(confirm)
+            return
         }
+        CustomIndicator.stopLoading()
+        self.dismiss(animated: true)
+    }
 }
-    
+
 extension ExportViewController {
     private func setLayout() {
         view.addSubview(colorPickerView)
@@ -239,7 +239,7 @@ extension ExportViewController {
 
 extension ExportViewController {
     func exportVideo(
-        videoUrlAsset: AVURLAsset, completion: @escaping (URL?) -> Void) -> () {
+        videoUrlAsset: AVURLAsset, level: Int, completion: @escaping (URL?) -> Void) -> () {
             
             // 변경 가능한 컴포지션 생성
             let mutableComposition = AVMutableComposition()
@@ -290,15 +290,14 @@ extension ExportViewController {
             gradationLayer.frame = frame
             gradationLayer.contents = gradationImage
             imageLayer.addSublayer(gradationLayer)
-
+            
             // 로고 이미지 추가
             let logoImageLayer = CALayer()
-            // FIXME: 레벨별 다른 이미지 가져오기
-            let logoImage = UIImage(named: "V0")?.cgImage
+            let logoImage = UIImage(named: "V\(level)")?.cgImage
             logoImageLayer.frame = CGRect(x: 510.28, y: 1645, width: 93.22, height: 102)
             logoImageLayer.contents = logoImage
             imageLayer.addSublayer(logoImageLayer)
-
+            
             // 로고 텍스트 추가
             let logoTextLayer = CALayer()
             let logoText = UIImage(named: "ORRROCK")?.cgImage
@@ -343,7 +342,7 @@ extension ExportViewController {
             gymTextLayer.string = videoInformation.gymName
             gymTextLayer.contentsScale = UIScreen.main.scale
             imageLayer.addSublayer(gymTextLayer)
-
+            
             // 영상 위에 얹을 추가 레이어 선언
             let animationLayer = CALayer()
             animationLayer.frame = frame
@@ -382,7 +381,8 @@ extension ExportViewController {
 }
 
 extension ExportViewController : ColorPickerViewDelegate{
-    func didColorChanged(selectedColor: UIColor) {
-        view.backgroundColor = selectedColor
+    func didColorChanged(selectedColorValue: Int) {
+        level = selectedColorValue
+        orrLogo.image = UIImage(named: "V\(level)")
     }
 }
