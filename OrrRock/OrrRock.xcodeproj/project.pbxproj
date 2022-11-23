@@ -31,6 +31,7 @@
 		342C457029018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C456F29018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift */; };
 		34793F9F29251E4B00B74110 /* BetterSegmentedControl in Frameworks */ = {isa = PBXBuildFile; productRef = 34793F9E29251E4B00B74110 /* BetterSegmentedControl */; };
 		34793FA329262A8800B74110 /* CustomBackBarButtomItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34793FA229262A8800B74110 /* CustomBackBarButtomItem.swift */; };
+		34E11EC9292D2C5100787316 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E11EC8292D2C5100787316 /* UIImage+.swift */; };
 		3495AEF72929192000006469 /* CalendarComponent+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3495AEF62929192000006469 /* CalendarComponent+.swift */; };
 		34E11EC3292BEDCF00787316 /* FirstDateSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E11EC2292BEDCF00787316 /* FirstDateSettingViewController.swift */; };
 		34E11EC5292BFF2700787316 /* ExportCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E11EC4292BFF2700787316 /* ExportCardView.swift */; };
@@ -61,6 +62,8 @@
 		707B2CAE28FFF7090062C958 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 707B2CAD28FFF7090062C958 /* NVActivityIndicatorView */; };
 		707B2CB829012BFE0062C958 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB729012BFE0062C958 /* Color+.swift */; };
 		707B2CBA2901382A0062C958 /* OrrPd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB92901382A0062C958 /* OrrPd.swift */; };
+		7085BA2A292D2F08004FD734 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7085BA29292D2F08004FD734 /* ColorPickerView.swift */; };
+		7085BA2C292D33AF004FD734 /* TestColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7085BA2B292D33AF004FD734 /* TestColorPickerViewController.swift */; };
 		709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709A8C6A2904827B00CEA6F4 /* UnderlinedTextField.swift */; };
 		709A8C6D2904A3E800CEA6F4 /* CustomIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709A8C6C2904A3E800CEA6F4 /* CustomIndicator.swift */; };
 		70A44805290440E600BE18A5 /* DateSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A44804290440E600BE18A5 /* DateSettingViewController.swift */; };
@@ -128,6 +131,7 @@
 		342C456D290125260037D9E7 /* HomeTableViewListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewListCell.swift; sourceTree = "<group>"; };
 		342C456F29018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewFooterCell.swift; sourceTree = "<group>"; };
 		34793FA229262A8800B74110 /* CustomBackBarButtomItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackBarButtomItem.swift; sourceTree = "<group>"; };
+		34E11EC8292D2C5100787316 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		3495AEF62929192000006469 /* CalendarComponent+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarComponent+.swift"; sourceTree = "<group>"; };
 		34E11EC2292BEDCF00787316 /* FirstDateSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstDateSettingViewController.swift; sourceTree = "<group>"; };
 		34E11EC4292BFF2700787316 /* ExportCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportCardView.swift; sourceTree = "<group>"; };
@@ -158,6 +162,8 @@
 		704BAB5D292834DB004D987A /* NewLevelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLevelPickerView.swift; sourceTree = "<group>"; };
 		707B2CB729012BFE0062C958 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		707B2CB92901382A0062C958 /* OrrPd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrrPd.swift; sourceTree = "<group>"; };
+		7085BA29292D2F08004FD734 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		7085BA2B292D33AF004FD734 /* TestColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestColorPickerViewController.swift; sourceTree = "<group>"; };
 		709A8C6A2904827B00CEA6F4 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		709A8C6C2904A3E800CEA6F4 /* CustomIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIndicator.swift; sourceTree = "<group>"; };
 		70A44804290440E600BE18A5 /* DateSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSettingViewController.swift; sourceTree = "<group>"; };
@@ -296,6 +302,7 @@
 				70A8DF09291A863F0061E36B /* UIView+.swift */,
 				3495AEF62929192000006469 /* CalendarComponent+.swift */,
 				700AC6202926A1DA003DF5AF /* UIImageView+.swift */,
+				34E11EC8292D2C5100787316 /* UIImage+.swift */,
 				70AE8137292CA24500B4DB3F /* Font+.swift */,
 			);
 			path = Extensions;
@@ -474,6 +481,8 @@
 				709A8C6C2904A3E800CEA6F4 /* CustomIndicator.swift */,
 				34793FA229262A8800B74110 /* CustomBackBarButtomItem.swift */,
 				704BAB5D292834DB004D987A /* NewLevelPickerView.swift */,
+				7085BA29292D2F08004FD734 /* ColorPickerView.swift */,
+				7085BA2B292D33AF004FD734 /* TestColorPickerViewController.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -650,6 +659,7 @@
 				70E8E7542923865400793F91 /* OnBoardigSuperViewController.swift in Sources */,
 				3495AEF72929192000006469 /* CalendarComponent+.swift in Sources */,
 				70DE795C292517330009AD43 /* SwipeOnboardingFirstViewController.swift in Sources */,
+				7085BA2C292D33AF004FD734 /* TestColorPickerViewController.swift in Sources */,
 				3A15AC7729071DD90058512F /* OrderOption.swift in Sources */,
 				0A0B41072907C59600057FA7 /* LevelAndPFSettingViewController.swift in Sources */,
 				78FEE89929291AC9007B67BD /* VideoDetailPageViewController+Protocol.swift in Sources */,
@@ -684,6 +694,7 @@
 				3405BE632927DD2E00D6E15A /* ChallengeChartView.swift in Sources */,
 				78FEE89B29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift in Sources */,
 				3A15AC7D2907258A0058512F /* SectionData.swift in Sources */,
+				34E11EC9292D2C5100787316 /* UIImage+.swift in Sources */,
 				34793FA329262A8800B74110 /* CustomBackBarButtomItem.swift in Sources */,
 				FB32281529046CED00276A7D /* VideoInfoView.swift in Sources */,
 				3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */,
@@ -709,6 +720,7 @@
 				70DE7964292640FF0009AD43 /* SwipeOnboardingFourthViewController.swift in Sources */,
 				70DE795E29253F050009AD43 /* EmptyBackgroundView.swift in Sources */,
 				A88805852907F5A0002CD52E /* LevelPickerView.swift in Sources */,
+				7085BA2A292D2F08004FD734 /* ColorPickerView.swift in Sources */,
 				78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */,
 				70DE79602926383E0009AD43 /* SwipeOnboardingSecondViewController.swift in Sources */,
 				70A44807290452B000BE18A5 /* Button+.swift in Sources */,
