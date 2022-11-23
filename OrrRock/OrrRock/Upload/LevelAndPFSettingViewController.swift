@@ -96,12 +96,6 @@ final class LevelAndPFSettingViewController: UIViewController {
         return separator
     }()
     
-    private lazy var backgroundCardStackView: EmptyBackgroundView = {
-        let view = EmptyBackgroundView()
-        view.layer.zPosition = -1
-        return view
-    }()
-    
     private lazy var emptyVideoView: UIView = {
         let view = UIView()
         view.backgroundColor = .orrGray300
@@ -153,7 +147,19 @@ final class LevelAndPFSettingViewController: UIViewController {
         slider.maximumTrackTintColor = .orrGray100
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.setThumbImage(UIImage(named: "sliderThumb"), for: .normal)
+        
+        // 재생시점 조정 제스처
         slider.addTarget(self, action: #selector(didChangedSlider(_:)), for: .valueChanged)
+        
+        // 탭 했을 때 일시정지 제스처
+//        let touchesBeganGesture = UITapGestureRecognizer()
+//        touchesBeganGesture.addTarget(self, action: #selector(self.didSliderTouchesBegin(slider)))
+//
+//        let touchesEndedGesture = UITapGestureRecognizer()
+//        touchesBeganGesture.addTarget(self, action: #selector(self.didSliderTouchesEnded(slider)))
+        
+        slider.addTarget(self, action: #selector(didSliderTouchesBegin(_:)), for: .editingDidBegin)
+        slider.addTarget(self, action: #selector(didSliderTouchesEnded(_:)), for: .editingDidEnd)
         
         return slider
     }()
@@ -174,7 +180,6 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     private lazy var emptyBackgroundView: EmptyBackgroundView = {
         let view = EmptyBackgroundView()
-        view.layer.zPosition = -2
         return view
     }()
     
@@ -207,7 +212,7 @@ final class LevelAndPFSettingViewController: UIViewController {
                 }
                 
                 self.view.sendSubviewToBack(self.emptyVideoView)
-                self.view.sendSubviewToBack(self.backgroundCardStackView)
+                self.view.sendSubviewToBack(self.emptyBackgroundView)
                 
                 // gesture
                 let gesture = UIPanGestureRecognizer()
@@ -240,6 +245,16 @@ private extension LevelAndPFSettingViewController {
         let value = Float64(sender.value) * CMTimeGetSeconds(duration)
         let seekTime = CMTime(value: CMTimeValue(value), timescale: 1)
         card?.currentItem?.seek(to: seekTime)
+    }
+    
+    @objc
+    func didSliderTouchesBegin(_ sender: UISlider) {
+        // TODO: 터치 시작
+    }
+    
+    @objc
+    func didSliderTouchesEnded(_ sender: UISlider) {
+        // TODO: 터치 끝
     }
     
     func addPeriodicTimeObserver(card: SwipeableCardVideoView, isFirstCard: Bool){
@@ -622,7 +637,6 @@ private extension LevelAndPFSettingViewController {
         }
         
         view.addSubview(emptyBackgroundView)
-        view.sendSubviewToBack(emptyBackgroundView)
         emptyBackgroundView.snp.makeConstraints {
             $0.center.equalTo(view.center)
             $0.height.equalTo(view.snp.height)
