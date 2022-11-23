@@ -63,7 +63,6 @@
 		707B2CB829012BFE0062C958 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB729012BFE0062C958 /* Color+.swift */; };
 		707B2CBA2901382A0062C958 /* OrrPd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB92901382A0062C958 /* OrrPd.swift */; };
 		7085BA2A292D2F08004FD734 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7085BA29292D2F08004FD734 /* ColorPickerView.swift */; };
-		7085BA2C292D33AF004FD734 /* TestColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7085BA2B292D33AF004FD734 /* TestColorPickerViewController.swift */; };
 		709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709A8C6A2904827B00CEA6F4 /* UnderlinedTextField.swift */; };
 		709A8C6D2904A3E800CEA6F4 /* CustomIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709A8C6C2904A3E800CEA6F4 /* CustomIndicator.swift */; };
 		70A44805290440E600BE18A5 /* DateSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A44804290440E600BE18A5 /* DateSettingViewController.swift */; };
@@ -104,6 +103,7 @@
 		FB32280F29046B4500276A7D /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32280E29046B4500276A7D /* VideoDetailViewController.swift */; };
 		FB32281329046CDE00276A7D /* VideoPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32281229046CDE00276A7D /* VideoPlayView.swift */; };
 		FB32281529046CED00276A7D /* VideoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32281429046CED00276A7D /* VideoInfoView.swift */; };
+		FB8A9E0F292D840C003F44D3 /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8A9E0E292D840C003F44D3 /* ExportViewController.swift */; };
 		FBA5DBFD291AE32A00422A17 /* ButtonClickEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA5DBFC291AE32A00422A17 /* ButtonClickEffect.swift */; };
 /* End PBXBuildFile section */
 
@@ -163,7 +163,6 @@
 		707B2CB729012BFE0062C958 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		707B2CB92901382A0062C958 /* OrrPd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrrPd.swift; sourceTree = "<group>"; };
 		7085BA29292D2F08004FD734 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
-		7085BA2B292D33AF004FD734 /* TestColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestColorPickerViewController.swift; sourceTree = "<group>"; };
 		709A8C6A2904827B00CEA6F4 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		709A8C6C2904A3E800CEA6F4 /* CustomIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIndicator.swift; sourceTree = "<group>"; };
 		70A44804290440E600BE18A5 /* DateSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSettingViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +203,7 @@
 		FB32280E29046B4500276A7D /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		FB32281229046CDE00276A7D /* VideoPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayView.swift; sourceTree = "<group>"; };
 		FB32281429046CED00276A7D /* VideoInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfoView.swift; sourceTree = "<group>"; };
+		FB8A9E0E292D840C003F44D3 /* ExportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
 		FBA5DBFC291AE32A00422A17 /* ButtonClickEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonClickEffect.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -414,6 +414,7 @@
 				78F93ED22906EFC500F3D9F3 /* GymEditViewController.swift */,
 				34172EAE292AAD3E009DAAB8 /* DateEditViewController.swift */,
 				78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */,
+				FB8A9E0E292D840C003F44D3 /* ExportViewController.swift */,
 				78FEE88929261641007B67BD /* VideoCollection */,
 				78FEE89D292976FA007B67BD /* VideoDetailViewController */,
 				3AEB3D61291C03A900A989FF /* UIComponent */,
@@ -481,7 +482,6 @@
 				34793FA229262A8800B74110 /* CustomBackBarButtomItem.swift */,
 				704BAB5D292834DB004D987A /* NewLevelPickerView.swift */,
 				7085BA29292D2F08004FD734 /* ColorPickerView.swift */,
-				7085BA2B292D33AF004FD734 /* TestColorPickerViewController.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -630,6 +630,7 @@
 			files = (
 				707B2CB829012BFE0062C958 /* Color+.swift in Sources */,
 				0AAB780A290424A300EEEFFB /* SwipeableCardVideoView.swift in Sources */,
+				FB8A9E0F292D840C003F44D3 /* ExportViewController.swift in Sources */,
 				3A15AC7929071F710058512F /* DataRepository.swift in Sources */,
 				342508AF29002F31000653D9 /* HomeCollectionViewHeaderCell.swift in Sources */,
 				709A8C6D2904A3E800CEA6F4 /* CustomIndicator.swift in Sources */,
@@ -658,7 +659,6 @@
 				70E8E7542923865400793F91 /* OnBoardigSuperViewController.swift in Sources */,
 				3495AEF72929192000006469 /* CalendarComponent+.swift in Sources */,
 				70DE795C292517330009AD43 /* SwipeOnboardingFirstViewController.swift in Sources */,
-				7085BA2C292D33AF004FD734 /* TestColorPickerViewController.swift in Sources */,
 				3A15AC7729071DD90058512F /* OrderOption.swift in Sources */,
 				0A0B41072907C59600057FA7 /* LevelAndPFSettingViewController.swift in Sources */,
 				78FEE89929291AC9007B67BD /* VideoDetailPageViewController+Protocol.swift in Sources */,

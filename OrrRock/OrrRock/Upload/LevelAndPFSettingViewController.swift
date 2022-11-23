@@ -304,15 +304,15 @@ private extension LevelAndPFSettingViewController {
                 
                 guard let url = asset?.url else {
                     // 영상이 불러와지지 않을 시 경고창과 함께 뒤로 돌아가는 로직
-                    let alret = UIAlertController(title: "영상을 불러올 수 없습니다.", message: "영상을 불러오는 데 오류가 발생하였습니다.\n\n영상의 포맷이 일반적이지 않은 영상일 수 있으니 확인 후 다시 업로드 해 주세요", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "영상을 불러올 수 없습니다.", message: "영상을 불러오는 데 오류가 발생하였습니다.\n\n영상의 포맷이 일반적이지 않은 영상일 수 있으니 확인 후 다시 업로드 해 주세요", preferredStyle: .alert)
                     
                     let confirm = UIAlertAction(title: "확인", style: .default) { _ in
                         self.navigationController?.popViewController(animated: true)
                     }
                     
-                    alret.addAction(confirm)
+                    alert.addAction(confirm)
                     
-                    self.present(alret, animated: true) {
+                    self.present(alert, animated: true) {
                         CustomIndicator.stopLoading()
                     }
                     return
