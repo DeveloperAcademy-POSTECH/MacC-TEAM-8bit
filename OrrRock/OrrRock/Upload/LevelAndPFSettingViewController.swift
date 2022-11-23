@@ -631,7 +631,15 @@ private extension LevelAndPFSettingViewController {
         paddigView.addSubview(failButton)
         failButton.snp.makeConstraints {
             $0.centerY.equalTo(paddigView.snp.centerY).multipliedBy(0.9)
-            $0.leading.equalTo(paddigView.snp.leading)
+            $0.leading.equalTo(view.snp.leading).offset(padding / 2)
+            $0.height.equalTo(90)
+            $0.width.equalTo(90)
+        }
+        
+        paddigView.addSubview(deleteButton)
+        deleteButton.snp.makeConstraints {
+            $0.centerY.equalTo(paddigView.snp.centerY).multipliedBy(0.9)
+            $0.centerX.equalTo(view.snp.centerX)
             $0.height.equalTo(90)
             $0.width.equalTo(90)
         }
@@ -639,7 +647,7 @@ private extension LevelAndPFSettingViewController {
         paddigView.addSubview(successButton)
         successButton.snp.makeConstraints {
             $0.centerY.equalTo(paddigView.snp.centerY).multipliedBy(0.9)
-            $0.trailing.equalTo(paddigView.snp.trailing)
+            $0.trailing.equalTo(view.snp.trailing).offset(-padding / 2)
             $0.height.equalTo(90)
             $0.width.equalTo(90)
         }
