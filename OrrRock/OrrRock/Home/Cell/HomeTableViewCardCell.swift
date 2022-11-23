@@ -27,6 +27,12 @@ final class HomeTableViewCardCell: UITableViewCell {
         return view
     }()
     
+    private lazy var cardAnchorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemRed
+        return view
+    }()
+    
     private lazy var dateLabel: UILabel = {
         let view = UILabel()
         view.text = "YYYY년 MM월 DD일"
@@ -93,37 +99,44 @@ final class HomeTableViewCardCell: UITableViewCell {
             $0.bottom.equalTo(contentView).inset(OrrPd.pd16.rawValue)
         }
         
+        cardView.addSubview(dateLabel)
+        dateLabel.snp.makeConstraints {
+            $0.top.equalTo(cardView.snp.top).offset(CGFloat(OrrPd.pd16.rawValue))
+            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPd.pd16.rawValue))
+        }
+        
+        cardView.addSubview(gymLabel)
+        gymLabel.snp.makeConstraints {
+            $0.top.equalTo(dateLabel.snp.bottom).offset(CGFloat(OrrPd.pd4.rawValue))
+            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPd.pd16.rawValue))
+        }
+            
+        cardView.addSubview(detailLabel)
+        detailLabel.snp.makeConstraints {
+            $0.bottom.equalTo(cardView.snp.bottom).offset(-CGFloat(OrrPd.pd16.rawValue))
+            $0.trailing.equalTo(cardView.snp.trailing).offset(-CGFloat(OrrPd.pd16.rawValue))
+        }
+        
+        cardView.addSubview(countTotalVideoLabel)
+        countTotalVideoLabel.snp.makeConstraints {
+            $0.centerY.equalTo(detailLabel.snp.centerY)
+            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPd.pd16.rawValue))
+        }
+        
+        cardView.addSubview(cardAnchorView)
+        cardAnchorView.snp.makeConstraints {
+            $0.top.equalTo(gymLabel.snp.bottom)
+            $0.bottom.equalTo(countTotalVideoLabel.snp.top)
+            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPd.pd16.rawValue))
+        }
+        
         cardView.addSubview(thumbnailCollectionView)
         thumbnailCollectionView.snp.makeConstraints {
             let horizontalPadding: CGFloat = 2
             $0.leading.equalTo(cardView.snp.leading).offset(horizontalPadding)
             $0.trailing.equalTo(cardView.snp.trailing).offset(-horizontalPadding)
-            $0.centerY.equalTo(cardView.snp.centerY).offset(CGFloat(OrrPd.pd4.rawValue))
+            $0.centerY.equalTo(cardAnchorView.snp.centerY)
             $0.height.equalTo(((UIScreen.main.bounds.width - horizontalPadding * 2) / 5 * 2))
-        }
-        
-        cardView.addSubview(gymLabel)
-        gymLabel.snp.makeConstraints {
-            $0.bottom.equalTo(thumbnailCollectionView.snp.top).offset(-CGFloat(OrrPd.pd8.rawValue))
-            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPd.pd16.rawValue))
-        }
-        
-        cardView.addSubview(dateLabel)
-        dateLabel.snp.makeConstraints {
-            $0.bottom.equalTo(gymLabel.snp.top).inset(-CGFloat(OrrPd.pd4.rawValue))
-            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPd.pd16.rawValue))
-        }
-        
-        cardView.addSubview(countTotalVideoLabel)
-        countTotalVideoLabel.snp.makeConstraints {
-            $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(CGFloat(OrrPd.pd16.rawValue))
-            $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPd.pd16.rawValue))
-        }
-        
-        cardView.addSubview(detailLabel)
-        detailLabel.snp.makeConstraints {
-            $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(CGFloat(OrrPd.pd16.rawValue))
-            $0.trailing.equalTo(cardView.snp.trailing).offset(-CGFloat(OrrPd.pd16.rawValue))
         }
     }
     
@@ -132,7 +145,7 @@ final class HomeTableViewCardCell: UITableViewCell {
         thumbnailCollectionView.snp.makeConstraints {
             $0.leading.equalTo(cardView.snp.leading).offset(CGFloat(OrrPd.pd4.rawValue))
             $0.trailing.equalTo(cardView.snp.trailing).offset(-CGFloat(OrrPd.pd4.rawValue))
-            $0.centerY.equalTo(cardView.snp.centerY).offset(CGFloat(OrrPd.pd4.rawValue))
+            $0.centerY.equalTo(cardAnchorView.snp.centerY)
             $0.height.equalTo((UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 2) / 5 * (videoThumbnails.count > 5 ? 2 : 1))
         }
     }

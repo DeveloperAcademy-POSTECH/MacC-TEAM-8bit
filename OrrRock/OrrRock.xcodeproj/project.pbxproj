@@ -10,11 +10,17 @@
 		0A0B41072907C59600057FA7 /* LevelAndPFSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B41062907C59600057FA7 /* LevelAndPFSettingViewController.swift */; };
 		0A0B410D2907C79200057FA7 /* VideoResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B410C2907C79200057FA7 /* VideoResultType.swift */; };
 		0AAB780A290424A300EEEFFB /* SwipeableCardVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */; };
+		3405BE5F2927DA9600D6E15A /* MyActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3405BE5E2927DA9600D6E15A /* MyActivityViewController.swift */; };
+		3405BE632927DD2E00D6E15A /* ChallengeChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3405BE622927DD2E00D6E15A /* ChallengeChartView.swift */; };
 		341418B42922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341418B32922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift */; };
 		341418B6292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341418B5292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift */; };
 		341418B82922A2500033D851 /* GymSettingViewController+TableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341418B72922A2500033D851 /* GymSettingViewController+TableViewExtensions.swift */; };
 		341418BB2922A3800033D851 /* AutocompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341418BA2922A3800033D851 /* AutocompleteTableViewCell.swift */; };
 		34172EAF292AAD3E009DAAB8 /* DateEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34172EAE292AAD3E009DAAB8 /* DateEditViewController.swift */; };
+		34172EB3292AC884009DAAB8 /* MyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34172EB2292AC884009DAAB8 /* MyCardView.swift */; };
+		34172EB5292B3FEC009DAAB8 /* GrowthChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34172EB4292B3FEC009DAAB8 /* GrowthChartView.swift */; };
+		34172EB7292B41D1009DAAB8 /* HomeGymChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34172EB6292B41D1009DAAB8 /* HomeGymChartView.swift */; };
+		34172EB9292B41F8009DAAB8 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34172EB8292B41F8009DAAB8 /* HistoryView.swift */; };
 		342508A329001780000653D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A229001780000653D9 /* HomeViewController.swift */; };
 		342508A52900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A42900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift */; };
 		342508A729001BBC000653D9 /* HomeTableViewCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508A629001BBC000653D9 /* HomeTableViewCardCell.swift */; };
@@ -25,6 +31,10 @@
 		342C457029018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C456F29018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift */; };
 		34793F9F29251E4B00B74110 /* BetterSegmentedControl in Frameworks */ = {isa = PBXBuildFile; productRef = 34793F9E29251E4B00B74110 /* BetterSegmentedControl */; };
 		34793FA329262A8800B74110 /* CustomBackBarButtomItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34793FA229262A8800B74110 /* CustomBackBarButtomItem.swift */; };
+		3495AEF72929192000006469 /* CalendarComponent+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3495AEF62929192000006469 /* CalendarComponent+.swift */; };
+		34E11EC3292BEDCF00787316 /* FirstDateSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E11EC2292BEDCF00787316 /* FirstDateSettingViewController.swift */; };
+		34E11EC5292BFF2700787316 /* ExportCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E11EC4292BFF2700787316 /* ExportCardView.swift */; };
+		34E11EC9292D2C5100787316 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E11EC8292D2C5100787316 /* UIImage+.swift */; };
 		34E76F462924D33E00EBB92D /* HomeTableViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E76F452924D33E00EBB92D /* HomeTableViewFooter.swift */; };
 		34EC54582924C93B00EE558E /* HomeTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EC54572924C93B00EE558E /* HomeTableViewHeader.swift */; };
 		3A15AC7729071DD90058512F /* OrderOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC7629071DD90058512F /* OrderOption.swift */; };
@@ -101,11 +111,17 @@
 		0A0B41062907C59600057FA7 /* LevelAndPFSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelAndPFSettingViewController.swift; sourceTree = "<group>"; };
 		0A0B410C2907C79200057FA7 /* VideoResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoResultType.swift; sourceTree = "<group>"; };
 		0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardVideoView.swift; sourceTree = "<group>"; };
+		3405BE5E2927DA9600D6E15A /* MyActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyActivityViewController.swift; sourceTree = "<group>"; };
+		3405BE622927DD2E00D6E15A /* ChallengeChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeChartView.swift; sourceTree = "<group>"; };
 		341418B32922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VisitedClimbingGym+CoreDataClass.swift"; sourceTree = "<group>"; };
 		341418B5292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VisitedClimbingGym+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		341418B72922A2500033D851 /* GymSettingViewController+TableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GymSettingViewController+TableViewExtensions.swift"; sourceTree = "<group>"; };
 		341418BA2922A3800033D851 /* AutocompleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteTableViewCell.swift; sourceTree = "<group>"; };
 		34172EAE292AAD3E009DAAB8 /* DateEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateEditViewController.swift; sourceTree = "<group>"; };
+		34172EB2292AC884009DAAB8 /* MyCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardView.swift; sourceTree = "<group>"; };
+		34172EB4292B3FEC009DAAB8 /* GrowthChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowthChartView.swift; sourceTree = "<group>"; };
+		34172EB6292B41D1009DAAB8 /* HomeGymChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGymChartView.swift; sourceTree = "<group>"; };
+		34172EB8292B41F8009DAAB8 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		342508A229001780000653D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		342508A42900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+CollectionViewExtensions.swift"; sourceTree = "<group>"; };
 		342508A629001BBC000653D9 /* HomeTableViewCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCardCell.swift; sourceTree = "<group>"; };
@@ -115,6 +131,10 @@
 		342C456D290125260037D9E7 /* HomeTableViewListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewListCell.swift; sourceTree = "<group>"; };
 		342C456F29018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewFooterCell.swift; sourceTree = "<group>"; };
 		34793FA229262A8800B74110 /* CustomBackBarButtomItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackBarButtomItem.swift; sourceTree = "<group>"; };
+		3495AEF62929192000006469 /* CalendarComponent+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarComponent+.swift"; sourceTree = "<group>"; };
+		34E11EC2292BEDCF00787316 /* FirstDateSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstDateSettingViewController.swift; sourceTree = "<group>"; };
+		34E11EC4292BFF2700787316 /* ExportCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportCardView.swift; sourceTree = "<group>"; };
+		34E11EC8292D2C5100787316 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		34E76F452924D33E00EBB92D /* HomeTableViewFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewFooter.swift; sourceTree = "<group>"; };
 		34EC54572924C93B00EE558E /* HomeTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewHeader.swift; sourceTree = "<group>"; };
 		3A15AC7629071DD90058512F /* OrderOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderOption.swift; sourceTree = "<group>"; };
@@ -219,6 +239,29 @@
 			path = UIComponent;
 			sourceTree = "<group>";
 		};
+		3405BE5D2927DA6200D6E15A /* MyActivity */ = {
+			isa = PBXGroup;
+			children = (
+				3405BE5E2927DA9600D6E15A /* MyActivityViewController.swift */,
+				3405BE602927DC6700D6E15A /* SwiftUIChartView */,
+				34E11EC0292BEBF200787316 /* View */,
+			);
+			path = MyActivity;
+			sourceTree = "<group>";
+		};
+		3405BE602927DC6700D6E15A /* SwiftUIChartView */ = {
+			isa = PBXGroup;
+			children = (
+				34172EB2292AC884009DAAB8 /* MyCardView.swift */,
+				34E11EC4292BFF2700787316 /* ExportCardView.swift */,
+				3405BE622927DD2E00D6E15A /* ChallengeChartView.swift */,
+				34172EB4292B3FEC009DAAB8 /* GrowthChartView.swift */,
+				34172EB6292B41D1009DAAB8 /* HomeGymChartView.swift */,
+				34172EB8292B41F8009DAAB8 /* HistoryView.swift */,
+			);
+			path = SwiftUIChartView;
+			sourceTree = "<group>";
+		};
 		341418B92922A3630033D851 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,10 +300,20 @@
 				FB3227FD2903FDA600276A7D /* String+.swift */,
 				70A44806290452B000BE18A5 /* Button+.swift */,
 				70A8DF09291A863F0061E36B /* UIView+.swift */,
+				3495AEF62929192000006469 /* CalendarComponent+.swift */,
 				700AC6202926A1DA003DF5AF /* UIImageView+.swift */,
+				34E11EC8292D2C5100787316 /* UIImage+.swift */,
 				70AE8137292CA24500B4DB3F /* Font+.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		34E11EC0292BEBF200787316 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				34E11EC2292BEDCF00787316 /* FirstDateSettingViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		3A08879E29012CC300EFFDBB /* CoreData */ = {
@@ -303,6 +356,7 @@
 		3AA4D41D28FEBADE006C718A /* OrrRock */ = {
 			isa = PBXGroup;
 			children = (
+				3405BE5D2927DA6200D6E15A /* MyActivity */,
 				703145E629250E3E007A78F1 /* SwipeOnboarding */,
 				3AEB3D65291C080400A989FF /* Models */,
 				709A8C69290481F000CEA6F4 /* Utils */,
@@ -310,7 +364,6 @@
 				3A08879E29012CC300EFFDBB /* CoreData */,
 				3AEB3D5E291C01B000A989FF /* OnBoarding */,
 				3AEB3D5F291C027B00A989FF /* Home */,
-				78FEE88929261641007B67BD /* VideoCollection */,
 				3AEB3D60291C02F000A989FF /* VideoDetail */,
 				3AEB3D64291C04CE00A989FF /* Upload */,
 				3AA4D41E28FEBADE006C718A /* AppDelegate.swift */,
@@ -362,6 +415,7 @@
 				34172EAE292AAD3E009DAAB8 /* DateEditViewController.swift */,
 				78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */,
 				FB8A9E0E292D840C003F44D3 /* ExportViewController.swift */,
+				78FEE88929261641007B67BD /* VideoCollection */,
 				78FEE89D292976FA007B67BD /* VideoDetailViewController */,
 				3AEB3D61291C03A900A989FF /* UIComponent */,
 			);
@@ -585,12 +639,14 @@
 				0A0B410D2907C79200057FA7 /* VideoResultType.swift in Sources */,
 				34EC54582924C93B00EE558E /* HomeTableViewHeader.swift in Sources */,
 				70A44805290440E600BE18A5 /* DateSettingViewController.swift in Sources */,
+				34172EB7292B41D1009DAAB8 /* HomeGymChartView.swift in Sources */,
 				342C457029018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift in Sources */,
 				3A2880E929033C0D00FBFB70 /* SortOption.swift in Sources */,
 				70A8DF08291966E20061E36B /* SwipeableCardVideoModel.swift in Sources */,
 				342C456E290125260037D9E7 /* HomeTableViewListCell.swift in Sources */,
 				FB3227FC2903FD9C00276A7D /* Date+.swift in Sources */,
 				78F93ED32906EFC500F3D9F3 /* GymEditViewController.swift in Sources */,
+				34172EB5292B3FEC009DAAB8 /* GrowthChartView.swift in Sources */,
 				78FEE895292916E4007B67BD /* VideoPlayViewController+Extensions.swift in Sources */,
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
 				78CAA0662901F7A9003C3D77 /* BasePaddingLabel.swift in Sources */,
@@ -599,7 +655,9 @@
 				3A15AC892907B1160058512F /* VideoInformation+CoreDataProperties.swift in Sources */,
 				70A8DF05291403EA0061E36B /* GymSettingModel.swift in Sources */,
 				704BAB5E292834DB004D987A /* NewLevelPickerView.swift in Sources */,
+				3405BE5F2927DA9600D6E15A /* MyActivityViewController.swift in Sources */,
 				70E8E7542923865400793F91 /* OnBoardigSuperViewController.swift in Sources */,
+				3495AEF72929192000006469 /* CalendarComponent+.swift in Sources */,
 				70DE795C292517330009AD43 /* SwipeOnboardingFirstViewController.swift in Sources */,
 				3A15AC7729071DD90058512F /* OrderOption.swift in Sources */,
 				0A0B41072907C59600057FA7 /* LevelAndPFSettingViewController.swift in Sources */,
@@ -610,6 +668,8 @@
 				3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */,
 				FB32281329046CDE00276A7D /* VideoPlayView.swift in Sources */,
 				3A2880EB29033C2500FBFB70 /* FilterOption.swift in Sources */,
+				34E11EC3292BEDCF00787316 /* FirstDateSettingViewController.swift in Sources */,
+				34172EB3292AC884009DAAB8 /* MyCardView.swift in Sources */,
 				707B2CBA2901382A0062C958 /* OrrPd.swift in Sources */,
 				70A44809290464BD00BE18A5 /* GymSettingViewController.swift in Sources */,
 				341418B82922A2500033D851 /* GymSettingViewController+TableViewExtensions.swift in Sources */,
@@ -630,8 +690,10 @@
 				34E76F462924D33E00EBB92D /* HomeTableViewFooter.swift in Sources */,
 				3A15AC882907B1160058512F /* VideoInformation+CoreDataClass.swift in Sources */,
 				3AA4D42128FEBADE006C718A /* SceneDelegate.swift in Sources */,
+				3405BE632927DD2E00D6E15A /* ChallengeChartView.swift in Sources */,
 				78FEE89B29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift in Sources */,
 				3A15AC7D2907258A0058512F /* SectionData.swift in Sources */,
+				34E11EC9292D2C5100787316 /* UIImage+.swift in Sources */,
 				34793FA329262A8800B74110 /* CustomBackBarButtomItem.swift in Sources */,
 				FB32281529046CED00276A7D /* VideoInfoView.swift in Sources */,
 				3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */,
@@ -646,7 +708,9 @@
 				341418BB2922A3800033D851 /* AutocompleteTableViewCell.swift in Sources */,
 				709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */,
 				78FEE89729291A19007B67BD /* VideoDetailViewController+Protocol.swift in Sources */,
+				34E11EC5292BFF2700787316 /* ExportCardView.swift in Sources */,
 				3A2880FB2904290E00FBFB70 /* SortTestViewController.swift in Sources */,
+				34172EB9292B41F8009DAAB8 /* HistoryView.swift in Sources */,
 				FB3227FE2903FDA600276A7D /* String+.swift in Sources */,
 				3A15AC7B290724620058512F /* DataManager.swift in Sources */,
 				341418B6292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift in Sources */,
@@ -797,7 +861,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = 2D5CY8C92L;
+				DEVELOPMENT_TEAM = JPL38XBHJ4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
@@ -832,7 +896,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = 2D5CY8C92L;
+				DEVELOPMENT_TEAM = JPL38XBHJ4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
