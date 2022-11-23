@@ -227,6 +227,14 @@ extension ExportViewController {
             // AVAssetTrack(변경할 수 없는 컴포지션 트랙)에서 AVMutableCompositionTrack(변경할 수 있는 컴포지션 트랙)으로 데이터 변환
             videoCompositionTrack?.preferredTransform = videoAssetTrack.preferredTransform
             
+            // 가로 영상 대응
+            let size = videoAssetTrack.naturalSize.applying(videoAssetTrack.preferredTransform)
+            let videoHeight = size.height
+            let videoWidth = size.width
+            if videoHeight < videoWidth {
+                videoCompositionTrack?.preferredTransform = CGAffineTransform(scaleX: 1.78, y: 1.78)
+            }
+            
             // AVMutableCompositionTrack에 0 부터 videoAssetTrack의 시간 범위에 대한 asset의 모든 트랙을 컴포지션에 삽입
             try! videoCompositionTrack?.insertTimeRange(CMTimeRange(start:CMTime.zero, duration:videoAssetTrack.timeRange.duration), of: videoAssetTrack, at: CMTime.zero)
             
