@@ -31,10 +31,10 @@
 		342C457029018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C456F29018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift */; };
 		34793F9F29251E4B00B74110 /* BetterSegmentedControl in Frameworks */ = {isa = PBXBuildFile; productRef = 34793F9E29251E4B00B74110 /* BetterSegmentedControl */; };
 		34793FA329262A8800B74110 /* CustomBackBarButtomItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34793FA229262A8800B74110 /* CustomBackBarButtomItem.swift */; };
-		34E11EC9292D2C5100787316 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E11EC8292D2C5100787316 /* UIImage+.swift */; };
 		3495AEF72929192000006469 /* CalendarComponent+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3495AEF62929192000006469 /* CalendarComponent+.swift */; };
 		34E11EC3292BEDCF00787316 /* FirstDateSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E11EC2292BEDCF00787316 /* FirstDateSettingViewController.swift */; };
 		34E11EC5292BFF2700787316 /* ExportCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E11EC4292BFF2700787316 /* ExportCardView.swift */; };
+		34E11EC9292D2C5100787316 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E11EC8292D2C5100787316 /* UIImage+.swift */; };
 		34E76F462924D33E00EBB92D /* HomeTableViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E76F452924D33E00EBB92D /* HomeTableViewFooter.swift */; };
 		34EC54582924C93B00EE558E /* HomeTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EC54572924C93B00EE558E /* HomeTableViewHeader.swift */; };
 		3A15AC7729071DD90058512F /* OrderOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15AC7629071DD90058512F /* OrderOption.swift */; };
@@ -131,10 +131,10 @@
 		342C456D290125260037D9E7 /* HomeTableViewListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewListCell.swift; sourceTree = "<group>"; };
 		342C456F29018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewFooterCell.swift; sourceTree = "<group>"; };
 		34793FA229262A8800B74110 /* CustomBackBarButtomItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackBarButtomItem.swift; sourceTree = "<group>"; };
-		34E11EC8292D2C5100787316 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		3495AEF62929192000006469 /* CalendarComponent+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarComponent+.swift"; sourceTree = "<group>"; };
 		34E11EC2292BEDCF00787316 /* FirstDateSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstDateSettingViewController.swift; sourceTree = "<group>"; };
 		34E11EC4292BFF2700787316 /* ExportCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportCardView.swift; sourceTree = "<group>"; };
+		34E11EC8292D2C5100787316 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		34E76F452924D33E00EBB92D /* HomeTableViewFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewFooter.swift; sourceTree = "<group>"; };
 		34EC54572924C93B00EE558E /* HomeTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewHeader.swift; sourceTree = "<group>"; };
 		3A15AC7629071DD90058512F /* OrderOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderOption.swift; sourceTree = "<group>"; };
@@ -413,9 +413,8 @@
 			children = (
 				78F93ED22906EFC500F3D9F3 /* GymEditViewController.swift */,
 				34172EAE292AAD3E009DAAB8 /* DateEditViewController.swift */,
-				341418BC2923A6FF0033D851 /* GymEditViewController+TableViewExtensions.swift */,
-				78FEE88929261641007B67BD /* VideoCollection */,
 				78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */,
+				78FEE88929261641007B67BD /* VideoCollection */,
 				78FEE89D292976FA007B67BD /* VideoDetailViewController */,
 				3AEB3D61291C03A900A989FF /* UIComponent */,
 			);
