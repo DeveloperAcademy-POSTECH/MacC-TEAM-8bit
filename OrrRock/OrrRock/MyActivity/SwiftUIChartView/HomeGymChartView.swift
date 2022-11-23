@@ -18,7 +18,7 @@ struct HomeGymChartView: View {
                 Label("홈짐", systemImage: "house.fill")
                     .font(.system(size: 17, weight: .bold))
                     .foregroundColor(Color(uiColor: UIColor.orrBlack!))
-
+                
                 if isChartDataEmpty() {
                     Text("데이터 없음")
                         .font(.system(size: 17, weight: .bold))
@@ -55,14 +55,17 @@ struct HomeGymChartView: View {
                             .foregroundColor(Color(uiColor: UIColor.orrBlack!))
                         
                         Chart {
-                            BarMark(x: .value(mostFrequentlyVisitedGymList[0].0, mostFrequentlyVisitedGymList[0].1))
-                                .foregroundStyle(by: .value("color", mostFrequentlyVisitedGymList[0].0))
-                            BarMark(x: .value(mostFrequentlyVisitedGymList[1].0, mostFrequentlyVisitedGymList[1].1))
-                                .foregroundStyle(by: .value("color", mostFrequentlyVisitedGymList[1].0))
-                            BarMark(x: .value(mostFrequentlyVisitedGymList[2].0, mostFrequentlyVisitedGymList[2].1))
-                                .foregroundStyle(by: .value("color", mostFrequentlyVisitedGymList[2].0))
-                            BarMark(x: .value("기타", totalGymVisitedDate - mostFrequentlyVisitedGymList[0].1 - mostFrequentlyVisitedGymList[1].1 - mostFrequentlyVisitedGymList[2].1))
-                                .foregroundStyle(by: .value("color", "기타"))
+                            ForEach(mostFrequentlyVisitedGymList, id: \.self.0) { data in
+                                if data.0 != "" {
+                                    BarMark(x: .value(data.0, data.1))
+                                        .foregroundStyle(by: .value("color", data.0))
+                                }
+                            }
+                            
+                            if totalGymVisitedDate - mostFrequentlyVisitedGymList[0].1 - mostFrequentlyVisitedGymList[1].1 - mostFrequentlyVisitedGymList[2].1 != 0 {
+                                BarMark(x: .value("기타", totalGymVisitedDate - mostFrequentlyVisitedGymList[0].1 - mostFrequentlyVisitedGymList[1].1 - mostFrequentlyVisitedGymList[2].1))
+                                    .foregroundStyle(by: .value("color", "기타"))
+                            }
                         }
                         .chartXScale(domain: 0...totalGymVisitedDate)
                         .chartForegroundStyleScale(
@@ -94,6 +97,12 @@ struct HomeGymChartView: View {
             return [
                 mostFrequentlyVisitedGymList[0].0: Color(uiColor: UIColor(hex: "00A4FF")),
                 mostFrequentlyVisitedGymList[1].0: Color(uiColor: UIColor(hex: "55D3FF")),
+            ]
+        } else if totalGymVisitedDate - mostFrequentlyVisitedGymList[0].1 - mostFrequentlyVisitedGymList[1].1 - mostFrequentlyVisitedGymList[2].1 == 0 {
+            return [
+                mostFrequentlyVisitedGymList[0].0: Color(uiColor: UIColor(hex: "00A4FF")),
+                mostFrequentlyVisitedGymList[1].0: Color(uiColor: UIColor(hex: "55D3FF")),
+                mostFrequentlyVisitedGymList[2].0: Color(uiColor: UIColor(hex: "B4EBFF")),
             ]
         } else {
             return [

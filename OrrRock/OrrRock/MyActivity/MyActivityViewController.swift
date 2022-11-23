@@ -111,11 +111,11 @@ class MyActivityViewController: UIViewController {
     
     private lazy var growthChartView: UIView = {
         var mostFrequentLevelForPeriod: [Int] = [-1, -1, -1]
-        
+
         mostFrequentLevelForPeriod[0] = getMostFrequentLevelOfList(from: entireSolvedProblemsForGrowthChart[0])
         mostFrequentLevelForPeriod[1] = getMostFrequentLevelOfList(from: entireSolvedProblemsForGrowthChart[1])
         mostFrequentLevelForPeriod[2] = getMostFrequentLevelOfList(from: entireSolvedProblemsForGrowthChart[2])
-        
+
         let VC = UIHostingController(rootView: GrowthChartView(chartData: entireSolvedProblemsForGrowthChart, periodData: periodDataForGrowthChart, mostFrequentLevelForPeriod: mostFrequentLevelForPeriod))
         VC.view.backgroundColor = .clear
         return VC.view
@@ -167,7 +167,7 @@ class MyActivityViewController: UIViewController {
         let entireVideoInformationsByName: [[VideoInformation]] = DataManager.shared.repository.sortVideoInformation(filterOption: .all, sortOption: .gymName)
         
         resetFirstDateOfClimbing(from: entireVideoInformationsByDate)
-        firstDateOfClimbing = UserDefaults.standard.string(forKey: "firstDateOfClimbing")?.stringToDate()
+        firstDateOfClimbing = UserDefaults.standard.string(forKey: "firstDateOfClimbing")?.stringToDate() ?? Date()
         
         (highestLevel, frequentlyVisitedGymList, totalGymVisitedDate) = getSummaryData(fromDate: entireVideoInformationsByDate, fromName: entireVideoInformationsByName)
         
