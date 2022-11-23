@@ -8,16 +8,24 @@
 import UIKit
 
 extension UIView {
-
+    
     static func spacer(size: CGFloat = 10, for layout: NSLayoutConstraint.Axis = .horizontal) -> UIView {
         let spacer = UIView()
-
+        
         if layout == .horizontal {
             spacer.widthAnchor.constraint(equalToConstant: size).isActive = true
         } else {
             spacer.heightAnchor.constraint(equalToConstant: size).isActive = true
         }
-
+        
         return spacer
+    }
+    
+    // UIView를 UIImage로 변환해주는 extension
+    func asImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        }
     }
 }
