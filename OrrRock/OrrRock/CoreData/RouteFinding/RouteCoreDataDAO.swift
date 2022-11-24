@@ -92,4 +92,22 @@ class RouteCoreDataDAO {
         return information
     }
     
+    func updatePointData(pageInformation: PageInformation, targetPoint: PointInformation, data: PointInfo) {
+        guard let id = targetPoint.id else { return }
+        let request = PointInformation.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@",  id as CVarArg)
+        do {
+            let info = try context.fetch(request)
+                if let tempInfo = info.first {
+                    tempInfo.xCoordinate = data.position.x
+                    tempInfo.yCoordinate = data.position.y
+                    tempInfo.forceDirection = Int16(data.forceDirection.rawValue)
+                    tempInfo.setValue(data.isForce, forKey: "isForce")
+                    tempInfo.setValue(data.footOrHand.rawValue, forKey: "footOrHand")
+                    print(tempInfo)
+                }
+        } catch {
+            print("CoreDataDAO UpdatePointData Method \(error.localizedDescription)")
+        }
+    }
 }

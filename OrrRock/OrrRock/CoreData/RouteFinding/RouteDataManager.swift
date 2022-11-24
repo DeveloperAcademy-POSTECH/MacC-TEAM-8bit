@@ -53,4 +53,14 @@ final class RouteDataManager {
         }
     }
     
+    // MARK: UPDATE POINT 기존에 존재하는 포인트를 수정
+    func updatePointData(pointInfo: [PageInformation : [(PointInformation, PointInfo)]]) {
+        for (key, value) in pointInfo {
+            for pointData in value {
+                coreDataDAO.updatePointData(pageInformation: key, targetPoint: pointData.0, data: pointData.1)
+            }
+        }
+        coreDataDAO.saveData()
+    }
+    
 }
