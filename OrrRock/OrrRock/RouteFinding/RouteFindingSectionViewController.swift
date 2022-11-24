@@ -33,6 +33,7 @@ class RouteFindingSectionViewController: UIViewController {
     func setDelegate(){
         routeFindingCollectionView.delegate = self
         routeFindingCollectionView.dataSource = self
+        routeFindingCollectionView.showsVerticalScrollIndicator = false
     }
     
     func registerCells() {

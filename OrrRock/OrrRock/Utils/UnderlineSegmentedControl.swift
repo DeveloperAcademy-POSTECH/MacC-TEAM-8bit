@@ -21,6 +21,7 @@ final class UnderlineSegmentedControl: UISegmentedControl {
     }
     
     private lazy var underlineView: UIView = {
+        self.addSubview(underlineBaseView)
         let width = self.bounds.size.width / CGFloat(self.numberOfSegments)
         let height = 3.0
         let xPosition = CGFloat(self.selectedSegmentIndex * Int(width))
@@ -32,6 +33,18 @@ final class UnderlineSegmentedControl: UISegmentedControl {
         return view
     }()
     
+    private lazy var underlineBaseView : UIView = {
+        let width = self.bounds.size.width * 3
+        let height = 3.0
+        let xPosition = 0.0
+        let yPosition = self.bounds.size.height - 1.0
+        let frame = CGRect(x: xPosition, y: yPosition, width: width, height: height)
+        let view = UIView(frame: frame)
+        view.backgroundColor = .orrGray200
+        self.addSubview(view)
+        return view
+    }()
+    
     private func removeBackgroundAndDivider() {
         let image = UIImage()
         self.setBackgroundImage(image, for: .normal, barMetrics: .default)
@@ -39,6 +52,7 @@ final class UnderlineSegmentedControl: UISegmentedControl {
         self.setBackgroundImage(image, for: .highlighted, barMetrics: .default)
         
         self.setDividerImage(image, forLeftSegmentState: .selected, rightSegmentState: .normal, barMetrics: .default)
+//        self.addSubview(underlineBaseView)
     }
     
     override func layoutSubviews() {

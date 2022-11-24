@@ -103,8 +103,6 @@ class RouteFindingMainViewController: UIViewController {
     
     func setSegment(){
         self.segmentedControl.selectedSegmentIndex = 0
-        
-        
         if let firstVC = dataViewControllers.first {
             pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }

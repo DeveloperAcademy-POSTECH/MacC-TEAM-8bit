@@ -51,13 +51,13 @@ final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(OrrPd.pd16.rawValue)
-            $0.leading.equalToSuperview().offset(OrrPd.pd16.rawValue)
+            $0.leading.equalToSuperview()
         }
         
         self.addSubview(self.subTitleButton)
         self.subTitleButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(OrrPd.pd16.rawValue)
-            $0.trailing.equalToSuperview().offset(-OrrPd.pd16.rawValue)
+            $0.centerY.equalTo(titleLabel)
+            $0.trailing.equalToSuperview()
         }
     }
     
