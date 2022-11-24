@@ -35,6 +35,24 @@ class RouteCoreDataDAO {
         return routeInformation
     }
     
+    func updateRoute(routeInfo: RouteInfo, route: RouteInformation) {
+        guard let id = route.id else { return }
+        let request = RouteInformation.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        do {
+            let info = try context.fetch(request)
+            if let tempInfo = info.first {
+                tempInfo.setValue(routeInfo.dataWrittenDate, forKey: "dataWrittenDate")
+                tempInfo.setValue(routeInfo.gymName, forKey: "gymName")
+                tempInfo.setValue(routeInfo.isChallengeComplete, forKey: "isChallengeComplete")
+                tempInfo.setValue(routeInfo.problemLevel, forKey: "problemLevel")
+            }
+        } catch {
+            print("CoreDataDAO UpateRoute Method \(error.localizedDescription)")
+        }
+    }
+    
     // Core Data의 읽어 RouteFinding 클래스를 반환합니다.
     func readRouteFindingData() -> [RouteInformation] {
         let request = RouteInformation.fetchRequest()

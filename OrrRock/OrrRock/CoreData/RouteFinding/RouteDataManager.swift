@@ -34,4 +34,9 @@ final class RouteDataManager {
         routeFindingList.append(routeFinding)
     }
 
+    // MARK: UPDATE ROUTE
+    func updateRoute(routeInfo: RouteInfo, route: RouteInformation) {
+        coreDataDAO.updateRoute(routeInfo: routeInfo, route: route)
+    }
+    
 }
