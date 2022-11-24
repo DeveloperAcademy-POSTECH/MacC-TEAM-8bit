@@ -28,4 +28,10 @@ final class RouteDataManager {
         return routeFindingList
     }
     
+    // MARK: CREATE ROUTE
+    func addRoute(routeInfo: RouteInfo) {
+        let routeFinding = coreDataDAO.createRouteInformationData(routeInfo: routeInfo) as! RouteInformation
+        routeFindingList.append(routeFinding)
+    }
+
 }

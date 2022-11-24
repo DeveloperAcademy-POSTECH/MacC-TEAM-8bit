@@ -15,6 +15,26 @@ class RouteCoreDataDAO {
     
     init() {}
     
+    // R 구조체를 매개변수로 받아 RouteFinding NSManagedObject에 추가
+    func createRouteInformationData(routeInfo: RouteInfo) -> NSManagedObject {
+        let routeInformation = NSEntityDescription.insertNewObject(forEntityName: "RouteInformation", into: context)
+        
+        routeInformation.setValue(UUID(), forKey: "id")
+        routeInformation.setValue(routeInfo.gymName, forKey: "gymName")
+        routeInformation.setValue(routeInfo.dataWrittenDate, forKey: "dataWrittenDate")
+        routeInformation.setValue(routeInfo.problemLevel, forKey: "problemLevel")
+        routeInformation.setValue(routeInfo.isChallengeComplete, forKey: "isChallengeComplete")
+        
+        if routeInfo.pages.count == 0 {
+            print("THERE's NO PAGE...")
+        } else {
+            routeInfo.pages.forEach({ pageInfo in
+                createPageData(pageInfo: pageInfo, routeFinding: routeInformation as! RouteInformation)
+            })
+        }
+        return routeInformation
+    }
+    
     // Core Data의 읽어 RouteFinding 클래스를 반환합니다.
     func readRouteFindingData() -> [RouteInformation] {
         let request = RouteInformation.fetchRequest()
