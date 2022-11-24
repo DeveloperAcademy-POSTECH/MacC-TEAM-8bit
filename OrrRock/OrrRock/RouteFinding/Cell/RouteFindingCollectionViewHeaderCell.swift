@@ -28,7 +28,7 @@ final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = .orrGray100
         setUpLayout()
     }
     
@@ -49,14 +49,14 @@ final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
     func setUpLayout(){
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.top.equalToSuperview().offset(OrrPd.pd16.rawValue)
             $0.leading.equalToSuperview().offset(OrrPd.pd16.rawValue)
         }
         
         self.addSubview(self.subTitleLabel)
         self.subTitleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.trailing.equalToSuperview().offset(OrrPd.pd16.rawValue)
+            $0.top.equalToSuperview().offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalToSuperview().offset(-OrrPd.pd16.rawValue)
         }
     }
 }

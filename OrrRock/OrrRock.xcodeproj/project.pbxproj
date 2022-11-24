@@ -88,6 +88,7 @@
 		78B6A712292F90FA00C0BB70 /* RouteFindingMainViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A711292F90FA00C0BB70 /* RouteFindingMainViewController+Extensions.swift */; };
 		78B6A714292FA8A100C0BB70 /* RouteFindingCollectionViewCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A713292FA8A100C0BB70 /* RouteFindingCollectionViewCustomCell.swift */; };
 		78B6A717292FA8DA00C0BB70 /* RouteFindingCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A716292FA8DA00C0BB70 /* RouteFindingCollectionViewHeaderCell.swift */; };
+		78B6A719292FBEFD00C0BB70 /* RouteFindingSectionViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A718292FBEFD00C0BB70 /* RouteFindingSectionViewController+Extensions.swift */; };
 		78CAA0662901F7A9003C3D77 /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA0652901F7A9003C3D77 /* BasePaddingLabel.swift */; };
 		78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA0672901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift */; };
 		78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA069290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift */; };
@@ -194,6 +195,7 @@
 		78B6A711292F90FA00C0BB70 /* RouteFindingMainViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteFindingMainViewController+Extensions.swift"; sourceTree = "<group>"; };
 		78B6A713292FA8A100C0BB70 /* RouteFindingCollectionViewCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingCollectionViewCustomCell.swift; sourceTree = "<group>"; };
 		78B6A716292FA8DA00C0BB70 /* RouteFindingCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
+		78B6A718292FBEFD00C0BB70 /* RouteFindingSectionViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteFindingSectionViewController+Extensions.swift"; sourceTree = "<group>"; };
 		78CAA0652901F7A9003C3D77 /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
 		78CAA0672901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoCollectionView+VideoCollectionViewExtensions.swift"; sourceTree = "<group>"; };
 		78CAA069290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
@@ -515,8 +517,9 @@
 			children = (
 				78B6A715292FA8A800C0BB70 /* Cell */,
 				78B6A709292F5B7300C0BB70 /* RouteFindingMainViewController.swift */,
-				78B6A70D292F8C3600C0BB70 /* RouteFindingSectionViewController.swift */,
 				78B6A711292F90FA00C0BB70 /* RouteFindingMainViewController+Extensions.swift */,
+				78B6A70D292F8C3600C0BB70 /* RouteFindingSectionViewController.swift */,
+				78B6A718292FBEFD00C0BB70 /* RouteFindingSectionViewController+Extensions.swift */,
 			);
 			path = RouteFinding;
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 				78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */,
 				342508A329001780000653D9 /* HomeViewController.swift in Sources */,
 				342508A52900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift in Sources */,
+				78B6A719292FBEFD00C0BB70 /* RouteFindingSectionViewController+Extensions.swift in Sources */,
 				78FEE88F2926A23B007B67BD /* VideoPlayViewController.swift in Sources */,
 				FBA5DBFD291AE32A00422A17 /* ButtonClickEffect.swift in Sources */,
 				70DE796229263A570009AD43 /* SwipeOnboardingThirdViewController.swift in Sources */,

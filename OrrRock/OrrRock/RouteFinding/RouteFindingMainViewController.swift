@@ -10,7 +10,6 @@ import SnapKit
 
 class RouteFindingMainViewController: UIViewController {
     
-    
     lazy var topView : UIView = {
         let view = UIView()
         return view

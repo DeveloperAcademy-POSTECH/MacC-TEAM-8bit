@@ -104,12 +104,14 @@ class RouteFindingCollectionViewCustomCell : UICollectionViewCell {
     }
     
     func setUpLayout() {
+        self.layer.cornerRadius = 10
+        self.clipsToBounds = true
         self.backgroundColor = .gray
         self.addSubview(cellImage)
         cellImage.snp.makeConstraints {
             $0.leading.top.trailing.bottom.equalTo(0)
         }
-
+        
 //        self.addSubview(cellBlurView)
 //        cellBlurView.snp.makeConstraints {
 //            $0.edges.equalToSuperview()
@@ -144,18 +146,18 @@ class RouteFindingCollectionViewCustomCell : UICollectionViewCell {
         infoView.addSubview(cellDateLabel)
         cellDateLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(OrrPd.pd8.rawValue)
-            $0.top.equalTo(cellTitleLabel).offset(OrrPd.pd4.rawValue)
+            $0.top.equalTo(cellTitleLabel.snp.bottom).offset(OrrPd.pd4.rawValue)
         }
         
         infoView.addSubview(cellLevelLabel)
         cellLevelLabel.snp.makeConstraints {
-            $0.top.equalTo(cellDateLabel).offset(6)
+            $0.top.equalTo(cellDateLabel.snp.bottom).offset(6)
             $0.leading.equalToSuperview().inset(12)
         }
         
         infoView.addSubview(cellChallengeLabel)
         cellChallengeLabel.snp.makeConstraints {
-            $0.leading.equalTo(cellLevelLabel).offset(OrrPd.pd4.rawValue)
+            $0.leading.equalTo(cellLevelLabel.snp.trailing).offset(OrrPd.pd4.rawValue)
             $0.centerY.equalTo(cellLevelLabel)
         }
     }
