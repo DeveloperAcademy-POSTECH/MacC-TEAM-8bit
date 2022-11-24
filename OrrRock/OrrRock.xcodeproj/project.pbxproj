@@ -58,6 +58,7 @@
 		3A4641CC292FAF0000C6B7A3 /* PageInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641CA292FAF0000C6B7A3 /* PageInformation+CoreDataProperties.swift */; };
 		3A4641D3292FAF7300C6B7A3 /* RouteInformation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641D1292FAF7300C6B7A3 /* RouteInformation+CoreDataClass.swift */; };
 		3A4641D4292FAF7300C6B7A3 /* RouteInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641D2292FAF7300C6B7A3 /* RouteInformation+CoreDataProperties.swift */; };
+		3A4641D6292FB30900C6B7A3 /* RouteDataDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641D5292FB30900C6B7A3 /* RouteDataDraft.swift */; };
 		3A4641DA292FB4B400C6B7A3 /* RouteCoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641D9292FB4B400C6B7A3 /* RouteCoreDataDAO.swift */; };
 		3A4641DC292FB71900C6B7A3 /* RouteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641DB292FB71900C6B7A3 /* RouteDataManager.swift */; };
 		3A4641DF292FB88500C6B7A3 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641DE292FB88500C6B7A3 /* RouteViewController.swift */; };
@@ -177,6 +178,7 @@
 		3A4641CA292FAF0000C6B7A3 /* PageInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3A4641D1292FAF7300C6B7A3 /* RouteInformation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteInformation+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3A4641D2292FAF7300C6B7A3 /* RouteInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3A4641D5292FB30900C6B7A3 /* RouteDataDraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDataDraft.swift; sourceTree = "<group>"; };
 		3A4641D9292FB4B400C6B7A3 /* RouteCoreDataDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCoreDataDAO.swift; sourceTree = "<group>"; };
 		3A4641DB292FB71900C6B7A3 /* RouteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDataManager.swift; sourceTree = "<group>"; };
 		3A4641DE292FB88500C6B7A3 /* RouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 				3A4641C3292FACF600C6B7A3 /* RouteInfo.swift */,
 				3A4641C5292FAD2D00C6B7A3 /* PageInfo.swift */,
 				3A4641C7292FAD4000C6B7A3 /* PointInfo.swift */,
+				3A4641D5292FB30900C6B7A3 /* RouteDataDraft.swift */,
 				3A4641D9292FB4B400C6B7A3 /* RouteCoreDataDAO.swift */,
 				3A4641DB292FB71900C6B7A3 /* RouteDataManager.swift */,
 			);
