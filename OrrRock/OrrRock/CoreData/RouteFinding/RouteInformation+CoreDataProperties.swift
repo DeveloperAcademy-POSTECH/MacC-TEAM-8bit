@@ -16,7 +16,7 @@ extension RouteInformation {
         return NSFetchRequest<RouteInformation>(entityName: "RouteInformation")
     }
 
-    @NSManaged public var daraWrittenDate: Date
+    @NSManaged public var dataWrittenDate: Date
     @NSManaged public var gymName: String
     @NSManaged public var id: UUID?
     @NSManaged public var isChallengeComplete: Bool

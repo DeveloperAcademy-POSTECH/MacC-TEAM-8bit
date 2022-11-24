@@ -49,15 +49,15 @@
 		3A2880FB2904290E00FBFB70 /* SortTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2880FA2904290E00FBFB70 /* SortTestViewController.swift */; };
 		3A4641B9292FA7B500C6B7A3 /* PointInformation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641B3292FA7B500C6B7A3 /* PointInformation+CoreDataClass.swift */; };
 		3A4641BA292FA7B500C6B7A3 /* PointInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641B4292FA7B500C6B7A3 /* PointInformation+CoreDataProperties.swift */; };
-		3A4641BB292FA7B500C6B7A3 /* RouteInformation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641B5292FA7B500C6B7A3 /* RouteInformation+CoreDataClass.swift */; };
-		3A4641BC292FA7B500C6B7A3 /* RouteInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641B6292FA7B500C6B7A3 /* RouteInformation+CoreDataProperties.swift */; };
-		3A4641BD292FA7B500C6B7A3 /* PageInformation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641B7292FA7B500C6B7A3 /* PageInformation+CoreDataClass.swift */; };
-		3A4641BE292FA7B500C6B7A3 /* PageInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641B8292FA7B500C6B7A3 /* PageInformation+CoreDataProperties.swift */; };
 		3A4641C0292FA8F600C6B7A3 /* FootOrHand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641BF292FA8F600C6B7A3 /* FootOrHand.swift */; };
 		3A4641C2292FA95C00C6B7A3 /* ForceDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641C1292FA95C00C6B7A3 /* ForceDirection.swift */; };
 		3A4641C4292FACF600C6B7A3 /* RouteInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641C3292FACF600C6B7A3 /* RouteInfo.swift */; };
 		3A4641C6292FAD2D00C6B7A3 /* PageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641C5292FAD2D00C6B7A3 /* PageInfo.swift */; };
 		3A4641C8292FAD4000C6B7A3 /* PointInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641C7292FAD4000C6B7A3 /* PointInfo.swift */; };
+		3A4641CB292FAF0000C6B7A3 /* PageInformation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641C9292FAF0000C6B7A3 /* PageInformation+CoreDataClass.swift */; };
+		3A4641CC292FAF0000C6B7A3 /* PageInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641CA292FAF0000C6B7A3 /* PageInformation+CoreDataProperties.swift */; };
+		3A4641D3292FAF7300C6B7A3 /* RouteInformation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641D1292FAF7300C6B7A3 /* RouteInformation+CoreDataClass.swift */; };
+		3A4641D4292FAF7300C6B7A3 /* RouteInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641D2292FAF7300C6B7A3 /* RouteInformation+CoreDataProperties.swift */; };
 		3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3C52901435200BE11B5 /* VideoInfo.swift */; };
 		3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */; };
 		3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D41E28FEBADE006C718A /* AppDelegate.swift */; };
@@ -160,15 +160,15 @@
 		3A2880FA2904290E00FBFB70 /* SortTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortTestViewController.swift; sourceTree = "<group>"; };
 		3A4641B3292FA7B500C6B7A3 /* PointInformation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PointInformation+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3A4641B4292FA7B500C6B7A3 /* PointInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PointInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		3A4641B5292FA7B500C6B7A3 /* RouteInformation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteInformation+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3A4641B6292FA7B500C6B7A3 /* RouteInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		3A4641B7292FA7B500C6B7A3 /* PageInformation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageInformation+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3A4641B8292FA7B500C6B7A3 /* PageInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3A4641BF292FA8F600C6B7A3 /* FootOrHand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootOrHand.swift; sourceTree = "<group>"; };
 		3A4641C1292FA95C00C6B7A3 /* ForceDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceDirection.swift; sourceTree = "<group>"; };
 		3A4641C3292FACF600C6B7A3 /* RouteInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteInfo.swift; sourceTree = "<group>"; };
 		3A4641C5292FAD2D00C6B7A3 /* PageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageInfo.swift; sourceTree = "<group>"; };
 		3A4641C7292FAD4000C6B7A3 /* PointInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointInfo.swift; sourceTree = "<group>"; };
+		3A4641C9292FAF0000C6B7A3 /* PageInformation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageInformation+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3A4641CA292FAF0000C6B7A3 /* PageInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3A4641D1292FAF7300C6B7A3 /* RouteInformation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteInformation+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3A4641D2292FAF7300C6B7A3 /* RouteInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3A70C3C52901435200BE11B5 /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDAO.swift; sourceTree = "<group>"; };
 		3AA4D41B28FEBADE006C718A /* OrrRock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrrRock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -362,12 +362,12 @@
 		3A4641B2292FA6E200C6B7A3 /* RouteFinding */ = {
 			isa = PBXGroup;
 			children = (
+				3A4641D1292FAF7300C6B7A3 /* RouteInformation+CoreDataClass.swift */,
+				3A4641D2292FAF7300C6B7A3 /* RouteInformation+CoreDataProperties.swift */,
+				3A4641C9292FAF0000C6B7A3 /* PageInformation+CoreDataClass.swift */,
+				3A4641CA292FAF0000C6B7A3 /* PageInformation+CoreDataProperties.swift */,
 				3A4641B3292FA7B500C6B7A3 /* PointInformation+CoreDataClass.swift */,
 				3A4641B4292FA7B500C6B7A3 /* PointInformation+CoreDataProperties.swift */,
-				3A4641B5292FA7B500C6B7A3 /* RouteInformation+CoreDataClass.swift */,
-				3A4641B6292FA7B500C6B7A3 /* RouteInformation+CoreDataProperties.swift */,
-				3A4641B7292FA7B500C6B7A3 /* PageInformation+CoreDataClass.swift */,
-				3A4641B8292FA7B500C6B7A3 /* PageInformation+CoreDataProperties.swift */,
 				3A4641BF292FA8F600C6B7A3 /* FootOrHand.swift */,
 				3A4641C1292FA95C00C6B7A3 /* ForceDirection.swift */,
 				3A4641C3292FACF600C6B7A3 /* RouteInfo.swift */,
@@ -687,7 +687,6 @@
 				342C456E290125260037D9E7 /* HomeTableViewListCell.swift in Sources */,
 				FB3227FC2903FD9C00276A7D /* Date+.swift in Sources */,
 				78F93ED32906EFC500F3D9F3 /* GymEditViewController.swift in Sources */,
-				3A4641BB292FA7B500C6B7A3 /* RouteInformation+CoreDataClass.swift in Sources */,
 				34172EB5292B3FEC009DAAB8 /* GrowthChartView.swift in Sources */,
 				78FEE895292916E4007B67BD /* VideoPlayViewController+Extensions.swift in Sources */,
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
@@ -709,6 +708,7 @@
 				70DE795A29250F480009AD43 /* SwipeOnboardingViewController.swift in Sources */,
 				FB32280F29046B4500276A7D /* VideoDetailViewController.swift in Sources */,
 				3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */,
+				3A4641D3292FAF7300C6B7A3 /* RouteInformation+CoreDataClass.swift in Sources */,
 				FB32281329046CDE00276A7D /* VideoPlayView.swift in Sources */,
 				3A4641C0292FA8F600C6B7A3 /* FootOrHand.swift in Sources */,
 				3A2880EB29033C2500FBFB70 /* FilterOption.swift in Sources */,
@@ -735,11 +735,11 @@
 				34E76F462924D33E00EBB92D /* HomeTableViewFooter.swift in Sources */,
 				3A15AC882907B1160058512F /* VideoInformation+CoreDataClass.swift in Sources */,
 				3AA4D42128FEBADE006C718A /* SceneDelegate.swift in Sources */,
-				3A4641BE292FA7B500C6B7A3 /* PageInformation+CoreDataProperties.swift in Sources */,
 				3405BE632927DD2E00D6E15A /* ChallengeChartView.swift in Sources */,
 				78FEE89B29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift in Sources */,
 				3A15AC7D2907258A0058512F /* SectionData.swift in Sources */,
 				34E11EC9292D2C5100787316 /* UIImage+.swift in Sources */,
+				3A4641CB292FAF0000C6B7A3 /* PageInformation+CoreDataClass.swift in Sources */,
 				34793FA329262A8800B74110 /* CustomBackBarButtomItem.swift in Sources */,
 				FB32281529046CED00276A7D /* VideoInfoView.swift in Sources */,
 				3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */,
@@ -754,20 +754,20 @@
 				78CAA06C290271E7003C3D77 /* VIdeoCollectionFooterCell.swift in Sources */,
 				341418BB2922A3800033D851 /* AutocompleteTableViewCell.swift in Sources */,
 				709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */,
-				3A4641BC292FA7B500C6B7A3 /* RouteInformation+CoreDataProperties.swift in Sources */,
 				3A4641C8292FAD4000C6B7A3 /* PointInfo.swift in Sources */,
 				78FEE89729291A19007B67BD /* VideoDetailViewController+Protocol.swift in Sources */,
 				34E11EC5292BFF2700787316 /* ExportCardView.swift in Sources */,
 				3A4641C2292FA95C00C6B7A3 /* ForceDirection.swift in Sources */,
 				3A2880FB2904290E00FBFB70 /* SortTestViewController.swift in Sources */,
-				3A4641BD292FA7B500C6B7A3 /* PageInformation+CoreDataClass.swift in Sources */,
 				34172EB9292B41F8009DAAB8 /* HistoryView.swift in Sources */,
 				FB3227FE2903FDA600276A7D /* String+.swift in Sources */,
 				3A15AC7B290724620058512F /* DataManager.swift in Sources */,
 				341418B6292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift in Sources */,
+				3A4641CC292FAF0000C6B7A3 /* PageInformation+CoreDataProperties.swift in Sources */,
 				70A8DF0A291A863F0061E36B /* UIView+.swift in Sources */,
 				78FEE8912926A599007B67BD /* VideoDetailPageViewController.swift in Sources */,
 				70DE7964292640FF0009AD43 /* SwipeOnboardingFourthViewController.swift in Sources */,
+				3A4641D4292FAF7300C6B7A3 /* RouteInformation+CoreDataProperties.swift in Sources */,
 				70DE795E29253F050009AD43 /* EmptyBackgroundView.swift in Sources */,
 				A88805852907F5A0002CD52E /* LevelPickerView.swift in Sources */,
 				3A4641BA292FA7B500C6B7A3 /* PointInformation+CoreDataProperties.swift in Sources */,

@@ -17,6 +17,7 @@ extension PageInformation {
     }
 
     @NSManaged public var id: UUID?
+    @NSManaged public var rowOrder: Int64
     @NSManaged public var points: NSSet?
     @NSManaged public var routeFinding: RouteInformation?
 
