@@ -44,5 +44,22 @@ extension RouteInformation {
 }
 
 extension RouteInformation : Identifiable {
+    func routeInformationDraft() -> RouteInfo {
+        let pageArray = Array(self.pages as! Set<PageInformation>)
+        var pageInfo: [PageInfo] = []
+        var points2dimensionArray: [[PointInfo]] = []
+        for i in 0..<pageArray.count {
+            let pointsArray = Array(pageArray[i].points as! Set<PointInformation>)
+            var pointInfo: [PointInfo] = []
+            for j in 0..<pointsArray.count {
+                let temp = PointInfo(footOrHand: FootOrHand(rawValue: pointsArray[j].footOrHand) ?? FootOrHand.hand, isForce: pointsArray[j].isForce, primaryPosition: CGPoint(x: pointsArray[j].xCoordinate, y: pointsArray[j].yCoordinate), forceDirection: ForceDirection(rawValue: Int(pointsArray[j].forceDirection)) ?? ForceDirection.pi0)
+                pointInfo.append(temp)
+            }
+            points2dimensionArray.append(pointInfo)
+            pageInfo.append(PageInfo(rowOrder: Int(pageArray[i].rowOrder), points: points2dimensionArray[i]))
+        }
+        
+        return RouteInfo(imageLocalIdentifier: self.imageLocalIdentifier, dataWrittenDate: self.dataWrittenDate, gymName: self.gymName, problemLevel: Int(self.problemLevel), isChallengeComplete: self.isChallengeComplete, pages: pageInfo)
+    }
 
 }
