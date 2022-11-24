@@ -22,12 +22,12 @@ final class UnderlineSegmentedControl: UISegmentedControl {
     
     private lazy var underlineView: UIView = {
         let width = self.bounds.size.width / CGFloat(self.numberOfSegments)
-        let height = 2.0
+        let height = 3.0
         let xPosition = CGFloat(self.selectedSegmentIndex * Int(width))
         let yPosition = self.bounds.size.height - 1.0
         let frame = CGRect(x: xPosition, y: yPosition, width: width, height: height)
         let view = UIView(frame: frame)
-        view.backgroundColor = .green
+        view.backgroundColor = .orrUPBlue
         self.addSubview(view)
         return view
     }()
