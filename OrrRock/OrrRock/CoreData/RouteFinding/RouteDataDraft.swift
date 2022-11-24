@@ -107,7 +107,7 @@ final class RouteDataDraft {
         // UI DATA PART: UI를 구성하는 데이터에 추가
         routeInfoForUI.pages[pageIndex].points?.append(pointInfo)
         
-        // UI DATA PART: UI를 구성하는 데이터에 추가
+        
         guard route != nil else { return }
         let indices = newPageInfo.filter({ $0.rowOrder == routeInfoForUI.pages[pageIndex].rowOrder}).indices
         
