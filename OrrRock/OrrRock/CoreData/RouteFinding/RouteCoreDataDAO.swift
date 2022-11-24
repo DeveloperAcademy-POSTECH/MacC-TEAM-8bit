@@ -63,6 +63,20 @@ class RouteCoreDataDAO {
         createPointData(pointInformation: points, pageInformation: page)
     }
     
+    func createPointData(pointInformation: [PointInfo], pageInformation: PageInformation) {
+        for info in pointInformation {
+            let bodyPoint = PointInformation(context: context)
+            bodyPoint.id = UUID()
+            bodyPoint.footOrHand = (info.footOrHand.rawValue)
+            bodyPoint.isForce = info.isForce
+            bodyPoint.xCoordinate = info.position.x
+            bodyPoint.yCoordinate = info.position.y
+            bodyPoint.forceDirection = Int16(info.forceDirection.rawValue)
+            
+            pageInformation.addToPoints(bodyPoint)
+        }
+    }
+    
     // Core Data의 읽어 RouteFinding 클래스를 반환합니다.
     func readRouteFindingData() -> [RouteInformation] {
         let request = RouteInformation.fetchRequest()

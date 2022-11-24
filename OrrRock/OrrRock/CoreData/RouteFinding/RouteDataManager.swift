@@ -46,4 +46,11 @@ final class RouteDataManager {
         }
     }
     
+    // MARK: CREATE POINT 포인트 추가
+    func addPointData(pointInfo: [PageInformation : [PointInfo]]) {
+        for (key, value) in pointInfo {
+            coreDataDAO.createPointData(pointInformation: value, pageInformation: key)
+        }
+    }
+    
 }
