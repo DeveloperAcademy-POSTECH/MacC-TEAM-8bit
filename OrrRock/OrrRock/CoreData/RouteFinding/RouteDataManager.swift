@@ -70,4 +70,9 @@ final class RouteDataManager {
         routeFindingList.remove(at: index)
     }
     
+    // MARK: DELETE PAGE
+    func deletePagesData(pages: [PageInformation], routeFinding: RouteInformation) {
+        coreDataDAO.deletePageData(pages: pages, routeFinding: routeFinding)
+    }
+    
 }

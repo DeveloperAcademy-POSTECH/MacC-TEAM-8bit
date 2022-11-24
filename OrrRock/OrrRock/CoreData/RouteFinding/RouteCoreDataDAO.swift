@@ -127,4 +127,11 @@ class RouteCoreDataDAO {
         }
     }
     
+    func deletePageData(pages: [PageInformation], routeFinding: RouteInformation) {
+        for page in pages {
+            routeFinding.removeFromPages(page)
+        }
+        saveData()
+    }
+    
 }
