@@ -134,4 +134,13 @@ class RouteCoreDataDAO {
         saveData()
     }
     
+    func deletePointData(removePointList: [PageInformation : [PointInformation]]) {
+        for (key, value) in removePointList {
+            for point in value {
+                key.removeFromPoints(point)
+            }
+        }
+        saveData()
+    }
+    
 }

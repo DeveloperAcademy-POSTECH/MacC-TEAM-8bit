@@ -75,4 +75,9 @@ final class RouteDataManager {
         coreDataDAO.deletePageData(pages: pages, routeFinding: routeFinding)
     }
     
+    // MARK: DELETE POINT
+    func deletePointsData(removePointList: [PageInformation : [PointInformation]]) {
+        coreDataDAO.deletePointData(removePointList: removePointList)
+    }
+    
 }
