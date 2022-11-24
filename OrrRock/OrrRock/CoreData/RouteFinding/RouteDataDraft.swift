@@ -59,7 +59,7 @@ final class RouteDataDraft {
                 // 기존 데이터의 페이지 제거
                 RouteDataManager.shared.deletePageData(pageInformationList: removePageList, routeFinding: route)
                 //  기존 데이터, 기존 페이지에 존재하는 포인트 제거
-                RouteDataManager.shared.deletePointsData(removePointList: removePointList)
+                RouteDataManager.shared.deletePointData(removePointList: removePointList)
                 
                 // UPDATE
                 // 기존 데이터, 기존 페이지에 존재하는 포인트 수정

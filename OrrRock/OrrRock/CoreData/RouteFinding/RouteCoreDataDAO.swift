@@ -15,7 +15,6 @@ class RouteCoreDataDAO {
     
     init() {}
     
-    // R 구조체를 매개변수로 받아 RouteFinding NSManagedObject에 추가
     func createRouteInformationData(routeInfo: RouteInfo) -> NSManagedObject {
         let routeInformation = NSEntityDescription.insertNewObject(forEntityName: "RouteInformation", into: context)
         
@@ -25,9 +24,7 @@ class RouteCoreDataDAO {
         routeInformation.setValue(routeInfo.problemLevel, forKey: "problemLevel")
         routeInformation.setValue(routeInfo.isChallengeComplete, forKey: "isChallengeComplete")
         
-        if routeInfo.pages.count == 0 {
-            print("THERE's NO PAGE...")
-        } else {
+        if routeInfo.pages.count != 0 {
             routeInfo.pages.forEach({ pageInfo in
                 createPageData(pageInfo: pageInfo, routeInformation: routeInformation as! RouteInformation)
             })
@@ -61,7 +58,7 @@ class RouteCoreDataDAO {
         routeInformation.addToPages(page)
         
         guard let points = pageInfo.points else { return }
-//        createPointData(pointInformation: points, pageInformation: page)
+        createPointData(pointInfoList: points, pageInformation: page)
     }
     
     func createPointData(pointInfoList: [PointInfo], pageInformation: PageInformation) {
@@ -85,7 +82,6 @@ class RouteCoreDataDAO {
         var information: [RouteInformation] = []
         do {
             information = try context.fetch(request)
-            
         } catch {
             print("CoreDataManager ReadData Method \(error.localizedDescription)")
         }
@@ -144,7 +140,6 @@ class RouteCoreDataDAO {
         saveData()
     }
     
-    // 전체 데이터 삭제를 위한 메소드
     func deleteAllData() {
         let objects = readRouteFindingData()
         
@@ -156,7 +151,6 @@ class RouteCoreDataDAO {
         }
     }
     
-    // 추가한 데이터를 현재 context에 반영
     func saveData() {
         do {
             try context.save()
