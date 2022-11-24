@@ -110,4 +110,21 @@ class RouteCoreDataDAO {
             print("CoreDataDAO UpdatePointData Method \(error.localizedDescription)")
         }
     }
+
+    func deleteRouteFindingData(routeFinding: RouteInformation) {
+        
+        guard let id = routeFinding.id else { return }
+        let request = RouteInformation.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        do {
+            let info = try context.fetch(request)
+            if let tempInfo = info.first {
+                context.delete(tempInfo)
+            }
+        } catch {
+            print("CoreDataManager DeleteData Method \(error.localizedDescription)")
+        }
+    }
+    
 }

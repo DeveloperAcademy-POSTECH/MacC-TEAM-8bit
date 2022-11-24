@@ -63,4 +63,11 @@ final class RouteDataManager {
         coreDataDAO.saveData()
     }
     
+    // MARK: DELETE ROUTE
+    func deleteRouteData(route: RouteInformation) {
+        coreDataDAO.deleteRouteFindingData(routeFinding: route)
+        guard let index = routeFindingList.firstIndex(of: route) else { return }
+        routeFindingList.remove(at: index)
+    }
+    
 }
