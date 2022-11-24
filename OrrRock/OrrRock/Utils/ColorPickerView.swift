@@ -165,7 +165,7 @@ extension ColorPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
         }
         
         let selectLabel = selectView.subviews[0] as! UILabel
-        selectLabel.backgroundColor = .white
+        selectLabel.backgroundColor = selectLabel.subviews[0].backgroundColor
         return pickerRow
     }
     
