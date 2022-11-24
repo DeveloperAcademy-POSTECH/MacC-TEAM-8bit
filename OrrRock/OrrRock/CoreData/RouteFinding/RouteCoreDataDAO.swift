@@ -155,4 +155,13 @@ class RouteCoreDataDAO {
         }
     }
     
+    // 추가한 데이터를 현재 context에 반영
+    func saveData() {
+        do {
+            try context.save()
+        } catch {
+            print("CoreDataManager SaveData Method \(error.localizedDescription)")
+        }
+    }
+
 }
