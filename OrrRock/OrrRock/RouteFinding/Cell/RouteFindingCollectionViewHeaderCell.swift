@@ -18,12 +18,13 @@ final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
         return label
     }()
     
-    let subTitleLabel : UILabel = {
-        let label = UILabel()
-        label.textColor = .gray
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 13, weight:.bold)
-        return label
+    let subTitleButton : UIButton = {
+        let button = UIButton()
+        button.setTitle("버튼", for: .normal)
+        button.setTitleColor(UIColor.orrGray400, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .bold)
+        button.addTarget(self, action: #selector(buttonTouch), for: .touchUpInside)
+        return button
     }()
     
     override init(frame: CGRect) {
@@ -43,7 +44,7 @@ final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
     
     func prepare(title: String, subtitle: String) {
         self.titleLabel.text = title
-        self.subTitleLabel.text = subtitle
+        self.subTitleButton.setTitle(subtitle, for: .normal)
     }
     
     func setUpLayout(){
@@ -53,10 +54,14 @@ final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
             $0.leading.equalToSuperview().offset(OrrPd.pd16.rawValue)
         }
         
-        self.addSubview(self.subTitleLabel)
-        self.subTitleLabel.snp.makeConstraints {
+        self.addSubview(self.subTitleButton)
+        self.subTitleButton.snp.makeConstraints {
             $0.top.equalToSuperview().offset(OrrPd.pd16.rawValue)
             $0.trailing.equalToSuperview().offset(-OrrPd.pd16.rawValue)
         }
+    }
+    
+    @objc func buttonTouch(){
+        print("123")
     }
 }

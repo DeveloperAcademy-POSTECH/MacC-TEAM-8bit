@@ -37,19 +37,16 @@ class RouteFindingMainViewController: UIViewController {
     
     lazy var allRouteFindingViewController : UIViewController = {
         let vc = RouteFindingSectionViewController()
-        vc.view.backgroundColor = .orrGray100
         return vc
     }()
     
     lazy var challengeRouteFindingViewController : UIViewController = {
         let vc = RouteFindingSectionViewController()
-        vc.view.backgroundColor = .green
         return vc
     }()
     
     lazy var successRouteFindingViewController : UIViewController = {
         let vc = RouteFindingSectionViewController()
-        vc.view.backgroundColor = .blue
         return vc
     }()
     
@@ -69,7 +66,6 @@ class RouteFindingMainViewController: UIViewController {
     var currentPage: Int = 0 {
        didSet {
          // from segmentedControl -> pageViewController 업데이트
-         print(oldValue, self.currentPage)
          let direction: UIPageViewController.NavigationDirection = oldValue <= self.currentPage ? .forward : .reverse
          self.pageViewController.setViewControllers(
            [dataViewControllers[self.currentPage]],

@@ -56,6 +56,7 @@ extension RouteFindingSectionViewController: UICollectionViewDataSource{
         cell.cellChallengeLabel.text = "도전 완료"
         cell.cellDateLabel.text = "2022년 10월 13일"
         cell.cellTitleLabel.text = "아띠 클라이밍장"
+        cell.cellImage.image = UIImage(named: "OnboardingImage1")
         return cell
     }
 }
@@ -70,7 +71,7 @@ extension RouteFindingSectionViewController : UICollectionViewDelegateFlowLayout
         return 16
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width / 2 - 13
+        let width = collectionView.frame.width / 2 - 6.5
         return CGSize(width: width, height: width * 1.8)
     }
 }
