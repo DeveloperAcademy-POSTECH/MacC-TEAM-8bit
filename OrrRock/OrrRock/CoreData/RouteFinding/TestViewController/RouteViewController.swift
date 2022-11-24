@@ -9,7 +9,9 @@ import UIKit
 
 class RouteViewController: UIViewController {
     
-    private var routeList: [RouteInformation] = RouteDataManager.shared.getRouteFindingList()
+    private var routeDataManager: RouteDataManager = RouteDataManager()
+    
+    private var routeList: [RouteInformation]!
 
     private lazy var routeTableView = {
         let view = UITableView()
@@ -51,7 +53,6 @@ class RouteViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        print(ForceDirection.pi0.rawValue)
         layoutConfigure()
         componentConfigure()
         navigationBarConfigure()
@@ -60,7 +61,7 @@ class RouteViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         print("nio")
         
-        routeList = RouteDataManager.shared.getRouteFindingList().sorted(by: { $0.dataWrittenDate > $1.dataWrittenDate })
+        routeList = routeDataManager.getRouteFindingList().sorted(by: { $0.dataWrittenDate > $1.dataWrittenDate })
         routeTableView.reloadData()
     }
     
@@ -120,6 +121,8 @@ class RouteViewController: UIViewController {
     }
     
     func componentConfigure() {
+        routeList = routeDataManager.getRouteFindingList()
+        
         routeInfoUpdateButton.addTarget(self, action: #selector(routeInfoUpdateButtonClicked), for: .touchUpInside)
     }
     
@@ -133,7 +136,7 @@ extension RouteViewController {
     
     @objc func addRouteButtonClicked() {
         let rootVC = RenewalPageViewController()
-        rootVC.routeDraft = RouteDataDraft(routeFinding: nil)
+        rootVC.routeDraft = RouteDataDraft(manager: routeDataManager, routeFinding: nil)
         
         
         let modalTypeNavigationVC = UINavigationController(rootViewController: rootVC)
@@ -146,7 +149,7 @@ extension RouteViewController {
             let index = Int.random(in: 0..<routeList.count)
             
             let tempRouteInfo = RouteInfo(imageLocalIdentifier: "", dataWrittenDate: Date(), gymName: "클라라", problemLevel: 5, isChallengeComplete: true, pages: [])
-            RouteDataManager.shared.updateRoute(routeInfo: tempRouteInfo, routeInformation: routeList[index])
+            routeDataManager.updateRoute(routeInfo: tempRouteInfo, routeInformation: routeList[index])
             
             print("ROUTE INFO UPDATE!")
             routeTableView.reloadData()
@@ -157,7 +160,7 @@ extension RouteViewController {
 
 extension RouteViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return RouteDataManager.shared.getRouteFindingList().count
+        return routeDataManager.getRouteFindingList().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -187,7 +190,7 @@ extension RouteViewController: UITableViewDelegate, UITableViewDataSource {
         
         let vc = RenewalPageViewController()
         
-        vc.routeDraft = RouteDataDraft(routeFinding: route)
+        vc.routeDraft = RouteDataDraft(manager: routeDataManager, routeFinding: route)
         vc.routeDraft.routeInfoForUI = route.routeInformationDraft()
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -200,7 +203,7 @@ extension RouteViewController: UITableViewDelegate, UITableViewDataSource {
         
         if editingStyle == .delete {
             let index = indexPath.row
-            RouteDataManager.shared.deleteRouteData(routeInformation: routeList[index])
+            routeDataManager.deleteRouteData(routeInformation: routeList[index])
             routeList.remove(at: index)
             tableView.deleteRows(at: [indexPath], with: .fade)
             

@@ -9,8 +9,6 @@ import Foundation
 
 final class RouteDataManager {
     
-    static var shared = RouteDataManager()
-    
     private var coreDataDAO: RouteCoreDataDAO
     private var routeFindingList: [RouteInformation] = []
     

@@ -8,6 +8,9 @@
 import Foundation
 
 final class RouteDataDraft {
+    
+    var routeDataManager: RouteDataManager!
+    
     // isModalType == false && 기존에 존재하는 데이터를 들고올 때
     var route: RouteInformation?
     
@@ -31,7 +34,9 @@ final class RouteDataDraft {
     
     var pages: [PageInformation] = []
     
-    init(routeFinding: RouteInformation?) {
+    init(manager: RouteDataManager, routeFinding: RouteInformation?) {
+        
+        routeDataManager = manager
         
         // CASE: 새로운 루트 추가 OR 기존 루트 수정
         route = routeFinding
@@ -45,26 +50,26 @@ final class RouteDataDraft {
          
         // MODE: ADD_데이터 추가
         if route == nil {
-            RouteDataManager.shared.addRoute(routeInfo: routeInfoForUI)
+            routeDataManager.addRoute(routeInfo: routeInfoForUI)
         } else { // MODE: EDIT_데이터 수정
             if let route = route {
                 
                 // CREATE & UPDATE
                 // 기존 데이터에 새로운 페이지(+ 하위의 새로운 포인트) 추가
-                RouteDataManager.shared.addPageData(pageInfoList: newPageInfo, routeInformation: route)
+                routeDataManager.addPageData(pageInfoList: newPageInfo, routeInformation: route)
                 // 기존 데이터, 기존 페이지에 새로운 포인트 추가
-                RouteDataManager.shared.addPointData(pointInfoList: newPointInfo)
+                routeDataManager.addPointData(pointInfoList: newPointInfo)
                 
                 // DELETE
                 // 기존 데이터의 페이지 제거
-                RouteDataManager.shared.deletePageData(pageInformationList: removePageList, routeFinding: route)
+                routeDataManager.deletePageData(pageInformationList: removePageList, routeFinding: route)
                 //  기존 데이터, 기존 페이지에 존재하는 포인트 제거
-                RouteDataManager.shared.deletePointData(removePointList: removePointList)
+                routeDataManager.deletePointData(removePointList: removePointList)
                 
                 // UPDATE
                 // 기존 데이터, 기존 페이지에 존재하는 포인트 수정
                 if updatePointInfo.isEmpty == false {
-                    RouteDataManager.shared.updatePointData(pointInfoList: updatePointInfo)
+                    routeDataManager.updatePointData(pointInfoList: updatePointInfo)
                 }
             }
         }
