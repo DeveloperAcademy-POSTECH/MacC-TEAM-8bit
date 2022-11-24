@@ -6,19 +6,20 @@
         <relationship name="routeFinding" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RouteInformation" inverseName="pages" inverseEntity="RouteInformation"/>
     </entity>
     <entity name="PointInformation" representedClassName="PointInformation" syncable="YES">
-        <attribute name="footOrHand" attributeType="String"/>
+        <attribute name="footOrHand" optional="YES" attributeType="String"/>
         <attribute name="forceDirection" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="isForce" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isForce" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="xCoordinate" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="yCoordinate" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="page" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PageInformation" inverseName="points" inverseEntity="PageInformation"/>
     </entity>
     <entity name="RouteInformation" representedClassName="RouteInformation" syncable="YES">
-        <attribute name="daraWrittenDate" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="gymName" attributeType="String"/>
+        <attribute name="daraWrittenDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="gymName" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="isChallengeComplete" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="imageLocalIdentifier" optional="YES" attributeType="String"/>
+        <attribute name="isChallengeComplete" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="problemLevel" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="pages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PageInformation" inverseName="routeFinding" inverseEntity="PageInformation"/>
     </entity>
