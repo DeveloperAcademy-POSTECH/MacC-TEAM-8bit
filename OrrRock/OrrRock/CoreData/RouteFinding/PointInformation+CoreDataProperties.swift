@@ -16,7 +16,7 @@ extension PointInformation {
         return NSFetchRequest<PointInformation>(entityName: "PointInformation")
     }
 
-    @NSManaged public var footOrHand: String?
+    @NSManaged public var footOrHand: String
     @NSManaged public var forceDirection: Int16
     @NSManaged public var id: UUID?
     @NSManaged public var isForce: Bool

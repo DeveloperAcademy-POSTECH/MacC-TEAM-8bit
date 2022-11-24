@@ -16,12 +16,12 @@ extension RouteInformation {
         return NSFetchRequest<RouteInformation>(entityName: "RouteInformation")
     }
 
-    @NSManaged public var daraWrittenDate: Date?
-    @NSManaged public var gymName: String?
+    @NSManaged public var daraWrittenDate: Date
+    @NSManaged public var gymName: String
     @NSManaged public var id: UUID?
     @NSManaged public var isChallengeComplete: Bool
     @NSManaged public var problemLevel: Int16
-    @NSManaged public var imageLocalIdentifier: String?
+    @NSManaged public var imageLocalIdentifier: String
     @NSManaged public var pages: NSSet?
 
 }
