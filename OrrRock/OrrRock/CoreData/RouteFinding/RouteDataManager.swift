@@ -25,6 +25,10 @@ final class RouteDataManager {
         return routeFindingList
     }
     
+    func getSpecificRouteFindingList(isChallengeComplete: Bool) -> [RouteInformation] {
+        return routeFindingList.filter({ $0.isChallengeComplete == isChallengeComplete })
+    }
+    
     func addRoute(routeInfo: RouteInfo) {
         let routeFinding = coreDataDAO.createRouteInformationData(routeInfo: routeInfo) as! RouteInformation
         routeFindingList.append(routeFinding)
