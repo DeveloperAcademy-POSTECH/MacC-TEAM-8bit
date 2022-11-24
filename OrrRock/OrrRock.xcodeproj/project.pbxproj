@@ -55,6 +55,9 @@
 		3A4641BE292FA7B500C6B7A3 /* PageInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641B8292FA7B500C6B7A3 /* PageInformation+CoreDataProperties.swift */; };
 		3A4641C0292FA8F600C6B7A3 /* FootOrHand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641BF292FA8F600C6B7A3 /* FootOrHand.swift */; };
 		3A4641C2292FA95C00C6B7A3 /* ForceDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641C1292FA95C00C6B7A3 /* ForceDirection.swift */; };
+		3A4641C4292FACF600C6B7A3 /* RouteInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641C3292FACF600C6B7A3 /* RouteInfo.swift */; };
+		3A4641C6292FAD2D00C6B7A3 /* PageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641C5292FAD2D00C6B7A3 /* PageInfo.swift */; };
+		3A4641C8292FAD4000C6B7A3 /* PointInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641C7292FAD4000C6B7A3 /* PointInfo.swift */; };
 		3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3C52901435200BE11B5 /* VideoInfo.swift */; };
 		3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */; };
 		3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D41E28FEBADE006C718A /* AppDelegate.swift */; };
@@ -163,6 +166,9 @@
 		3A4641B8292FA7B500C6B7A3 /* PageInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3A4641BF292FA8F600C6B7A3 /* FootOrHand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootOrHand.swift; sourceTree = "<group>"; };
 		3A4641C1292FA95C00C6B7A3 /* ForceDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceDirection.swift; sourceTree = "<group>"; };
+		3A4641C3292FACF600C6B7A3 /* RouteInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteInfo.swift; sourceTree = "<group>"; };
+		3A4641C5292FAD2D00C6B7A3 /* PageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageInfo.swift; sourceTree = "<group>"; };
+		3A4641C7292FAD4000C6B7A3 /* PointInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointInfo.swift; sourceTree = "<group>"; };
 		3A70C3C52901435200BE11B5 /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDAO.swift; sourceTree = "<group>"; };
 		3AA4D41B28FEBADE006C718A /* OrrRock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrrRock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -364,6 +370,9 @@
 				3A4641B8292FA7B500C6B7A3 /* PageInformation+CoreDataProperties.swift */,
 				3A4641BF292FA8F600C6B7A3 /* FootOrHand.swift */,
 				3A4641C1292FA95C00C6B7A3 /* ForceDirection.swift */,
+				3A4641C3292FACF600C6B7A3 /* RouteInfo.swift */,
+				3A4641C5292FAD2D00C6B7A3 /* PageInfo.swift */,
+				3A4641C7292FAD4000C6B7A3 /* PointInfo.swift */,
 			);
 			path = RouteFinding;
 			sourceTree = "<group>";
@@ -721,6 +730,7 @@
 				FBA5DBFD291AE32A00422A17 /* ButtonClickEffect.swift in Sources */,
 				70DE796229263A570009AD43 /* SwipeOnboardingThirdViewController.swift in Sources */,
 				700AC6212926A1DA003DF5AF /* UIImageView+.swift in Sources */,
+				3A4641C4292FACF600C6B7A3 /* RouteInfo.swift in Sources */,
 				70DE79662926524D0009AD43 /* SwipeOnboardingFifthViewController.swift in Sources */,
 				34E76F462924D33E00EBB92D /* HomeTableViewFooter.swift in Sources */,
 				3A15AC882907B1160058512F /* VideoInformation+CoreDataClass.swift in Sources */,
@@ -736,6 +746,7 @@
 				78F56F6C291A67FA00174B74 /* OnBoardingViewController.swift in Sources */,
 				34172EAF292AAD3E009DAAB8 /* DateEditViewController.swift in Sources */,
 				A81992C42927E48B00F024CA /* VideoSlider.swift in Sources */,
+				3A4641C6292FAD2D00C6B7A3 /* PageInfo.swift in Sources */,
 				342508AB29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift in Sources */,
 				70AE8138292CA24500B4DB3F /* Font+.swift in Sources */,
 				78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */,
@@ -744,6 +755,7 @@
 				341418BB2922A3800033D851 /* AutocompleteTableViewCell.swift in Sources */,
 				709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */,
 				3A4641BC292FA7B500C6B7A3 /* RouteInformation+CoreDataProperties.swift in Sources */,
+				3A4641C8292FAD4000C6B7A3 /* PointInfo.swift in Sources */,
 				78FEE89729291A19007B67BD /* VideoDetailViewController+Protocol.swift in Sources */,
 				34E11EC5292BFF2700787316 /* ExportCardView.swift in Sources */,
 				3A4641C2292FA95C00C6B7A3 /* ForceDirection.swift in Sources */,
