@@ -54,6 +54,7 @@
 		3A4641BD292FA7B500C6B7A3 /* PageInformation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641B7292FA7B500C6B7A3 /* PageInformation+CoreDataClass.swift */; };
 		3A4641BE292FA7B500C6B7A3 /* PageInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641B8292FA7B500C6B7A3 /* PageInformation+CoreDataProperties.swift */; };
 		3A4641C0292FA8F600C6B7A3 /* FootOrHand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641BF292FA8F600C6B7A3 /* FootOrHand.swift */; };
+		3A4641C2292FA95C00C6B7A3 /* ForceDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641C1292FA95C00C6B7A3 /* ForceDirection.swift */; };
 		3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3C52901435200BE11B5 /* VideoInfo.swift */; };
 		3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */; };
 		3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D41E28FEBADE006C718A /* AppDelegate.swift */; };
@@ -161,6 +162,7 @@
 		3A4641B7292FA7B500C6B7A3 /* PageInformation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageInformation+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3A4641B8292FA7B500C6B7A3 /* PageInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3A4641BF292FA8F600C6B7A3 /* FootOrHand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootOrHand.swift; sourceTree = "<group>"; };
+		3A4641C1292FA95C00C6B7A3 /* ForceDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceDirection.swift; sourceTree = "<group>"; };
 		3A70C3C52901435200BE11B5 /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDAO.swift; sourceTree = "<group>"; };
 		3AA4D41B28FEBADE006C718A /* OrrRock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrrRock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -361,6 +363,7 @@
 				3A4641B7292FA7B500C6B7A3 /* PageInformation+CoreDataClass.swift */,
 				3A4641B8292FA7B500C6B7A3 /* PageInformation+CoreDataProperties.swift */,
 				3A4641BF292FA8F600C6B7A3 /* FootOrHand.swift */,
+				3A4641C1292FA95C00C6B7A3 /* ForceDirection.swift */,
 			);
 			path = RouteFinding;
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				3A4641BC292FA7B500C6B7A3 /* RouteInformation+CoreDataProperties.swift in Sources */,
 				78FEE89729291A19007B67BD /* VideoDetailViewController+Protocol.swift in Sources */,
 				34E11EC5292BFF2700787316 /* ExportCardView.swift in Sources */,
+				3A4641C2292FA95C00C6B7A3 /* ForceDirection.swift in Sources */,
 				3A2880FB2904290E00FBFB70 /* SortTestViewController.swift in Sources */,
 				3A4641BD292FA7B500C6B7A3 /* PageInformation+CoreDataClass.swift in Sources */,
 				34172EB9292B41F8009DAAB8 /* HistoryView.swift in Sources */,
