@@ -39,4 +39,11 @@ final class RouteDataManager {
         coreDataDAO.updateRoute(routeInfo: routeInfo, route: route)
     }
     
+    // MARK: CREATE PAGE
+    func addPageData(pageInfo: [PageInfo], routeFinding: RouteInformation) {
+        for info in pageInfo {
+            coreDataDAO.createPageData(pageInfo: info, routeFinding: routeFinding)
+        }
+    }
+    
 }

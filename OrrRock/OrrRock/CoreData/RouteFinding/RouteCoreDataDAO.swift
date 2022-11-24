@@ -53,6 +53,16 @@ class RouteCoreDataDAO {
         }
     }
     
+    func createPageData(pageInfo: PageInfo, routeFinding: RouteInformation) {
+        let page = PageInformation(context: context)
+        page.rowOrder = Int64(pageInfo.rowOrder)
+        page.setValue(UUID(), forKey: "id")
+        routeFinding.addToPages(page)
+        
+        guard let points = pageInfo.points else { return }
+        createPointData(pointInformation: points, pageInformation: page)
+    }
+    
     // Core Data의 읽어 RouteFinding 클래스를 반환합니다.
     func readRouteFindingData() -> [RouteInformation] {
         let request = RouteInformation.fetchRequest()
