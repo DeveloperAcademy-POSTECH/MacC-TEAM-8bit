@@ -146,7 +146,7 @@ extension RouteViewController {
             let index = Int.random(in: 0..<routeList.count)
             
             let tempRouteInfo = RouteInfo(imageLocalIdentifier: "", dataWrittenDate: Date(), gymName: "클라라", problemLevel: 5, isChallengeComplete: true, pages: [])
-            RouteDataManager.shared.updateRoute(routeInfo: tempRouteInfo, route: routeList[index])
+            RouteDataManager.shared.updateRoute(routeInfo: tempRouteInfo, routeInformation: routeList[index])
             
             print("ROUTE INFO UPDATE!")
             routeTableView.reloadData()
@@ -200,7 +200,7 @@ extension RouteViewController: UITableViewDelegate, UITableViewDataSource {
         
         if editingStyle == .delete {
             let index = indexPath.row
-            RouteDataManager.shared.deleteRouteData(route: routeList[index])
+            RouteDataManager.shared.deleteRouteData(routeInformation: routeList[index])
             routeList.remove(at: index)
             tableView.deleteRows(at: [indexPath], with: .fade)
             

@@ -35,27 +35,27 @@ final class RouteDataManager {
     }
 
     // MARK: UPDATE ROUTE
-    func updateRoute(routeInfo: RouteInfo, route: RouteInformation) {
-        coreDataDAO.updateRoute(routeInfo: routeInfo, route: route)
+    func updateRoute(routeInfo: RouteInfo, routeInformation: RouteInformation) {
+        coreDataDAO.updateRoute(routeInfo: routeInfo, routeInformation: routeInformation)
     }
     
     // MARK: CREATE PAGE
-    func addPageData(pageInfo: [PageInfo], routeFinding: RouteInformation) {
-        for info in pageInfo {
-            coreDataDAO.createPageData(pageInfo: info, routeFinding: routeFinding)
+    func addPageData(pageInfoList: [PageInfo], routeInformation: RouteInformation) {
+        for info in pageInfoList {
+            coreDataDAO.createPageData(pageInfo: info, routeInformation: routeInformation)
         }
     }
     
     // MARK: CREATE POINT 포인트 추가
-    func addPointData(pointInfo: [PageInformation : [PointInfo]]) {
-        for (key, value) in pointInfo {
-            coreDataDAO.createPointData(pointInformation: value, pageInformation: key)
+    func addPointData(pointInfoList: [PageInformation : [PointInfo]]) {
+        for (key, value) in pointInfoList {
+            coreDataDAO.createPointData(pointInfoList: value, pageInformation: key)
         }
     }
     
     // MARK: UPDATE POINT 기존에 존재하는 포인트를 수정
-    func updatePointData(pointInfo: [PageInformation : [(PointInformation, PointInfo)]]) {
-        for (key, value) in pointInfo {
+    func updatePointData(pointInfoList: [PageInformation : [(PointInformation, PointInfo)]]) {
+        for (key, value) in pointInfoList {
             for pointData in value {
                 coreDataDAO.updatePointData(pageInformation: key, targetPoint: pointData.0, data: pointData.1)
             }
@@ -64,15 +64,15 @@ final class RouteDataManager {
     }
     
     // MARK: DELETE ROUTE
-    func deleteRouteData(route: RouteInformation) {
-        coreDataDAO.deleteRouteFindingData(routeFinding: route)
-        guard let index = routeFindingList.firstIndex(of: route) else { return }
+    func deleteRouteData(routeInformation: RouteInformation) {
+        coreDataDAO.deleteRouteFindingData(routeFinding: routeInformation)
+        guard let index = routeFindingList.firstIndex(of: routeInformation) else { return }
         routeFindingList.remove(at: index)
     }
     
     // MARK: DELETE PAGE
-    func deletePagesData(pages: [PageInformation], routeFinding: RouteInformation) {
-        coreDataDAO.deletePageData(pages: pages, routeFinding: routeFinding)
+    func deletePageData(pageInformationList: [PageInformation], routeFinding: RouteInformation) {
+        coreDataDAO.deletePageData(pageInformationList: pageInformationList, routeInformation: routeFinding)
     }
     
     // MARK: DELETE POINT

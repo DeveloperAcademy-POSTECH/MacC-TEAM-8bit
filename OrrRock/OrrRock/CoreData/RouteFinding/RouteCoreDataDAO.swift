@@ -29,20 +29,21 @@ class RouteCoreDataDAO {
             print("THERE's NO PAGE...")
         } else {
             routeInfo.pages.forEach({ pageInfo in
-                createPageData(pageInfo: pageInfo, routeFinding: routeInformation as! RouteInformation)
+                createPageData(pageInfo: pageInfo, routeInformation: routeInformation as! RouteInformation)
             })
         }
         return routeInformation
     }
     
-    func updateRoute(routeInfo: RouteInfo, route: RouteInformation) {
-        guard let id = route.id else { return }
+    func updateRoute(routeInfo: RouteInfo, routeInformation: RouteInformation) {
+        guard let id = routeInformation.id else { return }
         let request = RouteInformation.fetchRequest()
         
         request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         do {
             let info = try context.fetch(request)
             if let tempInfo = info.first {
+                tempInfo.setValue(routeInfo.imageLocalIdentifier, forKey: "imageLocalIdentifier")
                 tempInfo.setValue(routeInfo.dataWrittenDate, forKey: "dataWrittenDate")
                 tempInfo.setValue(routeInfo.gymName, forKey: "gymName")
                 tempInfo.setValue(routeInfo.isChallengeComplete, forKey: "isChallengeComplete")
@@ -53,18 +54,18 @@ class RouteCoreDataDAO {
         }
     }
     
-    func createPageData(pageInfo: PageInfo, routeFinding: RouteInformation) {
+    func createPageData(pageInfo: PageInfo, routeInformation: RouteInformation) {
         let page = PageInformation(context: context)
         page.rowOrder = Int64(pageInfo.rowOrder)
         page.setValue(UUID(), forKey: "id")
-        routeFinding.addToPages(page)
+        routeInformation.addToPages(page)
         
         guard let points = pageInfo.points else { return }
-        createPointData(pointInformation: points, pageInformation: page)
+//        createPointData(pointInformation: points, pageInformation: page)
     }
     
-    func createPointData(pointInformation: [PointInfo], pageInformation: PageInformation) {
-        for info in pointInformation {
+    func createPointData(pointInfoList: [PointInfo], pageInformation: PageInformation) {
+        for info in pointInfoList {
             let bodyPoint = PointInformation(context: context)
             bodyPoint.id = UUID()
             bodyPoint.footOrHand = (info.footOrHand.rawValue)
@@ -127,9 +128,9 @@ class RouteCoreDataDAO {
         }
     }
     
-    func deletePageData(pages: [PageInformation], routeFinding: RouteInformation) {
-        for page in pages {
-            routeFinding.removeFromPages(page)
+    func deletePageData(pageInformationList: [PageInformation], routeInformation: RouteInformation) {
+        for page in pageInformationList {
+            routeInformation.removeFromPages(page)
         }
         saveData()
     }

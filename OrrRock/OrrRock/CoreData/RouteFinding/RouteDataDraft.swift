@@ -51,20 +51,20 @@ final class RouteDataDraft {
                 
                 // CREATE & UPDATE
                 // 기존 데이터에 새로운 페이지(+ 하위의 새로운 포인트) 추가
-                RouteDataManager.shared.addPageData(pageInfo: newPageInfo, routeFinding: route)
+                RouteDataManager.shared.addPageData(pageInfoList: newPageInfo, routeInformation: route)
                 // 기존 데이터, 기존 페이지에 새로운 포인트 추가
-                RouteDataManager.shared.addPointData(pointInfo: newPointInfo)
+                RouteDataManager.shared.addPointData(pointInfoList: newPointInfo)
                 
                 // DELETE
                 // 기존 데이터의 페이지 제거
-                RouteDataManager.shared.deletePagesData(pages: removePageList, routeFinding: route)
+                RouteDataManager.shared.deletePageData(pageInformationList: removePageList, routeFinding: route)
                 //  기존 데이터, 기존 페이지에 존재하는 포인트 제거
                 RouteDataManager.shared.deletePointsData(removePointList: removePointList)
                 
                 // UPDATE
                 // 기존 데이터, 기존 페이지에 존재하는 포인트 수정
                 if updatePointInfo.isEmpty == false {
-                    RouteDataManager.shared.updatePointData(pointInfo: updatePointInfo)
+                    RouteDataManager.shared.updatePointData(pointInfoList: updatePointInfo)
                 }
             }
         }
