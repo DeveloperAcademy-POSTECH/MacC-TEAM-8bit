@@ -58,6 +58,8 @@
 		3A4641CC292FAF0000C6B7A3 /* PageInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641CA292FAF0000C6B7A3 /* PageInformation+CoreDataProperties.swift */; };
 		3A4641D3292FAF7300C6B7A3 /* RouteInformation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641D1292FAF7300C6B7A3 /* RouteInformation+CoreDataClass.swift */; };
 		3A4641D4292FAF7300C6B7A3 /* RouteInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641D2292FAF7300C6B7A3 /* RouteInformation+CoreDataProperties.swift */; };
+		3A4641DA292FB4B400C6B7A3 /* RouteCoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641D9292FB4B400C6B7A3 /* RouteCoreDataDAO.swift */; };
+		3A4641DC292FB71900C6B7A3 /* RouteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641DB292FB71900C6B7A3 /* RouteDataManager.swift */; };
 		3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3C52901435200BE11B5 /* VideoInfo.swift */; };
 		3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */; };
 		3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D41E28FEBADE006C718A /* AppDelegate.swift */; };
@@ -169,6 +171,8 @@
 		3A4641CA292FAF0000C6B7A3 /* PageInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3A4641D1292FAF7300C6B7A3 /* RouteInformation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteInformation+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3A4641D2292FAF7300C6B7A3 /* RouteInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3A4641D9292FB4B400C6B7A3 /* RouteCoreDataDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCoreDataDAO.swift; sourceTree = "<group>"; };
+		3A4641DB292FB71900C6B7A3 /* RouteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDataManager.swift; sourceTree = "<group>"; };
 		3A70C3C52901435200BE11B5 /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDAO.swift; sourceTree = "<group>"; };
 		3AA4D41B28FEBADE006C718A /* OrrRock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrrRock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -373,6 +377,8 @@
 				3A4641C3292FACF600C6B7A3 /* RouteInfo.swift */,
 				3A4641C5292FAD2D00C6B7A3 /* PageInfo.swift */,
 				3A4641C7292FAD4000C6B7A3 /* PointInfo.swift */,
+				3A4641D9292FB4B400C6B7A3 /* RouteCoreDataDAO.swift */,
+				3A4641DB292FB71900C6B7A3 /* RouteDataManager.swift */,
 			);
 			path = RouteFinding;
 			sourceTree = "<group>";
@@ -727,6 +733,7 @@
 				342508A329001780000653D9 /* HomeViewController.swift in Sources */,
 				342508A52900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift in Sources */,
 				78FEE88F2926A23B007B67BD /* VideoPlayViewController.swift in Sources */,
+				3A4641DC292FB71900C6B7A3 /* RouteDataManager.swift in Sources */,
 				FBA5DBFD291AE32A00422A17 /* ButtonClickEffect.swift in Sources */,
 				70DE796229263A570009AD43 /* SwipeOnboardingThirdViewController.swift in Sources */,
 				700AC6212926A1DA003DF5AF /* UIImageView+.swift in Sources */,
@@ -759,6 +766,7 @@
 				34E11EC5292BFF2700787316 /* ExportCardView.swift in Sources */,
 				3A4641C2292FA95C00C6B7A3 /* ForceDirection.swift in Sources */,
 				3A2880FB2904290E00FBFB70 /* SortTestViewController.swift in Sources */,
+				3A4641DA292FB4B400C6B7A3 /* RouteCoreDataDAO.swift in Sources */,
 				34172EB9292B41F8009DAAB8 /* HistoryView.swift in Sources */,
 				FB3227FE2903FDA600276A7D /* String+.swift in Sources */,
 				3A15AC7B290724620058512F /* DataManager.swift in Sources */,
