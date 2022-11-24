@@ -143,4 +143,16 @@ class RouteCoreDataDAO {
         saveData()
     }
     
+    // 전체 데이터 삭제를 위한 메소드
+    func deleteAllData() {
+        let objects = readRouteFindingData()
+        
+        if objects.count > 0 {
+            for object in objects {
+                context.delete(object)
+            }
+            saveData()
+        }
+    }
+    
 }

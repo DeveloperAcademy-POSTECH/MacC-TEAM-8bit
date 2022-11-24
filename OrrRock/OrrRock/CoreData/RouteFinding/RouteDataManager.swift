@@ -80,4 +80,8 @@ final class RouteDataManager {
         coreDataDAO.deletePointData(removePointList: removePointList)
     }
     
+    
+    func deleteAllData() {
+        coreDataDAO.deleteAllData()
+    }
 }
