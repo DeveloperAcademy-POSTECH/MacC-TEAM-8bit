@@ -1,5 +1,5 @@
 //
-//  RouteFindingPageViewController.swift
+//  RouteFindingSectionViewController.swift
 //  OrrRock
 //
 //  Created by dohankim on 2022/11/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RouteFindingPageViewController: UIViewController {
+class RouteFindingSectionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

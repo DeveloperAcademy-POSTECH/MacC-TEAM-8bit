@@ -30,6 +30,7 @@ class RouteFindingMainViewController: UIViewController {
         return button
     }()
     
+    lazy var routeFindingPageViewController = rou
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpLayout()
@@ -55,6 +56,8 @@ class RouteFindingMainViewController: UIViewController {
         plusButton.snp.makeConstraints{
             $0.trailing.equalToSuperview().offset(-OrrPd.pd16.rawValue)
         }
+        view.addSubview()
+        
     }
     
     func setNavigationBar(){
