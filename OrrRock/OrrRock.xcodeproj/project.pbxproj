@@ -356,8 +356,8 @@
 				3A4641B4292FA7B500C6B7A3 /* PointInformation+CoreDataProperties.swift */,
 				3A4641B5292FA7B500C6B7A3 /* RouteInformation+CoreDataClass.swift */,
 				3A4641B6292FA7B500C6B7A3 /* RouteInformation+CoreDataProperties.swift */,
-				3A4641B8292FA7B500C6B7A3 /* PageInformation+CoreDataProperties.swift */,
 				3A4641B7292FA7B500C6B7A3 /* PageInformation+CoreDataClass.swift */,
+				3A4641B8292FA7B500C6B7A3 /* PageInformation+CoreDataProperties.swift */,
 			);
 			path = RouteFinding;
 			sourceTree = "<group>";
