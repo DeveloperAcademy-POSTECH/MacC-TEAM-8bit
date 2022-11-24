@@ -19,6 +19,7 @@ class RouteCoreDataDAO {
         let routeInformation = NSEntityDescription.insertNewObject(forEntityName: "RouteInformation", into: context)
         
         routeInformation.setValue(UUID(), forKey: "id")
+        routeInformation.setValue(routeInfo.imageLocalIdentifier, forKey: "imageLocalIdentifier")
         routeInformation.setValue(routeInfo.gymName, forKey: "gymName")
         routeInformation.setValue(routeInfo.dataWrittenDate, forKey: "dataWrittenDate")
         routeInformation.setValue(routeInfo.problemLevel, forKey: "problemLevel")
