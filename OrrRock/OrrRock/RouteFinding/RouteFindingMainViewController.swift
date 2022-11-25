@@ -93,12 +93,14 @@ class RouteFindingMainViewController: UIViewController {
         self.segmentedControl.addTarget(self, action: #selector(changeValue(control:)), for: .valueChanged)
             self.segmentedControl.selectedSegmentIndex = 0
             self.changeValue(control: self.segmentedControl)
-
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     func setSegment(){

@@ -11,7 +11,6 @@ class RouteFindingSectionViewController: UIViewController {
 
     var infoArr = [1,2,3,3,4,5,5,6,7,5]
     var dictionarySelectedIndexPath: [IndexPath : Bool] = [:]
-    
     var mMode: RouteFindingCollectionViewMode = .view {
         didSet{
             switch mMode{
@@ -22,16 +21,12 @@ class RouteFindingSectionViewController: UIViewController {
                     }
                 }
                 dictionarySelectedIndexPath.removeAll()
-//                selectBarButton.title = "편집"
-//                (routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(item: 0, section: 0))).subti
                 routeFindingCollectionView.allowsMultipleSelection = false
             case .select:
-//                selectBarButton.title = "취소"
                 routeFindingCollectionView.allowsMultipleSelection = true
             }
         }
     }
-    
     
     lazy var routeFindingCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -44,14 +39,47 @@ class RouteFindingSectionViewController: UIViewController {
         return cv
     }()
     
+    lazy var bottomOptionView :UIView = {
+        let view = UIView()
+        view.backgroundColor = .orrUPBlue
+        view.layer.opacity = 0.0
+        return view
+    }()
+    
+    lazy var folderButton : ImageButton = {
+        let view = ImageButton()
+        view.setImage(UIImage(systemName: "folder.fill"), for: .normal)
+        view.setTitle("이동", for: .normal)
+        return view
+    }()
+    
+    lazy var deleteButton : ImageButton = {
+        let view = ImageButton()
+        view.setImage(UIImage(systemName: "trash.fill"), for: .normal)
+        view.setTitle("삭제", for: .normal)
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("fdsf")
         setDelegate()
         registerCells()
         setUpLayout()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+        mMode = .view
+        bottomOptionView.layer.opacity = 0.0
+        routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
+
+        (routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as! RouteFindingCollectionViewHeaderCell).subTitleButton.setTitle(mMode == .select ? "완료" : "편집", for: .normal)
+        (routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as!
+        RouteFindingCollectionViewHeaderCell).subTitleButton.setTitleColor(mMode == .select ? UIColor.orrUPBlue: UIColor.orrGray400, for: .normal)
+        
+        
+    }
     func setDelegate(){
         routeFindingCollectionView.delegate = self
         routeFindingCollectionView.dataSource = self
@@ -73,7 +101,25 @@ class RouteFindingSectionViewController: UIViewController {
         routeFindingCollectionView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
             $0.trailing.leading.equalToSuperview().inset(16)
-            
+        }
+        
+        view.addSubview(bottomOptionView)
+        bottomOptionView.snp.makeConstraints {
+            $0.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(view.snp_bottomMargin)
+        }
+        
+        bottomOptionView.addSubview(folderButton)
+        folderButton.snp.makeConstraints {
+            $0.top.equalTo(bottomOptionView.snp.top).offset(0)
+            $0.leading.equalToSuperview().inset(82.5)
+        }
+        
+        bottomOptionView.addSubview(deleteButton)
+        deleteButton.snp.makeConstraints {
+            $0.top.equalTo(bottomOptionView.snp.top).offset(0)
+            $0.trailing.equalToSuperview().inset(82.5)
         }
     }
 }

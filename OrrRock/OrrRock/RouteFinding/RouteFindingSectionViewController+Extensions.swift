@@ -23,9 +23,8 @@ extension RouteFindingSectionViewController : UICollectionViewDelegate{
                 withReuseIdentifier: RouteFindingCollectionViewHeaderCell.id,
                 for: indexPath
             ) as! RouteFindingCollectionViewHeaderCell
-            supplementaryView.prepare(title: "13개의 도전", subtitle: "편집1")
+            supplementaryView.prepare(title: "\(infoArr.count)개의 도전", subtitle: "편집")
             supplementaryView.delegate = self
-            print(kind)
             return supplementaryView
             
         case UICollectionView.elementKindSectionFooter:
@@ -112,6 +111,11 @@ extension RouteFindingSectionViewController : RouteFindingCollectionViewHeaderCe
         (routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as!
         RouteFindingCollectionViewHeaderCell).subTitleButton.setTitleColor(mMode == .select ? UIColor.orrUPBlue: UIColor.orrGray400, for: .normal)
 
+       
+            self.tabBarController?.tabBar.isHidden = self.mMode == .select ? true : false
+            self.bottomOptionView.layer.opacity = self.mMode == .select ? 1.0 : 0.0
+        
+        
     }
     
 }
