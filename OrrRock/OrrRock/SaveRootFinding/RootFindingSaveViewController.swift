@@ -11,11 +11,25 @@ class RootFindingSaveViewController: UIViewController {
     
     private var goBackButton: UIBarButtonItem!
     private var saveButton: UIBarButtonItem!
+    
+    private lazy var nextButton: UIButton = {
+        let btn = UIButton()
+        btn.clipsToBounds = true
+        btn.layer.cornerRadius = 15
+        btn.setBackgroundColor(.orrUPBlue!, for: .normal)
+//        btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
+        btn.setTitle("저장", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel!.font = UIFont.boldSystemFont(ofSize: 17)
+        
+        return btn
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setNavigationBar()
+        setUpLayout()
         self.view.backgroundColor = .orrBlack
     }
     
@@ -36,5 +50,19 @@ class RootFindingSaveViewController: UIViewController {
     
     @objc func saveAction() {
         // TODO: 사진 앱에 사진 저장하는 로직 추가
+    }
+}
+
+extension RootFindingSaveViewController {
+    
+    private func setUpLayout() {
+        view.addSubview(nextButton)
+        nextButton.snp.makeConstraints {
+            $0.centerX.equalTo(view)
+            $0.bottom.equalTo(view).inset(OrrPd.pd36.rawValue)
+            $0.leading.equalTo(view).inset(OrrPd.pd16.rawValue)
+            $0.trailing.equalTo(view).inset(OrrPd.pd16.rawValue)
+            $0.height.equalTo(56)
+        }
     }
 }
