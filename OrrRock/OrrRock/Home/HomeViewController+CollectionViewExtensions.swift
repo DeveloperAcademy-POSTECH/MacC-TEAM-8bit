@@ -33,7 +33,9 @@ extension HomeViewController: UITableViewDataSource {
             sortedVideoInfoData[indexPath.row].forEach { videoInfo in
                 successCount += videoInfo.isSucceeded ? 1 : 0
                 
-                if let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: 825, height: 825)) {
+                print("RUyha: 내놈은?11111")
+
+                if let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail() {
                     thumbnails.append(thumbnail)
                 }
             }
@@ -56,9 +58,8 @@ extension HomeViewController: UITableViewDataSource {
             
             cell.setUpData(level: "V\(sortedVideoInfoData[indexPath.section][indexPath.row].problemLevel)",
                            PF: sortedVideoInfoData[indexPath.section][indexPath.row].isSucceeded ? "성공" : "실패",
-                           thumbnail: sortedVideoInfoData[indexPath.section][indexPath.row].videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: 825, height: 825)),
-                           feedback: sortedVideoInfoData[indexPath.section][indexPath.row].feedback ?? "")
-            
+                           thumbnail: sortedVideoInfoData[indexPath.section][indexPath.row].videoLocalIdentifier!.generateCardViewThumbnail(),
+                           feedback: sortedVideoInfoData[indexPath.section][indexPath.row].feedback ?? "")           
             return cell
         }
     }
