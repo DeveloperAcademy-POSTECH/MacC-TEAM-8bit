@@ -1,5 +1,5 @@
 //
-//  RootFindingSaveViewController.swift
+//  RouteFindingSaveViewController.swift
 //  OrrRock
 //
 //  Created by kimhyeongmin on 2022/11/25.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RootFindingSaveViewController: UIViewController {
+class RouteFindingSaveViewController: UIViewController {
     
     private var goBackButton: UIBarButtonItem!
     private var saveButton: UIBarButtonItem!
@@ -61,7 +61,7 @@ class RootFindingSaveViewController: UIViewController {
     }
 }
 
-extension RootFindingSaveViewController {
+extension RouteFindingSaveViewController {
     
     private func setUpLayout() {
         view.addSubview(nextButton)
