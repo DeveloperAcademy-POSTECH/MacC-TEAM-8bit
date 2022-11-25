@@ -13,4 +13,14 @@ extension UIImage {
             draw(in: CGRect(origin: .zero, size: size))
         }
     }
+    
+    // https://stackoverflow.com/questions/158914/cropping-an-uiimage
+    func cropped(rect: CGRect) -> UIImage? {
+            if let image = self.cgImage!.cropping(to: rect) {
+                return UIImage(cgImage: image)
+            } else if let image = (self.ciImage)?.cropped(to: rect) {
+                return UIImage(ciImage: image)
+            }
+           return nil
+       }
 }
