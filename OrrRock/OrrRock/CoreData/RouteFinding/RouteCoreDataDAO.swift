@@ -33,7 +33,7 @@ class RouteCoreDataDAO {
         return routeInformation
     }
     
-    func updateRouteDataWrittenDate(date: Date, routeInformation: RouteInformation) {
+    func updateRouteInformationDataWrittenDate(date: Date, routeInformation: RouteInformation) {
         guard let id = routeInformation.id else { return }
         let request = RouteInformation.fetchRequest()
         
@@ -48,7 +48,7 @@ class RouteCoreDataDAO {
         }
     }
     
-    func updateRouteGymName(gymName: String, routeInformation: RouteInformation) {
+    func updateRouteInformationGymName(gymName: String, routeInformation: RouteInformation) {
         guard let id = routeInformation.id else { return }
         let request = RouteInformation.fetchRequest()
         
@@ -63,7 +63,7 @@ class RouteCoreDataDAO {
         }
     }
     
-    func updateRouteLevelAndStatus(status: Bool, problemLevel: Int, routeInformation: RouteInformation) {
+    func updateRouteInformationLevelAndStatus(status: Bool, problemLevel: Int, routeInformation: RouteInformation) {
         guard let id = routeInformation.id else { return }
         let request = RouteInformation.fetchRequest()
         
