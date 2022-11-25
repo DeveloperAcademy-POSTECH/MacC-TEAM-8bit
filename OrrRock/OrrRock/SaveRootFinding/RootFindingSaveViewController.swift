@@ -24,6 +24,14 @@ class RootFindingSaveViewController: UIViewController {
         
         return btn
     }()
+    
+    private lazy var skipButton: UIButton = {
+        let btn = UIButton()
+//        btn.addTarget(self, action: #selector(pressSkipButton), for: .touchUpInside)
+        btn.setAttributedTitle("저장하지 않을래요".underLineAttribute(), for: .normal)
+        
+        return btn
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +71,12 @@ extension RootFindingSaveViewController {
             $0.leading.equalTo(view).inset(OrrPd.pd16.rawValue)
             $0.trailing.equalTo(view).inset(OrrPd.pd16.rawValue)
             $0.height.equalTo(56)
+        }
+        
+        view.addSubview(skipButton)
+        skipButton.snp.makeConstraints {
+            $0.centerX.equalTo(view)
+            $0.bottom.equalTo(nextButton.snp.top).offset(-OrrPd.pd8.rawValue)
         }
     }
 }
