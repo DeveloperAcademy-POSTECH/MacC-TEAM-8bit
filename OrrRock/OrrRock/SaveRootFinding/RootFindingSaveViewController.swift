@@ -27,4 +27,8 @@ class RootFindingSaveViewController: UIViewController {
         navigationItem.leftBarButtonItem = goBackButton
     }
     
+    @objc func goBackAction() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 }
