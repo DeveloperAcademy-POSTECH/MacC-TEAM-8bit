@@ -136,14 +136,25 @@ class RouteFindingSectionViewController: UIViewController {
         if let sheet = vc.sheetPresentationController {
             sheet.detents = [
                 .custom { _ in
-                    return 200
-                }            ]
+                    return 235
+                }
+            ]
         }
-        
         present(vc, animated: true, completion: nil)
     }
     
     @objc func touchFolderButton(){
+        let vc = UIViewController()
+        vc.view.backgroundColor = .systemYellow
+        vc.modalPresentationStyle = .pageSheet
         
+        if let sheet = vc.sheetPresentationController {
+            sheet.detents = [
+                .custom { _ in
+                    return 235
+                }
+            ]
+        }
+        present(vc, animated: true, completion: nil)
     }
 }
