@@ -46,7 +46,8 @@ extension RouteFindingFeatureViewController: UICollectionViewDataSource {
         if indexPath.row != pages.count {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RouteFindingThumbnailCollectionViewCell.identifier, for: indexPath) as! RouteFindingThumbnailCollectionViewCell
             cell.indexPathOfCell = indexPath
-            cell.backgroundColor = .systemRed
+            cell.delegate = self
+//            cell.backgroundColor = .systemRed
             
             return cell
         } else {

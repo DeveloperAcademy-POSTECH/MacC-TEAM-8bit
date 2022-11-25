@@ -46,6 +46,32 @@ class RouteFindingFeatureViewController: UIViewController {
         return collection
     }()
     
+    lazy var deleteView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black.withAlphaComponent(0.3)
+        
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(cancelDeleteMode))
+        view.addGestureRecognizer(gestureRecognizer)
+        
+        return view
+    }()
+    
+    lazy var deleteButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        
+        button.setImage(UIImage(systemName: "minus.circle.fill"), for: .normal)
+        button.addTarget(self, action: #selector(deletePage(_:)), for: .touchUpInside)
+        button.tintColor = .systemRed
+        
+        return button
+    }()
+    
+    lazy var deleteImage: UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 62, height: 62))
+        view.backgroundColor = .white
+        return view
+    }()
+    
     // MARK: Life Cycle Functions
     init(routeInfo: RouteInfo) {
         self.routeInfo = routeInfo
@@ -56,7 +82,6 @@ class RouteFindingFeatureViewController: UIViewController {
         var views: [RouteFindingPageView] = []
         routeInfo.pages.forEach { pageInfo in
             let view = convertPageInfoToPageView(from: pageInfo)
-//            view.backgroundColor = .systemRed
             
             self.backgroundImageView.addSubview(view)
             views.append(view)
@@ -115,8 +140,50 @@ class RouteFindingFeatureViewController: UIViewController {
         }
     }
     
-    // MARK: @objc Functions
+    func showDeleteView(for indexPath: IndexPath) {
+        view.addSubview(deleteView)
+        deleteView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        deleteView.addSubview(deleteButton)
+        deleteButton.snp.makeConstraints {
+            $0.centerX.equalTo(deleteView.snp.centerX)
+            $0.bottom.equalTo(thumbnailCollectionView.snp.top).offset(-20)
+        }
+        
+        deleteView.addSubview(deleteImage)
+        deleteImage.snp.makeConstraints {
+            $0.center.equalTo(self.thumbnailCollectionView.cellForItem(at: indexPath)!.snp.center)
+            $0.width.height.equalTo(self.thumbnailCollectionView.cellForItem(at: indexPath)!.frame.width)
+        }
+    }
     
+    // MARK: @objc Functions
+    @objc func cancelDeleteMode() {
+        deleteView.removeFromSuperview()
+        deleteButton.removeFromSuperview()
+        deleteImage.removeFromSuperview()
+        deleteImage.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+    }
+    
+    @objc func deletePage(_ sender: UIButton) {
+        guard let targetPageCell = centerCell else { return }
+        
+        if pages.count > 1 {
+            pages.remove(at: targetPageCell.indexPathOfCell.row)
+            pageViews.remove(at: targetPageCell.indexPathOfCell.row)
+        }
+        
+        thumbnailCollectionView.reloadData()
+        
+        let nextPath = IndexPath(row: (targetPageCell.indexPathOfCell.row - 1 >= 0) ? targetPageCell.indexPathOfCell.row - 1 : 1,
+                                 section: targetPageCell.indexPathOfCell.section)
+        
+        thumbnailCollectionView.scrollToItem(at: nextPath, at: .centeredHorizontally, animated: true)
+//        scrollViewDidScroll(collectionView)
+        cancelDeleteMode()
+    }
 }
 
 extension RouteFindingFeatureViewController {
@@ -163,5 +230,16 @@ extension RouteFindingFeatureViewController: RouteFindingThumbnailCollectionView
         
         thumbnailCollectionView.reloadData()
         thumbnailCollectionView.scrollToItem(at: IndexPath(row: pageViews.count, section: 0), at: .centeredHorizontally, animated: true)
+    }
+}
+
+extension RouteFindingFeatureViewController: RouteFindingThumbnailCollectionViewCellDelegate {
+    func enterDeletePageMode(indexPath: IndexPath) {
+        thumbnailCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        showDeleteView(for: indexPath)
+        
+        UIView.animate(withDuration: 0.2) {
+            self.deleteImage.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        }
     }
 }
