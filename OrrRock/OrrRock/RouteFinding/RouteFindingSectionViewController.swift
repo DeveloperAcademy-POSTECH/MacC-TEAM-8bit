@@ -10,6 +10,28 @@ import UIKit
 class RouteFindingSectionViewController: UIViewController {
 
     var infoArr = [1,2,3,3,4,5,5,6,7,5]
+    var dictionarySelectedIndexPath: [IndexPath : Bool] = [:]
+    
+    var mMode: RouteFindingCollectionViewMode = .view {
+        didSet{
+            switch mMode{
+            case .view:
+                for (key,value) in dictionarySelectedIndexPath{
+                    if value{
+                        routeFindingCollectionView.deselectItem(at: key, animated: true)
+                    }
+                }
+                dictionarySelectedIndexPath.removeAll()
+//                selectBarButton.title = "편집"
+//                (routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(item: 0, section: 0))).subti
+                routeFindingCollectionView.allowsMultipleSelection = false
+            case .select:
+//                selectBarButton.title = "취소"
+                routeFindingCollectionView.allowsMultipleSelection = true
+            }
+        }
+    }
+    
     
     lazy var routeFindingCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -44,7 +66,6 @@ class RouteFindingSectionViewController: UIViewController {
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: "RouteFindingCollectionViewHeaderCell"
         )
-        
     }
     
     func setUpLayout(){

@@ -7,8 +7,21 @@
 
 import UIKit
 
+protocol RouteFindingCollectionViewHeaderCellDelegate{
+    func touchEditButton()
+}
+
 final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
     static let id = "RouteFindingCollectionViewHeaderCell"
+    
+    var delegate : RouteFindingCollectionViewHeaderCellDelegate?
+    
+    var isTouched = false{
+        didSet{
+            subTitleButton.setTitle(isTouched ? "완료" : "편집", for:.normal)
+            subTitleButton.setTitleColor(isTouched ? .orrUPBlue : .orrGray400, for: .normal)
+        }
+    }
     
     let titleLabel : UILabel = {
         let label = UILabel()
@@ -62,6 +75,7 @@ final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
     }
     
     @objc func buttonTouch(){
-        print("123")
+        isTouched.toggle()
+        delegate?.touchEditButton()
     }
 }

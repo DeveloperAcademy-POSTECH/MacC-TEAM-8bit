@@ -24,6 +24,7 @@ extension RouteFindingSectionViewController : UICollectionViewDelegate{
                 for: indexPath
             ) as! RouteFindingCollectionViewHeaderCell
             supplementaryView.prepare(title: "13개의 도전", subtitle: "편집")
+            supplementaryView.delegate = self
             return supplementaryView
             
         case UICollectionView.elementKindSectionFooter:
@@ -59,6 +60,29 @@ extension RouteFindingSectionViewController: UICollectionViewDataSource{
         cell.cellImage.image = UIImage(named: "OnboardingImage1")
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch mMode{
+        case .view:
+            routeFindingCollectionView.deselectItem(at: indexPath, animated: true)
+            //화면이동 로직 들어갈 부분
+            print("화면이동합니다~")
+            
+        case .select:
+            dictionarySelectedIndexPath[indexPath] = true
+            //toolbar enable 들어갈 부분
+            
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if mMode == .select{
+            dictionarySelectedIndexPath[indexPath] = false
+            collectionView.cellForItem(at: indexPath)?.isHighlighted = false
+            collectionView.cellForItem(at: indexPath)?.isSelected = false
+        }
+    }
+    
 }
 
 
@@ -74,4 +98,12 @@ extension RouteFindingSectionViewController : UICollectionViewDelegateFlowLayout
         let width = collectionView.frame.width / 2 - 6.5
         return CGSize(width: width, height: width * 1.8)
     }
+}
+
+extension RouteFindingSectionViewController : RouteFindingCollectionViewHeaderCellDelegate{
+    func touchEditButton() {
+        mMode = mMode == .view ? .select : .view
+        print("toudhf")
+    }
+    
 }
