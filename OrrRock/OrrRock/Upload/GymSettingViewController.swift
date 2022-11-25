@@ -70,7 +70,7 @@ class GymSettingViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
         self.navigationController?.setExpansionBackbuttonArea()
-        
+
         setUpData()
         setUpLayout()
         setUITableViewDelegate()

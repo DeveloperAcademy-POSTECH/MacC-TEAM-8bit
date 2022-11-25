@@ -101,9 +101,7 @@ class VideoDetailViewController: UIViewController {
         
         // 배경, 네비게이션바, 툴바 색 지정
         self.view.backgroundColor = .orrWhite
-        navigationController?.navigationBar.backgroundColor = .orrWhite
-        navigationController?.toolbar.backgroundColor = .orrWhite
-        
+//        navigationController?.toolbar.backgroundColor = .orrWhite
         navigationItem.leftBarButtonItem = goBackButton
        
         

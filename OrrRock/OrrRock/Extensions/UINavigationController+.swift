@@ -12,9 +12,7 @@ extension UINavigationController {
 
     func setExpansionBackbuttonArea() {
         let backButton: UIBarButtonItem = UIBarButtonItem()
-        backButton.title = "                             "
-        backButton.tintColor = .red
-        
+        backButton.title = "                             "        
         self.navigationBar.topItem?.backBarButtonItem = backButton
     }
     
