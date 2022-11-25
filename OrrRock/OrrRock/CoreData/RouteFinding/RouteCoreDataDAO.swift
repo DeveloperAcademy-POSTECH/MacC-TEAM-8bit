@@ -33,25 +33,6 @@ class RouteCoreDataDAO {
         return routeInformation
     }
     
-    func updateRoute(routeInfo: RouteInfo, routeInformation: RouteInformation) {
-        guard let id = routeInformation.id else { return }
-        let request = RouteInformation.fetchRequest()
-        
-        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
-        do {
-            let info = try context.fetch(request)
-            if let tempInfo = info.first {
-                tempInfo.setValue(routeInfo.imageLocalIdentifier, forKey: "imageLocalIdentifier")
-                tempInfo.setValue(routeInfo.dataWrittenDate, forKey: "dataWrittenDate")
-                tempInfo.setValue(routeInfo.gymName, forKey: "gymName")
-                tempInfo.setValue(routeInfo.isChallengeComplete, forKey: "isChallengeComplete")
-                tempInfo.setValue(routeInfo.problemLevel, forKey: "problemLevel")
-            }
-        } catch {
-            print("CoreDataDAO UpateRoute Method \(error.localizedDescription)")
-        }
-    }
-    
     func updateRouteDataWrittenDate(to date: Date, routeInformation: RouteInformation) {
         guard let id = routeInformation.id else { return }
         let request = RouteInformation.fetchRequest()
