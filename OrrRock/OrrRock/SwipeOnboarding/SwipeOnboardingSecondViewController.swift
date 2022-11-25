@@ -8,17 +8,12 @@
 import UIKit
 import SnapKit
 
-
-/* MARK: 추가 작업사항
-    1. 상단에 레벨 피커 추가
-    2. 레벨 피커 위의 문구는 화면 크기 혹은 홈버튼 유무에 따라 보이거나 안보이게 처리 해야함
- */
-
 class SwipeOnboardingSecondViewController: UIViewController {
     
     // 오토레이아웃의 시작점이 되는 값입니다. 변경시 류하에게 문의 주세요.
     let padding = 68
     var delegate: SwipeOnboardingViewControllerDelegate?
+    var changedLevelPicker = false
     
     private lazy var BackgroundView: EmptyBackgroundView = {
         let view = EmptyBackgroundView()
@@ -31,16 +26,19 @@ class SwipeOnboardingSecondViewController: UIViewController {
         return view
     }()
     
-    private lazy var testButton: UIButton = {
+    private lazy var newLevelPickerView: NewLevelPickerView = {
+        let view = NewLevelPickerView()
+        view.pickerSelectValue = 0
+        view.delegate = self
+        view.customTitle = "슬라이드 해주세요"
+        return view
+    }()
+    
+    
+    private lazy var skipButton: UIButton = {
         let btn = UIButton()
-        btn.clipsToBounds = true
-        btn.layer.cornerRadius = 15
-        btn.setBackgroundColor(.orrUPBlue!, for: .normal)
-        btn.setBackgroundColor(.orrGray300!, for: .disabled)
-        btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
-        btn.setTitle("테스트버튼 입니다.", for: .normal)
-        btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel!.font = UIFont.boldSystemFont(ofSize: 17)
+        btn.addTarget(self, action: #selector(pressSkipButton), for: .touchUpInside)
+        btn.setAttributedTitle("SKIP".underLineAttribute(), for: .normal)
         return btn
     }()
     
@@ -49,15 +47,32 @@ class SwipeOnboardingSecondViewController: UIViewController {
         setUpLayout()
     }
     
-    
 }
 
+extension SwipeOnboardingSecondViewController: NewLevelPickerViewDelegate{
+    
+    func didLevelChanged(selectedLevel: Int) {
+        guard changedLevelPicker else{
+            self.changedLevelPicker = true
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                self.pressNextButton()
+            }
+            return
+        }
+    }
+    
+}
 //MARK: 함수 모음
 extension SwipeOnboardingSecondViewController {
     
     @objc
     func pressNextButton() {
         self.delegate?.changeNextView()
+    }
+    
+    @objc
+    func pressSkipButton() {
+        self.delegate?.skipOnboarding()
     }
 }
 
@@ -82,16 +97,24 @@ extension SwipeOnboardingSecondViewController {
             $0.trailing.equalTo(view.snp.trailing).offset(-padding)
             $0.height.equalTo(mainImageView.snp.width).multipliedBy(1.641)
         }
+
+        view.addSubview(newLevelPickerView)
+        newLevelPickerView.snp.makeConstraints {
+            $0.leading.equalTo(view.snp.leading)
+            $0.trailing.equalTo(view.snp.trailing)
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.equalTo(mainImageView.snp.top).offset(-10)
+        }
         
-        view.addSubview(testButton)
-        testButton.snp.makeConstraints{
+        view.addSubview(skipButton)
+        skipButton.snp.makeConstraints{
             $0.centerX.equalTo(view)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
             $0.leading.equalTo(view).offset(OrrPd.pd16.rawValue)
             $0.trailing.equalTo(view).offset(-OrrPd.pd16.rawValue)
-            $0.height.equalTo(56)
         }
         
     }
 }
+
 

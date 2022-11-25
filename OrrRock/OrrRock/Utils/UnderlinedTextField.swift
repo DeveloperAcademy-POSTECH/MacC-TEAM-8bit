@@ -7,18 +7,43 @@
 
 import UIKit
 
-class UnderlinedTextField: UITextField {
+import SnapKit
+
+class UnderlinedTextField: UITextField, UITextFieldDelegate {
     
     let underlineLayer = CALayer()
+    let warningLabel: UILabel = {
+        let view = UILabel()
+        view.text = "20자 이내로 적어주세요"
+        view.textColor = .orrGray400
+        view.textAlignment = .left
+        return view
+    }()
     
     /// Size the underline layer and position it as a one point line under the text field.
     func setUpUnderlineLayer() {
         var frame = self.bounds
         frame.origin.y = frame.size.height - 1
-        frame.size.height = 1
+        frame.size.height = 2
         
         underlineLayer.frame = frame
         underlineLayer.backgroundColor = UIColor.orrUPBlue?.cgColor
+    }
+    
+    func setLimitWarningLabel() {
+        self.addSubview(warningLabel)
+        
+        warningLabel.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview()
+            $0.top.equalTo(self.snp.bottom).offset(12)
+        }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.count + string.count - range.length
+        
+        return newLength <= 20
     }
     
     // In `init?(coder:)` Add our underlineLayer as a sublayer of the view's main layer
@@ -37,6 +62,10 @@ class UnderlinedTextField: UITextField {
     // adjust the size and placement of the underline layer too
     override func layoutSubviews() {
         super.layoutSubviews()
+        self.autocorrectionType = .no
+        self.spellCheckingType = .no
+        self.delegate = self
         setUpUnderlineLayer()
+        setLimitWarningLabel()
     }
 }

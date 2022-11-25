@@ -89,7 +89,7 @@ private extension VideoPlayView {
 		self.addSubview(videoBackgroundView)
 		videoBackgroundView.snp.makeConstraints {
 			$0.top.leading.trailing.equalToSuperview()
-			$0.bottom.equalToSuperview().inset(50)
+			$0.bottom.equalToSuperview()
 		}
 		
 		if videoAsset == nil {

@@ -13,12 +13,15 @@ struct VideoInfo {
     var videoLocalIdentifier: String
     var problemLevel: Int
     var isSucceeded: Bool
+    var isDeleted: Bool
     
-    init(gymName: String, gymVisitDate: Date, videoLocalIdentifier: String, problemLevel: Int, isSucceeded: Bool) {
+    // 초기값 설정
+    init(gymName: String, gymVisitDate: Date, videoLocalIdentifier: String, problemLevel: Int, isSucceeded: Bool, isDeleted: Bool = false) {
         self.gymName = gymName
         self.gymVisitDate = gymVisitDate
         self.videoLocalIdentifier = videoLocalIdentifier
         self.problemLevel = problemLevel
         self.isSucceeded = isSucceeded
+        self.isDeleted = isDeleted
     }
 }

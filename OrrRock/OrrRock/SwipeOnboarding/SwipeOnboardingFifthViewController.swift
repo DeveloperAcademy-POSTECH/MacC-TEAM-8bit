@@ -11,14 +11,15 @@ import SnapKit
 class SwipeOnboardingFifthViewController: UIViewController {
     // 오토레이아웃의 시작점이 되는 값입니다. 변경시 류하에게 문의 주세요.
     let padding = 68
-    
+    var delegate: SwipeOnboardingViewControllerDelegate?
+
     private lazy var closeButton: UIButton = {
         let btn = UIButton()
         btn.clipsToBounds = true
         btn.layer.cornerRadius = 15
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
         btn.setBackgroundColor(.orrGray300!, for: .disabled)
-        btn.addTarget(self, action: #selector(pressCloseButton), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(pressSkipButton), for: .touchUpInside)
         btn.setTitle("시작하기", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.titleLabel!.font = UIFont.boldSystemFont(ofSize: 17)
@@ -47,8 +48,8 @@ class SwipeOnboardingFifthViewController: UIViewController {
 //MARK: 함수 모음
 extension SwipeOnboardingFifthViewController {
     @objc
-    func pressCloseButton() {
-        self.presentingViewController?.dismiss(animated: true, completion:nil)
+    func pressSkipButton() {
+        self.delegate?.skipOnboarding()
     }
 }
 

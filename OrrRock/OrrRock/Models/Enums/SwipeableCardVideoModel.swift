@@ -10,5 +10,6 @@ import Foundation
 enum VideoBackgroundViewBorderColor {
     case pass
     case fail
+    case delete
     case clear
 }

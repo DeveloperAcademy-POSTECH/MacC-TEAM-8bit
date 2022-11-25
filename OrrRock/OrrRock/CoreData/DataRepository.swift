@@ -169,12 +169,19 @@ class DataRepository {
         rawVideoInformation.append(info)
     }
     
-    func updateDateAndGymData(videoInformation: VideoInformation, gymVisitDate: Date, gymName: String) {
+    func updateDateData(videoInformation: VideoInformation, gymVisitDate: Date) {
         
         guard let id = videoInformation.id else { return }
         
         let target = rawVideoInformation.filter({ $0.id == id })
         target[0].gymVisitDate = gymVisitDate
+    }
+    
+    func updateGymData(videoInformation: VideoInformation, gymName: String) {
+        
+        guard let id = videoInformation.id else { return }
+        
+        let target = rawVideoInformation.filter({ $0.id == id })
         target[0].gymName = gymName
     }
     

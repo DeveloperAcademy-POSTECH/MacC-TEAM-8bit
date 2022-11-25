@@ -23,7 +23,7 @@ final class HomeViewController : UIViewController {
     var isCardView: Bool = true {
         didSet {
             homeTableView.reloadData()
-            homeTableView.separatorStyle = isCardView ? .none : .singleLine
+            homeTableView.separatorStyle = isCardView ? .none : .none
         }
     }
     
@@ -66,17 +66,25 @@ final class HomeViewController : UIViewController {
     }()
     
     private let uploadButton: UIButton = {
-        let view = UIButton()
-        view.setImage(UIImage(named: "upload icon"), for: .normal)
-        view.addTarget(self, action: #selector(videoButtonPressed), for: .touchUpInside)
-        return view
+        let button = UIButton()
+        
+        let icon = UIImage(named: "upload icon")?.resized(to: CGSize(width: 30, height: 19)).withRenderingMode(.alwaysTemplate)
+        
+        button.setImage(icon, for: .normal)
+        button.tintColor = .orrGray600
+        
+        button.addTarget(self, action: #selector(videoButtonPressed), for: .touchUpInside)
+        
+        return button
     }()
-    
     
     private lazy var quickActionButton: UIButton = {
         let button = UIButton(primaryAction: UIAction(title: "", handler: { _ in}))
-        button.setImage(UIImage(systemName: "line.3.horizontal.decrease.circle.fill"), for: .normal)
-        button.tintColor = .orrGray500
+        
+        let icon = UIImage(systemName: "line.3.horizontal.decrease.circle.fill")?.resized(to: CGSize(width: 25, height: 25)).withRenderingMode(.alwaysTemplate)
+        
+        button.setImage(icon, for: .normal)
+        button.tintColor = .orrGray600
         
         // QuickAction은 UIMenu() 라는 컴포넌트로 구현할 수 있음
         // 버튼의 menu에 UIMenu로 감싼 UIAction들을 담아주기
@@ -305,11 +313,12 @@ final class HomeViewController : UIViewController {
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 
-    //MARK: 스와이프 온보딩을 보고 싶다면 해당 상단의 코드를 주석처리후 하단 주석을 풀어주세요.
+//    MARK: 스와이프 온보딩을 보고 싶다면 해당 상단의 코드를 주석처리후 하단 주석을 풀어주세요.
 //    @objc func videoButtonPressed(sender: UIButton){
-//        let nextVC = SwipeOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
-//        nextVC.modalPresentationStyle = .fullScreen
-//        self.present(nextVC, animated: true, completion: nil)
+//        //여기서 실행하면 온보딩을 여러번 볼 수 있어요.
+//            let nextVC = SwipeOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+//            nextVC.modalPresentationStyle = .fullScreen
+//            self.present(nextVC, animated: true, completion: nil)
 //    }
     
     @objc func segmentControl(_ sender: BetterSegmentedControl) {

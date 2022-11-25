@@ -29,6 +29,18 @@ extension UIColor {
     //SUB COLOR
     static let orrPass = UIColor(named: "oRPass")
     static let orrFail = UIColor(named: "oRFail")
+    
+    //Holder Picker Color
+    static let holder0 = UIColor(named: "V0_Color")
+    static let holder1 = UIColor(named: "V1_Color")
+    static let holder2 = UIColor(named: "V2_Color")
+    static let holder3 = UIColor(named: "V3_Color")
+    static let holder4 = UIColor(named: "V4_Color")
+    static let holder5 = UIColor(named: "V5_Color")
+    static let holder6 = UIColor(named: "V6_Color")
+    static let holder7 = UIColor(named: "V7_Color")
+    static let holder8 = UIColor(named: "V8_Color")
+    static let holder9 = UIColor(named: "V9_Color")
 }
 
 extension UIColor {

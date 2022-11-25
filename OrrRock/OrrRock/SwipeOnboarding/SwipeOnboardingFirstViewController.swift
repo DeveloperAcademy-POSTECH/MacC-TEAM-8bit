@@ -13,13 +13,7 @@ class SwipeOnboardingFirstViewController: UIViewController {
     // 오토레이아웃의 시작점이 되는 값입니다. 변경시 류하에게 문의 주세요.
     let padding = 68
     var delegate: SwipeOnboardingViewControllerDelegate?
-    
-    //closeButton의 밑줄을 처리 하기위한 커스텀
-    let closeButtonAttributes: [NSAttributedString.Key: Any] = [
-        .font: UIFont.systemFont(ofSize: 15),
-        .foregroundColor: UIColor(hex: "969696"),
-        .underlineStyle: NSUnderlineStyle.single.rawValue
-    ]
+    var chekNextbuttonClick = false
     
     private lazy var nextButton: UIButton = {
         let btn = UIButton()
@@ -34,14 +28,10 @@ class SwipeOnboardingFirstViewController: UIViewController {
         return btn
     }()
     
-    private lazy var closeButton: UIButton = {
-        let attributeString = NSMutableAttributedString(
-            string: "이미 잘 할 수 있어요",
-            attributes: closeButtonAttributes
-        )
+    private lazy var skipButton: UIButton = {
         let btn = UIButton()
-        btn.addTarget(self, action: #selector(pressCloseButton), for: .touchUpInside)
-        btn.setAttributedTitle(attributeString, for: .normal)
+        btn.addTarget(self, action: #selector(pressSkipButton), for: .touchUpInside)
+        btn.setAttributedTitle("이미 잘 할 수 있어요".underLineAttribute(), for: .normal)
         return btn
     }()
     
@@ -68,12 +58,16 @@ extension SwipeOnboardingFirstViewController {
     
     @objc
     func pressNextButton() {
-        self.delegate?.changeNextView()
+        guard chekNextbuttonClick else {
+            self.chekNextbuttonClick = true
+            self.delegate?.changeNextView()
+            return
+        }
     }
     
     @objc
-    func pressCloseButton() {
-        self.presentingViewController?.dismiss(animated: true, completion:nil)
+    func pressSkipButton() {
+        self.delegate?.skipOnboarding()
     }
 }
 
@@ -99,8 +93,8 @@ extension SwipeOnboardingFirstViewController {
             $0.height.equalTo(56)
         }
         
-        view.addSubview(closeButton)
-        closeButton.snp.makeConstraints {
+        view.addSubview(skipButton)
+        skipButton.snp.makeConstraints {
             $0.centerX.equalTo(view)
             $0.bottom.equalTo(nextButton.snp.top).offset(-OrrPd.pd4.rawValue)
         }

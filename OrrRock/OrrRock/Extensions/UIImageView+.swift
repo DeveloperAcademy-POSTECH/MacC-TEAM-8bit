@@ -18,6 +18,9 @@ extension UIImageView {
             r = 48; g = 176; b = 199
         case .fail :
             r = 242; g = 52; b = 52
+        // TODO: 디자인 상의 후 색상 값 수정
+        case .delete:
+            r = 178; g = 178; b = 178
         case .clear :
             r = 255; g = 255; b = 255
         }

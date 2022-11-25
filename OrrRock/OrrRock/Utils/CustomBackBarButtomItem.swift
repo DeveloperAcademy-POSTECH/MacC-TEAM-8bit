@@ -20,7 +20,7 @@ class CustomBackBarButtomItem: UIBarButtonItem {
     convenience init(target: AnyObject?, action: Selector) {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
-        button.setTitle("longlonglong", for: .normal)
+        button.setTitle("longlong", for: .normal)
         button.setTitleColor(.clear, for: .normal)
         button.sizeToFit()
         button.addTarget(target, action: action, for: .touchUpInside)

@@ -36,8 +36,8 @@ class VideoDetailViewController: UIViewController {
     
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(respondToTapGesture(_:)))
     
+    private var exportButton: UIBarButtonItem!
     private var infoButton: UIBarButtonItem!
-    private var feedbackButton: UIBarButtonItem!
     private var trashButton: UIBarButtonItem!
     var soundButton: UIBarButtonItem!
     var playButton: UIBarButtonItem!
@@ -105,21 +105,29 @@ class VideoDetailViewController: UIViewController {
         navigationController?.toolbar.backgroundColor = .orrWhite
         
         navigationItem.leftBarButtonItem = goBackButton
-        navigationItem.rightBarButtonItem = favoriteButton
+       
         
         // 툴바 버튼 아이템 생성
+        exportButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(exportAction))
         infoButton = UIBarButtonItem(image: UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle"), style: .plain, target: self, action: #selector(showInfo))
-        feedbackButton = UIBarButtonItem(title: "피드백 입력하기", style: .plain, target: self, action: #selector(feedbackAction))
         trashButton = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteVideoAction))
         soundButton = UIBarButtonItem(image: UIImage(systemName: "speaker.slash.fill"), style: .plain, target: self, action: #selector(soundVideoAction))
         var items = [UIBarButtonItem]()
         playButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(playVideoAction))
         iconSpace.width = 8.4
         
-        [soundButton,iconSpace,flexibleSpace,playButton,flexibleSpace,feedbackButton,flexibleSpace,infoButton,flexibleSpace,trashButton].forEach {
+        [exportButton,flexibleSpace,favoriteButton,flexibleSpace,playButton,iconSpace,flexibleSpace,soundButton,flexibleSpace,infoButton,flexibleSpace,trashButton].forEach {
             items.append($0)
         }
         self.toolbarItems = items
+    }
+    // 공유하기 버튼을 눌렀을 때 로직
+    @objc func exportAction() {
+        //FIXME: Dodo 파트 수정 이후 데이터 연결 수정 필요
+        let exportViewController = ExportViewController()
+        exportViewController.videoInformation = currentVideoInformation
+        exportViewController.videoAsset = videoDetailPageViewController.videoDataFomatter(videoLocalIdentifier: videoInformation.videoLocalIdentifier!)
+        self.present(exportViewController, animated: true)
     }
     
     // 정보를 보여주는 뷰를 띄워주는 함수
@@ -128,7 +136,6 @@ class VideoDetailViewController: UIViewController {
         infoButton.image = UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle")
         navigationController?.hidesBarsOnTap = !isShowInfo
         feedbackText = videoInfoView.feedbackTextView.text!
-        feedbackButton.title = videoInfoView.feedbackTextView.textColor == .placeholderText ? "피드백 입력하기" : "피드백 확인하기"
         if isShowInfo {
             UIView.animate(withDuration: 0.2, animations: {
                 self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -430)
@@ -187,32 +194,6 @@ class VideoDetailViewController: UIViewController {
         VideoDetailViewControllerDelegate?.changeVideoPlayAndStop()
         print(#function)
         
-    }
-    
-    // 피드백 버튼을 눌렀을 때 로직
-    @objc func feedbackAction() {
-        isShowInfo.toggle()
-        infoButton.image = UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle")
-        navigationController?.hidesBarsOnTap = !isShowInfo
-        feedbackText = videoInfoView.feedbackTextView.text!
-        feedbackButton.title = self.videoInfoView.feedbackTextView.textColor == .placeholderText ? "피드백 입력하기" : "피드백 확인하기"
-        if isShowInfo {
-            UIView.animate(withDuration: 0.2, animations: {
-                self.videoInfoView.feedbackTextView.becomeFirstResponder()
-                self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -430)
-                self.videoDetailPageViewController.view.transform = CGAffineTransform(translationX: 0, y: -430)
-                self.navigationController?.navigationBar.layer.opacity = 0
-                self.topSafeAreaView.layer.opacity = 0
-            })
-        } else {
-            UIView.animate(withDuration: 0.2, animations: {
-                self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
-                self.videoDetailPageViewController.view.transform = CGAffineTransform(translationX: 0, y: 0)
-                self.navigationController?.navigationBar.layer.opacity = 1
-                self.topSafeAreaView.layer.opacity = 1
-            })
-        }
-        print(#function)
     }
     
     // 좋아요 버튼을 눌렀을 때 로직
@@ -275,7 +256,6 @@ extension VideoDetailViewController {
             self.topSafeAreaView.layer.opacity = 1
             // 키보드의 유무에 따라 버튼 옵션 변경
             navigationItem.leftBarButtonItem = isShowKeyboard ? cancelButton : goBackButton
-            navigationItem.rightBarButtonItem = isShowKeyboard ? completeButton : favoriteButton
             feedbackText = videoInfoView.feedbackTextView.text!
             DataManager.shared.updateFeedback(videoInformation: currentVideoInformation!, feedback: feedbackText!)
             navigationController?.interactivePopGestureRecognizer?.isEnabled = false
@@ -289,7 +269,6 @@ extension VideoDetailViewController {
             self.topSafeAreaView.layer.opacity = 0
             // 키보드의 유무에 따라 버튼 옵션 변경
             navigationItem.leftBarButtonItem = isShowKeyboard ? cancelButton : goBackButton
-            navigationItem.rightBarButtonItem = isShowKeyboard ? completeButton : favoriteButton
             feedbackText = videoInfoView.feedbackTextView.text!
             DataManager.shared.updateFeedback(videoInformation: currentVideoInformation!, feedback: feedbackText!)
             navigationController?.interactivePopGestureRecognizer?.isEnabled = true
