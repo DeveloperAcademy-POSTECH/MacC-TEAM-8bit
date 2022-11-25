@@ -19,8 +19,8 @@ class RouteFindingThumbnailCollectionViewCell: UICollectionViewCell {
     
     let collectionViewCellSize: Int = 62
     
-    lazy var pageImage: UIView = {
-        let view = UIView()
+    lazy var pageImage: UIImageView = {
+        let view = UIImageView()
         view.backgroundColor = .white
         return view
     }()

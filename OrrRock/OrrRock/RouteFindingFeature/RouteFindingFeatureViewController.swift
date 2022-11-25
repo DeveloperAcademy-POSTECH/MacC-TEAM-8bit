@@ -23,9 +23,13 @@ class RouteFindingFeatureViewController: UIViewController {
     let collectionViewCellSize: Int = 62
     
     // MARK: View Components
-    var backgroundImageView: UIImageView = {
+    lazy var backgroundImageView: UIImageView = {
         let view = UIImageView()
-//        view.image = 루트파인딩 문제 이미지 삽입
+
+        let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)!.windows.first
+        let contentHeight = view.frame.height - Double(((window?.safeAreaInsets.top)! + (window?.safeAreaInsets.bottom)!))
+        let contentWidth = view.frame.width
+        view.image = routeInfo.imageLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: contentWidth, height: contentHeight))
         view.backgroundColor = .white
         return view
     }()
@@ -47,10 +51,25 @@ class RouteFindingFeatureViewController: UIViewController {
         return collection
     }()
     
+    let pageNumberingLabelView: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        label.textColor = .orrWhite
+        label.font = .systemFont(ofSize: 12.0, weight: .regular)
+        return label
+    }()
+    
+    private lazy var pageNumberingView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .orrBlack?.withAlphaComponent(0.6)
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    
     var exitButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         button.layer.cornerRadius = 20
-        button.backgroundColor = .black.withAlphaComponent(0.4)
+        button.backgroundColor = .orrGray700
         button.setImage(UIImage(systemName: "multiply"), for: .normal)
         button.tintColor = .orrWhite
         return button
@@ -59,7 +78,7 @@ class RouteFindingFeatureViewController: UIViewController {
     var doneButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 64, height: 40))
         button.layer.cornerRadius = 20
-        button.backgroundColor = .black.withAlphaComponent(0.4)
+        button.backgroundColor = .orrGray700
         button.setTitle("완료", for: .normal)
         button.setTitleColor(.orrWhite, for: .normal)
         button.setTitleColor(.orrGray500, for: .highlighted)
@@ -85,7 +104,7 @@ class RouteFindingFeatureViewController: UIViewController {
         // 발 이미지로 대체하기
         
         let stackView = UIStackView(arrangedSubviews: [handButton, footButton])
-        stackView.backgroundColor = .black.withAlphaComponent(0.4)
+        stackView.backgroundColor = .orrGray700
         // stackView의 width가 40이므로, cornerRadius의 값은 20
         stackView.layer.cornerRadius = 20
         stackView.axis = .vertical
@@ -96,7 +115,7 @@ class RouteFindingFeatureViewController: UIViewController {
     
     lazy var deleteView: UIView = {
         let view = UIView()
-        view.backgroundColor = .black.withAlphaComponent(0.3)
+        view.backgroundColor = .black.withAlphaComponent(0.4)
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(cancelDeleteMode))
         view.addGestureRecognizer(gestureRecognizer)
@@ -107,16 +126,18 @@ class RouteFindingFeatureViewController: UIViewController {
     lazy var deleteButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         
-        button.setImage(UIImage(systemName: "minus.circle.fill"), for: .normal)
+        button.setImage(UIImage(systemName: "minus.circle.fill")?.resized(to: CGSize(width: 26, height: 26)).withTintColor(.systemRed, renderingMode: .alwaysTemplate), for: .normal)
         button.addTarget(self, action: #selector(deletePage(_:)), for: .touchUpInside)
+        button.backgroundColor = .orrWhite
+        button.layer.cornerRadius = 14
         button.tintColor = .systemRed
         
         return button
     }()
     
-    lazy var deleteImage: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        view.backgroundColor = .white
+    lazy var deleteImage: UIImageView = {
+        let view = UIImageView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        view.image = routeInfo.imageLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: collectionViewCellSize, height:  collectionViewCellSize))
         return view
     }()
     
@@ -181,6 +202,7 @@ class RouteFindingFeatureViewController: UIViewController {
     func selectPage() {
         guard let selectedCell = centerCell else { return }
         pageView.snp.removeConstraints()
+        pageNumberingLabelView.text = "\(selectedCell.indexPathOfCell.row + 1)/\(pages.count)"
         
         pageView = pageViews[selectedCell.indexPathOfCell.row]
         pageView.snp.makeConstraints {
@@ -197,6 +219,7 @@ class RouteFindingFeatureViewController: UIViewController {
         deleteView.addSubview(deleteButton)
         deleteButton.snp.makeConstraints {
             $0.centerX.equalTo(deleteView.snp.centerX)
+            $0.width.height.equalTo(28)
             $0.bottom.equalTo(thumbnailCollectionView.snp.top).offset(-20)
         }
         
@@ -212,7 +235,10 @@ class RouteFindingFeatureViewController: UIViewController {
         deleteView.removeFromSuperview()
         deleteButton.removeFromSuperview()
         deleteImage.removeFromSuperview()
-        deleteImage.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        UIView.animate(withDuration: 0.2) {
+            self.deleteImage.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            self.pageNumberingView.transform = CGAffineTransform(translationX: 0, y: 0)
+        }
     }
     
     @objc func deletePage(_ sender: UIButton) {
@@ -229,7 +255,6 @@ class RouteFindingFeatureViewController: UIViewController {
                                  section: targetPageCell.indexPathOfCell.section)
         
         thumbnailCollectionView.scrollToItem(at: nextPath, at: .centeredHorizontally, animated: true)
-//        scrollViewDidScroll(collectionView)
         cancelDeleteMode()
     }
 }
@@ -260,6 +285,19 @@ extension RouteFindingFeatureViewController {
             $0.height.equalTo(74)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+        }
+        
+        view.addSubview(pageNumberingView)
+        pageNumberingView.snp.makeConstraints {
+            $0.centerX.equalTo(thumbnailCollectionView.snp.centerX)
+            $0.bottom.equalTo(backgroundImageView.snp.bottom).offset(-OrrPd.pd16.rawValue)
+            $0.height.equalTo(20)
+            $0.width.equalTo(71)
+        }
+        
+        pageNumberingView.addSubview(pageNumberingLabelView)
+        pageNumberingLabelView.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
         
         view.addSubview(exitButton)
@@ -312,6 +350,7 @@ extension RouteFindingFeatureViewController: RouteFindingThumbnailCollectionView
         
         UIView.animate(withDuration: 0.2) {
             self.deleteImage.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.pageNumberingView.transform = CGAffineTransform(translationX: 0, y: -50)
         }
     }
 }

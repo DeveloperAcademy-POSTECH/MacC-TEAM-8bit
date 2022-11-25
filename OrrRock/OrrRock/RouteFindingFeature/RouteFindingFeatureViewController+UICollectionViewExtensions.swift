@@ -35,6 +35,10 @@ extension RouteFindingFeatureViewController: UICollectionViewDelegate {
             }
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
 }
 
 extension RouteFindingFeatureViewController: UICollectionViewDataSource {
@@ -46,6 +50,9 @@ extension RouteFindingFeatureViewController: UICollectionViewDataSource {
         if indexPath.row != pages.count {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RouteFindingThumbnailCollectionViewCell.identifier, for: indexPath) as! RouteFindingThumbnailCollectionViewCell
             cell.indexPathOfCell = indexPath
+            cell.pageImage.contentMode = .scaleAspectFill
+            cell.pageImage.clipsToBounds = true
+            cell.pageImage.image = routeInfo.imageLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: collectionViewCellSize / 16 * 9, height: collectionViewCellSize ))
             cell.delegate = self
             
             return cell
