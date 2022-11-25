@@ -52,6 +52,21 @@ class RouteCoreDataDAO {
         }
     }
     
+    func updateRouteDataWrittenDate(to date: Date, routeInformation: RouteInformation) {
+        guard let id = routeInformation.id else { return }
+        let request = RouteInformation.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        do {
+            let info = try context.fetch(request)
+            if let tempInfo = info.first {
+                tempInfo.setValue(date, forKey: "dataWrittenDate")
+            }
+        } catch {
+            print("CoreDataDAO UpateRoute Method \(error.localizedDescription)")
+        }
+    }
+    
     func createPageInformation(pageInfo: PageInfo, routeInformation: RouteInformation) {
         let page = PageInformation(context: context)
         page.rowOrder = Int64(pageInfo.rowOrder)
