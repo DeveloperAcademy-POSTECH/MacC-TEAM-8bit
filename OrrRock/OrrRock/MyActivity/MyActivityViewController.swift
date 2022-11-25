@@ -149,7 +149,6 @@ class MyActivityViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.backgroundColor = .clear
         self.navigationController?.isNavigationBarHidden = true
         
         setUpData()

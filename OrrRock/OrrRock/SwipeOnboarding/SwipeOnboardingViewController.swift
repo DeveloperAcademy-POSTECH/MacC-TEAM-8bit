@@ -19,7 +19,6 @@ class SwipeOnboardingViewController: UIPageViewController {
     var currentIndex: Int?
     var pendingIndex: Int?
     var index = 0
-    //MARK: Ruyha Test
     var firstView : SwipeOnboardingFirstViewController = {
         let vc = SwipeOnboardingFirstViewController()
         return vc
@@ -57,7 +56,6 @@ class SwipeOnboardingViewController: UIPageViewController {
         fifthView.delegate = self
         
         setDelegate()
-        //MARK: Ruyha 스크롤링을 막음
         self.isPagingEnabled = false
 
         }

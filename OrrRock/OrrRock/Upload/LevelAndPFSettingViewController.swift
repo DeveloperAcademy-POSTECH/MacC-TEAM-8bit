@@ -166,7 +166,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if !UserDefaults.standard.bool(forKey: "SwipeOnboardingClear"){
             let nextVC = SwipeOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
             nextVC.modalPresentationStyle = .fullScreen
@@ -175,9 +175,8 @@ final class LevelAndPFSettingViewController: UIViewController {
         
         view.backgroundColor = .orrWhite
         
-        navigationItem.leftBarButtonItem = CustomBackBarButtomItem(target: self, action: #selector(backButtonClicked))
-        navigationItem.leftBarButtonItem?.tintColor = .orrUPBlue
-        
+        self.navigationController?.setExpansionBackbuttonArea()
+
         // card UI
         setUpLayout()
         
@@ -554,11 +553,6 @@ private extension LevelAndPFSettingViewController {
                 
             }
         }
-    }
-    
-    @objc
-    func backButtonClicked() {
-        self.navigationController?.popViewController(animated: true)
     }
     
     // 모든 카드를 스와이핑 했을 때 호출되는 메서드

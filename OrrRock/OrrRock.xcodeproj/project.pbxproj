@@ -73,6 +73,7 @@
 		3AEB3D5D291C003D00A989FF /* VideoCollectionViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */; };
 		700AC6212926A1DA003DF5AF /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700AC6202926A1DA003DF5AF /* UIImageView+.swift */; };
 		704BAB5E292834DB004D987A /* NewLevelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704BAB5D292834DB004D987A /* NewLevelPickerView.swift */; };
+		705C19C929309AB300C975D5 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705C19C829309AB300C975D5 /* UINavigationController+.swift */; };
 		707B2CAE28FFF7090062C958 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 707B2CAD28FFF7090062C958 /* NVActivityIndicatorView */; };
 		707B2CB829012BFE0062C958 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB729012BFE0062C958 /* Color+.swift */; };
 		707B2CBA2901382A0062C958 /* OrrPd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B2CB92901382A0062C958 /* OrrPd.swift */; };
@@ -188,6 +189,7 @@
 		3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewMode.swift; sourceTree = "<group>"; };
 		700AC6202926A1DA003DF5AF /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		704BAB5D292834DB004D987A /* NewLevelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLevelPickerView.swift; sourceTree = "<group>"; };
+		705C19C829309AB300C975D5 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		707B2CB729012BFE0062C958 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		707B2CB92901382A0062C958 /* OrrPd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrrPd.swift; sourceTree = "<group>"; };
 		7085BA29292D2F08004FD734 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 				700AC6202926A1DA003DF5AF /* UIImageView+.swift */,
 				34E11EC8292D2C5100787316 /* UIImage+.swift */,
 				70AE8137292CA24500B4DB3F /* Font+.swift */,
+				705C19C829309AB300C975D5 /* UINavigationController+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -734,6 +737,7 @@
 				341418B42922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift in Sources */,
 				78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */,
 				342508A329001780000653D9 /* HomeViewController.swift in Sources */,
+				705C19C929309AB300C975D5 /* UINavigationController+.swift in Sources */,
 				342508A52900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift in Sources */,
 				78FEE88F2926A23B007B67BD /* VideoPlayViewController.swift in Sources */,
 				3A4641DC292FB71900C6B7A3 /* RouteDataManager.swift in Sources */,
