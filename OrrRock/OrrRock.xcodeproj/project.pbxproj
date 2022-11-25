@@ -61,6 +61,7 @@
 		3A4641D6292FB30900C6B7A3 /* RouteDataDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641D5292FB30900C6B7A3 /* RouteDataDraft.swift */; };
 		3A4641DA292FB4B400C6B7A3 /* RouteCoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641D9292FB4B400C6B7A3 /* RouteCoreDataDAO.swift */; };
 		3A4641DC292FB71900C6B7A3 /* RouteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641DB292FB71900C6B7A3 /* RouteDataManager.swift */; };
+		3A4642122931069200C6B7A3 /* RouteFindingCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4642112931069200C6B7A3 /* RouteFindingCameraViewController.swift */; };
 		3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3C52901435200BE11B5 /* VideoInfo.swift */; };
 		3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */; };
 		3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D41E28FEBADE006C718A /* AppDelegate.swift */; };
@@ -175,6 +176,7 @@
 		3A4641D5292FB30900C6B7A3 /* RouteDataDraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDataDraft.swift; sourceTree = "<group>"; };
 		3A4641D9292FB4B400C6B7A3 /* RouteCoreDataDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCoreDataDAO.swift; sourceTree = "<group>"; };
 		3A4641DB292FB71900C6B7A3 /* RouteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDataManager.swift; sourceTree = "<group>"; };
+		3A4642112931069200C6B7A3 /* RouteFindingCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingCameraViewController.swift; sourceTree = "<group>"; };
 		3A70C3C52901435200BE11B5 /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDAO.swift; sourceTree = "<group>"; };
 		3AA4D41B28FEBADE006C718A /* OrrRock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrrRock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -386,6 +388,14 @@
 			path = RouteFinding;
 			sourceTree = "<group>";
 		};
+		3A4642102931065600C6B7A3 /* RouteFindingUpload */ = {
+			isa = PBXGroup;
+			children = (
+				3A4642112931069200C6B7A3 /* RouteFindingCameraViewController.swift */,
+			);
+			path = RouteFindingUpload;
+			sourceTree = "<group>";
+		};
 		3AA4D41228FEBADE006C718A = {
 			isa = PBXGroup;
 			children = (
@@ -414,6 +424,7 @@
 				3A08879E29012CC300EFFDBB /* CoreData */,
 				3AEB3D5E291C01B000A989FF /* OnBoarding */,
 				3AEB3D5F291C027B00A989FF /* Home */,
+				3A4642102931065600C6B7A3 /* RouteFindingUpload */,
 				3AEB3D60291C02F000A989FF /* VideoDetail */,
 				3AEB3D64291C04CE00A989FF /* Upload */,
 				3AA4D41E28FEBADE006C718A /* AppDelegate.swift */,
@@ -785,6 +796,7 @@
 				3A4641BA292FA7B500C6B7A3 /* PointInformation+CoreDataProperties.swift in Sources */,
 				7085BA2A292D2F08004FD734 /* ColorPickerView.swift in Sources */,
 				78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */,
+				3A4642122931069200C6B7A3 /* RouteFindingCameraViewController.swift in Sources */,
 				70DE79602926383E0009AD43 /* SwipeOnboardingSecondViewController.swift in Sources */,
 				70A44807290452B000BE18A5 /* Button+.swift in Sources */,
 			);
