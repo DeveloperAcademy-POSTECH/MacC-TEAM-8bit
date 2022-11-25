@@ -12,7 +12,7 @@ class RouteFindingCameraViewController: UIViewController {
 
     private lazy var videoView: UIView = {
         let view = UIView()
-        view.backgroundColor = .yellow
+        view.backgroundColor = .white
         
         return view
     }()
@@ -23,6 +23,7 @@ class RouteFindingCameraViewController: UIViewController {
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.orrGray900?.cgColor
         button.layer.cornerRadius = 10
+        
         return button
     }()
     
@@ -32,6 +33,19 @@ class RouteFindingCameraViewController: UIViewController {
         button.layer.borderColor = UIColor.orrWhite?.cgColor
         button.layer.borderWidth = 4
         button.layer.cornerRadius = 37.5
+        
+        return button
+    }()
+    
+    private lazy var closeButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor(hex: "000000").withAlphaComponent(0.3)
+        button.layer.borderColor = UIColor(hex: "979797").cgColor
+        button.layer.borderWidth = 1
+        button.layer.cornerRadius = 20
+        let config = UIImage.SymbolConfiguration(pointSize: 24, weight: .medium, scale: .small)
+        let buttonSymbol = UIImage(systemName: "multiply", withConfiguration: config)?.withTintColor(UIColor.orrWhite ?? UIColor.white, renderingMode: .alwaysOriginal)
+        button.setImage(buttonSymbol, for: .normal)
         return button
     }()
     
@@ -73,6 +87,13 @@ class RouteFindingCameraViewController: UIViewController {
             $0.leading.equalTo(safeArea.snp.leading).inset(OrrPd.pd16.rawValue)
             $0.centerY.equalTo(shutterButton.snp.centerY)
             $0.width.height.equalTo(shutterButtonSize)
+        })
+        
+        view.addSubview(closeButton)
+        closeButton.snp.makeConstraints({
+            $0.leading.equalTo(safeArea.snp.leading).offset(OrrPd.pd16.rawValue)
+            $0.top.equalTo(safeArea.snp.top).offset(OrrPd.pd16.rawValue)
+            $0.width.height.equalTo(40)
         })
     }
 }
