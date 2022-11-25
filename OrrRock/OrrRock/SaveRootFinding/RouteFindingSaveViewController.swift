@@ -33,6 +33,23 @@ class RouteFindingSaveViewController: UIViewController {
         
         return btn
     }()
+    
+    private lazy var countVideoView:  UIView = {
+        let view = UIView()
+        view.backgroundColor = .orrBlack?.withAlphaComponent(0.6)
+        view.layer.cornerRadius = 10
+        
+        return view
+    }()
+    
+    lazy var countVideoLabel: UILabel = {
+        let label = UILabel()
+        label.text = "12/20"  // FIXME: 수정
+        label.textColor = .orrWhite
+        label.font = .systemFont(ofSize: 12.0, weight: .regular)
+        
+        return label
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,6 +107,19 @@ extension RouteFindingSaveViewController {
         skipButton.snp.makeConstraints {
             $0.centerX.equalTo(view)
             $0.bottom.equalTo(nextButton.snp.top).offset(-OrrPd.pd8.rawValue)
+        }
+        
+        view.addSubview(countVideoView)
+        countVideoView.snp.makeConstraints {
+            $0.bottom.equalTo(skipButton.snp.top).offset(-OrrPd.pd36.rawValue)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(24)
+            $0.width.equalTo(71)
+        }
+        
+        countVideoView.addSubview(countVideoLabel)
+        countVideoLabel.snp.makeConstraints {
+            $0.center.equalTo(countVideoView.snp.center)
         }
     }
 }
