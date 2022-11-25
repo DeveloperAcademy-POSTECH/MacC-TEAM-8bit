@@ -23,8 +23,9 @@ extension RouteFindingSectionViewController : UICollectionViewDelegate{
                 withReuseIdentifier: RouteFindingCollectionViewHeaderCell.id,
                 for: indexPath
             ) as! RouteFindingCollectionViewHeaderCell
-            supplementaryView.prepare(title: "13개의 도전", subtitle: "편집")
+            supplementaryView.prepare(title: "13개의 도전", subtitle: "편집1")
             supplementaryView.delegate = self
+            print(kind)
             return supplementaryView
             
         case UICollectionView.elementKindSectionFooter:
@@ -49,15 +50,18 @@ extension RouteFindingSectionViewController: UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        // 실사들어오면 사용할 것들
         let screenBounds = UIScreen.main.bounds
         let screenScale = UIScreen.main.scale
         let screenSize = CGSize(width: screenBounds.size.width * screenScale, height: screenBounds.size.height * screenScale)
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RouteFindingCollectionViewCustomCell", for: indexPath) as! RouteFindingCollectionViewCustomCell
         cell.cellLevelLabel.text = "V5"
         cell.cellChallengeLabel.text = "도전 완료"
         cell.cellDateLabel.text = "2022년 10월 13일"
         cell.cellTitleLabel.text = "아띠 클라이밍장"
-        cell.cellImage.image = UIImage(named: "OnboardingImage1")
+        cell.cellImage.image = UIImage(named: "SwipeOnboardingImage1")
+        cell.isSelectable = mMode == .select ? true : false
         return cell
     }
     
@@ -103,7 +107,11 @@ extension RouteFindingSectionViewController : UICollectionViewDelegateFlowLayout
 extension RouteFindingSectionViewController : RouteFindingCollectionViewHeaderCellDelegate{
     func touchEditButton() {
         mMode = mMode == .view ? .select : .view
-        print("toudhf")
+        routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
+        (routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as! RouteFindingCollectionViewHeaderCell).subTitleButton.setTitle(mMode == .select ? "완료" : "편집", for: .normal)
+        (routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as!
+        RouteFindingCollectionViewHeaderCell).subTitleButton.setTitleColor(mMode == .select ? UIColor.orrUPBlue: UIColor.orrGray400, for: .normal)
+
     }
     
 }

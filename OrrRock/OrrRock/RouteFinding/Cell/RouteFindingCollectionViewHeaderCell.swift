@@ -16,13 +16,6 @@ final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
     
     var delegate : RouteFindingCollectionViewHeaderCellDelegate?
     
-    var isTouched = false{
-        didSet{
-            subTitleButton.setTitle(isTouched ? "완료" : "편집", for:.normal)
-            subTitleButton.setTitleColor(isTouched ? .orrUPBlue : .orrGray400, for: .normal)
-        }
-    }
-    
     let titleLabel : UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -57,7 +50,8 @@ final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
     
     func prepare(title: String, subtitle: String) {
         self.titleLabel.text = title
-        self.subTitleButton.setTitle(subtitle, for: .normal)
+        self.subTitleButton.setTitle("편집", for:.normal)
+        self.subTitleButton.setTitleColor(.orrGray400, for: .normal)
     }
     
     func setUpLayout(){
@@ -75,7 +69,10 @@ final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
     }
     
     @objc func buttonTouch(){
-        isTouched.toggle()
+        
+        
         delegate?.touchEditButton()
+        
+       
     }
 }

@@ -27,7 +27,7 @@ class RouteFindingCollectionViewCustomCell : UICollectionViewCell {
     
     var isSelectable = false{
         didSet{
-            checkImage.isHidden = !isSelectable
+            selectableImage.isHidden = !isSelectable
         }
     }
 //    lazy var cellBlurView : UIView = {
@@ -39,7 +39,7 @@ class RouteFindingCollectionViewCustomCell : UICollectionViewCell {
     
     lazy var selectableImage : UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "notCheckIcon")
+        imageView.image = UIImage(named: "selectable_icon")
         imageView.isHidden = true
         return imageView
     }()
@@ -122,16 +122,16 @@ class RouteFindingCollectionViewCustomCell : UICollectionViewCell {
 //            $0.edges.equalToSuperview()
 //        }
         
-        self.addSubview(checkImage)
-        checkImage.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(OrrPd.pd8.rawValue)
-            $0.trailing.equalToSuperview().offset(OrrPd.pd8.rawValue)
-        }
-        
         self.addSubview(selectableImage)
         selectableImage.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(OrrPd.pd8.rawValue)
-            $0.trailing.equalToSuperview().offset(OrrPd.pd8.rawValue)
+            $0.top.equalToSuperview().inset(OrrPd.pd8.rawValue)
+            $0.trailing.equalToSuperview().inset(OrrPd.pd8.rawValue)
+        }
+        
+        self.addSubview(checkImage)
+        checkImage.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(OrrPd.pd8.rawValue)
+            $0.trailing.equalToSuperview().inset(OrrPd.pd8.rawValue)
         }
         
         self.addSubview(infoView)
