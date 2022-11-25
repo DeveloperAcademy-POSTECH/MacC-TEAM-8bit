@@ -129,31 +129,31 @@ class RouteFindingSectionViewController: UIViewController {
     }
     
     @objc func touchDeleteButton(){
-        let vc = UIViewController()
-        vc.view.backgroundColor = .systemYellow
+        let vc = RouteModalViewController()
         vc.modalPresentationStyle = .pageSheet
-        
+        vc.isFoldering = false
         if let sheet = vc.sheetPresentationController {
             sheet.detents = [
                 .custom { _ in
                     return 235
                 }
             ]
+            sheet.prefersGrabberVisible = true
         }
         present(vc, animated: true, completion: nil)
     }
     
     @objc func touchFolderButton(){
-        let vc = UIViewController()
-        vc.view.backgroundColor = .systemYellow
+        let vc = RouteModalViewController()
         vc.modalPresentationStyle = .pageSheet
-        
+        vc.isFoldering = true
         if let sheet = vc.sheetPresentationController {
             sheet.detents = [
                 .custom { _ in
                     return 235
                 }
             ]
+            sheet.prefersGrabberVisible = true
         }
         present(vc, animated: true, completion: nil)
     }
