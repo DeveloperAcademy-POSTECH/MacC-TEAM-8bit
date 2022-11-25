@@ -7,9 +7,12 @@
 
 import UIKit
 import SnapKit
+import PhotosUI
 
 class RouteFindingCameraViewController: UIViewController {
 
+    private var currentLocalIdentifier: String?
+    
     private lazy var videoView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -23,7 +26,9 @@ class RouteFindingCameraViewController: UIViewController {
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.orrGray900?.cgColor
         button.layer.cornerRadius = 10
+        button.clipsToBounds = true
         
+        button.addTarget(self, action: #selector(showPhotoPicker), for: .touchUpInside)
         return button
     }()
     
@@ -53,8 +58,9 @@ class RouteFindingCameraViewController: UIViewController {
         super.viewDidLoad()
 
         setUpLayout()
+        setPhotosButtonImage()
     }
-    
+  
     func setUpLayout() {
         
         let shutterButtonSize: CGFloat = 75
@@ -95,5 +101,73 @@ class RouteFindingCameraViewController: UIViewController {
             $0.top.equalTo(safeArea.snp.top).offset(OrrPd.pd16.rawValue)
             $0.width.height.equalTo(40)
         })
+    }
+     
+}
+
+extension RouteFindingCameraViewController {
+    @objc func showPhotoPicker() {
+        let photoLibrary = PHPhotoLibrary.shared()
+        var config = PHPickerConfiguration(photoLibrary: photoLibrary)
+        config.filter = .images
+        config.preferredAssetRepresentationMode = .current
+        config.selectionLimit = 1
+        let picker = PHPickerViewController(configuration: config)
+        picker.delegate = self
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func fetchLastPhoto(fetchResult: PHFetchResult<PHAsset>) -> UIImage? {
+        
+        var resultImage: UIImage = UIImage()
+        
+        let requestOptions = PHImageRequestOptions()
+        requestOptions.isSynchronous = true
+        
+        PHImageManager.default().requestImage(for: fetchResult.object(at: 0) as PHAsset, targetSize: view.frame.size, contentMode: PHImageContentMode.default, options: requestOptions, resultHandler: { (image, _) in
+            if let image = image {
+                let width = image.size.width
+                let height = image.size.height
+                let croppedImage = image.cropped(rect: CGRect(x: 0, y: (height - width)/2, width: width, height: width))
+                resultImage = croppedImage ?? UIImage()
+                
+            }
+        })
+        
+        return resultImage
+    }
+    
+    func setPhotosButtonImage() {
+        
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
+        fetchOptions.fetchLimit = 1
+        
+        let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: fetchOptions)
+        
+        if fetchResult.count > 0 {
+            let image = fetchLastPhoto(fetchResult: fetchResult)
+            photosButton.setImage(image, for: .normal)
+        }
+        
+    }
+}
+
+extension RouteFindingCameraViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        
+        guard let provider = results.first?.itemProvider else {return}
+        
+        let identifiers = results.compactMap(\.assetIdentifier)
+        let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: nil)
+        currentLocalIdentifier = fetchResult[0].localIdentifier
+
+        provider.loadFileRepresentation(forTypeIdentifier: "public.image") { url, error in
+            guard error == nil else {
+                print(error as Any)
+                return
+            }
+        }
+        dismiss(animated: true)
     }
 }
