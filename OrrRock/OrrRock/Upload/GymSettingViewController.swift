@@ -76,10 +76,6 @@ class GymSettingViewController: UIViewController {
         setUITableViewDelegate()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-//        gymTextField.becomeFirstResponder()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         gymTextField.becomeFirstResponder()
 
