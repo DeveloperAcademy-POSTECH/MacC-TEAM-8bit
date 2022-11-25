@@ -17,6 +17,8 @@ class RouteFindingThumbnailCollectionViewCell: UICollectionViewCell {
     var delegate: RouteFindingThumbnailCollectionViewCellDelegate?
     var indexPathOfCell: IndexPath!
     
+    let collectionViewCellSize: Int = 62
+    
     lazy var pageImage: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -49,7 +51,7 @@ class RouteFindingThumbnailCollectionViewCell: UICollectionViewCell {
         
         contentView.addSubview(selectedBar)
         selectedBar.snp.makeConstraints {
-            $0.width.equalTo(62)
+            $0.width.equalTo(collectionViewCellSize)
             $0.height.equalTo(5)
             
             $0.top.equalTo(pageImage.snp.bottom).offset(2)
@@ -97,9 +99,12 @@ class RouteFindingThumbnailCollectionViewAddCell: UICollectionViewCell {
     
     var delegate: RouteFindingThumbnailCollectionViewAddCellDelegate?
     
+    let collectionViewCellSize: Int = 62
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        contentView.backgroundColor = .orrGray600
         setUpLayout()
     }
     
@@ -108,9 +113,9 @@ class RouteFindingThumbnailCollectionViewAddCell: UICollectionViewCell {
     }
     
     lazy var button: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
-        button.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
-        
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: collectionViewCellSize, height: collectionViewCellSize))
+        button.setImage(UIImage(systemName: "plus.circle.fill")?.resized(to: CGSize(width: 24, height: 24)).withTintColor(.orrWhite!, renderingMode: .alwaysTemplate), for: .normal)
+        button.tintColor = .orrWhite
         button.addTarget(self, action: #selector(tapAddButton(_:)), for: .touchUpInside)
         return button
     }()

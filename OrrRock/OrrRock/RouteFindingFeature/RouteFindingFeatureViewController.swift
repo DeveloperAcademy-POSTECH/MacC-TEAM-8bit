@@ -20,6 +20,8 @@ class RouteFindingFeatureViewController: UIViewController {
     var centerCell: RouteFindingThumbnailCollectionViewCell?
     var afterCell: RouteFindingThumbnailCollectionViewCell?
     
+    let collectionViewCellSize: Int = 62
+    
     // MARK: View Components
     var backgroundImageView: UIImageView = {
         let view = UIImageView()
@@ -27,10 +29,9 @@ class RouteFindingFeatureViewController: UIViewController {
         view.backgroundColor = .white
         return view
     }()
-    
-    var pageView: UIView = {
-        let view = UIView()
-        
+
+    var pageView: RouteFindingPageView = {
+        let view = RouteFindingPageView()
         return view
     }()
     
@@ -44,6 +45,53 @@ class RouteFindingFeatureViewController: UIViewController {
         collection.register(RouteFindingThumbnailCollectionViewAddCell.classForCoder(), forCellWithReuseIdentifier: RouteFindingThumbnailCollectionViewAddCell.identifier)
         
         return collection
+    }()
+    
+    var exitButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        button.layer.cornerRadius = 20
+        button.backgroundColor = .black.withAlphaComponent(0.4)
+        button.setImage(UIImage(systemName: "multiply"), for: .normal)
+        button.tintColor = .orrWhite
+        return button
+    }()
+    
+    var doneButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 64, height: 40))
+        button.layer.cornerRadius = 20
+        button.backgroundColor = .black.withAlphaComponent(0.4)
+        button.setTitle("완료", for: .normal)
+        button.setTitleColor(.orrWhite, for: .normal)
+        button.setTitleColor(.orrGray500, for: .highlighted)
+        return button
+    }()
+    
+    var footHandStackView: UIStackView = {
+//        let handButton = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        let handButton = UIButton()
+        handButton.backgroundColor = .clear
+        // 손 이미지로 대체하기
+        handButton.setImage(UIImage(systemName: "house"), for: .normal)
+        handButton.tintColor = .orrWhite
+        // 손 이미지로 대체하기
+        
+//        let footButton = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        let footButton = UIButton()
+        footButton.backgroundColor = .clear
+        
+        // 발 이미지로 대체하기
+        footButton.setImage(UIImage(systemName: "house"), for: .normal)
+        footButton.tintColor = .orrWhite
+        // 발 이미지로 대체하기
+        
+        let stackView = UIStackView(arrangedSubviews: [handButton, footButton])
+        stackView.backgroundColor = .black.withAlphaComponent(0.4)
+        // stackView의 width가 40이므로, cornerRadius의 값은 20
+        stackView.layer.cornerRadius = 20
+        stackView.axis = .vertical
+//        stackView.alignment = .center
+        stackView.distribution = .fillEqually
+        return stackView
     }()
     
     lazy var deleteView: UIView = {
@@ -67,7 +115,7 @@ class RouteFindingFeatureViewController: UIViewController {
     }()
     
     lazy var deleteImage: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 62, height: 62))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         view.backgroundColor = .white
         return view
     }()
@@ -212,6 +260,30 @@ extension RouteFindingFeatureViewController {
             $0.height.equalTo(74)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+        }
+        
+        view.addSubview(exitButton)
+        exitButton.snp.makeConstraints { 
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(16)
+            $0.height.equalTo(40)
+            $0.width.equalTo(40)
+        }
+        
+        view.addSubview(doneButton)
+        doneButton.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(16)
+            $0.height.equalTo(40)
+            $0.width.equalTo(64)
+        }
+        
+        view.addSubview(footHandStackView)
+        footHandStackView.snp.makeConstraints {
+            $0.centerY.equalTo(backgroundImageView.snp.centerY)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
+            $0.height.equalTo(110)
+            $0.width.equalTo(40)
         }
     }
     

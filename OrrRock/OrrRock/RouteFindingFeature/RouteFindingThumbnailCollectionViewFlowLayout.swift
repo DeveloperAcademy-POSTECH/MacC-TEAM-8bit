@@ -8,13 +8,16 @@
 import UIKit
 
 class RouteFindingThumbnailCollectionViewFlowLayout: UICollectionViewFlowLayout {
+    
+    let collectionViewCellSize: Int = 62
+    
     override func prepare() {
         super.prepare()
         
         scrollDirection = .horizontal
         minimumLineSpacing = 2
         minimumInteritemSpacing = 2
-        itemSize = CGSize(width: 62, height: 62)
+        itemSize = CGSize(width: collectionViewCellSize, height: collectionViewCellSize)
     }
     
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
