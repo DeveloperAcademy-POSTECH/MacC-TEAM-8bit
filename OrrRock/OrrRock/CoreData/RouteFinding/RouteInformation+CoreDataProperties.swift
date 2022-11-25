@@ -44,7 +44,7 @@ extension RouteInformation {
 }
 
 extension RouteInformation : Identifiable {
-    func routeInformationDraft() -> RouteInfo {
+    func convertToRouteInfo() -> RouteInfo {
         let pageArray = Array(self.pages as! Set<PageInformation>)
         var pageInfo: [PageInfo] = []
         var points2dimensionArray: [[PointInfo]] = []

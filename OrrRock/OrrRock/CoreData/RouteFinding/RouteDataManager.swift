@@ -40,13 +40,13 @@ final class RouteDataManager {
     
     func addPageData(pageInfoList: [PageInfo], routeInformation: RouteInformation) {
         for info in pageInfoList {
-            coreDataDAO.createPageData(pageInfo: info, routeInformation: routeInformation)
+            coreDataDAO.createPageInformation(pageInfo: info, routeInformation: routeInformation)
         }
     }
     
     func addPointData(pointInfoList: [PageInformation : [PointInfo]]) {
         for (key, value) in pointInfoList {
-            coreDataDAO.createPointData(pointInfoList: value, pageInformation: key)
+            coreDataDAO.createPointInformation(pointInfoList: value, pageInformation: key)
         }
     }
     

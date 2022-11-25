@@ -27,7 +27,7 @@ class RouteCoreDataDAO {
         
         if routeInfo.pages.count != 0 {
             routeInfo.pages.forEach({ pageInfo in
-                createPageData(pageInfo: pageInfo, routeInformation: routeInformation as! RouteInformation)
+                createPageInformation(pageInfo: pageInfo, routeInformation: routeInformation as! RouteInformation)
             })
         }
         return routeInformation
@@ -52,17 +52,17 @@ class RouteCoreDataDAO {
         }
     }
     
-    func createPageData(pageInfo: PageInfo, routeInformation: RouteInformation) {
+    func createPageInformation(pageInfo: PageInfo, routeInformation: RouteInformation) {
         let page = PageInformation(context: context)
         page.rowOrder = Int64(pageInfo.rowOrder)
         page.setValue(UUID(), forKey: "id")
         routeInformation.addToPages(page)
         
         guard let points = pageInfo.points else { return }
-        createPointData(pointInfoList: points, pageInformation: page)
+        createPointInformation(pointInfoList: points, pageInformation: page)
     }
     
-    func createPointData(pointInfoList: [PointInfo], pageInformation: PageInformation) {
+    func createPointInformation(pointInfoList: [PointInfo], pageInformation: PageInformation) {
         for info in pointInfoList {
             let bodyPoint = PointInformation(context: context)
             bodyPoint.id = UUID()
@@ -102,7 +102,7 @@ class RouteCoreDataDAO {
                     tempInfo.forceDirection = Int16(data.forceDirection.rawValue)
                     tempInfo.setValue(data.isForce, forKey: "isForce")
                     tempInfo.setValue(data.footOrHand.rawValue, forKey: "footOrHand")
-                    print(tempInfo)
+
                 }
         } catch {
             print("CoreDataDAO UpdatePointData Method \(error.localizedDescription)")

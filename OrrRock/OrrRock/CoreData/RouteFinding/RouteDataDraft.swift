@@ -34,7 +34,7 @@ final class RouteDataDraft {
     
     var pages: [PageInformation] = []
     
-    init(manager: RouteDataManager, routeFinding: RouteInformation?) {
+    init(manager: RouteDataManager, existingRouteFinding routeFinding: RouteInformation?) {
         
         routeDataManager = manager
         
@@ -43,6 +43,7 @@ final class RouteDataDraft {
         guard let route = route else {
             routeInfoForUI = RouteInfo(imageLocalIdentifier: "", dataWrittenDate: Date(), gymName: "", problemLevel: 0, isChallengeComplete: false, pages: [PageInfo(rowOrder: 0, points: [])])
             return }
+        routeInfoForUI = route.convertToRouteInfo()
         pages = Array(route.pages as! Set<PageInformation>)
     }
     
