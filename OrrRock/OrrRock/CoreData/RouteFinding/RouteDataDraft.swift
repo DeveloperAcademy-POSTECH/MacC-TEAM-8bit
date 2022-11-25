@@ -83,7 +83,7 @@ final class RouteDataDraft {
     }
     
     // MARK: REMOVE PAGE
-    func removePageData(pageIndex: Int) {
+    func removePageData(at pageIndex: Int) {
         
         // UI DATA PART: UI를 구성하는 데이터에서 삭제
         let removePageInfoData = routeInfoForUI.pages[pageIndex]
@@ -103,7 +103,7 @@ final class RouteDataDraft {
     }
     
     // MARK: CREATE POINT
-    func addPointData(pageIndex: Int, pointInfo: PointInfo) {
+    func addPointData(pageAt pageIndex: Int, addTargetPointInfo pointInfo: PointInfo) {
 
         // UI DATA PART: UI를 구성하는 데이터에 추가
         routeInfoForUI.pages[pageIndex].points?.append(pointInfo)
@@ -124,7 +124,7 @@ final class RouteDataDraft {
     }
     
     // MARK: DELETE POINT
-    func removePointData(pageIndex: Int, pointIndex: Int) {
+    func removePointData(pageAt pageIndex: Int, pointIndexOf pointIndex: Int) {
         
         // UI DATA PART: UI를 구성하는 데이터에서 삭제
         routeInfoForUI.pages[pageIndex].points?.remove(at: pointIndex)
@@ -151,7 +151,7 @@ final class RouteDataDraft {
     }
     
     // MARK: UPDATE POINT
-    func updatePointData(pageIndex: Int, pointIndex: Int, targetPointInfo: PointInfo) {
+    func updatePointData(pageAt pageIndex: Int, pointIndexOf pointIndex: Int, updateTargetPointInfo targetPointInfo: PointInfo) {
         
         let page = routeInfoForUI.pages[pageIndex]
         guard let points = page.points else { return }
