@@ -74,7 +74,8 @@ extension RouteFindingSectionViewController: UICollectionViewDataSource{
         case .select:
             dictionarySelectedIndexPath[indexPath] = true
             //toolbar enable 들어갈 부분
-            
+            self.folderButton.isEnabled = true
+            self.deleteButton.isEnabled = true
         }
     }
     
@@ -83,6 +84,8 @@ extension RouteFindingSectionViewController: UICollectionViewDataSource{
             dictionarySelectedIndexPath[indexPath] = false
             collectionView.cellForItem(at: indexPath)?.isHighlighted = false
             collectionView.cellForItem(at: indexPath)?.isSelected = false
+            self.folderButton.isEnabled = dictionarySelectedIndexPath.values.filter({$0 == true}).count == 0 ? false : true
+            self.deleteButton.isEnabled = dictionarySelectedIndexPath.values.filter({$0 == true}).count == 0 ? false : true
         }
     }
     
@@ -109,13 +112,17 @@ extension RouteFindingSectionViewController : RouteFindingCollectionViewHeaderCe
         routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
         (routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as! RouteFindingCollectionViewHeaderCell).subTitleButton.setTitle(mMode == .select ? "완료" : "편집", for: .normal)
         (routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as!
-        RouteFindingCollectionViewHeaderCell).subTitleButton.setTitleColor(mMode == .select ? UIColor.orrUPBlue: UIColor.orrGray400, for: .normal)
-
-       
-            self.tabBarController?.tabBar.isHidden = self.mMode == .select ? true : false
-            self.bottomOptionView.layer.opacity = self.mMode == .select ? 1.0 : 0.0
+         RouteFindingCollectionViewHeaderCell).subTitleButton.setTitleColor(mMode == .select ? UIColor.orrUPBlue: UIColor.orrGray400, for: .normal)
         
+        self.tabBarController?.tabBar.isHidden = self.mMode == .select ? true : false
+        self.bottomOptionView.layer.opacity = self.mMode == .select ? 1.0 : 0.0
         
     }
     
+}
+
+extension RouteFindingSectionViewController : UISheetPresentationControllerDelegate{
+    func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheetPresentationController: UISheetPresentationController) {
+        
+    }
 }

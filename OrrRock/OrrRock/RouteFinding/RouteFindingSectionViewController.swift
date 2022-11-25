@@ -8,7 +8,7 @@
 import UIKit
 
 class RouteFindingSectionViewController: UIViewController {
-
+    
     var infoArr = [1,2,3,3,4,5,5,6,7,5]
     var dictionarySelectedIndexPath: [IndexPath : Bool] = [:]
     var mMode: RouteFindingCollectionViewMode = .view {
@@ -50,6 +50,8 @@ class RouteFindingSectionViewController: UIViewController {
         let view = ImageButton()
         view.setImage(UIImage(systemName: "folder.fill"), for: .normal)
         view.setTitle("이동", for: .normal)
+        view.isEnabled = false
+        view.addTarget(self, action: #selector(touchFolderButton), for: .touchUpInside)
         return view
     }()
     
@@ -57,27 +59,30 @@ class RouteFindingSectionViewController: UIViewController {
         let view = ImageButton()
         view.setImage(UIImage(systemName: "trash.fill"), for: .normal)
         view.setTitle("삭제", for: .normal)
+        view.isEnabled = false
+        view.addTarget(self, action: #selector(touchDeleteButton), for: .touchUpInside)
         return view
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("fdsf")
         setDelegate()
         registerCells()
         setUpLayout()
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
         mMode = .view
         bottomOptionView.layer.opacity = 0.0
         routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
-
-        (routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as! RouteFindingCollectionViewHeaderCell).subTitleButton.setTitle(mMode == .select ? "완료" : "편집", for: .normal)
-        (routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as!
-        RouteFindingCollectionViewHeaderCell).subTitleButton.setTitleColor(mMode == .select ? UIColor.orrUPBlue: UIColor.orrGray400, for: .normal)
         
+        (routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as? RouteFindingCollectionViewHeaderCell)?.subTitleButton.setTitle(mMode == .select ? "완료" : "편집", for: .normal)
+        (routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as?
+         RouteFindingCollectionViewHeaderCell)?.subTitleButton.setTitleColor(mMode == .select ? UIColor.orrUPBlue: UIColor.orrGray400, for: .normal)
+        
+        self.deleteButton.isEnabled = false
+        self.folderButton.isEnabled = false
         
     }
     func setDelegate(){
@@ -121,5 +126,24 @@ class RouteFindingSectionViewController: UIViewController {
             $0.top.equalTo(bottomOptionView.snp.top).offset(0)
             $0.trailing.equalToSuperview().inset(82.5)
         }
+    }
+    
+    @objc func touchDeleteButton(){
+        let vc = UIViewController()
+        vc.view.backgroundColor = .systemYellow
+        vc.modalPresentationStyle = .pageSheet
+        
+        if let sheet = vc.sheetPresentationController {
+            sheet.detents = [
+                .custom { _ in
+                    return 200
+                }            ]
+        }
+        
+        present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func touchFolderButton(){
+        
     }
 }

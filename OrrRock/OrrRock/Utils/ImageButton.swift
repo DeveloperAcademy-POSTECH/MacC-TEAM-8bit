@@ -9,14 +9,25 @@
 import UIKit
 
 class ImageButton: UIButton {
-    let pointSize: CGFloat = 12
+    let pointSize: CGFloat = 17
     let imagePadding: CGFloat = 8
- 
+    
+    override public var isEnabled: Bool {
+        didSet {
+            if self.isEnabled {
+                self.backgroundColor = self.backgroundColor?.withAlphaComponent(1.0)
+            } else {
+                self.backgroundColor = self.backgroundColor?.withAlphaComponent(0.5)
+            }
+        }
+    }
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
- 
+        
         tintColor = .white
- 
+        self.setTitleColor(.white, for: .disabled)
         let imageConfig = UIImage.SymbolConfiguration(pointSize: pointSize)
         if #available(iOS 15.0, *) {
             var config = UIButton.Configuration.plain()
@@ -38,17 +49,17 @@ class ImageButton: UIButton {
             
             setPreferredSymbolConfiguration(imageConfig, forImageIn: .normal)
         }
- 
+        
     }
- 
+    
     override func setTitle(_ title: String?, for state: UIControl.State) {
         super.setTitle(title, for: state)
         guard let text = title else { return }
-        let attribute = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: pointSize)]
+        let attribute = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]
         let attributedTitle = NSAttributedString(string: text, attributes: attribute)
         self.setAttributedTitle(attributedTitle, for: .normal)
     }
- 
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
