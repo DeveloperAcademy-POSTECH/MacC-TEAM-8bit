@@ -8,10 +8,23 @@
 import UIKit
 
 class RootFindingSaveViewController: UIViewController {
+    
+    private var goBackButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNavigationBar()
+        self.view.backgroundColor = .orrBlack
+    }
+    
+    func setNavigationBar() {
+        goBackButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(goBackAction))
+        
+        navigationController?.isToolbarHidden = false
+        navigationController?.hidesBarsOnTap = true
+        
+        navigationItem.leftBarButtonItem = goBackButton
     }
     
 }
