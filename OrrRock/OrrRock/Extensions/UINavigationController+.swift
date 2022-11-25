@@ -9,10 +9,9 @@ import UIKit
 
 extension UINavigationController {
     
-
     func setExpansionBackbuttonArea() {
         let backButton: UIBarButtonItem = UIBarButtonItem()
-        backButton.title = "기기기기기기기긱"//"                             "        
+        backButton.title = "                             "
         self.navigationBar.topItem?.backBarButtonItem = backButton
     }
     

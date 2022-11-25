@@ -58,10 +58,6 @@ class VideoDetailViewController: UIViewController {
         return view
     }()
     
-    // 영상 재생하는 뷰 (VideoPlayerView)
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
@@ -83,8 +79,6 @@ class VideoDetailViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.layer.opacity = 1
         self.topSafeAreaView.layer.opacity = 1
-        print("ruyha/색 살림")
-
     }
     
     // 네비게이션바 세팅 함수
@@ -128,7 +122,6 @@ class VideoDetailViewController: UIViewController {
     @objc func showInfo() {
         isShowInfo.toggle()
         infoButton.image = UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle")
-//        navigationController?.hidesBarsOnTap = !isShowInfo
         feedbackText = videoInfoView.feedbackTextView.text!
         if isShowInfo {
             UIView.animate(withDuration: 0.2, animations: {
