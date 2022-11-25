@@ -53,7 +53,9 @@ class RouteFindingSaveViewController: UIViewController {
     
     func setNavigationBar() {
         goBackButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(goBackAction))
+        goBackButton.tintColor = .orrWhite
         saveButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.down.fill"), style: .plain, target: self, action: #selector(saveAction))
+        saveButton.tintColor = .orrWhite
         
         navigationController?.isToolbarHidden = false
         navigationController?.hidesBarsOnTap = true
