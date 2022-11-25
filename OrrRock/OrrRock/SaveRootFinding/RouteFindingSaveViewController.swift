@@ -38,7 +38,17 @@ class RouteFindingSaveViewController: UIViewController {
         
         setNavigationBar()
         setUpLayout()
+        
+        navigationController?.isToolbarHidden = true
+        navigationController?.hidesBarsOnTap = false
+        
         self.view.backgroundColor = .orrBlack
+    }
+    
+    func viewWillDisappear() {
+        navigationController?.isToolbarHidden = false
+        navigationController?.hidesBarsOnTap = true
+
     }
     
     func setNavigationBar() {
