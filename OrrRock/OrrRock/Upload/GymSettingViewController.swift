@@ -69,9 +69,7 @@ class GymSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
-        self.navigationController?.navigationBar.topItem?.title = ""
-        navigationItem.leftBarButtonItem = CustomBackBarButtomItem(target: self, action: #selector(didBackButtonClicked))
-        navigationItem.leftBarButtonItem?.tintColor = .orrUPBlue
+        self.navigationController?.setExpansionBackbuttonArea()
         
         setUpData()
         setUpLayout()
@@ -79,7 +77,12 @@ class GymSettingViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+//        gymTextField.becomeFirstResponder()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         gymTextField.becomeFirstResponder()
+
     }
     
 }
@@ -149,9 +152,6 @@ extension GymSettingViewController {
         }
     }
     
-    @objc func didBackButtonClicked(_ sender: UIBarButtonItem) {
-        self.navigationController?.popToRootViewController(animated: true)
-    }
     
     final private func authSettingOpen(alertType: AuthSettingAlert) {
         let message = alertType.rawValue
