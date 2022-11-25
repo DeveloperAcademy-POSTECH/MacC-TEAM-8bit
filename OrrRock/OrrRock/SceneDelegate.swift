@@ -19,8 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window?.backgroundColor = .black
         
-        window?.rootViewController = UINavigationController(rootViewController: MainViewController())
-//        window?.rootViewController = UINavigationController(rootViewController: HomeViewController())
+//        window?.rootViewController = UINavigationController(rootViewController: MainViewController())
+        window?.rootViewController = UINavigationController(rootViewController: RouteFindingFeatureViewController(routeInfo: RouteInfo(imageLocalIdentifier: "", dataWrittenDate: Date(), gymName: "", problemLevel: 0, isChallengeComplete: false, pages: [PageInfo(rowOrder: 0), PageInfo(rowOrder: 1), PageInfo(rowOrder: 0)])))
         window?.makeKeyAndVisible()
     }
     
