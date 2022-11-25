@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21279" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="PageInformation" representedClassName="PageInformation" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="rowOrder" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="points" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PointInformation" inverseName="page" inverseEntity="PointInformation"/>
+        <relationship name="routeFinding" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RouteInformation" inverseName="pages" inverseEntity="RouteInformation"/>
+    </entity>
+    <entity name="PointInformation" representedClassName="PointInformation" syncable="YES">
+        <attribute name="footOrHand" optional="YES" attributeType="String"/>
+        <attribute name="forceDirection" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isForce" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="xCoordinate" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="yCoordinate" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="page" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PageInformation" inverseName="points" inverseEntity="PageInformation"/>
+    </entity>
+    <entity name="RouteInformation" representedClassName="RouteInformation" syncable="YES">
+        <attribute name="dataWrittenDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="gymName" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="imageLocalIdentifier" optional="YES" attributeType="String"/>
+        <attribute name="isChallengeComplete" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="problemLevel" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="pages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PageInformation" inverseName="routeFinding" inverseEntity="PageInformation"/>
+    </entity>
     <entity name="VideoInformation" representedClassName="VideoInformation" syncable="YES">
         <attribute name="feedback" optional="YES" attributeType="String"/>
         <attribute name="gymName" attributeType="String" defaultValueString=""/>

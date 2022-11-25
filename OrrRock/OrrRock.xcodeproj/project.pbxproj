@@ -47,6 +47,20 @@
 		3A2880E929033C0D00FBFB70 /* SortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2880E829033C0D00FBFB70 /* SortOption.swift */; };
 		3A2880EB29033C2500FBFB70 /* FilterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2880EA29033C2500FBFB70 /* FilterOption.swift */; };
 		3A2880FB2904290E00FBFB70 /* SortTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2880FA2904290E00FBFB70 /* SortTestViewController.swift */; };
+		3A4641B9292FA7B500C6B7A3 /* PointInformation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641B3292FA7B500C6B7A3 /* PointInformation+CoreDataClass.swift */; };
+		3A4641BA292FA7B500C6B7A3 /* PointInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641B4292FA7B500C6B7A3 /* PointInformation+CoreDataProperties.swift */; };
+		3A4641C0292FA8F600C6B7A3 /* FootOrHand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641BF292FA8F600C6B7A3 /* FootOrHand.swift */; };
+		3A4641C2292FA95C00C6B7A3 /* ForceDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641C1292FA95C00C6B7A3 /* ForceDirection.swift */; };
+		3A4641C4292FACF600C6B7A3 /* RouteInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641C3292FACF600C6B7A3 /* RouteInfo.swift */; };
+		3A4641C6292FAD2D00C6B7A3 /* PageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641C5292FAD2D00C6B7A3 /* PageInfo.swift */; };
+		3A4641C8292FAD4000C6B7A3 /* PointInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641C7292FAD4000C6B7A3 /* PointInfo.swift */; };
+		3A4641CB292FAF0000C6B7A3 /* PageInformation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641C9292FAF0000C6B7A3 /* PageInformation+CoreDataClass.swift */; };
+		3A4641CC292FAF0000C6B7A3 /* PageInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641CA292FAF0000C6B7A3 /* PageInformation+CoreDataProperties.swift */; };
+		3A4641D3292FAF7300C6B7A3 /* RouteInformation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641D1292FAF7300C6B7A3 /* RouteInformation+CoreDataClass.swift */; };
+		3A4641D4292FAF7300C6B7A3 /* RouteInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641D2292FAF7300C6B7A3 /* RouteInformation+CoreDataProperties.swift */; };
+		3A4641D6292FB30900C6B7A3 /* RouteDataDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641D5292FB30900C6B7A3 /* RouteDataDraft.swift */; };
+		3A4641DA292FB4B400C6B7A3 /* RouteCoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641D9292FB4B400C6B7A3 /* RouteCoreDataDAO.swift */; };
+		3A4641DC292FB71900C6B7A3 /* RouteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641DB292FB71900C6B7A3 /* RouteDataManager.swift */; };
 		3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3C52901435200BE11B5 /* VideoInfo.swift */; };
 		3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */; };
 		3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D41E28FEBADE006C718A /* AppDelegate.swift */; };
@@ -147,6 +161,20 @@
 		3A2880E829033C0D00FBFB70 /* SortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOption.swift; sourceTree = "<group>"; };
 		3A2880EA29033C2500FBFB70 /* FilterOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOption.swift; sourceTree = "<group>"; };
 		3A2880FA2904290E00FBFB70 /* SortTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortTestViewController.swift; sourceTree = "<group>"; };
+		3A4641B3292FA7B500C6B7A3 /* PointInformation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PointInformation+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3A4641B4292FA7B500C6B7A3 /* PointInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PointInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3A4641BF292FA8F600C6B7A3 /* FootOrHand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootOrHand.swift; sourceTree = "<group>"; };
+		3A4641C1292FA95C00C6B7A3 /* ForceDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceDirection.swift; sourceTree = "<group>"; };
+		3A4641C3292FACF600C6B7A3 /* RouteInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteInfo.swift; sourceTree = "<group>"; };
+		3A4641C5292FAD2D00C6B7A3 /* PageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageInfo.swift; sourceTree = "<group>"; };
+		3A4641C7292FAD4000C6B7A3 /* PointInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointInfo.swift; sourceTree = "<group>"; };
+		3A4641C9292FAF0000C6B7A3 /* PageInformation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageInformation+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3A4641CA292FAF0000C6B7A3 /* PageInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3A4641D1292FAF7300C6B7A3 /* RouteInformation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteInformation+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3A4641D2292FAF7300C6B7A3 /* RouteInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3A4641D5292FB30900C6B7A3 /* RouteDataDraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDataDraft.swift; sourceTree = "<group>"; };
+		3A4641D9292FB4B400C6B7A3 /* RouteCoreDataDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCoreDataDAO.swift; sourceTree = "<group>"; };
+		3A4641DB292FB71900C6B7A3 /* RouteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDataManager.swift; sourceTree = "<group>"; };
 		3A70C3C52901435200BE11B5 /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDAO.swift; sourceTree = "<group>"; };
 		3AA4D41B28FEBADE006C718A /* OrrRock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrrRock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -319,6 +347,7 @@
 		3A08879E29012CC300EFFDBB /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				3A4641B2292FA6E200C6B7A3 /* RouteFinding */,
 				3A2880FA2904290E00FBFB70 /* SortTestViewController.swift */,
 				3A15AC862907B1160058512F /* VideoInformation+CoreDataClass.swift */,
 				3A15AC872907B1160058512F /* VideoInformation+CoreDataProperties.swift */,
@@ -334,6 +363,27 @@
 				3A15AC7629071DD90058512F /* OrderOption.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		3A4641B2292FA6E200C6B7A3 /* RouteFinding */ = {
+			isa = PBXGroup;
+			children = (
+				3A4641D1292FAF7300C6B7A3 /* RouteInformation+CoreDataClass.swift */,
+				3A4641D2292FAF7300C6B7A3 /* RouteInformation+CoreDataProperties.swift */,
+				3A4641C9292FAF0000C6B7A3 /* PageInformation+CoreDataClass.swift */,
+				3A4641CA292FAF0000C6B7A3 /* PageInformation+CoreDataProperties.swift */,
+				3A4641B3292FA7B500C6B7A3 /* PointInformation+CoreDataClass.swift */,
+				3A4641B4292FA7B500C6B7A3 /* PointInformation+CoreDataProperties.swift */,
+				3A4641BF292FA8F600C6B7A3 /* FootOrHand.swift */,
+				3A4641C1292FA95C00C6B7A3 /* ForceDirection.swift */,
+				3A4641C3292FACF600C6B7A3 /* RouteInfo.swift */,
+				3A4641C5292FAD2D00C6B7A3 /* PageInfo.swift */,
+				3A4641C7292FAD4000C6B7A3 /* PointInfo.swift */,
+				3A4641D5292FB30900C6B7A3 /* RouteDataDraft.swift */,
+				3A4641D9292FB4B400C6B7A3 /* RouteCoreDataDAO.swift */,
+				3A4641DB292FB71900C6B7A3 /* RouteDataManager.swift */,
+			);
+			path = RouteFinding;
 			sourceTree = "<group>";
 		};
 		3AA4D41228FEBADE006C718A = {
@@ -663,10 +713,13 @@
 				0A0B41072907C59600057FA7 /* LevelAndPFSettingViewController.swift in Sources */,
 				78FEE89929291AC9007B67BD /* VideoDetailPageViewController+Protocol.swift in Sources */,
 				3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */,
+				3A4641B9292FA7B500C6B7A3 /* PointInformation+CoreDataClass.swift in Sources */,
 				70DE795A29250F480009AD43 /* SwipeOnboardingViewController.swift in Sources */,
 				FB32280F29046B4500276A7D /* VideoDetailViewController.swift in Sources */,
 				3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */,
+				3A4641D3292FAF7300C6B7A3 /* RouteInformation+CoreDataClass.swift in Sources */,
 				FB32281329046CDE00276A7D /* VideoPlayView.swift in Sources */,
+				3A4641C0292FA8F600C6B7A3 /* FootOrHand.swift in Sources */,
 				3A2880EB29033C2500FBFB70 /* FilterOption.swift in Sources */,
 				34E11EC3292BEDCF00787316 /* FirstDateSettingViewController.swift in Sources */,
 				34172EB3292AC884009DAAB8 /* MyCardView.swift in Sources */,
@@ -683,9 +736,11 @@
 				342508A329001780000653D9 /* HomeViewController.swift in Sources */,
 				342508A52900196B000653D9 /* HomeViewController+CollectionViewExtensions.swift in Sources */,
 				78FEE88F2926A23B007B67BD /* VideoPlayViewController.swift in Sources */,
+				3A4641DC292FB71900C6B7A3 /* RouteDataManager.swift in Sources */,
 				FBA5DBFD291AE32A00422A17 /* ButtonClickEffect.swift in Sources */,
 				70DE796229263A570009AD43 /* SwipeOnboardingThirdViewController.swift in Sources */,
 				700AC6212926A1DA003DF5AF /* UIImageView+.swift in Sources */,
+				3A4641C4292FACF600C6B7A3 /* RouteInfo.swift in Sources */,
 				70DE79662926524D0009AD43 /* SwipeOnboardingFifthViewController.swift in Sources */,
 				34E76F462924D33E00EBB92D /* HomeTableViewFooter.swift in Sources */,
 				3A15AC882907B1160058512F /* VideoInformation+CoreDataClass.swift in Sources */,
@@ -694,31 +749,40 @@
 				78FEE89B29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift in Sources */,
 				3A15AC7D2907258A0058512F /* SectionData.swift in Sources */,
 				34E11EC9292D2C5100787316 /* UIImage+.swift in Sources */,
+				3A4641CB292FAF0000C6B7A3 /* PageInformation+CoreDataClass.swift in Sources */,
 				34793FA329262A8800B74110 /* CustomBackBarButtomItem.swift in Sources */,
 				FB32281529046CED00276A7D /* VideoInfoView.swift in Sources */,
 				3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */,
 				78F56F6C291A67FA00174B74 /* OnBoardingViewController.swift in Sources */,
 				34172EAF292AAD3E009DAAB8 /* DateEditViewController.swift in Sources */,
 				A81992C42927E48B00F024CA /* VideoSlider.swift in Sources */,
+				3A4641C6292FAD2D00C6B7A3 /* PageInfo.swift in Sources */,
 				342508AB29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift in Sources */,
 				70AE8138292CA24500B4DB3F /* Font+.swift in Sources */,
 				78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */,
 				3AEB3D5D291C003D00A989FF /* VideoCollectionViewMode.swift in Sources */,
 				78CAA06C290271E7003C3D77 /* VIdeoCollectionFooterCell.swift in Sources */,
 				341418BB2922A3800033D851 /* AutocompleteTableViewCell.swift in Sources */,
+				3A4641D6292FB30900C6B7A3 /* RouteDataDraft.swift in Sources */,
 				709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */,
+				3A4641C8292FAD4000C6B7A3 /* PointInfo.swift in Sources */,
 				78FEE89729291A19007B67BD /* VideoDetailViewController+Protocol.swift in Sources */,
 				34E11EC5292BFF2700787316 /* ExportCardView.swift in Sources */,
+				3A4641C2292FA95C00C6B7A3 /* ForceDirection.swift in Sources */,
 				3A2880FB2904290E00FBFB70 /* SortTestViewController.swift in Sources */,
+				3A4641DA292FB4B400C6B7A3 /* RouteCoreDataDAO.swift in Sources */,
 				34172EB9292B41F8009DAAB8 /* HistoryView.swift in Sources */,
 				FB3227FE2903FDA600276A7D /* String+.swift in Sources */,
 				3A15AC7B290724620058512F /* DataManager.swift in Sources */,
 				341418B6292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift in Sources */,
+				3A4641CC292FAF0000C6B7A3 /* PageInformation+CoreDataProperties.swift in Sources */,
 				70A8DF0A291A863F0061E36B /* UIView+.swift in Sources */,
 				78FEE8912926A599007B67BD /* VideoDetailPageViewController.swift in Sources */,
 				70DE7964292640FF0009AD43 /* SwipeOnboardingFourthViewController.swift in Sources */,
+				3A4641D4292FAF7300C6B7A3 /* RouteInformation+CoreDataProperties.swift in Sources */,
 				70DE795E29253F050009AD43 /* EmptyBackgroundView.swift in Sources */,
 				A88805852907F5A0002CD52E /* LevelPickerView.swift in Sources */,
+				3A4641BA292FA7B500C6B7A3 /* PointInformation+CoreDataProperties.swift in Sources */,
 				7085BA2A292D2F08004FD734 /* ColorPickerView.swift in Sources */,
 				78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */,
 				70DE79602926383E0009AD43 /* SwipeOnboardingSecondViewController.swift in Sources */,
