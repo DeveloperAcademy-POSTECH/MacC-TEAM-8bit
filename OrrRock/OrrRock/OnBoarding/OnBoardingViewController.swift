@@ -42,9 +42,8 @@ class OnBoardingViewController: UIPageViewController {
         control.numberOfPages = 3
         control.currentPage = 0
         control.alpha = 0.5
-//        control.tintColor = .red //UIColor.orrBlack
-        control.pageIndicatorTintColor = .orrGray300//UIColor.gray
-        control.currentPageIndicatorTintColor = .orrBlack//UIColor.black
+        control.pageIndicatorTintColor = .orrGray300
+        control.currentPageIndicatorTintColor = .orrBlack
         control.backgroundColor = .clear
         return control
     }()

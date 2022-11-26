@@ -176,7 +176,6 @@ class VideoCollectionViewController: UIViewController {
         }
         self.toolbarItems = bottomBatItems
         navigationItem.rightBarButtonItem = selectBarButton
-//        navigationItem.leftBarButtonItem = backBarButton
         self.navigationController?.setExpansionBackbuttonArea()
         firstContentOffset = Float(videoCollectionView.contentOffset.y)
     }
@@ -212,7 +211,6 @@ class VideoCollectionViewController: UIViewController {
         selectBarButton.title = "편집"
         let indexCountLabel = UILabel()
         indexCountLabel.text = "항목 선택"
-//        navigationItem.leftBarButtonItem = backBarButton
         self.navigationController?.setExpansionBackbuttonArea()
 
         self.navigationController?.setToolbarHidden(true, animated: true)

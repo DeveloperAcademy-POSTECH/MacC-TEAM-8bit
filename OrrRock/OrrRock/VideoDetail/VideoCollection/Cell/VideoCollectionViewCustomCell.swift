@@ -46,7 +46,7 @@ class VideoCollectionViewCell : UICollectionViewCell {
         img.layer.masksToBounds = true
         return img
     }()
-    //Ruyah~~~~~~~~~~~~~~~~~
+
     lazy var cellLabel : UILabel = {
         let label = BasePaddingLabel(padding: UIEdgeInsets(top: 2, left: 8, bottom: 2, right: 8))
         label.translatesAutoresizingMaskIntoConstraints = false
