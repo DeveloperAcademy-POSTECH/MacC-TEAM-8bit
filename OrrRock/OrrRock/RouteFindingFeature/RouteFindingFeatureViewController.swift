@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 class RouteFindingFeatureViewController: UIViewController {
-
+    
     // MARK: Variables
     var routeInfo: RouteInfo
     var pages: [PageInfo]
@@ -25,7 +25,8 @@ class RouteFindingFeatureViewController: UIViewController {
     // MARK: View Components
     lazy var backgroundImageView: UIImageView = {
         let view = UIImageView()
-
+        
+        // 다양한 기기 사이즈에서 16:9 이미지 사이즈를 유지하기 위해 width, height을 계산
         let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)!.windows.first
         let contentHeight = view.frame.height - Double(((window?.safeAreaInsets.top)! + (window?.safeAreaInsets.bottom)!))
         let contentWidth = view.frame.width
@@ -33,7 +34,8 @@ class RouteFindingFeatureViewController: UIViewController {
         view.backgroundColor = .white
         return view
     }()
-
+    
+    // 루트파인딩 제스처와 인터렉션이 실제로 이뤄지는 뷰
     var pageView: RouteFindingPageView = {
         let view = RouteFindingPageView()
         return view
@@ -86,33 +88,28 @@ class RouteFindingFeatureViewController: UIViewController {
     }()
     
     var footHandStackView: UIStackView = {
-//        let handButton = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
         let handButton = UIButton()
         handButton.backgroundColor = .clear
-        // 손 이미지로 대체하기
+        // TODO: 손 이미지로 대체하기
         handButton.setImage(UIImage(systemName: "house"), for: .normal)
         handButton.tintColor = .orrWhite
-        // 손 이미지로 대체하기
         
-//        let footButton = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
         let footButton = UIButton()
         footButton.backgroundColor = .clear
-        
-        // 발 이미지로 대체하기
+        // TODO: 발 이미지로 대체하기
         footButton.setImage(UIImage(systemName: "house"), for: .normal)
         footButton.tintColor = .orrWhite
-        // 발 이미지로 대체하기
         
         let stackView = UIStackView(arrangedSubviews: [handButton, footButton])
         stackView.backgroundColor = .orrGray700
         // stackView의 width가 40이므로, cornerRadius의 값은 20
         stackView.layer.cornerRadius = 20
         stackView.axis = .vertical
-//        stackView.alignment = .center
         stackView.distribution = .fillEqually
         return stackView
     }()
     
+    // 삭제모드 진입 시 화면 인터렉션 방지를 위한 뷰
     lazy var deleteView: UIView = {
         let view = UIView()
         view.backgroundColor = .black.withAlphaComponent(0.4)
@@ -148,6 +145,7 @@ class RouteFindingFeatureViewController: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
         
+        // RouteInfo를 받아와, 루트파인딩 페이지를 그리기 위한 정보를 저장
         var views: [RouteFindingPageView] = []
         routeInfo.pages.forEach { pageInfo in
             let view = convertPageInfoToPageView(from: pageInfo)
@@ -157,11 +155,11 @@ class RouteFindingFeatureViewController: UIViewController {
         }
         self.pageViews = views
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) is not supported")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -169,10 +167,22 @@ class RouteFindingFeatureViewController: UIViewController {
         setUpThumbnailCollectionDelegate()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    // status bar 의 글자 색상을 흰 색으로 변경
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         navigationController?.isNavigationBarHidden = true
+        
+        // CollectionView가 다 그려지고 난 뒤, CollectionView의 content에 Inset을 넣어 끝까지 스크롤이 가능하도록 하기
+        let layoutMargins: CGFloat = self.thumbnailCollectionView.layoutMargins.left
+        let sideInset = self.view.frame.width / 2 - layoutMargins
+        self.thumbnailCollectionView.contentInset = UIEdgeInsets(top: 0, left: sideInset, bottom: 0, right: sideInset)
+        
+        // 뷰가 올라오면 가장 처음 페이지로 이동
+        thumbnailCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -181,24 +191,15 @@ class RouteFindingFeatureViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // CollectionView가 다 그려지고 난 뒤, CollectionView의 content에 Inset을 넣어 끝까지 스크롤이 가능하도록 하기
-        let layoutMargins: CGFloat = self.thumbnailCollectionView.layoutMargins.left
-        let sideInset = self.view.frame.width / 2 - layoutMargins
-        self.thumbnailCollectionView.contentInset = UIEdgeInsets(top: 0, left: sideInset, bottom: 0, right: sideInset)
-        
-        thumbnailCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: false)
-    }
-    
     // MARK: Functions
+    // PageInfo를 RouteFindingPageView로 전환
     func convertPageInfoToPageView(from pageInfo: PageInfo) -> RouteFindingPageView {
         let view = RouteFindingPageView()
         
         return view
     }
     
+    // 선택된 셀(화면 가운데 위치한 셀)에 대해 페이지를 보여줌
     func selectPage() {
         guard let selectedCell = centerCell else { return }
         pageView.snp.removeConstraints()
@@ -210,6 +211,7 @@ class RouteFindingFeatureViewController: UIViewController {
         }
     }
     
+    // 삭제모드를 위한 뷰 띄우기
     func showDeleteView(for indexPath: IndexPath) {
         view.addSubview(deleteView)
         deleteView.snp.makeConstraints {
@@ -241,9 +243,12 @@ class RouteFindingFeatureViewController: UIViewController {
         }
     }
     
+    // 선택된 페이지를 삭제
     @objc func deletePage(_ sender: UIButton) {
         guard let targetPageCell = centerCell else { return }
         
+        // 남은 셀의 수가 1개라면 삭제하지 않음
+        // 필요 시 아래 if 블록 내에 알림 추가
         if pages.count > 1 {
             pages.remove(at: targetPageCell.indexPathOfCell.row)
             pageViews.remove(at: targetPageCell.indexPathOfCell.row)
@@ -279,7 +284,7 @@ extension RouteFindingFeatureViewController {
             $0.top.equalTo(view.forLastBaselineLayout.snp_topMargin)
             $0.centerX.equalToSuperview()
         }
-                
+        
         view.addSubview(thumbnailCollectionView)
         thumbnailCollectionView.snp.makeConstraints {
             $0.height.equalTo(74)
@@ -301,7 +306,7 @@ extension RouteFindingFeatureViewController {
         }
         
         view.addSubview(exitButton)
-        exitButton.snp.makeConstraints { 
+        exitButton.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(16)
             $0.height.equalTo(40)
@@ -332,6 +337,7 @@ extension RouteFindingFeatureViewController {
 }
 
 extension RouteFindingFeatureViewController: RouteFindingThumbnailCollectionViewAddCellDelegate {
+    // 페이지 추가 버튼이 눌리면 새로운 페이지를 추가
     func tapAddPageButton() {
         pages.append(PageInfo(rowOrder: 5))
         let newView = RouteFindingPageView()
@@ -344,6 +350,7 @@ extension RouteFindingFeatureViewController: RouteFindingThumbnailCollectionView
 }
 
 extension RouteFindingFeatureViewController: RouteFindingThumbnailCollectionViewCellDelegate {
+    // 셀을 long press 했을 때 삭제모드로 진입
     func enterDeletePageMode(indexPath: IndexPath) {
         thumbnailCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         showDeleteView(for: indexPath)
