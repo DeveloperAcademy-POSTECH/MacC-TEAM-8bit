@@ -26,7 +26,7 @@ class VideoCollectionViewCell : UICollectionViewCell {
     
     lazy var cellBlurView : UIView = {
         let uiView = UIView()
-        uiView.backgroundColor = .white.withAlphaComponent(0.3)
+        uiView.backgroundColor = .orrWhite!.withAlphaComponent(0.3)
         uiView.isHidden = true
         return uiView
     }()
