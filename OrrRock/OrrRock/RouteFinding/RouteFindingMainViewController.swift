@@ -37,16 +37,19 @@ class RouteFindingMainViewController: UIViewController {
     
     lazy var allRouteFindingViewController : UIViewController = {
         let vc = RouteFindingSectionViewController()
+        vc.infoArr = [1,2,3,4,5,6,7,8]
         return vc
     }()
     
     lazy var challengeRouteFindingViewController : UIViewController = {
         let vc = RouteFindingSectionViewController()
+        vc.infoArr = [1,2,3,4]
         return vc
     }()
     
     lazy var successRouteFindingViewController : UIViewController = {
         let vc = RouteFindingSectionViewController()
+        vc.infoArr = [5,6,7,8]
         return vc
     }()
     

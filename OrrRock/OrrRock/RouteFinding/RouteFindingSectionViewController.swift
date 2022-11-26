@@ -9,7 +9,7 @@ import UIKit
 
 class RouteFindingSectionViewController: UIViewController {
     
-    var infoArr : [Int] = [1]
+    var infoArr : [Int] = [1,2,3,4,5]
     var dictionarySelectedIndexPath: [IndexPath : Bool] = [:]
     var mMode: RouteFindingCollectionViewMode = .view {
         didSet{

@@ -123,7 +123,45 @@ extension RouteFindingSectionViewController : UISheetPresentationControllerDeleg
 
 extension RouteFindingSectionViewController : RouteModalDelegate{
     func delete() {
-        print("delete")
+        var deleteNeededIndexPaths : [IndexPath] = []
+        for (key,value) in dictionarySelectedIndexPath{
+            if value{
+                deleteNeededIndexPaths.append(key)
+            }
+        }
+        //삭제 실제 배열에서
+        for i in deleteNeededIndexPaths.sorted(by:{$0.item > $1.item
+        }){
+//            //데이터에서 실제로 삭제하는 부분
+//            DataManager.shared.deleteData(videoInformation: videoInformationArray[i.item])
+            infoArr.remove(at: i.item)
+        }
+        
+        for (key,value) in dictionarySelectedIndexPath{
+            if value{
+                routeFindingCollectionView.deselectItem(at: key, animated: true)
+            }
+        }
+        dictionarySelectedIndexPath.removeAll()
+        
+        mMode = .view
+        self.tabBarController?.tabBar.isHidden = true
+        self.bottomOptionView.layer.opacity = 0.0
+        
+        routeFindingCollectionView.allowsMultipleSelection = false
+        routeFindingCollectionView.deleteItems(at: deleteNeededIndexPaths)
+        
+        folderButton.isEnabled = false
+        deleteButton.isEnabled = false
+        
+        //도전의 개수 업데이트
+//        getSuccessCount()
+        routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
+        
+        if infoArr.count == 0 {
+            self.emptyGuideView.alpha = 1.0
+        }
+       
     }
     
     func folderingToChallenge() {
