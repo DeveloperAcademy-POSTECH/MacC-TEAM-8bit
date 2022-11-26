@@ -67,6 +67,17 @@ class RouteFindingSaveViewController: UIViewController {
         
         return view
     }()
+    
+    let saveRouteFindingImageCollectionView: UICollectionView = {
+        let layout = saveRouteFindingImageCollectionViewFlowLayout()
+        
+        let collection = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
+        collection.backgroundColor = .clear
+        collection.showsHorizontalScrollIndicator = false
+//        collection.register(saveRouteFindingImageCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: saveRouteFindingImageCollectionViewCell.identifier)
+        
+        return collection
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,14 +137,6 @@ extension RouteFindingSaveViewController {
             $0.bottom.equalTo(nextButton.snp.top).offset(-OrrPd.pd8.rawValue)
         }
         
-        view.addSubview(previewVideoView)
-        previewVideoView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(view.forLastBaselineLayout.snp_topMargin).offset(OrrPd.pd16.rawValue)
-            $0.bottom.equalTo(skipButton.snp.top).offset(-100) // FIXME: 수정 필요
-            $0.width.equalTo(previewVideoView.snp.height).multipliedBy(0.5625)
-        }
-        
         view.addSubview(countVideoView)
         countVideoView.snp.makeConstraints {
             $0.bottom.equalTo(skipButton.snp.top).offset(-OrrPd.pd36.rawValue)
@@ -153,6 +156,21 @@ extension RouteFindingSaveViewController {
             $0.centerX.equalToSuperview()
             $0.height.equalTo(4)
             $0.width.equalTo(58)
+        }
+        
+        view.addSubview(saveRouteFindingImageCollectionView)
+        saveRouteFindingImageCollectionView.snp.makeConstraints {
+            $0.height.equalTo(103)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalTo(checkSelectedBar.snp.top).offset(-OrrPd.pd8.rawValue)
+        }
+        
+        view.addSubview(previewVideoView)
+        previewVideoView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(view.forLastBaselineLayout.snp_topMargin).offset(OrrPd.pd8.rawValue)
+            $0.bottom.equalTo(saveRouteFindingImageCollectionView.snp.top).offset(-OrrPd.pd8.rawValue)
+            $0.width.equalTo(previewVideoView.snp.height).multipliedBy(0.5625)
         }
     }
 }

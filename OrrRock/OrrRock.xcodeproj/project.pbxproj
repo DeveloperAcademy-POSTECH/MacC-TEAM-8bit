@@ -126,6 +126,8 @@
 		FB8A9E0F292D840C003F44D3 /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8A9E0E292D840C003F44D3 /* ExportViewController.swift */; };
 		FB8A9E122930A10E003F44D3 /* RouteFindingSaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8A9E112930A10E003F44D3 /* RouteFindingSaveViewController.swift */; };
 		FBA5DBFD291AE32A00422A17 /* ButtonClickEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA5DBFC291AE32A00422A17 /* ButtonClickEffect.swift */; };
+		FBB272B62932798F00A36CB0 /* saveRouteFindingImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB272B52932798F00A36CB0 /* saveRouteFindingImageCollectionViewCell.swift */; };
+		FBB272B8293279E200A36CB0 /* saveRouteFindingImageCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB272B7293279E200A36CB0 /* saveRouteFindingImageCollectionViewFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -247,6 +249,8 @@
 		FB8A9E0E292D840C003F44D3 /* ExportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
 		FB8A9E112930A10E003F44D3 /* RouteFindingSaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingSaveViewController.swift; sourceTree = "<group>"; };
 		FBA5DBFC291AE32A00422A17 /* ButtonClickEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonClickEffect.swift; sourceTree = "<group>"; };
+		FBB272B52932798F00A36CB0 /* saveRouteFindingImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saveRouteFindingImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		FBB272B7293279E200A36CB0 /* saveRouteFindingImageCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saveRouteFindingImageCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -631,6 +635,8 @@
 			isa = PBXGroup;
 			children = (
 				FB8A9E112930A10E003F44D3 /* RouteFindingSaveViewController.swift */,
+				FBB272B7293279E200A36CB0 /* saveRouteFindingImageCollectionViewFlowLayout.swift */,
+				FBB272B52932798F00A36CB0 /* saveRouteFindingImageCollectionViewCell.swift */,
 			);
 			path = SaveRootFinding;
 			sourceTree = "<group>";
@@ -746,6 +752,7 @@
 				704BAB5E292834DB004D987A /* NewLevelPickerView.swift in Sources */,
 				3405BE5F2927DA9600D6E15A /* MyActivityViewController.swift in Sources */,
 				70E8E7542923865400793F91 /* OnBoardigSuperViewController.swift in Sources */,
+				FBB272B8293279E200A36CB0 /* saveRouteFindingImageCollectionViewFlowLayout.swift in Sources */,
 				3495AEF72929192000006469 /* CalendarComponent+.swift in Sources */,
 				70DE795C292517330009AD43 /* SwipeOnboardingFirstViewController.swift in Sources */,
 				3A15AC7729071DD90058512F /* OrderOption.swift in Sources */,
@@ -828,6 +835,7 @@
 				34E11EE329309D5E00787316 /* RouteFindingFeatureViewController+UICollectionViewExtensions.swift in Sources */,
 				3A4641BA292FA7B500C6B7A3 /* PointInformation+CoreDataProperties.swift in Sources */,
 				7085BA2A292D2F08004FD734 /* ColorPickerView.swift in Sources */,
+				FBB272B62932798F00A36CB0 /* saveRouteFindingImageCollectionViewCell.swift in Sources */,
 				78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */,
 				70DE79602926383E0009AD43 /* SwipeOnboardingSecondViewController.swift in Sources */,
 				70A44807290452B000BE18A5 /* Button+.swift in Sources */,
