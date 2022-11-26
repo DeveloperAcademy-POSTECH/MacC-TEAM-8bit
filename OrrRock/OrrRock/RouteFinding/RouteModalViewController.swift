@@ -11,6 +11,10 @@ class RouteModalViewController: UIViewController {
     
     var isFoldering = true
     var delegate : RouteModalDelegate?
+    private var buttonHeight = 56
+    private var buttonSideOffset = 6.5
+    private var buttonTopOffset = 58
+    
     private lazy var titleLabel : UILabel = {
         let label = UILabel()
         label.text = isFoldering ? "선택하신 루트파인딩을 성공하셨나요?" : "선택하신 루트 파인딩을 삭제하시겠어요?"
@@ -47,7 +51,7 @@ class RouteModalViewController: UIViewController {
         setUpLayout()
     }
     
-    func setUpLayout(){
+    private func setUpLayout(){
         view.backgroundColor = .orrWhite
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
@@ -57,36 +61,36 @@ class RouteModalViewController: UIViewController {
         view.addSubview(leftReluctantButton)
         leftReluctantButton.snp.makeConstraints{
             $0.leading.equalToSuperview().inset(OrrPd.pd16.rawValue)
-            $0.top.equalTo(titleLabel.snp.bottom).offset(58)
-            $0.trailing.equalTo(view.snp.centerX).offset(-6.5)
-            $0.height.equalTo(56)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(buttonTopOffset)
+            $0.trailing.equalTo(view.snp.centerX).offset(-buttonSideOffset)
+            $0.height.equalTo(buttonHeight)
         }
         
         view.addSubview(rightPreferButton)
         rightPreferButton.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(58)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(buttonTopOffset)
             $0.trailing.equalToSuperview().inset(OrrPd.pd16.rawValue)
-            $0.leading.equalTo(view.snp.centerX).offset(6.5)
-            $0.height.equalTo(56)
+            $0.leading.equalTo(view.snp.centerX).offset(buttonSideOffset)
+            $0.height.equalTo(buttonHeight)
         }
     }
     
-    @objc func cancel(){
+    @objc private func cancel(){
         self.dismiss(animated: true)
         
     }
     
-    @objc func deleteSelects(){
+    @objc private func deleteSelects(){
         self.dismiss(animated: true)
         delegate?.delete()
     }
     
-    @objc func folderingToChallenge(){
+    @objc private func folderingToChallenge(){
         self.dismiss(animated: true)
         delegate?.folderingToChallenge()
     }
     
-    @objc func folderingToSuccess(){
+    @objc private func folderingToSuccess(){
         self.dismiss(animated: true)
         delegate?.folderingToSuccess()
     }

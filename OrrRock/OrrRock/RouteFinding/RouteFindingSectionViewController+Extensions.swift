@@ -128,14 +128,14 @@ extension RouteFindingSectionViewController : RouteModalDelegate{
             }
         }
         //삭제 실제 배열에서
-        for i in deleteNeededIndexPaths.sorted(by:{$0.item > $1.item}){
+        for i in deleteNeededIndexPaths.sorted(by:{$0.item > $1.item}) {
             //            //데이터에서 실제로 삭제하는 부분
             //            DataManager.shared.deleteData(videoInformation: videoInformationArray[i.item])
             infoArr.remove(at: i.item)
         }
         
-        for (key,value) in dictionarySelectedIndexPath{
-            if value{
+        for (key,value) in dictionarySelectedIndexPath {
+            if value {
                 routeFindingCollectionView.deselectItem(at: key, animated: true)
             }
         }

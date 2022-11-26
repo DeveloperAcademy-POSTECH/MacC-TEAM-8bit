@@ -50,7 +50,7 @@ class RouteFindingSectionViewController: UIViewController {
         return view
     }()
     
-    lazy var emptyGuideLabel : UILabel = {
+    private lazy var emptyGuideLabel : UILabel = {
         let label = UILabel()
         label.text = "아직 루트파인딩 기록이 없습니다.\n촬영 혹은 사진 업로드를 통해 추가해주세요."
         label.numberOfLines = 2
@@ -60,7 +60,7 @@ class RouteFindingSectionViewController: UIViewController {
         return label
     }()
     
-    lazy var bottomOptionView :UIView = {
+    private lazy var bottomOptionView :UIView = {
         let view = UIView()
         view.backgroundColor = .orrUPBlue
         view.layer.opacity = 0.0
@@ -95,25 +95,27 @@ class RouteFindingSectionViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         emptyGuideView.alpha = infoArr.count == 0 ? 1.0 : 0.0
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         mMode = .view
         routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
         
-        (routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as? RouteFindingCollectionViewHeaderCell)?.subTitleButton.setTitle(mMode == .select ? "완료" : "편집", for: .normal)
-        (routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as?
-         RouteFindingCollectionViewHeaderCell)?.subTitleButton.setTitleColor(mMode == .select ? UIColor.orrUPBlue: UIColor.orrGray400, for: .normal)
+        let supplementaryViewSectionHeader = routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as? RouteFindingCollectionViewHeaderCell
+        
+        supplementaryViewSectionHeader?.subTitleButton.setTitle(mMode == .select ? "완료" : "편집", for: .normal)
+        supplementaryViewSectionHeader?.subTitleButton.setTitleColor(mMode == .select ? UIColor.orrUPBlue: UIColor.orrGray400, for: .normal)
         
         self.deleteButton.isEnabled = false
         self.folderButton.isEnabled = false
         
     }
-    func setDelegate(){
+    private func setDelegate(){
         routeFindingCollectionView.delegate = self
         routeFindingCollectionView.dataSource = self
         routeFindingCollectionView.showsVerticalScrollIndicator = false
     }
     
-    func registerCells() {
+    private func registerCells() {
         routeFindingCollectionView.register(RouteFindingCollectionViewCustomCell.self, forCellWithReuseIdentifier: "RouteFindingCollectionViewCustomCell")
         
         routeFindingCollectionView.register(
@@ -123,7 +125,7 @@ class RouteFindingSectionViewController: UIViewController {
         )
     }
     
-    func setUpLayout(){
+    private func setUpLayout(){
         view.addSubview(routeFindingCollectionView)
         routeFindingCollectionView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()

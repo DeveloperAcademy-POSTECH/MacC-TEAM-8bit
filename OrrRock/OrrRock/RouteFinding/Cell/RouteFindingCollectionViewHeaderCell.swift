@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol RouteFindingCollectionViewHeaderCellDelegate{
-    func tapEditButton()
-}
-
 final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
     static let id = "RouteFindingCollectionViewHeaderCell"
     
