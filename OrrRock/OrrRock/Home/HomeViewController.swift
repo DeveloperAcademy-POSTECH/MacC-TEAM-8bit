@@ -308,11 +308,16 @@ final class HomeViewController : UIViewController {
         isCardView.toggle()
     }
     
-    @objc func videoButtonPressed(sender: UIButton){
-        let nextVC = DateSettingViewController()
-        self.navigationController?.pushViewController(nextVC, animated: true)
-    }
+//    @objc func videoButtonPressed(sender: UIButton){
+//        let nextVC = DateSettingViewController()
+//        self.navigationController?.pushViewController(nextVC, animated: true)
+//    }
 
+    //RUYAH
+    @objc func videoButtonPressed(sender: UIButton){
+        let onBoardingViewController = OnBoardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+        self.navigationController?.pushViewController(onBoardingViewController, animated: true)
+    }
 //    MARK: 스와이프 온보딩을 보고 싶다면 해당 상단의 코드를 주석처리후 하단 주석을 풀어주세요.
 //    @objc func videoButtonPressed(sender: UIButton){
 //        //여기서 실행하면 온보딩을 여러번 볼 수 있어요.

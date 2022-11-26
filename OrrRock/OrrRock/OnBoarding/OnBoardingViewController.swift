@@ -42,9 +42,10 @@ class OnBoardingViewController: UIPageViewController {
         control.numberOfPages = 3
         control.currentPage = 0
         control.alpha = 0.5
-        control.tintColor = UIColor.black
-        control.pageIndicatorTintColor = UIColor.gray
-        control.currentPageIndicatorTintColor = UIColor.black
+//        control.tintColor = .red //UIColor.orrBlack
+        control.pageIndicatorTintColor = .orrGray300//UIColor.gray
+        control.currentPageIndicatorTintColor = .orrBlack//UIColor.black
+        control.backgroundColor = .clear
         return control
     }()
     
@@ -57,6 +58,7 @@ class OnBoardingViewController: UIPageViewController {
         btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
         btn.setTitle("계속", for: .normal)
         btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
         return btn
     }()
     
