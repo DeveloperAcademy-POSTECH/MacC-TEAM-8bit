@@ -59,6 +59,7 @@ class RouteFindingThumbnailCollectionViewFlowLayout: UICollectionViewFlowLayout 
     }
     
     // MARK: 필요 시 사용할 함수
+    
     //    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
     //        return true
     //    }

@@ -12,7 +12,9 @@ protocol RouteFindingThumbnailCollectionViewCellDelegate {
 }
 
 class RouteFindingThumbnailCollectionViewCell: UICollectionViewCell {
+    
     // MARK: Variables
+    
     static let identifier: String = "RouteFindingThumbnailCollectionViewCell"
     
     var delegate: RouteFindingThumbnailCollectionViewCellDelegate?
@@ -21,6 +23,7 @@ class RouteFindingThumbnailCollectionViewCell: UICollectionViewCell {
     let collectionViewCellSize: Int = 62
     
     // MARK: View Components
+    
     lazy var pageImage: UIImageView = {
         let view = UIImageView()
         view.backgroundColor = .white
@@ -35,6 +38,7 @@ class RouteFindingThumbnailCollectionViewCell: UICollectionViewCell {
     }()
     
     // MARK: Life Cycle Functions
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -51,6 +55,7 @@ class RouteFindingThumbnailCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: Functions
+    
     func showSelectedBar() {
         UIView.animate(withDuration: 0.2) {
             self.selectedBar.backgroundColor = .orrUPBlue
@@ -64,6 +69,7 @@ class RouteFindingThumbnailCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: @objc Functions
+    
     @objc func pressDeleteButton(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
             delegate?.enterDeletePageMode(indexPath: indexPathOfCell)
@@ -71,6 +77,7 @@ class RouteFindingThumbnailCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: Set Up Functions
+    
     func setUpLayout() {
         contentView.addSubview(pageImage)
         pageImage.snp.makeConstraints {
@@ -100,7 +107,9 @@ protocol RouteFindingThumbnailCollectionViewAddCellDelegate {
 }
 
 class RouteFindingThumbnailCollectionViewAddCell: UICollectionViewCell {
+    
     // MARK: Variables
+    
     static let identifier: String = "RouteFindingThumbnailCollectionViewAddCell"
     
     var delegate: RouteFindingThumbnailCollectionViewAddCellDelegate?
@@ -108,6 +117,7 @@ class RouteFindingThumbnailCollectionViewAddCell: UICollectionViewCell {
     let collectionViewCellSize: Int = 62
     
     // MARK: View Components
+    
     lazy var button: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: collectionViewCellSize, height: collectionViewCellSize))
         button.setImage(UIImage(systemName: "plus.circle.fill")?.resized(to: CGSize(width: 24, height: 24)).withTintColor(.orrWhite!, renderingMode: .alwaysTemplate), for: .normal)
@@ -117,6 +127,7 @@ class RouteFindingThumbnailCollectionViewAddCell: UICollectionViewCell {
     }()
     
     // MARK: Life Cycle Functions
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -129,11 +140,13 @@ class RouteFindingThumbnailCollectionViewAddCell: UICollectionViewCell {
     }
     
     // MARK: @objc Functions
+    
     @objc func tapAddButton(_ sender: UIButton) {
         delegate?.tapAddPageButton()
     }
     
     // MARK: Set Up Functions
+    
     func setUpLayout() {
         contentView.addSubview(button)
         button.snp.makeConstraints {

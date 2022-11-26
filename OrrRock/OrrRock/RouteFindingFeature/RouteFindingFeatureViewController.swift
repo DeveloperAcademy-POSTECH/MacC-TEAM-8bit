@@ -12,6 +12,7 @@ import SnapKit
 class RouteFindingFeatureViewController: UIViewController {
     
     // MARK: Variables
+    
     var routeInfo: RouteInfo
     var pages: [PageInfo]
     var pageViews: [RouteFindingPageView] = []
@@ -23,6 +24,7 @@ class RouteFindingFeatureViewController: UIViewController {
     let collectionViewCellSize: Int = 62
     
     // MARK: View Components
+    
     lazy var backgroundImageView: UIImageView = {
         let view = UIImageView()
         
@@ -68,41 +70,54 @@ class RouteFindingFeatureViewController: UIViewController {
         return view
     }()
     
-    var exitButton: UIButton = {
+    private lazy var exitButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         button.layer.cornerRadius = 20
         button.backgroundColor = .orrGray700
         button.setImage(UIImage(systemName: "multiply"), for: .normal)
         button.tintColor = .orrWhite
+        button.addAction(UIAction { _ in
+            self.exitRouteFinding()
+        }, for: .touchUpInside)
         return button
     }()
     
-    var doneButton: UIButton = {
+    private lazy var doneButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 64, height: 40))
         button.layer.cornerRadius = 20
         button.backgroundColor = .orrGray700
         button.setTitle("완료", for: .normal)
         button.setTitleColor(.orrWhite, for: .normal)
         button.setTitleColor(.orrGray500, for: .highlighted)
+        button.addAction(UIAction { _ in
+            self.finishRouteFinding()
+        }, for: .touchUpInside)
         return button
     }()
     
-    var footHandStackView: UIStackView = {
+    private lazy var footHandStackView: UIStackView = {
+        
+        // TODO: house 이미지를 손, 발 이미지로 대체하기
+        
         let handButton = UIButton()
         handButton.backgroundColor = .clear
-        // TODO: 손 이미지로 대체하기
         handButton.setImage(UIImage(systemName: "house"), for: .normal)
         handButton.tintColor = .orrWhite
+        handButton.addAction(UIAction { _ in
+            self.tapHandButton()
+        }, for: .touchUpInside)
         
         let footButton = UIButton()
         footButton.backgroundColor = .clear
-        // TODO: 발 이미지로 대체하기
         footButton.setImage(UIImage(systemName: "house"), for: .normal)
         footButton.tintColor = .orrWhite
+        footButton.addAction(UIAction { _ in
+            self.tapFootButton()
+        }, for: .touchUpInside)
         
         let stackView = UIStackView(arrangedSubviews: [handButton, footButton])
         stackView.backgroundColor = .orrGray700
-        // stackView의 width가 40이므로, cornerRadius의 값은 20
+        // stackView의 width가 40이므로, cornerRadius의 값을 20으로 지정
         stackView.layer.cornerRadius = 20
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
@@ -139,6 +154,7 @@ class RouteFindingFeatureViewController: UIViewController {
     }()
     
     // MARK: Life Cycle Functions
+    
     init(routeInfo: RouteInfo) {
         self.routeInfo = routeInfo
         self.pages = routeInfo.pages
@@ -192,6 +208,7 @@ class RouteFindingFeatureViewController: UIViewController {
     }
     
     // MARK: Functions
+    
     // PageInfo를 RouteFindingPageView로 전환
     func convertPageInfoToPageView(from pageInfo: PageInfo) -> RouteFindingPageView {
         let view = RouteFindingPageView()
@@ -232,7 +249,36 @@ class RouteFindingFeatureViewController: UIViewController {
         }
     }
     
+    func finishRouteFinding() {
+        
+        // TODO: 루트파인딩 저장하기 뷰로 데이터 넘겨주기
+        
+        print("Done Button Tapped")
+    }
+    
+    func exitRouteFinding() {
+        
+        // TODO: 루트파인딩 데이터 초기화 및 뷰 닫기
+        
+        print("Exit Button Tapped")
+    }
+    
+    func tapHandButton() {
+        
+        // TODO: 손 버튼을 눌렀을 때 손 입력모드 or 최대 개수 초과 알림 띄우기
+        
+        print("Hand Button Tapped")
+    }
+    
+    func tapFootButton() {
+        
+        // TODO: 발 버튼을 눌렀을 때 손 입력모드 or 최대 개수 초과 알림 띄우기
+        
+        print("Foot Button Tapped")
+    }
+    
     // MARK: @objc Functions
+    
     @objc func cancelDeleteMode() {
         deleteView.removeFromSuperview()
         deleteButton.removeFromSuperview()
@@ -265,7 +311,9 @@ class RouteFindingFeatureViewController: UIViewController {
 }
 
 extension RouteFindingFeatureViewController {
+    
     // MARK: Set Up Functions
+    
     func setUpLayout() {
         // 화면 비율 기기 대응 작업
         view.addSubview(backgroundImageView)
