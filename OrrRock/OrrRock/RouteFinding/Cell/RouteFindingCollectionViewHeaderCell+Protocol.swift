@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol RouteFindingCollectionViewHeaderCellDelegate{
+protocol RouteFindingCollectionViewHeaderCellDelegate {
     func tapEditButton()
 }

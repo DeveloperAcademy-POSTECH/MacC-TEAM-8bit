@@ -1,5 +1,5 @@
 //
-//  ImageButton.swift
+//  VerticalAlignImageTextButton .swift
 //  OrrRock
 //
 //  Created by dohankim on 2022/11/25.
@@ -8,7 +8,7 @@
 //출처 : https://minios.tistory.com/6
 import UIKit
 
-class ImageButton: UIButton {
+class VerticalAlignImageTextButton : UIButton {
     let pointSize: CGFloat = 17
     let imagePadding: CGFloat = 8
     

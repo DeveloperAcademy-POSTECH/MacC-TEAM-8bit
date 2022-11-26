@@ -10,9 +10,9 @@ import UIKit
 final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
     static let id = "RouteFindingCollectionViewHeaderCell"
     
-    var delegate : RouteFindingCollectionViewHeaderCellDelegate?
+    var delegate: RouteFindingCollectionViewHeaderCellDelegate?
     
-    let titleLabel : UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.textAlignment = .center
@@ -20,7 +20,7 @@ final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
         return label
     }()
     
-    let subTitleButton : UIButton = {
+    let subTitleButton: UIButton = {
         let button = UIButton()
         button.setTitle("버튼", for: .normal)
         button.setTitleColor(UIColor.orrGray400, for: .normal)
@@ -50,7 +50,7 @@ final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
         self.subTitleButton.setTitleColor(isEditing ? .orrUPBlue :.orrGray400, for: .normal)
     }
     
-    func setUpLayout(){
+    private func setUpLayout(){
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(OrrPd.pd16.rawValue)

@@ -8,36 +8,36 @@
 import UIKit
 import SnapKit
 
-class RouteFindingCollectionViewCustomCell : UICollectionViewCell {
+final class RouteFindingCollectionViewCustomCell: UICollectionViewCell {
     static let identifier = "RouteFindingCollectionViewCustomCell"
     
-    override var isSelected: Bool{
-        didSet{
+    override var isSelected: Bool {
+        didSet {
             checkImage.isHidden = !isSelected
         }
     }
     
-    var isSelectable = false{
-        didSet{
+    var isSelectable = false {
+        didSet {
             selectableImage.isHidden = !isSelectable
         }
     }
     
-    lazy var selectableImage : UIImageView = {
+    private lazy var selectableImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "selectable_icon")
         imageView.isHidden = true
         return imageView
     }()
     
-    lazy var checkImage : UIImageView = {
+    private lazy var checkImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Check")
         imageView.isHidden = true
         return imageView
     }()
     
-    lazy var cellImage : UIImageView = {
+    lazy var cellImage: UIImageView = {
         let img = UIImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
         img.image = UIImage(named: "SwipeOnboardingImage1")
@@ -46,27 +46,27 @@ class RouteFindingCollectionViewCustomCell : UICollectionViewCell {
         return img
     }()
     
-    lazy var infoView : UIView = {
+    private lazy var infoView: UIView = {
         let view = UIView()
         view.backgroundColor = .orrWhite
         return view
     }()
     
-    lazy var cellTitleLabel : UILabel = {
+    lazy var cellTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "아띠 클라이밍"
         label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         return label
     }()
     
-    lazy var cellDateLabel : UILabel = {
+    lazy var cellDateLabel: UILabel = {
         let label = UILabel()
         label.text = "2022년 10월 1일"
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         return label
     }()
     
-    lazy var cellLevelLabel : BasePaddingLabel = {
+    lazy var cellLevelLabel: BasePaddingLabel = {
         let label = BasePaddingLabel()
         label.text = "V3"
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
@@ -78,7 +78,7 @@ class RouteFindingCollectionViewCustomCell : UICollectionViewCell {
         return label
     }()
     
-    lazy var cellChallengeLabel : UILabel = {
+    lazy var cellChallengeLabel: UILabel = {
         let label = UILabel()
         label.text = "도전 중"
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
@@ -94,7 +94,7 @@ class RouteFindingCollectionViewCustomCell : UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setUpLayout() {
+    private func setUpLayout() {
         self.layer.cornerRadius = 10
         self.clipsToBounds = true
         self.backgroundColor = .gray

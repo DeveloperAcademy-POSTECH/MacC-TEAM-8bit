@@ -10,19 +10,19 @@ import SnapKit
 
 final class RouteFindingMainViewController: UIViewController {
     
-    private lazy var topView : UIView = {
+    private lazy var topView: UIView = {
         let view = UIView()
         return view
     }()
     
-    private lazy var titleLabel : UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "루트 파인딩"
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         return label
     }()
     
-    private lazy var plusButton : UIButton = {
+    private lazy var plusButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .bold)), for: .normal)
         button.tintColor = .orrGray600
@@ -35,13 +35,13 @@ final class RouteFindingMainViewController: UIViewController {
         return control
     }()
     
-    private lazy var allRouteFindingViewController : UIViewController = {
+    private lazy var allRouteFindingViewController: UIViewController = {
         let vc = RouteFindingSectionViewController()
         vc.infoArr = [1,2,3,4,5,6,7,8]
         return vc
     }()
     
-    private lazy var challengeRouteFindingViewController : UIViewController = {
+    private lazy var challengeRouteFindingViewController: UIViewController = {
         let vc = RouteFindingSectionViewController()
         vc.infoArr = [1,2,3,4]
         return vc
@@ -87,12 +87,14 @@ final class RouteFindingMainViewController: UIViewController {
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = false
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     private func setUpSegment() {
@@ -155,7 +157,7 @@ final class RouteFindingMainViewController: UIViewController {
         
     }
     
-    private func setInitialNavigationBar(){
+    private func setInitialNavigationBar() {
         self.navigationController?.isNavigationBarHidden = true
     }
 }

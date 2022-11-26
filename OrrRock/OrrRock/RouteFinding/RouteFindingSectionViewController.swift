@@ -43,14 +43,14 @@ class RouteFindingSectionViewController: UIViewController {
         return cv
     }()
     
-    lazy var emptyGuideView : UIView = {
+    lazy var emptyGuideView: UIView = {
         let view = UIView()
         view.backgroundColor = .orrGray100
         view.alpha = 0.0
         return view
     }()
     
-    private lazy var emptyGuideLabel : UILabel = {
+    private lazy var emptyGuideLabel: UILabel = {
         let label = UILabel()
         label.text = "아직 루트파인딩 기록이 없습니다.\n촬영 혹은 사진 업로드를 통해 추가해주세요."
         label.numberOfLines = 2
@@ -60,15 +60,15 @@ class RouteFindingSectionViewController: UIViewController {
         return label
     }()
     
-    private lazy var bottomOptionView :UIView = {
+    private lazy var bottomOptionView: UIView = {
         let view = UIView()
         view.backgroundColor = .orrUPBlue
         view.layer.opacity = 0.0
         return view
     }()
     
-    lazy var folderButton : ImageButton = {
-        let view = ImageButton()
+    lazy var folderButton: VerticalAlignImageTextButton = {
+        let view = VerticalAlignImageTextButton ()
         view.setImage(UIImage(systemName: "folder.fill"), for: .normal)
         view.setTitle("이동", for: .normal)
         view.isEnabled = false
@@ -76,8 +76,8 @@ class RouteFindingSectionViewController: UIViewController {
         return view
     }()
     
-    lazy var deleteButton : ImageButton = {
-        let view = ImageButton()
+    lazy var deleteButton: VerticalAlignImageTextButton = {
+        let view = VerticalAlignImageTextButton ()
         view.setImage(UIImage(systemName: "trash.fill"), for: .normal)
         view.setTitle("삭제", for: .normal)
         view.isEnabled = false
@@ -93,10 +93,12 @@ class RouteFindingSectionViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         emptyGuideView.alpha = infoArr.count == 0 ? 1.0 : 0.0
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         mMode = .view
         routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
         
@@ -109,7 +111,7 @@ class RouteFindingSectionViewController: UIViewController {
         self.folderButton.isEnabled = false
         
     }
-    private func setDelegate(){
+    private func setDelegate() {
         routeFindingCollectionView.delegate = self
         routeFindingCollectionView.dataSource = self
         routeFindingCollectionView.showsVerticalScrollIndicator = false
@@ -125,7 +127,7 @@ class RouteFindingSectionViewController: UIViewController {
         )
     }
     
-    private func setUpLayout(){
+    private func setUpLayout() {
         view.addSubview(routeFindingCollectionView)
         routeFindingCollectionView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
@@ -163,7 +165,7 @@ class RouteFindingSectionViewController: UIViewController {
         }
     }
     
-    @objc func touchDeleteButton(){
+    @objc func touchDeleteButton() {
         let vc = RouteModalViewController()
         vc.modalPresentationStyle = .pageSheet
         vc.isFoldering = false
@@ -179,7 +181,7 @@ class RouteFindingSectionViewController: UIViewController {
         present(vc, animated: true, completion: nil)
     }
     
-    @objc func touchFolderButton(){
+    @objc func touchFolderButton() {
         let vc = RouteModalViewController()
         vc.modalPresentationStyle = .pageSheet
         vc.isFoldering = true

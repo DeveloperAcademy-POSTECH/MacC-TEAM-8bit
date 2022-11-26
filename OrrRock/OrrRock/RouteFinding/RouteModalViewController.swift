@@ -15,7 +15,7 @@ class RouteModalViewController: UIViewController {
     private var buttonSideOffset = 6.5
     private var buttonTopOffset = 58
     
-    private lazy var titleLabel : UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = isFoldering ? "선택하신 루트파인딩을 성공하셨나요?" : "선택하신 루트 파인딩을 삭제하시겠어요?"
         label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
@@ -26,7 +26,7 @@ class RouteModalViewController: UIViewController {
         return label
     }()
     
-    private lazy var leftReluctantButton : UIButton = {
+    private lazy var leftReluctantButton: UIButton = {
         let btn = UIButton()
         btn.setTitle(isFoldering ? "도전 중" : "취소", for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
@@ -36,7 +36,7 @@ class RouteModalViewController: UIViewController {
         return btn
     }()
     
-    private lazy var rightPreferButton : UIButton = {
+    private lazy var rightPreferButton: UIButton = {
         let btn = UIButton()
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         btn.setTitle(isFoldering ? "도전 성공" : "삭제", for: .normal)
@@ -75,30 +75,24 @@ class RouteModalViewController: UIViewController {
         }
     }
     
-    @objc private func cancel(){
+    @objc private func cancel() {
         self.dismiss(animated: true)
         
     }
     
-    @objc private func deleteSelects(){
+    @objc private func deleteSelects() {
         self.dismiss(animated: true)
         delegate?.delete()
     }
     
-    @objc private func folderingToChallenge(){
+    @objc private func folderingToChallenge() {
         self.dismiss(animated: true)
         delegate?.folderingToChallenge()
     }
     
-    @objc private func folderingToSuccess(){
+    @objc private func folderingToSuccess() {
         self.dismiss(animated: true)
         delegate?.folderingToSuccess()
     }
-}
-
-protocol RouteModalDelegate{
-    func delete()
-    func folderingToChallenge()
-    func folderingToSuccess()
 }
 

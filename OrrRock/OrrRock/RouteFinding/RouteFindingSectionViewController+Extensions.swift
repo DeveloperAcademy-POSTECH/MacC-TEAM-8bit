@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-extension RouteFindingSectionViewController : UICollectionViewDelegate{
+extension RouteFindingSectionViewController: UICollectionViewDelegate {
     
     func collectionView(
         _ collectionView: UICollectionView,
@@ -38,10 +38,9 @@ extension RouteFindingSectionViewController : UICollectionViewDelegate{
             return UICollectionReusableView()
         }
     }
-    
 }
 
-extension RouteFindingSectionViewController: UICollectionViewDataSource{
+extension RouteFindingSectionViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return infoArr.count
@@ -103,7 +102,7 @@ extension RouteFindingSectionViewController : UICollectionViewDelegateFlowLayout
     }
 }
 
-extension RouteFindingSectionViewController : RouteFindingCollectionViewHeaderCellDelegate{
+extension RouteFindingSectionViewController: RouteFindingCollectionViewHeaderCellDelegate {
     func tapEditButton() {
         mMode = mMode == .view ? .select : .view
         routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
@@ -114,12 +113,12 @@ extension RouteFindingSectionViewController : RouteFindingCollectionViewHeaderCe
     }
 }
 
-extension RouteFindingSectionViewController : UISheetPresentationControllerDelegate{
+extension RouteFindingSectionViewController: UISheetPresentationControllerDelegate {
     func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheetPresentationController: UISheetPresentationController) {
     }
 }
 
-extension RouteFindingSectionViewController : RouteModalDelegate{
+extension RouteFindingSectionViewController: RouteModalDelegate {
     func delete() {
         var deleteNeededIndexPaths : [IndexPath] = []
         for (key,value) in dictionarySelectedIndexPath{
@@ -161,12 +160,10 @@ extension RouteFindingSectionViewController : RouteModalDelegate{
     }
     
     func folderingToChallenge() {
-        
         showToast("\(dictionarySelectedIndexPath.count)개의 루트 파인딩이 '도전 중'으로 이동했습니다.", withDuration: 3.0, delay: 0.1)
     }
     
     func folderingToSuccess() {
-        
         showToast("\(dictionarySelectedIndexPath.count)개의 루트 파인딩이 '도전 성공'으로 이동했습니다.", withDuration: 3.0, delay: 0.1)
     }
     
