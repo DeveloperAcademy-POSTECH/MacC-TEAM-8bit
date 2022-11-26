@@ -132,8 +132,8 @@ extension RouteFindingSectionViewController : RouteModalDelegate{
         //삭제 실제 배열에서
         for i in deleteNeededIndexPaths.sorted(by:{$0.item > $1.item
         }){
-//            //데이터에서 실제로 삭제하는 부분
-//            DataManager.shared.deleteData(videoInformation: videoInformationArray[i.item])
+            //            //데이터에서 실제로 삭제하는 부분
+            //            DataManager.shared.deleteData(videoInformation: videoInformationArray[i.item])
             infoArr.remove(at: i.item)
         }
         
@@ -157,7 +157,7 @@ extension RouteFindingSectionViewController : RouteModalDelegate{
         deleteButton.isEnabled = false
         
         //도전의 개수 업데이트
-//        getSuccessCount()
+        //        getSuccessCount()
         routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
         
         if infoArr.count == 0 {
@@ -186,7 +186,7 @@ extension RouteFindingSectionViewController : RouteModalDelegate{
         toastLabel.alpha = 1.0
         toastLabel.layer.cornerRadius = 10
         toastLabel.clipsToBounds  =  true
-            
+        
         view.addSubview(toastLabel)
         toastLabel.snp.makeConstraints {
             $0.bottom.equalTo(view.snp_bottomMargin).offset(-12)
