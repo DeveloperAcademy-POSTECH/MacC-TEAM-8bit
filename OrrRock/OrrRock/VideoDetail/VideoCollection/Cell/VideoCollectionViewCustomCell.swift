@@ -46,12 +46,12 @@ class VideoCollectionViewCell : UICollectionViewCell {
         img.layer.masksToBounds = true
         return img
     }()
-    
+    //Ruyah~~~~~~~~~~~~~~~~~
     lazy var cellLabel : UILabel = {
         let label = BasePaddingLabel(padding: UIEdgeInsets(top: 2, left: 8, bottom: 2, right: 8))
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "V2"
-        label.font = UIFont.systemFont(ofSize: 10, weight: .bold)
+        label.font = .systemRoundedFont(ofSize: 12, weight: .bold)
         label.backgroundColor = .red
         label.textColor = .white
         label.layer.masksToBounds = true
@@ -86,8 +86,8 @@ class VideoCollectionViewCell : UICollectionViewCell {
         }
         self.addSubview(cellLabel)
         cellLabel.snp.makeConstraints {
-            $0.bottom.equalTo(cellImage.snp.bottom).offset(-16)
-            $0.leading.equalTo(cellImage.snp.leading).offset(16)
+            $0.bottom.equalTo(cellImage.snp.bottom).offset(-OrrPd.pd8.rawValue)
+            $0.leading.equalTo(cellImage.snp.leading).offset(OrrPd.pd8.rawValue)
         }
         self.addSubview(heartImage)
         heartImage.snp.makeConstraints {

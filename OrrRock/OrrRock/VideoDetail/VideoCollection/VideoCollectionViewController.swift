@@ -103,7 +103,7 @@ class VideoCollectionViewController: UIViewController {
         layout.headerReferenceSize = .init(width: 100, height: 76)
         layout.footerReferenceSize = .init(width: 50, height: 120)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .white
+        cv.backgroundColor = .orrWhite
         return cv
     }()
     
@@ -122,7 +122,6 @@ class VideoCollectionViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         setVideoCollectionViewDelegate()
         registerCells()
         setUpLayout()
@@ -179,7 +178,6 @@ class VideoCollectionViewController: UIViewController {
         navigationItem.rightBarButtonItem = selectBarButton
 //        navigationItem.leftBarButtonItem = backBarButton
         self.navigationController?.setExpansionBackbuttonArea()
-
         firstContentOffset = Float(videoCollectionView.contentOffset.y)
     }
     
