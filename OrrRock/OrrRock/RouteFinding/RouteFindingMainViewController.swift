@@ -8,21 +8,21 @@
 import UIKit
 import SnapKit
 
-class RouteFindingMainViewController: UIViewController {
+final class RouteFindingMainViewController: UIViewController {
     
-    lazy var topView : UIView = {
+    private lazy var topView : UIView = {
         let view = UIView()
         return view
     }()
     
-    lazy var titleLabel : UILabel = {
+    private lazy var titleLabel : UILabel = {
         let label = UILabel()
         label.text = "루트 파인딩"
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         return label
     }()
     
-    lazy var plusButton : UIButton = {
+    private lazy var plusButton : UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "plus",withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .bold)), for: .normal)
         button.tintColor = .orrGray600
@@ -30,24 +30,24 @@ class RouteFindingMainViewController: UIViewController {
     }()
     
     lazy var segmentedControl: UnderlineSegmentedControl = {
-        let control = UnderlineSegmentedControl(items: ["ALL", "도전 중","도전 성공"])
+        let control = UnderlineSegmentedControl(items: ["ALL","도전 중","도전 성공"])
         control.translatesAutoresizingMaskIntoConstraints = false
         return control
     }()
     
-    lazy var allRouteFindingViewController : UIViewController = {
+    private lazy var allRouteFindingViewController : UIViewController = {
         let vc = RouteFindingSectionViewController()
         vc.infoArr = [1,2,3,4,5,6,7,8]
         return vc
     }()
     
-    lazy var challengeRouteFindingViewController : UIViewController = {
+    private lazy var challengeRouteFindingViewController : UIViewController = {
         let vc = RouteFindingSectionViewController()
         vc.infoArr = [1,2,3,4]
         return vc
     }()
     
-    lazy var successRouteFindingViewController : UIViewController = {
+    private lazy var successRouteFindingViewController: UIViewController = {
         let vc = RouteFindingSectionViewController()
         vc.infoArr = [5,6,7,8]
         return vc
@@ -82,8 +82,8 @@ class RouteFindingMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpLayout()
-        setNavigationBar()
-        setSegment()
+        setInitialNavigationBar()
+        setUpSegment()
         
     }
     
@@ -95,7 +95,7 @@ class RouteFindingMainViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
     }
     
-    func setSegment(){
+    private func setUpSegment() {
         self.segmentedControl.selectedSegmentIndex = 0
         if let firstVC = dataViewControllers.first {
             pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
@@ -117,7 +117,7 @@ class RouteFindingMainViewController: UIViewController {
         self.currentPage = control.selectedSegmentIndex
     }
     
-    func setUpLayout(){
+    private func setUpLayout(){
         view.backgroundColor = .orrGray100
         view.addSubview(topView)
         topView.snp.makeConstraints {
@@ -150,7 +150,7 @@ class RouteFindingMainViewController: UIViewController {
         
     }
     
-    func setNavigationBar(){
+    private func setInitialNavigationBar(){
         self.navigationController?.isNavigationBarHidden = true
     }
 }

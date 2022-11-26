@@ -104,15 +104,13 @@ extension RouteFindingSectionViewController : UICollectionViewDelegateFlowLayout
 }
 
 extension RouteFindingSectionViewController : RouteFindingCollectionViewHeaderCellDelegate{
-    func touchEditButton() {
+    func tapEditButton() {
         mMode = mMode == .view ? .select : .view
         routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
         (routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as! RouteFindingCollectionViewHeaderCell).subTitleButton.setTitle(mMode == .select ? "완료" : "편집", for: .normal)
         (routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as!
          RouteFindingCollectionViewHeaderCell).subTitleButton.setTitleColor(mMode == .select ? UIColor.orrUPBlue: UIColor.orrGray400, for: .normal)
         
-        self.tabBarController?.tabBar.isHidden = self.mMode == .select ? true : false
-        self.bottomOptionView.layer.opacity = self.mMode == .select ? 1.0 : 0.0
     }
 }
 
@@ -130,8 +128,7 @@ extension RouteFindingSectionViewController : RouteModalDelegate{
             }
         }
         //삭제 실제 배열에서
-        for i in deleteNeededIndexPaths.sorted(by:{$0.item > $1.item
-        }){
+        for i in deleteNeededIndexPaths.sorted(by:{$0.item > $1.item}){
             //            //데이터에서 실제로 삭제하는 부분
             //            DataManager.shared.deleteData(videoInformation: videoInformationArray[i.item])
             infoArr.remove(at: i.item)
@@ -147,8 +144,6 @@ extension RouteFindingSectionViewController : RouteModalDelegate{
         dictionarySelectedIndexPath.removeAll()
         
         mMode = .view
-        self.tabBarController?.tabBar.isHidden = false
-        self.bottomOptionView.layer.opacity = 0.0
         
         routeFindingCollectionView.allowsMultipleSelection = false
         routeFindingCollectionView.deleteItems(at: deleteNeededIndexPaths)

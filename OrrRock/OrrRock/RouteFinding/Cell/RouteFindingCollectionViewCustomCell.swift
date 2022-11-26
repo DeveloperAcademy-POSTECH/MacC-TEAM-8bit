@@ -40,7 +40,7 @@ class RouteFindingCollectionViewCustomCell : UICollectionViewCell {
     lazy var cellImage : UIImageView = {
         let img = UIImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
-        img.image = UIImage(named: "s")
+        img.image = UIImage(named: "SwipeOnboardingImage1")
         img.contentMode = .scaleAspectFill
         img.layer.masksToBounds = true
         return img
@@ -61,7 +61,7 @@ class RouteFindingCollectionViewCustomCell : UICollectionViewCell {
     
     lazy var cellDateLabel : UILabel = {
         let label = UILabel()
-        label.text = "아띠 클라이밍"
+        label.text = "2022년 10월 1일"
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         return label
     }()

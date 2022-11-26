@@ -15,6 +15,8 @@ class RouteFindingSectionViewController: UIViewController {
         didSet{
             switch mMode{
             case .view:
+                self.tabBarController?.tabBar.isHidden = false
+                bottomOptionView.layer.opacity = 0.0
                 for (key,value) in dictionarySelectedIndexPath{
                     if value{
                         routeFindingCollectionView.deselectItem(at: key, animated: true)
@@ -23,6 +25,8 @@ class RouteFindingSectionViewController: UIViewController {
                 dictionarySelectedIndexPath.removeAll()
                 routeFindingCollectionView.allowsMultipleSelection = false
             case .select:
+                self.tabBarController?.tabBar.isHidden = true
+                bottomOptionView.layer.opacity = 1.0
                 routeFindingCollectionView.allowsMultipleSelection = true
             }
         }
@@ -92,9 +96,7 @@ class RouteFindingSectionViewController: UIViewController {
         emptyGuideView.alpha = infoArr.count == 0 ? 1.0 : 0.0
     }
     override func viewWillDisappear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
         mMode = .view
-        bottomOptionView.layer.opacity = 0.0
         routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
         
         (routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as? RouteFindingCollectionViewHeaderCell)?.subTitleButton.setTitle(mMode == .select ? "완료" : "편집", for: .normal)

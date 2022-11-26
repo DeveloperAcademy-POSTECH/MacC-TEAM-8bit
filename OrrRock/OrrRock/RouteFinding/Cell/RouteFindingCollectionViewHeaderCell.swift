@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RouteFindingCollectionViewHeaderCellDelegate{
-    func touchEditButton()
+    func tapEditButton()
 }
 
 final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
@@ -69,6 +69,6 @@ final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
     }
     
     @objc func buttonTouch(){  
-        delegate?.touchEditButton()
+        delegate?.tapEditButton()
     }
 }
