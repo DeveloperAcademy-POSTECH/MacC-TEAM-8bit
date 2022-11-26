@@ -26,7 +26,7 @@ final class SwipeableCardVideoView: UIView {
         view.backgroundColor = .orrGray500
         view.layer.borderWidth = 3
         view.layer.cornerRadius = cornerRadius
-        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.borderColor = UIColor.orrWhite!.cgColor
         // 스와이프 뷰에서 카드들이 다중 터치가 되지 않게 막는 코드
         view.isExclusiveTouch = true
         
@@ -150,21 +150,18 @@ private extension SwipeableCardVideoView {
 extension SwipeableCardVideoView {
     
     func setVideoBackgroundViewBorderColor(color: VideoBackgroundViewBorderColor,alpha: CGFloat) {
-        var r : CGFloat = 0.0
-        var g : CGFloat = 0.0
-        var b : CGFloat = 0.0
-        
+        var myColor = UIColor.orrWhite
         switch color {
         case.pass :
-            r = 48; g = 176; b = 199
+            myColor = .orrPass
         case .fail :
-            r = 242; g = 52; b = 52
+            myColor = .orrFail
         // TODO: 디자인 상의 후 색상 값 수정
         case .delete:
-            r = 178; g = 178; b = 178
+            myColor = .orrGray500
         case .clear :
-            r = 255; g = 255; b = 255
+            myColor = .orrWhite
         }
-        videoBackgroundView.layer.borderColor = UIColor(red:r/255.0, green:g/255.0, blue:b/255.0, alpha: 1.0).cgColor
+        videoBackgroundView.layer.borderColor = myColor?.withAlphaComponent(1.0).cgColor
     }
 }

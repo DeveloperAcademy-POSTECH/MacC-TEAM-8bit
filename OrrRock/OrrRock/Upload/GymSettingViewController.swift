@@ -207,7 +207,7 @@ extension GymSettingViewController {
         view.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(OrrPd.pd16.rawValue)
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd8.rawValue)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd24.rawValue)
         }
         
         view.addSubview(gymTextField)
