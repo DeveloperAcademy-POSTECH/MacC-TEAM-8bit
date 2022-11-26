@@ -13,7 +13,7 @@ class RouteFindingSaveViewController: UIViewController {
     private var goBackButton: UIBarButtonItem!
     private var saveButton: UIBarButtonItem!
     
-    private lazy var previewVideoView: UIView = {
+    private lazy var previewImageView: UIView = {
         let view = UIView()
         view.backgroundColor = .orrGray200
         view.layer.cornerRadius = 10
@@ -165,12 +165,12 @@ extension RouteFindingSaveViewController {
             $0.bottom.equalTo(checkSelectedBar.snp.top).offset(-OrrPd.pd8.rawValue)
         }
         
-        view.addSubview(previewVideoView)
-        previewVideoView.snp.makeConstraints {
+        view.addSubview(previewImageView)
+        previewImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(view.forLastBaselineLayout.snp_topMargin).offset(OrrPd.pd8.rawValue)
             $0.bottom.equalTo(saveRouteFindingImageCollectionView.snp.top).offset(-OrrPd.pd8.rawValue)
-            $0.width.equalTo(previewVideoView.snp.height).multipliedBy(0.5625)
+            $0.width.equalTo(previewImageView.snp.height).multipliedBy(0.5625)
         }
     }
 }
