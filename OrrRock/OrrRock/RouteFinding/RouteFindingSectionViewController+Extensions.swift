@@ -10,7 +10,6 @@ import SnapKit
 
 extension RouteFindingSectionViewController : UICollectionViewDelegate{
     
-    
     func collectionView(
         _ collectionView: UICollectionView,
         viewForSupplementaryElementOfKind kind: String,
@@ -88,9 +87,7 @@ extension RouteFindingSectionViewController: UICollectionViewDataSource{
             self.deleteButton.isEnabled = dictionarySelectedIndexPath.values.filter({$0 == true}).count == 0 ? false : true
         }
     }
-    
 }
-
 
 extension RouteFindingSectionViewController : UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -116,13 +113,10 @@ extension RouteFindingSectionViewController : RouteFindingCollectionViewHeaderCe
         
         self.tabBarController?.tabBar.isHidden = self.mMode == .select ? true : false
         self.bottomOptionView.layer.opacity = self.mMode == .select ? 1.0 : 0.0
-        
     }
-    
 }
 
 extension RouteFindingSectionViewController : UISheetPresentationControllerDelegate{
     func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheetPresentationController: UISheetPresentationController) {
-        
     }
 }

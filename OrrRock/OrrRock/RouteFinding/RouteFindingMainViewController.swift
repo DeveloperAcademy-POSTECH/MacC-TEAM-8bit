@@ -64,35 +64,24 @@ class RouteFindingMainViewController: UIViewController {
     }()
     
     var currentPage: Int = 0 {
-       didSet {
-         // from segmentedControl -> pageViewController 업데이트
-         let direction: UIPageViewController.NavigationDirection = oldValue <= self.currentPage ? .forward : .reverse
-         self.pageViewController.setViewControllers(
-           [dataViewControllers[self.currentPage]],
-           direction: direction,
-           animated: true,
-           completion: nil
-         )
-       }
-     }
+        didSet {
+            // from segmentedControl -> pageViewController 업데이트
+            let direction: UIPageViewController.NavigationDirection = oldValue <= self.currentPage ? .forward : .reverse
+            self.pageViewController.setViewControllers(
+                [dataViewControllers[self.currentPage]],
+                direction: direction,
+                animated: true,
+                completion: nil
+            )
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpLayout()
         setNavigationBar()
         setSegment()
-        setUpDelegate()
-        self.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.orrGray400,.font: UIFont.systemFont(ofSize: 17, weight: .bold)], for: .normal)
-        self.segmentedControl.setTitleTextAttributes(
-            [
-                NSAttributedString.Key.foregroundColor: UIColor.orrBlack,
-                .font: UIFont.systemFont(ofSize: 17, weight: .bold)
-            ],
-            for: .selected
-        )
-        self.segmentedControl.addTarget(self, action: #selector(changeValue(control:)), for: .valueChanged)
-            self.segmentedControl.selectedSegmentIndex = 0
-            self.changeValue(control: self.segmentedControl)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -108,13 +97,21 @@ class RouteFindingMainViewController: UIViewController {
         if let firstVC = dataViewControllers.first {
             pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
+        self.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.orrGray400,.font: UIFont.systemFont(ofSize: 17, weight: .bold)], for: .normal)
+        self.segmentedControl.setTitleTextAttributes(
+            [
+                NSAttributedString.Key.foregroundColor: UIColor.orrBlack,
+                .font: UIFont.systemFont(ofSize: 17, weight: .bold)
+            ],
+            for: .selected
+        )
+        self.segmentedControl.addTarget(self, action: #selector(changeValue(control:)), for: .valueChanged)
+        self.segmentedControl.selectedSegmentIndex = 0
+        self.changeValue(control: self.segmentedControl)
     }
     
-    private func setUpDelegate() {
-        
-    }
     @objc private func changeValue(control: UISegmentedControl) {
-      self.currentPage = control.selectedSegmentIndex
+        self.currentPage = control.selectedSegmentIndex
     }
     
     func setUpLayout(){
@@ -153,9 +150,4 @@ class RouteFindingMainViewController: UIViewController {
     func setNavigationBar(){
         self.navigationController?.isNavigationBarHidden = true
     }
-    
-    @objc private func didChangeValue(segment: UISegmentedControl) {
-        
-    }
-    
 }

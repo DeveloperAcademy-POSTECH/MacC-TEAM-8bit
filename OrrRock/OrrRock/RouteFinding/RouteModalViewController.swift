@@ -8,7 +8,7 @@
 import UIKit
 
 class RouteModalViewController: UIViewController {
-
+    
     var isFoldering = true
     
     private lazy var titleLabel : UILabel = {
@@ -28,7 +28,7 @@ class RouteModalViewController: UIViewController {
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         btn.backgroundColor = .orrGray300
         btn.layer.cornerRadius = 15
-        btn.addTarget(self, action: #selector(cancel), for: .touchUpInside)
+        btn.addTarget(self, action: isFoldering ? #selector(folderingToChallenge): #selector(cancel), for: .touchUpInside)
         return btn
     }()
     
@@ -37,6 +37,7 @@ class RouteModalViewController: UIViewController {
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         btn.setTitle(isFoldering ? "도전 성공" : "삭제", for: .normal)
         btn.backgroundColor = isFoldering ? .orrUPBlue : .orrFail
+        btn.addTarget(self, action: isFoldering ? #selector(folderingToSuccess) : #selector(deleteSelects), for: .touchUpInside)
         btn.layer.cornerRadius = 15
         return btn
     }()
@@ -44,9 +45,8 @@ class RouteModalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpLayout()
-        // Do any additional setup after loading the view.
     }
-
+    
     func setUpLayout(){
         view.backgroundColor = .orrWhite
         view.addSubview(titleLabel)
@@ -73,17 +73,19 @@ class RouteModalViewController: UIViewController {
     
     @objc func cancel(){
         self.dismiss(animated: true)
+        
     }
     
-    @objc func delete(){
+    @objc func deleteSelects(){
         self.dismiss(animated: true)
+        
     }
     
     @objc func folderingToChallenge(){
         self.dismiss(animated: true)
     }
     
-    @objc func delete(){
+    @objc func folderingToSuccess(){
         self.dismiss(animated: true)
     }
 }

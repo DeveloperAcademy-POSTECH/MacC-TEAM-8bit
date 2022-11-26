@@ -68,11 +68,7 @@ final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
         }
     }
     
-    @objc func buttonTouch(){
-        
-        
+    @objc func buttonTouch(){  
         delegate?.touchEditButton()
-        
-       
     }
 }
