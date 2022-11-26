@@ -142,10 +142,12 @@ extension RouteFindingSectionViewController : RouteModalDelegate{
                 routeFindingCollectionView.deselectItem(at: key, animated: true)
             }
         }
+        showToast("\(dictionarySelectedIndexPath.count)개의 루트 파인딩을 삭제했습니다.", withDuration: 3.0, delay: 0.1)
+        
         dictionarySelectedIndexPath.removeAll()
         
         mMode = .view
-        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
         self.bottomOptionView.layer.opacity = 0.0
         
         routeFindingCollectionView.allowsMultipleSelection = false
@@ -161,16 +163,41 @@ extension RouteFindingSectionViewController : RouteModalDelegate{
         if infoArr.count == 0 {
             self.emptyGuideView.alpha = 1.0
         }
-       
     }
     
     func folderingToChallenge() {
-        print("challenge")
+        
+        showToast("\(dictionarySelectedIndexPath.count)개의 루트 파인딩이 '도전 중'으로 이동했습니다.", withDuration: 3.0, delay: 0.1)
     }
     
     func folderingToSuccess() {
-        print("success")
+        
+        showToast("\(dictionarySelectedIndexPath.count)개의 루트 파인딩이 '도전 성공'으로 이동했습니다.", withDuration: 3.0, delay: 0.1)
     }
     
-    
+    func showToast(_ message : String, withDuration: Double, delay: Double) {
+        let toastLabel = UILabel()
+        toastLabel.backgroundColor = UIColor.orrWhite!.withAlphaComponent(1.0)
+        toastLabel.layer.borderColor = UIColor.orrGray200?.cgColor
+        toastLabel.textColor = UIColor.orrGray700
+        toastLabel.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        toastLabel.textAlignment = .center
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 10
+        toastLabel.clipsToBounds  =  true
+            
+        view.addSubview(toastLabel)
+        toastLabel.snp.makeConstraints {
+            $0.bottom.equalTo(view.snp_bottomMargin).offset(-12)
+            $0.width.trailing.equalToSuperview().inset(OrrPd.pd16.rawValue)
+            $0.height.equalTo(42)
+        }
+        
+        UIView.animate(withDuration: withDuration, delay: delay, options: .curveEaseOut, animations: {
+            toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toastLabel.removeFromSuperview()
+        })
+    }
 }

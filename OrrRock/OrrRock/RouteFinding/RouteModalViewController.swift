@@ -97,3 +97,4 @@ protocol RouteModalDelegate{
     func folderingToChallenge()
     func folderingToSuccess()
 }
+
