@@ -59,6 +59,14 @@ class RouteFindingSaveViewController: UIViewController {
         
         return label
     }()
+    
+    private lazy var checkSelectedBar:  UIView = {
+        let view = UIView()
+        view.backgroundColor = .orrUPBlue
+        view.layer.cornerRadius = 3
+        
+        return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -137,6 +145,14 @@ extension RouteFindingSaveViewController {
         countVideoView.addSubview(countVideoLabel)
         countVideoLabel.snp.makeConstraints {
             $0.center.equalTo(countVideoView.snp.center)
+        }
+        
+        view.addSubview(checkSelectedBar)
+        checkSelectedBar.snp.makeConstraints {
+            $0.bottom.equalTo(countVideoView.snp.top).offset(-OrrPd.pd8.rawValue)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(4)
+            $0.width.equalTo(58)
         }
     }
 }
