@@ -14,7 +14,6 @@ extension UIColor {
     //Black & White
     static let orrBlack = UIColor(named: "oRBlack")
     static let orrWhite = UIColor(named: "oRWhite")
-    static let orrWhiteCustom = UIColor(named: "oRWhiteCustom")
     
     //GRAY COLOR
     static let orrGray100 = UIColor(named: "oRGray100")
@@ -28,7 +27,7 @@ extension UIColor {
     static let orrGray800 = UIColor(named: "oRGray800")
     static let orrGray900 = UIColor(named: "oRGray900")
     static let orrGray950 = UIColor(named: "oRGray950")
-    
+
 
     //SUB COLOR
     static let orrPass = UIColor(named: "oRPass")
@@ -45,6 +44,11 @@ extension UIColor {
     static let holder7 = UIColor(named: "V7_Color")
     static let holder8 = UIColor(named: "V8_Color")
     static let holder9 = UIColor(named: "V9_Color")
+    
+    //MARK: 사용시 디자인 가이드 꼭 확인 바람 다크,라이트모드 둘다 확인해야함
+    //Custom Color
+    static let orrWhiteCustom = UIColor(named: "oRWhiteCustom")
+    static let orrGray050Custom = UIColor(named: "oRGray050Custom")
 }
 
 extension UIColor {
