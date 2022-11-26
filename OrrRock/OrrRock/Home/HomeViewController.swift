@@ -199,7 +199,7 @@ final class HomeViewController : UIViewController {
                                            selectedIconTintColor: UIColor.orrUPBlue!),
             options: [.cornerRadius(25.0),
                       .backgroundColor(UIColor.orrGray300!),
-                      .indicatorViewBackgroundColor(.white)])
+                      .indicatorViewBackgroundColor(.orrWhite ?? .white)])
         view.addTarget(self, action: #selector(segmentControl(_:)), for: .valueChanged)
         
         return view
