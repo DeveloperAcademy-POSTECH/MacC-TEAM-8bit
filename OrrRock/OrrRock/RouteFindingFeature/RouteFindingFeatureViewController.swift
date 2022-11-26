@@ -254,6 +254,8 @@ class RouteFindingFeatureViewController: UIViewController {
     func finishRouteFinding() {
         
         // TODO: 루트파인딩 저장하기 뷰로 데이터 넘겨주기
+        routeInfo.pages = pages
+//        routeInfo -> 전달
         
         print("Done Button Tapped")
     }
