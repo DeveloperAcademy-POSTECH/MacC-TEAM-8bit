@@ -11,7 +11,7 @@ protocol RouteFindingThumbnailCollectionViewCellDelegate {
     func enterDeletePageMode(indexPath: IndexPath)
 }
 
-class RouteFindingThumbnailCollectionViewCell: UICollectionViewCell {
+final class RouteFindingThumbnailCollectionViewCell: UICollectionViewCell {
     
     // MARK: Variables
     
@@ -20,7 +20,7 @@ class RouteFindingThumbnailCollectionViewCell: UICollectionViewCell {
     var delegate: RouteFindingThumbnailCollectionViewCellDelegate?
     var indexPathOfCell: IndexPath!
     
-    let collectionViewCellSize: Int = 62
+    private let collectionViewCellSize: Int = 62
     
     // MARK: View Components
     
@@ -78,7 +78,7 @@ class RouteFindingThumbnailCollectionViewCell: UICollectionViewCell {
     
     // MARK: Set Up Functions
     
-    func setUpLayout() {
+    private func setUpLayout() {
         contentView.addSubview(pageImage)
         pageImage.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -92,7 +92,7 @@ class RouteFindingThumbnailCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func setGestureRecognizer() {
+    private func setGestureRecognizer() {
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(pressDeleteButton(_:)))
 
         longPressGesture.minimumPressDuration = 0.5
@@ -114,11 +114,11 @@ class RouteFindingThumbnailCollectionViewAddCell: UICollectionViewCell {
     
     var delegate: RouteFindingThumbnailCollectionViewAddCellDelegate?
     
-    let collectionViewCellSize: Int = 62
+    private let collectionViewCellSize: Int = 62
     
     // MARK: View Components
     
-    lazy var button: UIButton = {
+    private lazy var button: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: collectionViewCellSize, height: collectionViewCellSize))
         button.setImage(UIImage(systemName: "plus.circle.fill")?.resized(to: CGSize(width: 24, height: 24)).withTintColor(.orrWhite!, renderingMode: .alwaysTemplate), for: .normal)
         button.tintColor = .orrWhite
@@ -147,7 +147,7 @@ class RouteFindingThumbnailCollectionViewAddCell: UICollectionViewCell {
     
     // MARK: Set Up Functions
     
-    func setUpLayout() {
+    private func setUpLayout() {
         contentView.addSubview(button)
         button.snp.makeConstraints {
             $0.center.equalToSuperview()

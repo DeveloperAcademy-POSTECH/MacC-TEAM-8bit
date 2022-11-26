@@ -7,9 +7,9 @@
 
 import UIKit
 
-class RouteFindingThumbnailCollectionViewFlowLayout: UICollectionViewFlowLayout {
+final class RouteFindingThumbnailCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
-    let collectionViewCellSize: Int = 62
+    private let collectionViewCellSize: Int = 62
     
     override func prepare() {
         super.prepare()
