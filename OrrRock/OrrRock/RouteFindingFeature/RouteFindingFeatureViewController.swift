@@ -265,7 +265,7 @@ class RouteFindingFeatureViewController: UIViewController {
 }
 
 extension RouteFindingFeatureViewController {
-    // MARK: SetUp Functions
+    // MARK: Set Up Functions
     func setUpLayout() {
         // 화면 비율 기기 대응 작업
         view.addSubview(backgroundImageView)

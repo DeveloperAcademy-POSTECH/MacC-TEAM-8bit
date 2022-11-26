@@ -10,7 +10,7 @@ import UIKit
 class RouteFindingPageView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        self.backgroundColor = UIColor(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1), alpha: 1)
+
     }
     
     required init?(coder: NSCoder) {
