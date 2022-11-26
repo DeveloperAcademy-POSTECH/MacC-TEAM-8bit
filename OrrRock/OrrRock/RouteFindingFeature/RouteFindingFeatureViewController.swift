@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-class RouteFindingFeatureViewController: UIViewController {
+final class RouteFindingFeatureViewController: UIViewController {
     
     // MARK: Variables
     
@@ -17,15 +17,15 @@ class RouteFindingFeatureViewController: UIViewController {
     var pages: [PageInfo]
     var pageViews: [RouteFindingPageView] = []
     
-    var beforeCell: RouteFindingThumbnailCollectionViewCell?
     var centerCell: RouteFindingThumbnailCollectionViewCell?
-    var afterCell: RouteFindingThumbnailCollectionViewCell?
+    private var beforeCell: RouteFindingThumbnailCollectionViewCell?
+    private var afterCell: RouteFindingThumbnailCollectionViewCell?
     
     let collectionViewCellSize: Int = 62
     
     // MARK: View Components
     
-    lazy var backgroundImageView: UIImageView = {
+    private lazy var backgroundImageView: UIImageView = {
         let view = UIImageView()
         
         // 다양한 기기 사이즈에서 16:9 이미지 사이즈를 유지하기 위해 width, height을 계산
@@ -38,7 +38,7 @@ class RouteFindingFeatureViewController: UIViewController {
     }()
     
     // 루트파인딩 제스처와 인터렉션이 실제로 이뤄지는 뷰
-    var pageView: RouteFindingPageView = {
+    private var pageView: RouteFindingPageView = {
         let view = RouteFindingPageView()
         return view
     }()
@@ -55,7 +55,7 @@ class RouteFindingFeatureViewController: UIViewController {
         return collection
     }()
     
-    let pageNumberingLabelView: UILabel = {
+    private let pageNumberingLabelView: UILabel = {
         let label = UILabel()
         label.text = ""
         label.textColor = .orrWhite
@@ -125,7 +125,7 @@ class RouteFindingFeatureViewController: UIViewController {
     }()
     
     // 삭제모드 진입 시 화면 인터렉션 방지를 위한 뷰
-    lazy var deleteView: UIView = {
+    private lazy var deleteView: UIView = {
         let view = UIView()
         view.backgroundColor = .black.withAlphaComponent(0.4)
         
@@ -135,19 +135,18 @@ class RouteFindingFeatureViewController: UIViewController {
         return view
     }()
     
-    lazy var deleteButton: UIButton = {
+    private lazy var deleteButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         
-        button.setImage(UIImage(systemName: "minus.circle.fill")?.resized(to: CGSize(width: 26, height: 26)).withTintColor(.systemRed, renderingMode: .alwaysTemplate), for: .normal)
+        button.setImage(UIImage(systemName: "minus.circle.fill")?.resized(to: CGSize(width: 26, height: 26)).withTintColor(.orrFail!, renderingMode: .alwaysTemplate), for: .normal)
         button.addTarget(self, action: #selector(deletePage(_:)), for: .touchUpInside)
         button.backgroundColor = .orrWhite
         button.layer.cornerRadius = 14
-        button.tintColor = .systemRed
-        
+        button.tintColor = .orrFail
         return button
     }()
     
-    lazy var deleteImage: UIImageView = {
+    private lazy var deleteImage: UIImageView = {
         let view = UIImageView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         view.image = routeInfo.imageLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: collectionViewCellSize, height:  collectionViewCellSize))
         return view
@@ -210,7 +209,7 @@ class RouteFindingFeatureViewController: UIViewController {
     // MARK: Functions
     
     // PageInfo를 RouteFindingPageView로 전환
-    func convertPageInfoToPageView(from pageInfo: PageInfo) -> RouteFindingPageView {
+    private func convertPageInfoToPageView(from pageInfo: PageInfo) -> RouteFindingPageView {
         let view = RouteFindingPageView()
         
         // TODO: RouteFindingPageVIew UI 및 뷰 구현방법이 나오면 PageInfo에서 뷰 그리기 구현
@@ -231,7 +230,7 @@ class RouteFindingFeatureViewController: UIViewController {
     }
     
     // 삭제모드를 위한 뷰 띄우기
-    func showDeleteView(for indexPath: IndexPath) {
+    private func showDeleteView(for indexPath: IndexPath) {
         view.addSubview(deleteView)
         deleteView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -283,7 +282,7 @@ class RouteFindingFeatureViewController: UIViewController {
     
     // MARK: @objc Functions
     
-    @objc func cancelDeleteMode() {
+    @objc private func cancelDeleteMode() {
         deleteView.removeFromSuperview()
         deleteButton.removeFromSuperview()
         deleteImage.removeFromSuperview()
@@ -294,7 +293,7 @@ class RouteFindingFeatureViewController: UIViewController {
     }
     
     // 선택된 페이지를 삭제
-    @objc func deletePage(_ sender: UIButton) {
+    @objc private func deletePage(_ sender: UIButton) {
         guard let targetPageCell = centerCell else { return }
         
         // 남은 셀의 수가 1개라면 삭제하지 않음
@@ -318,11 +317,11 @@ extension RouteFindingFeatureViewController {
     
     // MARK: Set Up Functions
     
-    func setUpLayout() {
+    private func setUpLayout() {
         // 화면 비율 기기 대응 작업
         view.addSubview(backgroundImageView)
         let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)!.windows.first
-        let contentHeight = view.frame.height - Double(((window?.safeAreaInsets.top)! + (window?.safeAreaInsets.bottom)!))
+        let contentHeight = view.frame.height - (window?.safeAreaInsets.top)! + (window?.safeAreaInsets.bottom)!
         let contentWidth = view.frame.width
         let widthFirst: Bool = contentWidth < (contentHeight - 69) * 9 / 16
         backgroundImageView.snp.makeConstraints {
@@ -382,7 +381,7 @@ extension RouteFindingFeatureViewController {
         }
     }
     
-    func setUpThumbnailCollectionDelegate() {
+    private func setUpThumbnailCollectionDelegate() {
         thumbnailCollectionView.delegate = self
         thumbnailCollectionView.dataSource = self
     }
@@ -391,7 +390,7 @@ extension RouteFindingFeatureViewController {
 extension RouteFindingFeatureViewController: RouteFindingThumbnailCollectionViewAddCellDelegate {
     // 페이지 추가 버튼이 눌리면 새로운 페이지를 추가
     func tapAddPageButton() {
-        pages.append(PageInfo(rowOrder: 5))
+        pages.append(PageInfo(rowOrder: pages.last!.rowOrder + 1))
         let newView = RouteFindingPageView()
         self.backgroundImageView.addSubview(newView)
         pageViews.append(newView)
