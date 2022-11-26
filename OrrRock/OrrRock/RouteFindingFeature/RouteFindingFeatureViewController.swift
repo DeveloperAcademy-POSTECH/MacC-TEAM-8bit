@@ -213,6 +213,8 @@ class RouteFindingFeatureViewController: UIViewController {
     func convertPageInfoToPageView(from pageInfo: PageInfo) -> RouteFindingPageView {
         let view = RouteFindingPageView()
         
+        // TODO: RouteFindingPageVIew UI 및 뷰 구현방법이 나오면 PageInfo에서 뷰 그리기 구현
+        
         return view
     }
     
@@ -302,7 +304,7 @@ class RouteFindingFeatureViewController: UIViewController {
         
         thumbnailCollectionView.reloadData()
         
-        let nextPath = IndexPath(row: (targetPageCell.indexPathOfCell.row - 1 >= 0) ? targetPageCell.indexPathOfCell.row - 1 : 1,
+        let nextPath = IndexPath(row: (targetPageCell.indexPathOfCell.row > 0) ? targetPageCell.indexPathOfCell.row - 1 : 1,
                                  section: targetPageCell.indexPathOfCell.section)
         
         thumbnailCollectionView.scrollToItem(at: nextPath, at: .centeredHorizontally, animated: true)
