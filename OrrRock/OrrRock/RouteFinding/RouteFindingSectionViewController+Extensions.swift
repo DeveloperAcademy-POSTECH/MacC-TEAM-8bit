@@ -120,3 +120,19 @@ extension RouteFindingSectionViewController : UISheetPresentationControllerDeleg
     func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheetPresentationController: UISheetPresentationController) {
     }
 }
+
+extension RouteFindingSectionViewController : RouteModalDelegate{
+    func delete() {
+        print("delete")
+    }
+    
+    func folderingToChallenge() {
+        print("challenge")
+    }
+    
+    func folderingToSuccess() {
+        print("success")
+    }
+    
+    
+}

@@ -10,7 +10,7 @@ import UIKit
 class RouteModalViewController: UIViewController {
     
     var isFoldering = true
-    
+    var delegate : RouteModalDelegate?
     private lazy var titleLabel : UILabel = {
         let label = UILabel()
         label.text = isFoldering ? "선택하신 루트파인딩을 성공하셨나요?" : "선택하신 루트 파인딩을 삭제하시겠어요?"
@@ -78,14 +78,22 @@ class RouteModalViewController: UIViewController {
     
     @objc func deleteSelects(){
         self.dismiss(animated: true)
-        
+        delegate?.delete()
     }
     
     @objc func folderingToChallenge(){
         self.dismiss(animated: true)
+        delegate?.folderingToChallenge()
     }
     
     @objc func folderingToSuccess(){
         self.dismiss(animated: true)
+        delegate?.folderingToSuccess()
     }
+}
+
+protocol RouteModalDelegate{
+    func delete()
+    func folderingToChallenge()
+    func folderingToSuccess()
 }

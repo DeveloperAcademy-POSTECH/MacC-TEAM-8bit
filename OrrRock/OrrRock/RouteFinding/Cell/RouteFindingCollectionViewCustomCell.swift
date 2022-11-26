@@ -11,16 +11,9 @@ import SnapKit
 class RouteFindingCollectionViewCustomCell : UICollectionViewCell {
     static let identifier = "RouteFindingCollectionViewCustomCell"
     
-    //MARK: UI수정될것 같아서 남겨둠
-//    override var isHighlighted: Bool{
-//        didSet{
-//            cellBlurView.isHidden = !isHighlighted
-//        }
-//    }
-    
     override var isSelected: Bool{
         didSet{
-//            cellBlurView.isHidden = !isSelected
+            //            cellBlurView.isHidden = !isSelected
             checkImage.isHidden = !isSelected
         }
     }
@@ -30,12 +23,6 @@ class RouteFindingCollectionViewCustomCell : UICollectionViewCell {
             selectableImage.isHidden = !isSelectable
         }
     }
-//    lazy var cellBlurView : UIView = {
-//        let uiView = UIView()
-//        uiView.backgroundColor = .white.withAlphaComponent(0.3)
-//        uiView.isHidden = true
-//        return uiView
-//    }()
     
     lazy var selectableImage : UIImageView = {
         let imageView = UIImageView()
@@ -116,11 +103,6 @@ class RouteFindingCollectionViewCustomCell : UICollectionViewCell {
         cellImage.snp.makeConstraints {
             $0.leading.top.trailing.bottom.equalTo(0)
         }
-        
-//        self.addSubview(cellBlurView)
-//        cellBlurView.snp.makeConstraints {
-//            $0.edges.equalToSuperview()
-//        }
         
         self.addSubview(selectableImage)
         selectableImage.snp.makeConstraints {

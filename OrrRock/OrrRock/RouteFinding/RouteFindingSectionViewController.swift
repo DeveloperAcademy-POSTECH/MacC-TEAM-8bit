@@ -9,7 +9,7 @@ import UIKit
 
 class RouteFindingSectionViewController: UIViewController {
     
-    var infoArr = [1,2,3,3,4,5,5,6,7,5]
+    var infoArr : [Int] = [1]
     var dictionarySelectedIndexPath: [IndexPath : Bool] = [:]
     var mMode: RouteFindingCollectionViewMode = .view {
         didSet{
@@ -37,6 +37,23 @@ class RouteFindingSectionViewController: UIViewController {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .orrGray100
         return cv
+    }()
+    
+    lazy var emptyGuideView : UIView = {
+        let view = UIView()
+        view.backgroundColor = .orrGray100
+        view.alpha = 0.0
+        return view
+    }()
+    
+    lazy var emptyGuideLabel : UILabel = {
+        let label = UILabel()
+        label.text = "아직 루트파인딩 기록이 없습니다.\n촬영 혹은 사진 업로드를 통해 추가해주세요."
+        label.numberOfLines = 2
+        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        label.textAlignment = .center
+        label.textColor = .orrGray500
+        return label
     }()
     
     lazy var bottomOptionView :UIView = {
@@ -71,6 +88,9 @@ class RouteFindingSectionViewController: UIViewController {
         setUpLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        emptyGuideView.alpha = infoArr.count == 0 ? 1.0 : 0.0
+    }
     override func viewWillDisappear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
         mMode = .view
@@ -126,12 +146,24 @@ class RouteFindingSectionViewController: UIViewController {
             $0.top.equalTo(bottomOptionView.snp.top).offset(0)
             $0.trailing.equalToSuperview().inset(82.5)
         }
+        
+        view.addSubview(emptyGuideView)
+        emptyGuideView.snp.makeConstraints {
+            $0.top.bottom.leading.trailing.equalToSuperview()
+        }
+        
+        emptyGuideView.addSubview(emptyGuideLabel)
+        emptyGuideLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalTo(view.snp.bottom).offset(-UIScreen.main.bounds.height / 2)
+        }
     }
     
     @objc func touchDeleteButton(){
         let vc = RouteModalViewController()
         vc.modalPresentationStyle = .pageSheet
         vc.isFoldering = false
+        vc.delegate = self
         if let sheet = vc.sheetPresentationController {
             sheet.detents = [
                 .custom { _ in
@@ -147,6 +179,7 @@ class RouteFindingSectionViewController: UIViewController {
         let vc = RouteModalViewController()
         vc.modalPresentationStyle = .pageSheet
         vc.isFoldering = true
+        vc.delegate = self
         if let sheet = vc.sheetPresentationController {
             sheet.detents = [
                 .custom { _ in
