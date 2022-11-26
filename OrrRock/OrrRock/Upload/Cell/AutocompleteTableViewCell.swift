@@ -31,7 +31,7 @@ final class AutocompleteTableViewCell: UITableViewCell {
     private lazy var gymNameLabel: UILabel = {
        let view = UILabel()
         view.text = "최근에 방문한 클라이밍장"
-        view.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        view.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         view.textColor = UIColor.orrGray600
         return view
     }()
@@ -85,7 +85,7 @@ extension AutocompleteTableViewCell {
             $0.centerY.equalTo(contentView.snp.centerY)
             $0.leading.equalTo(contentView.snp.leading).offset(CGFloat(OrrPd.pd16.rawValue))
             $0.height.equalToSuperview()
-            $0.width.equalTo(20)
+            $0.width.equalTo(28)
         }
         
         contentView.addSubview(deleteButton)
