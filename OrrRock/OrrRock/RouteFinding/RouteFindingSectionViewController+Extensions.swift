@@ -22,7 +22,7 @@ extension RouteFindingSectionViewController : UICollectionViewDelegate{
                 withReuseIdentifier: RouteFindingCollectionViewHeaderCell.id,
                 for: indexPath
             ) as! RouteFindingCollectionViewHeaderCell
-            supplementaryView.prepare(title: "\(infoArr.count)개의 도전", subtitle: "편집")
+            supplementaryView.prepare(title: "\(infoArr.count)개의 도전", subtitle: "편집",isEditing: mMode == .view ? false : true)
             supplementaryView.delegate = self
             return supplementaryView
             
@@ -32,7 +32,7 @@ extension RouteFindingSectionViewController : UICollectionViewDelegate{
                 withReuseIdentifier: RouteFindingCollectionViewHeaderCell.id,
                 for: indexPath
             ) as! RouteFindingCollectionViewHeaderCell
-            supplementaryView.prepare(title: "13개의 도전", subtitle: "편집")
+            supplementaryView.prepare(title: "13개의 도전", subtitle: "편집",isEditing: false)
             return supplementaryView
         default:
             return UICollectionReusableView()

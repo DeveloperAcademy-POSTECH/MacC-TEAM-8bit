@@ -45,13 +45,13 @@ final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.prepare(title: "아띠 클라이밍",subtitle: "2022년 10월 26일")
+        self.prepare(title: "아띠 클라이밍",subtitle: "2022년 10월 26일",isEditing: false)
     }
     
-    func prepare(title: String, subtitle: String) {
+    func prepare(title: String, subtitle: String, isEditing : Bool) {
         self.titleLabel.text = title
-        self.subTitleButton.setTitle("편집", for:.normal)
-        self.subTitleButton.setTitleColor(.orrGray400, for: .normal)
+        self.subTitleButton.setTitle(isEditing ? "완료" : "편집", for:.normal)
+        self.subTitleButton.setTitleColor(isEditing ? .orrUPBlue :.orrGray400, for: .normal)
     }
     
     func setUpLayout(){
