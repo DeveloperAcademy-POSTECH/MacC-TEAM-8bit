@@ -62,7 +62,7 @@ class ExportViewController: UIViewController, UINavigationBarDelegate {
     private lazy var gymName: UILabel = {
         let label = UILabel()
         label.text = videoInformation.gymName
-        label.textColor = .orrWhite
+        label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
         
         return label
@@ -71,7 +71,7 @@ class ExportViewController: UIViewController, UINavigationBarDelegate {
     private lazy var gymVisitDate: UILabel = {
         let label = UILabel()
         label.text = videoInformation.gymVisitDate.timeToString()
-        label.textColor = .orrWhite
+        label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
         
         return label

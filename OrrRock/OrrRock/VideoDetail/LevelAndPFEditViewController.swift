@@ -50,7 +50,7 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         let title = UILabel()
         title.text = "문제 편집"
         title.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        title.textColor = .black
+        title.textColor = .orrBlack
         return title
     }()
     
@@ -136,7 +136,7 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
 extension LevelAndPFEditViewController {
     
     private func setUpLayout(){
-        view.backgroundColor = .orrWhite
+        view.backgroundColor = .orrGray050
         view.addSubview(levelTopView)
         levelTopView.snp.makeConstraints {
             $0.width.equalToSuperview()
