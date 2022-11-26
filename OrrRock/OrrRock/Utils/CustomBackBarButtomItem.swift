@@ -26,5 +26,7 @@ class CustomBackBarButtomItem: UIBarButtonItem {
         button.addTarget(target, action: action, for: .touchUpInside)
 
         self.init(customView: button)
+        
+        
     }
 }

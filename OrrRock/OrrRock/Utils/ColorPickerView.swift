@@ -93,12 +93,7 @@ extension ColorPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
         }
 
         let selectLabel = selectView.subviews[0] as! UILabel
-        selectLabel.backgroundColor = .orrWhite
-        selectLabel.layer.shadowColor = UIColor.orrBlack?.cgColor
-        selectLabel.layer.shadowOpacity = 1.0
-        selectLabel.layer.shadowOffset = CGSize.zero
-        selectLabel.layer.shadowRadius = 10
-
+        selectLabel.backgroundColor = selectLabel.subviews[0].backgroundColor
 
         if let beforeView = pickerView.view(forRow: row - 1, forComponent: component) {
             let beforeLabel = beforeView.subviews[0] as! UILabel
@@ -170,7 +165,7 @@ extension ColorPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
         }
         
         let selectLabel = selectView.subviews[0] as! UILabel
-        selectLabel.backgroundColor = .white
+        selectLabel.backgroundColor = selectLabel.subviews[0].backgroundColor
         return pickerRow
     }
     
