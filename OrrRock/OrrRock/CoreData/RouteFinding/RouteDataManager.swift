@@ -33,9 +33,17 @@ final class RouteDataManager {
         let routeFinding = coreDataDAO.createRouteInformationData(routeInfo: routeInfo) as! RouteInformation
         routeFindingList.append(routeFinding)
     }
-
-    func updateRoute(routeInfo: RouteInfo, routeInformation: RouteInformation) {
-        coreDataDAO.updateRoute(routeInfo: routeInfo, routeInformation: routeInformation)
+    
+    func updateRouteDataWrittenDate(to date: Date, of routeInformation: RouteInformation) {
+        coreDataDAO.updateRouteInformationDataWrittenDate(date: date, routeInformation: routeInformation)
+    }
+    
+    func updateRouteGymName(to gymName: String, of routeInformation: RouteInformation) {
+        coreDataDAO.updateRouteInformationGymName(gymName: gymName, routeInformation: routeInformation)
+    }
+    
+    func updateRouteLevelAndStatus(statusTo status: Bool, levelTo level: Int, of routeInformation: RouteInformation) {
+        coreDataDAO.updateRouteInformationLevelAndStatus(status: status, problemLevel: level, routeInformation: routeInformation)
     }
     
     func addPageData(pageInfoList: [PageInfo], routeInformation: RouteInformation) {
