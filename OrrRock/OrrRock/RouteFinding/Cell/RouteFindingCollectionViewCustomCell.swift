@@ -13,7 +13,6 @@ class RouteFindingCollectionViewCustomCell : UICollectionViewCell {
     
     override var isSelected: Bool{
         didSet{
-            //            cellBlurView.isHidden = !isSelected
             checkImage.isHidden = !isSelected
         }
     }
