@@ -14,9 +14,11 @@ extension UIColor {
     //Black & White
     static let orrBlack = UIColor(named: "oRBlack")
     static let orrWhite = UIColor(named: "oRWhite")
+    static let orrWhiteCustom = UIColor(named: "oRWhiteCustom")
     
     //GRAY COLOR
     static let orrGray100 = UIColor(named: "oRGray100")
+    static let orrGray050 = UIColor(named: "oRGray050")
     static let orrGray200 = UIColor(named: "oRGray200")
     static let orrGray300 = UIColor(named: "oRGray300")
     static let orrGray400 = UIColor(named: "oRGray400")
@@ -25,6 +27,8 @@ extension UIColor {
     static let orrGray700 = UIColor(named: "oRGray700")
     static let orrGray800 = UIColor(named: "oRGray800")
     static let orrGray900 = UIColor(named: "oRGray900")
+    static let orrGray950 = UIColor(named: "oRGray950")
+    
 
     //SUB COLOR
     static let orrPass = UIColor(named: "oRPass")

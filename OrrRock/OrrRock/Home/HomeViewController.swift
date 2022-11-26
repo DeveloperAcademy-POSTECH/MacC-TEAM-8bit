@@ -48,7 +48,7 @@ final class HomeViewController : UIViewController {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 170))
         
         let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor.orrGray100!.cgColor, UIColor.orrGray100!.withAlphaComponent(0).cgColor]
+        gradientLayer.colors = [UIColor.orrGray050!.cgColor, UIColor.orrGray050!.withAlphaComponent(0).cgColor]
         gradientLayer.locations = [0.61, 0.82]
         gradientLayer.frame = view.bounds
         
@@ -216,7 +216,7 @@ final class HomeViewController : UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        view.backgroundColor = .orrGray100
+        view.backgroundColor = .orrGray050
         
         showOnBoard()
         setUpLayout()
