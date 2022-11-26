@@ -13,6 +13,15 @@ class RouteFindingSaveViewController: UIViewController {
     private var goBackButton: UIBarButtonItem!
     private var saveButton: UIBarButtonItem!
     
+    private lazy var previewVideoView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .orrGray200
+        view.layer.cornerRadius = 10
+        view.clipsToBounds = true
+        
+        return view
+    }()
+    
     private lazy var nextButton: UIButton = {
         let btn = UIButton()
         btn.clipsToBounds = true
@@ -107,6 +116,14 @@ extension RouteFindingSaveViewController {
         skipButton.snp.makeConstraints {
             $0.centerX.equalTo(view)
             $0.bottom.equalTo(nextButton.snp.top).offset(-OrrPd.pd8.rawValue)
+        }
+        
+        view.addSubview(previewVideoView)
+        previewVideoView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(view.forLastBaselineLayout.snp_topMargin).offset(OrrPd.pd16.rawValue)
+            $0.bottom.equalTo(skipButton.snp.top).offset(-100) // FIXME: 수정 필요
+            $0.width.equalTo(previewVideoView.snp.height).multipliedBy(0.5625)
         }
         
         view.addSubview(countVideoView)
