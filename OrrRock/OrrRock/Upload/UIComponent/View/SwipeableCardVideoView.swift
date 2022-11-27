@@ -156,7 +156,6 @@ extension SwipeableCardVideoView {
             myColor = .orrPass
         case .fail :
             myColor = .orrFail
-        // TODO: 디자인 상의 후 색상 값 수정
         case .delete:
             myColor = .orrGray500
         case .clear :
