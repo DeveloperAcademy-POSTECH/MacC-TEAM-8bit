@@ -321,7 +321,7 @@ extension ExportViewController {
             dateTextLayer.anchorPoint = CGPoint(x: 0, y: 1)
             dateTextLayer.position = CGPoint(x: 162.28, y: 317)
             dateTextLayer.string = videoInformation.gymVisitDate.timeToString()
-            dateTextLayer.foregroundColor = UIColor.orrWhite?.cgColor
+            dateTextLayer.foregroundColor = UIColor.white.cgColor
             imageLayer.addSublayer(dateTextLayer)
             
             // 암장 아이콘 추가
@@ -338,7 +338,7 @@ extension ExportViewController {
             gymTextLayer.frame = imageLayer.bounds
             gymTextLayer.anchorPoint = CGPoint(x: 0, y: 1)
             gymTextLayer.position = CGPoint(x: 162.28, y: 197)
-            gymTextLayer.foregroundColor = UIColor.orrWhite?.cgColor
+            gymTextLayer.foregroundColor = UIColor.white.cgColor
             gymTextLayer.string = videoInformation.gymName
             gymTextLayer.contentsScale = UIScreen.main.scale
             imageLayer.addSublayer(gymTextLayer)
