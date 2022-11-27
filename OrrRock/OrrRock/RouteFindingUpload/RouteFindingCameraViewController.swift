@@ -10,12 +10,12 @@ import SnapKit
 import PhotosUI
 
 class RouteFindingCameraViewController: UIViewController {
-
-    private var currentLocalIdentifier: String?
+    
+    var currentLocalIdentifier: String?
     
     private lazy var cameraView: CameraView = {
         let view = CameraView()
-
+        
         return view
     }()
     
@@ -40,7 +40,7 @@ class RouteFindingCameraViewController: UIViewController {
     }()
     
     private lazy var shutterButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.backgroundColor = .clear
         button.layer.borderColor = UIColor.orrWhite?.cgColor
         button.layer.borderWidth = 4
@@ -64,7 +64,7 @@ class RouteFindingCameraViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setUpLayout()
         setPhotosButtonImage()
         
@@ -77,7 +77,7 @@ class RouteFindingCameraViewController: UIViewController {
         
         executeCameraSession()
     }
-  
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -85,7 +85,10 @@ class RouteFindingCameraViewController: UIViewController {
             captureSession.stopRunning()
         }
     }
-    
+}
+
+// MARK: Layout Function
+private extension RouteFindingCameraViewController {
     func setUpLayout() {
         
         let shutterButtonSize: CGFloat = 75
@@ -129,7 +132,8 @@ class RouteFindingCameraViewController: UIViewController {
     }
 }
 
-extension RouteFindingCameraViewController {
+// MARK: Button Objc Functions Extension
+private extension RouteFindingCameraViewController {
     
     @objc func showPhotoPicker() {
         let photoLibrary = PHPhotoLibrary.shared()
@@ -146,6 +150,22 @@ extension RouteFindingCameraViewController {
         let settings = AVCapturePhotoSettings()
         sessionQueue.async {
             self.photoOutput?.capturePhoto(with: settings, delegate: self)
+        }
+    }
+}
+
+// MARK: Photos Button Image Setting Extension
+private extension RouteFindingCameraViewController {
+    func setPhotosButtonImage() {
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
+        fetchOptions.fetchLimit = 1
+        
+        let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: fetchOptions)
+        
+        if fetchResult.count > 0 {
+            let image = fetchLastPhoto(fetchResult: fetchResult)
+            photosButton.setImage(image, for: .normal)
         }
     }
     
@@ -168,44 +188,11 @@ extension RouteFindingCameraViewController {
         
         return resultImage
     }
-    
-    func setPhotosButtonImage() {
-        
-        let fetchOptions = PHFetchOptions()
-        fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
-        fetchOptions.fetchLimit = 1
-        
-        let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: fetchOptions)
-        
-        if fetchResult.count > 0 {
-            let image = fetchLastPhoto(fetchResult: fetchResult)
-            photosButton.setImage(image, for: .normal)
-        }
-        
-    }
 }
 
-extension RouteFindingCameraViewController: PHPickerViewControllerDelegate {
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        
-        guard let provider = results.first?.itemProvider else {return}
-        
-        let identifiers = results.compactMap(\.assetIdentifier)
-        let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: nil)
-        currentLocalIdentifier = fetchResult[0].localIdentifier
-
-        provider.loadFileRepresentation(forTypeIdentifier: "public.image") { url, error in
-            guard error == nil else {
-                print(error as Any)
-                return
-            }
-        }
-        dismiss(animated: true)
-    }
-}
-
-extension RouteFindingCameraViewController {
-    func authorizateCameraStatus() {
+// MARK: Camera Session Setting Extension
+private extension RouteFindingCameraViewController {
+    private func authorizateCameraStatus() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
             print("Authorized!")
@@ -281,7 +268,7 @@ extension RouteFindingCameraViewController {
             alertController.addAction(UIAlertAction(title: NSLocalizedString("확인", comment: ""),
                                                     style: .cancel,
                                                     handler: nil))
-
+            
             alertController.addAction(UIAlertAction(title: NSLocalizedString("설정", comment: ""),
                                                     style: .`default`,
                                                     handler: { _ in
