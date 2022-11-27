@@ -28,7 +28,7 @@ class SwipeOnboardingThirdViewController: UIViewController {
         let view = UIImageView(image: image)
         view.layer.borderWidth = 3
         view.layer.cornerRadius = cornerRadius
-        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.borderColor = UIColor.orrWhite?.cgColor
         view.layer.zPosition = 1
         view.isUserInteractionEnabled = true
         gesture.addTarget(self, action: #selector(handlerCard))
@@ -65,6 +65,15 @@ class SwipeOnboardingThirdViewController: UIViewController {
         super.viewDidLoad()
         setUpLayout()
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+       if #available(iOS 13.0, *) {
+           if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+               mainImageView.layer.borderColor = UIColor.orrWhite?.cgColor
+           }
+       }
+    }
+    
 }
 
 //MARK: 함수 모음
