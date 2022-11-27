@@ -89,14 +89,9 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
 
 extension VideoCollectionViewController  : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let screenBounds = UIScreen.main.bounds
-        let screenScale = UIScreen.main.scale
-//        let screenSize = CGSize(width: screenBounds.size.width * screenScale, height: screenBounds.size.height * screenScale)
-//        let screenSize = CGSize(width: screenBounds.size.width, height: screenBounds.size.height)
-//        print("누구냐:\(screenSize)")
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customVideoCollectionCell", for: indexPath) as! VideoCollectionViewCell
-        let screenSize = CGSize(width: cell.frame.size.width, height: cell.frame.size.height)
 
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customVideoCollectionCell", for: indexPath) as! VideoCollectionViewCell
+        
         cell.cellImage.image = videoInformationArray[indexPath.row].videoLocalIdentifier?.generateCardViewThumbnail()
         if videoInformationArray[indexPath.item].isFavorite{
             cell.heartImage.alpha = 1.0
