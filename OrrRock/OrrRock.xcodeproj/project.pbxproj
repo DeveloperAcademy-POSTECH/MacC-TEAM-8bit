@@ -67,6 +67,7 @@
 		3A4641DA292FB4B400C6B7A3 /* RouteCoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641D9292FB4B400C6B7A3 /* RouteCoreDataDAO.swift */; };
 		3A4641DC292FB71900C6B7A3 /* RouteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641DB292FB71900C6B7A3 /* RouteDataManager.swift */; };
 		3A4642122931069200C6B7A3 /* RouteFindingCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4642112931069200C6B7A3 /* RouteFindingCameraViewController.swift */; };
+		3A4642442933FE7E00C6B7A3 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4642432933FE7E00C6B7A3 /* CameraView.swift */; };
 		3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3C52901435200BE11B5 /* VideoInfo.swift */; };
 		3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */; };
 		3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D41E28FEBADE006C718A /* AppDelegate.swift */; };
@@ -200,6 +201,7 @@
 		3A4641D9292FB4B400C6B7A3 /* RouteCoreDataDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCoreDataDAO.swift; sourceTree = "<group>"; };
 		3A4641DB292FB71900C6B7A3 /* RouteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDataManager.swift; sourceTree = "<group>"; };
 		3A4642112931069200C6B7A3 /* RouteFindingCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingCameraViewController.swift; sourceTree = "<group>"; };
+		3A4642432933FE7E00C6B7A3 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		3A70C3C52901435200BE11B5 /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDAO.swift; sourceTree = "<group>"; };
 		3AA4D41B28FEBADE006C718A /* OrrRock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrrRock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -440,9 +442,18 @@
 		3A4642102931065600C6B7A3 /* RouteFindingUpload */ = {
 			isa = PBXGroup;
 			children = (
+				3A4642422933FE6700C6B7A3 /* UIComponent */,
 				3A4642112931069200C6B7A3 /* RouteFindingCameraViewController.swift */,
 			);
 			path = RouteFindingUpload;
+			sourceTree = "<group>";
+		};
+		3A4642422933FE6700C6B7A3 /* UIComponent */ = {
+			isa = PBXGroup;
+			children = (
+				3A4642432933FE7E00C6B7A3 /* CameraView.swift */,
+			);
+			path = UIComponent;
 			sourceTree = "<group>";
 		};
 		3AA4D41228FEBADE006C718A = {
@@ -860,6 +871,7 @@
 				78F56F6C291A67FA00174B74 /* OnBoardingViewController.swift in Sources */,
 				34172EAF292AAD3E009DAAB8 /* DateEditViewController.swift in Sources */,
 				A81992C42927E48B00F024CA /* VideoSlider.swift in Sources */,
+				3A4642442933FE7E00C6B7A3 /* CameraView.swift in Sources */,
 				3A4641C6292FAD2D00C6B7A3 /* PageInfo.swift in Sources */,
 				342508AB29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift in Sources */,
 				70AE8138292CA24500B4DB3F /* Font+.swift in Sources */,
@@ -1034,7 +1046,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UAM52RQFW9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
@@ -1068,7 +1080,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UAM52RQFW9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
