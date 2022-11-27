@@ -14,7 +14,7 @@ final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .orrBlack
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 13, weight:.bold)
         return label
