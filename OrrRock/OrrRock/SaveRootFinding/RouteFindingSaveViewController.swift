@@ -10,10 +10,30 @@ import SnapKit
 
 class RouteFindingSaveViewController: UIViewController {
     
+    //FIXME: PR전 dummyData 삭제
+    var routeInfo: RouteInfo = RouteInfo.dummyData
+    //FIXME: PR전 dummyData 삭제
+    var pages: [PageInfo]! = RouteInfo.dummyData.pages
+    var pageViews: [RouteFindingPageView] = []
+    
+    let collectionViewCellwidth: Int = 58
+    
+    var beforeCell: SaveRouteFindingImageCollectionViewCell?
+    var centerCell: SaveRouteFindingImageCollectionViewCell?
+    var afterCell: SaveRouteFindingImageCollectionViewCell?
+    
     private var goBackButton: UIBarButtonItem!
     private var saveButton: UIBarButtonItem!
     
-    private lazy var previewImageView: UIView = {
+    var previewImgae: UIImageView! = {
+        let view = UIImageView()
+        //FIXME: PR전 dummyData 삭제
+        view.image = RouteInfo.dummyData.imageLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: 1080, height: 1920))
+       
+        return view
+    }()
+    
+    lazy var previewImageView: UIView = {
         let view = UIView()
         view.backgroundColor = .orrGray200
         view.layer.cornerRadius = 10
@@ -53,28 +73,20 @@ class RouteFindingSaveViewController: UIViewController {
     
     lazy var countVideoLabel: UILabel = {
         let label = UILabel()
-        label.text = "12/20"  // FIXME: 수정
+        label.text = "0/0"
         label.textColor = .orrWhite
         label.font = .systemFont(ofSize: 12.0, weight: .regular)
         
         return label
     }()
     
-    private lazy var checkSelectedBar:  UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrUPBlue
-        view.layer.cornerRadius = 3
-        
-        return view
-    }()
-    
     let saveRouteFindingImageCollectionView: UICollectionView = {
-        let layout = saveRouteFindingImageCollectionViewFlowLayout()
+        let layout = SaveRouteFindingImageCollectionViewFlowLayout()
         
         let collection = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
         collection.backgroundColor = .clear
         collection.showsHorizontalScrollIndicator = false
-//        collection.register(saveRouteFindingImageCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: saveRouteFindingImageCollectionViewCell.identifier)
+        collection.register(SaveRouteFindingImageCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: SaveRouteFindingImageCollectionViewCell.identifier)
         
         return collection
     }()
@@ -84,6 +96,8 @@ class RouteFindingSaveViewController: UIViewController {
         
         setNavigationBar()
         setUpLayout()
+        setCountVideoLabel()
+        setUpsaveRouteFindingImageCollectionViewDelegate()
         
         navigationController?.isToolbarHidden = true
         navigationController?.hidesBarsOnTap = false
@@ -91,10 +105,25 @@ class RouteFindingSaveViewController: UIViewController {
         self.view.backgroundColor = .orrBlack
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let layoutMargins: CGFloat = self.saveRouteFindingImageCollectionView.layoutMargins.left
+        let sideInset = self.view.frame.width / 2 - layoutMargins
+        self.saveRouteFindingImageCollectionView.contentInset = UIEdgeInsets(top: 0, left: sideInset, bottom: 0, right: sideInset)
+        
+        saveRouteFindingImageCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: false)
+    }
+    
     func viewWillDisappear() {
         navigationController?.isToolbarHidden = false
         navigationController?.hidesBarsOnTap = true
 
+    }
+    
+    func setUpsaveRouteFindingImageCollectionViewDelegate() {
+        saveRouteFindingImageCollectionView.delegate = self
+        saveRouteFindingImageCollectionView.dataSource = self
     }
     
     func setNavigationBar() {
@@ -117,6 +146,11 @@ class RouteFindingSaveViewController: UIViewController {
     @objc func saveAction() {
         // TODO: 사진 앱에 사진 저장하는 로직 추가
     }
+    
+    func setCountVideoLabel() {
+        guard let selectedCell = centerCell else { return }
+        countVideoLabel.text = "\(selectedCell.indexPathOfCell.row + 1)/\(pages.count)"
+    }
 }
 
 extension RouteFindingSaveViewController {
@@ -134,6 +168,8 @@ extension RouteFindingSaveViewController {
         view.addSubview(skipButton)
         skipButton.snp.makeConstraints {
             $0.centerX.equalTo(view)
+            $0.height.equalTo(18)
+            $0.width.equalTo(108)
             $0.bottom.equalTo(nextButton.snp.top).offset(-OrrPd.pd8.rawValue)
         }
         
@@ -150,19 +186,11 @@ extension RouteFindingSaveViewController {
             $0.center.equalTo(countVideoView.snp.center)
         }
         
-        view.addSubview(checkSelectedBar)
-        checkSelectedBar.snp.makeConstraints {
-            $0.bottom.equalTo(countVideoView.snp.top).offset(-OrrPd.pd8.rawValue)
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(4)
-            $0.width.equalTo(58)
-        }
-        
         view.addSubview(saveRouteFindingImageCollectionView)
         saveRouteFindingImageCollectionView.snp.makeConstraints {
-            $0.height.equalTo(103)
+            $0.height.equalTo(125)
             $0.horizontalEdges.equalToSuperview()
-            $0.bottom.equalTo(checkSelectedBar.snp.top).offset(-OrrPd.pd8.rawValue)
+            $0.bottom.equalTo(countVideoView.snp.top).offset(-OrrPd.pd8.rawValue)
         }
         
         view.addSubview(previewImageView)
@@ -171,6 +199,12 @@ extension RouteFindingSaveViewController {
             $0.top.equalTo(view.forLastBaselineLayout.snp_topMargin).offset(OrrPd.pd8.rawValue)
             $0.bottom.equalTo(saveRouteFindingImageCollectionView.snp.top).offset(-OrrPd.pd8.rawValue)
             $0.width.equalTo(previewImageView.snp.height).multipliedBy(0.5625)
+        }
+        previewImageView.addSubview(previewImgae)
+        previewImgae.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.height.equalToSuperview()
+            $0.width.equalToSuperview()
         }
     }
 }
