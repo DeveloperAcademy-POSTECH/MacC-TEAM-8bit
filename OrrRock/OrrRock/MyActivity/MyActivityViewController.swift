@@ -142,7 +142,6 @@ class MyActivityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = true
         self.view.backgroundColor = .orrGray050
     }
     
@@ -157,7 +156,9 @@ class MyActivityViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+
     }
+    
     
     func setUpData() {
         let entireVideoInformationsByDate: [[VideoInformation]] = DataManager.shared.repository.sortVideoInformation(filterOption: .all, sortOption: .gymVisitDate)
