@@ -63,6 +63,29 @@ class RouteFindingSaveViewController: UIViewController {
         return btn
     }()
     
+    private lazy var toastMessageView: UIView = {
+        let view = UIView()
+        view.layer.borderColor = UIColor.orrUPBlue?.cgColor
+        view.layer.borderWidth = 1
+        view.alpha = 1
+        view.layer.cornerRadius = 15
+        view.backgroundColor = UIColor.orrBlack
+        view.clipsToBounds  =  true
+        
+        return view
+    }()
+    
+    private lazy var toastMessage: UILabel = {
+        let label = UILabel()
+        
+        label.textColor = UIColor.white
+        label.font = UIFont.systemFont(ofSize: 14.0)
+        label.textAlignment = .center
+        label.text = "이 루트파인딩을 사진에 저장했습니다."
+        
+        return label
+    }()
+    
     private lazy var countVideoView:  UIView = {
         let view = UIView()
         view.backgroundColor = .orrGray500
@@ -144,7 +167,33 @@ class RouteFindingSaveViewController: UIViewController {
     }
     
     @objc func saveAction() {
-        // TODO: 사진 앱에 사진 저장하는 로직 추가
+        let image = previewImageView.asImage()
+        UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
+        completeSaveImage()
+    }
+    
+    @objc func completeSaveImage() {
+        
+        self.toastMessageView.alpha = 1.0
+        
+        view.addSubview(toastMessageView)
+        toastMessageView.snp.makeConstraints {
+            $0.bottom.equalTo(nextButton.snp.top).offset(-OrrPd.pd8.rawValue)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(42)
+            $0.width.equalTo(nextButton.snp.width)
+        }
+        
+        toastMessageView.addSubview(toastMessage)
+        toastMessage.snp.makeConstraints {
+            $0.center.equalTo(toastMessageView.snp.center)
+        }
+        
+        UIView.animate(withDuration: 1, delay: 2, options: .curveEaseOut, animations: {
+            self.toastMessageView.alpha = 0.0
+        }, completion: { _ in
+            self.toastMessageView.removeFromSuperview()
+        })
     }
     
     func setCountVideoLabel() {
@@ -200,6 +249,7 @@ extension RouteFindingSaveViewController {
             $0.bottom.equalTo(saveRouteFindingImageCollectionView.snp.top).offset(-OrrPd.pd8.rawValue)
             $0.width.equalTo(previewImageView.snp.height).multipliedBy(0.5625)
         }
+        
         previewImageView.addSubview(previewImage)
         previewImage.snp.makeConstraints {
             $0.center.equalToSuperview()
