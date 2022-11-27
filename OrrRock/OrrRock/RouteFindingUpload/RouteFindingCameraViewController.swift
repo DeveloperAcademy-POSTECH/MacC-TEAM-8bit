@@ -74,6 +74,14 @@ class RouteFindingCameraViewController: UIViewController {
         executeCameraSession()
     }
   
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if cameraAuthorizeStatus == .success {
+            captureSession.stopRunning()
+        }
+    }
+    
     func setUpLayout() {
         
         let shutterButtonSize: CGFloat = 75
