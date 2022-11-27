@@ -16,7 +16,8 @@ final class RouteDataManager {
         coreDataDAO = RouteCoreDataDAO()
         //MARK: RouteDataMainSampleDataGenerate
 //        deleteAllData()
-//        randomRouteGenerate(for: 10) // 추가된 코드
+//        randomRouteGenerate(for: 10)
+        // 추가된 코드
         
         updateRepository()
 //        print(getRouteFindingList())
@@ -78,6 +79,7 @@ final class RouteDataManager {
         coreDataDAO.deleteRouteFindingData(routeFinding: routeInformation)
         guard let index = routeFindingList.firstIndex(of: routeInformation) else { return }
         routeFindingList.remove(at: index)
+        saveData()
     }
     
     func deletePageData(pageInformationList: [PageInformation], routeFinding: RouteInformation) {
@@ -103,7 +105,7 @@ final class RouteDataManager {
         let randomBool: [Bool] = [true, false]
         
         for _ in 0..<num {
-            let randomDate = Date.randomBetween(start: Date(timeIntervalSince1970: 0), end: Date(timeIntervalSince1970: 300000))
+            let randomDate = Date.randomBetween(start: Date(timeIntervalSince1970: 30000), end: Date(timeIntervalSince1970: 300000000))
             let randomGymName = randomGymNameList[Int.random(in: 0..<randomGymNameList.count)]
             let randomProblemLevel = Int.random(in: 0...9)
             let randomBool = randomBool[Int.random(in: 0...1)]

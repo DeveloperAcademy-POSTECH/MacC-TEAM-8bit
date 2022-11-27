@@ -114,6 +114,7 @@
 		78B6A71F29311DA400C0BB70 /* RouteModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A71E29311DA400C0BB70 /* RouteModalViewController.swift */; };
 		78B6A7212932967100C0BB70 /* RouteFindingCollectionViewHeaderCell+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A7202932967100C0BB70 /* RouteFindingCollectionViewHeaderCell+Protocol.swift */; };
 		78B6A723293296DF00C0BB70 /* RouteModalViewController+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A722293296DF00C0BB70 /* RouteModalViewController+Protocol.swift */; };
+		78B6A7252933A6DD00C0BB70 /* RouteFindingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A7242933A6DD00C0BB70 /* RouteFindingSection.swift */; };
 		78CAA0662901F7A9003C3D77 /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA0652901F7A9003C3D77 /* BasePaddingLabel.swift */; };
 		78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA0672901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift */; };
 		78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA069290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift */; };
@@ -246,6 +247,7 @@
 		78B6A71E29311DA400C0BB70 /* RouteModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteModalViewController.swift; sourceTree = "<group>"; };
 		78B6A7202932967100C0BB70 /* RouteFindingCollectionViewHeaderCell+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteFindingCollectionViewHeaderCell+Protocol.swift"; sourceTree = "<group>"; };
 		78B6A722293296DF00C0BB70 /* RouteModalViewController+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteModalViewController+Protocol.swift"; sourceTree = "<group>"; };
+		78B6A7242933A6DD00C0BB70 /* RouteFindingSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingSection.swift; sourceTree = "<group>"; };
 		78CAA0652901F7A9003C3D77 /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
 		78CAA0672901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoCollectionView+VideoCollectionViewExtensions.swift"; sourceTree = "<group>"; };
 		78CAA069290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
@@ -487,6 +489,7 @@
 				0A0B410C2907C79200057FA7 /* VideoResultType.swift */,
 				3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */,
 				78B6A71A292FE3CF00C0BB70 /* RouteFindingCollectionViewMode.swift */,
+				78B6A7242933A6DD00C0BB70 /* RouteFindingSection.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -877,6 +880,7 @@
 				70DE7964292640FF0009AD43 /* SwipeOnboardingFourthViewController.swift in Sources */,
 				3A4641D4292FAF7300C6B7A3 /* RouteInformation+CoreDataProperties.swift in Sources */,
 				70DE795E29253F050009AD43 /* EmptyBackgroundView.swift in Sources */,
+				78B6A7252933A6DD00C0BB70 /* RouteFindingSection.swift in Sources */,
 				A88805852907F5A0002CD52E /* LevelPickerView.swift in Sources */,
 				34E11EE329309D5E00787316 /* RouteFindingFeatureViewController+UICollectionViewExtensions.swift in Sources */,
 				3A4641BA292FA7B500C6B7A3 /* PointInformation+CoreDataProperties.swift in Sources */,

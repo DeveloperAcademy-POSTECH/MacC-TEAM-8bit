@@ -11,6 +11,9 @@ class RouteFindingSectionViewController: UIViewController {
     
     var infoArr : [RouteInformation]!
     var dictionarySelectedIndexPath: [IndexPath : Bool] = [:]
+    var routeFindingDataManager : RouteDataManager?
+    var sectionKind : RouteFindingSection?
+    
     var mMode: RouteFindingCollectionViewMode = .view {
         didSet{
             switch mMode{
@@ -95,6 +98,8 @@ class RouteFindingSectionViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         emptyGuideView.alpha = infoArr.count == 0 ? 1.0 : 0.0
+        initInfoArr()
+        routeFindingCollectionView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -195,5 +200,22 @@ class RouteFindingSectionViewController: UIViewController {
             sheet.prefersGrabberVisible = true
         }
         present(vc, animated: true, completion: nil)
+    }
+    
+    private func initInfoArr() {
+        switch sectionKind{
+        case .all:
+            infoArr = routeFindingDataManager?.getRouteFindingList()
+            print("all")
+        case .challenge:
+            infoArr = routeFindingDataManager?.getSpecificRouteFindingList(isChallengeComplete: false)
+            print("challenge")
+        case .success:
+            infoArr = routeFindingDataManager?.getSpecificRouteFindingList(isChallengeComplete: true)
+            print("success")
+        case .none:
+            break
+        }
+        
     }
 }
