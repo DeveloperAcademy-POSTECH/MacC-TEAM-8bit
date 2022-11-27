@@ -19,6 +19,11 @@ class RouteFindingCameraViewController: UIViewController {
         return view
     }()
     
+    private let captureSession = AVCaptureSession()
+    private let sessionQueue = DispatchQueue(label: "session queue")
+    private var photoOutput: AVCapturePhotoOutput!
+    private var cameraAuthorizeStatus = CameraSessionStatus.success
+    
     private lazy var photosButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
