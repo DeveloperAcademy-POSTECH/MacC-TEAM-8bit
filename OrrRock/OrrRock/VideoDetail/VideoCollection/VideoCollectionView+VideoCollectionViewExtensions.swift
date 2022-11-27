@@ -93,18 +93,19 @@ extension VideoCollectionViewController  : UICollectionViewDataSource{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customVideoCollectionCell", for: indexPath) as! VideoCollectionViewCell
         
         cell.cellImage.image = videoInformationArray[indexPath.row].videoLocalIdentifier?.generateCardViewThumbnail()
+        
         if videoInformationArray[indexPath.item].isFavorite{
             cell.heartImage.alpha = 1.0
-        }
-        else{
+        } else {
             cell.heartImage.alpha = 0.0
         }
+        
         if videoInformationArray[indexPath.item].isSucceeded{
             cell.cellLabel.backgroundColor = .orrPass
-        }
-        else{
+        } else {
             cell.cellLabel.backgroundColor = .orrFail
         }
+        
         cell.cellLabel.text = videoInformationArray[indexPath.item].problemLevel == -1 ? "V?" : "V\(videoInformationArray[indexPath.item].problemLevel)"
         return cell
     }
