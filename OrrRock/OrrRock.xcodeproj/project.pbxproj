@@ -68,7 +68,7 @@
 		3A4641DC292FB71900C6B7A3 /* RouteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641DB292FB71900C6B7A3 /* RouteDataManager.swift */; };
 		3A4642122931069200C6B7A3 /* RouteFindingCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4642112931069200C6B7A3 /* RouteFindingCameraViewController.swift */; };
 		3A4642442933FE7E00C6B7A3 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4642432933FE7E00C6B7A3 /* CameraView.swift */; };
-		3A4642462933FF8300C6B7A3 /* CameraAuthorizeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4642452933FF8300C6B7A3 /* CameraAuthorizeStatus.swift */; };
+		3A4642462933FF8300C6B7A3 /* CameraSessionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4642452933FF8300C6B7A3 /* CameraSessionStatus.swift */; };
 		3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3C52901435200BE11B5 /* VideoInfo.swift */; };
 		3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */; };
 		3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D41E28FEBADE006C718A /* AppDelegate.swift */; };
@@ -203,7 +203,7 @@
 		3A4641DB292FB71900C6B7A3 /* RouteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDataManager.swift; sourceTree = "<group>"; };
 		3A4642112931069200C6B7A3 /* RouteFindingCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingCameraViewController.swift; sourceTree = "<group>"; };
 		3A4642432933FE7E00C6B7A3 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
-		3A4642452933FF8300C6B7A3 /* CameraAuthorizeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAuthorizeStatus.swift; sourceTree = "<group>"; };
+		3A4642452933FF8300C6B7A3 /* CameraSessionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSessionStatus.swift; sourceTree = "<group>"; };
 		3A70C3C52901435200BE11B5 /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDAO.swift; sourceTree = "<group>"; };
 		3AA4D41B28FEBADE006C718A /* OrrRock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrrRock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -511,7 +511,7 @@
 				0A0B410C2907C79200057FA7 /* VideoResultType.swift */,
 				3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */,
 				78B6A71A292FE3CF00C0BB70 /* RouteFindingCollectionViewMode.swift */,
-				3A4642452933FF8300C6B7A3 /* CameraAuthorizeStatus.swift */,
+				3A4642452933FF8300C6B7A3 /* CameraSessionStatus.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -808,7 +808,7 @@
 				78CAA0662901F7A9003C3D77 /* BasePaddingLabel.swift in Sources */,
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
 				78B6A7212932967100C0BB70 /* RouteFindingCollectionViewHeaderCell+Protocol.swift in Sources */,
-				3A4642462933FF8300C6B7A3 /* CameraAuthorizeStatus.swift in Sources */,
+				3A4642462933FF8300C6B7A3 /* CameraSessionStatus.swift in Sources */,
 				78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */,
 				343170F229310971005E66F3 /* RouteFindingPageView.swift in Sources */,
 				3A15AC892907B1160058512F /* VideoInformation+CoreDataProperties.swift in Sources */,

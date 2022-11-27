@@ -1,5 +1,5 @@
 //
-//  CameraAuthorizeStatus.swift
+//  CameraSessionStatus.swift
 //  OrrRock
 //
 //  Created by 황정현 on 2022/11/28.
