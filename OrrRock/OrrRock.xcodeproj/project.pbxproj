@@ -30,6 +30,16 @@
 		342C456E290125260037D9E7 /* HomeTableViewListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C456D290125260037D9E7 /* HomeTableViewListCell.swift */; };
 		342C457029018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C456F29018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift */; };
 		343170F229310971005E66F3 /* RouteFindingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343170F129310971005E66F3 /* RouteFindingPageView.swift */; };
+		343170F7293287A3005E66F3 /* RouteFindingOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343170F6293287A3005E66F3 /* RouteFindingOnboardingViewController.swift */; };
+		343170F929328A46005E66F3 /* RouteFindingOnboardingViewController+UIPageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343170F829328A46005E66F3 /* RouteFindingOnboardingViewController+UIPageViewExtensions.swift */; };
+		343170FB29328D20005E66F3 /* RouteFindingFirstOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343170FA29328D20005E66F3 /* RouteFindingFirstOnboardingViewController.swift */; };
+		343170FD29328D5A005E66F3 /* RouteFindingSecondOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343170FC29328D5A005E66F3 /* RouteFindingSecondOnboardingViewController.swift */; };
+		343170FF29328D61005E66F3 /* RouteFindingThirdOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343170FE29328D61005E66F3 /* RouteFindingThirdOnboardingViewController.swift */; };
+		3431710129328D68005E66F3 /* RouteFindingFourthOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3431710029328D68005E66F3 /* RouteFindingFourthOnboardingViewController.swift */; };
+		3431710329328D7A005E66F3 /* RouteFindingFifthOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3431710229328D7A005E66F3 /* RouteFindingFifthOnboardingViewController.swift */; };
+		3431710529328D80005E66F3 /* RouteFindingSixthOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3431710429328D80005E66F3 /* RouteFindingSixthOnboardingViewController.swift */; };
+		3431710729329BF2005E66F3 /* RouteFindingOnboardingParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3431710629329BF2005E66F3 /* RouteFindingOnboardingParentViewController.swift */; };
+		3431710929332731005E66F3 /* RouteFindingSeventhOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3431710829332731005E66F3 /* RouteFindingSeventhOnboardingViewController.swift */; };
 		34793F9F29251E4B00B74110 /* BetterSegmentedControl in Frameworks */ = {isa = PBXBuildFile; productRef = 34793F9E29251E4B00B74110 /* BetterSegmentedControl */; };
 		34793FA329262A8800B74110 /* CustomBackBarButtomItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34793FA229262A8800B74110 /* CustomBackBarButtomItem.swift */; };
 		3495AEF72929192000006469 /* CalendarComponent+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3495AEF62929192000006469 /* CalendarComponent+.swift */; };
@@ -151,6 +161,16 @@
 		342C456D290125260037D9E7 /* HomeTableViewListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewListCell.swift; sourceTree = "<group>"; };
 		342C456F29018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewFooterCell.swift; sourceTree = "<group>"; };
 		343170F129310971005E66F3 /* RouteFindingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingPageView.swift; sourceTree = "<group>"; };
+		343170F6293287A3005E66F3 /* RouteFindingOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingOnboardingViewController.swift; sourceTree = "<group>"; };
+		343170F829328A46005E66F3 /* RouteFindingOnboardingViewController+UIPageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteFindingOnboardingViewController+UIPageViewExtensions.swift"; sourceTree = "<group>"; };
+		343170FA29328D20005E66F3 /* RouteFindingFirstOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingFirstOnboardingViewController.swift; sourceTree = "<group>"; };
+		343170FC29328D5A005E66F3 /* RouteFindingSecondOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingSecondOnboardingViewController.swift; sourceTree = "<group>"; };
+		343170FE29328D61005E66F3 /* RouteFindingThirdOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingThirdOnboardingViewController.swift; sourceTree = "<group>"; };
+		3431710029328D68005E66F3 /* RouteFindingFourthOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingFourthOnboardingViewController.swift; sourceTree = "<group>"; };
+		3431710229328D7A005E66F3 /* RouteFindingFifthOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingFifthOnboardingViewController.swift; sourceTree = "<group>"; };
+		3431710429328D80005E66F3 /* RouteFindingSixthOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingSixthOnboardingViewController.swift; sourceTree = "<group>"; };
+		3431710629329BF2005E66F3 /* RouteFindingOnboardingParentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingOnboardingParentViewController.swift; sourceTree = "<group>"; };
+		3431710829332731005E66F3 /* RouteFindingSeventhOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingSeventhOnboardingViewController.swift; sourceTree = "<group>"; };
 		34793FA229262A8800B74110 /* CustomBackBarButtomItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackBarButtomItem.swift; sourceTree = "<group>"; };
 		3495AEF62929192000006469 /* CalendarComponent+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarComponent+.swift"; sourceTree = "<group>"; };
 		34E11EC2292BEDCF00787316 /* FirstDateSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstDateSettingViewController.swift; sourceTree = "<group>"; };
@@ -325,6 +345,23 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		343170F52932878A005E66F3 /* RouteFindingOnboarding */ = {
+			isa = PBXGroup;
+			children = (
+				343170F6293287A3005E66F3 /* RouteFindingOnboardingViewController.swift */,
+				343170F829328A46005E66F3 /* RouteFindingOnboardingViewController+UIPageViewExtensions.swift */,
+				3431710629329BF2005E66F3 /* RouteFindingOnboardingParentViewController.swift */,
+				343170FA29328D20005E66F3 /* RouteFindingFirstOnboardingViewController.swift */,
+				343170FC29328D5A005E66F3 /* RouteFindingSecondOnboardingViewController.swift */,
+				343170FE29328D61005E66F3 /* RouteFindingThirdOnboardingViewController.swift */,
+				3431710029328D68005E66F3 /* RouteFindingFourthOnboardingViewController.swift */,
+				3431710229328D7A005E66F3 /* RouteFindingFifthOnboardingViewController.swift */,
+				3431710429328D80005E66F3 /* RouteFindingSixthOnboardingViewController.swift */,
+				3431710829332731005E66F3 /* RouteFindingSeventhOnboardingViewController.swift */,
+			);
+			path = RouteFindingOnboarding;
+			sourceTree = "<group>";
+		};
 		34793F9D29251E4B00B74110 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,6 +468,7 @@
 		3AA4D41D28FEBADE006C718A /* OrrRock */ = {
 			isa = PBXGroup;
 			children = (
+				343170F52932878A005E66F3 /* RouteFindingOnboarding */,
 				34E11EDE293097F500787316 /* RouteFindingFeature */,
 				3405BE5D2927DA6200D6E15A /* MyActivity */,
 				703145E629250E3E007A78F1 /* SwipeOnboarding */,
@@ -705,6 +743,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				707B2CB829012BFE0062C958 /* Color+.swift in Sources */,
+				343170F7293287A3005E66F3 /* RouteFindingOnboardingViewController.swift in Sources */,
 				0AAB780A290424A300EEEFFB /* SwipeableCardVideoView.swift in Sources */,
 				FB8A9E0F292D840C003F44D3 /* ExportViewController.swift in Sources */,
 				34E11EE12930981F00787316 /* RouteFindingFeatureViewController.swift in Sources */,
@@ -716,6 +755,7 @@
 				0A0B410D2907C79200057FA7 /* VideoResultType.swift in Sources */,
 				34EC54582924C93B00EE558E /* HomeTableViewHeader.swift in Sources */,
 				70A44805290440E600BE18A5 /* DateSettingViewController.swift in Sources */,
+				343170FF29328D61005E66F3 /* RouteFindingThirdOnboardingViewController.swift in Sources */,
 				34172EB7292B41D1009DAAB8 /* HomeGymChartView.swift in Sources */,
 				342C457029018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift in Sources */,
 				3A2880E929033C0D00FBFB70 /* SortOption.swift in Sources */,
@@ -728,6 +768,7 @@
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
 				78CAA0662901F7A9003C3D77 /* BasePaddingLabel.swift in Sources */,
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
+				3431710929332731005E66F3 /* RouteFindingSeventhOnboardingViewController.swift in Sources */,
 				78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */,
 				343170F229310971005E66F3 /* RouteFindingPageView.swift in Sources */,
 				3A15AC892907B1160058512F /* VideoInformation+CoreDataProperties.swift in Sources */,
@@ -735,11 +776,13 @@
 				704BAB5E292834DB004D987A /* NewLevelPickerView.swift in Sources */,
 				3405BE5F2927DA9600D6E15A /* MyActivityViewController.swift in Sources */,
 				70E8E7542923865400793F91 /* OnBoardigSuperViewController.swift in Sources */,
+				3431710729329BF2005E66F3 /* RouteFindingOnboardingParentViewController.swift in Sources */,
 				3495AEF72929192000006469 /* CalendarComponent+.swift in Sources */,
 				70DE795C292517330009AD43 /* SwipeOnboardingFirstViewController.swift in Sources */,
 				3A15AC7729071DD90058512F /* OrderOption.swift in Sources */,
 				0A0B41072907C59600057FA7 /* LevelAndPFSettingViewController.swift in Sources */,
 				78FEE89929291AC9007B67BD /* VideoDetailPageViewController+Protocol.swift in Sources */,
+				343170F929328A46005E66F3 /* RouteFindingOnboardingViewController+UIPageViewExtensions.swift in Sources */,
 				3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */,
 				3A4641B9292FA7B500C6B7A3 /* PointInformation+CoreDataClass.swift in Sources */,
 				70DE795A29250F480009AD43 /* SwipeOnboardingViewController.swift in Sources */,
@@ -761,6 +804,7 @@
 				342508A929001C2E000653D9 /* HomeTableViewCardCell+CollectionViewExtensions.swift in Sources */,
 				3AA4D42928FEBADE006C718A /* OrrRock.xcdatamodeld in Sources */,
 				78F93ED7290743DF00F3D9F3 /* LevelAndPFEditViewController.swift in Sources */,
+				3431710529328D80005E66F3 /* RouteFindingSixthOnboardingViewController.swift in Sources */,
 				341418B42922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift in Sources */,
 				78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */,
 				342508A329001780000653D9 /* HomeViewController.swift in Sources */,
@@ -774,7 +818,9 @@
 				3A4641C4292FACF600C6B7A3 /* RouteInfo.swift in Sources */,
 				70DE79662926524D0009AD43 /* SwipeOnboardingFifthViewController.swift in Sources */,
 				34E76F462924D33E00EBB92D /* HomeTableViewFooter.swift in Sources */,
+				343170FD29328D5A005E66F3 /* RouteFindingSecondOnboardingViewController.swift in Sources */,
 				3A15AC882907B1160058512F /* VideoInformation+CoreDataClass.swift in Sources */,
+				3431710329328D7A005E66F3 /* RouteFindingFifthOnboardingViewController.swift in Sources */,
 				3AA4D42128FEBADE006C718A /* SceneDelegate.swift in Sources */,
 				3405BE632927DD2E00D6E15A /* ChallengeChartView.swift in Sources */,
 				78FEE89B29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift in Sources */,
@@ -792,7 +838,9 @@
 				70AE8138292CA24500B4DB3F /* Font+.swift in Sources */,
 				78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */,
 				3AEB3D5D291C003D00A989FF /* VideoCollectionViewMode.swift in Sources */,
+				343170FB29328D20005E66F3 /* RouteFindingFirstOnboardingViewController.swift in Sources */,
 				78CAA06C290271E7003C3D77 /* VIdeoCollectionFooterCell.swift in Sources */,
+				3431710129328D68005E66F3 /* RouteFindingFourthOnboardingViewController.swift in Sources */,
 				341418BB2922A3800033D851 /* AutocompleteTableViewCell.swift in Sources */,
 				3A4641D6292FB30900C6B7A3 /* RouteDataDraft.swift in Sources */,
 				709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */,

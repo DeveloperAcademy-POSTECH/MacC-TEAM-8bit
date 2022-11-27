@@ -262,7 +262,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     func exitRouteFinding() {
         
         // TODO: 루트파인딩 데이터 초기화 및 뷰 닫기
-        
+        showPage()
         print("Exit Button Tapped")
     }
     
@@ -410,5 +410,15 @@ extension RouteFindingFeatureViewController: RouteFindingThumbnailCollectionView
             self.deleteImage.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.pageNumberingView.transform = CGAffineTransform(translationX: 0, y: -50)
         }
+    }
+}
+
+// DEBUG
+extension RouteFindingFeatureViewController {
+    func showPage() {
+        let nextVC = RouteFindingOnboardingViewController(backgroundImage: backgroundImageView.image!)
+//        RouteFindingOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+        nextVC.modalPresentationStyle = .fullScreen
+        self.present(nextVC, animated: true, completion: nil)
     }
 }
