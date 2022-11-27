@@ -46,6 +46,10 @@ final class RouteDataManager {
         coreDataDAO.updateRouteInformationLevelAndStatus(status: status, problemLevel: level, routeInformation: routeInformation)
     }
     
+    func updateRouteStatus(to status: Bool, of routeInformation: RouteInformation) {
+        coreDataDAO.updateRouteInformationStatus(status: status, routeInformation: routeInformation)
+    }
+    
     func addPageData(pageInfoList: [PageInfo], routeInformation: RouteInformation) {
         for info in pageInfoList {
             coreDataDAO.createPageInformation(pageInfo: info, routeInformation: routeInformation)

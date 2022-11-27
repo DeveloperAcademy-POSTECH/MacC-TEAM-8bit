@@ -15,9 +15,16 @@ struct HomeGymChartView: View {
     var body: some View {
         ZStack {
             VStack(alignment: .leading) {
-                Label("홈짐", systemImage: "house.fill")
-                    .font(.system(size: 17, weight: .bold))
-                    .foregroundColor(Color(uiColor: UIColor.orrBlack!))
+                
+                HStack(spacing: 0){
+                    Label("", systemImage: "house.fill")
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundColor(Color(uiColor: UIColor.orrBlack!))
+                    
+                    Text("홈짐")
+                        .font(.system(size: 17, weight: .bold))
+                        .foregroundColor(Color(uiColor: UIColor.orrBlack!))
+                }
                 
                 if isChartDataEmpty() {
                     Text("데이터 없음")
@@ -78,11 +85,7 @@ struct HomeGymChartView: View {
             .frame(width: UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 4, height: isChartDataEmpty() ? 136 : 188, alignment: .topLeading)
         }
         .frame(width: UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 2, height: isChartDataEmpty() ? 168 : 220)
-        .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.white))
-        .overlay(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(Color(uiColor: .orrGray200!), lineWidth: 1)
-        )
+        .background(RoundedRectangle(cornerRadius: 10).foregroundColor(Color(.orrWhiteCustom ?? .white)))
     }
     
     func createColorSetForChart() -> KeyValuePairs<String, Color> {

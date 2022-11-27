@@ -17,7 +17,7 @@ class OnBoardigSuperViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
-        label.textColor = .black
+        label.textColor = .orrBlack
         label.text = titleLabelText
         return label
     }()
@@ -30,7 +30,7 @@ class OnBoardigSuperViewController: UIViewController {
     private lazy var subLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
-        label.textColor = .black
+        label.textColor = .orrBlack
         label.textAlignment = .center
         label.text = subLabelText
         return label

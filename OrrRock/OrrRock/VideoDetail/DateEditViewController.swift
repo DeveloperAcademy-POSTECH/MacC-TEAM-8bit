@@ -43,13 +43,12 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
     
     private lazy var datePicker : UIDatePicker = {
         let datePicker = UIDatePicker()
-        datePicker.overrideUserInterfaceStyle = .light
         datePicker.preferredDatePickerStyle = .inline
         datePicker.datePickerMode = .date
         datePicker.timeZone = .autoupdatingCurrent
         datePicker.locale = Locale(identifier:"ko_KR")
         datePicker.addTarget(self, action: #selector(handleDatePicker(_:)), for: .valueChanged)
-        datePicker.backgroundColor = .orrWhite
+        datePicker.backgroundColor = .orrGray050
         datePicker.maximumDate = Date()
         return datePicker
     }()
@@ -62,7 +61,7 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
         btn.layer.cornerRadius = 15
         btn.addTarget(self, action: #selector(pressSaveButton), for: .touchUpInside)
         btn.setTitle("저장", for: .normal)
-        btn.setTitleColor(.white, for: .normal)
+        btn.setTitleColor(.orrGray500, for: .normal)
         btn.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
         btn.isEnabled = false
         return btn
@@ -102,7 +101,7 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
         let title = UILabel()
         title.text = "날짜 편집"
         title.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        title.textColor = .black
+        title.textColor = .orrBlack
         return title
     }()
     
@@ -114,7 +113,7 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
     }
     
     private func setUpLayout(){
-        view.backgroundColor = .orrWhite
+        view.backgroundColor = .orrGray050
         self.navigationController?.isToolbarHidden = false
         
         view.addSubview(dateTopView)
@@ -174,6 +173,7 @@ extension DateEditViewController {
     @objc
     private func handleDatePicker(_ sender: UIDatePicker) {
         saveButton.isEnabled = true
+        saveButton.setTitleColor(.white, for: .normal)
     }
     
     @objc

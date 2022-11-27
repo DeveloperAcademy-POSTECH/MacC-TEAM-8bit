@@ -50,6 +50,7 @@ class SwipeOnboardingFirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpLayout()
+        view.backgroundColor = .orrGray050
     }
 }
 

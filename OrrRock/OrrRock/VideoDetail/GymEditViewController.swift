@@ -84,7 +84,7 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
         let title = UILabel()
         title.text = "클라이밍장 편집"
         title.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        title.textColor = .black
+        title.textColor = .orrBlack
         return title
     }()
     
@@ -96,7 +96,7 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
     }
     
     private func setUpLayout(){
-        view.backgroundColor = .orrWhite
+        view.backgroundColor = .orrGray050
         self.navigationController?.isToolbarHidden = false
         
         view.addSubview(gymTopView)

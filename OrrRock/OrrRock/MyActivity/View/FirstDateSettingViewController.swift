@@ -19,22 +19,20 @@ final class FirstDateSettingViewController: UIViewController , UISheetPresentati
     //MARK: date view 관련 components
     private lazy var datePickerLabel : UILabel = {
         let label = UILabel()
-        label.text = Date().timeToString()
-        label.font = UIFont.boldSystemFont(ofSize: 17)
-        label.textColor = .orrGray500
-        label.backgroundColor = .orrGray100
+        label.text = "방문한 날짜를 선택해주세요"
+        label.font = UIFont.boldSystemFont(ofSize: 22)
+        label.textColor = .orrBlack
+        label.backgroundColor = .orrWhite
         return label
     }()
     
     private lazy var datePicker : UIDatePicker = {
         let datePicker = UIDatePicker()
-        datePicker.overrideUserInterfaceStyle = .light
         datePicker.preferredDatePickerStyle = .inline
         datePicker.datePickerMode = .date
         datePicker.timeZone = .autoupdatingCurrent
         datePicker.locale = Locale(identifier:"ko_KR")
-        datePicker.addTarget(self, action: #selector(handleDatePicker(_:)), for: .valueChanged)
-        datePicker.backgroundColor = .orrGray100
+        datePicker.backgroundColor = .orrGray050
         datePicker.maximumDate = Date()
         return datePicker
     }()
@@ -53,12 +51,13 @@ final class FirstDateSettingViewController: UIViewController , UISheetPresentati
     
     private lazy var dateContentView : UIView = {
         let view = UIView()
+        view.backgroundColor = .orrGray050
         return view
     }()
     
     private lazy var dateTopView : UIView = {
         let view = UIView()
-        view.backgroundColor = .orrWhite
+        view.backgroundColor = .orrGray100
         
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
@@ -85,7 +84,7 @@ final class FirstDateSettingViewController: UIViewController , UISheetPresentati
         let title = UILabel()
         title.text = "날짜 편집"
         title.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        title.textColor = .black
+        title.textColor = .orrBlack
         return title
     }()
     
@@ -117,9 +116,10 @@ final class FirstDateSettingViewController: UIViewController , UISheetPresentati
         
         dateContentView.addSubview(datePickerLabel)
         datePickerLabel.snp.makeConstraints {
-            $0.centerX.equalTo(dateContentView)
-            $0.top.equalTo(dateContentView.snp.top).offset(OrrPd.pd24.rawValue)
+            $0.leading.equalTo(dateContentView).offset(OrrPd.pd24.rawValue)
+            $0.top.equalTo(dateContentView.snp.top).offset(OrrPd.pd72.rawValue)
         }
+        
         
         dateContentView.addSubview(datePicker)
         datePicker.snp.makeConstraints{
@@ -148,17 +148,12 @@ final class FirstDateSettingViewController: UIViewController , UISheetPresentati
     
     private func setData(){
         datePicker.date = UserDefaults.standard.string(forKey: "firstDateOfClimbing")?.stringToDate() ?? Date()
-        datePickerLabel.text = UserDefaults.standard.string(forKey: "firstDateOfClimbing") ?? "처음 클라이밍한 날짜를 알려주세요"
     }
 }
 
 extension FirstDateSettingViewController {
     
-    @objc
-    private func handleDatePicker(_ sender: UIDatePicker) {
-        datePickerLabel.text = sender.date.timeToString()
-        datePickerLabel.textColor = .black
-    }
+
     
     @objc
     func pressSaveButton() {

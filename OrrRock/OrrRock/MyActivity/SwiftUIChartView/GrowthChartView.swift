@@ -13,13 +13,21 @@ struct GrowthChartView: View {
     var chartData: [[SolvedProblemsOfEachLevel]]
     var periodData: [(Date, Date)]
     let mostFrequentLevelForPeriod: [Int]
-
+    
     var body: some View {
         ZStack {
+            
             VStack(alignment: .leading) {
-                Label("성장", systemImage: "chart.bar.fill")
-                    .font(.system(size: 17, weight: .bold))
-                    .foregroundColor(Color(uiColor: UIColor.orrBlack!))
+                
+                HStack(spacing: 0){
+                    Label("", systemImage: "chart.bar.fill")
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundColor(Color(uiColor: UIColor.orrBlack!))
+                    
+                    Text("성장")
+                        .font(.system(size: 17, weight: .bold))
+                        .foregroundColor(Color(uiColor: UIColor.orrBlack!))
+                }
                 
                 // 차트
                 VStack(alignment: .leading){
@@ -41,7 +49,7 @@ struct GrowthChartView: View {
                             .font(.system(size: 12, weight: .regular))
                             .foregroundColor(Color(uiColor: UIColor.orrGray500!))
                             .padding(.bottom, CGFloat(OrrPd.pd16.rawValue))
-
+                        
                     } else {
                         Text("지난 \(selectedTimePeriod.toString())동안 가장 많이 도전한 레벨은\nV\(mostFrequentLevelForPeriod[selectedTimePeriod.rawValue])입니다.")
                             .font(.system(size: 17, weight: .bold))
@@ -92,11 +100,7 @@ struct GrowthChartView: View {
             .frame(width: UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 4, height: 418, alignment: .topLeading)
         }
         .frame(width: UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 2, height: 450)
-        .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.white))
-        .overlay(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(Color(uiColor: .orrGray200!), lineWidth: 1)
-        )
+        .background(RoundedRectangle(cornerRadius: 10).foregroundColor(Color(.orrWhiteCustom ?? .white)))
     }
     
     func isChartDataEmpty(timePeriod: TimePeriodEnum) -> Bool {
