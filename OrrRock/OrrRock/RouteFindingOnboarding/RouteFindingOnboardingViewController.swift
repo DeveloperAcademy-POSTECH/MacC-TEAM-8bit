@@ -86,7 +86,8 @@ class RouteFindingOnboardingViewController: UIPageViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpDelegate()
+        setUpPageViewControllerDelegate()
+        
         if let firstVC = viewControllerList.first {
             setViewControllers([firstVC], direction: .forward, animated: false, completion: nil)
         }
@@ -109,22 +110,15 @@ class RouteFindingOnboardingViewController: UIPageViewController {
 extension RouteFindingOnboardingViewController {
     
     // MARK: Set Up Functions
-    func setUpDelegate() {
+    func setUpPageViewControllerDelegate() {
         self.delegate = self
         self.dataSource = self
-    }
-    
-    func setUpPageViewController() {
-        
     }
 }
 
 extension RouteFindingOnboardingViewController: RouteFindingOnboardingPaginationDelegate {
     func moveToNextPage() {
-        guard let currentVC = self.viewControllerList.first,
-              let nextVC = dataSource?.pageViewController(self, viewControllerAfter: currentVC) else { return }
-        
-        setViewControllers([nextVC], direction: .forward, animated: true)
+        self.goToNextPage()
     }
     
     func skipOnboarding() {
