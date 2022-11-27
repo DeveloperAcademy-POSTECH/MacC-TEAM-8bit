@@ -24,6 +24,9 @@ class RouteFindingCameraViewController: UIViewController {
     private var photoOutput: AVCapturePhotoOutput!
     private var cameraAuthorizeStatus = CameraSessionStatus.success
     
+    private var photoImage: UIImage? = nil
+    private var photoData: Data? = nil
+    
     private lazy var photosButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
@@ -43,6 +46,7 @@ class RouteFindingCameraViewController: UIViewController {
         button.layer.borderWidth = 4
         button.layer.cornerRadius = 37.5
         
+        button.addTarget(self, action: #selector(capturePhoto), for: .touchUpInside)
         return button
     }()
     
@@ -123,10 +127,10 @@ class RouteFindingCameraViewController: UIViewController {
             $0.width.height.equalTo(40)
         })
     }
-     
 }
 
 extension RouteFindingCameraViewController {
+    
     @objc func showPhotoPicker() {
         let photoLibrary = PHPhotoLibrary.shared()
         var config = PHPickerConfiguration(photoLibrary: photoLibrary)
@@ -136,6 +140,13 @@ extension RouteFindingCameraViewController {
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = self
         present(picker, animated: true, completion: nil)
+    }
+    
+    @objc func capturePhoto() {
+        let settings = AVCapturePhotoSettings()
+        sessionQueue.async {
+            self.photoOutput?.capturePhoto(with: settings, delegate: self)
+        }
     }
     
     func fetchLastPhoto(fetchResult: PHFetchResult<PHAsset>) -> UIImage? {
@@ -193,6 +204,47 @@ extension RouteFindingCameraViewController: PHPickerViewControllerDelegate {
     }
 }
 
+extension RouteFindingCameraViewController: AVCapturePhotoCaptureDelegate {
+    
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        if let error = error {
+            print("Error capturing photo: \(error)")
+            return
+        } else {
+            guard let data = photo.fileDataRepresentation() else { return }
+            
+            let orientationFixedImage = UIImage(data: data)?.fixOrientation() ?? UIImage()
+            let rect = orientationFixedImage.imageRectAs16to9()
+            
+            photoImage = orientationFixedImage.cropped(rect: rect)
+            photoData = photoImage?.pngData()
+        }
+    }
+    
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishCaptureFor resolvedSettings: AVCaptureResolvedPhotoSettings, error: Error?) {
+        
+        if let error = error {
+            print("Error capturing photo: \(error)")
+            return
+        }
+
+        PHPhotoLibrary.requestAuthorization({ status in
+            if status == .authorized {
+                PHPhotoLibrary.shared().performChanges({
+                    let options = PHAssetResourceCreationOptions()
+                    let creationRequest = PHAssetCreationRequest.forAsset()
+                    guard let photoData = self.photoData else { return }
+                    creationRequest.addResource(with: .photo, data: photoData as Data, options: options)
+                }, completionHandler: { _, error in
+                    if let error = error {
+                        print("Error occurred while saving photo to photo library: \(error)")
+                    }
+                })
+            }
+        })
+    }
+}
+
 extension RouteFindingCameraViewController {
     func authorizateCameraStatus() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
@@ -217,6 +269,7 @@ extension RouteFindingCameraViewController {
         cameraView.videoPreviewLayer.session = captureSession
         cameraView.videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
     }
+    
     private func setupCaptureSession() {
         sessionQueue.async { [self] in
             captureSession.beginConfiguration()
