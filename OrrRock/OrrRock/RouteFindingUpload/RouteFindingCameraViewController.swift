@@ -13,10 +13,9 @@ class RouteFindingCameraViewController: UIViewController {
 
     private var currentLocalIdentifier: String?
     
-    private lazy var videoView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        
+    private lazy var cameraView: CameraView = {
+        let view = CameraView()
+
         return view
     }()
     
@@ -66,8 +65,8 @@ class RouteFindingCameraViewController: UIViewController {
         let shutterButtonSize: CGFloat = 75
         let safeArea = view.safeAreaLayoutGuide
         let height: CGFloat = UIScreen.main.bounds.width * 16/9
-        view.addSubview(videoView)
-        videoView.snp.makeConstraints({
+        view.addSubview(cameraView)
+        cameraView.snp.makeConstraints({
             $0.top.equalTo(view.snp.top)
             $0.leading.equalTo(view.snp.leading)
             $0.trailing.equalTo(view.snp.trailing)
