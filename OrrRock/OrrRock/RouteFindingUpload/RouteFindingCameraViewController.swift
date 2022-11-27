@@ -206,7 +206,6 @@ private extension RouteFindingCameraViewController {
     private func authorizateCameraStatus() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
-            print("Authorized!")
             setupCaptureSession()
             break
         case .notDetermined:
