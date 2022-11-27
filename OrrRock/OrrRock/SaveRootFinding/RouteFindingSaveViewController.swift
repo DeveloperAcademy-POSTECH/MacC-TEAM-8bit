@@ -94,7 +94,7 @@ class RouteFindingSaveViewController: UIViewController {
         return view
     }()
     
-    lazy var countVideoLabel: UILabel = {
+    private lazy var countVideoLabel: UILabel = {
         let label = UILabel()
         label.text = "0/0"
         label.textColor = .orrWhite
