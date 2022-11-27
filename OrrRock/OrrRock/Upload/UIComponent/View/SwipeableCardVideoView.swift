@@ -90,6 +90,13 @@ final class SwipeableCardVideoView: UIView {
         countVideoLabel.text = labelText
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if #available(iOS 13.0, *) {
+            if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+                videoBackgroundView.layer.borderColor = UIColor.orrWhite!.cgColor
+            }
+        }
+    }
 }
 
 extension SwipeableCardVideoView {
