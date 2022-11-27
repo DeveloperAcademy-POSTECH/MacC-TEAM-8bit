@@ -25,7 +25,7 @@ class RouteFindingSaveViewController: UIViewController {
     private var goBackButton: UIBarButtonItem!
     private var saveButton: UIBarButtonItem!
     
-    var previewImgae: UIImageView! = {
+    var previewImage: UIImageView! = {
         let view = UIImageView()
         //FIXME: PR전 dummyData 삭제
         view.image = RouteInfo.dummyData.imageLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: 1080, height: 1920))
@@ -200,8 +200,8 @@ extension RouteFindingSaveViewController {
             $0.bottom.equalTo(saveRouteFindingImageCollectionView.snp.top).offset(-OrrPd.pd8.rawValue)
             $0.width.equalTo(previewImageView.snp.height).multipliedBy(0.5625)
         }
-        previewImageView.addSubview(previewImgae)
-        previewImgae.snp.makeConstraints {
+        previewImageView.addSubview(previewImage)
+        previewImage.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.height.equalToSuperview()
             $0.width.equalToSuperview()
