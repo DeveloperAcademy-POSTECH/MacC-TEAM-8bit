@@ -12,6 +12,8 @@ final class RouteFindingMainViewController: UIViewController {
     
     var routeDataManager: RouteDataManager = RouteDataManager()
     var routeInfoList: [RouteInformation]!
+    var routeChallengeList: [RouteInformation]!
+    var routeSuccessList: [RouteInformation]!
     
     private lazy var topView: UIView = {
         let view = UIView()
@@ -46,13 +48,13 @@ final class RouteFindingMainViewController: UIViewController {
     
     private lazy var challengeRouteFindingViewController: UIViewController = {
         let vc = RouteFindingSectionViewController()
-        vc.infoArr = routeInfoList
+        vc.infoArr = routeChallengeList
         return vc
     }()
     
     private lazy var successRouteFindingViewController: UIViewController = {
         let vc = RouteFindingSectionViewController()
-        vc.infoArr = routeInfoList
+        vc.infoArr = routeSuccessList
         return vc
     }()
     
@@ -85,6 +87,8 @@ final class RouteFindingMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         routeInfoList = routeDataManager.getRouteFindingList()
+        routeChallengeList = routeDataManager.getSpecificRouteFindingList(isChallengeComplete: false)
+        routeSuccessList = routeDataManager.getSpecificRouteFindingList(isChallengeComplete: true)
         setUpLayout()
         setInitialNavigationBar()
         setUpSegment()

@@ -53,10 +53,10 @@ extension RouteFindingSectionViewController: UICollectionViewDataSource {
         let screenSize = CGSize(width: screenBounds.size.width * screenScale, height: screenBounds.size.height * screenScale)
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RouteFindingCollectionViewCustomCell", for: indexPath) as! RouteFindingCollectionViewCustomCell
-        cell.cellLevelLabel.text = "V5"
-        cell.cellChallengeLabel.text = "도전 완료"
-        cell.cellDateLabel.text = "2022년 10월 13일"
-        cell.cellTitleLabel.text = "아띠 클라이밍장"
+        cell.cellLevelLabel.text = "V\(infoArr[indexPath.row].problemLevel)"
+        cell.cellChallengeLabel.text = infoArr[indexPath.row].isChallengeComplete ? "도전 완료" : "도전 중"
+        cell.cellDateLabel.text = infoArr[indexPath.row].dataWrittenDate.timeToString()
+        cell.cellTitleLabel.text = infoArr[indexPath.row].gymName
         cell.cellImage.image = UIImage(named: "SwipeOnboardingImage1")
         cell.isSelectable = mMode == .select ? true : false
         return cell
