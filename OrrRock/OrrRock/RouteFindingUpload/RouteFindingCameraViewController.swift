@@ -63,6 +63,8 @@ class RouteFindingCameraViewController: UIViewController {
 
         setUpLayout()
         setPhotosButtonImage()
+        
+        authorizateCameraStatus()
     }
   
     func setUpLayout() {
@@ -173,5 +175,25 @@ extension RouteFindingCameraViewController: PHPickerViewControllerDelegate {
             }
         }
         dismiss(animated: true)
+    }
+}
+
+extension RouteFindingCameraViewController {
+    func authorizateCameraStatus() {
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized:
+            print("Authorized!")
+            break
+        case .notDetermined:
+            sessionQueue.suspend()
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: { granted in
+                if !granted {
+                    self.cameraAuthorizeStatus = .notAuthorized
+                }
+                self.sessionQueue.resume()
+            })
+        default:
+            cameraAuthorizeStatus = .notAuthorized
+        }
     }
 }
