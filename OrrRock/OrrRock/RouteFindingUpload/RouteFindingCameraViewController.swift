@@ -24,8 +24,8 @@ class RouteFindingCameraViewController: UIViewController {
     private var photoOutput: AVCapturePhotoOutput!
     private var cameraAuthorizeStatus = CameraSessionStatus.success
     
-    private var photoImage: UIImage? = nil
-    private var photoData: Data? = nil
+    var photoImage: UIImage? = nil
+    var photoData: Data? = nil
     
     private lazy var photosButton: UIButton = {
         let button = UIButton()
@@ -201,47 +201,6 @@ extension RouteFindingCameraViewController: PHPickerViewControllerDelegate {
             }
         }
         dismiss(animated: true)
-    }
-}
-
-extension RouteFindingCameraViewController: AVCapturePhotoCaptureDelegate {
-    
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        if let error = error {
-            print("Error capturing photo: \(error)")
-            return
-        } else {
-            guard let data = photo.fileDataRepresentation() else { return }
-            
-            let orientationFixedImage = UIImage(data: data)?.fixOrientation() ?? UIImage()
-            let rect = orientationFixedImage.imageRectAs16to9()
-            
-            photoImage = orientationFixedImage.cropped(rect: rect)
-            photoData = photoImage?.pngData()
-        }
-    }
-    
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishCaptureFor resolvedSettings: AVCaptureResolvedPhotoSettings, error: Error?) {
-        
-        if let error = error {
-            print("Error capturing photo: \(error)")
-            return
-        }
-
-        PHPhotoLibrary.requestAuthorization({ status in
-            if status == .authorized {
-                PHPhotoLibrary.shared().performChanges({
-                    let options = PHAssetResourceCreationOptions()
-                    let creationRequest = PHAssetCreationRequest.forAsset()
-                    guard let photoData = self.photoData else { return }
-                    creationRequest.addResource(with: .photo, data: photoData as Data, options: options)
-                }, completionHandler: { _, error in
-                    if let error = error {
-                        print("Error occurred while saving photo to photo library: \(error)")
-                    }
-                })
-            }
-        })
     }
 }
 
