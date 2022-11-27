@@ -149,7 +149,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         let button = UIButton()
         button.setBackgroundColor(.orrUPBlue!, for: .normal)
         button.addTarget(self, action: #selector(tapSaveButton), for: .touchUpInside)
-        button.setTitle("저장하기", for: .normal)
+        button.setTitle("완료", for: .normal)
         button.clipsToBounds = true
         button.layer.cornerRadius = 10.0
         button.setTitleColor(.white, for: .normal)
@@ -166,7 +166,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if !UserDefaults.standard.bool(forKey: "SwipeOnboardingClear"){
             let nextVC = SwipeOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
             nextVC.modalPresentationStyle = .fullScreen
@@ -175,9 +175,8 @@ final class LevelAndPFSettingViewController: UIViewController {
         
         view.backgroundColor = .orrWhite
         
-        navigationItem.leftBarButtonItem = CustomBackBarButtomItem(target: self, action: #selector(backButtonClicked))
-        navigationItem.leftBarButtonItem?.tintColor = .orrUPBlue
-        
+        self.navigationController?.setExpansionBackbuttonArea()
+
         // card UI
         setUpLayout()
         
@@ -401,7 +400,6 @@ private extension LevelAndPFSettingViewController {
     func handlerCard(_ gesture: UIPanGestureRecognizer) {
         if let card = gesture.view as? SwipeableCardVideoView {
             let point = gesture.translation(in: view)
-            
             card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
             
             let horizonalRotationAngle = point.x / view.bounds.width * 0.4
@@ -554,11 +552,6 @@ private extension LevelAndPFSettingViewController {
                 
             }
         }
-    }
-    
-    @objc
-    func backButtonClicked() {
-        self.navigationController?.popViewController(animated: true)
     }
     
     // 모든 카드를 스와이핑 했을 때 호출되는 메서드

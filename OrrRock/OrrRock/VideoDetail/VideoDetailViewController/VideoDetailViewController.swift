@@ -42,14 +42,13 @@ class VideoDetailViewController: UIViewController {
     var soundButton: UIBarButtonItem!
     var playButton: UIBarButtonItem!
     var favoriteButton: UIBarButtonItem!
-    private var goBackButton: UIBarButtonItem!
     private var flexibleSpace: UIBarButtonItem!
-    private var cancelButton: UIBarButtonItem!
     private var completeButton: UIBarButtonItem!
     
     lazy var topSafeAreaView: UIView = {
         let view = UIView()
         view.backgroundColor = .orrWhite
+        
         return view
     }()
     
@@ -58,10 +57,6 @@ class VideoDetailViewController: UIViewController {
         view.backgroundColor = .orrWhite
         return view
     }()
-    
-    // 영상 재생하는 뷰 (VideoPlayerView)
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,8 +70,8 @@ class VideoDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         self.navigationController?.isToolbarHidden = false
-        self.navigationController?.hidesBarsOnTap = true
         self.navigationController?.isNavigationBarHidden = false
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -90,22 +85,15 @@ class VideoDetailViewController: UIViewController {
     func setNavigationBar() {
         // 네비게이션바 버튼 아이템 생성
         flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        goBackButton = CustomBackBarButtomItem(target: self, action: #selector(goBackAction))
         favoriteButton = UIBarButtonItem(image: UIImage(systemName: videoInformation.isFavorite ? "heart.fill" : "heart"), style: .plain, target: self, action: #selector(favoriteAction))
-        cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelAction))
         completeButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(completeAction))
-        
+        self.navigationController?.setExpansionBackbuttonArea()
+
         // 네비게이션바 띄워주고 탭 되었을 때 숨기기
         navigationController?.isToolbarHidden = false
-        navigationController?.hidesBarsOnTap = true
         
         // 배경, 네비게이션바, 툴바 색 지정
         self.view.backgroundColor = .orrWhite
-        navigationController?.navigationBar.backgroundColor = .orrWhite
-        navigationController?.toolbar.backgroundColor = .orrWhite
-        
-        navigationItem.leftBarButtonItem = goBackButton
-       
         
         // 툴바 버튼 아이템 생성
         exportButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(exportAction))
@@ -134,13 +122,12 @@ class VideoDetailViewController: UIViewController {
     @objc func showInfo() {
         isShowInfo.toggle()
         infoButton.image = UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle")
-        navigationController?.hidesBarsOnTap = !isShowInfo
         feedbackText = videoInfoView.feedbackTextView.text!
         if isShowInfo {
             UIView.animate(withDuration: 0.2, animations: {
                 self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -430)
                 self.videoDetailPageViewController.view.transform = CGAffineTransform(translationX: 0, y: -430)
-                self.navigationController?.navigationBar.layer.opacity = 0
+                self.navigationController?.isNavigationBarHidden = true
                 self.topSafeAreaView.layer.opacity = 0
                 self.navigationController?.isToolbarHidden = false
                 self.bottomSafeAreaView.layer.opacity = 1.0
@@ -149,7 +136,7 @@ class VideoDetailViewController: UIViewController {
             UIView.animate(withDuration: 0.2, animations: {
                 self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
                 self.videoDetailPageViewController.view.transform = CGAffineTransform(translationX: 0, y: 0)
-                self.navigationController?.navigationBar.layer.opacity = 1
+                self.navigationController?.isNavigationBarHidden = false
                 self.topSafeAreaView.layer.opacity = 1
             })
         }
@@ -160,7 +147,6 @@ class VideoDetailViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
         navigationController?.isNavigationBarHidden = false
         navigationController?.isToolbarHidden = true
-        navigationController?.hidesBarsOnTap = false
     }
     
     // 삭제 버튼을 눌렀을 때 로직
@@ -252,26 +238,16 @@ extension VideoDetailViewController {
     @objc func showKeyboard(notification: NSNotification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             isShowKeyboard.toggle()
-            self.navigationController?.navigationBar.layer.opacity = 1
-            self.topSafeAreaView.layer.opacity = 1
-            // 키보드의 유무에 따라 버튼 옵션 변경
-            navigationItem.leftBarButtonItem = isShowKeyboard ? cancelButton : goBackButton
             feedbackText = videoInfoView.feedbackTextView.text!
             DataManager.shared.updateFeedback(videoInformation: currentVideoInformation!, feedback: feedbackText!)
-            navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         }
     }
     
     @objc func hideKeyboard(notification: NSNotification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             isShowKeyboard.toggle()
-            self.navigationController?.navigationBar.layer.opacity = 0
-            self.topSafeAreaView.layer.opacity = 0
-            // 키보드의 유무에 따라 버튼 옵션 변경
-            navigationItem.leftBarButtonItem = isShowKeyboard ? cancelButton : goBackButton
             feedbackText = videoInfoView.feedbackTextView.text!
             DataManager.shared.updateFeedback(videoInformation: currentVideoInformation!, feedback: feedbackText!)
-            navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         }
     }
     

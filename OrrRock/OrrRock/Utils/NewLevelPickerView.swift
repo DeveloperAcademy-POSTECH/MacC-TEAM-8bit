@@ -46,7 +46,7 @@ class NewLevelPickerView: UIView{
         let label = UILabel()
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 8, weight: .light)
-        imageAttachment.image = UIImage(systemName: "arrowtriangle.down.fill")?.withTintColor(.black)
+        imageAttachment.image = UIImage(systemName: "arrowtriangle.down.fill")?.withTintColor(.orrBlack!)
         imageAttachment.bounds = CGRect(x: 0, y: 0, width: 8, height: 8)
         arrowtriangle.append(NSAttributedString(attachment: imageAttachment))
         label.attributedText = arrowtriangle
@@ -57,7 +57,7 @@ class NewLevelPickerView: UIView{
         let label = UILabel()
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
-        label.textColor = .black
+        label.textColor = .orrBlack
         return label
     }()
     
@@ -79,7 +79,7 @@ class NewLevelPickerView: UIView{
     
     func setPicker() {
         setUpLayout()
-        self.backgroundColor = .white
+        self.backgroundColor = .orrWhite
         self.pickerView.delegate?.pickerView?(self.pickerView, didSelectRow: pickerSelectValue, inComponent: 0)
     }
     
@@ -128,19 +128,19 @@ extension NewLevelPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
         }
         
         let selectLabel = selectView.subviews[0] as! UILabel
-        selectLabel.textColor = .orrWhite
+        selectLabel.textColor = .white
         selectLabel.font  = .systemRoundedFont(ofSize: 18, weight: .bold)
         selectLabel.backgroundColor = .orrUPBlue
         
         if let beforeView = pickerView.view(forRow: row - 1, forComponent: component) {
             let beforeLabel = beforeView.subviews[0] as! UILabel
-            beforeLabel.backgroundColor = .orrWhite
+            beforeLabel.backgroundColor = .white
             beforeLabel.font = .systemRoundedFont(ofSize: 17, weight: .light)
             beforeLabel.textColor = .black
         }
         if let afterView = pickerView.view(forRow: row + 1, forComponent: component) {
             let afterLabel = afterView.subviews[0] as! UILabel
-            afterLabel.backgroundColor = .orrWhite
+            afterLabel.backgroundColor = .white
             afterLabel.font = .systemRoundedFont(ofSize: 17, weight: .light)
             afterLabel.textColor = .black
         }
@@ -168,7 +168,7 @@ extension NewLevelPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
             label.textAlignment = .center
             label.layer.cornerRadius = 15
             label.layer.masksToBounds = true
-            label.backgroundColor = .orrWhite
+            label.backgroundColor = .white
             return label
         }()
         
@@ -192,7 +192,7 @@ extension NewLevelPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
             return pickerRow
         }
         let selectLabel = selectView.subviews[0] as! UILabel
-        selectLabel.textColor = .orrWhite
+        selectLabel.textColor = .white
         selectLabel.font = .systemRoundedFont(ofSize: 18, weight: .bold)
         selectLabel.backgroundColor = .orrUPBlue
         return pickerRow

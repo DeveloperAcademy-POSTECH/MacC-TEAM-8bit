@@ -45,15 +45,12 @@ class DateSettingViewController: UIViewController {
         btn.setTitleColor(.white, for: .normal)
         return btn
     }()
-    
+
     //MARK: 생명주기 함수 모음
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
-        
-        self.navigationController?.navigationBar.topItem?.title = ""
-        navigationItem.leftBarButtonItem = CustomBackBarButtomItem(target: self, action: #selector(didBackButtonClicked))
-        navigationItem.leftBarButtonItem?.tintColor = .orrUPBlue
+        self.navigationController?.setExpansionBackbuttonArea()
         
         setUpLayout()
     }
@@ -74,9 +71,6 @@ extension DateSettingViewController {
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
-    @objc func didBackButtonClicked(_ sender: UIBarButtonItem) {
-        self.navigationController?.popToRootViewController(animated: true)
-    }
 }
 
 //MARK: 오토레이아웃 설정 영역
@@ -87,7 +81,7 @@ extension DateSettingViewController {
         view.addSubview(datePickerLabel)
         datePickerLabel.snp.makeConstraints {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(OrrPd.pd16.rawValue)
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd8.rawValue)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd24 .rawValue)
         }
         
         view.addSubview(datePicker)

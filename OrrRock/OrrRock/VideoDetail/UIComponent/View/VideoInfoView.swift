@@ -19,8 +19,18 @@ final class VideoInfoView: UIView {
         let view = UITextView()
         view.backgroundColor = .orrWhite
         view.font = .systemFont(ofSize: 17.0, weight: .semibold)
+        view.keyboardType = .default
+        view.returnKeyType = UIReturnKeyType.done
         return view
     }()
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
     
     // 날짜 관련 View
     private lazy var dateView: UIView = {
@@ -78,7 +88,7 @@ final class VideoInfoView: UIView {
     
     private lazy var levelIcon: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .systemRoundedFont(ofSize: 14, weight: .medium)
         label.textColor = .orrGray100
         label.text = videoLevel
         label.textAlignment = .center
@@ -242,6 +252,7 @@ extension VideoInfoView {
         dateIcon.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.centerX.equalTo(dateView.snp.leading).offset(28)
+            $0.width.height.equalTo(24)
         }
         
         dateView.addSubview(dateLabel)
@@ -255,6 +266,7 @@ extension VideoInfoView {
         gymNameIcon.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.centerX.equalTo(gymNameView.snp.leading).offset(28)
+            $0.width.height.equalTo(34)
         }
         
         gymNameView.addSubview(gymNameLabel)

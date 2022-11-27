@@ -16,9 +16,16 @@ struct ChallengeChartView: View {
     var body: some View {
         ZStack {
             VStack(alignment: .leading) {
-                Label("모든 도전", systemImage: "wallet.pass.fill")
-                    .font(.system(size: 17, weight: .bold))
-                    .foregroundColor(Color(uiColor: UIColor.orrBlack!))
+                HStack(spacing: 0){
+                    Label("", systemImage: "wallet.pass.fill")
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundColor(Color(uiColor: UIColor.orrBlack!))
+                    
+                    Text("모든 도전")
+                        .font(.system(size: 17, weight: .bold))
+                        .foregroundColor(Color(uiColor: UIColor.orrBlack!))
+                }
+                
                 
                 // 차트
                 ZStack{
@@ -88,11 +95,7 @@ struct ChallengeChartView: View {
             .frame(width: UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 4, height: 98, alignment: .topLeading)
         }
         .frame(width: UIScreen.main.bounds.width - CGFloat(OrrPd.pd16.rawValue) * 2, height: 130)
-        .background(RoundedRectangle(cornerRadius: 15).foregroundColor(.white))
-        .overlay(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(Color(uiColor: .orrGray200!), lineWidth: 1)
-        )
+        .background(RoundedRectangle(cornerRadius: 10).foregroundColor(Color(.orrWhiteCustom ?? .white)))
     }
 }
 

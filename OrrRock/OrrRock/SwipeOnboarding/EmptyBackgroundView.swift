@@ -15,7 +15,7 @@ class EmptyBackgroundView: UIView {
 
     private lazy var backgroundRightTiltView: UIView = {
         let view = UIView()
-        view.backgroundColor =  UIColor(hex: "EEEEEE")
+        view.backgroundColor = .orrGray200
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
         return view
@@ -32,7 +32,7 @@ class EmptyBackgroundView: UIView {
     
     private lazy var backgroundCenterView: UIView = {
         let view = UIView()
-        view.backgroundColor = .orrGray400
+        view.backgroundColor = .orrGray300
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
         return view
