@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class SwipeOnboardingFourthViewController: UIViewController {
-
+    
     // 오토레이아웃의 시작점이 되는 값입니다. 변경시 류하에게 문의 주세요.
     let padding = 68
     var delegate: SwipeOnboardingViewControllerDelegate?
@@ -28,7 +28,7 @@ class SwipeOnboardingFourthViewController: UIViewController {
         let view = UIImageView(image: image)
         view.layer.borderWidth = 3
         view.layer.cornerRadius = cornerRadius
-        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.borderColor = UIColor.orrWhite?.cgColor
         view.layer.zPosition = 1
         view.isUserInteractionEnabled = true
         gesture.addTarget(self, action: #selector(handlerCard))
@@ -64,7 +64,17 @@ class SwipeOnboardingFourthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpLayout()
+        view.backgroundColor = .orrGray050
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+       if #available(iOS 13.0, *) {
+           if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+               mainImageView.layer.borderColor = UIColor.orrWhite?.cgColor
+           }
+       }
+    }
+    
 }
 
 //MARK: 함수 모음

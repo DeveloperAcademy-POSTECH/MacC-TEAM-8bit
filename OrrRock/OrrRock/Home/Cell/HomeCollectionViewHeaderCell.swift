@@ -67,7 +67,6 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
         addSubview(headerRoundedSquare)
         addSubview(videoCountLabel)
         addSubview(PFCountLabel)
-        
         addSubview(headerTitle)
         headerTitle.snp.makeConstraints {
             $0.bottom.equalTo(snp_topMargin).offset(CGFloat(OrrPd.pd40.rawValue))

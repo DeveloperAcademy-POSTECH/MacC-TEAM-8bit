@@ -149,7 +149,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         let button = UIButton()
         button.setBackgroundColor(.orrUPBlue!, for: .normal)
         button.addTarget(self, action: #selector(tapSaveButton), for: .touchUpInside)
-        button.setTitle("저장하기", for: .normal)
+        button.setTitle("완료", for: .normal)
         button.clipsToBounds = true
         button.layer.cornerRadius = 10.0
         button.setTitleColor(.white, for: .normal)
@@ -400,7 +400,6 @@ private extension LevelAndPFSettingViewController {
     func handlerCard(_ gesture: UIPanGestureRecognizer) {
         if let card = gesture.view as? SwipeableCardVideoView {
             let point = gesture.translation(in: view)
-            
             card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
             
             let horizonalRotationAngle = point.x / view.bounds.width * 0.4
