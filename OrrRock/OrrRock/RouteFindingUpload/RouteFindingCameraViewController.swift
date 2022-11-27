@@ -64,7 +64,14 @@ class RouteFindingCameraViewController: UIViewController {
         setUpLayout()
         setPhotosButtonImage()
         
+        setCameraPreviewLayer()
         authorizateCameraStatus()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        executeCameraSession()
     }
   
     func setUpLayout() {
@@ -198,6 +205,10 @@ extension RouteFindingCameraViewController {
         }
     }
     
+    private func setCameraPreviewLayer() {
+        cameraView.videoPreviewLayer.session = captureSession
+        cameraView.videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+    }
     private func setupCaptureSession() {
         sessionQueue.async { [self] in
             captureSession.beginConfiguration()
@@ -224,6 +235,19 @@ extension RouteFindingCameraViewController {
                 self.cameraView.videoPreviewLayer.connection?.videoOrientation = initialVideoOrientation
             }
             captureSession.commitConfiguration()
+        }
+    }
+    
+    private func executeCameraSession() {
+        sessionQueue.async {
+            switch self.cameraAuthorizeStatus {
+            case .success:
+                self.captureSession.startRunning()
+            case .notAuthorized:
+                break
+            case .configurationFailed:
+                break
+            }
         }
     }
 }
