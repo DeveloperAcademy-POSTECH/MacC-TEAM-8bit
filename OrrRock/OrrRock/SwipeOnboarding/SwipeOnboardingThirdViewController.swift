@@ -64,6 +64,7 @@ class SwipeOnboardingThirdViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpLayout()
+        view.backgroundColor = .orrGray050
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
