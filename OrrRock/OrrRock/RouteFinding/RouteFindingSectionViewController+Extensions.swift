@@ -158,11 +158,109 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
     }
     
     func folderingToChallenge() {
+        var toChallengeNeededIndexPaths: [IndexPath] = []
+        for (key,value) in dictionarySelectedIndexPath{
+            if value{
+                toChallengeNeededIndexPaths.append(key)
+            }
+        }
+        //변경 실제 배열에서
+        switch sectionKind{
+        case .all:
+            for i in toChallengeNeededIndexPaths.sorted(by:{$0.item > $1.item}) {
+                //데이터에서 실제로 변경하는 부분
+                routeFindingDataManager?.updateRouteStatus(to: false, of: infoArr[i.item])
+            }
+        case .challenge:
+            break
+        case .success:
+            for i in toChallengeNeededIndexPaths.sorted(by:{$0.item > $1.item}) {
+                //데이터에서 실제로 변경하는 부분
+                routeFindingDataManager?.updateRouteStatus(to: false, of: infoArr[i.item])
+                // 수정 필요
+                infoArr.remove(at: i.item)
+            }
+            routeFindingCollectionView.deleteItems(at: toChallengeNeededIndexPaths)
+        case .none:
+            break
+            
+        }
+        
+        for (key,value) in dictionarySelectedIndexPath {
+            if value {
+                routeFindingCollectionView.deselectItem(at: key, animated: true)
+            }
+        }
         showToast("\(dictionarySelectedIndexPath.count)개의 루트 파인딩이 '도전 중'으로 이동했습니다.", withDuration: 3.0, delay: 0.1)
+        
+        dictionarySelectedIndexPath.removeAll()
+        
+        mMode = .view
+        
+        routeFindingCollectionView.allowsMultipleSelection = false
+        
+        folderButton.isEnabled = false
+        deleteButton.isEnabled = false
+        
+        routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
+        
+        if infoArr.count == 0 {
+            self.emptyGuideView.alpha = 1.0
+        }
+
     }
     
     func folderingToSuccess() {
+        var toSuccessNeededIndexPaths: [IndexPath] = []
+        for (key,value) in dictionarySelectedIndexPath{
+            if value{
+                toSuccessNeededIndexPaths.append(key)
+            }
+        }
+        //변경 실제 배열에서
+        switch sectionKind{
+        case .all:
+            for i in toSuccessNeededIndexPaths.sorted(by:{$0.item > $1.item}) {
+                //데이터에서 실제로 변경하는 부분
+                routeFindingDataManager?.updateRouteStatus(to: true, of: infoArr[i.item])
+            }
+        case .challenge:
+            for i in toSuccessNeededIndexPaths.sorted(by:{$0.item > $1.item}) {
+                //데이터에서 실제로 변경하는 부분
+                routeFindingDataManager?.updateRouteStatus(to: true, of: infoArr[i.item])
+                // 수정 필요
+                infoArr.remove(at: i.item)
+            }
+            routeFindingCollectionView.deleteItems(at: toSuccessNeededIndexPaths)
+        case .success:
+            break
+        case .none:
+            break
+            
+        }
+        
+        for (key,value) in dictionarySelectedIndexPath {
+            if value {
+                routeFindingCollectionView.deselectItem(at: key, animated: true)
+            }
+        }
         showToast("\(dictionarySelectedIndexPath.count)개의 루트 파인딩이 '도전 성공'으로 이동했습니다.", withDuration: 3.0, delay: 0.1)
+        
+        dictionarySelectedIndexPath.removeAll()
+        
+        mMode = .view
+        
+        routeFindingCollectionView.allowsMultipleSelection = false
+        
+        folderButton.isEnabled = false
+        deleteButton.isEnabled = false
+        
+        routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
+        
+        if infoArr.count == 0 {
+            self.emptyGuideView.alpha = 1.0
+        }
+        
     }
     
     func showToast(_ message : String, withDuration: Double, delay: Double) {
