@@ -13,23 +13,23 @@ final class VideoCollectionFooterCell: UICollectionReusableView {
     
     private let titleLabel : UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .orrGray700
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18, weight:.medium)
+        label.font = UIFont.systemFont(ofSize: 17, weight:.light)
         return label
     }()
     
     private let subTitleLabel : UILabel = {
         let label = UILabel()
-        label.textColor = .gray
+        label.textColor = .orrBlack
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 15, weight:.light)
+        label.font = UIFont.systemFont(ofSize: 17, weight:.bold)
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = .orrWhite
         setUpLayout()
     }
     

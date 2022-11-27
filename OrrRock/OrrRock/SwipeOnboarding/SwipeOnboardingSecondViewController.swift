@@ -31,6 +31,7 @@ class SwipeOnboardingSecondViewController: UIViewController {
         view.pickerSelectValue = 0
         view.delegate = self
         view.customTitle = "슬라이드 해주세요"
+        view.backgroundColor = .orrGray050
         return view
     }()
     
@@ -45,6 +46,7 @@ class SwipeOnboardingSecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpLayout()
+        view.backgroundColor = .orrGray050
     }
     
 }

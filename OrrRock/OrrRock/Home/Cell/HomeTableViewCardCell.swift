@@ -22,7 +22,7 @@ final class HomeTableViewCardCell: UITableViewCell {
     // MARK: UI Components
     private lazy var cardView: UIView = {
         let view = UIView()
-        view.backgroundColor = .orrWhite
+        view.backgroundColor = .orrWhiteCustom
         view.layer.cornerRadius = 10
         return view
     }()
@@ -54,7 +54,7 @@ final class HomeTableViewCardCell: UITableViewCell {
         flow.minimumLineSpacing = 1
         
         var view = UICollectionView(frame: CGRect.zero, collectionViewLayout: flow)
-        view.backgroundColor = UIColor.orrWhite
+        view.backgroundColor = .orrWhiteCustom
         view.register(HomeCardCollectionViewThumbnailCell.classForCoder(), forCellWithReuseIdentifier: "homeCardCollectionViewThumbnailCell")
         view.isUserInteractionEnabled = false
         
@@ -85,7 +85,7 @@ final class HomeTableViewCardCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.backgroundColor = .orrGray100
+        self.backgroundColor = .orrGray050
         
         setUpLayout()
         setCollectionViewDelegate()
