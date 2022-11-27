@@ -46,7 +46,7 @@ final class RouteDataManager {
         coreDataDAO.updateRouteInformationLevelAndStatus(status: status, problemLevel: level, routeInformation: routeInformation)
     }
     
-    func updateRouteStatus(statusTo status: Bool, of routeInformation: RouteInformation) {
+    func updateRouteStatus(to status: Bool, of routeInformation: RouteInformation) {
         coreDataDAO.updateRouteInformationStatus(status: status, routeInformation: routeInformation)
     }
     
