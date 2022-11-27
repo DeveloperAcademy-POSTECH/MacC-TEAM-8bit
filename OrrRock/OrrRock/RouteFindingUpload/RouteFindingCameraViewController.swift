@@ -183,6 +183,7 @@ extension RouteFindingCameraViewController {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
             print("Authorized!")
+            setupCaptureSession()
             break
         case .notDetermined:
             sessionQueue.suspend()
@@ -194,6 +195,35 @@ extension RouteFindingCameraViewController {
             })
         default:
             cameraAuthorizeStatus = .notAuthorized
+        }
+    }
+    
+    private func setupCaptureSession() {
+        sessionQueue.async { [self] in
+            captureSession.beginConfiguration()
+            let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera,
+                                                      for: .video, position: .unspecified)
+            guard
+                let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice!),
+                captureSession.canAddInput(videoDeviceInput)
+            else { return }
+            captureSession.addInput(videoDeviceInput)
+            
+            photoOutput = AVCapturePhotoOutput()
+            guard captureSession.canAddOutput(photoOutput) else { return }
+            captureSession.sessionPreset = .photo
+            captureSession.addOutput(photoOutput)
+            
+            DispatchQueue.main.async {
+                
+                var initialVideoOrientation: AVCaptureVideoOrientation = .portrait
+                if let videoOrientation = AVCaptureVideoOrientation(rawValue: UIInterfaceOrientation.portrait.rawValue) {
+                    initialVideoOrientation = videoOrientation
+                }
+                
+                self.cameraView.videoPreviewLayer.connection?.videoOrientation = initialVideoOrientation
+            }
+            captureSession.commitConfiguration()
         }
     }
 }
