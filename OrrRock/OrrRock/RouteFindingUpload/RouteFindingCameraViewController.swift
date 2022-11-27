@@ -239,15 +239,37 @@ extension RouteFindingCameraViewController {
     }
     
     private func executeCameraSession() {
-        sessionQueue.async {
-            switch self.cameraAuthorizeStatus {
+        sessionQueue.async { [self] in
+            switch cameraAuthorizeStatus {
             case .success:
-                self.captureSession.startRunning()
+                captureSession.startRunning()
             case .notAuthorized:
+                showAuthAlert()
                 break
             case .configurationFailed:
                 break
             }
+        }
+    }
+    
+    private func showAuthAlert() {
+        DispatchQueue.main.async {
+            let alertMessage = "클라이밍 문제 촬영을 위해 카메라 사용 권한이 필요합니다.\n[설정] > [개인 정보 보호] > [카메라]에서 권한을 설정해주세요."
+            let message = NSLocalizedString(alertMessage, comment: "")
+            let alertController = UIAlertController(title: "ORRROCK", message: message, preferredStyle: .alert)
+            
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("확인", comment: ""),
+                                                    style: .cancel,
+                                                    handler: nil))
+
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("설정", comment: ""),
+                                                    style: .`default`,
+                                                    handler: { _ in
+                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!,
+                                          options: [:],
+                                          completionHandler: nil)
+            }))
+            self.present(alertController, animated: true, completion: nil)
         }
     }
 }
