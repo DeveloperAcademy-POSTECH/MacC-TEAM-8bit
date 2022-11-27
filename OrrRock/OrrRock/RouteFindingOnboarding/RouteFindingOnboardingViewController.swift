@@ -24,39 +24,43 @@ class RouteFindingOnboardingViewController: UIPageViewController {
     lazy var viewControllerList: [UIViewController] = {
         let firstViewController: RouteFindingFirstOnboardingViewController = {
             let viewController = RouteFindingFirstOnboardingViewController(backgroundImage: backgroundImage)
+            viewController.delegate = self
             return viewController
         }()
         
         let secondViewController: RouteFindingSecondOnboardingViewController = {
             let viewController = RouteFindingSecondOnboardingViewController(backgroundImage: backgroundImage)
+            viewController.delegate = self
             return viewController
         }()
         
         let thirdViewController: RouteFindingThirdOnboardingViewController = {
             let viewController = RouteFindingThirdOnboardingViewController(backgroundImage: backgroundImage)
+            viewController.delegate = self
             return viewController
         }()
         
         let fourthViewController: RouteFindingFourthOnboardingViewController = {
             let viewController = RouteFindingFourthOnboardingViewController(backgroundImage: backgroundImage)
+            viewController.delegate = self
             return viewController
         }()
         
         let fifthViewController: RouteFindingFifthOnboardingViewController = {
             let viewController = RouteFindingFifthOnboardingViewController(backgroundImage: backgroundImage)
-            
+            viewController.delegate = self
             return viewController
         }()
         
         let sixthViewController: RouteFindingSixthOnboardingViewController = {
             let viewController = RouteFindingSixthOnboardingViewController(backgroundImage: backgroundImage)
-            
+            viewController.delegate = self
             return viewController
         }()
         
         let seventhViewController: RouteFindingSeventhOnboardingViewController = {
             let viewController = RouteFindingSeventhOnboardingViewController(backgroundImage: backgroundImage)
-            
+            viewController.delegate = self
             return viewController
         }()
         
@@ -117,12 +121,14 @@ extension RouteFindingOnboardingViewController {
 
 extension RouteFindingOnboardingViewController: RouteFindingOnboardingPaginationDelegate {
     func moveToNextPage() {
-        print("DEBUG PGAE")
+        guard let currentVC = self.viewControllerList.first,
+              let nextVC = dataSource?.pageViewController(self, viewControllerAfter: currentVC) else { return }
+        
+        setViewControllers([nextVC], direction: .forward, animated: true)
     }
     
     func skipOnboarding() {
-        print("DEBUG PGAE")
+        UserDefaults.standard.set(true, forKey: "RouteFindingOnboardingClear")
+        self.presentingViewController?.dismiss(animated: true, completion:nil)
     }
-    
-    
 }

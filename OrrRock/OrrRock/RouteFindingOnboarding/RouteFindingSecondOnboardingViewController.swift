@@ -22,7 +22,7 @@ class RouteFindingSecondOnboardingViewController: RouteFindingOnboardingParentVi
         handButton.setImage(UIImage(systemName: "house"), for: .normal)
         handButton.tintColor = .orrWhite
         handButton.addAction(UIAction { _ in
-    //            self.tapHandButton()
+                self.tapHandFootButton()
         }, for: .touchUpInside)
         return handButton
     }()
@@ -33,7 +33,7 @@ class RouteFindingSecondOnboardingViewController: RouteFindingOnboardingParentVi
         footButton.setImage(UIImage(systemName: "house"), for: .normal)
         footButton.tintColor = .orrWhite
         footButton.addAction(UIAction { _ in
-//            self.tapFootButton()
+            self.tapHandFootButton()
         }, for: .touchUpInside)
         return footButton
     }()
@@ -91,6 +91,10 @@ class RouteFindingSecondOnboardingViewController: RouteFindingOnboardingParentVi
     }
     
     // MARK: Functions
+    
+    func tapHandFootButton() {
+        delegate?.moveToNextPage()
+    }
     
     // MARK: @objc Functions
 }

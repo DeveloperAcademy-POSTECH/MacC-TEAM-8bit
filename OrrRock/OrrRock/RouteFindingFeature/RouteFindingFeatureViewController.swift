@@ -187,9 +187,14 @@ final class RouteFindingFeatureViewController: UIViewController {
         return .lightContent
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.isNavigationBarHidden = true
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navigationController?.isNavigationBarHidden = true
         
         // CollectionView가 다 그려지고 난 뒤, CollectionView의 content에 Inset을 넣어 끝까지 스크롤이 가능하도록 하기
         let layoutMargins: CGFloat = self.thumbnailCollectionView.layoutMargins.left
@@ -202,8 +207,6 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        navigationController?.isNavigationBarHidden = false
     }
     
     // MARK: Functions

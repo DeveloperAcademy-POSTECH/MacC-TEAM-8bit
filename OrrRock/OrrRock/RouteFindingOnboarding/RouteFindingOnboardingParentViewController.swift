@@ -44,6 +44,15 @@ class RouteFindingOnboardingParentViewController: UIViewController {
         return view
     }()
     
+    lazy var skipButton: UIButton = {
+        let btn = UIButton()
+        btn.setAttributedTitle("SKIP".underLineAttribute(), for: .normal)
+        btn.addAction(UIAction(handler: { _ in
+            self.triggerSkipOnboarding()
+        }), for: .touchUpInside)
+        return btn
+    }()
+    
     // MARK: Life Cycle Functions
     
     init(backgroundImage: UIImage) {
@@ -65,7 +74,6 @@ class RouteFindingOnboardingParentViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -75,12 +83,10 @@ class RouteFindingOnboardingParentViewController: UIViewController {
     // MARK: Functions
     
     func triggerMoveToNextPage() {
-        print("DEBUG: Move To Next Page")
         delegate?.moveToNextPage()
     }
     
     func triggerSkipOnboarding() {
-        print("DEBUG: Skip Onboarding")
         delegate?.skipOnboarding()
     }
     
@@ -115,6 +121,12 @@ extension RouteFindingOnboardingParentViewController {
         self.descriptionView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(backgroundImageView.snp.bottom).inset(OrrPd.pd72.rawValue)
+        }
+        
+        view.addSubview(skipButton)
+        skipButton.snp.makeConstraints {
+            $0.centerX.equalTo(view)
+            $0.bottom.equalTo(view.snp.bottom).offset(-OrrPd.pd36.rawValue)
         }
     }
 }
