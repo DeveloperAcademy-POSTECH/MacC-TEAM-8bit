@@ -17,4 +17,8 @@ final class CameraView: UIView {
         return layer
     }
     
+    override class var layerClass: AnyClass {
+        return AVCaptureVideoPreviewLayer.self
+    }
+    
 }
