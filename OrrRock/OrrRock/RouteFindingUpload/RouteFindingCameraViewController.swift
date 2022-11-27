@@ -76,6 +76,7 @@ class RouteFindingCameraViewController: UIViewController {
         super.viewWillAppear(animated)
         
         executeCameraSession()
+        NotificationCenter.default.addObserver(self, selector: #selector(setPhotosButtonImage), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -84,6 +85,12 @@ class RouteFindingCameraViewController: UIViewController {
         if cameraAuthorizeStatus == .success {
             captureSession.stopRunning()
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
     }
 }
 
@@ -156,7 +163,8 @@ private extension RouteFindingCameraViewController {
 
 // MARK: Photos Button Image Setting Extension
 private extension RouteFindingCameraViewController {
-    func setPhotosButtonImage() {
+    @objc func setPhotosButtonImage() {
+        
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
         fetchOptions.fetchLimit = 1
