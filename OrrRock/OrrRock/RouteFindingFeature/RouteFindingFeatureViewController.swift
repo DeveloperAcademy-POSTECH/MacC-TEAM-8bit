@@ -32,7 +32,7 @@ final class RouteFindingFeatureViewController: UIViewController {
         let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)!.windows.first
         let contentHeight = view.frame.height - Double(((window?.safeAreaInsets.top)! + (window?.safeAreaInsets.bottom)!))
         let contentWidth = view.frame.width
-        view.image = routeInfo.imageLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: contentWidth, height: contentHeight))
+        view.image = routeInfo.imageLocalIdentifier.generateCardViewThumbnail()
         view.backgroundColor = .white
         return view
     }()
@@ -148,7 +148,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     private lazy var deleteImage: UIImageView = {
         let view = UIImageView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        view.image = routeInfo.imageLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: collectionViewCellSize, height:  collectionViewCellSize))
+        view.image = routeInfo.imageLocalIdentifier.generateCardViewThumbnail()
         return view
     }()
     

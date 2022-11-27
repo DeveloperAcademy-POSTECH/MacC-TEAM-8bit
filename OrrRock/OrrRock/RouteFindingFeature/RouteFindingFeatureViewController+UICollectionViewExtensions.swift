@@ -64,7 +64,7 @@ extension RouteFindingFeatureViewController: UICollectionViewDataSource {
             cell.indexPathOfCell = indexPath
             cell.pageImage.contentMode = .scaleAspectFill
             cell.pageImage.clipsToBounds = true
-            cell.pageImage.image = routeInfo.imageLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: collectionViewCellSize / 16 * 9, height: collectionViewCellSize ))
+            cell.pageImage.image = routeInfo.imageLocalIdentifier.generateCardViewThumbnail()
             cell.delegate = self
             
             return cell
