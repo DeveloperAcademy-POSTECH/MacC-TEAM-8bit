@@ -75,6 +75,9 @@ class RouteFindingCameraViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        photoImage = nil
+        photoData = nil
+        
         executeCameraSession()
         NotificationCenter.default.addObserver(self, selector: #selector(setPhotosButtonImage), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
