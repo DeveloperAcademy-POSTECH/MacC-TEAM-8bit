@@ -10,6 +10,9 @@ import SnapKit
 
 final class RouteFindingMainViewController: UIViewController {
     
+    var routeDataManager: RouteDataManager = RouteDataManager()
+    var routeInfoList: [RouteInformation]!
+    
     private lazy var topView: UIView = {
         let view = UIView()
         return view
@@ -37,19 +40,19 @@ final class RouteFindingMainViewController: UIViewController {
     
     private lazy var allRouteFindingViewController: UIViewController = {
         let vc = RouteFindingSectionViewController()
-        vc.infoArr = [1,2,3,4,5,6,7,8]
+        vc.infoArr = routeInfoList
         return vc
     }()
     
     private lazy var challengeRouteFindingViewController: UIViewController = {
         let vc = RouteFindingSectionViewController()
-        vc.infoArr = [1,2,3,4]
+        vc.infoArr = routeInfoList
         return vc
     }()
     
     private lazy var successRouteFindingViewController: UIViewController = {
         let vc = RouteFindingSectionViewController()
-        vc.infoArr = [5,6,7,8]
+        vc.infoArr = routeInfoList
         return vc
     }()
     
@@ -81,6 +84,7 @@ final class RouteFindingMainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        routeInfoList = routeDataManager.getRouteFindingList()
         setUpLayout()
         setInitialNavigationBar()
         setUpSegment()
