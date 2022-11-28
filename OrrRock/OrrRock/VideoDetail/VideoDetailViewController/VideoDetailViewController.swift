@@ -77,6 +77,7 @@ class VideoDetailViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.setToolbarHidden(true, animated: false)
         self.navigationController?.navigationBar.layer.opacity = 1
         self.topSafeAreaView.layer.opacity = 1
     }
