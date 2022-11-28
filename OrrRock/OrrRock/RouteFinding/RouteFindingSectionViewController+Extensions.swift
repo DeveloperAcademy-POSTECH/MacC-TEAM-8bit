@@ -121,7 +121,7 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
     func delete() {
         var deleteNeededIndexPaths : [IndexPath] = []
         for (key,value) in dictionarySelectedIndexPath{
-            if value{
+            if value {
                 deleteNeededIndexPaths.append(key)
             }
         }
@@ -139,7 +139,7 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
         changeFoldering(to: .toSuccess)
     }
     
-    private func changeFoldering(to editType: RouteFindingEditType){
+    private func changeFoldering(to editType: RouteFindingEditType) {
         initEditRouteInformationsData(editType: editType)
         deselectAllItemsInRouteFindingCollectionView()
         afterEdit(type: editType)
@@ -216,8 +216,8 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
         }
     }
     
-    func afterEdit(type : RouteFindingEditType){
-        switch type{
+    func afterEdit(type : RouteFindingEditType) {
+        switch type {
         case .delete:
             showToast("\(dictionarySelectedIndexPath.count)개의 루트 파인딩을 삭제했습니다.", withDuration: 3.0, delay: 0.1)
         case .toChallenge:
@@ -236,18 +236,18 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
         checkAndShowEmptyGuideView()
     }
     
-    private func backToDefaultRouteFindingCollectionViewSetting(){
+    private func backToDefaultRouteFindingCollectionViewSetting() {
         routeFindingCollectionView.allowsMultipleSelection = false
         routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
     }
     
-    private func checkAndShowEmptyGuideView(){
+    private func checkAndShowEmptyGuideView() {
         if RouteInformations.count == 0 {
             self.emptyGuideView.alpha = 1.0
         }
     }
     
-    private func changeStatusOfChangeFolderButtons(status : Bool){
+    private func changeStatusOfChangeFolderButtons(status : Bool) {
         folderButton.isEnabled = status
         deleteButton.isEnabled = status
     }
