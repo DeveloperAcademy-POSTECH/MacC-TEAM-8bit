@@ -121,7 +121,8 @@ private extension RouteFindingCameraViewController {
         
         let circleLayer = CAShapeLayer()
         let circleSize: CGFloat = 57
-        let circleShape = UIBezierPath(ovalIn: CGRect(x: (shutterButtonSize - circleSize)/2, y: (shutterButtonSize - circleSize)/2, width: circleSize, height: circleSize))
+        let circleShapeOriginPoint = (shutterButtonSize - circleSize)/2
+        let circleShape = UIBezierPath(ovalIn: CGRect(x: circleShapeOriginPoint, y: circleShapeOriginPoint, width: circleSize, height: circleSize))
         circleLayer.path = circleShape.cgPath
         circleLayer.fillColor = UIColor.orrWhite?.cgColor
         shutterButton.layer.addSublayer(circleLayer)
