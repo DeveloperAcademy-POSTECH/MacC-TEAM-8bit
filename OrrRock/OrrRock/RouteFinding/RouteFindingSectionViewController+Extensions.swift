@@ -22,7 +22,7 @@ extension RouteFindingSectionViewController: UICollectionViewDelegate {
                 withReuseIdentifier: RouteFindingCollectionViewHeaderCell.id,
                 for: indexPath
             ) as! RouteFindingCollectionViewHeaderCell
-            supplementaryView.prepare(title: "\(infoArr.count)개의 도전", subtitle: "편집",isEditing: mMode == .view ? false : true)
+            supplementaryView.prepare(title: "\(RouteInformations.count)개의 도전", subtitle: "편집",isEditing: mMode == .view ? false : true)
             supplementaryView.delegate = self
             return supplementaryView
             
@@ -43,7 +43,7 @@ extension RouteFindingSectionViewController: UICollectionViewDelegate {
 extension RouteFindingSectionViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return infoArr.count
+        return RouteInformations.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -53,10 +53,10 @@ extension RouteFindingSectionViewController: UICollectionViewDataSource {
         let screenSize = CGSize(width: screenBounds.size.width * screenScale, height: screenBounds.size.height * screenScale)
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RouteFindingCollectionViewCustomCell", for: indexPath) as! RouteFindingCollectionViewCustomCell
-        cell.cellLevelLabel.text = "V\(infoArr[indexPath.row].problemLevel)"
-        cell.cellChallengeLabel.text = infoArr[indexPath.row].isChallengeComplete ? "도전 완료" : "도전 중"
-        cell.cellDateLabel.text = infoArr[indexPath.row].dataWrittenDate.timeToString()
-        cell.cellTitleLabel.text = infoArr[indexPath.row].gymName
+        cell.cellLevelLabel.text = "V\(RouteInformations[indexPath.row].problemLevel)"
+        cell.cellChallengeLabel.text = RouteInformations[indexPath.row].isChallengeComplete ? "도전 완료" : "도전 중"
+        cell.cellDateLabel.text = RouteInformations[indexPath.row].dataWrittenDate.timeToString()
+        cell.cellTitleLabel.text = RouteInformations[indexPath.row].gymName
         cell.cellImage.image = UIImage(named: "SwipeOnboardingImage1")
         cell.isSelectable = mMode == .select ? true : false
         return cell
@@ -128,8 +128,8 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
             }
         }
         for i in deleteNeededIndexPaths.sorted(by:{$0.item > $1.item}) {
-            routeFindingDataManager!.deleteRouteData(routeInformation: infoArr[i.item])
-            infoArr.remove(at: i.item)
+            routeFindingDataManager!.deleteRouteData(routeInformation: RouteInformations[i.item])
+            RouteInformations.remove(at: i.item)
         }
         
         for (key,value) in dictionarySelectedIndexPath {
@@ -151,14 +151,14 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
         switch sectionKind {
         case .all:
             for i in toChallengeNeededIndexPaths.sorted(by:{$0.item > $1.item}) {
-                routeFindingDataManager?.updateRouteStatus(to: false, of: infoArr[i.item])
+                routeFindingDataManager?.updateRouteStatus(to: false, of: RouteInformations[i.item])
             }
         case .challenge:
             break
         case .success:
             for i in toChallengeNeededIndexPaths.sorted(by:{$0.item > $1.item}) {
-                routeFindingDataManager?.updateRouteStatus(to: false, of: infoArr[i.item])
-                infoArr.remove(at: i.item)
+                routeFindingDataManager?.updateRouteStatus(to: false, of: RouteInformations[i.item])
+                RouteInformations.remove(at: i.item)
             }
             routeFindingCollectionView.deleteItems(at: toChallengeNeededIndexPaths)
         case .none:
@@ -185,12 +185,12 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
         switch sectionKind {
         case .all:
             for i in toSuccessNeededIndexPaths.sorted(by:{$0.item > $1.item}) {
-                routeFindingDataManager?.updateRouteStatus(to: true, of: infoArr[i.item])
+                routeFindingDataManager?.updateRouteStatus(to: true, of: RouteInformations[i.item])
             }
         case .challenge:
             for i in toSuccessNeededIndexPaths.sorted(by:{$0.item > $1.item}) {
-                routeFindingDataManager?.updateRouteStatus(to: true, of: infoArr[i.item])
-                infoArr.remove(at: i.item)
+                routeFindingDataManager?.updateRouteStatus(to: true, of: RouteInformations[i.item])
+                RouteInformations.remove(at: i.item)
             }
             routeFindingCollectionView.deleteItems(at: toSuccessNeededIndexPaths)
         case .success:
@@ -254,7 +254,7 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
         
         routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
         
-        if infoArr.count == 0 {
+        if RouteInformations.count == 0 {
             self.emptyGuideView.alpha = 1.0
         }
     }
