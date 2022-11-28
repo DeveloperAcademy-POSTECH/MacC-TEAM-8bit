@@ -127,11 +127,7 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
                 deleteNeededIndexPaths.append(key)
             }
         }
-        for i in deleteNeededIndexPaths.sorted(by:{$0.item > $1.item}) {
-            routeFindingDataManager!.deleteRouteData(routeInformation: RouteInformations[i.item])
-            RouteInformations.remove(at: i.item)
-        }
-        
+        initEditRouteInformationsData(editType: .delete)
         deselectAllItemsInRouteFindingCollectionView()
         routeFindingCollectionView.deleteItems(at: deleteNeededIndexPaths)
         afterEdit(type: .delete)
