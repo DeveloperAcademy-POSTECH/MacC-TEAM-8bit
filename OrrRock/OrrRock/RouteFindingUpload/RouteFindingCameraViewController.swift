@@ -156,7 +156,6 @@ private extension RouteFindingCameraViewController {
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = self
         present(picker, animated: true, completion: nil)
-        captureSession.stopRunning()
     }
     
     @objc private func capturePhoto() {
