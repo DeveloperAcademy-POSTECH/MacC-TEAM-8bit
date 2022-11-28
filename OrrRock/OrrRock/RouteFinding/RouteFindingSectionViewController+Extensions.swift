@@ -226,21 +226,7 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
         case .toSuccess:
             showToast("\(dictionarySelectedIndexPath.count)개의 루트 파인딩이 '도전 성공'으로 이동했습니다.", withDuration: 3.0, delay: 0.1)
         }
-        
-        dictionarySelectedIndexPath.removeAll()
-        
-        mMode = .view
-        
-        routeFindingCollectionView.allowsMultipleSelection = false
-        
-        folderButton.isEnabled = false
-        deleteButton.isEnabled = false
-        
-        routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
-        
-        if RouteInformations.count == 0 {
-            self.emptyGuideView.alpha = 1.0
-        }
+        backToDefaultRouteFindingCollectionViewSetting()
     }
     
     private func backToDefaultRouteFindingCollectionViewSetting() {
