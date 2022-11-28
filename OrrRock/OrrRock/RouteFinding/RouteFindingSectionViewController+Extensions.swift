@@ -132,11 +132,7 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
             RouteInformations.remove(at: i.item)
         }
         
-        for (key,value) in dictionarySelectedIndexPath {
-            if value {
-                routeFindingCollectionView.deselectItem(at: key, animated: true)
-            }
-        }
+        deselectAllItemsInRouteFindingCollectionView()
         routeFindingCollectionView.deleteItems(at: deleteNeededIndexPaths)
         afterEdit(type: .delete)
     }
@@ -165,11 +161,7 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
             break
         }
         
-        for (key,value) in dictionarySelectedIndexPath {
-            if value {
-                routeFindingCollectionView.deselectItem(at: key, animated: true)
-            }
-        }
+        deselectAllItemsInRouteFindingCollectionView()
         showToast("\(dictionarySelectedIndexPath.count)개의 루트 파인딩이 '도전 중'으로 이동했습니다.", withDuration: 3.0, delay: 0.1)
         afterEdit(type: .toChallenge)
 
@@ -199,11 +191,7 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
             break
         }
         
-        for (key,value) in dictionarySelectedIndexPath {
-            if value {
-                routeFindingCollectionView.deselectItem(at: key, animated: true)
-            }
-        }
+        deselectAllItemsInRouteFindingCollectionView()
         afterEdit(type: .toSuccess)
     }
     
