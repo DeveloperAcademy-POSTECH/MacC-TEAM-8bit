@@ -226,10 +226,10 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
         case .toSuccess:
             showToast("\(dictionarySelectedIndexPath.count)개의 루트 파인딩이 '도전 성공'으로 이동했습니다.", withDuration: 3.0, delay: 0.1)
         }
-        backToDefaultRouteFindingCollectionViewSetting()
+        backToDefaultRouteFindingSectionViewSetting()
     }
     
-    private func backToDefaultRouteFindingCollectionViewSetting() {
+    private func backToDefaultRouteFindingSectionViewSetting() {
            dictionarySelectedIndexPath.removeAll()
            mMode = .view
         makeChangeFolderButtonsDisable()
