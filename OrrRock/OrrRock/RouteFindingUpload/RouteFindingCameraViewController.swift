@@ -77,6 +77,7 @@ class RouteFindingCameraViewController: UIViewController {
         
         photoImage = nil
         photoData = nil
+        currentLocalIdentifier = nil
         
         executeCameraSession()
         NotificationCenter.default.addObserver(self, selector: #selector(setPhotosButtonImage), name: UIApplication.willEnterForegroundNotification, object: nil)
