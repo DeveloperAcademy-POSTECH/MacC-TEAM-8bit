@@ -195,6 +195,35 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
         afterEdit(type: .toSuccess)
     }
     
+    private func initEditRouteInformationsData(editType : RouteFindingEditType) {
+           var temporarySavedIndexPaths: [IndexPath] = []
+           for (key,value) in dictionarySelectedIndexPath {
+               if value {
+                   temporarySavedIndexPaths.append(key)
+               }
+           }
+           if editType == .delete {
+               editRouteInformationsData(editType: .delete, at: temporarySavedIndexPaths)
+           } else {
+               switch sectionKind {
+               case .all:
+                   for i in temporarySavedIndexPaths.sorted(by:{$0.item > $1.item}) {
+                       routeFindingDataManager?.updateRouteStatus(to: editType == .toSuccess ? true : false, of: RouteInformations[i.item])
+                   }
+               case .challenge:
+                   if editType == .toSuccess {
+                       editRouteInformationsData(editType: editType, at: temporarySavedIndexPaths)
+                   }
+               case .success:
+                   if editType == .toChallenge {
+                       editRouteInformationsData(editType: editType, at: temporarySavedIndexPaths)
+                   }
+               case .none:
+                   break
+               }
+           }
+       }
+    
     private func editRouteInformationsData(editType: RouteFindingEditType, at temporarySavedIndexPaths: [IndexPath]) {
            switch editType {
            case .delete:
