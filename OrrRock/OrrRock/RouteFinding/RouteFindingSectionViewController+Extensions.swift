@@ -147,67 +147,67 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
     }
     
     private func initEditRouteInformationsData(editType : RouteFindingEditType) {
-           var temporarySavedIndexPaths: [IndexPath] = []
-           for (key,value) in dictionarySelectedIndexPath {
-               if value {
-                   temporarySavedIndexPaths.append(key)
-               }
-           }
-           if editType == .delete {
-               editRouteInformationsData(editType: .delete, at: temporarySavedIndexPaths)
-           } else {
-               switch sectionKind {
-               case .all:
-                   for i in temporarySavedIndexPaths.sorted(by:{$0.item > $1.item}) {
-                       routeFindingDataManager?.updateRouteStatus(to: editType == .toSuccess ? true : false, of: RouteInformations[i.item])
-                   }
-               case .challenge:
-                   if editType == .toSuccess {
-                       editRouteInformationsData(editType: editType, at: temporarySavedIndexPaths)
-                   }
-               case .success:
-                   if editType == .toChallenge {
-                       editRouteInformationsData(editType: editType, at: temporarySavedIndexPaths)
-                   }
-               case .none:
-                   break
-               }
-           }
-       }
-    
-    private func editRouteInformationsData(editType: RouteFindingEditType, at temporarySavedIndexPaths: [IndexPath]) {
-           switch editType {
-           case .delete:
-               deleteRouteInformationsData(at: temporarySavedIndexPaths)
-           case .toChallenge:
-               changeSuccessToChallenge(at: temporarySavedIndexPaths)
-           case .toSuccess:
-               changeChallengeToSuccess(at: temporarySavedIndexPaths)
-           }
-       }
-    
-    private func deleteRouteInformationsData(at temporarySavedIndexPaths: [IndexPath]) {
-            for i in temporarySavedIndexPaths.sorted(by:{$0.item > $1.item}) {
-                routeFindingDataManager!.deleteRouteData(routeInformation: RouteInformations[i.item])
-                RouteInformations.remove(at: i.item)
+        var temporarySavedIndexPaths: [IndexPath] = []
+        for (key,value) in dictionarySelectedIndexPath {
+            if value {
+                temporarySavedIndexPaths.append(key)
             }
         }
+        if editType == .delete {
+            editRouteInformationsData(editType: .delete, at: temporarySavedIndexPaths)
+        } else {
+            switch sectionKind {
+            case .all:
+                for i in temporarySavedIndexPaths.sorted(by:{$0.item > $1.item}) {
+                    routeFindingDataManager?.updateRouteStatus(to: editType == .toSuccess ? true : false, of: RouteInformations[i.item])
+                }
+            case .challenge:
+                if editType == .toSuccess {
+                    editRouteInformationsData(editType: editType, at: temporarySavedIndexPaths)
+                }
+            case .success:
+                if editType == .toChallenge {
+                    editRouteInformationsData(editType: editType, at: temporarySavedIndexPaths)
+                }
+            case .none:
+                break
+            }
+        }
+    }
+    
+    private func editRouteInformationsData(editType: RouteFindingEditType, at temporarySavedIndexPaths: [IndexPath]) {
+        switch editType {
+        case .delete:
+            deleteRouteInformationsData(at: temporarySavedIndexPaths)
+        case .toChallenge:
+            changeSuccessToChallenge(at: temporarySavedIndexPaths)
+        case .toSuccess:
+            changeChallengeToSuccess(at: temporarySavedIndexPaths)
+        }
+    }
+    
+    private func deleteRouteInformationsData(at temporarySavedIndexPaths: [IndexPath]) {
+        for i in temporarySavedIndexPaths.sorted(by:{$0.item > $1.item}) {
+            routeFindingDataManager!.deleteRouteData(routeInformation: RouteInformations[i.item])
+            RouteInformations.remove(at: i.item)
+        }
+    }
     
     private func changeSuccessToChallenge(at temporarySavedIndexPaths: [IndexPath]) {
-           for i in temporarySavedIndexPaths.sorted(by:{$0.item > $1.item}) {
-               routeFindingDataManager?.updateRouteStatus(to: false, of: RouteInformations[i.item])
-               RouteInformations.remove(at: i.item)
-           }
-           routeFindingCollectionView.deleteItems(at: temporarySavedIndexPaths)
-       }
+        for i in temporarySavedIndexPaths.sorted(by:{$0.item > $1.item}) {
+            routeFindingDataManager?.updateRouteStatus(to: false, of: RouteInformations[i.item])
+            RouteInformations.remove(at: i.item)
+        }
+        routeFindingCollectionView.deleteItems(at: temporarySavedIndexPaths)
+    }
     
     private func changeChallengeToSuccess(at temporarySavedIndexPaths: [IndexPath]) {
-           for i in temporarySavedIndexPaths.sorted(by:{$0.item > $1.item}) {
-               routeFindingDataManager?.updateRouteStatus(to: true, of: RouteInformations[i.item])
-               RouteInformations.remove(at: i.item)
-           }
-           routeFindingCollectionView.deleteItems(at: temporarySavedIndexPaths)
-       }
+        for i in temporarySavedIndexPaths.sorted(by:{$0.item > $1.item}) {
+            routeFindingDataManager?.updateRouteStatus(to: true, of: RouteInformations[i.item])
+            RouteInformations.remove(at: i.item)
+        }
+        routeFindingCollectionView.deleteItems(at: temporarySavedIndexPaths)
+    }
     
     private func deselectAllItemsInRouteFindingCollectionView() {
         for (key,value) in dictionarySelectedIndexPath {
@@ -242,6 +242,8 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
             self.emptyGuideView.alpha = 1.0
         }
     }
+    
+    
     
     func showToast(_ message : String, withDuration: Double, delay: Double) {
         let toastLabel = UILabel()
