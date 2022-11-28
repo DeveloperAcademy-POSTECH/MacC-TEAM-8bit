@@ -122,6 +122,7 @@
 		78F56F6C291A67FA00174B74 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F56F6B291A67FA00174B74 /* OnBoardingViewController.swift */; };
 		78F93ED32906EFC500F3D9F3 /* GymEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED22906EFC500F3D9F3 /* GymEditViewController.swift */; };
 		78F93ED7290743DF00F3D9F3 /* LevelAndPFEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */; };
+		78FCCFF72934AB4900E435BC /* RouteFindingEditType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FCCFF62934AB4900E435BC /* RouteFindingEditType.swift */; };
 		78FEE88B292616BC007B67BD /* VideoDetailViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */; };
 		78FEE88F2926A23B007B67BD /* VideoPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE88E2926A23B007B67BD /* VideoPlayViewController.swift */; };
 		78FEE8912926A599007B67BD /* VideoDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE8902926A599007B67BD /* VideoDetailPageViewController.swift */; };
@@ -255,6 +256,7 @@
 		78F56F6B291A67FA00174B74 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		78F93ED22906EFC500F3D9F3 /* GymEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymEditViewController.swift; sourceTree = "<group>"; };
 		78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelAndPFEditViewController.swift; sourceTree = "<group>"; };
+		78FCCFF62934AB4900E435BC /* RouteFindingEditType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingEditType.swift; sourceTree = "<group>"; };
 		78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoDetailViewController+Extensions.swift"; sourceTree = "<group>"; };
 		78FEE88E2926A23B007B67BD /* VideoPlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayViewController.swift; sourceTree = "<group>"; };
 		78FEE8902926A599007B67BD /* VideoDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailPageViewController.swift; sourceTree = "<group>"; };
@@ -490,6 +492,7 @@
 				3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */,
 				78B6A71A292FE3CF00C0BB70 /* RouteFindingCollectionViewMode.swift */,
 				78B6A7242933A6DD00C0BB70 /* RouteFindingSection.swift */,
+				78FCCFF62934AB4900E435BC /* RouteFindingEditType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -858,6 +861,7 @@
 				78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */,
 				3AEB3D5D291C003D00A989FF /* VideoCollectionViewMode.swift in Sources */,
 				78CAA06C290271E7003C3D77 /* VIdeoCollectionFooterCell.swift in Sources */,
+				78FCCFF72934AB4900E435BC /* RouteFindingEditType.swift in Sources */,
 				341418BB2922A3800033D851 /* AutocompleteTableViewCell.swift in Sources */,
 				78B6A70A292F5B7300C0BB70 /* RouteFindingMainViewController.swift in Sources */,
 				709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */,

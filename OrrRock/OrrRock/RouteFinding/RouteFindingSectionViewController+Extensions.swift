@@ -119,6 +119,7 @@ extension RouteFindingSectionViewController: UISheetPresentationControllerDelega
 }
 
 extension RouteFindingSectionViewController: RouteModalDelegate {
+    
     func delete() {
         var deleteNeededIndexPaths : [IndexPath] = []
         for (key,value) in dictionarySelectedIndexPath{
@@ -138,23 +139,8 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
                 routeFindingCollectionView.deselectItem(at: key, animated: true)
             }
         }
-        showToast("\(dictionarySelectedIndexPath.count)개의 루트 파인딩을 삭제했습니다.", withDuration: 3.0, delay: 0.1)
-        
-        dictionarySelectedIndexPath.removeAll()
-        
-        mMode = .view
-        
-        routeFindingCollectionView.allowsMultipleSelection = false
         routeFindingCollectionView.deleteItems(at: deleteNeededIndexPaths)
-        
-        folderButton.isEnabled = false
-        deleteButton.isEnabled = false
-        
-        routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
-        
-        if infoArr.count == 0 {
-            self.emptyGuideView.alpha = 1.0
-        }
+        afterEdit(type: .delete)
     }
     
     func folderingToChallenge() {
@@ -165,7 +151,7 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
             }
         }
         //변경 실제 배열에서
-        switch sectionKind{
+        switch sectionKind {
         case .all:
             for i in toChallengeNeededIndexPaths.sorted(by:{$0.item > $1.item}) {
                 //데이터에서 실제로 변경하는 부분
@@ -193,20 +179,7 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
         }
         showToast("\(dictionarySelectedIndexPath.count)개의 루트 파인딩이 '도전 중'으로 이동했습니다.", withDuration: 3.0, delay: 0.1)
         
-        dictionarySelectedIndexPath.removeAll()
-        
-        mMode = .view
-        
-        routeFindingCollectionView.allowsMultipleSelection = false
-        
-        folderButton.isEnabled = false
-        deleteButton.isEnabled = false
-        
-        routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
-        
-        if infoArr.count == 0 {
-            self.emptyGuideView.alpha = 1.0
-        }
+        afterEdit(type: .toChallenge)
 
     }
     
@@ -218,7 +191,7 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
             }
         }
         //변경 실제 배열에서
-        switch sectionKind{
+        switch sectionKind {
         case .all:
             for i in toSuccessNeededIndexPaths.sorted(by:{$0.item > $1.item}) {
                 //데이터에서 실제로 변경하는 부분
@@ -244,22 +217,7 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
                 routeFindingCollectionView.deselectItem(at: key, animated: true)
             }
         }
-        showToast("\(dictionarySelectedIndexPath.count)개의 루트 파인딩이 '도전 성공'으로 이동했습니다.", withDuration: 3.0, delay: 0.1)
-        
-        dictionarySelectedIndexPath.removeAll()
-        
-        mMode = .view
-        
-        routeFindingCollectionView.allowsMultipleSelection = false
-        
-        folderButton.isEnabled = false
-        deleteButton.isEnabled = false
-        
-        routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
-        
-        if infoArr.count == 0 {
-            self.emptyGuideView.alpha = 1.0
-        }
+        afterEdit(type: .toSuccess)
         
     }
     
@@ -287,5 +245,31 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
         }, completion: {(isCompleted) in
             toastLabel.removeFromSuperview()
         })
+    }
+    
+    func afterEdit(type : RouteFindingEditType){
+        switch type{
+        case .delete:
+            showToast("\(dictionarySelectedIndexPath.count)개의 루트 파인딩을 삭제했습니다.", withDuration: 3.0, delay: 0.1)
+        case .toChallenge:
+            showToast("\(dictionarySelectedIndexPath.count)개의 루트 파인딩이 '도전 중'으로 이동했습니다.", withDuration: 3.0, delay: 0.1)
+        case .toSuccess:
+            showToast("\(dictionarySelectedIndexPath.count)개의 루트 파인딩이 '도전 성공'으로 이동했습니다.", withDuration: 3.0, delay: 0.1)
+        }
+
+        dictionarySelectedIndexPath.removeAll()
+        
+        mMode = .view
+        
+        routeFindingCollectionView.allowsMultipleSelection = false
+        
+        folderButton.isEnabled = false
+        deleteButton.isEnabled = false
+        
+        routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
+        
+        if infoArr.count == 0 {
+            self.emptyGuideView.alpha = 1.0
+        }
     }
 }

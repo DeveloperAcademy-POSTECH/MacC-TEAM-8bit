@@ -71,7 +71,7 @@ final class RouteFindingCollectionViewCustomCell: UICollectionViewCell {
         label.text = "V3"
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         label.backgroundColor = .orrGray700
-        label.textColor = .white
+        label.textColor = .orrWhite
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 11.5
         label.padding = UIEdgeInsets(top: 4.0, left: 4.0, bottom: 4.0, right: 4.0)

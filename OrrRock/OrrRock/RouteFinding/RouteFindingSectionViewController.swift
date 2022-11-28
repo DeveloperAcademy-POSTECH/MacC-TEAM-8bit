@@ -97,9 +97,10 @@ class RouteFindingSectionViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        emptyGuideView.alpha = infoArr.count == 0 ? 1.0 : 0.0
         initInfoArr()
         routeFindingCollectionView.reloadData()
+        emptyGuideView.alpha = infoArr.count == 0 ? 1.0 : 0.0
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -206,13 +207,10 @@ class RouteFindingSectionViewController: UIViewController {
         switch sectionKind{
         case .all:
             infoArr = routeFindingDataManager?.getRouteFindingList()
-            print("all")
         case .challenge:
             infoArr = routeFindingDataManager?.getSpecificRouteFindingList(isChallengeComplete: false)
-            print("challenge")
         case .success:
             infoArr = routeFindingDataManager?.getSpecificRouteFindingList(isChallengeComplete: true)
-            print("success")
         case .none:
             break
         }
