@@ -138,31 +138,8 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
     }
     
     func folderingToChallenge() {
-        var toChallengeNeededIndexPaths: [IndexPath] = []
-        for (key,value) in dictionarySelectedIndexPath{
-            if value{
-                toChallengeNeededIndexPaths.append(key)
-            }
-        }
-        switch sectionKind {
-        case .all:
-            for i in toChallengeNeededIndexPaths.sorted(by:{$0.item > $1.item}) {
-                routeFindingDataManager?.updateRouteStatus(to: false, of: RouteInformations[i.item])
-            }
-        case .challenge:
-            break
-        case .success:
-            for i in toChallengeNeededIndexPaths.sorted(by:{$0.item > $1.item}) {
-                routeFindingDataManager?.updateRouteStatus(to: false, of: RouteInformations[i.item])
-                RouteInformations.remove(at: i.item)
-            }
-            routeFindingCollectionView.deleteItems(at: toChallengeNeededIndexPaths)
-        case .none:
-            break
-        }
-        
+        initEditRouteInformationsData(editType: .toChallenge)
         deselectAllItemsInRouteFindingCollectionView()
-        showToast("\(dictionarySelectedIndexPath.count)개의 루트 파인딩이 '도전 중'으로 이동했습니다.", withDuration: 3.0, delay: 0.1)
         afterEdit(type: .toChallenge)
         
     }
