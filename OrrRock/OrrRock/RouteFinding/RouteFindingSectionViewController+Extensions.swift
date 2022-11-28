@@ -146,6 +146,12 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
         afterEdit(type: .toSuccess)
     }
     
+    private func changeFoldering(to editType: RouteFindingEditType){
+        initEditRouteInformationsData(editType: editType)
+        deselectAllItemsInRouteFindingCollectionView()
+        afterEdit(type: editType)
+    }
+    
     private func initEditRouteInformationsData(editType : RouteFindingEditType) {
         var temporarySavedIndexPaths: [IndexPath] = []
         for (key,value) in dictionarySelectedIndexPath {
@@ -230,12 +236,12 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
     }
     
     private func backToDefaultRouteFindingSectionViewSetting() {
-           dictionarySelectedIndexPath.removeAll()
-           mMode = .view
+        dictionarySelectedIndexPath.removeAll()
+        mMode = .view
         makeChangeFolderButtonsDisable()
-           backToDefaultRouteFindingCollectionViewSetting()
-           checkAndShowEmptyGuideView()
-       }
+        backToDefaultRouteFindingCollectionViewSetting()
+        checkAndShowEmptyGuideView()
+    }
     
     private func backToDefaultRouteFindingCollectionViewSetting(){
         routeFindingCollectionView.allowsMultipleSelection = false
