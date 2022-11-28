@@ -194,6 +194,13 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
         deselectAllItemsInRouteFindingCollectionView()
         afterEdit(type: .toSuccess)
     }
+    private func changeSuccessToChallenge(at temporarySavedIndexPaths: [IndexPath]) {
+           for i in temporarySavedIndexPaths.sorted(by:{$0.item > $1.item}) {
+               routeFindingDataManager?.updateRouteStatus(to: false, of: RouteInformations[i.item])
+               RouteInformations.remove(at: i.item)
+           }
+           routeFindingCollectionView.deleteItems(at: temporarySavedIndexPaths)
+       }
     
     private func changeChallengeToSuccess(at temporarySavedIndexPaths: [IndexPath]) {
            for i in temporarySavedIndexPaths.sorted(by:{$0.item > $1.item}) {
