@@ -207,6 +207,14 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
         afterEdit(type: .toSuccess)
     }
     
+    private func deselectAllItemsInRouteFindingCollectionView() {
+           for (key,value) in dictionarySelectedIndexPath {
+               if value {
+                   routeFindingCollectionView.deselectItem(at: key, animated: true)
+               }
+           }
+       }
+    
     func showToast(_ message : String, withDuration: Double, delay: Double) {
         let toastLabel = UILabel()
         toastLabel.backgroundColor = UIColor.orrWhite!.withAlphaComponent(1.0)
