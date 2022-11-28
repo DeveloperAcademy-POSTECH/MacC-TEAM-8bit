@@ -80,6 +80,7 @@ class RouteFindingCameraViewController: UIViewController {
         currentLocalIdentifier = nil
         
         executeCameraSession()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(setPhotosButtonImage), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
@@ -146,7 +147,7 @@ private extension RouteFindingCameraViewController {
 // MARK: Button Objc Functions Extension
 private extension RouteFindingCameraViewController {
     
-    @objc func showPhotoPicker() {
+    @objc private func showPhotoPicker() {
         let photoLibrary = PHPhotoLibrary.shared()
         var config = PHPickerConfiguration(photoLibrary: photoLibrary)
         config.filter = .images
@@ -155,9 +156,10 @@ private extension RouteFindingCameraViewController {
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = self
         present(picker, animated: true, completion: nil)
+        captureSession.stopRunning()
     }
     
-    @objc func capturePhoto() {
+    @objc private func capturePhoto() {
         let settings = AVCapturePhotoSettings()
         sessionQueue.async {
             self.photoOutput?.capturePhoto(with: settings, delegate: self)
@@ -167,7 +169,7 @@ private extension RouteFindingCameraViewController {
 
 // MARK: Photos Button Image Setting Extension
 private extension RouteFindingCameraViewController {
-    @objc func setPhotosButtonImage() {
+    @objc private func setPhotosButtonImage() {
         
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
@@ -181,7 +183,7 @@ private extension RouteFindingCameraViewController {
         }
     }
     
-    func fetchLastPhoto(fetchResult: PHFetchResult<PHAsset>) -> UIImage? {
+    private func fetchLastPhoto(fetchResult: PHFetchResult<PHAsset>) -> UIImage? {
         
         var resultImage: UIImage = UIImage()
         
@@ -197,7 +199,6 @@ private extension RouteFindingCameraViewController {
                 
             }
         })
-        
         return resultImage
     }
 }
@@ -232,10 +233,8 @@ private extension RouteFindingCameraViewController {
             captureSession.beginConfiguration()
             let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera,
                                                       for: .video, position: .unspecified)
-            guard
-                let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice!),
-                captureSession.canAddInput(videoDeviceInput)
-            else { return }
+            guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice!),
+                  captureSession.canAddInput(videoDeviceInput) else { return }
             captureSession.addInput(videoDeviceInput)
             
             photoOutput = AVCapturePhotoOutput()
@@ -244,7 +243,6 @@ private extension RouteFindingCameraViewController {
             captureSession.addOutput(photoOutput)
             
             DispatchQueue.main.async {
-                
                 var initialVideoOrientation: AVCaptureVideoOrientation = .portrait
                 if let videoOrientation = AVCaptureVideoOrientation(rawValue: UIInterfaceOrientation.portrait.rawValue) {
                     initialVideoOrientation = videoOrientation
