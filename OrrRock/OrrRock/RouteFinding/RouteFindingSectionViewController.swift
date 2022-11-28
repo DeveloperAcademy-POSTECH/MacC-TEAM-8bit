@@ -13,7 +13,8 @@ class RouteFindingSectionViewController: UIViewController {
     var dictionarySelectedIndexPath: [IndexPath : Bool] = [:]
     var routeFindingDataManager : RouteDataManager?
     var sectionKind : RouteFindingSection?
-    
+    let minimumInteritemSpacingForSection: CGFloat = 13
+    let minimumLineSpacingForSection: CGFloat = 16
     var mMode: RouteFindingCollectionViewMode = .view {
         didSet{
             switch mMode{

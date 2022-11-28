@@ -88,14 +88,14 @@ extension RouteFindingSectionViewController: UICollectionViewDataSource {
 
 extension RouteFindingSectionViewController : UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 13
+        return minimumInteritemSpacingForSection
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 16
+        return minimumLineSpacingForSection
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width / 2 - 6.5
+        let width = collectionView.frame.width / 2 - minimumInteritemSpacingForSection / 2
         return CGSize(width: width, height: width * 1.8)
     }
 }
