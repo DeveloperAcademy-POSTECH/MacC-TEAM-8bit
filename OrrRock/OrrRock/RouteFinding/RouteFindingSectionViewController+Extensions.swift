@@ -235,17 +235,21 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
         makeChangeFolderButtonsDisable()
            routeFindingCollectionView.allowsMultipleSelection = false
            routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
-           if RouteInformations.count == 0 {
-               self.emptyGuideView.alpha = 1.0
-           }
+           checkAndShowEmptyGuideView()
        }
     
-    func makeChangeFolderButtonsDisable(){
+    private func checkAndShowEmptyGuideView(){
+        if RouteInformations.count == 0 {
+            self.emptyGuideView.alpha = 1.0
+        }
+    }
+    
+    private func makeChangeFolderButtonsDisable(){
         folderButton.isEnabled = false
         deleteButton.isEnabled = false
     }
     
-    func showToast(_ message : String, withDuration: Double, delay: Double) {
+    private func showToast(_ message : String, withDuration: Double, delay: Double) {
         let toastLabel = UILabel()
         toastLabel.backgroundColor = UIColor.orrWhite!.withAlphaComponent(1.0)
         toastLabel.layer.borderColor = UIColor.orrGray200?.cgColor
