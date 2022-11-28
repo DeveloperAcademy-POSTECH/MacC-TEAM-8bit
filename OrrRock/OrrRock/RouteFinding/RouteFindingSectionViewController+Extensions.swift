@@ -233,10 +233,14 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
            dictionarySelectedIndexPath.removeAll()
            mMode = .view
         makeChangeFolderButtonsDisable()
-           routeFindingCollectionView.allowsMultipleSelection = false
-           routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
+           backToDefaultRouteFindingCollectionViewSetting()
            checkAndShowEmptyGuideView()
        }
+    
+    private func backToDefaultRouteFindingCollectionViewSetting(){
+        routeFindingCollectionView.allowsMultipleSelection = false
+        routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
+    }
     
     private func checkAndShowEmptyGuideView(){
         if RouteInformations.count == 0 {
