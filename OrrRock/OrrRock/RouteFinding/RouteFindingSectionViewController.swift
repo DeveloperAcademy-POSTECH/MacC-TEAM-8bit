@@ -15,6 +15,8 @@ class RouteFindingSectionViewController: UIViewController {
     var sectionKind : RouteFindingSection?
     let minimumInteritemSpacingForSection: CGFloat = 13
     let minimumLineSpacingForSection: CGFloat = 16
+    let cellScaleBetweenWidthAndHeight = 1.8
+    
     var mMode: RouteFindingCollectionViewMode = .view {
         didSet{
             switch mMode{

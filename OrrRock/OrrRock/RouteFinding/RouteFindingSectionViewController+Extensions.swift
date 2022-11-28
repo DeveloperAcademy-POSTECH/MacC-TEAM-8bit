@@ -96,7 +96,7 @@ extension RouteFindingSectionViewController : UICollectionViewDelegateFlowLayout
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / 2 - minimumInteritemSpacingForSection / 2
-        return CGSize(width: width, height: width * 1.8)
+        return CGSize(width: width, height: width * cellScaleBetweenWidthAndHeight)
     }
 }
 
@@ -104,10 +104,10 @@ extension RouteFindingSectionViewController: RouteFindingCollectionViewHeaderCel
     func tapEditButton() {
         mMode = mMode == .view ? .select : .view
         routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
-        (routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as! RouteFindingCollectionViewHeaderCell).subTitleButton.setTitle(mMode == .select ? "완료" : "편집", for: .normal)
-        (routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as!
-         RouteFindingCollectionViewHeaderCell).subTitleButton.setTitleColor(mMode == .select ? UIColor.orrUPBlue: UIColor.orrGray400, for: .normal)
+        let supplementaryViewSectionHeader = routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as? RouteFindingCollectionViewHeaderCell
         
+        supplementaryViewSectionHeader?.subTitleButton.setTitle(mMode == .select ? "완료" : "편집", for: .normal)
+        supplementaryViewSectionHeader?.subTitleButton.setTitleColor(mMode == .select ? UIColor.orrUPBlue: UIColor.orrGray400, for: .normal)
     }
 }
 
