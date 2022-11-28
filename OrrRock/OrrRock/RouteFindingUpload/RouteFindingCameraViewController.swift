@@ -75,9 +75,7 @@ final class RouteFindingCameraViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        photoImage = nil
-        photoData = nil
-        currentLocalIdentifier = nil
+        makePropertyEmpty()
         
         executeCameraSession()
         
@@ -99,7 +97,7 @@ final class RouteFindingCameraViewController: UIViewController {
     }
 }
 
-// MARK: Layout Function
+// MARK: Layout & Property Setting Function
 private extension RouteFindingCameraViewController {
     func setUpLayout() {
         
@@ -141,6 +139,12 @@ private extension RouteFindingCameraViewController {
             $0.top.equalTo(safeArea.snp.top).offset(OrrPd.pd16.rawValue)
             $0.width.height.equalTo(40)
         })
+    }
+    
+    func makePropertyEmpty() {
+        photoImage = nil
+        photoData = nil
+        currentLocalIdentifier = nil
     }
 }
 
