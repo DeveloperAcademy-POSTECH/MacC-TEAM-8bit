@@ -168,29 +168,7 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
     }
     
     func folderingToSuccess() {
-        var toSuccessNeededIndexPaths: [IndexPath] = []
-        for (key,value) in dictionarySelectedIndexPath{
-            if value{
-                toSuccessNeededIndexPaths.append(key)
-            }
-        }
-        switch sectionKind {
-        case .all:
-            for i in toSuccessNeededIndexPaths.sorted(by:{$0.item > $1.item}) {
-                routeFindingDataManager?.updateRouteStatus(to: true, of: RouteInformations[i.item])
-            }
-        case .challenge:
-            for i in toSuccessNeededIndexPaths.sorted(by:{$0.item > $1.item}) {
-                routeFindingDataManager?.updateRouteStatus(to: true, of: RouteInformations[i.item])
-                RouteInformations.remove(at: i.item)
-            }
-            routeFindingCollectionView.deleteItems(at: toSuccessNeededIndexPaths)
-        case .success:
-            break
-        case .none:
-            break
-        }
-        
+        initEditRouteInformationsData(editType: .toSuccess)
         deselectAllItemsInRouteFindingCollectionView()
         afterEdit(type: .toSuccess)
     }
