@@ -46,6 +46,10 @@ final class RouteDataManager {
         coreDataDAO.updateRouteInformationLevelAndStatus(status: status, problemLevel: level, routeInformation: routeInformation)
     }
     
+    func updateRouteStatus(to status: Bool, of routeInformation: RouteInformation) {
+        coreDataDAO.updateRouteInformationStatus(status: status, routeInformation: routeInformation)
+    }
+    
     func addPageData(pageInfoList: [PageInfo], routeInformation: RouteInformation) {
         for info in pageInfoList {
             coreDataDAO.createPageInformation(pageInfo: info, routeInformation: routeInformation)
@@ -87,5 +91,23 @@ final class RouteDataManager {
     
     func deleteAllData() {
         coreDataDAO.deleteAllData()
+    }
+    
+    // MARK: 루트파인딩 내 최근 방문 클라이밍장명을 보여주기 위한 메서드
+    
+    func readVisitedClimbingGym() -> [VisitedClimbingGym] {
+        return DataManager.shared.repository.visitedClimbingGyms
+    }
+    
+    func createVisitedClimbingGym(gymName: String) {
+        DataManager.shared.createVisitedClimbingGym(gymName: gymName)
+    }
+    
+    func deleteVisitedClimbingGym(deleteTarget: VisitedClimbingGym) {
+        DataManager.shared.deleteVisitedClimbingGym(deleteTarget: deleteTarget)
+    }
+    
+    func updateVisitedClimbingGym(updateTarget: VisitedClimbingGym) {
+        DataManager.shared.updateVisitedClimbingGym(updateTarget: updateTarget)
     }
 }

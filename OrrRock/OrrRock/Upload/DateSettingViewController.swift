@@ -51,8 +51,12 @@ class DateSettingViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
         self.navigationController?.setExpansionBackbuttonArea()
-        
         setUpLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
     }
 }
 
@@ -81,7 +85,7 @@ extension DateSettingViewController {
         view.addSubview(datePickerLabel)
         datePickerLabel.snp.makeConstraints {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(OrrPd.pd16.rawValue)
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd8.rawValue)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd24 .rawValue)
         }
         
         view.addSubview(datePicker)

@@ -32,7 +32,7 @@ class VideoCollectionViewController: UIViewController {
                 indexCountLabel.text = "항목 선택"
                 toolbarText.customView = indexCountLabel
                 self.navigationController?.setExpansionBackbuttonArea()
-
+                navigationItem.leftBarButtonItem = nil
                 videoCollectionView.allowsMultipleSelection = false
                 self.navigationController?.setToolbarHidden(true, animated: true)
             case .select:
@@ -103,7 +103,7 @@ class VideoCollectionViewController: UIViewController {
         layout.headerReferenceSize = .init(width: 100, height: 76)
         layout.footerReferenceSize = .init(width: 50, height: 120)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .white
+        cv.backgroundColor = .orrWhite
         return cv
     }()
     
@@ -122,7 +122,6 @@ class VideoCollectionViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         setVideoCollectionViewDelegate()
         registerCells()
         setUpLayout()
@@ -177,9 +176,7 @@ class VideoCollectionViewController: UIViewController {
         }
         self.toolbarItems = bottomBatItems
         navigationItem.rightBarButtonItem = selectBarButton
-//        navigationItem.leftBarButtonItem = backBarButton
         self.navigationController?.setExpansionBackbuttonArea()
-
         firstContentOffset = Float(videoCollectionView.contentOffset.y)
     }
     
@@ -214,7 +211,6 @@ class VideoCollectionViewController: UIViewController {
         selectBarButton.title = "편집"
         let indexCountLabel = UILabel()
         indexCountLabel.text = "항목 선택"
-//        navigationItem.leftBarButtonItem = backBarButton
         self.navigationController?.setExpansionBackbuttonArea()
 
         self.navigationController?.setToolbarHidden(true, animated: true)

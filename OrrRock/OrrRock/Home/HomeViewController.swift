@@ -44,15 +44,18 @@ final class HomeViewController : UIViewController {
         }
     }
     
+    private let gradientLayer : CAGradientLayer = {
+        let layer = CAGradientLayer()
+        layer.colors = [UIColor.orrGray050!.cgColor, UIColor.orrGray050!.withAlphaComponent(0).cgColor]
+        layer.locations = [0.61, 0.82]
+        layer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 170)
+
+        return layer
+    }()
+
+    
     private let headerView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 170))
-        
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor.orrGray100!.cgColor, UIColor.orrGray100!.withAlphaComponent(0).cgColor]
-        gradientLayer.locations = [0.61, 0.82]
-        gradientLayer.frame = view.bounds
-        
-        view.layer.addSublayer(gradientLayer)
         view.isUserInteractionEnabled = false
         
         return view
@@ -62,6 +65,7 @@ final class HomeViewController : UIViewController {
         let view = UILabel()
         view.text = "모든 기록"
         view.font = .systemFont(ofSize: 22, weight: .bold)
+        view.textColor = .orrBlack
         return view
     }()
     
@@ -199,7 +203,7 @@ final class HomeViewController : UIViewController {
                                            selectedIconTintColor: UIColor.orrUPBlue!),
             options: [.cornerRadius(25.0),
                       .backgroundColor(UIColor.orrGray300!),
-                      .indicatorViewBackgroundColor(.white)])
+                      .indicatorViewBackgroundColor(.orrWhite ?? .white)])
         view.addTarget(self, action: #selector(segmentControl(_:)), for: .valueChanged)
         
         return view
@@ -216,7 +220,7 @@ final class HomeViewController : UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        view.backgroundColor = .orrGray100
+        view.backgroundColor = .orrGray050
         
         showOnBoard()
         setUpLayout()
@@ -228,17 +232,55 @@ final class HomeViewController : UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.isNavigationBarHidden = true
         reloadTableViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        self.navigationController?.navigationBar.isHidden = false
+    
+    // MARK: 다크모드 대응 코드
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+       if #available(iOS 13.0, *) {
+           if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+               gradientLayer.colors = [UIColor.orrGray050!.cgColor, UIColor.orrGray050!.withAlphaComponent(0).cgColor]
+           }
+       }
     }
     
-    // MARK: Layout Function
+    private func setUICollectionViewDelegate() {
+        homeTableView.dataSource = self
+        homeTableView.delegate = self
+    }
+    
+    private func showOnBoard(){
+        if !UserDefaults.standard.bool(forKey: "watchOnBoard"){
+            let onBoardingViewController = OnBoardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+            self.navigationController?.pushViewController(onBoardingViewController, animated: true)
+        }
+    }
+    @objc func switchViewStyle() {
+        isCardView.toggle()
+    }
+    
+    @objc func videoButtonPressed(sender: UIButton){
+        let nextVC = DateSettingViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+
+    //    MARK: 스와이프 온보딩을 보고 싶다면 해당 상단의 코드를 주석처리후 하단 주석을 풀어주세요.
+//    @objc func videoButtonPressed(sender: UIButton){
+//        //여기서 실행하면 온보딩을 여러번 볼 수 있어요.
+//            let nextVC = SwipeOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+//            nextVC.modalPresentationStyle = .fullScreen
+//            self.present(nextVC, animated: true, completion: nil)
+//    }
+    
+    @objc func segmentControl(_ sender: BetterSegmentedControl) {
+        isCardView = sender.index == 0
+    }
+}
+
+// MARK: Layout Function
+extension HomeViewController {
     private func setUpLayout() {
         
         self.view.addSubview(homeTableView)
@@ -251,6 +293,7 @@ final class HomeViewController : UIViewController {
         
         self.view.addSubview(headerView)
         headerView.snp.makeConstraints {
+            headerView.layer.addSublayer(gradientLayer)
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.height.equalTo(170)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
@@ -292,40 +335,7 @@ final class HomeViewController : UIViewController {
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(OrrPd.pd16.rawValue)
         }
     }
-    
-    private func setUICollectionViewDelegate() {
-        homeTableView.dataSource = self
-        homeTableView.delegate = self
-    }
-    
-    private func showOnBoard(){
-        if !UserDefaults.standard.bool(forKey: "watchOnBoard"){
-            let onBoardingViewController = OnBoardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
-            self.navigationController?.pushViewController(onBoardingViewController, animated: true)
-        }
-    }
-    @objc func switchViewStyle() {
-        isCardView.toggle()
-    }
-    
-    @objc func videoButtonPressed(sender: UIButton){
-        let nextVC = DateSettingViewController()
-        self.navigationController?.pushViewController(nextVC, animated: true)
-    }
-
-//    MARK: 스와이프 온보딩을 보고 싶다면 해당 상단의 코드를 주석처리후 하단 주석을 풀어주세요.
-//    @objc func videoButtonPressed(sender: UIButton){
-//        //여기서 실행하면 온보딩을 여러번 볼 수 있어요.
-//            let nextVC = SwipeOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
-//            nextVC.modalPresentationStyle = .fullScreen
-//            self.present(nextVC, animated: true, completion: nil)
-//    }
-    
-    @objc func segmentControl(_ sender: BetterSegmentedControl) {
-        isCardView = sender.index == 0
-    }
 }
-
 // QuickAction을 통한 정렬 및 필터링 시 함수를 아래에 구현
 extension HomeViewController {
     // 정렬 기준 함수

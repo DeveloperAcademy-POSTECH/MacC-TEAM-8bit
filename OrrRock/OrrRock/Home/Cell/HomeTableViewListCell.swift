@@ -78,7 +78,7 @@ final class HomeTableViewListCell: UITableViewCell {
     
     // MARK: Layout Function
     func setUpLayout() {
-        contentView.backgroundColor = .orrWhite
+        contentView.backgroundColor = .orrWhiteCustom
         
         contentView.addSubview(cellView)
         cellView.snp.makeConstraints {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RouteFindingPageView: UIView {
+final class RouteFindingPageView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 

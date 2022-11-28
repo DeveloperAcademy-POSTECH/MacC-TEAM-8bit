@@ -29,7 +29,6 @@ class MyActivityViewController: UIViewController {
     // 레이아웃
     private lazy var headerView: UIView = {
         let view = UIView()
-        
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
         view.addSubview(visualEffectView)
         visualEffectView.snp.makeConstraints {
@@ -49,7 +48,7 @@ class MyActivityViewController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .orrGray100
+        scrollView.backgroundColor = .orrGray050
         scrollView.showsVerticalScrollIndicator = false
         scrollView.contentInset = UIEdgeInsets(top: 70, left: 0, bottom: 0, right: 0)
         
@@ -62,7 +61,7 @@ class MyActivityViewController: UIViewController {
     
     private lazy var contentView: UIView = {
         let contentView = UIView()
-        contentView.backgroundColor = .orrGray100
+        contentView.backgroundColor = .orrGray050
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
         return contentView
@@ -82,7 +81,7 @@ class MyActivityViewController: UIViewController {
     
     private lazy var cardSaveButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        button.setImage(UIImage(systemName: "square.and.arrow.down.fill", withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
+        button.setImage(UIImage(systemName: "square.and.arrow.up.fill", withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
         button.tintColor = .orrGray600
         
         button.addTarget(self, action: #selector(tapCardSaveButton(_:)), for: .touchUpInside)
@@ -143,8 +142,7 @@ class MyActivityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = true
-        self.view.backgroundColor = .orrGray100
+        self.view.backgroundColor = .orrGray050
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -158,7 +156,9 @@ class MyActivityViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+
     }
+    
     
     func setUpData() {
         let entireVideoInformationsByDate: [[VideoInformation]] = DataManager.shared.repository.sortVideoInformation(filterOption: .all, sortOption: .gymVisitDate)
