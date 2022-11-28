@@ -3,7 +3,7 @@
 //  OrrRock
 //
 //  Created by 황정현 on 2022/11/28.
-//
+// MARK: 테스트용 코드. 추후 제거 예정
 
 import UIKit
 import SnapKit

@@ -169,6 +169,8 @@ private extension RouteFindingCameraViewController {
 
 // MARK: Photos Button Image Setting Extension
 private extension RouteFindingCameraViewController {
+    
+    // 사진 앱 버튼 (좌측 하단) 이미지 갱신
     @objc private func setPhotosButtonImage() {
         
         let fetchOptions = PHFetchOptions()
@@ -183,6 +185,7 @@ private extension RouteFindingCameraViewController {
         }
     }
     
+    // 사진 앱에서 마지막 사진 받아오기
     private func fetchLastPhoto(fetchResult: PHFetchResult<PHAsset>) -> UIImage? {
         
         var resultImage: UIImage = UIImage()
@@ -205,6 +208,8 @@ private extension RouteFindingCameraViewController {
 
 // MARK: Camera Session Setting Extension
 private extension RouteFindingCameraViewController {
+    
+    // 카메라 사용 권한 체크 후, CaptureSession 설정
     private func authorizateCameraStatus() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
@@ -223,11 +228,13 @@ private extension RouteFindingCameraViewController {
         }
     }
     
+    // videoPreviewLayer 설정
     private func setCameraPreviewLayer() {
         cameraView.videoPreviewLayer.session = captureSession
         cameraView.videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
     }
     
+    // 카메라 기능 동작을 위해 필요한 여러 항목 세팅
     private func setupCaptureSession() {
         sessionQueue.async { [self] in
             captureSession.beginConfiguration()
@@ -254,6 +261,7 @@ private extension RouteFindingCameraViewController {
         }
     }
     
+    // 카메라 세션 실행
     private func executeCameraSession() {
         sessionQueue.async { [self] in
             switch cameraAuthorizeStatus {
@@ -268,6 +276,7 @@ private extension RouteFindingCameraViewController {
         }
     }
     
+    // 카메라 권한 재점검을 위한 Alert 보여주기
     private func showAuthAlert() {
         DispatchQueue.main.async {
             let alertMessage = "클라이밍 문제 촬영을 위해 카메라 사용 권한이 필요합니다.\n[설정] > [개인 정보 보호] > [카메라]에서 권한을 설정해주세요."
