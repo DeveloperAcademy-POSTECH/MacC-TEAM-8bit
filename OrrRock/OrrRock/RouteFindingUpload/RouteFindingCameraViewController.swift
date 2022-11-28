@@ -52,7 +52,7 @@ final class RouteFindingCameraViewController: UIViewController {
     
     private lazy var closeButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(hex: "000000").withAlphaComponent(0.3)
+        button.backgroundColor = UIColor.orrBlack?.withAlphaComponent(0.3)
         button.layer.borderColor = UIColor(hex: "979797").cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 20
@@ -185,7 +185,7 @@ private extension RouteFindingCameraViewController {
     }
     
     // 사진 앱에서 마지막 사진 받아오기
-    private func fetchLastPhoto(fetchResult: PHFetchResult<PHAsset>) -> UIImage? {
+    private func fetchLastPhoto(fetchResult: PHFetchResult<PHAsset>) -> UIImage {
         
         var resultImage: UIImage = UIImage()
         
@@ -198,7 +198,6 @@ private extension RouteFindingCameraViewController {
                 let height = image.size.height
                 let croppedImage = image.cropped(rect: CGRect(x: 0, y: (height - width)/2, width: width, height: width))
                 resultImage = croppedImage ?? UIImage()
-                
             }
         })
         return resultImage
