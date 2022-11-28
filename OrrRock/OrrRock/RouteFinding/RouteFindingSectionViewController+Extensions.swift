@@ -71,14 +71,12 @@ extension RouteFindingSectionViewController: UICollectionViewDataSource {
             
         case .select:
             dictionarySelectedIndexPath[indexPath] = true
-            //toolbar enable 들어갈 부분
-            self.folderButton.isEnabled = true
-            self.deleteButton.isEnabled = true
+            changeStatusOfChangeFolderButtons(status: true)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        if mMode == .select{
+        if mMode == .select {
             dictionarySelectedIndexPath[indexPath] = false
             collectionView.cellForItem(at: indexPath)?.isHighlighted = false
             collectionView.cellForItem(at: indexPath)?.isSelected = false
@@ -233,7 +231,7 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
     private func backToDefaultRouteFindingSectionViewSetting() {
         dictionarySelectedIndexPath.removeAll()
         mMode = .view
-        makeChangeFolderButtonsDisable()
+        changeStatusOfChangeFolderButtons(status: false)
         backToDefaultRouteFindingCollectionViewSetting()
         checkAndShowEmptyGuideView()
     }
@@ -249,9 +247,9 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
         }
     }
     
-    private func makeChangeFolderButtonsDisable(){
-        folderButton.isEnabled = false
-        deleteButton.isEnabled = false
+    private func changeStatusOfChangeFolderButtons(status : Bool){
+        folderButton.isEnabled = status
+        deleteButton.isEnabled = status
     }
     
     private func showToast(_ message : String, withDuration: Double, delay: Double) {
