@@ -134,16 +134,11 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
     }
     
     func folderingToChallenge() {
-        initEditRouteInformationsData(editType: .toChallenge)
-        deselectAllItemsInRouteFindingCollectionView()
-        afterEdit(type: .toChallenge)
-        
+        changeFoldering(to: .toChallenge)
     }
     
     func folderingToSuccess() {
-        initEditRouteInformationsData(editType: .toSuccess)
-        deselectAllItemsInRouteFindingCollectionView()
-        afterEdit(type: .toSuccess)
+        changeFoldering(to: .toSuccess)
     }
     
     private func changeFoldering(to editType: RouteFindingEditType){
