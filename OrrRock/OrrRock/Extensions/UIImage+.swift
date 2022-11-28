@@ -27,10 +27,19 @@ extension UIImage {
     func imageRectAs16to9() -> CGRect  {
         let originalHeight = self.size.height
         let originalWidth = self.size.width
-
-        let resizedWidth = originalHeight * 9 / 16
-        let originXCoordinate = (originalWidth - resizedWidth)/2
-        let rect = CGRect(x: originXCoordinate, y: 0, width: resizedWidth, height: originalHeight)
+        var rect: CGRect = CGRect()
+        
+        if originalWidth * 16 / 9 < originalHeight {
+            // 16+@ : 9 사이즈인 경우
+            let resizedHeight = originalWidth * 16 / 9
+            let originYCoordinste = (originalHeight - resizedHeight) / 2
+            rect = CGRect(x: 0, y: originYCoordinste, width: originalWidth, height: resizedHeight)
+        } else {
+            // 16 : 9+@ 사이즈인 경우
+            let resizedWidth = originalHeight * 9 / 16
+            let originXCoordinate = (originalWidth - resizedWidth)/2
+            rect = CGRect(x: originXCoordinate, y: 0, width: resizedWidth, height: originalHeight)
+        }
         
         return rect
     }
