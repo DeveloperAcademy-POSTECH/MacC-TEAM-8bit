@@ -20,7 +20,11 @@ extension RouteFindingCameraViewController: PHPickerViewControllerDelegate {
         if let phAsset = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: nil).firstObject {
             PHImageManager.default().requestImageDataAndOrientation(for: phAsset, options: nil) { [self] data, _, _, _ in
                 if let data = data, let image = UIImage(data: data) {
-                    photoImage = image
+                    
+                    let orientationFixedImage = image.fixOrientation()
+                    let rect = orientationFixedImage.imageRectAs16to9()
+                    
+                    photoImage = orientationFixedImage.cropped(rect: rect)
                     
                     // MARK: **TEST** 이미지 넘김 테스트용 코드
                     guard let image = photoImage else { return }
