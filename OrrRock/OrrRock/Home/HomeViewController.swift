@@ -232,15 +232,10 @@ final class HomeViewController : UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.isNavigationBarHidden = true
         reloadTableViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        self.navigationController?.navigationBar.isHidden = false
-    }
     
     // MARK: 다크모드 대응 코드
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

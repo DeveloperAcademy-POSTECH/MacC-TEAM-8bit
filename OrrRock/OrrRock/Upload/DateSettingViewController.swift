@@ -51,8 +51,12 @@ class DateSettingViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
         self.navigationController?.setExpansionBackbuttonArea()
-        
         setUpLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
     }
 }
 
