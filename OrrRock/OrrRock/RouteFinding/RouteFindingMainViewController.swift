@@ -102,11 +102,6 @@ final class RouteFindingMainViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.isNavigationBarHidden = false
-    }
-    
     private func setUpSegment() {
         self.segmentedControl.selectedSegmentIndex = 0
         if let firstVC = dataViewControllers.first {

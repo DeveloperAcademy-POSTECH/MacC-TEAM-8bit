@@ -32,7 +32,7 @@ class VideoCollectionViewController: UIViewController {
                 indexCountLabel.text = "항목 선택"
                 toolbarText.customView = indexCountLabel
                 self.navigationController?.setExpansionBackbuttonArea()
-
+                navigationItem.leftBarButtonItem = nil
                 videoCollectionView.allowsMultipleSelection = false
                 self.navigationController?.setToolbarHidden(true, animated: true)
             case .select:
