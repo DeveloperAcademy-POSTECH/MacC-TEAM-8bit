@@ -243,7 +243,17 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
         }
     }
     
-    
+    private func backToDefaultRouteFindingCollectionViewSetting() {
+           dictionarySelectedIndexPath.removeAll()
+           mMode = .view
+           routeFindingCollectionView.allowsMultipleSelection = false
+           folderButton.isEnabled = false
+           deleteButton.isEnabled = false
+           routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
+           if RouteInformations.count == 0 {
+               self.emptyGuideView.alpha = 1.0
+           }
+       }
     
     func showToast(_ message : String, withDuration: Double, delay: Double) {
         let toastLabel = UILabel()
