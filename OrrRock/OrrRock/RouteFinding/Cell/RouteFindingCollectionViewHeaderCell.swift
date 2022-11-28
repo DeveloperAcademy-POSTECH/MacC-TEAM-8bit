@@ -50,7 +50,7 @@ final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
         self.subTitleButton.setTitleColor(isEditing ? .orrUPBlue :.orrGray400, for: .normal)
     }
     
-    private func setUpLayout(){
+    private func setUpLayout() {
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(OrrPd.pd16.rawValue)

@@ -63,12 +63,11 @@ extension RouteFindingSectionViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch mMode{
+        switch mMode {
         case .view:
             routeFindingCollectionView.deselectItem(at: indexPath, animated: true)
             //화면이동 로직 들어갈 부분
             print("화면이동합니다~")
-            
         case .select:
             dictionarySelectedIndexPath[indexPath] = true
             changeStatusOfChangeFolderButtons(status: true)

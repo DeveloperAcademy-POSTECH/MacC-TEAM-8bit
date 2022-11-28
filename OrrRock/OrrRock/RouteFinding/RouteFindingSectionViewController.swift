@@ -9,10 +9,10 @@ import UIKit
 
 class RouteFindingSectionViewController: UIViewController {
     
-    var RouteInformations : [RouteInformation]!
+    var RouteInformations: [RouteInformation]!
     var dictionarySelectedIndexPath: [IndexPath : Bool] = [:]
-    var routeFindingDataManager : RouteDataManager?
-    var sectionKind : RouteFindingSection?
+    var routeFindingDataManager: RouteDataManager?
+    var sectionKind: RouteFindingSection?
     let minimumInteritemSpacingForSection: CGFloat = 13
     let minimumLineSpacingForSection: CGFloat = 16
     let cellScaleBetweenWidthAndHeight = 1.8
@@ -217,6 +217,5 @@ class RouteFindingSectionViewController: UIViewController {
         case .none:
             break
         }
-        
     }
 }
