@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import PhotosUI
 
-class RouteFindingCameraViewController: UIViewController {
+final class RouteFindingCameraViewController: UIViewController {
     
     var currentLocalIdentifier: String?
     
