@@ -174,7 +174,7 @@ class RouteFindingSaveViewController: UIViewController {
     
     @objc func completeSaveImage() {
         
-        self.toastMessageView.alpha = 1.0
+        self.toastMessageView.alpha = 0
         
         view.addSubview(toastMessageView)
         toastMessageView.snp.makeConstraints {
@@ -189,10 +189,14 @@ class RouteFindingSaveViewController: UIViewController {
             $0.center.equalTo(toastMessageView.snp.center)
         }
         
-        UIView.animate(withDuration: 1, delay: 2, options: .curveEaseOut, animations: {
-            self.toastMessageView.alpha = 0.0
+        UIView.animate(withDuration: 0.5, animations: {
+            self.toastMessageView.alpha = 1.0
         }, completion: { _ in
-            self.toastMessageView.removeFromSuperview()
+            UIView.animate(withDuration: 1, delay: 1, options: .curveEaseOut, animations: {
+                self.toastMessageView.alpha = 0.0
+            }, completion: { _ in
+                self.toastMessageView.removeFromSuperview()
+            })
         })
     }
     
