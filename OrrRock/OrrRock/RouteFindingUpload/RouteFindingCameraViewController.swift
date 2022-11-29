@@ -155,7 +155,7 @@ private extension RouteFindingCameraViewController {
     @objc private func showPhotoPicker() {
         let photoLibrary = PHPhotoLibrary.shared()
         var config = PHPickerConfiguration(photoLibrary: photoLibrary)
-        config.filter = .images
+        config.filter = .all(of: [.images, .not(.panoramas), .not(PHPickerFilter.playbackStyle(.imageAnimated))])
         config.preferredAssetRepresentationMode = .current
         config.selectionLimit = 1
         let picker = PHPickerViewController(configuration: config)
