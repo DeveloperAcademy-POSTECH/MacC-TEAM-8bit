@@ -45,8 +45,7 @@ extension RouteFindingSaveViewController: UICollectionViewDelegate {
 
 extension RouteFindingSaveViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // FIXME: PR전 dummyData 삭제
-        return RouteInfo.dummyData.pages.count
+        return pageViews.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -55,8 +54,7 @@ extension RouteFindingSaveViewController: UICollectionViewDataSource {
         cell.indexPathOfCell = indexPath
         cell.pageImage.contentMode = .scaleAspectFill
         cell.pageImage.clipsToBounds = true
-        // FIXME: PR전 dummyData 삭제
-        cell.pageImage.image = RouteInfo.dummyData.imageLocalIdentifier.generateCardViewThumbnail()
+        cell.pageImage.image = backgroundImage
         print(cell)
         
         return cell
