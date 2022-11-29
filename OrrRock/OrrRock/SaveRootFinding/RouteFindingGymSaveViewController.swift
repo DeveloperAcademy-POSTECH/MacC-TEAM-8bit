@@ -13,6 +13,7 @@ import SnapKit
 class RouteFindingGymSaveViewController: UIViewController {
     
     var routeDataDraft: RouteDataDraft
+    var backgroundImage: UIImage
     
     var gymVisitDate : Date?
     var visitedGymList: [VisitedClimbingGym] = []
@@ -83,8 +84,9 @@ class RouteFindingGymSaveViewController: UIViewController {
         return label
     }()
     
-    init(routeDataDraft: RouteDataDraft) {
+    init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage) {
         self.routeDataDraft = routeDataDraft
+        self.backgroundImage = backgroundImage
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -157,7 +159,7 @@ extension RouteFindingGymSaveViewController {
         
         routeDataDraft.updateGymName(gymName: gymTextField.text!)
         
-        let routeFindingLevelSaveViewController = RouteFindingLevelSaveViewController()
+        let routeFindingLevelSaveViewController = RouteFindingLevelSaveViewController(routeDataDraft: routeDataDraft, backgroundImage: backgroundImage)
         navigationController?.pushViewController(routeFindingLevelSaveViewController, animated: true)
     }
     

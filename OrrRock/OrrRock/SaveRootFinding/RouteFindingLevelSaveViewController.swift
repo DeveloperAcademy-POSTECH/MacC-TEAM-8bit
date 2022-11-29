@@ -11,7 +11,9 @@ import SnapKit
 
 final class RouteFindingLevelSaveViewController: UIViewController {
     
-    private var cards: [SwipeableCardVideoView?] = []
+    var routeDataDraft: RouteDataDraft
+    var backgroundImage: UIImage
+    
     private var currentSelectedLevel = 0
     
     private lazy var exitButton: UIButton = {
@@ -66,6 +68,17 @@ final class RouteFindingLevelSaveViewController: UIViewController {
         
         return button
     }()
+    
+    init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage) {
+        self.routeDataDraft = routeDataDraft
+        self.backgroundImage = backgroundImage
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) is not supported")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

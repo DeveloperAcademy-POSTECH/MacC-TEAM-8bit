@@ -236,7 +236,7 @@ class RouteFindingSaveViewController: UIViewController {
     }
     
     @objc final func pressNextButton() {
-        let routeFindingGymSaveViewController = RouteFindingGymSaveViewController(routeDataDraft: routeDataDraft)
+        let routeFindingGymSaveViewController = RouteFindingGymSaveViewController(routeDataDraft: routeDataDraft, backgroundImage: backgroundImage)
         navigationController?.pushViewController(routeFindingGymSaveViewController, animated: true)
     }
     
