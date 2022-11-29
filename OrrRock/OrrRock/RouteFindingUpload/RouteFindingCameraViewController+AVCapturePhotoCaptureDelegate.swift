@@ -32,24 +32,31 @@ extension RouteFindingCameraViewController: AVCapturePhotoCaptureDelegate {
             print("Error capturing photo: \(error)")
             return
         }
-        
-        // MARK: Photo Save - 데이터 플로우에 따라 추후 RouteFinding 마지막 과정에서 호출될 가능성이 존재합니다.
-        PHPhotoLibrary.requestAuthorization({ status in
-            if status == .authorized {
-                // https://stackoverflow.com/questions/65545089/get-phasset-localidentifier-of-image-saved-to-photo-library
-                do {
-                    try PHPhotoLibrary.shared().performChangesAndWait {
-                        guard let photoImage = self.photoImage else { return }
-                        let assetRequest = PHAssetChangeRequest.creationRequestForAsset(from: photoImage)
-                        self.currentLocalIdentifier = assetRequest.placeholderForCreatedAsset?.localIdentifier
-                    }
-                }
-                catch let error {
-                    print("saveImage: there was a problem: \(error.localizedDescription)")
-                }
-            }
-        })
-        
+
         navigateToRouteFindingFeatureVC(phAssetLocalIdentifier: "", image: photoImage)
     }
 }
+
+// MARK: Photo Save - 변경된 데이터 플로우에 따라 RouteFinding 마지막 과정에서 호출됩니다.
+//func savePhotoByLocalIdentifier(targetImage image: UIImage?, _ completion: @escaping (String) -> Void) {
+//    let status = PHPhotoLibrary.authorizationStatus()
+//    if status == .authorized {
+//        do {
+//            try PHPhotoLibrary.shared().performChangesAndWait {
+//                guard let photoImage = image else { return }
+//                let assetRequest = PHAssetChangeRequest.creationRequestForAsset(from: photoImage)
+//                completion(assetRequest.placeholderForCreatedAsset?.localIdentifier ?? "")
+//            }
+//        }
+//        catch let error {
+//            print("saveImage: there was a problem: \(error.localizedDescription)")
+//        }
+//    }
+//}
+
+// savePhotoByLocalIdentifier 실제 사용 예시
+//savePhotoByLocalIdentifier(targetImage: photoImage) { localIdentifier in
+//    self.currentLocalIdentifier = localIdentifier
+//    print(self.currentLocalIdentifier)
+//}
+
