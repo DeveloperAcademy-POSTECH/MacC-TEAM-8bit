@@ -168,7 +168,7 @@ final class RouteFindingMainViewController: UIViewController {
     }
     
     @objc
-    private func tapPlusButton(){
+    private func tapPlusButton() {
         let vc = RouteFindingCameraViewController()
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)

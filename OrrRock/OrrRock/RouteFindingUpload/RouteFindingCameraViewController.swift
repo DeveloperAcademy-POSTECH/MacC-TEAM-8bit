@@ -59,6 +59,7 @@ final class RouteFindingCameraViewController: UIViewController {
         let config = UIImage.SymbolConfiguration(pointSize: 24, weight: .medium, scale: .small)
         let buttonSymbol = UIImage(systemName: "multiply", withConfiguration: config)?.withTintColor(UIColor.orrWhite ?? UIColor.white, renderingMode: .alwaysOriginal)
         button.setImage(buttonSymbol, for: .normal)
+        
         button.addTarget(self, action: #selector(dismissRouteFinidngCameraViewController), for: .touchUpInside)
         return button
     }()
@@ -156,7 +157,7 @@ extension RouteFindingCameraViewController {
     }
     
     @objc
-    private func dismissRouteFinidngCameraViewController(){
+    private func dismissRouteFinidngCameraViewController() {
         self.dismiss(animated: true)
     }
 }
