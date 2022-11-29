@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 final class RouteInfoView: UIView {
     
     // MARK: Variables
@@ -122,6 +124,32 @@ final class RouteInfoView: UIView {
         return button
     }()
     
+    // MARK: Life Cycle Functions
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.backgroundColor = .orrWhite
+        
+        setUpLayout()
+    }
+    
+    convenience init(frame: CGRect, routeInfo : RouteInformation, routeDataManager: RouteDataManager) {
+        self.init(frame: frame)
+        
+        self.routeInformation = routeInfo
+        self.routeDataManager = routeDataManager
+        
+        setUpLayout()
+        setUpData(routeInfo: routeInfo)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: @objc Functions
+    
     @objc private func dateEdit() {
         // 날짜, 클라이밍장 편집 뷰 네비게이션
         let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
@@ -140,6 +168,8 @@ final class RouteInfoView: UIView {
         // 날짜, 클라이밍장 편집 뷰 네비게이션
         let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
         let vc = GymEditViewController()
+        vc.routeInformation = routeInformation
+        
         vc.completionHandler = { [self] gymName in
             routeDataManager?.updateRouteGymName(to: gymName, of: routeInformation!)
             self.gymNameLabel.text = gymName
@@ -151,8 +181,9 @@ final class RouteInfoView: UIView {
         // 난이도, 성패여부 편집 뷰 네비게이션
         let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
         let vc = LevelAndPFEditViewController()
-//        vc.videoInformation = videoInformation
-//        vc.pickerSelectValue = Int(videoInformation!.problemLevel)
+        vc.routeInformation = routeInformation
+        vc.pickerSelectValue = Int(routeInformation!.problemLevel)
+        
         vc.completionHandler = { isSuccess, level in
             self.routeDataManager?.updateRouteLevelAndStatus(statusTo: isSuccess, levelTo: level, of: self.routeInformation!)
             self.levelIcon.text = level == -1 ? "V?" : "V\(level)"
@@ -160,22 +191,103 @@ final class RouteInfoView: UIView {
         }
         viewController.present(vc, animated: true)
     }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.backgroundColor = .orrWhite
-//        setUpLayout()
-    }
-    
-    convenience init(frame: CGRect, routeInfo : RouteInformation, routeDataManager: RouteDataManager) {
-        self.init(frame: frame)
-        
-        self.routeInformation = routeInfo
-        self.routeDataManager = routeDataManager
-//        refreshData(videoInfo: videoInfo)
-    }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }
 
+extension RouteInfoView {
+    
+    // MARK: Set Up Functions
+    
+    private func setUpLayout() {
+        // 날짜 입력 뷰
+        self.addSubview(dateView)
+        dateView.snp.makeConstraints {
+            $0.height.equalTo(56)
+            $0.leading.trailing.equalToSuperview().inset(OrrPd.pd16.rawValue)
+            $0.top.equalTo(self.snp.top).offset(OrrPd.pd16.rawValue)
+        }
+        // 클라이밍장 이름 뷰
+        self.addSubview(gymNameView)
+        gymNameView.snp.makeConstraints {
+            $0.height.equalTo(56)
+            $0.leading.trailing.equalToSuperview().inset(OrrPd.pd16.rawValue)
+            $0.top.equalTo(dateView.snp.bottom).offset(OrrPd.pd16.rawValue)
+        }
+        // 문제 난이도 뷰
+        self.addSubview(levelView)
+        levelView.snp.makeConstraints {
+            $0.height.equalTo(56)
+            $0.leading.trailing.equalToSuperview().inset(OrrPd.pd16.rawValue)
+            $0.top.equalTo(gymNameView.snp.bottom).offset(OrrPd.pd16.rawValue)
+        }
+        
+        // 날짜 입력 뷰 내 컴포넌트
+        dateView.addSubview(dateIcon)
+        dateIcon.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.centerX.equalTo(dateView.snp.leading).offset(28)
+            $0.width.height.equalTo(24)
+        }
+        
+        dateView.addSubview(dateLabel)
+        dateLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(dateIcon.snp.trailing).offset(OrrPd.pd8.rawValue)
+        }
+        
+        // 클라이밍장 정보 뷰 내 컴포넌트
+        gymNameView.addSubview(gymNameIcon)
+        gymNameIcon.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.centerX.equalTo(gymNameView.snp.leading).offset(28)
+            $0.width.height.equalTo(34)
+        }
+        
+        gymNameView.addSubview(gymNameLabel)
+        gymNameLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(dateLabel.snp.leading)
+        }
+        
+        // 문제 난이도 뷰 내 컴포넌트
+        levelView.addSubview(levelIcon)
+        levelIcon.snp.makeConstraints {
+            $0.width.height.equalTo(26)
+            $0.centerY.equalToSuperview()
+            $0.centerX.equalTo(levelView.snp.leading).offset(28)
+        }
+        
+        levelView.addSubview(isSucceeded)
+        isSucceeded.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(dateLabel.snp.leading)
+        }
+        
+        // 날짜 편집 버튼
+        dateView.addSubview(dateEditButton)
+        dateEditButton.snp.makeConstraints {
+            $0.centerY.equalTo(dateView.snp.centerY)
+            $0.trailing.equalTo(dateView.snp.trailing).inset(OrrPd.pd20.rawValue)
+        }
+        
+        gymNameView.addSubview(gymNameEditButton)
+        gymNameEditButton.snp.makeConstraints {
+            $0.centerY.equalTo(gymNameView.snp.centerY)
+            $0.trailing.equalTo(gymNameView.snp.trailing).inset(OrrPd.pd20.rawValue)
+        }
+        
+        // 난이도, 성패여부 편집 버튼
+        levelView.addSubview(levelPFEditButton)
+        levelPFEditButton.snp.makeConstraints {
+            $0.centerY.equalTo(levelView.snp.centerY)
+            $0.trailing.equalTo(levelView.snp.trailing).inset(OrrPd.pd20.rawValue)
+        }
+    }
+    
+    private func setUpData(routeInfo: RouteInformation) {
+        self.routeInformation = routeInfo
+        dateLabel.text = routeInformation?.dataWrittenDate.timeToString()
+        levelIcon.text = routeInformation?.problemLevel == -1 ? "V?" : "V\(routeInformation?.problemLevel ?? 0)"
+        isSucceeded.text = routeInformation!.isChallengeComplete ? "성공" : "실패"
+        gymNameLabel.text = routeInformation?.gymName
+    }
+}
