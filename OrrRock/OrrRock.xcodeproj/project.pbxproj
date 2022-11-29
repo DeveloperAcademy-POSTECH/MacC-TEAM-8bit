@@ -141,6 +141,8 @@
 		FBB272B62932798F00A36CB0 /* SaveRouteFindingImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB272B52932798F00A36CB0 /* SaveRouteFindingImageCollectionViewCell.swift */; };
 		FBB272B8293279E200A36CB0 /* SaveRouteFindingImageCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB272B7293279E200A36CB0 /* SaveRouteFindingImageCollectionViewFlowLayout.swift */; };
 		FBB272BA29329EBA00A36CB0 /* RouteFindingSaveViewController+UICollectionViewExtensions.swift .swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB272B929329EBA00A36CB0 /* RouteFindingSaveViewController+UICollectionViewExtensions.swift .swift */; };
+		FBB272BC2933E9AD00A36CB0 /* RouteFindingGymSaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB272BB2933E9AD00A36CB0 /* RouteFindingGymSaveViewController.swift */; };
+		FBB272BE2933EA1C00A36CB0 /* RouteFindingGymSaveViewController+TableViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB272BD2933EA1C00A36CB0 /* RouteFindingGymSaveViewController+TableViewExtention.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -277,6 +279,8 @@
 		FBB272B52932798F00A36CB0 /* SaveRouteFindingImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveRouteFindingImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		FBB272B7293279E200A36CB0 /* SaveRouteFindingImageCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveRouteFindingImageCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		FBB272B929329EBA00A36CB0 /* RouteFindingSaveViewController+UICollectionViewExtensions.swift .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteFindingSaveViewController+UICollectionViewExtensions.swift .swift"; sourceTree = "<group>"; };
+		FBB272BB2933E9AD00A36CB0 /* RouteFindingGymSaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingGymSaveViewController.swift; sourceTree = "<group>"; };
+		FBB272BD2933EA1C00A36CB0 /* RouteFindingGymSaveViewController+TableViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteFindingGymSaveViewController+TableViewExtention.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -692,6 +696,8 @@
 				FBB272B929329EBA00A36CB0 /* RouteFindingSaveViewController+UICollectionViewExtensions.swift .swift */,
 				FBB272B7293279E200A36CB0 /* SaveRouteFindingImageCollectionViewFlowLayout.swift */,
 				FBB272B52932798F00A36CB0 /* SaveRouteFindingImageCollectionViewCell.swift */,
+				FBB272BB2933E9AD00A36CB0 /* RouteFindingGymSaveViewController.swift */,
+				FBB272BD2933EA1C00A36CB0 /* RouteFindingGymSaveViewController+TableViewExtention.swift */,
 			);
 			path = SaveRootFinding;
 			sourceTree = "<group>";
@@ -788,6 +794,7 @@
 				78FEE88B292616BC007B67BD /* VideoDetailViewController+Extensions.swift in Sources */,
 				0A0B410D2907C79200057FA7 /* VideoResultType.swift in Sources */,
 				34EC54582924C93B00EE558E /* HomeTableViewHeader.swift in Sources */,
+				FBB272BC2933E9AD00A36CB0 /* RouteFindingGymSaveViewController.swift in Sources */,
 				70A44805290440E600BE18A5 /* DateSettingViewController.swift in Sources */,
 				78B6A710292F8CD800C0BB70 /* UnderlineSegmentedControl.swift in Sources */,
 				34172EB7292B41D1009DAAB8 /* HomeGymChartView.swift in Sources */,
@@ -825,6 +832,7 @@
 				34E11EE729309E2900787316 /* RouteFindingThumbnailCollectionViewCell.swift in Sources */,
 				3A4641D3292FAF7300C6B7A3 /* RouteInformation+CoreDataClass.swift in Sources */,
 				FB32281329046CDE00276A7D /* VideoPlayView.swift in Sources */,
+				FBB272BE2933EA1C00A36CB0 /* RouteFindingGymSaveViewController+TableViewExtention.swift in Sources */,
 				3A4641C0292FA8F600C6B7A3 /* FootOrHand.swift in Sources */,
 				3A2880EB29033C2500FBFB70 /* FilterOption.swift in Sources */,
 				34E11EC3292BEDCF00787316 /* FirstDateSettingViewController.swift in Sources */,
