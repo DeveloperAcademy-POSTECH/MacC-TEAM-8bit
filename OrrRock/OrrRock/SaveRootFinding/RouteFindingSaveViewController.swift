@@ -73,16 +73,18 @@ class RouteFindingSaveViewController: UIViewController {
     }()
     
     private lazy var nextButton: UIButton = {
-        let btn = UIButton()
-        btn.clipsToBounds = true
-        btn.layer.cornerRadius = 15
-        btn.setBackgroundColor(.orrUPBlue!, for: .normal)
-//        btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
-        btn.setTitle("저장", for: .normal)
-        btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel!.font = UIFont.boldSystemFont(ofSize: 17)
+        let button = UIButton()
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 15
+        button.setBackgroundColor(.orrUPBlue!, for: .normal)
+        button.setTitle("저장", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel!.font = UIFont.boldSystemFont(ofSize: 17)
+        button.addAction(UIAction { _ in
+            self.pressNextButton()
+        }, for: .touchUpInside)
         
-        return btn
+        return button
     }()
     
     private lazy var skipButton: UIButton = {
@@ -213,6 +215,11 @@ class RouteFindingSaveViewController: UIViewController {
                 self.toastMessageView.removeFromSuperview()
             })
         })
+    }
+    
+    @objc final func pressNextButton() {
+        let routeFindingGymSaveViewController = RouteFindingGymSaveViewController()
+        navigationController?.pushViewController(routeFindingGymSaveViewController, animated: true)
     }
     
     func setCountVideoLabel() {

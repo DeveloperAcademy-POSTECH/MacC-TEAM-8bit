@@ -39,33 +39,17 @@ final class RouteFindingLevelSaveViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var levelStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.alignment = .fill
-        stackView.distribution = .equalSpacing
-        stackView.spacing = 10
+    let nextButton : UIButton = {
+        let button = UIButton()
+        button.setBackgroundColor(.orrUPBlue!, for: .normal)
+        button.setBackgroundColor(.orrGray300!, for: .disabled)
+        button.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
+        button.setTitle("다음", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
+        button.setTitleColor(.white, for: .normal)
+        button.isEnabled = false
         
-        return stackView
-    }()
-    
-    private lazy var buttonStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.alignment = .fill
-        stackView.distribution = .equalSpacing
-        stackView.spacing = 3
-        
-        return stackView
-    }()
-    
-    private lazy var emptyVideoView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrGray300
-        view.layer.cornerRadius = 10
-        view.clipsToBounds = true
-        
-        return view
+        return button
     }()
     
     override func viewDidLoad() {
@@ -83,6 +67,12 @@ final class RouteFindingLevelSaveViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
+    }
+    
+    @objc final func pressNextButton() {
+        
+        let routeFindingLevelSaveViewController = RouteFindingLevelSaveViewController()
+        navigationController?.pushViewController(routeFindingLevelSaveViewController, animated: true)
     }
 }
 
@@ -111,6 +101,14 @@ private extension RouteFindingLevelSaveViewController {
             $0.trailing.equalTo(view.snp.trailing)
             $0.height.equalTo(120)
             $0.top.equalTo(gymNameLabel.snp.bottom).offset(OrrPd.pd36.rawValue)
+        }
+        
+        view.addSubview(nextButton)
+        nextButton.snp.makeConstraints {
+            $0.centerX.equalTo(view)
+            $0.bottom.equalTo(view).inset(OrrPd.pd36.rawValue)
+            $0.leading.trailing.equalTo(view).inset(OrrPd.pd16.rawValue)
+            $0.height.equalTo(56)
         }
     }
 }

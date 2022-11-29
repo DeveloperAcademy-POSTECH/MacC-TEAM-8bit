@@ -38,15 +38,16 @@ class RouteFindingGymSaveViewController: UIViewController {
     }()
     
     let nextButton : UIButton = {
-        let btn = UIButton()
-        btn.setBackgroundColor(.orrUPBlue!, for: .normal)
-        btn.setBackgroundColor(.orrGray300!, for: .disabled)
-        btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
-        btn.setTitle("다음", for: .normal)
-        btn.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
-        btn.setTitleColor(.white, for: .normal)
-        btn.isEnabled = false
-        return btn
+        let button = UIButton()
+        button.setBackgroundColor(.orrUPBlue!, for: .normal)
+        button.setBackgroundColor(.orrGray300!, for: .disabled)
+        button.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
+        button.setTitle("다음", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
+        button.setTitleColor(.white, for: .normal)
+        button.isEnabled = false
+        
+        return button
     }()
     
     lazy var autocompleteTableView: UITableView = {
@@ -113,18 +114,20 @@ extension RouteFindingGymSaveViewController {
         resetAutocompleteTableView()
     }
     
-    @objc
-    final func pressNextButton() {
-        // 자동완성에 클라이밍장명 데이터 업데이트
-        let target = visitedGymList.filter({ $0.name == gymTextField.text! })
-        if target.isEmpty {
-            // 만약 클라이밍장 명이 데이터에 포함되어 있지 않으면 추가하기
-            DataManager.shared.createVisitedClimbingGym(gymName: gymTextField.text!)
-        } else {
-            // 만약 클라이밍장 명이 데이터에 이미 포함되어 있다면, 최근 방문으로 날짜 변경하기
-            let index = visitedGymList.firstIndex(of: target[0])
-            DataManager.shared.updateVisitedClimbingGym(updateTarget: visitedGymList[index!])
-        }
+    @objc final func pressNextButton() {
+//        // 자동완성에 클라이밍장명 데이터 업데이트
+//        let target = visitedGymList.filter({ $0.name == gymTextField.text! })
+//        if target.isEmpty {
+//            // 만약 클라이밍장 명이 데이터에 포함되어 있지 않으면 추가하기
+//            DataManager.shared.createVisitedClimbingGym(gymName: gymTextField.text!)
+//        } else {
+//            // 만약 클라이밍장 명이 데이터에 이미 포함되어 있다면, 최근 방문으로 날짜 변경하기
+//            let index = visitedGymList.firstIndex(of: target[0])
+//            DataManager.shared.updateVisitedClimbingGym(updateTarget: visitedGymList[index!])
+//        }
+        
+        let routeFindingLevelSaveViewController = RouteFindingLevelSaveViewController()
+        navigationController?.pushViewController(routeFindingLevelSaveViewController, animated: true)
     }
     
     
