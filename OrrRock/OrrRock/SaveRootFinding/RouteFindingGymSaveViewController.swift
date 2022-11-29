@@ -12,6 +12,9 @@ import SnapKit
 
 class RouteFindingGymSaveViewController: UIViewController {
     
+    var routeDataDraft: RouteDataDraft
+    var routeInfo: RouteInfo
+    
     var gymVisitDate : Date?
     var visitedGymList: [VisitedClimbingGym] = []
     var filteredVisitedGymList: [VisitedClimbingGym] = []
@@ -80,6 +83,17 @@ class RouteFindingGymSaveViewController: UIViewController {
         label.font = .systemFont(ofSize: 22, weight: .regular)
         return label
     }()
+    
+    init(routeDataDraft: RouteDataDraft) {
+        self.routeDataDraft = routeDataDraft
+        self.routeInfo = routeDataDraft.routeInfoForUI
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) is not supported")
+    }
     
     //MARK: 생명주기 함수 모음
     override func viewDidLoad() {
