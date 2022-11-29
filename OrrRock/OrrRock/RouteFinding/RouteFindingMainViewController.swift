@@ -171,7 +171,9 @@ final class RouteFindingMainViewController: UIViewController {
     private func tapPlusButton() {
         let vc = RouteFindingCameraViewController()
         vc.routeDataManager = routeDataManager
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true)
+        let navVc = UINavigationController(rootViewController: vc)
+        navVc.modalPresentationStyle = .fullScreen
+        navVc.isNavigationBarHidden = true
+        self.present(navVc, animated: true)
     }
 }
