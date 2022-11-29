@@ -36,27 +36,3 @@ extension RouteFindingCameraViewController: AVCapturePhotoCaptureDelegate {
         navigateToRouteFindingFeatureVC(phAssetLocalIdentifier: "", image: photoImage)
     }
 }
-
-// MARK: Photo Save - 변경된 데이터 플로우에 따라 RouteFinding 마지막 과정에서 호출됩니다.
-//func savePhotoByLocalIdentifier(targetImage image: UIImage?, _ completion: @escaping (String) -> Void) {
-//    let status = PHPhotoLibrary.authorizationStatus()
-//    if status == .authorized {
-//        do {
-//            try PHPhotoLibrary.shared().performChangesAndWait {
-//                guard let photoImage = image else { return }
-//                let assetRequest = PHAssetChangeRequest.creationRequestForAsset(from: photoImage)
-//                completion(assetRequest.placeholderForCreatedAsset?.localIdentifier ?? "")
-//            }
-//        }
-//        catch let error {
-//            print("saveImage: there was a problem: \(error.localizedDescription)")
-//        }
-//    }
-//}
-
-// savePhotoByLocalIdentifier 실제 사용 예시
-//savePhotoByLocalIdentifier(targetImage: photoImage) { localIdentifier in
-//    self.currentLocalIdentifier = localIdentifier
-//    print(self.currentLocalIdentifier)
-//}
-

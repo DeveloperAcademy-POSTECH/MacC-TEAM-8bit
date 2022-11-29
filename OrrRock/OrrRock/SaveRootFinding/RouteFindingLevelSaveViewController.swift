@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Photos
 
 final class RouteFindingLevelSaveViewController: UIViewController {
     
@@ -100,7 +101,37 @@ final class RouteFindingLevelSaveViewController: UIViewController {
     }
     
     @objc final func pressNextButton() {
-        // TODO: 코어 데이터에 저장하는 로직 추가
+        routeDataDraft.updateProblemLevel(problemLevel: currentSelectedLevel)
+        
+        var imageLocalIdentifier = routeDataDraft.routeInfoForUI.imageLocalIdentifier
+        
+        if  imageLocalIdentifier == "" {
+            // 사진 촬영 기능을 통해 사진을 가져왔을 경우
+            func savePhotoByLocalIdentifier(targetImage image: UIImage?, _ completion: @escaping (String) -> Void) {
+                let status = PHPhotoLibrary.authorizationStatus()
+                if status == .authorized {
+                    do {
+                        try PHPhotoLibrary.shared().performChangesAndWait {
+                            guard let photoImage = image else { return }
+                            let assetRequest = PHAssetChangeRequest.creationRequestForAsset(from: photoImage)
+                            completion(assetRequest.placeholderForCreatedAsset?.localIdentifier ?? "")
+                        }
+                    }
+                    catch let error {
+                        print("saveImage: there was a problem: \(error.localizedDescription)")
+                    }
+                }
+            }
+            
+            savePhotoByLocalIdentifier(targetImage: backgroundImage) { localIdentifier in
+                imageLocalIdentifier = localIdentifier
+            }
+            routeDataDraft.save()
+        } else {
+            // 사진 앨범에서 사진을 가져왔을 경우
+            routeDataDraft.save()
+        }
+        
         self.dismiss(animated: true, completion: nil)
     }
     
