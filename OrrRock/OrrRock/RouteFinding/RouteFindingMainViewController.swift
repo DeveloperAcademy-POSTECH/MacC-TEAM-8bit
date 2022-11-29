@@ -40,7 +40,7 @@ final class RouteFindingMainViewController: UIViewController {
     
     private lazy var allRouteFindingViewController: UIViewController = {
         let vc = RouteFindingSectionViewController()
-        vc.RouteInformations = routeInfoList
+        vc.routeInformations = routeInfoList
         vc.routeFindingDataManager = routeDataManager
         vc.sectionKind = RouteFindingSection.all
         return vc
@@ -48,7 +48,7 @@ final class RouteFindingMainViewController: UIViewController {
     
     private lazy var challengeRouteFindingViewController: UIViewController = {
         let vc = RouteFindingSectionViewController()
-        vc.RouteInformations = routeInfoList.filter({ $0.isChallengeComplete == false })
+        vc.routeInformations = routeInfoList.filter({ $0.isChallengeComplete == false })
         vc.routeFindingDataManager = routeDataManager
         vc.sectionKind = RouteFindingSection.challenge
         return vc
@@ -56,7 +56,7 @@ final class RouteFindingMainViewController: UIViewController {
     
     private lazy var successRouteFindingViewController: UIViewController = {
         let vc = RouteFindingSectionViewController()
-        vc.RouteInformations = routeInfoList.filter({ $0.isChallengeComplete == true })
+        vc.routeInformations = routeInfoList.filter({ $0.isChallengeComplete == true })
         vc.routeFindingDataManager = routeDataManager
         vc.sectionKind = RouteFindingSection.success
         return vc

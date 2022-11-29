@@ -22,7 +22,7 @@ extension RouteFindingSectionViewController: UICollectionViewDelegate {
                 withReuseIdentifier: RouteFindingCollectionViewHeaderCell.id,
                 for: indexPath
             ) as! RouteFindingCollectionViewHeaderCell
-            supplementaryView.prepare(title: "\(RouteInformations.count)개의 도전", subtitle: "편집",isEditing: mMode == .view ? false : true)
+            supplementaryView.prepare(title: "\(routeInformations.count)개의 도전", subtitle: "편집",isEditing: mMode == .view ? false : true)
             supplementaryView.delegate = self
             return supplementaryView
             
@@ -43,7 +43,7 @@ extension RouteFindingSectionViewController: UICollectionViewDelegate {
 extension RouteFindingSectionViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return RouteInformations.count
+        return routeInformations.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -52,11 +52,12 @@ extension RouteFindingSectionViewController: UICollectionViewDataSource {
         let screenScale = UIScreen.main.scale
         let screenSize = CGSize(width: screenBounds.size.width * screenScale, height: screenBounds.size.height * screenScale)
         
+        let index = indexPath.row
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RouteFindingCollectionViewCustomCell", for: indexPath) as! RouteFindingCollectionViewCustomCell
-        cell.cellLevelLabel.text = "V\(RouteInformations[indexPath.row].problemLevel)"
-        cell.cellChallengeLabel.text = RouteInformations[indexPath.row].isChallengeComplete ? "도전 성공" : "도전 중"
-        cell.cellDateLabel.text = RouteInformations[indexPath.row].dataWrittenDate.timeToString()
-        cell.cellTitleLabel.text = RouteInformations[indexPath.row].gymName
+        cell.cellLevelLabel.text = "V\(routeInformations[index].problemLevel)"
+        cell.cellChallengeLabel.text = routeInformations[index].isChallengeComplete ? "도전 성공" : "도전 중"
+        cell.cellDateLabel.text = routeInformations[index].dataWrittenDate.timeToString()
+        cell.cellTitleLabel.text = routeInformations[index].gymName
         cell.cellImage.image = UIImage(named: "SwipeOnboardingImage1")
         cell.isSelectable = mMode == .select ? true : false
         return cell
@@ -152,7 +153,7 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
             switch sectionKind {
             case .all:
                 for i in temporarySavedIndexPaths.sorted(by:{$0.item > $1.item}) {
-                    routeFindingDataManager?.updateRouteStatus(to: editType == .toSuccess ? true : false, of: RouteInformations[i.item])
+                    routeFindingDataManager?.updateRouteStatus(to: editType == .toSuccess ? true : false, of: routeInformations[i.item])
                 }
             case .challenge:
                 if editType == .toSuccess {
@@ -181,23 +182,23 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
     
     private func deleteRouteInformationsData(at temporarySavedIndexPaths: [IndexPath]) {
         for i in temporarySavedIndexPaths.sorted(by:{$0.item > $1.item}) {
-            routeFindingDataManager!.deleteRouteData(routeInformation: RouteInformations[i.item])
-            RouteInformations.remove(at: i.item)
+            routeFindingDataManager!.deleteRouteData(routeInformation: routeInformations[i.item])
+            routeInformations.remove(at: i.item)
         }
     }
     
     private func changeSuccessToChallenge(at temporarySavedIndexPaths: [IndexPath]) {
         for i in temporarySavedIndexPaths.sorted(by:{$0.item > $1.item}) {
-            routeFindingDataManager?.updateRouteStatus(to: false, of: RouteInformations[i.item])
-            RouteInformations.remove(at: i.item)
+            routeFindingDataManager?.updateRouteStatus(to: false, of: routeInformations[i.item])
+            routeInformations.remove(at: i.item)
         }
         routeFindingCollectionView.deleteItems(at: temporarySavedIndexPaths)
     }
     
     private func changeChallengeToSuccess(at temporarySavedIndexPaths: [IndexPath]) {
         for i in temporarySavedIndexPaths.sorted(by:{$0.item > $1.item}) {
-            routeFindingDataManager?.updateRouteStatus(to: true, of: RouteInformations[i.item])
-            RouteInformations.remove(at: i.item)
+            routeFindingDataManager?.updateRouteStatus(to: true, of: routeInformations[i.item])
+            routeInformations.remove(at: i.item)
         }
         routeFindingCollectionView.deleteItems(at: temporarySavedIndexPaths)
     }
@@ -236,7 +237,7 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
     }
     
     private func checkAndShowEmptyGuideView() {
-        if RouteInformations.count == 0 {
+        if routeInformations.count == 0 {
             self.emptyGuideView.alpha = 1.0
         }
     }

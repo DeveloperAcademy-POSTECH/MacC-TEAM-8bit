@@ -9,7 +9,7 @@ import UIKit
 
 class RouteFindingSectionViewController: UIViewController {
     
-    var RouteInformations: [RouteInformation]!
+    var routeInformations: [RouteInformation]!
     var dictionarySelectedIndexPath: [IndexPath : Bool] = [:]
     var routeFindingDataManager: RouteDataManager?
     var sectionKind: RouteFindingSection?
@@ -113,7 +113,7 @@ class RouteFindingSectionViewController: UIViewController {
         super.viewWillAppear(animated)
         initRouteInformations()
         routeFindingCollectionView.reloadData()
-        emptyGuideView.alpha = RouteInformations.count == 0 ? 1.0 : 0.0
+        emptyGuideView.alpha = routeInformations.count == 0 ? 1.0 : 0.0
         
     }
     
@@ -211,11 +211,11 @@ class RouteFindingSectionViewController: UIViewController {
     private func initRouteInformations() {
         switch sectionKind{
         case .all:
-            RouteInformations = routeFindingDataManager?.getRouteFindingList()
+            routeInformations = routeFindingDataManager?.getRouteFindingList()
         case .challenge:
-            RouteInformations = routeFindingDataManager?.getSpecificRouteFindingList(isChallengeComplete: false)
+            routeInformations = routeFindingDataManager?.getSpecificRouteFindingList(isChallengeComplete: false)
         case .success:
-            RouteInformations = routeFindingDataManager?.getSpecificRouteFindingList(isChallengeComplete: true)
+            routeInformations = routeFindingDataManager?.getSpecificRouteFindingList(isChallengeComplete: true)
         case .none:
             break
         }

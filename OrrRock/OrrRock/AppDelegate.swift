@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let appearance = UITabBarAppearance()
         let tabBar = UITabBar()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor(named: "oRGray050Custom")
+        appearance.backgroundColor = UIColor.orrGray050Custom
         tabBar.standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
         return true
