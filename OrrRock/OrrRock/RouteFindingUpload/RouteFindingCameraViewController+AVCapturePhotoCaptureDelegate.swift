@@ -12,7 +12,7 @@ import Photos
 extension RouteFindingCameraViewController: AVCapturePhotoCaptureDelegate {
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        guard error != nil else {
+        guard error == nil else {
             print("Error capturing photo: \(error)")
             return
         }
@@ -28,7 +28,7 @@ extension RouteFindingCameraViewController: AVCapturePhotoCaptureDelegate {
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishCaptureFor resolvedSettings: AVCaptureResolvedPhotoSettings, error: Error?) {
         
-        guard error != nil else {
+        guard error == nil else {
             print("Error capturing photo: \(error)")
             return
         }
