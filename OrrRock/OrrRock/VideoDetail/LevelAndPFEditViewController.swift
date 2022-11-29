@@ -23,21 +23,12 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
     var pickerSelectValue = 0
     private let padding = 68
 
-    private lazy var levelTopView : UIView = {
-        let view = UIView()
-        
-        view.backgroundColor = .orrGray100
-        view.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
-        
-        view.addSubview(cancelButton)
-        cancelButton.snp.makeConstraints {
-            $0.centerY.equalTo(titleLabel.snp.centerY)
-            $0.left.equalToSuperview().inset(15)
-        }
-        return view
+    private lazy var titleLabel : UILabel = {
+        let title = UILabel()
+        title.text = "문제 편집"
+        title.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        title.textColor = .orrBlack
+        return title
     }()
     
     lazy var cancelButton : UIButton = {
@@ -47,6 +38,14 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         btn.addTarget(self, action: #selector(didCancelButtonClicked(_:)), for: .touchUpInside)
         return btn
     }()
+    
+    private lazy var levelTopView : UIView = {
+        let view = UIView()
+        view.backgroundColor = .orrGray100
+        return view
+    }()
+    
+
     
     
     private lazy var newLevelPickerView: NewLevelPickerView = {
@@ -59,13 +58,7 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
 
     
     
-    private lazy var titleLabel : UILabel = {
-        let title = UILabel()
-        title.text = "문제 편집"
-        title.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        title.textColor = .orrBlack
-        return title
-    }()
+
     
     private lazy var paddingView : UIView = {
         let view = UIView()
@@ -147,6 +140,18 @@ extension LevelAndPFEditViewController {
             $0.height.equalTo(60)
             $0.top.equalToSuperview()
         }
+        
+        levelTopView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
+        levelTopView.addSubview(cancelButton)
+        cancelButton.snp.makeConstraints {
+            $0.centerY.equalTo(titleLabel.snp.centerY)
+            $0.left.equalToSuperview().inset(15)
+        }
+        
         
         view.addSubview(newLevelPickerView)
         newLevelPickerView.snp.makeConstraints {
