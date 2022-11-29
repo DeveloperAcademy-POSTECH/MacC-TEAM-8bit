@@ -12,6 +12,7 @@ import PhotosUI
 final class RouteFindingCameraViewController: UIViewController {
     
     var currentLocalIdentifier: String?
+    var routeDataManager: RouteDataManager?
     
     private lazy var cameraView: CameraView = {
         let view = CameraView()
