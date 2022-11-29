@@ -91,6 +91,7 @@ class RouteFindingGymSaveViewController: UIViewController {
         setUpData()
         setUpLayout()
         setUITableViewDelegate()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
     override func viewDidAppear(_ animated: Bool) {

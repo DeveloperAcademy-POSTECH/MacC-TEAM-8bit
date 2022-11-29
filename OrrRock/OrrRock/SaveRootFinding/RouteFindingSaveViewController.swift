@@ -152,6 +152,7 @@ class RouteFindingSaveViewController: UIViewController {
         setUpLayout()
         setCountVideoLabel()
         setUpsaveRouteFindingImageCollectionViewDelegate()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
         
         self.view.backgroundColor = .orrWhite
         overrideUserInterfaceStyle = .dark

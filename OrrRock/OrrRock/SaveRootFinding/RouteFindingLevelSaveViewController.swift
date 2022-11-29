@@ -74,6 +74,8 @@ final class RouteFindingLevelSaveViewController: UIViewController {
         overrideUserInterfaceStyle = .dark
 
         setUpLayout()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
