@@ -57,12 +57,12 @@ final class RouteFindingLevelSaveViewController: UIViewController {
     let nextButton : UIButton = {
         let button = UIButton()
         button.setBackgroundColor(.orrUPBlue!, for: .normal)
-        button.setBackgroundColor(.orrGray300!, for: .disabled)
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 15
         button.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
-        button.setTitle("다음", for: .normal)
+        button.setTitle("저장", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
         button.setTitleColor(.white, for: .normal)
-        button.isEnabled = false
         
         return button
     }()
@@ -85,8 +85,7 @@ final class RouteFindingLevelSaveViewController: UIViewController {
     }
     
     @objc final func pressNextButton() {
-        let routeFindingLevelSaveViewController = RouteFindingLevelSaveViewController()
-        navigationController?.pushViewController(routeFindingLevelSaveViewController, animated: true)
+        // TODO: 코어 데이터에 저장하는 로직 추가
     }
     
     @objc func goBackAction() {
@@ -133,7 +132,8 @@ private extension RouteFindingLevelSaveViewController {
         nextButton.snp.makeConstraints {
             $0.centerX.equalTo(view)
             $0.bottom.equalTo(view).inset(OrrPd.pd36.rawValue)
-            $0.leading.trailing.equalTo(view).inset(OrrPd.pd16.rawValue)
+            $0.leading.equalTo(view).inset(OrrPd.pd16.rawValue)
+            $0.trailing.equalTo(view).inset(OrrPd.pd16.rawValue)
             $0.height.equalTo(56)
         }
     }
