@@ -607,8 +607,8 @@ private extension LevelAndPFSettingViewController {
         videoSlider.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(OrrPd.pd16.rawValue)
             // TODO: Slider 초기, 후기에 급하게 값이 변동되어 offset으로 해당 영역 숨김. 슬라이더 디테일 작업 보완 예정.
-            $0.leading.equalTo(view.safeAreaLayoutGuide)//.offset(-OrrPd.pd24.rawValue)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide)//.offset(OrrPd.pd24.rawValue)
+            $0.leading.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd24.rawValue)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd24.rawValue)
             $0.height.equalTo(56)
         }
         
