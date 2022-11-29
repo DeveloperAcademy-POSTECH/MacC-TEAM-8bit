@@ -18,8 +18,14 @@ final class RouteFindingFeatureViewController: UIViewController {
     var pages: [PageInfo]
     var pageViewControllerList: [RouteFindingPageViewController] = []
     var backgroundImage: UIImage?
-    
-    var isHandButton: Bool = false
+            
+    var isHandButton: Bool = false {
+        didSet {
+            pageViewControllerList.forEach { vc in
+                vc.isHandButton = isHandButton
+            }
+        }
+    }
     
     var pendingIndex: Int?
     
@@ -275,11 +281,11 @@ final class RouteFindingFeatureViewController: UIViewController {
         //        routeInfo -> 전달
 //        let routeFindingSaveViewController = RouteFindingSaveViewController(routeDataDraft: routeDataDraft, backgroundImage: backgroundImage, pageViews: pageViews)
         
-        for index in pageViewControllerList.indices {
-            pageViewControllerList[index].pageInfo.points?.forEach { point in
-                routeDataDraft.addPointData(pageAt: index, addTargetPointInfo: point)
-            }
-        }
+//        for index in pageViewControllerList.indices {
+//            pageViewControllerList[index].pageInfo.points?.forEach { point in
+//                routeDataDraft.addPointData(pageAt: index, addTargetPointInfo: point)
+//            }
+//        }
 
         print("Done Button Tapped")
     }
@@ -294,14 +300,14 @@ final class RouteFindingFeatureViewController: UIViewController {
     func tapHandButton() {
         
         // TODO: 손 버튼을 눌렀을 때 손 입력모드 or 최대 개수 초과 알림 띄우기
-        
+        isHandButton = true
         print("Hand Button Tapped")
     }
     
     func tapFootButton() {
         
         // TODO: 발 버튼을 눌렀을 때 손 입력모드 or 최대 개수 초과 알림 띄우기
-        
+        isHandButton = false
         print("Foot Button Tapped")
     }
     

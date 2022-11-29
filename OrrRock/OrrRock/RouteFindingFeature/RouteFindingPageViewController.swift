@@ -71,7 +71,7 @@ final class RouteFindingPageViewController: UIViewController {
         button.addGestureRecognizer(panGesture)
         // pageView에 points 좌표를 넘겨줌
         
-        pageInfo.points?.append(PointInfo(footOrHand: .hand, isForce: false, position: location, forceDirection: .pi0))
+        pageInfo.points?.append(PointInfo(footOrHand: isHandButton ? .hand : .foot, isForce: false, position: location, forceDirection: .pi0))
         buttonList.append(button)
         
         button.snp.makeConstraints{
