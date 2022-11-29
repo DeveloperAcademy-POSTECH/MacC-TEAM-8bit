@@ -44,7 +44,7 @@ class RouteFindingGymSaveViewController: UIViewController {
     let gymTextField : UnderlinedTextField = {
         let view = UnderlinedTextField()
         view.borderStyle = .none
-        view.placeholder = "클라이밍장"
+        view.placeholder = "클라이밍장을 입력해주세요"
         view.tintColor = .orrUPBlue
         view.font = UIFont.systemFont(ofSize: 22)
         view.addTarget(self, action: #selector(toggleNextButton(textField:)), for: .editingChanged)
