@@ -118,7 +118,7 @@ class RouteFindingSaveViewController: UIViewController {
     
     private lazy var countVideoView:  UIView = {
         let view = UIView()
-        view.backgroundColor = .orrGray500
+        view.backgroundColor = .orrGray800
         view.layer.cornerRadius = 10
         
         return view
