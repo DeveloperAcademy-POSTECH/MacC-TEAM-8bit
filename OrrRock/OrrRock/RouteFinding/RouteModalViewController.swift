@@ -77,7 +77,6 @@ class RouteModalViewController: UIViewController {
     
     @objc private func cancel() {
         self.dismiss(animated: true)
-        
     }
     
     @objc private func deleteSelects() {
