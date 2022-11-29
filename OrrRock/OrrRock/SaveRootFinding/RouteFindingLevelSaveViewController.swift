@@ -86,6 +86,7 @@ final class RouteFindingLevelSaveViewController: UIViewController {
     
     @objc final func pressNextButton() {
         // TODO: 코어 데이터에 저장하는 로직 추가
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func goBackAction() {

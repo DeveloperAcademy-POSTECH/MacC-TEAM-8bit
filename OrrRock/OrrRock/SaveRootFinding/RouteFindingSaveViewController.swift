@@ -88,11 +88,11 @@ class RouteFindingSaveViewController: UIViewController {
     }()
     
     private lazy var skipButton: UIButton = {
-        let btn = UIButton()
-//        btn.addTarget(self, action: #selector(pressSkipButton), for: .touchUpInside)
-        btn.setAttributedTitle("저장하지 않을래요".underLineAttribute(), for: .normal)
+        let button = UIButton()
+        button.addTarget(self, action: #selector(pressSkipButton), for: .touchUpInside)
+        button.setAttributedTitle("저장하지 않을래요".underLineAttribute(), for: .normal)
         
-        return btn
+        return button
     }()
     
     private lazy var toastMessageView: UIView = {
@@ -101,7 +101,7 @@ class RouteFindingSaveViewController: UIViewController {
         view.layer.borderWidth = 1
         view.alpha = 1
         view.layer.cornerRadius = 15
-        view.backgroundColor = UIColor.orrBlack
+        view.backgroundColor = .black
         view.clipsToBounds  =  true
         
         return view
@@ -182,6 +182,10 @@ class RouteFindingSaveViewController: UIViewController {
     
     @objc func goBackAction() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func pressSkipButton() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func saveAction() {
