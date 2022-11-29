@@ -165,7 +165,7 @@ extension RouteFindingGymSaveViewController {
         view.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(OrrPd.pd16.rawValue)
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd8.rawValue)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd72.rawValue)
         }
         
         view.addSubview(gymTextField)

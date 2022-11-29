@@ -254,7 +254,7 @@ extension RouteFindingSaveViewController {
         
         view.addSubview(countVideoView)
         countVideoView.snp.makeConstraints {
-            $0.bottom.equalTo(skipButton.snp.top).offset(-OrrPd.pd36.rawValue)
+            $0.bottom.equalTo(skipButton.snp.top).offset(-54) // TODO: 린다와 패딩 협의 필요
             $0.centerX.equalToSuperview()
             $0.height.equalTo(24)
             $0.width.equalTo(71)
