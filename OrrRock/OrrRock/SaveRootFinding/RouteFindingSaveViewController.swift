@@ -28,7 +28,7 @@ class RouteFindingSaveViewController: UIViewController {
     var previewImage: UIImageView! = {
         let view = UIImageView()
         //FIXME: PR전 dummyData 삭제
-        view.image = RouteInfo.dummyData.imageLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: 1080, height: 1920))
+        view.image = RouteInfo.dummyData.imageLocalIdentifier.generateCardViewThumbnail()
        
         return view
     }()

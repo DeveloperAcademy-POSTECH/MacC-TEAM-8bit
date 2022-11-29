@@ -56,7 +56,7 @@ extension RouteFindingSaveViewController: UICollectionViewDataSource {
         cell.pageImage.contentMode = .scaleAspectFill
         cell.pageImage.clipsToBounds = true
         // FIXME: PR전 dummyData 삭제
-        cell.pageImage.image = RouteInfo.dummyData.imageLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: collectionViewCellwidth, height: collectionViewCellwidth / 16 * 9))
+        cell.pageImage.image = RouteInfo.dummyData.imageLocalIdentifier.generateCardViewThumbnail()
         print(cell)
         
         return cell
