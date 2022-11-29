@@ -13,9 +13,11 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     // MARK: Variables
     
+    var routeDataDraft: RouteDataDraft
     var routeInfo: RouteInfo
     var pages: [PageInfo]
     var pageViews: [RouteFindingPageView] = []
+    var backgroundImage: UIImage
     
     var centerCell: RouteFindingThumbnailCollectionViewCell?
     private var beforeCell: RouteFindingThumbnailCollectionViewCell?
@@ -32,7 +34,7 @@ final class RouteFindingFeatureViewController: UIViewController {
         let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)!.windows.first
         let contentHeight = view.frame.height - Double(((window?.safeAreaInsets.top)! + (window?.safeAreaInsets.bottom)!))
         let contentWidth = view.frame.width
-        view.image = routeInfo.imageLocalIdentifier.generateCardViewThumbnail()
+        view.image = backgroundImage
         view.backgroundColor = .white
         return view
     }()
@@ -153,10 +155,12 @@ final class RouteFindingFeatureViewController: UIViewController {
     }()
     
     // MARK: Life Cycle Functions
-    
-    init(routeInfo: RouteInfo) {
-        self.routeInfo = routeInfo
-        self.pages = routeInfo.pages
+
+    init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage) {
+        self.routeDataDraft = routeDataDraft
+        self.routeInfo = routeDataDraft.routeInfoForUI
+        self.pages = routeDataDraft.routeInfoForUI.pages
+        self.backgroundImage = backgroundImage
         
         super.init(nibName: nil, bundle: nil)
         
