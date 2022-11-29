@@ -16,7 +16,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     var routeDataDraft: RouteDataDraft
     var routeInfo: RouteInfo
     var pages: [PageInfo]
-    var pageViewControllerList: [UIViewController] = []
+    var pageViewControllerList: [RouteFindingPageViewController] = []
     var backgroundImage: UIImage?
     
     var isHandButton: Bool = false
@@ -273,7 +273,14 @@ final class RouteFindingFeatureViewController: UIViewController {
         // TODO: 루트파인딩 저장하기 뷰로 데이터 넘겨주기
         routeInfo.pages = pages
         //        routeInfo -> 전달
+//        let routeFindingSaveViewController = RouteFindingSaveViewController(routeDataDraft: routeDataDraft, backgroundImage: backgroundImage, pageViews: pageViews)
         
+        for index in pageViewControllerList.indices {
+            pageViewControllerList[index].pageInfo.points?.forEach { point in
+                routeDataDraft.addPointData(pageAt: index, addTargetPointInfo: point)
+            }
+        }
+
         print("Done Button Tapped")
     }
     
