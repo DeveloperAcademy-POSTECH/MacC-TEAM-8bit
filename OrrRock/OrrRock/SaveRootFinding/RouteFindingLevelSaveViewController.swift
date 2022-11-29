@@ -14,6 +14,21 @@ final class RouteFindingLevelSaveViewController: UIViewController {
     private var cards: [SwipeableCardVideoView?] = []
     private var currentSelectedLevel = 0
     
+    private lazy var exitButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        button.layer.cornerRadius = 20
+        button.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
+        button.tintColor = .white
+        button.addAction(UIAction { _ in
+            self.goBackAction()
+        }, for: .touchUpInside)
+        
+        return button
+    }()
+    
     let gymNameLabel : UILabel = {
         let label = UILabel()
         label.text = "난이도를 선택해주세요"
@@ -70,10 +85,14 @@ final class RouteFindingLevelSaveViewController: UIViewController {
     }
     
     @objc final func pressNextButton() {
-        
         let routeFindingLevelSaveViewController = RouteFindingLevelSaveViewController()
         navigationController?.pushViewController(routeFindingLevelSaveViewController, animated: true)
     }
+    
+    @objc func goBackAction() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 }
 
 extension RouteFindingLevelSaveViewController: NewLevelPickerViewDelegate {
@@ -87,11 +106,18 @@ extension RouteFindingLevelSaveViewController: NewLevelPickerViewDelegate {
 private extension RouteFindingLevelSaveViewController {
     
     func setUpLayout() {
+        view.addSubview(exitButton)
+        exitButton.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(16)
+            $0.height.equalTo(40)
+            $0.width.equalTo(40)
+        }
         
         view.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(OrrPd.pd16.rawValue)
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd72.rawValue)
+            $0.top.equalTo(exitButton).offset(OrrPd.pd72.rawValue)
             $0.height.equalTo(26)
         }
         

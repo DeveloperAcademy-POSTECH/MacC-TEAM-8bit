@@ -17,6 +17,21 @@ class RouteFindingGymSaveViewController: UIViewController {
     var filteredVisitedGymList: [VisitedClimbingGym] = []
     var maxTableViewCellCount: Int = 0
     
+    private lazy var exitButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        button.layer.cornerRadius = 20
+        button.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
+        button.tintColor = .white
+        button.addAction(UIAction { _ in
+            self.goBackAction()
+        }, for: .touchUpInside)
+        
+        return button
+    }()
+    
     let gymNameLabel : UILabel = {
         let label = UILabel()
         label.text = "방문한 클라이밍장을 입력해주세요"
@@ -70,6 +85,7 @@ class RouteFindingGymSaveViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
+        overrideUserInterfaceStyle = .dark
         self.navigationController?.setExpansionBackbuttonArea()
 
         setUpData()
@@ -150,6 +166,10 @@ extension RouteFindingGymSaveViewController {
         autocompleteTableView.delegate = self
     }
     
+    @objc func goBackAction() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     // DataManager에게서 데이터를 새로 받아올 때 사용하는 메서드
     // CoreData와 Repository 단에서 데이터 변화가 발생하는 경우에 본 메서드를 호출해 데이터를 동기화
     func setUpData() {
@@ -172,10 +192,18 @@ extension RouteFindingGymSaveViewController {
 extension RouteFindingGymSaveViewController {
     
     func setUpLayout() {
+        view.addSubview(exitButton)
+        exitButton.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(16)
+            $0.height.equalTo(40)
+            $0.width.equalTo(40)
+        }
+        
         view.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(OrrPd.pd16.rawValue)
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd72.rawValue)
+            $0.top.equalTo(exitButton).offset(OrrPd.pd72.rawValue)
         }
         
         view.addSubview(gymTextField)
