@@ -14,7 +14,7 @@ class RouteFindingSaveViewController: UIViewController {
     var routeInfo: RouteInfo = RouteInfo.dummyData
     //FIXME: PR전 dummyData 삭제
     var pages: [PageInfo]! = RouteInfo.dummyData.pages
-    var pageViews: [RouteFindingPageView] = []
+    var pageViews: [RouteFindingPageView] = [] // TODO: 프리뷰에 띄워주는 로직 구현
     
     let collectionViewCellwidth: Int = 58
     
