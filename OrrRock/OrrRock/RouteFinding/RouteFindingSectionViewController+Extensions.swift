@@ -54,7 +54,7 @@ extension RouteFindingSectionViewController: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RouteFindingCollectionViewCustomCell", for: indexPath) as! RouteFindingCollectionViewCustomCell
         cell.cellLevelLabel.text = "V\(RouteInformations[indexPath.row].problemLevel)"
-        cell.cellChallengeLabel.text = RouteInformations[indexPath.row].isChallengeComplete ? "도전 완료" : "도전 중"
+        cell.cellChallengeLabel.text = RouteInformations[indexPath.row].isChallengeComplete ? "도전 성공" : "도전 중"
         cell.cellDateLabel.text = RouteInformations[indexPath.row].dataWrittenDate.timeToString()
         cell.cellTitleLabel.text = RouteInformations[indexPath.row].gymName
         cell.cellImage.image = UIImage(named: "SwipeOnboardingImage1")
@@ -215,7 +215,7 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
         }
     }
     
-    func afterEdit(type : RouteFindingEditType) {
+    private func afterEdit(type : RouteFindingEditType) {
         switch type {
         case .delete:
             showToast("\(dictionarySelectedIndexPath.count)개의 루트 파인딩을 삭제했습니다.", withDuration: 3.0, delay: 0.1)
