@@ -29,6 +29,7 @@ final class RouteFindingMainViewController: UIViewController {
         let button = UIButton()
         button.setImage(UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .bold)), for: .normal)
         button.tintColor = .orrGray600
+        button.addTarget(self, action: #selector(tapPlusButton), for: .touchUpInside)
         return button
     }()
     
@@ -166,4 +167,8 @@ final class RouteFindingMainViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
     }
     
+    @objc
+    private func tapPlusButton(){
+        print("123")
+    }
 }
