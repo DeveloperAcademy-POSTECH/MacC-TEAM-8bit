@@ -10,10 +10,10 @@ import Photos
 
 extension String {
     
-    func underLineAttribute() -> NSMutableAttributedString {
+    func underLineAttribute(hex: String) -> NSMutableAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 15),
-            .foregroundColor: UIColor(hex: "969696"),
+            .foregroundColor: UIColor(hex: hex),
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
         

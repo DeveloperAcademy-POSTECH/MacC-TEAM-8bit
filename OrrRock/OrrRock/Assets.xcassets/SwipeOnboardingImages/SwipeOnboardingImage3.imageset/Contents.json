@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "SwipeOnboardingImage3.png",
+      "filename" : "SwipeOnboardingImage3.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "SwipeOnboardingImage3 1.png",
+      "filename" : "SwipeOnboardingImage3 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "SwipeOnboardingImage3 2.png",
+      "filename" : "SwipeOnboardingImage3 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }
