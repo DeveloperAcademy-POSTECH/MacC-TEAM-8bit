@@ -538,7 +538,6 @@
 				78B6A7242933A6DD00C0BB70 /* RouteFindingSection.swift */,
 				78FCCFF62934AB4900E435BC /* RouteFindingEditType.swift */,
 				3A4642452933FF8300C6B7A3 /* CameraSessionStatus.swift */,
-
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -1083,7 +1082,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = MSUF83HQ8R;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
@@ -1118,7 +1117,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = MSUF83HQ8R;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";

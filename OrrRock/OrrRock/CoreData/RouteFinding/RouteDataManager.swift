@@ -15,14 +15,12 @@ final class RouteDataManager {
     init() {
         coreDataDAO = RouteCoreDataDAO()
         //MARK: RouteDataMainSampleDataGenerate
-//        deleteAllData()
-//        randomRouteGenerate(for: 10)
+        // deleteAllData()
+        // randomRouteGenerate(for: 10)
         // 추가된 코드
         
         updateRepository()
-//        print(getRouteFindingList())
-        print(getSpecificRouteFindingList(isChallengeComplete: false).count)
-        print(getSpecificRouteFindingList(isChallengeComplete: true).count)
+
     }
     
     func updateRepository() {
@@ -119,12 +117,11 @@ final class RouteDataManager {
             
             coreDataDAO.createRouteInformationData(routeInfo: routeInfo)
         }
-        
         saveData()
     }
     
     //MARK: RouteDataMainSampleDataGenerate
-    func randomPageListGenerate(for num: Int) -> [PageInfo]{
+    func randomPageListGenerate(for num: Int) -> [PageInfo] {
         var pageList: [PageInfo] = []
         for i in 0..<num {
             pageList.append(PageInfo(rowOrder: i, points: []))
