@@ -10,9 +10,11 @@ import SnapKit
 
 class RouteFindingSaveViewController: UIViewController {
     
+    var routeDataDraft: RouteDataDraft
     var routeInfo: RouteInfo
     var pages: [PageInfo]
     var pageViews: [RouteFindingPageView]
+    var backgroundImage: UIImage
     
     let collectionViewCellwidth: Int = 58
     
@@ -142,9 +144,11 @@ class RouteFindingSaveViewController: UIViewController {
         return collection
     }()
     
-    init(routeInfo: RouteInfo, pageViews: [RouteFindingPageView]) {
-        self.routeInfo = routeInfo
-        self.pages = routeInfo.pages
+    init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage, pageViews: [RouteFindingPageView]) {
+        self.routeDataDraft = routeDataDraft
+        self.routeInfo = routeDataDraft.routeInfoForUI
+        self.backgroundImage = backgroundImage
+        self.pages = routeDataDraft.newPageInfo
         self.pageViews = pageViews
         
         super.init(nibName: nil, bundle: nil)

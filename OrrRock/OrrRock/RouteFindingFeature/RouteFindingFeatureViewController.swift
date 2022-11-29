@@ -163,6 +163,7 @@ final class RouteFindingFeatureViewController: UIViewController {
         self.routeDataDraft = routeDataDraft
         self.routeInfo = routeDataDraft.routeInfoForUI
         self.backgroundImage = backgroundImage
+        self.pages = routeDataDraft.newPageInfo
         
         super.init(nibName: nil, bundle: nil)
         
@@ -257,7 +258,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     }
     
     func finishRouteFinding() {
-        let routeFindingSaveViewController = RouteFindingSaveViewController(routeInfo: routeInfo, pageViews: pageViews)
+        let routeFindingSaveViewController = RouteFindingSaveViewController(routeDataDraft: routeDataDraft, backgroundImage: backgroundImage, pageViews: pageViews)
         navigationController?.pushViewController(routeFindingSaveViewController, animated: true)
     }
     
