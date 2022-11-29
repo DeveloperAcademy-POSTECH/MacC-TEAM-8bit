@@ -34,14 +34,15 @@ final class RouteDataDraft {
     
     var pages: [PageInformation] = []
     
-    init(manager: RouteDataManager, existingRouteFinding routeFinding: RouteInformation?) {
+    // imageLocalIdentififer는 '사진 앱'에서 새로운 데이터를 들고와 추가하는 작업을 하는 경우 필요
+    init(manager: RouteDataManager, existingRouteFinding routeFinding: RouteInformation?, imageLocalIdentifier: String) {
         
         routeDataManager = manager
         
         // CASE: 새로운 루트 추가 OR 기존 루트 수정
         route = routeFinding
         guard let route = route else {
-            routeInfoForUI = RouteInfo(imageLocalIdentifier: "", dataWrittenDate: Date(), gymName: "", problemLevel: 0, isChallengeComplete: false, pages: [PageInfo(rowOrder: 0, points: [])])
+            routeInfoForUI = RouteInfo(imageLocalIdentifier: imageLocalIdentifier, dataWrittenDate: Date(), gymName: "", problemLevel: 0, isChallengeComplete: false, pages: [PageInfo(rowOrder: 0, points: [])])
             return }
         routeInfoForUI = route.convertToRouteInfo()
         pages = Array(route.pages as! Set<PageInformation>)

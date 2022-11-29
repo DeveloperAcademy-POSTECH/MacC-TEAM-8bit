@@ -71,8 +71,6 @@
 		3A4642462933FF8300C6B7A3 /* CameraSessionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4642452933FF8300C6B7A3 /* CameraSessionStatus.swift */; };
 		3A46424829340F6F00C6B7A3 /* RouteFindingCameraViewController+AVCapturePhotoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A46424729340F6F00C6B7A3 /* RouteFindingCameraViewController+AVCapturePhotoCaptureDelegate.swift */; };
 		3A46424A2934107A00C6B7A3 /* RouteFindingCameraViewController+PHPickerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4642492934107A00C6B7A3 /* RouteFindingCameraViewController+PHPickerViewControllerDelegate.swift */; };
-		3A46424D2934D03600C6B7A3 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A46424C2934D03600C6B7A3 /* ImageViewController.swift */; };
-		3A46424F2934E98B00C6B7A3 /* RouteFindinCameraViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A46424E2934E98B00C6B7A3 /* RouteFindinCameraViewController+.swift */; };
 		3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3C52901435200BE11B5 /* VideoInfo.swift */; };
 		3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */; };
 		3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D41E28FEBADE006C718A /* AppDelegate.swift */; };
@@ -212,8 +210,6 @@
 		3A4642452933FF8300C6B7A3 /* CameraSessionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSessionStatus.swift; sourceTree = "<group>"; };
 		3A46424729340F6F00C6B7A3 /* RouteFindingCameraViewController+AVCapturePhotoCaptureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteFindingCameraViewController+AVCapturePhotoCaptureDelegate.swift"; sourceTree = "<group>"; };
 		3A4642492934107A00C6B7A3 /* RouteFindingCameraViewController+PHPickerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteFindingCameraViewController+PHPickerViewControllerDelegate.swift"; sourceTree = "<group>"; };
-		3A46424C2934D03600C6B7A3 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
-		3A46424E2934E98B00C6B7A3 /* RouteFindinCameraViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteFindinCameraViewController+.swift"; sourceTree = "<group>"; };
 		3A70C3C52901435200BE11B5 /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDAO.swift; sourceTree = "<group>"; };
 		3AA4D41B28FEBADE006C718A /* OrrRock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrrRock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -456,7 +452,6 @@
 		3A4642102931065600C6B7A3 /* RouteFindingUpload */ = {
 			isa = PBXGroup;
 			children = (
-				3A46424B2934D02400C6B7A3 /* TEST */,
 				3A4642422933FE6700C6B7A3 /* UIComponent */,
 				3A4642112931069200C6B7A3 /* RouteFindingCameraViewController.swift */,
 				3A46424729340F6F00C6B7A3 /* RouteFindingCameraViewController+AVCapturePhotoCaptureDelegate.swift */,
@@ -471,15 +466,6 @@
 				3A4642432933FE7E00C6B7A3 /* CameraView.swift */,
 			);
 			path = UIComponent;
-			sourceTree = "<group>";
-		};
-		3A46424B2934D02400C6B7A3 /* TEST */ = {
-			isa = PBXGroup;
-			children = (
-				3A46424C2934D03600C6B7A3 /* ImageViewController.swift */,
-				3A46424E2934E98B00C6B7A3 /* RouteFindinCameraViewController+.swift */,
-			);
-			path = TEST;
 			sourceTree = "<group>";
 		};
 		3AA4D41228FEBADE006C718A = {
@@ -814,7 +800,6 @@
 				34E11EE12930981F00787316 /* RouteFindingFeatureViewController.swift in Sources */,
 				3A15AC7929071F710058512F /* DataRepository.swift in Sources */,
 				342508AF29002F31000653D9 /* HomeCollectionViewHeaderCell.swift in Sources */,
-				3A46424F2934E98B00C6B7A3 /* RouteFindinCameraViewController+.swift in Sources */,
 				78B6A712292F90FA00C0BB70 /* RouteFindingMainViewController+Extensions.swift in Sources */,
 				709A8C6D2904A3E800CEA6F4 /* CustomIndicator.swift in Sources */,
 				342508A729001BBC000653D9 /* HomeTableViewCardCell.swift in Sources */,
@@ -919,7 +904,6 @@
 				3A4641D6292FB30900C6B7A3 /* RouteDataDraft.swift in Sources */,
 				709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */,
 				3A4641C8292FAD4000C6B7A3 /* PointInfo.swift in Sources */,
-				3A46424D2934D03600C6B7A3 /* ImageViewController.swift in Sources */,
 				78FEE89729291A19007B67BD /* VideoDetailViewController+Protocol.swift in Sources */,
 				34E11EC5292BFF2700787316 /* ExportCardView.swift in Sources */,
 				3A4641C2292FA95C00C6B7A3 /* ForceDirection.swift in Sources */,
