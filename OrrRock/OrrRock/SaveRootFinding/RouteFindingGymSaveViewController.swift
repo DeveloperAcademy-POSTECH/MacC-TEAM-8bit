@@ -78,7 +78,14 @@ class RouteFindingGymSaveViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         gymTextField.becomeFirstResponder()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
     }
     
 }

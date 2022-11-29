@@ -151,8 +151,6 @@ class RouteFindingSaveViewController: UIViewController {
         setCountVideoLabel()
         setUpsaveRouteFindingImageCollectionViewDelegate()
         
-        navigationController?.isNavigationBarHidden = true
-        
         self.view.backgroundColor = .orrBlack
     }
     
@@ -164,6 +162,14 @@ class RouteFindingSaveViewController: UIViewController {
         self.saveRouteFindingImageCollectionView.contentInset = UIEdgeInsets(top: 0, left: sideInset, bottom: 0, right: sideInset)
         
         saveRouteFindingImageCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: false)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
     }
     
     func setUpsaveRouteFindingImageCollectionViewDelegate() {

@@ -76,6 +76,14 @@ final class RouteFindingLevelSaveViewController: UIViewController {
 
         setUpLayout()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+    }
 }
 
 extension RouteFindingLevelSaveViewController: NewLevelPickerViewDelegate {
