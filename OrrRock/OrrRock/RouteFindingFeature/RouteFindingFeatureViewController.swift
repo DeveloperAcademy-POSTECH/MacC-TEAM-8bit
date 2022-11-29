@@ -159,7 +159,6 @@ final class RouteFindingFeatureViewController: UIViewController {
     init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage) {
         self.routeDataDraft = routeDataDraft
         self.routeInfo = routeDataDraft.routeInfoForUI
-        self.pages = routeDataDraft.routeInfoForUI.pages
         self.backgroundImage = backgroundImage
         
         super.init(nibName: nil, bundle: nil)
