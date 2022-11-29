@@ -11,18 +11,16 @@ import SnapKit
 class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControllerDelegate {
     
     var isSuccess : Bool = false
-    private let levelValues: [Int] = [-1,0,1,2,3,4,5,6,7,8,9]
     override var sheetPresentationController: UISheetPresentationController {
         presentationController as! UISheetPresentationController
     }
     
     var videoInformation : VideoInformation!
     var completioHandler : ((Bool,Int) -> (Void))?
-    var selectSuccess : Bool?
     var selectLevel : Int?
     var pickerSelectValue = 0
     private let padding = 68
-
+    
     private lazy var titleLabel : UILabel = {
         let title = UILabel()
         title.text = "문제 편집"
@@ -45,9 +43,6 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         return view
     }()
     
-
-    
-    
     private lazy var newLevelPickerView: NewLevelPickerView = {
         let view = NewLevelPickerView()
         view.pickerSelectValue = pickerSelectValue
@@ -55,25 +50,19 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         view.backgroundColor = .orrGray050
         return view
     }()
-
-    
-    
-
     
     private lazy var paddingView : UIView = {
         let view = UIView()
         return view
     }()
     
-    
     lazy var successLabel : UILabel = {
         let label = UILabel()
         label.text = "완등 여부를 설정해주세요"
         label.textColor = .orrBlack
-        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-//        label.backgroundColor = .orrWhite
+        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         label.textAlignment = .center
-
+        
         return label
     }()
     
@@ -121,12 +110,12 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-       if #available(iOS 13.0, *) {
-           if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
-               saveButton.setBackgroundColor(.orrUPBlue!, for: .normal)
-               saveButton.setBackgroundColor(.orrGray300!, for: .disabled)
-           }
-       }
+        if #available(iOS 13.0, *) {
+            if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+                saveButton.setBackgroundColor(.orrUPBlue!, for: .normal)
+                saveButton.setBackgroundColor(.orrGray300!, for: .disabled)
+            }
+        }
     }
 }
 
@@ -152,20 +141,17 @@ extension LevelAndPFEditViewController {
             $0.left.equalToSuperview().inset(15)
         }
         
-        
         view.addSubview(newLevelPickerView)
         newLevelPickerView.snp.makeConstraints {
-            $0.centerY.equalToSuperview().multipliedBy(0.4)
+            $0.top.equalTo(levelTopView.snp.bottom).offset(OrrPd.pd72.rawValue)
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
             $0.height.equalTo(110)
-//            newLevelPickerView.backgroundColor = .red
         }
         
         view.addSubview(successLabel)
         successLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.leading.trailing.equalToSuperview()
         }
         
         view.addSubview(saveButton)
@@ -179,32 +165,31 @@ extension LevelAndPFEditViewController {
         
         view.addSubview(paddingView)
         paddingView.snp.makeConstraints {
-//            paddingView.backgroundColor = .yellow
             $0.leading.equalTo(view.snp.leading).offset(padding)
             $0.trailing.equalTo(view.snp.trailing).offset(-padding)
             $0.top.equalTo(successLabel.snp.bottom)
-            $0.bottom.equalTo(saveButton.snp.top)
+            $0.height.equalTo(160)
         }
         
         paddingView.addSubview(failCheckButton)
         failCheckButton.snp.makeConstraints {
-            $0.centerY.equalTo(paddingView.snp.centerY).multipliedBy(0.9)
-            $0.leading.equalTo(paddingView.snp.leading).offset(padding / 2)
+            $0.centerY.equalToSuperview()
+            $0.centerX.equalToSuperview().offset(-padding)
             $0.height.equalTo(90)
             $0.width.equalTo(90)
         }
         
         paddingView.addSubview(successCheckButton)
         successCheckButton.snp.makeConstraints {
-            $0.centerY.equalTo(paddingView.snp.centerY).multipliedBy(0.9)
-            $0.trailing.equalTo(paddingView.snp.trailing).offset(-padding / 2)
+            $0.centerY.equalToSuperview()
+            $0.centerX.equalToSuperview().offset(padding)
             $0.height.equalTo(90)
             $0.width.equalTo(90)
         }
-
-        paddingView.addSubview(indicateLabel)
+        
+        view.addSubview(indicateLabel)
         indicateLabel.snp.makeConstraints {
-            $0.centerY.equalTo(paddingView.snp.centerY).multipliedBy(1.5)
+            $0.top.equalTo(paddingView.snp.bottom)
             $0.centerX.equalTo(paddingView)
         }
         
@@ -273,7 +258,6 @@ extension LevelAndPFEditViewController {
 extension LevelAndPFEditViewController: NewLevelPickerViewDelegate {
     
     func didLevelChanged(selectedLevel: Int) {
-        //currentSelectedLevel = selectedLevel
         selectLevel = selectedLevel
     }
     
