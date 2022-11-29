@@ -10,11 +10,9 @@ import SnapKit
 
 class RouteFindingSaveViewController: UIViewController {
     
-    //FIXME: PR전 dummyData 삭제
-    var routeInfo: RouteInfo = RouteInfo.dummyData
-    //FIXME: PR전 dummyData 삭제
-    var pages: [PageInfo]! = RouteInfo.dummyData.pages
-    var pageViews: [RouteFindingPageView] = [] // TODO: 프리뷰에 띄워주는 로직 구현
+    var routeInfo: RouteInfo
+    var pages: [PageInfo]
+    var pageViews: [RouteFindingPageView]
     
     let collectionViewCellwidth: Int = 58
     
@@ -55,10 +53,8 @@ class RouteFindingSaveViewController: UIViewController {
         return button
     }()
     
-    var previewImage: UIImageView! = {
-        let view = UIImageView()
-        //FIXME: PR전 dummyData 삭제
-        view.image = RouteInfo.dummyData.imageLocalIdentifier.generateCardViewThumbnail()
+    var previewImage: RouteFindingPageView = {
+        let view = RouteFindingPageView()
        
         return view
     }()
@@ -145,6 +141,18 @@ class RouteFindingSaveViewController: UIViewController {
         
         return collection
     }()
+    
+    init(routeInfo: RouteInfo, pageViews: [RouteFindingPageView]) {
+        self.routeInfo = routeInfo
+        self.pages = routeInfo.pages
+        self.pageViews = pageViews
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) is not supported")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -231,6 +239,18 @@ class RouteFindingSaveViewController: UIViewController {
     func setCountVideoLabel() {
         guard let selectedCell = centerCell else { return }
         countVideoLabel.text = "\(selectedCell.indexPathOfCell.row + 1)/\(pages.count)"
+    }
+    
+    
+    func selectPage() {
+        guard let selectedCell = centerCell else { return }
+        previewImage.snp.removeConstraints()
+        countVideoLabel.text = "\(selectedCell.indexPathOfCell.row + 1)/\(pages.count)"
+        
+        previewImage = pageViews[selectedCell.indexPathOfCell.row]
+        previewImage.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 }
 
