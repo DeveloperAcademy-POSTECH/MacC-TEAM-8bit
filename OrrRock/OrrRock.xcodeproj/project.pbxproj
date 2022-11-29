@@ -66,6 +66,11 @@
 		3A4641D6292FB30900C6B7A3 /* RouteDataDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641D5292FB30900C6B7A3 /* RouteDataDraft.swift */; };
 		3A4641DA292FB4B400C6B7A3 /* RouteCoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641D9292FB4B400C6B7A3 /* RouteCoreDataDAO.swift */; };
 		3A4641DC292FB71900C6B7A3 /* RouteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4641DB292FB71900C6B7A3 /* RouteDataManager.swift */; };
+		3A4642122931069200C6B7A3 /* RouteFindingCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4642112931069200C6B7A3 /* RouteFindingCameraViewController.swift */; };
+		3A4642442933FE7E00C6B7A3 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4642432933FE7E00C6B7A3 /* CameraView.swift */; };
+		3A4642462933FF8300C6B7A3 /* CameraSessionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4642452933FF8300C6B7A3 /* CameraSessionStatus.swift */; };
+		3A46424829340F6F00C6B7A3 /* RouteFindingCameraViewController+AVCapturePhotoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A46424729340F6F00C6B7A3 /* RouteFindingCameraViewController+AVCapturePhotoCaptureDelegate.swift */; };
+		3A46424A2934107A00C6B7A3 /* RouteFindingCameraViewController+PHPickerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4642492934107A00C6B7A3 /* RouteFindingCameraViewController+PHPickerViewControllerDelegate.swift */; };
 		3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3C52901435200BE11B5 /* VideoInfo.swift */; };
 		3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */; };
 		3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4D41E28FEBADE006C718A /* AppDelegate.swift */; };
@@ -114,6 +119,7 @@
 		78B6A71F29311DA400C0BB70 /* RouteModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A71E29311DA400C0BB70 /* RouteModalViewController.swift */; };
 		78B6A7212932967100C0BB70 /* RouteFindingCollectionViewHeaderCell+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A7202932967100C0BB70 /* RouteFindingCollectionViewHeaderCell+Protocol.swift */; };
 		78B6A723293296DF00C0BB70 /* RouteModalViewController+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A722293296DF00C0BB70 /* RouteModalViewController+Protocol.swift */; };
+		78B6A7252933A6DD00C0BB70 /* RouteFindingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A7242933A6DD00C0BB70 /* RouteFindingSection.swift */; };
 		78CAA0662901F7A9003C3D77 /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA0652901F7A9003C3D77 /* BasePaddingLabel.swift */; };
 		78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA0672901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift */; };
 		78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA069290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift */; };
@@ -121,6 +127,7 @@
 		78F56F6C291A67FA00174B74 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F56F6B291A67FA00174B74 /* OnBoardingViewController.swift */; };
 		78F93ED32906EFC500F3D9F3 /* GymEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED22906EFC500F3D9F3 /* GymEditViewController.swift */; };
 		78F93ED7290743DF00F3D9F3 /* LevelAndPFEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */; };
+		78FCCFF72934AB4900E435BC /* RouteFindingEditType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FCCFF62934AB4900E435BC /* RouteFindingEditType.swift */; };
 		78FEE88B292616BC007B67BD /* VideoDetailViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */; };
 		78FEE88F2926A23B007B67BD /* VideoPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE88E2926A23B007B67BD /* VideoPlayViewController.swift */; };
 		78FEE8912926A599007B67BD /* VideoDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE8902926A599007B67BD /* VideoDetailPageViewController.swift */; };
@@ -205,6 +212,11 @@
 		3A4641D5292FB30900C6B7A3 /* RouteDataDraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDataDraft.swift; sourceTree = "<group>"; };
 		3A4641D9292FB4B400C6B7A3 /* RouteCoreDataDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCoreDataDAO.swift; sourceTree = "<group>"; };
 		3A4641DB292FB71900C6B7A3 /* RouteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDataManager.swift; sourceTree = "<group>"; };
+		3A4642112931069200C6B7A3 /* RouteFindingCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingCameraViewController.swift; sourceTree = "<group>"; };
+		3A4642432933FE7E00C6B7A3 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		3A4642452933FF8300C6B7A3 /* CameraSessionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSessionStatus.swift; sourceTree = "<group>"; };
+		3A46424729340F6F00C6B7A3 /* RouteFindingCameraViewController+AVCapturePhotoCaptureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteFindingCameraViewController+AVCapturePhotoCaptureDelegate.swift"; sourceTree = "<group>"; };
+		3A4642492934107A00C6B7A3 /* RouteFindingCameraViewController+PHPickerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteFindingCameraViewController+PHPickerViewControllerDelegate.swift"; sourceTree = "<group>"; };
 		3A70C3C52901435200BE11B5 /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		3A70C3CE2901CB9600BE11B5 /* CoreDataDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDAO.swift; sourceTree = "<group>"; };
 		3AA4D41B28FEBADE006C718A /* OrrRock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrrRock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,6 +265,7 @@
 		78B6A71E29311DA400C0BB70 /* RouteModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteModalViewController.swift; sourceTree = "<group>"; };
 		78B6A7202932967100C0BB70 /* RouteFindingCollectionViewHeaderCell+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteFindingCollectionViewHeaderCell+Protocol.swift"; sourceTree = "<group>"; };
 		78B6A722293296DF00C0BB70 /* RouteModalViewController+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteModalViewController+Protocol.swift"; sourceTree = "<group>"; };
+		78B6A7242933A6DD00C0BB70 /* RouteFindingSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingSection.swift; sourceTree = "<group>"; };
 		78CAA0652901F7A9003C3D77 /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
 		78CAA0672901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoCollectionView+VideoCollectionViewExtensions.swift"; sourceTree = "<group>"; };
 		78CAA069290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
@@ -260,6 +273,7 @@
 		78F56F6B291A67FA00174B74 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		78F93ED22906EFC500F3D9F3 /* GymEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymEditViewController.swift; sourceTree = "<group>"; };
 		78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelAndPFEditViewController.swift; sourceTree = "<group>"; };
+		78FCCFF62934AB4900E435BC /* RouteFindingEditType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingEditType.swift; sourceTree = "<group>"; };
 		78FEE88A292616BC007B67BD /* VideoDetailViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoDetailViewController+Extensions.swift"; sourceTree = "<group>"; };
 		78FEE88E2926A23B007B67BD /* VideoPlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayViewController.swift; sourceTree = "<group>"; };
 		78FEE8902926A599007B67BD /* VideoDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailPageViewController.swift; sourceTree = "<group>"; };
@@ -449,6 +463,25 @@
 			path = RouteFinding;
 			sourceTree = "<group>";
 		};
+		3A4642102931065600C6B7A3 /* RouteFindingUpload */ = {
+			isa = PBXGroup;
+			children = (
+				3A4642422933FE6700C6B7A3 /* UIComponent */,
+				3A4642112931069200C6B7A3 /* RouteFindingCameraViewController.swift */,
+				3A46424729340F6F00C6B7A3 /* RouteFindingCameraViewController+AVCapturePhotoCaptureDelegate.swift */,
+				3A4642492934107A00C6B7A3 /* RouteFindingCameraViewController+PHPickerViewControllerDelegate.swift */,
+			);
+			path = RouteFindingUpload;
+			sourceTree = "<group>";
+		};
+		3A4642422933FE6700C6B7A3 /* UIComponent */ = {
+			isa = PBXGroup;
+			children = (
+				3A4642432933FE7E00C6B7A3 /* CameraView.swift */,
+			);
+			path = UIComponent;
+			sourceTree = "<group>";
+		};
 		3AA4D41228FEBADE006C718A = {
 			isa = PBXGroup;
 			children = (
@@ -480,6 +513,7 @@
 				3A08879E29012CC300EFFDBB /* CoreData */,
 				3AEB3D5E291C01B000A989FF /* OnBoarding */,
 				3AEB3D5F291C027B00A989FF /* Home */,
+				3A4642102931065600C6B7A3 /* RouteFindingUpload */,
 				3AEB3D60291C02F000A989FF /* VideoDetail */,
 				3AEB3D64291C04CE00A989FF /* Upload */,
 				3AA4D41E28FEBADE006C718A /* AppDelegate.swift */,
@@ -502,6 +536,9 @@
 				0A0B410C2907C79200057FA7 /* VideoResultType.swift */,
 				3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */,
 				78B6A71A292FE3CF00C0BB70 /* RouteFindingCollectionViewMode.swift */,
+				78B6A7242933A6DD00C0BB70 /* RouteFindingSection.swift */,
+				78FCCFF62934AB4900E435BC /* RouteFindingEditType.swift */,
+				3A4642452933FF8300C6B7A3 /* CameraSessionStatus.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -788,6 +825,7 @@
 				707B2CB829012BFE0062C958 /* Color+.swift in Sources */,
 				0AAB780A290424A300EEEFFB /* SwipeableCardVideoView.swift in Sources */,
 				FB8A9E0F292D840C003F44D3 /* ExportViewController.swift in Sources */,
+				3A46424A2934107A00C6B7A3 /* RouteFindingCameraViewController+PHPickerViewControllerDelegate.swift in Sources */,
 				34E11EE12930981F00787316 /* RouteFindingFeatureViewController.swift in Sources */,
 				3A15AC7929071F710058512F /* DataRepository.swift in Sources */,
 				342508AF29002F31000653D9 /* HomeCollectionViewHeaderCell.swift in Sources */,
@@ -814,6 +852,7 @@
 				FBB272BA29329EBA00A36CB0 /* RouteFindingSaveViewController+UICollectionViewExtensions.swift .swift in Sources */,
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
 				78B6A7212932967100C0BB70 /* RouteFindingCollectionViewHeaderCell+Protocol.swift in Sources */,
+				3A4642462933FF8300C6B7A3 /* CameraSessionStatus.swift in Sources */,
 				78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */,
 				343170F229310971005E66F3 /* RouteFindingPageView.swift in Sources */,
 				3A15AC892907B1160058512F /* VideoInformation+CoreDataProperties.swift in Sources */,
@@ -880,15 +919,18 @@
 				34793FA329262A8800B74110 /* CustomBackBarButtomItem.swift in Sources */,
 				FB32281529046CED00276A7D /* VideoInfoView.swift in Sources */,
 				3A70C3C62901435200BE11B5 /* VideoInfo.swift in Sources */,
+				3A46424829340F6F00C6B7A3 /* RouteFindingCameraViewController+AVCapturePhotoCaptureDelegate.swift in Sources */,
 				78F56F6C291A67FA00174B74 /* OnBoardingViewController.swift in Sources */,
 				34172EAF292AAD3E009DAAB8 /* DateEditViewController.swift in Sources */,
 				A81992C42927E48B00F024CA /* VideoSlider.swift in Sources */,
+				3A4642442933FE7E00C6B7A3 /* CameraView.swift in Sources */,
 				3A4641C6292FAD2D00C6B7A3 /* PageInfo.swift in Sources */,
 				342508AB29001CF8000653D9 /* HomeCardCollectionViewThumbnailCell.swift in Sources */,
 				70AE8138292CA24500B4DB3F /* Font+.swift in Sources */,
 				78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */,
 				3AEB3D5D291C003D00A989FF /* VideoCollectionViewMode.swift in Sources */,
 				78CAA06C290271E7003C3D77 /* VIdeoCollectionFooterCell.swift in Sources */,
+				78FCCFF72934AB4900E435BC /* RouteFindingEditType.swift in Sources */,
 				341418BB2922A3800033D851 /* AutocompleteTableViewCell.swift in Sources */,
 				78B6A70A292F5B7300C0BB70 /* RouteFindingMainViewController.swift in Sources */,
 				709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */,
@@ -912,12 +954,14 @@
 				70DE7964292640FF0009AD43 /* SwipeOnboardingFourthViewController.swift in Sources */,
 				3A4641D4292FAF7300C6B7A3 /* RouteInformation+CoreDataProperties.swift in Sources */,
 				70DE795E29253F050009AD43 /* EmptyBackgroundView.swift in Sources */,
+				78B6A7252933A6DD00C0BB70 /* RouteFindingSection.swift in Sources */,
 				A88805852907F5A0002CD52E /* LevelPickerView.swift in Sources */,
 				34E11EE329309D5E00787316 /* RouteFindingFeatureViewController+UICollectionViewExtensions.swift in Sources */,
 				3A4641BA292FA7B500C6B7A3 /* PointInformation+CoreDataProperties.swift in Sources */,
 				7085BA2A292D2F08004FD734 /* ColorPickerView.swift in Sources */,
 				FBB272B62932798F00A36CB0 /* SaveRouteFindingImageCollectionViewCell.swift in Sources */,
 				78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */,
+				3A4642122931069200C6B7A3 /* RouteFindingCameraViewController.swift in Sources */,
 				70DE79602926383E0009AD43 /* SwipeOnboardingSecondViewController.swift in Sources */,
 				70A44807290452B000BE18A5 /* Button+.swift in Sources */,
 			);
@@ -1062,6 +1106,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "클라이밍 문제를 등록하기 위하여 카메라 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "업로드한 사진을 계속 찾아 볼 수 있도록 사진 권한을 승인해주세요.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "클라이밍 비디오를 등록 및 분류하기 위하여 사진 앨범 접근 권한이 필요합니다.\n원활한 사용을 위해 모든 사진에 대한 접근 허용을 권장합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1096,6 +1141,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "클라이밍 문제를 등록하기 위하여 카메라 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "업로드한 사진을 계속 찾아 볼 수 있도록 사진 권한을 승인해주세요.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "클라이밍 비디오를 등록 및 분류하기 위하여 사진 앨범 접근 권한이 필요합니다.\n원활한 사용을 위해 모든 사진에 대한 접근 허용을 권장합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

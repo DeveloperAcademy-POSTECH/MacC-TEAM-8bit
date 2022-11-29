@@ -239,10 +239,8 @@ final class HomeViewController : UIViewController {
     
     // MARK: 다크모드 대응 코드
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-       if #available(iOS 13.0, *) {
            if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
                gradientLayer.colors = [UIColor.orrGray050!.cgColor, UIColor.orrGray050!.withAlphaComponent(0).cgColor]
-           }
        }
     }
     

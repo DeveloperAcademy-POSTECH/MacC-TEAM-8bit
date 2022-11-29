@@ -14,7 +14,13 @@ final class RouteDataManager {
     
     init() {
         coreDataDAO = RouteCoreDataDAO()
+        //MARK: RouteDataMainSampleDataGenerate
+        // deleteAllData()
+        // randomRouteGenerate(for: 10)
+        // 추가된 코드
+        
         updateRepository()
+
     }
     
     func updateRepository() {
@@ -75,6 +81,7 @@ final class RouteDataManager {
         coreDataDAO.deleteRouteFindingData(routeFinding: routeInformation)
         guard let index = routeFindingList.firstIndex(of: routeInformation) else { return }
         routeFindingList.remove(at: index)
+        saveData()
     }
     
     func deletePageData(pageInformationList: [PageInformation], routeFinding: RouteInformation) {

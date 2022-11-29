@@ -160,7 +160,7 @@ final class VideoInfoView: UIView {
         let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
         let vc = LevelAndPFEditViewController()
         vc.videoInformation = videoInformation
-        vc.pickerSelectValue = Int(videoInformation!.problemLevel) + 1
+        vc.pickerSelectValue = Int(videoInformation!.problemLevel)
         vc.completioHandler = { isSuccess, level in
             
             self.levelIcon.text = level == -1 ? "V?" : "V\(level)"

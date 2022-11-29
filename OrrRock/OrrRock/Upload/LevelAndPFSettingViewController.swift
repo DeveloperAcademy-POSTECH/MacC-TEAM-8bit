@@ -128,7 +128,6 @@ final class LevelAndPFSettingViewController: UIViewController {
         slider.maximumTrackTintColor = .orrGray100
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.setThumbImage(UIImage(named: "sliderThumb"), for: .normal)
-        
         // 재생시점 조정 제스처
         slider.addTarget(self, action: #selector(didChangedSlider(_:)), for: .valueChanged)
         

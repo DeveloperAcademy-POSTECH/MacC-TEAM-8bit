@@ -86,12 +86,10 @@ class GymSettingViewController: UIViewController {
     
     // MARK: Dark,Light 모드 전환 안될때 사용하세요.
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-       if #available(iOS 13.0, *) {
            if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
                // ColorUtils.loadCGColorFromAsset returns cgcolor for color name
                nextButton.setBackgroundColor(.orrUPBlue!, for: .normal)
                nextButton.setBackgroundColor(.orrGray300!, for: .disabled)
-           }
        }
     }
     

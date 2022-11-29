@@ -91,10 +91,8 @@ final class SwipeableCardVideoView: UIView {
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        if #available(iOS 13.0, *) {
             if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
                 videoBackgroundView.layer.borderColor = UIColor.orrWhite!.cgColor
-            }
         }
     }
 }

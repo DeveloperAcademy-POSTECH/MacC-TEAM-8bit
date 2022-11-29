@@ -14,7 +14,7 @@ final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .orrBlack
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 13, weight:.bold)
         return label
@@ -50,7 +50,7 @@ final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
         self.subTitleButton.setTitleColor(isEditing ? .orrUPBlue :.orrGray400, for: .normal)
     }
     
-    private func setUpLayout(){
+    private func setUpLayout() {
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(OrrPd.pd16.rawValue)

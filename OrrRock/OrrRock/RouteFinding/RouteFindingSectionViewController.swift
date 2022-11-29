@@ -9,8 +9,15 @@ import UIKit
 
 class RouteFindingSectionViewController: UIViewController {
     
-    var infoArr : [Int] = [1,2,3,4,5]
+    var routeInformations: [RouteInformation]!
     var dictionarySelectedIndexPath: [IndexPath : Bool] = [:]
+    var routeFindingDataManager: RouteDataManager?
+    var sectionKind: RouteFindingSection?
+    let minimumInteritemSpacingForSection: CGFloat = 13
+    let minimumLineSpacingForSection: CGFloat = 16
+    let cellScaleBetweenWidthAndHeight = 1.8
+    let headerIdentifier = "UICollectionElementKindSectionHeader"
+    
     var mMode: RouteFindingCollectionViewMode = .view {
         didSet{
             switch mMode{
@@ -24,10 +31,20 @@ class RouteFindingSectionViewController: UIViewController {
                 }
                 dictionarySelectedIndexPath.removeAll()
                 routeFindingCollectionView.allowsMultipleSelection = false
+                routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
+                let supplementaryViewSectionHeader = routeFindingCollectionView.supplementaryView(forElementKind: headerIdentifier, at: IndexPath(row: 0, section: 0)) as? RouteFindingCollectionViewHeaderCell
+                
+                supplementaryViewSectionHeader?.subTitleButton.setTitle(mMode == .select ? "완료" : "편집", for: .normal)
+                supplementaryViewSectionHeader?.subTitleButton.setTitleColor(mMode == .select ? UIColor.orrUPBlue: UIColor.orrGray400, for: .normal)
             case .select:
                 self.tabBarController?.tabBar.isHidden = true
                 bottomOptionView.layer.opacity = 1.0
                 routeFindingCollectionView.allowsMultipleSelection = true
+                routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
+                let supplementaryViewSectionHeader = routeFindingCollectionView.supplementaryView(forElementKind: headerIdentifier, at: IndexPath(row: 0, section: 0)) as? RouteFindingCollectionViewHeaderCell
+                
+                supplementaryViewSectionHeader?.subTitleButton.setTitle(mMode == .select ? "완료" : "편집", for: .normal)
+                supplementaryViewSectionHeader?.subTitleButton.setTitleColor(mMode == .select ? UIColor.orrUPBlue: UIColor.orrGray400, for: .normal)
             }
         }
     }
@@ -94,22 +111,16 @@ class RouteFindingSectionViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        emptyGuideView.alpha = infoArr.count == 0 ? 1.0 : 0.0
+        initRouteInformations()
+        routeFindingCollectionView.reloadData()
+        emptyGuideView.alpha = routeInformations.count == 0 ? 1.0 : 0.0
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         mMode = .view
-        routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
-        
-        let supplementaryViewSectionHeader = routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as? RouteFindingCollectionViewHeaderCell
-        
-        supplementaryViewSectionHeader?.subTitleButton.setTitle(mMode == .select ? "완료" : "편집", for: .normal)
-        supplementaryViewSectionHeader?.subTitleButton.setTitleColor(mMode == .select ? UIColor.orrUPBlue: UIColor.orrGray400, for: .normal)
-        
-        self.deleteButton.isEnabled = false
-        self.folderButton.isEnabled = false
-        
+        changeStatusOfChangeFolderButtons(to: false)
     }
     private func setDelegate() {
         routeFindingCollectionView.delegate = self
@@ -195,5 +206,18 @@ class RouteFindingSectionViewController: UIViewController {
             sheet.prefersGrabberVisible = true
         }
         present(vc, animated: true, completion: nil)
+    }
+    
+    private func initRouteInformations() {
+        switch sectionKind{
+        case .all:
+            routeInformations = routeFindingDataManager?.getRouteFindingList()
+        case .challenge:
+            routeInformations = routeFindingDataManager?.getSpecificRouteFindingList(isChallengeComplete: false)
+        case .success:
+            routeInformations = routeFindingDataManager?.getSpecificRouteFindingList(isChallengeComplete: true)
+        case .none:
+            break
+        }
     }
 }
