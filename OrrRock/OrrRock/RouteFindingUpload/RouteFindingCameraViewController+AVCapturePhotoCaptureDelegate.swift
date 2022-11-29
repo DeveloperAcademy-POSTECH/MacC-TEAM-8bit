@@ -50,8 +50,6 @@ extension RouteFindingCameraViewController: AVCapturePhotoCaptureDelegate {
             }
         })
         
-        // MARK: **TEST** 이미지 넘김 테스트용 코드
-        guard let image = photoImage else { return }
-        navigateToSampleImageVC(image: image)
+        navigateToRouteFindingFeatureVC(phAssetLocalIdentifier: "", image: photoImage)
     }
 }

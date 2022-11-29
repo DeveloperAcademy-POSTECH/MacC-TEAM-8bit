@@ -68,6 +68,7 @@ final class RouteFindingCameraViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         setUpLayout()
         setPhotosButtonImage()
         
@@ -319,3 +320,15 @@ private extension RouteFindingCameraViewController {
         }
     }
 }
+
+// MARK: Navigation
+extension RouteFindingCameraViewController {
+    func navigateToRouteFindingFeatureVC(phAssetLocalIdentifier localIdentifier: String?, image: UIImage?)
+    {
+        guard let image = photoImage, let manager = routeDataManager else { return }
+        let routeDataDraft = RouteDataDraft(manager: manager, existingRouteFinding: nil, imageLocalIdentifier: localIdentifier ?? "")
+        let featureVC = RouteFindingFeatureViewController(routeDataDraft: routeDataDraft, backgroundImage: image)
+        navigationController?.pushViewController(featureVC, animated: true)
+    }
+}
+
