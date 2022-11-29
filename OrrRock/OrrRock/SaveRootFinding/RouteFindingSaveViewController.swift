@@ -32,7 +32,7 @@ class RouteFindingSaveViewController: UIViewController {
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
-        button.tintColor = .orrWhite
+        button.tintColor = .white
         button.addAction(UIAction { _ in
             self.goBackAction()
         }, for: .touchUpInside)
@@ -47,7 +47,7 @@ class RouteFindingSaveViewController: UIViewController {
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        button.tintColor = .orrWhite
+        button.tintColor = .white
         button.addAction(UIAction { _ in
             self.saveAction()
         }, for: .touchUpInside)
@@ -120,7 +120,7 @@ class RouteFindingSaveViewController: UIViewController {
     
     private lazy var countVideoView:  UIView = {
         let view = UIView()
-        view.backgroundColor = .orrGray800
+        view.backgroundColor = .darkGray
         view.layer.cornerRadius = 10
         
         return view
@@ -129,7 +129,7 @@ class RouteFindingSaveViewController: UIViewController {
     private lazy var countVideoLabel: UILabel = {
         let label = UILabel()
         label.text = "0/0"
-        label.textColor = .orrWhite
+        label.textColor = .white
         label.font = .systemFont(ofSize: 12.0, weight: .regular)
         
         return label
@@ -153,7 +153,8 @@ class RouteFindingSaveViewController: UIViewController {
         setCountVideoLabel()
         setUpsaveRouteFindingImageCollectionViewDelegate()
         
-        self.view.backgroundColor = .orrBlack
+        self.view.backgroundColor = .orrWhite
+        overrideUserInterfaceStyle = .dark
     }
     
     override func viewDidAppear(_ animated: Bool) {
