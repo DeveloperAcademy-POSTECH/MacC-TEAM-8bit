@@ -138,7 +138,7 @@ final class VideoInfoView: UIView {
         let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
         let vc = DateEditViewController()
         vc.videoInformation = videoInformation
-        vc.completioHandler = { [self] date in
+        vc.completionHandler = { [self] date in
             self.dateLabel.text = date.timeToString()
         }
         viewController.present(vc, animated: true)
@@ -149,7 +149,7 @@ final class VideoInfoView: UIView {
         let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
         let vc = GymEditViewController()
         vc.videoInformation = videoInformation
-        vc.completioHandler = { [self] gymName in
+        vc.completionHandler = { [self] gymName in
             self.gymNameLabel.text = gymName
         }
         viewController.present(vc, animated: true)
@@ -161,7 +161,7 @@ final class VideoInfoView: UIView {
         let vc = LevelAndPFEditViewController()
         vc.videoInformation = videoInformation
         vc.pickerSelectValue = Int(videoInformation!.problemLevel)
-        vc.completioHandler = { isSuccess, level in
+        vc.completionHandler = { isSuccess, level in
             
             self.levelIcon.text = level == -1 ? "V?" : "V\(level)"
             

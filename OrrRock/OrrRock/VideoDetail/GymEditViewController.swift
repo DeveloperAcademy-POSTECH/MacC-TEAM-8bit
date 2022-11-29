@@ -13,10 +13,12 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
         presentationController as! UISheetPresentationController
     }
     
-    var videoInformation : VideoInformation!
+    var videoInformation : VideoInformation?
+    var routeInformation : RouteInformation?
+    
     var selectDate : Date?
     var selectGymName : String?
-    var completioHandler : ((String) -> (Void))?
+    var completionHandler : ((String) -> (Void))?
     
     var visitedGymList: [VisitedClimbingGym] = []
     var filteredVisitedGymList: [VisitedClimbingGym] = []
@@ -145,11 +147,23 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
     }
     
     private func setData(){
-        gymTextField.text = videoInformation.gymName
-        gymTextField.placeholder = videoInformation.gymName
-        selectGymName = videoInformation.gymName
+        if let videoInformation {
+            gymTextField.text = videoInformation.gymName
+            gymTextField.placeholder = videoInformation.gymName
+            selectGymName = videoInformation.gymName
+        }
+        else if let routeInformation {
+            gymTextField.text = routeInformation.gymName
+            gymTextField.placeholder = routeInformation.gymName
+            selectGymName = routeInformation.gymName
+        }
+        else {
+            // 정상적으로 데이터가 들어오지 않음
+            print("DateEditViewController Input Data Error")
+        }
+        
+        self.dismiss(animated: true)
     }
-   
 }
 
 extension GymEditViewController {
@@ -157,11 +171,33 @@ extension GymEditViewController {
     @objc
     func pressSaveButton() {
         if gymTextField.text == "" {
-            DataManager.shared.updateGymData(videoInformation: videoInformation, gymName: videoInformation.gymName)
-            completioHandler?(videoInformation.gymName)
+            // VideoInformation의 경우
+            if let videoInformation {
+                DataManager.shared.updateGymData(videoInformation: videoInformation, gymName: videoInformation.gymName)
+                completionHandler?(videoInformation.gymName)
+            }
+            // RouteInformation의 경우
+            else if let routeInformation {
+                completionHandler?(routeInformation.gymName)
+            }
+            // 정상적으로 데이터가 들어오지 않음
+            else {
+                print("DateEditViewController Input Data Error")
+            }
         } else {
-            DataManager.shared.updateGymData(videoInformation: videoInformation, gymName: gymTextField.text!)
-            completioHandler?(gymTextField.text!)
+            // VideoInformation의 경우
+            if let videoInformation {
+                DataManager.shared.updateGymData(videoInformation: videoInformation, gymName: gymTextField.text!)
+                completionHandler?(gymTextField.text!)
+            }
+            // RouteInformation의 경우
+            else if let routeInformation {
+                completionHandler?(routeInformation.gymName)
+            }
+            // 정상적으로 데이터가 들어오지 않음
+            else {
+                print("DateEditViewController Input Data Error")
+            }
         }
         self.dismiss(animated: true)
     }

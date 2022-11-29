@@ -11,7 +11,9 @@ final class RouteInfoView: UIView {
     
     // MARK: Variables
     
+//    private var routeInformation : RouteInformation
     private var routeInformation : RouteInformation?
+    var routeDataManager: RouteDataManager?
     
     private var routeInfoDate: String = ""
     private var routeInfoLevel: String = ""
@@ -123,9 +125,12 @@ final class RouteInfoView: UIView {
     @objc private func dateEdit() {
         // 날짜, 클라이밍장 편집 뷰 네비게이션
         let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
+        
         let vc = DateEditViewController()
-//        vc.videoInformation = videoInformation
-        vc.completioHandler = { [self] date in
+        vc.routeInformation = routeInformation
+        
+        vc.completionHandler = { [self] date in
+            routeDataManager?.updateRouteDataWrittenDate(to: date, of: routeInformation!)
             self.dateLabel.text = date.timeToString()
         }
         viewController.present(vc, animated: true)
@@ -135,8 +140,8 @@ final class RouteInfoView: UIView {
         // 날짜, 클라이밍장 편집 뷰 네비게이션
         let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
         let vc = GymEditViewController()
-//        vc.videoInformation = videoInformation
-        vc.completioHandler = { [self] gymName in
+        vc.completionHandler = { [self] gymName in
+            routeDataManager?.updateRouteGymName(to: gymName, of: routeInformation!)
             self.gymNameLabel.text = gymName
         }
         viewController.present(vc, animated: true)
@@ -148,12 +153,10 @@ final class RouteInfoView: UIView {
         let vc = LevelAndPFEditViewController()
 //        vc.videoInformation = videoInformation
 //        vc.pickerSelectValue = Int(videoInformation!.problemLevel)
-        vc.completioHandler = { isSuccess, level in
-            
+        vc.completionHandler = { isSuccess, level in
+            self.routeDataManager?.updateRouteLevelAndStatus(statusTo: isSuccess, levelTo: level, of: self.routeInformation!)
             self.levelIcon.text = level == -1 ? "V?" : "V\(level)"
-            
             self.isSucceeded.text = isSuccess ? "성공" : "실패"
-            
         }
         viewController.present(vc, animated: true)
     }
@@ -164,8 +167,11 @@ final class RouteInfoView: UIView {
 //        setUpLayout()
     }
     
-    convenience init(frame: CGRect, videoInfo : VideoInformation) {
+    convenience init(frame: CGRect, routeInfo : RouteInformation, routeDataManager: RouteDataManager) {
         self.init(frame: frame)
+        
+        self.routeInformation = routeInfo
+        self.routeDataManager = routeDataManager
 //        refreshData(videoInfo: videoInfo)
     }
     required init?(coder: NSCoder) {
