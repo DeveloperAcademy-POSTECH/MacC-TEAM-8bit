@@ -13,7 +13,6 @@ import SnapKit
 class RouteFindingGymSaveViewController: UIViewController {
     
     var routeDataDraft: RouteDataDraft
-    var routeInfo: RouteInfo
     
     var gymVisitDate : Date?
     var visitedGymList: [VisitedClimbingGym] = []
@@ -86,7 +85,6 @@ class RouteFindingGymSaveViewController: UIViewController {
     
     init(routeDataDraft: RouteDataDraft) {
         self.routeDataDraft = routeDataDraft
-        self.routeInfo = routeDataDraft.routeInfoForUI
         
         super.init(nibName: nil, bundle: nil)
     }
