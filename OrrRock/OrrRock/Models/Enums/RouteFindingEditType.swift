@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum RouteFindingEditType{
+enum RouteFindingEditType {
     case delete
     case toChallenge
     case toSuccess

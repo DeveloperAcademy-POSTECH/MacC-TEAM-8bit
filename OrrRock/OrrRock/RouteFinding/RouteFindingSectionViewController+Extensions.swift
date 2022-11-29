@@ -70,7 +70,7 @@ extension RouteFindingSectionViewController: UICollectionViewDataSource {
             print("화면이동합니다~")
         case .select:
             dictionarySelectedIndexPath[indexPath] = true
-            changeStatusOfChangeFolderButtons(status: true)
+            changeStatusOfChangeFolderButtons(to: true)
         }
     }
     
@@ -102,11 +102,6 @@ extension RouteFindingSectionViewController : UICollectionViewDelegateFlowLayout
 extension RouteFindingSectionViewController: RouteFindingCollectionViewHeaderCellDelegate {
     func tapEditButton() {
         mMode = mMode == .view ? .select : .view
-        routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
-        let supplementaryViewSectionHeader = routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as? RouteFindingCollectionViewHeaderCell
-        
-        supplementaryViewSectionHeader?.subTitleButton.setTitle(mMode == .select ? "완료" : "편집", for: .normal)
-        supplementaryViewSectionHeader?.subTitleButton.setTitleColor(mMode == .select ? UIColor.orrUPBlue: UIColor.orrGray400, for: .normal)
     }
 }
 
@@ -119,7 +114,7 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
     
     func delete() {
         var deleteNeededIndexPaths : [IndexPath] = []
-        for (key,value) in dictionarySelectedIndexPath{
+        for (key,value) in dictionarySelectedIndexPath {
             if value {
                 deleteNeededIndexPaths.append(key)
             }
@@ -230,7 +225,7 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
     private func backToDefaultRouteFindingSectionViewSetting() {
         dictionarySelectedIndexPath.removeAll()
         mMode = .view
-        changeStatusOfChangeFolderButtons(status: false)
+        changeStatusOfChangeFolderButtons(to: false)
         backToDefaultRouteFindingCollectionViewSetting()
         checkAndShowEmptyGuideView()
     }
@@ -246,7 +241,7 @@ extension RouteFindingSectionViewController: RouteModalDelegate {
         }
     }
     
-    private func changeStatusOfChangeFolderButtons(status : Bool) {
+    func changeStatusOfChangeFolderButtons(to status : Bool) {
         folderButton.isEnabled = status
         deleteButton.isEnabled = status
     }

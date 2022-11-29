@@ -16,6 +16,7 @@ class RouteFindingSectionViewController: UIViewController {
     let minimumInteritemSpacingForSection: CGFloat = 13
     let minimumLineSpacingForSection: CGFloat = 16
     let cellScaleBetweenWidthAndHeight = 1.8
+    let headerIdentifier = "UICollectionElementKindSectionHeader"
     
     var mMode: RouteFindingCollectionViewMode = .view {
         didSet{
@@ -30,10 +31,20 @@ class RouteFindingSectionViewController: UIViewController {
                 }
                 dictionarySelectedIndexPath.removeAll()
                 routeFindingCollectionView.allowsMultipleSelection = false
+                routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
+                let supplementaryViewSectionHeader = routeFindingCollectionView.supplementaryView(forElementKind: headerIdentifier, at: IndexPath(row: 0, section: 0)) as? RouteFindingCollectionViewHeaderCell
+                
+                supplementaryViewSectionHeader?.subTitleButton.setTitle(mMode == .select ? "완료" : "편집", for: .normal)
+                supplementaryViewSectionHeader?.subTitleButton.setTitleColor(mMode == .select ? UIColor.orrUPBlue: UIColor.orrGray400, for: .normal)
             case .select:
                 self.tabBarController?.tabBar.isHidden = true
                 bottomOptionView.layer.opacity = 1.0
                 routeFindingCollectionView.allowsMultipleSelection = true
+                routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
+                let supplementaryViewSectionHeader = routeFindingCollectionView.supplementaryView(forElementKind: headerIdentifier, at: IndexPath(row: 0, section: 0)) as? RouteFindingCollectionViewHeaderCell
+                
+                supplementaryViewSectionHeader?.subTitleButton.setTitle(mMode == .select ? "완료" : "편집", for: .normal)
+                supplementaryViewSectionHeader?.subTitleButton.setTitleColor(mMode == .select ? UIColor.orrUPBlue: UIColor.orrGray400, for: .normal)
             }
         }
     }
@@ -109,16 +120,7 @@ class RouteFindingSectionViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         mMode = .view
-        routeFindingCollectionView.reloadSections(IndexSet(integer: 0))
-        
-        let supplementaryViewSectionHeader = routeFindingCollectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionHeader", at: IndexPath(row: 0, section: 0)) as? RouteFindingCollectionViewHeaderCell
-        
-        supplementaryViewSectionHeader?.subTitleButton.setTitle(mMode == .select ? "완료" : "편집", for: .normal)
-        supplementaryViewSectionHeader?.subTitleButton.setTitleColor(mMode == .select ? UIColor.orrUPBlue: UIColor.orrGray400, for: .normal)
-        
-        self.deleteButton.isEnabled = false
-        self.folderButton.isEnabled = false
-        
+        changeStatusOfChangeFolderButtons(to: false)
     }
     private func setDelegate() {
         routeFindingCollectionView.delegate = self
