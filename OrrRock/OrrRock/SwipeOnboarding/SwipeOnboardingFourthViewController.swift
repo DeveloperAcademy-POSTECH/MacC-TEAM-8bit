@@ -68,10 +68,8 @@ class SwipeOnboardingFourthViewController: UIViewController {
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-       if #available(iOS 13.0, *) {
            if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
                mainImageView.layer.borderColor = UIColor.orrWhite?.cgColor
-           }
        }
     }
     

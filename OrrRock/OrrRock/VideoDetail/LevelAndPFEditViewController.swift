@@ -51,7 +51,7 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         return view
     }()
     
-    private lazy var paddingView : UIView = {
+    private lazy var paddingView: UIView = {
         let view = UIView()
         return view
     }()
@@ -110,11 +110,9 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        if #available(iOS 13.0, *) {
             if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
                 saveButton.setBackgroundColor(.orrUPBlue!, for: .normal)
                 saveButton.setBackgroundColor(.orrGray300!, for: .disabled)
-            }
         }
     }
 }
