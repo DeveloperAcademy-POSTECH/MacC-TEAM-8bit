@@ -146,16 +146,18 @@ extension RouteFindingGymSaveViewController {
     }
     
     @objc final func pressNextButton() {
-//        // 자동완성에 클라이밍장명 데이터 업데이트
-//        let target = visitedGymList.filter({ $0.name == gymTextField.text! })
-//        if target.isEmpty {
-//            // 만약 클라이밍장 명이 데이터에 포함되어 있지 않으면 추가하기
-//            DataManager.shared.createVisitedClimbingGym(gymName: gymTextField.text!)
-//        } else {
-//            // 만약 클라이밍장 명이 데이터에 이미 포함되어 있다면, 최근 방문으로 날짜 변경하기
-//            let index = visitedGymList.firstIndex(of: target[0])
-//            DataManager.shared.updateVisitedClimbingGym(updateTarget: visitedGymList[index!])
-//        }
+        // 자동완성에 클라이밍장명 데이터 업데이트
+        let target = visitedGymList.filter({ $0.name == gymTextField.text! })
+        if target.isEmpty {
+            // 만약 클라이밍장 명이 데이터에 포함되어 있지 않으면 추가하기
+            DataManager.shared.createVisitedClimbingGym(gymName: gymTextField.text!)
+        } else {
+            // 만약 클라이밍장 명이 데이터에 이미 포함되어 있다면, 최근 방문으로 날짜 변경하기
+            let index = visitedGymList.firstIndex(of: target[0])
+            DataManager.shared.updateVisitedClimbingGym(updateTarget: visitedGymList[index!])
+        }
+        
+        routeDataDraft.updateGymName(gymName: gymTextField.text!)
         
         let routeFindingLevelSaveViewController = RouteFindingLevelSaveViewController()
         navigationController?.pushViewController(routeFindingLevelSaveViewController, animated: true)
