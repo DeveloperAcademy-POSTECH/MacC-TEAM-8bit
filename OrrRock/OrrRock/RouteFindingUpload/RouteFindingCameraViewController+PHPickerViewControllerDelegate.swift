@@ -18,7 +18,11 @@ extension RouteFindingCameraViewController: PHPickerViewControllerDelegate {
         currentLocalIdentifier = fetchResult[0].localIdentifier
         
         guard let phAsset = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: nil).firstObject else { return }
-        PHImageManager.default().requestImageDataAndOrientation(for: phAsset, options: nil) { [self] data, _, _, _ in
+        
+        let imageRequestOption = PHImageRequestOptions()
+        imageRequestOption.isNetworkAccessAllowed = true
+        
+        PHImageManager.default().requestImageDataAndOrientation(for: phAsset, options: imageRequestOption) { [self] data, _, _, _ in
             if let data = data, let image = UIImage(data: data) {
                 
                 let orientationFixedImage = image.fixOrientation()
