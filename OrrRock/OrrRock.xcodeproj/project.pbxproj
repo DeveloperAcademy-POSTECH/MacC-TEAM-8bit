@@ -12,6 +12,7 @@
 		0AAB780A290424A300EEEFFB /* SwipeableCardVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */; };
 		3405BE5F2927DA9600D6E15A /* MyActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3405BE5E2927DA9600D6E15A /* MyActivityViewController.swift */; };
 		3405BE632927DD2E00D6E15A /* ChallengeChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3405BE622927DD2E00D6E15A /* ChallengeChartView.swift */; };
+		3412C4DF29378E3B00A584C6 /* RouteFindingFeatureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3412C4DE29378E3B00A584C6 /* RouteFindingFeatureButton.swift */; };
 		341418B42922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341418B32922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift */; };
 		341418B6292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341418B5292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift */; };
 		341418B82922A2500033D851 /* GymSettingViewController+TableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341418B72922A2500033D851 /* GymSettingViewController+TableViewExtensions.swift */; };
@@ -29,10 +30,13 @@
 		342508AF29002F31000653D9 /* HomeCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342508AE29002F31000653D9 /* HomeCollectionViewHeaderCell.swift */; };
 		342C456E290125260037D9E7 /* HomeTableViewListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C456D290125260037D9E7 /* HomeTableViewListCell.swift */; };
 		342C457029018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C456F29018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift */; };
-		343170F229310971005E66F3 /* RouteFindingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343170F129310971005E66F3 /* RouteFindingPageView.swift */; };
+		343170F229310971005E66F3 /* RouteFindingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343170F129310971005E66F3 /* RouteFindingPageViewController.swift */; };
 		34793F9F29251E4B00B74110 /* BetterSegmentedControl in Frameworks */ = {isa = PBXBuildFile; productRef = 34793F9E29251E4B00B74110 /* BetterSegmentedControl */; };
 		34793FA329262A8800B74110 /* CustomBackBarButtomItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34793FA229262A8800B74110 /* CustomBackBarButtomItem.swift */; };
 		3495AEF72929192000006469 /* CalendarComponent+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3495AEF62929192000006469 /* CalendarComponent+.swift */; };
+		34BFCD7929369993009602CA /* RouteFindingFeatureHandButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BFCD7829369993009602CA /* RouteFindingFeatureHandButton.swift */; };
+		34BFCD7B293699A2009602CA /* RouteFindingFeatureFootButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BFCD7A293699A2009602CA /* RouteFindingFeatureFootButton.swift */; };
+		34BFCD7D2936A73B009602CA /* RouteFindingFeatureViewController+UIPageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BFCD7C2936A73B009602CA /* RouteFindingFeatureViewController+UIPageViewExtensions.swift */; };
 		34E11EC3292BEDCF00787316 /* FirstDateSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E11EC2292BEDCF00787316 /* FirstDateSettingViewController.swift */; };
 		34E11EC5292BFF2700787316 /* ExportCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E11EC4292BFF2700787316 /* ExportCardView.swift */; };
 		34E11EC9292D2C5100787316 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E11EC8292D2C5100787316 /* UIImage+.swift */; };
@@ -80,6 +84,7 @@
 		3AA4D42B28FEBADF006C718A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AA4D42A28FEBADF006C718A /* Assets.xcassets */; };
 		3AA4D42E28FEBADF006C718A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA4D42C28FEBADF006C718A /* LaunchScreen.storyboard */; };
 		3AA4D43728FEBE94006C718A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA4D43628FEBE94006C718A /* SnapKit */; };
+		3AE233AB2937714400A057CE /* RotueDataDraft_Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE233AA2937714400A057CE /* RotueDataDraft_Archive.swift */; };
 		3AEB3D5D291C003D00A989FF /* VideoCollectionViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */; };
 		700AC6212926A1DA003DF5AF /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700AC6202926A1DA003DF5AF /* UIImageView+.swift */; };
 		704BAB5E292834DB004D987A /* NewLevelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704BAB5D292834DB004D987A /* NewLevelPickerView.swift */; };
@@ -124,6 +129,7 @@
 		78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA0672901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift */; };
 		78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA069290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift */; };
 		78CAA06C290271E7003C3D77 /* VIdeoCollectionFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA06B290271E7003C3D77 /* VIdeoCollectionFooterCell.swift */; };
+		78D44C03293799AF007376DB /* VideoInfoView+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D44C02293799AF007376DB /* VideoInfoView+Protocol.swift */; };
 		78F56F6C291A67FA00174B74 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F56F6B291A67FA00174B74 /* OnBoardingViewController.swift */; };
 		78F93ED32906EFC500F3D9F3 /* GymEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED22906EFC500F3D9F3 /* GymEditViewController.swift */; };
 		78F93ED7290743DF00F3D9F3 /* LevelAndPFEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */; };
@@ -159,6 +165,7 @@
 		0AAB7809290424A300EEEFFB /* SwipeableCardVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardVideoView.swift; sourceTree = "<group>"; };
 		3405BE5E2927DA9600D6E15A /* MyActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyActivityViewController.swift; sourceTree = "<group>"; };
 		3405BE622927DD2E00D6E15A /* ChallengeChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeChartView.swift; sourceTree = "<group>"; };
+		3412C4DE29378E3B00A584C6 /* RouteFindingFeatureButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingFeatureButton.swift; sourceTree = "<group>"; };
 		341418B32922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VisitedClimbingGym+CoreDataClass.swift"; sourceTree = "<group>"; };
 		341418B5292297780033D851 /* VisitedClimbingGym+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VisitedClimbingGym+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		341418B72922A2500033D851 /* GymSettingViewController+TableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GymSettingViewController+TableViewExtensions.swift"; sourceTree = "<group>"; };
@@ -176,9 +183,12 @@
 		342508AE29002F31000653D9 /* HomeCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
 		342C456D290125260037D9E7 /* HomeTableViewListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewListCell.swift; sourceTree = "<group>"; };
 		342C456F29018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewFooterCell.swift; sourceTree = "<group>"; };
-		343170F129310971005E66F3 /* RouteFindingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingPageView.swift; sourceTree = "<group>"; };
+		343170F129310971005E66F3 /* RouteFindingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingPageViewController.swift; sourceTree = "<group>"; };
 		34793FA229262A8800B74110 /* CustomBackBarButtomItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackBarButtomItem.swift; sourceTree = "<group>"; };
 		3495AEF62929192000006469 /* CalendarComponent+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarComponent+.swift"; sourceTree = "<group>"; };
+		34BFCD7829369993009602CA /* RouteFindingFeatureHandButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingFeatureHandButton.swift; sourceTree = "<group>"; };
+		34BFCD7A293699A2009602CA /* RouteFindingFeatureFootButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingFeatureFootButton.swift; sourceTree = "<group>"; };
+		34BFCD7C2936A73B009602CA /* RouteFindingFeatureViewController+UIPageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteFindingFeatureViewController+UIPageViewExtensions.swift"; sourceTree = "<group>"; };
 		34E11EC2292BEDCF00787316 /* FirstDateSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstDateSettingViewController.swift; sourceTree = "<group>"; };
 		34E11EC4292BFF2700787316 /* ExportCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportCardView.swift; sourceTree = "<group>"; };
 		34E11EC8292D2C5100787316 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
@@ -227,6 +237,7 @@
 		3AA4D42A28FEBADF006C718A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AA4D42D28FEBADF006C718A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AA4D42F28FEBADF006C718A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3AE233AA2937714400A057CE /* RotueDataDraft_Archive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotueDataDraft_Archive.swift; sourceTree = "<group>"; };
 		3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewMode.swift; sourceTree = "<group>"; };
 		700AC6202926A1DA003DF5AF /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		704BAB5D292834DB004D987A /* NewLevelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLevelPickerView.swift; sourceTree = "<group>"; };
@@ -270,6 +281,7 @@
 		78CAA0672901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoCollectionView+VideoCollectionViewExtensions.swift"; sourceTree = "<group>"; };
 		78CAA069290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
 		78CAA06B290271E7003C3D77 /* VIdeoCollectionFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIdeoCollectionFooterCell.swift; sourceTree = "<group>"; };
+		78D44C02293799AF007376DB /* VideoInfoView+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoInfoView+Protocol.swift"; sourceTree = "<group>"; };
 		78F56F6B291A67FA00174B74 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		78F93ED22906EFC500F3D9F3 /* GymEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymEditViewController.swift; sourceTree = "<group>"; };
 		78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelAndPFEditViewController.swift; sourceTree = "<group>"; };
@@ -401,6 +413,16 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		34BFCD7729369982009602CA /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				34BFCD7829369993009602CA /* RouteFindingFeatureHandButton.swift */,
+				34BFCD7A293699A2009602CA /* RouteFindingFeatureFootButton.swift */,
+				3412C4DE29378E3B00A584C6 /* RouteFindingFeatureButton.swift */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
 		34E11EC0292BEBF200787316 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -413,10 +435,12 @@
 			isa = PBXGroup;
 			children = (
 				34E11EE02930981F00787316 /* RouteFindingFeatureViewController.swift */,
+				34BFCD7C2936A73B009602CA /* RouteFindingFeatureViewController+UIPageViewExtensions.swift */,
 				34E11EE229309D5E00787316 /* RouteFindingFeatureViewController+UICollectionViewExtensions.swift */,
 				34E11EE429309E1000787316 /* RouteFindingThumbnailCollectionViewFlowLayout.swift */,
 				34E11EE629309E2900787316 /* RouteFindingThumbnailCollectionViewCell.swift */,
-				343170F129310971005E66F3 /* RouteFindingPageView.swift */,
+				343170F129310971005E66F3 /* RouteFindingPageViewController.swift */,
+				34BFCD7729369982009602CA /* UIComponents */,
 			);
 			path = RouteFindingFeature;
 			sourceTree = "<group>";
@@ -459,6 +483,7 @@
 				3A4641D5292FB30900C6B7A3 /* RouteDataDraft.swift */,
 				3A4641D9292FB4B400C6B7A3 /* RouteCoreDataDAO.swift */,
 				3A4641DB292FB71900C6B7A3 /* RouteDataManager.swift */,
+				3AE233AA2937714400A057CE /* RotueDataDraft_Archive.swift */,
 			);
 			path = RouteFinding;
 			sourceTree = "<group>";
@@ -724,6 +749,7 @@
 			children = (
 				FB32281229046CDE00276A7D /* VideoPlayView.swift */,
 				FB32281429046CED00276A7D /* VideoInfoView.swift */,
+				78D44C02293799AF007376DB /* VideoInfoView+Protocol.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -830,6 +856,7 @@
 				3A15AC7929071F710058512F /* DataRepository.swift in Sources */,
 				342508AF29002F31000653D9 /* HomeCollectionViewHeaderCell.swift in Sources */,
 				78B6A712292F90FA00C0BB70 /* RouteFindingMainViewController+Extensions.swift in Sources */,
+				3AE233AB2937714400A057CE /* RotueDataDraft_Archive.swift in Sources */,
 				709A8C6D2904A3E800CEA6F4 /* CustomIndicator.swift in Sources */,
 				342508A729001BBC000653D9 /* HomeTableViewCardCell.swift in Sources */,
 				78FEE88B292616BC007B67BD /* VideoDetailViewController+Extensions.swift in Sources */,
@@ -854,7 +881,7 @@
 				78B6A7212932967100C0BB70 /* RouteFindingCollectionViewHeaderCell+Protocol.swift in Sources */,
 				3A4642462933FF8300C6B7A3 /* CameraSessionStatus.swift in Sources */,
 				78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */,
-				343170F229310971005E66F3 /* RouteFindingPageView.swift in Sources */,
+				343170F229310971005E66F3 /* RouteFindingPageViewController.swift in Sources */,
 				3A15AC892907B1160058512F /* VideoInformation+CoreDataProperties.swift in Sources */,
 				70A8DF05291403EA0061E36B /* GymSettingModel.swift in Sources */,
 				704BAB5E292834DB004D987A /* NewLevelPickerView.swift in Sources */,
@@ -866,6 +893,7 @@
 				3A15AC7729071DD90058512F /* OrderOption.swift in Sources */,
 				0A0B41072907C59600057FA7 /* LevelAndPFSettingViewController.swift in Sources */,
 				78FEE89929291AC9007B67BD /* VideoDetailPageViewController+Protocol.swift in Sources */,
+				34BFCD7B293699A2009602CA /* RouteFindingFeatureFootButton.swift in Sources */,
 				3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */,
 				3A4641B9292FA7B500C6B7A3 /* PointInformation+CoreDataClass.swift in Sources */,
 				70DE795A29250F480009AD43 /* SwipeOnboardingViewController.swift in Sources */,
@@ -878,6 +906,7 @@
 				3A4641C0292FA8F600C6B7A3 /* FootOrHand.swift in Sources */,
 				3A2880EB29033C2500FBFB70 /* FilterOption.swift in Sources */,
 				34E11EC3292BEDCF00787316 /* FirstDateSettingViewController.swift in Sources */,
+				34BFCD7D2936A73B009602CA /* RouteFindingFeatureViewController+UIPageViewExtensions.swift in Sources */,
 				34E11EE529309E1000787316 /* RouteFindingThumbnailCollectionViewFlowLayout.swift in Sources */,
 				34172EB3292AC884009DAAB8 /* MyCardView.swift in Sources */,
 				707B2CBA2901382A0062C958 /* OrrPd.swift in Sources */,
@@ -887,6 +916,7 @@
 				3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */,
 				3A15AC7F2907262C0058512F /* VideoCollectionView+DataSorting.swift in Sources */,
 				342508A929001C2E000653D9 /* HomeTableViewCardCell+CollectionViewExtensions.swift in Sources */,
+				78D44C03293799AF007376DB /* VideoInfoView+Protocol.swift in Sources */,
 				3AA4D42928FEBADE006C718A /* OrrRock.xcdatamodeld in Sources */,
 				78F93ED7290743DF00F3D9F3 /* LevelAndPFEditViewController.swift in Sources */,
 				341418B42922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift in Sources */,
@@ -930,6 +960,7 @@
 				78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */,
 				3AEB3D5D291C003D00A989FF /* VideoCollectionViewMode.swift in Sources */,
 				78CAA06C290271E7003C3D77 /* VIdeoCollectionFooterCell.swift in Sources */,
+				34BFCD7929369993009602CA /* RouteFindingFeatureHandButton.swift in Sources */,
 				78FCCFF72934AB4900E435BC /* RouteFindingEditType.swift in Sources */,
 				341418BB2922A3800033D851 /* AutocompleteTableViewCell.swift in Sources */,
 				78B6A70A292F5B7300C0BB70 /* RouteFindingMainViewController.swift in Sources */,
@@ -937,6 +968,7 @@
 				78B6A717292FA8DA00C0BB70 /* RouteFindingCollectionViewHeaderCell.swift in Sources */,
 				3A4641D6292FB30900C6B7A3 /* RouteDataDraft.swift in Sources */,
 				709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */,
+				3412C4DF29378E3B00A584C6 /* RouteFindingFeatureButton.swift in Sources */,
 				3A4641C8292FAD4000C6B7A3 /* PointInfo.swift in Sources */,
 				78FEE89729291A19007B67BD /* VideoDetailViewController+Protocol.swift in Sources */,
 				FBB272C02935E61D00A36CB0 /* RouteFindingLevelSaveViewController.swift in Sources */,
@@ -1106,9 +1138,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_NSCameraUsageDescription = "클라이밍 문제를 등록하기 위하여 카메라 접근 권한이 필요합니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "볼더링 문제 등록을 위해 카메라 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "업로드한 사진을 계속 찾아 볼 수 있도록 사진 권한을 승인해주세요.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "클라이밍 비디오를 등록 및 분류하기 위하여 사진 앨범 접근 권한이 필요합니다.\n원활한 사용을 위해 모든 사진에 대한 접근 허용을 권장합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "볼더링 비디오/사진을 등록 및 분류하기 위하여 사진 접근 권한이 필요합니다.\n원활한 사용을 위해 모든 사진에 대한 접근 허용을 권장합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1141,9 +1173,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_NSCameraUsageDescription = "클라이밍 문제를 등록하기 위하여 카메라 접근 권한이 필요합니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "볼더링 문제 등록을 위해 카메라 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "업로드한 사진을 계속 찾아 볼 수 있도록 사진 권한을 승인해주세요.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "클라이밍 비디오를 등록 및 분류하기 위하여 사진 앨범 접근 권한이 필요합니다.\n원활한 사용을 위해 모든 사진에 대한 접근 허용을 권장합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "볼더링 비디오/사진을 등록 및 분류하기 위하여 사진 접근 권한이 필요합니다.\n원활한 사용을 위해 모든 사진에 대한 접근 허용을 권장합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

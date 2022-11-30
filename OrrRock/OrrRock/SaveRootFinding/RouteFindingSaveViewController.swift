@@ -13,7 +13,7 @@ class RouteFindingSaveViewController: UIViewController {
     var routeDataDraft: RouteDataDraft
     var routeInfo: RouteInfo
     var pages: [PageInfo]
-    var pageViews: [RouteFindingPageView]
+    var pageImages: [UIImage]
     var backgroundImage: UIImage
     
     let collectionViewCellwidth: Int = 58
@@ -55,14 +55,8 @@ class RouteFindingSaveViewController: UIViewController {
         return button
     }()
     
-    var previewImage: RouteFindingPageView = {
-        let view = RouteFindingPageView()
-       
-        return view
-    }()
-    
-    lazy var previewImageView: UIView = {
-        let view = UIView()
+    lazy var previewImageView: UIImageView = {
+        let view = UIImageView()
         view.backgroundColor = .orrGray200
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
@@ -144,12 +138,12 @@ class RouteFindingSaveViewController: UIViewController {
         return collection
     }()
     
-    init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage, pageViews: [RouteFindingPageView]) {
+    init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage, pageImages: [UIImage]) {
         self.routeDataDraft = routeDataDraft
         self.routeInfo = routeDataDraft.routeInfoForUI
         self.backgroundImage = backgroundImage
         self.pages = routeDataDraft.newPageInfo
-        self.pageViews = pageViews
+        self.pageImages = pageImages
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -245,16 +239,9 @@ class RouteFindingSaveViewController: UIViewController {
         countVideoLabel.text = "\(selectedCell.indexPathOfCell.row + 1)/\(pages.count)"
     }
     
-    
     func selectPage() {
         guard let selectedCell = centerCell else { return }
-        previewImage.snp.removeConstraints()
-        countVideoLabel.text = "\(selectedCell.indexPathOfCell.row + 1)/\(pages.count)"
-        
-        previewImage = pageViews[selectedCell.indexPathOfCell.row]
-        previewImage.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+        previewImageView.image = pageImages[selectedCell.indexPathOfCell.row]
     }
 }
 
@@ -321,13 +308,6 @@ extension RouteFindingSaveViewController {
             $0.top.equalTo(exitButton.snp.bottom).offset(OrrPd.pd8.rawValue)
             $0.bottom.equalTo(saveRouteFindingImageCollectionView.snp.top).offset(-OrrPd.pd8.rawValue)
             $0.width.equalTo(previewImageView.snp.height).multipliedBy(0.5625)
-        }
-        
-        previewImageView.addSubview(previewImage)
-        previewImage.snp.makeConstraints {
-            $0.center.equalToSuperview()
-            $0.height.equalToSuperview()
-            $0.width.equalToSuperview()
         }
     }
 }

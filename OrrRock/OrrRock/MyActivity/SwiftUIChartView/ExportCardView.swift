@@ -19,7 +19,7 @@ struct ExportCardView: View {
                     .resizable()
                 
                 VStack {
-                    Text("볼더링 클라이밍을 시작한 지")
+                    Text("볼더링을 시작한 지")
                         .font(.system(size: 17, weight: .regular))
                         .foregroundColor(Color(uiColor: UIColor.orrWhite!))
                     
@@ -46,7 +46,7 @@ struct ExportCardView: View {
                     .resizable()
                 
                 VStack {
-                    Text("볼더링 클라이밍을 시작한 지")
+                    Text("볼더링을 시작한 지")
                         .font(.system(size: 17, weight: .regular))
                         .foregroundColor(Color(uiColor: UIColor.orrWhite!))
                     

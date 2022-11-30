@@ -18,7 +18,6 @@ class VideoDetailViewController: UIViewController {
     var isSounded: Bool = false
     var isPlayed: Bool = false
     var isShowKeyboard: Bool = false
-    var iconSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
     
     var videoInfoView = VideoInfoView()
     
@@ -101,11 +100,12 @@ class VideoDetailViewController: UIViewController {
         infoButton = UIBarButtonItem(image: UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle"), style: .plain, target: self, action: #selector(showInfo))
         trashButton = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteVideoAction))
         soundButton = UIBarButtonItem(image: UIImage(systemName: "speaker.slash.fill"), style: .plain, target: self, action: #selector(soundVideoAction))
-        var items = [UIBarButtonItem]()
+        soundButton.width = 40
         playButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(playVideoAction))
-        iconSpace.width = 8.4
+        playButton.width = 30
         
-        [exportButton,flexibleSpace,favoriteButton,flexibleSpace,playButton,iconSpace,flexibleSpace,soundButton,flexibleSpace,infoButton,flexibleSpace,trashButton].forEach {
+        var items = [UIBarButtonItem]()
+        [exportButton,flexibleSpace,favoriteButton,flexibleSpace,playButton,flexibleSpace,soundButton,flexibleSpace,infoButton,flexibleSpace,trashButton].forEach {
             items.append($0)
         }
         self.toolbarItems = items
@@ -152,12 +152,12 @@ class VideoDetailViewController: UIViewController {
     
     // 삭제 버튼을 눌렀을 때 로직
     @objc func deleteVideoAction(_ sender: UIBarButtonItem) {
-        let optionMenu = UIAlertController(title: "선택한 영상 삭제하기", message: "정말로 삭제하시겠어요?", preferredStyle: .actionSheet)
-        let deleteAction = UIAlertAction(title: "삭제하기", style: .destructive) {_ in
+        let optionMenu = UIAlertController(title: "선택한 기록 삭제하기", message: "정말로 삭제하시겠어요?", preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
             DataManager.shared.deleteData(videoInformation: self.currentVideoInformation!)
             self.goBackAction()
         }
-        let cancelAction = UIAlertAction(title: "취소하기", style: .cancel)
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         
         optionMenu.addAction(deleteAction)
         optionMenu.addAction(cancelAction)
@@ -168,10 +168,8 @@ class VideoDetailViewController: UIViewController {
     // 소리 버튼을 눌렀을 때 로직
     @objc func soundVideoAction() {
         isSounded.toggle()
-        iconSpace.width = isSounded ? 0 : 8.4
         soundButton.image = UIImage(systemName: isSounded ? "speaker.wave.2.fill" : "speaker.slash.fill")
         VideoDetailViewControllerDelegate?.changeVideoSoundPlayAndStop()
-        print(#function)
     }
     
     // 재생 버튼을 눌렀을 때 로직
@@ -179,7 +177,6 @@ class VideoDetailViewController: UIViewController {
         isPlayed.toggle()
         playButton.image = UIImage(systemName: isPlayed ? "play.fill" : "pause.fill")
         VideoDetailViewControllerDelegate?.changeVideoPlayAndStop()
-        print(#function)
         
     }
     
@@ -188,7 +185,6 @@ class VideoDetailViewController: UIViewController {
         currentVideoInformation!.isFavorite.toggle()
         favoriteButton.image = UIImage(systemName: currentVideoInformation!.isFavorite ? "heart.fill" : "heart")
         DataManager.shared.updateFavorite(videoInformation: currentVideoInformation!, isFavorite: currentVideoInformation!.isFavorite)
-        print(#function)
     }
     
     // 취소 버튼을 눌렀을 때 로직
@@ -200,7 +196,6 @@ class VideoDetailViewController: UIViewController {
     // 완료 버튼을 눌렀을 때 로직
     @objc func completeAction() {
         //TODO: 피드백 입력 구현 마무리
-        
         feedbackText = videoInfoView.feedbackTextView.text!
         DataManager.shared.updateFeedback(videoInformation: currentVideoInformation!, feedback: feedbackText!)
         self.view.endEditing(true)
