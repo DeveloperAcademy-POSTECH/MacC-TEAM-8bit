@@ -71,7 +71,6 @@ final class RouteFindingCameraViewController: UIViewController {
         
         setCameraPreviewLayer()
         setupCaptureSession()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
