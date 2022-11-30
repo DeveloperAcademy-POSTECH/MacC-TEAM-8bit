@@ -1107,8 +1107,8 @@
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "클라이밍 문제를 등록하기 위하여 카메라 접근 권한이 필요합니다.";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "업로드한 사진을 계속 찾아 볼 수 있도록 사진 권한을 승인해주세요.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "클라이밍 비디오를 등록 및 분류하기 위하여 사진 앨범 접근 권한이 필요합니다.\n원활한 사용을 위해 모든 사진에 대한 접근 허용을 권장합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "업로드한 비디오를 계속 찾아 볼 수 있도록 사진 권한을 승인해주세요.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "볼더링 비디오를 기록 및 분류하기 위해 사진 앨범 접근이 필요합니다.\n원활한 사용을 위해 모든 사진에 대한 접근 허용을 권장합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1142,8 +1142,8 @@
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "클라이밍 문제를 등록하기 위하여 카메라 접근 권한이 필요합니다.";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "업로드한 사진을 계속 찾아 볼 수 있도록 사진 권한을 승인해주세요.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "클라이밍 비디오를 등록 및 분류하기 위하여 사진 앨범 접근 권한이 필요합니다.\n원활한 사용을 위해 모든 사진에 대한 접근 허용을 권장합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "업로드한 비디오를 계속 찾아 볼 수 있도록 사진 권한을 승인해주세요.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "볼더링 비디오를 기록 및 분류하기 위해 사진 앨범 접근이 필요합니다.\n원활한 사용을 위해 모든 사진에 대한 접근 허용을 권장합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

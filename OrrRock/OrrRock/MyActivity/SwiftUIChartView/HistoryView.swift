@@ -27,7 +27,7 @@ struct HistoryView: View {
 
                 Spacer()
                 
-                Text("볼더링 클라이밍을 시작한 지 \n\(Calendar.current.dateComponents([.day], from: fromDate ?? Date(), to: Date()).day! + 1)일 지났습니다.")
+                Text("볼더링을 시작한 지 \n\(Calendar.current.dateComponents([.day], from: fromDate ?? Date(), to: Date()).day! + 1)일 지났습니다.")
                     .font(.system(size: 17, weight: .bold))
                     .foregroundColor(Color(uiColor: UIColor.orrBlack!))
                     .padding(.top, 8)

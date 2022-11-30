@@ -12,23 +12,23 @@ class OnBoardingViewController: UIPageViewController {
     var firstView : OnBoardigSuperViewController = {
         let vc = OnBoardigSuperViewController()
         vc.titleLabelText = "오르락과 함께"
-        vc.subLabelText = "볼더링 클라이밍을 즐겨요"
+        vc.subLabelText = "볼더링을 즐겨요"
         vc.labelImageName = "OnboardingImage1"
         return vc
     }()
     
     var secondView : OnBoardigSuperViewController = {
         let vc = OnBoardigSuperViewController()
-        vc.titleLabelText = "홀드를 잡고 오르는"
-        vc.subLabelText = "모습을 기록해서"
+        vc.titleLabelText = "볼더링하는 모습을"
+        vc.subLabelText = "기록해"
         vc.labelImageName = "OnboardingImage2"
         return vc
     }()
     
     var thirdView : OnBoardigSuperViewController = {
         let vc = OnBoardigSuperViewController()
-        vc.titleLabelText = "더 높이, 더 어려운 문제에"
-        vc.subLabelText = "함께 도전해요"
+        vc.titleLabelText = "오르락과 함께"
+        vc.subLabelText = "성장하는 나를 발견해요"
         vc.labelImageName = "OnboardingImage3"
         return vc
     }()
