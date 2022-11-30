@@ -43,7 +43,7 @@ final class RouteFindingCameraViewController: UIViewController {
     private lazy var shutterButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
-        button.layer.borderColor = UIColor.orrWhite?.cgColor
+        button.layer.borderColor = UIColor(hex: "FFFFFF").cgColor
         button.layer.borderWidth = 4
         button.layer.cornerRadius = 37.5
         
@@ -125,7 +125,7 @@ extension RouteFindingCameraViewController {
         let circleShapeOriginPoint = (shutterButtonSize - circleSize)/2
         let circleShape = UIBezierPath(ovalIn: CGRect(x: circleShapeOriginPoint, y: circleShapeOriginPoint, width: circleSize, height: circleSize))
         circleLayer.path = circleShape.cgPath
-        circleLayer.fillColor = UIColor.orrWhite?.cgColor
+        circleLayer.fillColor = UIColor(hex: "FFFFFF").cgColor
         shutterButton.layer.addSublayer(circleLayer)
         
         view.addSubview(photosButton)
