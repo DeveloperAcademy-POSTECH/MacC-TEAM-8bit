@@ -170,7 +170,6 @@ class VideoDetailViewController: UIViewController {
         isSounded.toggle()
         soundButton.image = UIImage(systemName: isSounded ? "speaker.wave.2.fill" : "speaker.slash.fill")
         VideoDetailViewControllerDelegate?.changeVideoSoundPlayAndStop()
-        print(#function)
     }
     
     // 재생 버튼을 눌렀을 때 로직
@@ -178,7 +177,6 @@ class VideoDetailViewController: UIViewController {
         isPlayed.toggle()
         playButton.image = UIImage(systemName: isPlayed ? "play.fill" : "pause.fill")
         VideoDetailViewControllerDelegate?.changeVideoPlayAndStop()
-        print(#function)
         
     }
     
@@ -187,7 +185,6 @@ class VideoDetailViewController: UIViewController {
         currentVideoInformation!.isFavorite.toggle()
         favoriteButton.image = UIImage(systemName: currentVideoInformation!.isFavorite ? "heart.fill" : "heart")
         DataManager.shared.updateFavorite(videoInformation: currentVideoInformation!, isFavorite: currentVideoInformation!.isFavorite)
-        print(#function)
     }
     
     // 취소 버튼을 눌렀을 때 로직
