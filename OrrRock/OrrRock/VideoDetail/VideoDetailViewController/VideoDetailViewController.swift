@@ -18,7 +18,6 @@ class VideoDetailViewController: UIViewController {
     var isSounded: Bool = false
     var isPlayed: Bool = false
     var isShowKeyboard: Bool = false
-    var iconSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
     
     var videoInfoView = VideoInfoView()
     
@@ -101,11 +100,12 @@ class VideoDetailViewController: UIViewController {
         infoButton = UIBarButtonItem(image: UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle"), style: .plain, target: self, action: #selector(showInfo))
         trashButton = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteVideoAction))
         soundButton = UIBarButtonItem(image: UIImage(systemName: "speaker.slash.fill"), style: .plain, target: self, action: #selector(soundVideoAction))
-        var items = [UIBarButtonItem]()
+        soundButton.width = 40
         playButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(playVideoAction))
-        iconSpace.width = 8.4
+        playButton.width = 30
         
-        [exportButton,flexibleSpace,favoriteButton,flexibleSpace,playButton,iconSpace,flexibleSpace,soundButton,flexibleSpace,infoButton,flexibleSpace,trashButton].forEach {
+        var items = [UIBarButtonItem]()
+        [exportButton,flexibleSpace,favoriteButton,flexibleSpace,playButton,flexibleSpace,soundButton,flexibleSpace,infoButton,flexibleSpace,trashButton].forEach {
             items.append($0)
         }
         self.toolbarItems = items
@@ -168,10 +168,8 @@ class VideoDetailViewController: UIViewController {
     // 소리 버튼을 눌렀을 때 로직
     @objc func soundVideoAction() {
         isSounded.toggle()
-        iconSpace.width = isSounded ? 0 : 8.4
         soundButton.image = UIImage(systemName: isSounded ? "speaker.wave.2.fill" : "speaker.slash.fill")
         VideoDetailViewControllerDelegate?.changeVideoSoundPlayAndStop()
-        print(#function)
     }
     
     // 재생 버튼을 눌렀을 때 로직
@@ -179,7 +177,6 @@ class VideoDetailViewController: UIViewController {
         isPlayed.toggle()
         playButton.image = UIImage(systemName: isPlayed ? "play.fill" : "pause.fill")
         VideoDetailViewControllerDelegate?.changeVideoPlayAndStop()
-        print(#function)
         
     }
     
@@ -188,7 +185,6 @@ class VideoDetailViewController: UIViewController {
         currentVideoInformation!.isFavorite.toggle()
         favoriteButton.image = UIImage(systemName: currentVideoInformation!.isFavorite ? "heart.fill" : "heart")
         DataManager.shared.updateFavorite(videoInformation: currentVideoInformation!, isFavorite: currentVideoInformation!.isFavorite)
-        print(#function)
     }
     
     // 취소 버튼을 눌렀을 때 로직
