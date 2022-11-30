@@ -14,7 +14,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     // MARK: Variables
     
     var routeDataDraft: RouteDataDraft
-    var pages: [PageInfo]
+//    var pages: [PageInfo]
     var pageViewControllerList: [RouteFindingPageViewController] = []
     var backgroundImage: UIImage?
             
@@ -174,7 +174,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage?) {
         self.routeDataDraft = routeDataDraft
         self.backgroundImage = backgroundImage
-        self.pages = routeDataDraft.routeInfoForUI.pages
+//        self.pages = routeDataDraft.routeInfoForUI.pages
         
         super.init(nibName: nil, bundle: nil)
         
@@ -187,6 +187,8 @@ final class RouteFindingFeatureViewController: UIViewController {
         //            views.append(view)
         //        }
         //        self.pageViews = views
+        
+        
     }
     
     required init?(coder: NSCoder) {
@@ -240,7 +242,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     func selectPage() {
         guard let selectedCell = centerCell else { return }
         //        pageView.snp.removeConstraints()
-                pageNumberingLabelView.text = "\(selectedCell.indexPathOfCell.row + 1)/\(pages.count)"
+            pageNumberingLabelView.text = "\(selectedCell.indexPathOfCell.row + 1)/\(routeDataDraft.routeInfoForUI.pages.count)"
         //
         //        pageView = pageViews[selectedCell.indexPathOfCell.row]
         //        pageView.snp.makeConstraints {
@@ -279,11 +281,15 @@ final class RouteFindingFeatureViewController: UIViewController {
         //        routeInfo -> 전달
 //        let routeFindingSaveViewController = RouteFindingSaveViewController(routeDataDraft: routeDataDraft, backgroundImage: backgroundImage, pageViews: pageViews)
         
-        for index in pageViewControllerList.indices {
-            pageViewControllerList[index].pageInfo.points?.forEach { point in
-                routeDataDraft.addPointData(pageAt: index, addTargetPointInfo: point)
-            }
-        }
+//        for index in pageViewControllerList.indices {
+//            pageViewControllerList[index].pageInfo.points?.forEach { point in
+//                routeDataDraft.addPointData(pageAt: index, addTargetPointInfo: point)
+//            }
+//        }
+        routeDataDraft.save()
+        
+        print("newPageInfo Count", routeDataDraft.newPageInfo.count)
+        print("Draft Page Index:", 0,": Point Count: ", routeDataDraft.newPageInfo[0].points.count)
 
         print("Done Button Tapped")
     }
@@ -327,8 +333,10 @@ final class RouteFindingFeatureViewController: UIViewController {
         
         // 남은 셀의 수가 1개라면 삭제하지 않음
         // 필요 시 아래 if 블록 내에 알림 추가
-        if pages.count > 1 {
-            pages.remove(at: targetPageCell.indexPathOfCell.row)
+        if routeDataDraft.routeInfoForUI.pages.count > 1 {
+            pageViewControllerList.remove(at: targetPageCell.indexPathOfCell.row)
+            routeDataDraft.removePageData(at: targetPageCell.indexPathOfCell.row)
+//            pages.remove(at: targetPageCell.indexPathOfCell.row)
             //            pageViews.remove(at: targetPageCell.indexPathOfCell.row)
         }
         

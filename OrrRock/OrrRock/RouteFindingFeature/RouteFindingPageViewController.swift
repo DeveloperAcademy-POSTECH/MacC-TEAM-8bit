@@ -11,7 +11,7 @@ final class RouteFindingPageViewController: UIViewController {
     var routeDataDraft: RouteDataDraft
     var pageRowOrder: Int
     
-    var pageInfo: PageInfo
+    //    var pageInfo: PageInfo
     var isHandButton: Bool = true
     var buttonList: [RouteFindingFeatureButton] = []
     
@@ -19,7 +19,7 @@ final class RouteFindingPageViewController: UIViewController {
     init(routeDataDraft: RouteDataDraft, pageRowOrder: Int) {
         self.routeDataDraft = routeDataDraft
         self.pageRowOrder = pageRowOrder
-        self.pageInfo = routeDataDraft.routeInfoForUI.pages.filter({ $0.rowOrder == pageRowOrder }).first!
+        //        self.pageInfo = routeDataDraft.routeInfoForUI.pages.filter({ $0.rowOrder == pageRowOrder }).first!
         
         super.init(nibName: nil, bundle: nil)
         self.view.backgroundColor = .systemMint
@@ -56,7 +56,19 @@ final class RouteFindingPageViewController: UIViewController {
         
         if let button = sender.view as? RouteFindingFeatureButton,
            let index = buttonList.firstIndex { $0.id == button.id } {
-               self.pageInfo.points![index].position = sender.location(in: self.view)
+               
+               
+//               let originPointInfo = routeDataDraft.routeInfoForUI.pages[routeDataDraft.routeInfoForUI.pages.first(where: { $0.rowOrder == self.pageRowOrder })]
+               let originPointInfo = routeDataDraft.routeInfoForUI.pages.first(where: { $0.rowOrder == pageRowOrder })!.points[index] as! PointInfo
+               
+               
+               routeDataDraft.updatePointData(pageAt: routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == self.pageRowOrder })!,
+                                              pointIndexOf: index,
+                                              updateTargetPointInfo: PointInfo(footOrHand: originPointInfo.footOrHand,
+                                                                               isForce: originPointInfo.isForce,
+                                                                               position: box.center,
+                                                                               forceDirection: originPointInfo.forceDirection))
+               //               self.pageInfo.points![index].position = sender.location(in: self.view)
                
                button.snp.updateConstraints {
                    $0.centerX.equalTo(sender.location(in: self.view).x)
@@ -70,14 +82,14 @@ final class RouteFindingPageViewController: UIViewController {
         var button = isHandButton ? RouteFindingFeatureHandButton() : RouteFindingFeatureFootButton()
         
         self.view.addSubview(button)
-                
+        
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(moveRoutePointButton(_:)))
         button.addGestureRecognizer(panGesture)
         // pageView에 points 좌표를 넘겨줌
         
         
-//        pageInfo.points?.append(PointInfo(footOrHand: isHandButton ? .hand : .foot, isForce: false, position: location, forceDirection: .pi0))
+//                pageInfo.points?.append(PointInfo(footOrHand: isHandButton ? .hand : .foot, isForce: false, position: location, forceDirection: .pi0))
         routeDataDraft.addPointData(pageAt: routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == pageRowOrder })!,
                                     addTargetPointInfo: PointInfo(footOrHand: isHandButton ? .hand : .foot, isForce: false, position: location, forceDirection: .pi0))
         buttonList.append(button)
