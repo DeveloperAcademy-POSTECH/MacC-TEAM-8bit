@@ -7,21 +7,24 @@
 
 import UIKit
 
+import SnapKit
+
 final class RouteFindingPageViewController: UIViewController {
     var routeDataDraft: RouteDataDraft
     var pageRowOrder: Int
+    var backgroundImage: UIImage
     
     //    var pageInfo: PageInfo
     var isHandButton: Bool = true
     var buttonList: [RouteFindingFeatureButton] = []
     
     
-    init(routeDataDraft: RouteDataDraft, pageRowOrder: Int) {
+    init(routeDataDraft: RouteDataDraft, pageRowOrder: Int, backgroundImage: UIImage) {
         self.routeDataDraft = routeDataDraft
         self.pageRowOrder = pageRowOrder
+        self.backgroundImage = backgroundImage
         
         super.init(nibName: nil, bundle: nil)
-        self.view.backgroundColor = .systemMint
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(makeRoutePoint(_:)))
         self.view.addGestureRecognizer(gestureRecognizer)
@@ -29,7 +32,6 @@ final class RouteFindingPageViewController: UIViewController {
         guard let page = routeDataDraft.routeInfoForUI.pages.first(where: { $0.rowOrder == pageRowOrder }) else { return }
         
         if page.points.count > 0 {
-            self.view.backgroundColor = .systemPink
             
             page.points.forEach { pointInfo in
                 var button = isHandButton ? RouteFindingFeatureHandButton() : RouteFindingFeatureFootButton()
@@ -47,6 +49,8 @@ final class RouteFindingPageViewController: UIViewController {
                 }
             }
         }
+        
+        setUpBackgroundImage()
     }
     
     required init?(coder: NSCoder) {
@@ -118,6 +122,16 @@ final class RouteFindingPageViewController: UIViewController {
         button.snp.makeConstraints{
             $0.centerX.equalTo(location.x)
             $0.centerY.equalTo(location.y)
+        }
+    }
+    
+    func setUpBackgroundImage() {
+        let backgroundImage = backgroundImage
+        let backgroundImageView = UIImageView(image: backgroundImage)
+        
+        self.view.addSubview(backgroundImageView)
+        backgroundImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
 }

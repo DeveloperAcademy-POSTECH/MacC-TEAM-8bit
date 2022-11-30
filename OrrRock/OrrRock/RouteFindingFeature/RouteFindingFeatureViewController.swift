@@ -14,10 +14,10 @@ final class RouteFindingFeatureViewController: UIViewController {
     // MARK: Variables
     
     var routeDataDraft: RouteDataDraft
-//    var pages: [PageInfo]
+    //    var pages: [PageInfo]
     var pageViewControllerList: [RouteFindingPageViewController] = []
-    var backgroundImage: UIImage?
-            
+    var backgroundImage: UIImage
+    
     var isHandButton: Bool = false {
         didSet {
             pageViewControllerList.forEach { vc in
@@ -174,24 +174,13 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     // MARK: Life Cycle Functions
     
-    init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage?) {
+    init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage) {
         self.routeDataDraft = routeDataDraft
         self.backgroundImage = backgroundImage
-
         
         super.init(nibName: nil, bundle: nil)
         
-        //        // RouteInfo를 받아와, 루트파인딩 페이지를 그리기 위한 정보를 저장
-        //        var views: [RouteFindingPageView] = []
-        //        routeInfo.pages.forEach { pageInfo in
-        //            let view = convertPageInfoToPageView(from: pageInfo)
-        //
-        //            self.backgroundImageView.addSubview(view)
-        //            views.append(view)
-        //        }
-        //        self.pageViews = views
-        
-        
+        backgroundImageView.image = self.backgroundImage
     }
     
     required init?(coder: NSCoder) {
@@ -233,27 +222,21 @@ final class RouteFindingFeatureViewController: UIViewController {
     // MARK: Functions
     
     // PageInfo를 RouteFindingPageView로 전환
-    private func convertPageInfoToPageView(from pageInfo: PageInfo) -> UIView {
-        let VC = RouteFindingPageViewController(routeDataDraft: routeDataDraft, pageRowOrder: pageInfo.rowOrder)
-        
-        // TODO: RouteFindingPageVIew UI 및 뷰 구현방법이 나오면 PageInfo에서 뷰 그리기 구현
-        
-        return UIView()
-    }
-    
+//    private func convertPageInfoToPageView(from pageInfo: PageInfo) -> UIView {
+//        let VC = RouteFindingPageViewController(routeDataDraft: routeDataDraft, pageRowOrder: pageInfo.rowOrder)
+//
+//        // TODO: RouteFindingPageVIew UI 및 뷰 구현방법이 나오면 PageInfo에서 뷰 그리기 구현
+//
+//        return
+//    }
+//
     // 선택된 셀(화면 가운데 위치한 셀)에 대해 페이지를 보여줌
     func selectPage() {
         guard let selectedCell = centerCell else { return }
-        //        pageView.snp.removeConstraints()
-            pageNumberingLabelView.text = "\(selectedCell.indexPathOfCell.row + 1)/\(routeDataDraft.routeInfoForUI.pages.count)"
-        //
-        //        pageView = pageViews[selectedCell.indexPathOfCell.row]
-        //        pageView.snp.makeConstraints {
-        //            $0.edges.equalToSuperview()
-        //        }
+        pageNumberingLabelView.text = "\(selectedCell.indexPathOfCell.row + 1)/\(routeDataDraft.routeInfoForUI.pages.count)"
         
         routePageViewController.setViewControllers([pageViewControllerList[selectedCell.indexPathOfCell.row]], direction: .forward, animated: false)
-
+        
     }
     
     // 삭제모드를 위한 뷰 띄우기
@@ -280,26 +263,20 @@ final class RouteFindingFeatureViewController: UIViewController {
     func finishRouteFinding() {
         
         // TODO: 루트파인딩 저장하기 뷰로 데이터 넘겨주기
-//        routeInfo.pages = pages
-        //        routeInfo -> 전달
-//        let routeFindingSaveViewController = RouteFindingSaveViewController(routeDataDraft: routeDataDraft, backgroundImage: backgroundImage, pageViews: pageViews)
         
-//        for index in pageViewControllerList.indices {
-//            pageViewControllerList[index].pageInfo.points?.forEach { point in
-//                routeDataDraft.addPointData(pageAt: index, addTargetPointInfo: point)
-//            }
-//        }
-        routeDataDraft.route?.dataWrittenDate = Date()
-        routeDataDraft.route?.gymName = "test"
-        routeDataDraft.route?.isChallengeComplete = true
-        routeDataDraft.route?.problemLevel = 1
+        var pageImageList: [UIImage] = []
+        
+        pageViewControllerList.forEach { vc in
+            pageImageList.append(vc.view.asImage())
+//            pageImageList.append(backgroundImage)
+        }
+        
+        let routeFindingSaveViewController = RouteFindingSaveViewController(routeDataDraft: routeDataDraft, backgroundImage: backgroundImage, pageImages: pageImageList)
+        
+        self.navigationController?.pushViewController(routeFindingSaveViewController, animated: true)
         
         routeDataDraft.save()
         
-        print("newPageInfo Count", routeDataDraft.newPageInfo.count)
-        if routeDataDraft.newPageInfo.count > 0 {
-            print("Draft Page Index:", 0,": Point Count: ", routeDataDraft.newPageInfo[0].points.count)
-        }
         print("Done Button Tapped")
     }
     
@@ -345,7 +322,7 @@ final class RouteFindingFeatureViewController: UIViewController {
         if routeDataDraft.routeInfoForUI.pages.count > 1 {
             pageViewControllerList.remove(at: targetPageCell.indexPathOfCell.row)
             routeDataDraft.removePageData(at: targetPageCell.indexPathOfCell.row)
-//            pages.remove(at: targetPageCell.indexPathOfCell.row)
+            //            pages.remove(at: targetPageCell.indexPathOfCell.row)
             //            pageViews.remove(at: targetPageCell.indexPathOfCell.row)
         }
         
@@ -449,7 +426,7 @@ extension RouteFindingFeatureViewController {
         var routeViewControllers: [RouteFindingPageViewController] = []
         
         routeDataDraft.routeInfoForUI.pages.forEach { pageInfo in
-            routeViewControllers.append(RouteFindingPageViewController(routeDataDraft: routeDataDraft, pageRowOrder: pageInfo.rowOrder))
+            routeViewControllers.append(RouteFindingPageViewController(routeDataDraft: routeDataDraft, pageRowOrder: pageInfo.rowOrder, backgroundImage: backgroundImage))
         }
         
         return routeViewControllers
@@ -459,11 +436,11 @@ extension RouteFindingFeatureViewController {
 extension RouteFindingFeatureViewController: RouteFindingThumbnailCollectionViewAddCellDelegate {
     // 페이지 추가 버튼이 눌리면 새로운 페이지를 추가
     func tapAddPageButton() {
-//        pages.append(PageInfo(rowOrder: pages.last!.rowOrder + 1))
+        //        pages.append(PageInfo(rowOrder: pages.last!.rowOrder + 1))
         let newRowOrder = routeDataDraft.routeInfoForUI.pages.last!.rowOrder + 1
         
         routeDataDraft.addPageData(pageInfo: PageInfo(rowOrder: newRowOrder))
-        let newVC = RouteFindingPageViewController(routeDataDraft: routeDataDraft, pageRowOrder: newRowOrder)
+        let newVC = RouteFindingPageViewController(routeDataDraft: routeDataDraft, pageRowOrder: newRowOrder, backgroundImage: backgroundImage)
         pageViewControllerList.append(newVC)
         
         thumbnailCollectionView.reloadData()
