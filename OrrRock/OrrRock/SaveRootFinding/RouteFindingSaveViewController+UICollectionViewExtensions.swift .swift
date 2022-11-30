@@ -22,6 +22,7 @@ extension RouteFindingSaveViewController: UICollectionViewDelegate {
             self.centerCell = self.saveRouteFindingImageCollectionView.cellForItem(at: indexPath) as? SaveRouteFindingImageCollectionViewCell
             centerCell?.showSelectedBar()
             setCountVideoLabel()
+            selectPage()
             
             // 이전, 이후 셀에 대해 선택 취소 처리를 수행
             // 아래 작업을 적용하지 않을 경우, 스크롤이 빠르게 움직일 때 셀의 selectedBar가 남아있는 경우가 발생
@@ -45,7 +46,7 @@ extension RouteFindingSaveViewController: UICollectionViewDelegate {
 
 extension RouteFindingSaveViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return pageViews.count
+        return pageImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
