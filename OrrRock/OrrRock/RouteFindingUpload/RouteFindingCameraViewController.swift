@@ -32,7 +32,7 @@ final class RouteFindingCameraViewController: UIViewController {
         let button = UIButton()
         button.backgroundColor = .white
         button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.orrGray900?.cgColor
+        button.layer.borderColor = UIColor(hex: "1F2528").cgColor
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
         
