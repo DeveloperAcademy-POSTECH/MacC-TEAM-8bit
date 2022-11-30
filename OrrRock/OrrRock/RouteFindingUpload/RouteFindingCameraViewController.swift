@@ -32,7 +32,7 @@ final class RouteFindingCameraViewController: UIViewController {
         let button = UIButton()
         button.backgroundColor = .white
         button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.orrGray900?.cgColor
+        button.layer.borderColor = UIColor(hex: "1F2528").cgColor
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
         
@@ -43,7 +43,7 @@ final class RouteFindingCameraViewController: UIViewController {
     private lazy var shutterButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
-        button.layer.borderColor = UIColor.orrWhite?.cgColor
+        button.layer.borderColor = UIColor(hex: "FFFFFF").cgColor
         button.layer.borderWidth = 4
         button.layer.cornerRadius = 37.5
         
@@ -70,7 +70,7 @@ final class RouteFindingCameraViewController: UIViewController {
         setPhotosButtonImage()
         
         setCameraPreviewLayer()
-        authorizateCameraStatus()
+        setupCaptureSession()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,6 +78,7 @@ final class RouteFindingCameraViewController: UIViewController {
         
         makePropertyEmpty()
         
+        authorizateCameraStatus()
         executeCameraSession()
         
         NotificationCenter.default.addObserver(self, selector: #selector(setPhotosButtonImage), name: UIApplication.willEnterForegroundNotification, object: nil)
@@ -125,7 +126,7 @@ extension RouteFindingCameraViewController {
         let circleShapeOriginPoint = (shutterButtonSize - circleSize)/2
         let circleShape = UIBezierPath(ovalIn: CGRect(x: circleShapeOriginPoint, y: circleShapeOriginPoint, width: circleSize, height: circleSize))
         circleLayer.path = circleShape.cgPath
-        circleLayer.fillColor = UIColor.orrWhite?.cgColor
+        circleLayer.fillColor = UIColor(hex: "FFFFFF").cgColor
         shutterButton.layer.addSublayer(circleLayer)
         
         view.addSubview(photosButton)
@@ -162,7 +163,18 @@ extension RouteFindingCameraViewController {
 }
 
 // MARK: Button Objc Functions Extension
-private extension RouteFindingCameraViewController {
+extension RouteFindingCameraViewController {
+    func authSettingOpen(alertType: AuthSettingAlert) {
+        let message = alertType.rawValue
+        let alert = UIAlertController(title: "설정", message: message, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "취소", style: .default)
+        let confirm = UIAlertAction(title: "확인", style: .default) { (UIAlertAction) in
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+        }
+        alert.addAction(cancel)
+        alert.addAction(confirm)
+        self.present(alert, animated: true, completion: nil)
+    }
     
     @objc private func showPhotoPicker() {
         let photoLibrary = PHPhotoLibrary.shared()
@@ -172,7 +184,20 @@ private extension RouteFindingCameraViewController {
         config.selectionLimit = 1
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = self
-        present(picker, animated: true, completion: nil)
+        
+        PHPhotoLibrary.requestAuthorization({ status in
+            switch status {
+            case .authorized, .limited:
+                DispatchQueue.main.async {
+                    self.present(picker, animated: true, completion: nil)
+                }
+           
+            default:
+                DispatchQueue.main.async {
+                    self.authSettingOpen(alertType: .denied)
+                }
+            }
+        })
     }
     
     @objc private func capturePhoto() {
@@ -231,7 +256,6 @@ private extension RouteFindingCameraViewController {
     private func authorizateCameraStatus() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
-            setupCaptureSession()
             break
         case .notDetermined:
             sessionQueue.suspend()
