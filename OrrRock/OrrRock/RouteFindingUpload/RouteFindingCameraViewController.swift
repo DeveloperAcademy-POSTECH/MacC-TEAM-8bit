@@ -191,14 +191,11 @@ extension RouteFindingCameraViewController {
         
         PHPhotoLibrary.requestAuthorization({ status in
             switch status {
-            case .authorized:
+            case .authorized, .limited:
                 DispatchQueue.main.async {
                     self.present(picker, animated: true, completion: nil)
                 }
-            case .limited:
-                DispatchQueue.main.async {
-                    self.present(picker, animated: true, completion: nil)
-                }
+           
             default:
                 DispatchQueue.main.async {
                     self.authSettingOpen(alertType: .denied)
