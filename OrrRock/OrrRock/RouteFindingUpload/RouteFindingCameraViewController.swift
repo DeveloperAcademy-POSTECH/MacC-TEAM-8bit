@@ -164,13 +164,10 @@ extension RouteFindingCameraViewController {
 
 // MARK: Button Objc Functions Extension
 extension RouteFindingCameraViewController {
-    
     func authSettingOpen(alertType: AuthSettingAlert) {
         let message = alertType.rawValue
         let alert = UIAlertController(title: "설정", message: message, preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "취소", style: .default) { (UIAlertAction) in
-            print("\(String(describing: UIAlertAction.title)) 클릭")
-        }
+        let cancel = UIAlertAction(title: "취소", style: .default)
         let confirm = UIAlertAction(title: "확인", style: .default) { (UIAlertAction) in
             UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
         }
