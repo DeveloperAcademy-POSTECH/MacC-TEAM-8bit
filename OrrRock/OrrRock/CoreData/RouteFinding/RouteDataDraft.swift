@@ -42,14 +42,17 @@ final class RouteDataDraft {
         // CASE: 새로운 루트 추가 OR 기존 루트 수정
         route = routeFinding
         guard let route = route else {
-            routeInfoForUI = RouteInfo(imageLocalIdentifier: imageLocalIdentifier, dataWrittenDate: Date(), gymName: "", problemLevel: 0, isChallengeComplete: false, pages: [PageInfo(rowOrder: 0, points: [])])
+            let pageInfo = PageInfo(rowOrder: 0, points: [])
+            routeInfoForUI = RouteInfo(imageLocalIdentifier: imageLocalIdentifier, dataWrittenDate: Date(), gymName: "", problemLevel: 0, isChallengeComplete: false, pages: [pageInfo])
+            newPageInfo.append(pageInfo)
             return }
+        
         routeInfoForUI = route.convertToRouteInfo()
         pages = Array(route.pages as! Set<PageInformation>)
     }
     
     func save() {
-         
+          
         // MODE: ADD_데이터 추가
         if route == nil {
             routeDataManager.addRoute(routeInfo: routeInfoForUI)
@@ -91,10 +94,12 @@ final class RouteDataDraft {
         routeInfoForUI.pages.remove(at: pageIndex)
         
         // COREDATA PART - CASE.1: 페이지가 '추가될 데이터'에 존재하는 경우
-        let indices = newPageInfo.filter({ $0.rowOrder == removePageInfoData.rowOrder}).indices
-        if indices.count > 0 {
-            newPageInfo.remove(at: indices[0])
-        }
+        let pageIndex = newPageInfo.firstIndex(where: { $0.rowOrder == removePageInfoData.rowOrder})!
+        newPageInfo.remove(at: pageIndex)
+//        let indices = newPageInfo.filter({ $0.rowOrder == removePageInfoData.rowOrder}).indices
+//        if indices.count > 0 {
+//            newPageInfo.remove(at: indices[0])
+//        }
         
         // COREDATA PART - CASE.2: 페이지가 '기존의 데이터'에 존재하는 경우
         if route != nil && pages.count > pageIndex {
@@ -107,28 +112,28 @@ final class RouteDataDraft {
     func addPointData(pageAt pageIndex: Int, addTargetPointInfo pointInfo: PointInfo) {
 
         // UI DATA PART: UI를 구성하는 데이터에 추가
-        routeInfoForUI.pages[pageIndex].points?.append(pointInfo)
+        routeInfoForUI.pages[pageIndex].points.append(pointInfo)
         
         
-        guard route != nil else { return }
-        let indices = newPageInfo.filter({ $0.rowOrder == routeInfoForUI.pages[pageIndex].rowOrder}).indices
+        guard route == nil else { return }
+        let index = newPageInfo.firstIndex(where: { $0.rowOrder == routeInfoForUI.pages[pageIndex].rowOrder })!
         
         // COREDATA PART - CASE.1: 페이지가 '추가될 데이터'에 존재하는 경우
-        if indices.count > 0 {
-            newPageInfo[indices[0]].points?.append(pointInfo)
-        } else { // COREDATA PART - CASE.2: 페이지가 '기존의 데이터'에 존재하는 경우
-            if newPointInfo[pages[pageIndex]] == nil {
-                newPointInfo[pages[pageIndex]] = []
-            }
-            newPointInfo[pages[pageIndex]]?.append(pointInfo)
-        }
+        newPageInfo[index].points.append(pointInfo)
+        
+//        else { // COREDATA PART - CASE.2: 페이지가 '기존의 데이터'에 존재하는 경우
+//            if newPointInfo[pages[pageIndex]] == nil {
+//                newPointInfo[pages[pageIndex]] = []
+//            }
+//            newPointInfo[pages[pageIndex]]?.append(pointInfo)
+//        }
     }
     
     // MARK: DELETE POINT
     func removePointData(pageAt pageIndex: Int, pointIndexOf pointIndex: Int) {
         
         // UI DATA PART: UI를 구성하는 데이터에서 삭제
-        routeInfoForUI.pages[pageIndex].points?.remove(at: pointIndex)
+        routeInfoForUI.pages[pageIndex].points.remove(at: pointIndex)
         
         // COREDATA PART - CASE.1: 포인트에 대한 페이지가 '기존에 데이터'로 존재하는 경우
         if pages.count > pageIndex {
@@ -143,11 +148,13 @@ final class RouteDataDraft {
             
         // COREDATA PART - CASE.2: 포인트에 대한 페이지가 '추가될 데이터'로 존재하는 경우
         } else {
-            guard route != nil else { return }
-            let indices = newPageInfo.filter({ $0.rowOrder == routeInfoForUI.pages[pageIndex].rowOrder}).indices
-            if indices.count > 0 {
-                newPageInfo[indices[0]].points?.remove(at: pointIndex)
-            }
+            guard route == nil else { return }
+//            let indices = newPageInfo.filter({ $0.rowOrder == routeInfoForUI.pages[pageIndex].rowOrder}).indices
+//            if indices.count > 0 {
+//                newPageInfo[indices[0]].points.remove(at: pointIndex)
+//            }
+            let pageIndex = newPageInfo.firstIndex(where: { $0.rowOrder == routeInfoForUI.pages[pageIndex].rowOrder})!
+            newPageInfo[pageIndex].points.remove(at: pointIndex)
         }
     }
     
@@ -155,12 +162,12 @@ final class RouteDataDraft {
     func updatePointData(pageAt pageIndex: Int, pointIndexOf pointIndex: Int, updateTargetPointInfo targetPointInfo: PointInfo) {
         
         let page = routeInfoForUI.pages[pageIndex]
-        guard let points = page.points else { return }
-        let existPoint: PointInfo = points[pointIndex]
+//        guard let points = page.points else { return }
+        let existPoint: PointInfo = page.points[pointIndex]
         
         // UI DATA PART: UI를 구성하는 데이터에서 업데이트(수정)
-        guard let routeInfoForUIIndex = routeInfoForUI.pages[pageIndex].points?.firstIndex(of: existPoint) else { return }
-        routeInfoForUI.pages[pageIndex].points?[routeInfoForUIIndex] = targetPointInfo
+        guard let routeInfoForUIIndex = routeInfoForUI.pages[pageIndex].points.firstIndex(of: existPoint) else { return }
+        routeInfoForUI.pages[pageIndex].points[routeInfoForUIIndex] = targetPointInfo
         
         // COREDATA PART - CASE.1: 기존에 존재하는 페이지인 경우
         if pages.filter({$0.rowOrder == page.rowOrder}).count > 0 {
@@ -176,17 +183,18 @@ final class RouteDataDraft {
                 updatePointInfo[pages[pageIndex]]?.append((point[pointIndex], targetPointInfo))
             } else {
                 // COREDATA PART - CASE.1b:  기존에 존재하는 페이지에 존재하는 새로운 포인트인 경우
-                guard let indices = newPointInfo[pages[pageIndex]]?.filter({$0 == existPoint}).indices else { return }
-                newPointInfo[pages[pageIndex]]?[indices[0]] = targetPointInfo
+//                guard let indices = newPointInfo[pages[pageIndex]]?.filter({$0 == existPoint}).indices else { return }
+//                newPointInfo[pages[pageIndex]]?[indices[0]] = targetPointInfo
+                let existPointIndex = newPointInfo[pages[pageIndex]]?.firstIndex(where: {$0 == existPoint})!
+                newPointInfo[pages[pageIndex]]?[existPointIndex!] = targetPointInfo
             }
         } else {
             // COREDATA PART - CASE.2: 새롭게 추가되는 페이지인 경우
-            let indices = newPageInfo.filter({ $0.rowOrder == page.rowOrder }).indices
-            if indices.count > 0 {
-                guard let pointIndices = newPageInfo[indices[0]].points?.filter({ $0 == existPoint }).indices else { return }
-                newPageInfo[indices[0]].points?[pointIndices[0]] = targetPointInfo
+            let index = newPageInfo.firstIndex(where: { $0.rowOrder == page.rowOrder })!
+            
+            let pointIndex = newPageInfo[index].points.firstIndex(where: { $0 == existPoint })!
+                newPageInfo[index].points[pointIndex] = targetPointInfo
             }
         }
     }
 
-}
