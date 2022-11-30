@@ -233,7 +233,6 @@ private extension LevelAndPFSettingViewController {
     @objc
     func didVideoPlayStopButton() {
         let card = cards[counter]?.queuePlayer
-        let ppap = cards[counter]
         if card?.rate == 0.0 {
             card?.play()
             videoPlayStopButton.setImage(UIImage(systemName: "play.fill", withConfiguration: largeConfig), for: .normal)
