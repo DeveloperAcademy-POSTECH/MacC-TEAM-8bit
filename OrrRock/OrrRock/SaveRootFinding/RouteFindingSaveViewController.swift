@@ -16,14 +16,14 @@ class RouteFindingSaveViewController: UIViewController {
     var pageImages: [UIImage]
     var backgroundImage: UIImage
     
-    let collectionViewCellwidth: Int = 58
-    
     var beforeCell: SaveRouteFindingImageCollectionViewCell?
     var centerCell: SaveRouteFindingImageCollectionViewCell?
     var afterCell: SaveRouteFindingImageCollectionViewCell?
     
     private var goBackButton: UIBarButtonItem!
     private var saveButton: UIBarButtonItem!
+    
+    let screenHeight = UIScreen.main.bounds.size.height
     
     private lazy var exitButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
@@ -151,7 +151,7 @@ class RouteFindingSaveViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) is not supported")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
