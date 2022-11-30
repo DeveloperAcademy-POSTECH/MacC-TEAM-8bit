@@ -9,5 +9,5 @@ import Foundation
 
 struct PageInfo {
     var rowOrder: Int
-    var points: [PointInfo]?
+    var points: [PointInfo] = []
 }
