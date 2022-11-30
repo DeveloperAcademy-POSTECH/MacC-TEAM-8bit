@@ -15,6 +15,8 @@ final class VideoInfoView: UIView {
     private var videoIsSucceeded: Bool = true
     private var videoInformation : VideoInformation?
     
+    var delegate: VideoInfoViewTextViewDelegate?
+    
     lazy var feedbackTextView: UITextView = {
         let view = UITextView()
         view.backgroundColor = .orrWhite
@@ -183,6 +185,7 @@ final class VideoInfoView: UIView {
         self.init(frame: frame)
         refreshData(videoInfo: videoInfo)
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -198,10 +201,12 @@ extension VideoInfoView: UITextViewDelegate {
     
     // 다른 작업을 할 때 텍스트뷰가 비어있으면 플레이스 홀더 띄워주는 메서드
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "피드백 입력"
-            textView.textColor = .placeholderText
+        guard checkThisStringIsEmpty(checkString: textView.text) else {
+            delegate?.tapReturnButton()
+            return
         }
+            
+        
     }
     
 }
@@ -214,7 +219,7 @@ extension VideoInfoView{
         levelIcon.text = videoInformation?.problemLevel == -1 ? "V?" : "V\(videoInformation?.problemLevel ?? -3)"
         isSucceeded.text = videoInformation!.isSucceeded ? "성공" : "실패"
         gymNameLabel.text = videoInformation?.gymName
-        feedbackTextView.text = checkThisStringIsEmpty(checkString: videoInformation?.feedback) ? "피드백 입력" : ""
+        feedbackTextView.text = checkThisStringIsEmpty(checkString: videoInformation?.feedback) ? "피드백 입력" : videoInformation?.feedback
         feedbackTextView.delegate = self  // 플레이스 홀더를 위한 델리게이트
         feedbackTextView.textColor = checkThisStringIsEmpty(checkString: videoInformation?.feedback) ? .placeholderText : .orrBlack
         
