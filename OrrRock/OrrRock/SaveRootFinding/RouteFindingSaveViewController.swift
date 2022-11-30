@@ -88,7 +88,7 @@ class RouteFindingSaveViewController: UIViewController {
     private lazy var skipButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(pressSkipButton), for: .touchUpInside)
-        button.setAttributedTitle("저장하지 않을래요".underLineAttribute(), for: .normal)
+        button.setAttributedTitle("저장하지 않을래요".underLineAttribute(color: UIColor(hex: "#969696")), for: .normal)
         
         return button
     }()
