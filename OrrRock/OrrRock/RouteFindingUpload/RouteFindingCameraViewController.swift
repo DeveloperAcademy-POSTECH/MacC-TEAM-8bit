@@ -79,6 +79,7 @@ final class RouteFindingCameraViewController: UIViewController {
         
         makePropertyEmpty()
         
+        authorizateCameraStatus()
         executeCameraSession()
         
         NotificationCenter.default.addObserver(self, selector: #selector(setPhotosButtonImage), name: UIApplication.willEnterForegroundNotification, object: nil)
@@ -163,7 +164,21 @@ extension RouteFindingCameraViewController {
 }
 
 // MARK: Button Objc Functions Extension
-private extension RouteFindingCameraViewController {
+extension RouteFindingCameraViewController {
+    
+    func authSettingOpen(alertType: AuthSettingAlert) {
+        let message = alertType.rawValue
+        let alert = UIAlertController(title: "설정", message: message, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "취소", style: .default) { (UIAlertAction) in
+            print("\(String(describing: UIAlertAction.title)) 클릭")
+        }
+        let confirm = UIAlertAction(title: "확인", style: .default) { (UIAlertAction) in
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+        }
+        alert.addAction(cancel)
+        alert.addAction(confirm)
+        self.present(alert, animated: true, completion: nil)
+    }
     
     @objc private func showPhotoPicker() {
         let photoLibrary = PHPhotoLibrary.shared()
@@ -173,7 +188,23 @@ private extension RouteFindingCameraViewController {
         config.selectionLimit = 1
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = self
-        present(picker, animated: true, completion: nil)
+        
+        PHPhotoLibrary.requestAuthorization({ status in
+            switch status {
+            case .authorized:
+                DispatchQueue.main.async {
+                    self.present(picker, animated: true, completion: nil)
+                }
+            case .limited:
+                DispatchQueue.main.async {
+                    self.present(picker, animated: true, completion: nil)
+                }
+            default:
+                DispatchQueue.main.async {
+                    self.authSettingOpen(alertType: .denied)
+                }
+            }
+        })
     }
     
     @objc private func capturePhoto() {

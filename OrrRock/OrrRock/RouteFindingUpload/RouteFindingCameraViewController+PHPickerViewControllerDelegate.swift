@@ -15,6 +15,12 @@ extension RouteFindingCameraViewController: PHPickerViewControllerDelegate {
         
         let identifiers = results.compactMap(\.assetIdentifier)
         let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: nil)
+        
+        guard results.count == fetchResult.count else{
+            dismiss(animated: true)
+            authSettingOpen(alertType: .limited)
+            return
+        }
         currentLocalIdentifier = fetchResult[0].localIdentifier
         
         guard let phAsset = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: nil).firstObject else { return }
