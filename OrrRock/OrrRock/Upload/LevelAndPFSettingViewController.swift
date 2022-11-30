@@ -142,7 +142,6 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     private lazy var videoSlider: VideoSlider = {
         let slider = VideoSlider()
-//        slider.translatesAutoresizingMaskIntoConstraints = false
         slider.setThumbImage(UIImage(named: "sliderThumb"), for: .normal)
         slider.setMinimumTrackImage(UIImage(named: "RectangleUpBlue"), for: .normal)
         slider.setMaximumTrackImage(UIImage(named: "Rectangle050"), for: .normal)
@@ -228,7 +227,7 @@ private extension LevelAndPFSettingViewController {
     @objc
     func didVideoPlayStopButton() {
         let card = cards[counter]?.queuePlayer
-        
+        print("ppap: \( cards[counter]?.center )")
         if card?.rate == 0.0 {
             card?.play()
             videoPlayStopButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
@@ -449,18 +448,13 @@ private extension LevelAndPFSettingViewController {
                 switch cardPositionX {
 
 
-                case self.view.bounds.width / 4 * 2..<self.view.bounds.width:
+                case self.view.bounds.width / 3 * 2..<self.view.bounds.width:
                     animateCard(rotationAngle: horizonalRotationAngle, videoResultType: .success)
-                    print("ppap1: \(cardPositionX)")
- 
                     return
-                case 0..<self.view.bounds.width / 4:
+                case 0..<self.view.bounds.width / 3:
                     animateCard(rotationAngle: horizonalRotationAngle, videoResultType: .fail)
-                    print("ppap2: \(cardPositionX)")
                     return
                 default:
-                    print("ppap3: \(cardPositionX)")
-
                     card.center = self.emptyVideoView.center
                     card.transform = .identity
                     card.successImageView.alpha = 0
@@ -503,7 +497,6 @@ private extension LevelAndPFSettingViewController {
     
     // swipeCard의 애니메이션 효과를 담당합니다.
     func animateCard(rotationAngle: CGFloat, videoResultType: VideoResultType) {
-        
         guard let card = cards[counter] else { return }
         removePeriodicTimeObserver(card: card, isFirstCard:  counter == 0 ? true : false)
         
@@ -555,7 +548,6 @@ private extension LevelAndPFSettingViewController {
                 UIView.animate(
                     withDuration: 0.3,
                     animations: {
-                        
                         card.center = center
                         card.transform = CGAffineTransform(rotationAngle: rotationAngle)
                         
