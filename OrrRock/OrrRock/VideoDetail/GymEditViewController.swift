@@ -192,7 +192,7 @@ extension GymEditViewController {
             }
             // RouteInformation의 경우
             else if let routeInformation {
-                completionHandler?(routeInformation.gymName)
+                completionHandler?(gymTextField.text!)
             }
             // 정상적으로 데이터가 들어오지 않음
             else {
