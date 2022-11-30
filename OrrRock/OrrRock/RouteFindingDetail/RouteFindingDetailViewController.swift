@@ -32,13 +32,13 @@ class RouteFindingDetailViewController: UIViewController {
     
     private lazy var topSafeAreaView: UIView = {
         let view = UIView()
-        view.backgroundColor = .orrWhite
+        view.backgroundColor = .black
         return view
     }()
     
     private lazy var bottomSafeAreaView: UIView = {
         let view = UIView()
-        view.backgroundColor = .orrWhite
+        view.backgroundColor = .black
         return view
     }()
     
@@ -47,6 +47,7 @@ class RouteFindingDetailViewController: UIViewController {
         pageViewController.view.backgroundColor = .black
         
         pageViewController.setViewControllers([RouteViewController(pageInfo: routeDataDraft.routeInfoForUI.pages[0], backgroundImage: routeDataDraft.routeInfoForUI.imageLocalIdentifier.generateCardViewThumbnail()!)], direction: .forward, animated: true)
+        pageViewController.isPagingEnabled = false
         return pageViewController
     }()
     
@@ -81,6 +82,8 @@ class RouteFindingDetailViewController: UIViewController {
         setUpPageViewController()
         setUpCollectionView()
         
+        loadPageViewControllerList()
+        
         let tapgesture = UITapGestureRecognizer(target: self, action: #selector(respondToTapGesture(_:)))
         view.addGestureRecognizer(tapgesture)
         
@@ -92,8 +95,11 @@ class RouteFindingDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
+        
         self.navigationController?.isToolbarHidden = false
         self.navigationController?.isNavigationBarHidden = false
+        
+        loadPageViewControllerList()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -114,8 +120,9 @@ class RouteFindingDetailViewController: UIViewController {
     func setNavigationBar() {
         // 네비게이션바 버튼 아이템 생성
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        //        completeButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(completeAction))
+        let editButton = UIBarButtonItem(title: "편집", style: .plain, target: self, action: #selector(editAction))
         self.navigationController?.setExpansionBackbuttonArea()
+        self.navigationItem.rightBarButtonItem = editButton
         
         // 네비게이션바 띄워주고 탭 되었을 때 숨기기
         navigationController?.isToolbarHidden = false
@@ -174,6 +181,17 @@ class RouteFindingDetailViewController: UIViewController {
                 self.topSafeAreaView.layer.opacity = 1
             })
         }
+    }
+    
+    @objc func editAction() {
+        guard let image = routeDataDraft.route?.imageLocalIdentifier.generateCardViewThumbnail(),
+              let manager = routeDataDraft.routeDataManager else { return }
+        
+        let routeDataDraft = RouteDataDraft(manager: manager, existingRouteFinding: routeDataDraft.route, imageLocalIdentifier: routeDataDraft.routeInfoForUI.imageLocalIdentifier ?? "")
+        let featureVC = RouteFindingFeatureViewController(routeDataDraft: routeDataDraft, backgroundImage: image)
+        
+        featureVC.modalPresentationStyle = .fullScreen
+        navigationController?.present(featureVC, animated: true)
     }
     
     // 뒤로가기 버튼을 눌렀을 때 로직
@@ -267,7 +285,9 @@ extension RouteFindingDetailViewController {
     private func setUpPageViewController() {
         routePageViewController.delegate = self
         routePageViewController.dataSource = self
-        
+    }
+    
+    private func loadPageViewControllerList() {
         viewControllerListForPageVC = getViewControllerForPageVC()
         routePageViewController.setViewControllers([viewControllerListForPageVC.first!], direction: .forward, animated: true)
     }

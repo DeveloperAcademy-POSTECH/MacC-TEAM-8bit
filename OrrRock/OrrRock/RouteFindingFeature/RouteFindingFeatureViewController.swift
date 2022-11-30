@@ -258,7 +258,12 @@ final class RouteFindingFeatureViewController: UIViewController {
         
         let routeFindingSaveViewController = RouteFindingSaveViewController(routeDataDraft: routeDataDraft, backgroundImage: backgroundImage, pageImages: pageImageList)
         
-        self.navigationController?.pushViewController(routeFindingSaveViewController, animated: true)
+        if let navigationController = self.navigationController {
+            self.navigationController?.pushViewController(routeFindingSaveViewController, animated: true)
+        } else {
+            routeDataDraft.save()
+            self.dismiss(animated: true)
+        }
         
         routeDataDraft.save()
         
@@ -268,7 +273,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     func exitRouteFinding() {
         
         // TODO: 루트파인딩 데이터 초기화 및 뷰 닫기
-        
+        self.dismiss(animated: true, completion: nil)
         print("Exit Button Tapped")
     }
     
