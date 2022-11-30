@@ -202,6 +202,7 @@ class VideoDetailViewController: UIViewController {
         //TODO: 피드백 입력 구현 마무리
         
         feedbackText = videoInfoView.feedbackTextView.text!
+        print(feedbackText)
         DataManager.shared.updateFeedback(videoInformation: currentVideoInformation!, feedback: feedbackText!)
         self.view.endEditing(true)
     }
