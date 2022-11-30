@@ -70,7 +70,8 @@ final class RouteFindingCameraViewController: UIViewController {
         setPhotosButtonImage()
         
         setCameraPreviewLayer()
-        authorizateCameraStatus()
+        setupCaptureSession()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -231,7 +232,6 @@ private extension RouteFindingCameraViewController {
     private func authorizateCameraStatus() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
-            setupCaptureSession()
             break
         case .notDetermined:
             sessionQueue.suspend()
