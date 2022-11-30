@@ -126,7 +126,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     }()
     
     
-    private lazy var testView: UIView = {
+    private lazy var videoSliderBackgroundView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 15
         view.backgroundColor = .orrGray100
@@ -630,15 +630,15 @@ private extension LevelAndPFSettingViewController {
             $0.center.equalTo(emptyVideoView.snp.center)
         }
         
-        view.addSubview(testView)
-        testView.snp.makeConstraints {
+        view.addSubview(videoSliderBackgroundView)
+        videoSliderBackgroundView.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-OrrPd.pd16.rawValue)
             $0.leading.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd16.rawValue)
             $0.trailing.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
             $0.height.equalTo(56)
         }
         
-        testView.addSubview(videoPlayStopButton)
+        videoSliderBackgroundView.addSubview(videoPlayStopButton)
         videoPlayStopButton.snp.makeConstraints {
             $0.bottom.equalToSuperview()
             $0.leading.equalToSuperview()
@@ -646,7 +646,7 @@ private extension LevelAndPFSettingViewController {
             $0.width.equalTo(56)
         }
         
-        testView.addSubview(videoSlider)
+        videoSliderBackgroundView.addSubview(videoSlider)
         videoSlider.snp.makeConstraints {
             $0.leading.equalTo(videoPlayStopButton.snp.trailing)
             $0.trailing.equalToSuperview().offset(-OrrPd.pd16.rawValue)
