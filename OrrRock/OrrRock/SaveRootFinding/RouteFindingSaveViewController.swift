@@ -55,12 +55,6 @@ class RouteFindingSaveViewController: UIViewController {
         return button
     }()
     
-//    var previewImage: UIView = {
-//        let view = UIView()
-//
-//        return view
-//    }()
-    
     lazy var previewImageView: UIImageView = {
         let view = UIImageView()
         view.backgroundColor = .orrGray200
@@ -247,13 +241,7 @@ class RouteFindingSaveViewController: UIViewController {
     
     func selectPage() {
         guard let selectedCell = centerCell else { return }
-//        previewImage.snp.removeConstraints()
-        countVideoLabel.text = "\(selectedCell.indexPathOfCell.row + 1)/\(pages.count)"
-        
         previewImageView.image = pageImages[selectedCell.indexPathOfCell.row]
-//        previewImage.snp.makeConstraints {
-//            $0.edges.equalToSuperview()
-//        }
     }
 }
 
@@ -321,12 +309,5 @@ extension RouteFindingSaveViewController {
             $0.bottom.equalTo(saveRouteFindingImageCollectionView.snp.top).offset(-OrrPd.pd8.rawValue)
             $0.width.equalTo(previewImageView.snp.height).multipliedBy(0.5625)
         }
-        
-//        previewImageView.addSubview(previewImage)
-//        previewImage.snp.makeConstraints {
-//            $0.center.equalToSuperview()
-//            $0.height.equalToSuperview()
-//            $0.width.equalToSuperview()
-//        }
     }
 }

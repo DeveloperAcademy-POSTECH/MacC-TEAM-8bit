@@ -14,7 +14,6 @@ final class RouteFindingFeatureViewController: UIViewController {
     // MARK: Variables
     
     var routeDataDraft: RouteDataDraft
-    //    var pages: [PageInfo]
     var pageViewControllerList: [RouteFindingPageViewController] = []
     var backgroundImage: UIImage
     
@@ -27,7 +26,6 @@ final class RouteFindingFeatureViewController: UIViewController {
     }
     
     var pendingIndex: Int?
-    
     var selectedIndex: Int = 0
     
     var centerCell: RouteFindingThumbnailCollectionViewCell?
@@ -53,12 +51,10 @@ final class RouteFindingFeatureViewController: UIViewController {
     private lazy var routePageViewController: UIPageViewController = {
         let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         pageViewController.view.backgroundColor = .black
+        pageViewController.isPagingEnabled = false
         
         return pageViewController
     }()
-    
-    // 루트파인딩 제스처와 인터렉션이 실제로 이뤄지는 뷰
-    
     
     let thumbnailCollectionView: UICollectionView = {
         let layout = RouteFindingThumbnailCollectionViewFlowLayout()
@@ -221,22 +217,12 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     // MARK: Functions
     
-    // PageInfo를 RouteFindingPageView로 전환
-//    private func convertPageInfoToPageView(from pageInfo: PageInfo) -> UIView {
-//        let VC = RouteFindingPageViewController(routeDataDraft: routeDataDraft, pageRowOrder: pageInfo.rowOrder)
-//
-//        // TODO: RouteFindingPageVIew UI 및 뷰 구현방법이 나오면 PageInfo에서 뷰 그리기 구현
-//
-//        return
-//    }
-//
     // 선택된 셀(화면 가운데 위치한 셀)에 대해 페이지를 보여줌
     func selectPage() {
         guard let selectedCell = centerCell else { return }
         pageNumberingLabelView.text = "\(selectedCell.indexPathOfCell.row + 1)/\(routeDataDraft.routeInfoForUI.pages.count)"
         
         routePageViewController.setViewControllers([pageViewControllerList[selectedCell.indexPathOfCell.row]], direction: .forward, animated: false)
-        
     }
     
     // 삭제모드를 위한 뷰 띄우기
@@ -268,7 +254,6 @@ final class RouteFindingFeatureViewController: UIViewController {
         
         pageViewControllerList.forEach { vc in
             pageImageList.append(vc.view.asImage())
-//            pageImageList.append(backgroundImage)
         }
         
         let routeFindingSaveViewController = RouteFindingSaveViewController(routeDataDraft: routeDataDraft, backgroundImage: backgroundImage, pageImages: pageImageList)
@@ -322,8 +307,6 @@ final class RouteFindingFeatureViewController: UIViewController {
         if routeDataDraft.routeInfoForUI.pages.count > 1 {
             pageViewControllerList.remove(at: targetPageCell.indexPathOfCell.row)
             routeDataDraft.removePageData(at: targetPageCell.indexPathOfCell.row)
-            //            pages.remove(at: targetPageCell.indexPathOfCell.row)
-            //            pageViews.remove(at: targetPageCell.indexPathOfCell.row)
         }
         
         thumbnailCollectionView.reloadData()
@@ -436,7 +419,6 @@ extension RouteFindingFeatureViewController {
 extension RouteFindingFeatureViewController: RouteFindingThumbnailCollectionViewAddCellDelegate {
     // 페이지 추가 버튼이 눌리면 새로운 페이지를 추가
     func tapAddPageButton() {
-        //        pages.append(PageInfo(rowOrder: pages.last!.rowOrder + 1))
         let newRowOrder = routeDataDraft.routeInfoForUI.pages.last!.rowOrder + 1
         
         routeDataDraft.addPageData(pageInfo: PageInfo(rowOrder: newRowOrder))

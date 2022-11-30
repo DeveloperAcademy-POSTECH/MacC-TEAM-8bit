@@ -7,11 +7,6 @@
 
 import UIKit
 
-class RouteFindingFeatureButton: UIButton {
-    let id: UUID = UUID()
-    
-}
-
 class RouteFindingFeatureHandButton: RouteFindingFeatureButton {
     
     override init(frame: CGRect) {
