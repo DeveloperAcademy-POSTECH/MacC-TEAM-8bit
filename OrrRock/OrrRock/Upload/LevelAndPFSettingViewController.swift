@@ -125,7 +125,6 @@ final class LevelAndPFSettingViewController: UIViewController {
         return button
     }()
     
-    
     private lazy var videoSliderBackgroundView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 15

@@ -27,8 +27,8 @@ extension UIColor {
     static let orrGray800 = UIColor(named: "oRGray800")
     static let orrGray900 = UIColor(named: "oRGray900")
     static let orrGray950 = UIColor(named: "oRGray950")
-
-
+    
+    
     //SUB COLOR
     static let orrPass = UIColor(named: "oRPass")
     static let orrFail = UIColor(named: "oRFail")
@@ -53,29 +53,29 @@ extension UIColor {
 
 extension UIColor {
     convenience init(hex: String) {
-    let scanner = Scanner(string: hex)
-    _ = scanner.scanString("#")
-    
-    var rgb: UInt64 = 0
-    scanner.scanHexInt64(&rgb)
-    
-    let r = Double((rgb >> 16) & 0xFF) / 255.0
-    let g = Double((rgb >>  8) & 0xFF) / 255.0
-    let b = Double((rgb >>  0) & 0xFF) / 255.0
+        let scanner = Scanner(string: hex)
+        _ = scanner.scanString("#")
+        
+        var rgb: UInt64 = 0
+        scanner.scanHexInt64(&rgb)
+        
+        let r = Double((rgb >> 16) & 0xFF) / 255.0
+        let g = Double((rgb >>  8) & 0xFF) / 255.0
+        let b = Double((rgb >>  0) & 0xFF) / 255.0
         self.init(red: r, green: g, blue: b, alpha: 1.0)
-  }
+    }
 }
 
 extension UIColor {
-          func colorImage(size: CGSize? = nil) -> UIImage? {
-            let rect = CGRect(x: 0, y: 0, width: size?.width ?? 1, height: size?.height ?? 1)
-            UIGraphicsBeginImageContext(rect.size)
-            let context = UIGraphicsGetCurrentContext()
-            context?.setFillColor(self.cgColor)
-            context?.fill(rect)
-            let image = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            return image
-        }
+    func colorImage(size: CGSize? = nil) -> UIImage? {
+        let rect = CGRect(x: 0, y: 0, width: size?.width ?? 1, height: size?.height ?? 1)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        context?.setFillColor(self.cgColor)
+        context?.fill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
     
 }
