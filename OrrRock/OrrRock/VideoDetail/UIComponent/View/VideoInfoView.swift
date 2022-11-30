@@ -213,6 +213,7 @@ extension VideoInfoView{
         feedbackTextView.text = videoInformation?.feedback
         feedbackTextView.delegate = self  // 플레이스 홀더를 위한 델리게이트
         feedbackTextView.textColor = feedbackTextView.text.isEmpty || feedbackTextView.text == nil ? .placeholderText : .orrBlack
+        
     }
 }
 
@@ -308,6 +309,16 @@ extension VideoInfoView {
             $0.centerY.equalTo(levelView.snp.centerY)
             $0.trailing.equalTo(levelView.snp.trailing).inset(OrrPd.pd20.rawValue)
         }
+    }
+    
+    func checkThisStringIsEmpty(checkString: String?) -> Bool {
+        guard checkString != nil else {
+            return true
+        }
+        guard checkString?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) != "" else {
+            return true
+        }
+        return false
     }
 }
 
