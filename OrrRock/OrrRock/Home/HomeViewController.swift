@@ -220,7 +220,6 @@ final class HomeViewController : UIViewController {
         
         super.viewDidLoad()
         view.backgroundColor = .orrGray050
-        showOnBoard()
         setUpLayout()
         setUICollectionViewDelegate()
         sortedVideoInfoData = DataManager.shared.sortRepository(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
@@ -229,7 +228,7 @@ final class HomeViewController : UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        showOnBoard()
         self.navigationController?.isNavigationBarHidden = true
         reloadTableViewWithOptions(filterOption: filterOption, sortOption: sortOption, orderOption: orderOption)
     }
