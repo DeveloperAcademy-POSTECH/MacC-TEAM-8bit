@@ -229,7 +229,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     // PageInfo를 RouteFindingPageView로 전환
     private func convertPageInfoToPageView(from pageInfo: PageInfo) -> UIView {
-        let VC = RouteFindingPageViewController(pageInfo: pageInfo)
+        let VC = RouteFindingPageViewController(routeDataDraft: routeDataDraft, pageRowOrder: pageInfo.rowOrder)
         
         // TODO: RouteFindingPageVIew UI 및 뷰 구현방법이 나오면 PageInfo에서 뷰 그리기 구현
         
@@ -432,7 +432,7 @@ extension RouteFindingFeatureViewController {
         var routeViewControllers: [RouteFindingPageViewController] = []
         
         routeDataDraft.routeInfoForUI.pages.forEach { pageInfo in
-            routeViewControllers.append(RouteFindingPageViewController(pageInfo: pageInfo))
+            routeViewControllers.append(RouteFindingPageViewController(routeDataDraft: routeDataDraft, pageRowOrder: pageInfo.rowOrder))
         }
         
         return routeViewControllers
@@ -442,8 +442,11 @@ extension RouteFindingFeatureViewController {
 extension RouteFindingFeatureViewController: RouteFindingThumbnailCollectionViewAddCellDelegate {
     // 페이지 추가 버튼이 눌리면 새로운 페이지를 추가
     func tapAddPageButton() {
-        pages.append(PageInfo(rowOrder: pages.last!.rowOrder + 1))
-        let newVC = RouteFindingPageViewController(pageInfo: pages.last!)
+//        pages.append(PageInfo(rowOrder: pages.last!.rowOrder + 1))
+        let newRowOrder = routeDataDraft.routeInfoForUI.pages.last!.rowOrder + 1
+        
+        routeDataDraft.addPageData(pageInfo: PageInfo(rowOrder: newRowOrder))
+        let newVC = RouteFindingPageViewController(routeDataDraft: routeDataDraft, pageRowOrder: newRowOrder)
         pageViewControllerList.append(newVC)
         
         thumbnailCollectionView.reloadData()

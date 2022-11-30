@@ -8,30 +8,18 @@
 import UIKit
 
 final class RouteFindingPageViewController: UIViewController {
+    var routeDataDraft: RouteDataDraft
+    var pageRowOrder: Int
+    
     var pageInfo: PageInfo
     var isHandButton: Bool = true
     var buttonList: [RouteFindingFeatureButton] = []
     
-    lazy var disableView: UIView = {
-       let view = UIView()
-        
-        view.backgroundColor = .black.withAlphaComponent(0.3)
-        
-        return view
-    }()
     
-    lazy var arrowUI: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 145, height: 145))
-        view.backgroundColor = .orrGray500
-        
-        return view
-    }()
-    
-    init(pageInfo: PageInfo) {
-        self.pageInfo = pageInfo
-        if self.pageInfo.points == nil {
-            self.pageInfo.points = []
-        }
+    init(routeDataDraft: RouteDataDraft, pageRowOrder: Int) {
+        self.routeDataDraft = routeDataDraft
+        self.pageRowOrder = pageRowOrder
+        self.pageInfo = routeDataDraft.routeInfoForUI.pages.filter({ $0.rowOrder == pageRowOrder }).first!
         
         super.init(nibName: nil, bundle: nil)
         self.view.backgroundColor = .systemMint
@@ -43,6 +31,7 @@ final class RouteFindingPageViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     @objc
     func makeRoutePoint(_ sender: UITapGestureRecognizer){
@@ -88,7 +77,9 @@ final class RouteFindingPageViewController: UIViewController {
         // pageView에 points 좌표를 넘겨줌
         
         
-        pageInfo.points?.append(PointInfo(footOrHand: isHandButton ? .hand : .foot, isForce: false, position: location, forceDirection: .pi0))
+//        pageInfo.points?.append(PointInfo(footOrHand: isHandButton ? .hand : .foot, isForce: false, position: location, forceDirection: .pi0))
+        routeDataDraft.addPointData(pageAt: routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == pageRowOrder })!,
+                                    addTargetPointInfo: PointInfo(footOrHand: isHandButton ? .hand : .foot, isForce: false, position: location, forceDirection: .pi0))
         buttonList.append(button)
         
         button.snp.makeConstraints{
