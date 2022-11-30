@@ -16,6 +16,17 @@ final class RouteFindingPageViewController: UIViewController {
     var buttonList: [RouteFindingFeatureButton] = []
     
     
+    var beginningPosition: CGPoint = .zero
+    var initialMovableViewPosition: CGPoint = .zero
+    let trashView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "delete")?.resized(to: CGSize(width: 85, height: 85))
+        imageView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        imageView.isHidden = true
+        
+        return imageView
+    }()
+    
     init(routeDataDraft: RouteDataDraft, pageRowOrder: Int) {
         self.routeDataDraft = routeDataDraft
         self.pageRowOrder = pageRowOrder
@@ -26,6 +37,8 @@ final class RouteFindingPageViewController: UIViewController {
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(makeRoutePoint(_:)))
         self.view.addGestureRecognizer(gestureRecognizer)
+        
+        setUpLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -47,18 +60,44 @@ final class RouteFindingPageViewController: UIViewController {
     @objc
     func moveRoutePointButton(_ sender: UIPanGestureRecognizer) {
         guard sender.state == .began || sender.state == .changed,
-              let box = sender.view
+              let buttonView = sender.view as? RouteFindingFeatureButton
         else { return }
         
-        let translation = sender.translation(in: box.superview)
-        box.center = CGPoint(x: box.center.x + translation.x, y: box.center.y + translation.y)
-        sender.setTranslation(.zero, in: box.superview)
+        if sender.state == .began {
+            beginningPosition = sender.location(in: buttonView)
+            initialMovableViewPosition = buttonView.frame.origin
+            trashView.isHidden = false
+        } else if sender.state == .ended {
+            buttonView.frame.origin = initialMovableViewPosition
+        } else if sender.state == .changed {
+            trashView.isHidden = false
+            let locationInView = sender.location(in: buttonView)
+            buttonView.frame.origin = CGPoint(x: buttonView.frame.origin.x + locationInView.x - beginningPosition.x, y: buttonView.frame.origin.y + locationInView.y - beginningPosition.y)
+            if buttonView.frame.intersects(trashView.frame) && !trashView.isHidden {
+                // TODO: 삭제 로직
+//                buttonView.delete(buttonView)
+//                routeDataDraft.removePointData(pageAt: <#T##Int#>, pointIndexOf: buttonView.id)
+                
+                guard let id = buttonList.firstIndex(where: { $0.id == buttonView.id }),
+                      let pageNo = routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == pageRowOrder }) else { return }
+                                               
+                routeDataDraft.removePointData(pageAt: pageNo, pointIndexOf: id)
+                buttonList.remove(at: id)
+                buttonView.removeFromSuperview()
+                print("deleted")
+                initialMovableViewPosition = .zero
+            }
+        }
+        
+        let translation = sender.translation(in: buttonView.superview)
+        buttonView.center = CGPoint(x: buttonView.center.x + translation.x, y: buttonView.center.y + translation.y)
+        sender.setTranslation(.zero, in: buttonView.superview)
         
         if let button = sender.view as? RouteFindingFeatureButton,
            let index = buttonList.firstIndex { $0.id == button.id } {
                
-
-//               let originPointInfo = routeDataDraft.routeInfoForUI.pages[routeDataDraft.routeInfoForUI.pages.first(where: { $0.rowOrder == self.pageRowOrder })]
+               
+               //               let originPointInfo = routeDataDraft.routeInfoForUI.pages[routeDataDraft.routeInfoForUI.pages.first(where: { $0.rowOrder == self.pageRowOrder })]
                let originPointInfo = routeDataDraft.routeInfoForUI.pages.first(where: { $0.rowOrder == pageRowOrder })!.points[index] as! PointInfo
                
                
@@ -66,7 +105,7 @@ final class RouteFindingPageViewController: UIViewController {
                                               pointIndexOf: index,
                                               updateTargetPointInfo: PointInfo(footOrHand: originPointInfo.footOrHand,
                                                                                isForce: originPointInfo.isForce,
-                                                                               position: box.center,
+                                                                               position: buttonView.center,
                                                                                forceDirection: originPointInfo.forceDirection))
                //               self.pageInfo.points![index].position = sender.location(in: self.view)
                
@@ -88,7 +127,6 @@ final class RouteFindingPageViewController: UIViewController {
         // pageView에 points 좌표를 넘겨줌
         
         
-//                pageInfo.points?.append(PointInfo(footOrHand: isHandButton ? .hand : .foot, isForce: false, position: location, forceDirection: .pi0))
         routeDataDraft.addPointData(pageAt: routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == pageRowOrder })!,
                                     addTargetPointInfo: PointInfo(footOrHand: isHandButton ? .hand : .foot, isForce: false, position: location, forceDirection: .pi0))
         buttonList.append(button)
@@ -96,6 +134,14 @@ final class RouteFindingPageViewController: UIViewController {
         button.snp.makeConstraints{
             $0.centerX.equalTo(location.x)
             $0.centerY.equalTo(location.y)
+        }
+    }
+    
+    private func setUpLayout(){
+        view.addSubview(trashView)
+        trashView.snp.makeConstraints{
+            $0.centerX.equalTo(view.center.x)
+            $0.bottom.equalToSuperview()
         }
     }
 }
