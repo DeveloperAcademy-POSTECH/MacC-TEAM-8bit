@@ -52,7 +52,7 @@ class RouteFindingSectionViewController: UIViewController {
     
     private lazy var emptyGuideLabel: UILabel = {
         let label = UILabel()
-        label.text = "아직 루트파인딩 기록이 없습니다.\n촬영 혹은 사진 업로드를 통해 추가해주세요."
+        label.text = "풀고 싶은 문제가 있나요?\n상단 업로드를 통해 루트 파인딩을 추가하세요"
         label.numberOfLines = 2
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         label.textAlignment = .center

@@ -19,7 +19,7 @@ class GymSettingViewController: UIViewController {
     
     let gymNameLabel : UILabel = {
         let label = UILabel()
-        label.text = "방문한 클라이밍장을 입력해주세요"
+        label.text = "방문한 클라이밍장을 알려주세요"
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.textColor = .orrBlack
         label.backgroundColor = .orrWhite

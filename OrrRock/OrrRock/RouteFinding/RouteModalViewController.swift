@@ -17,7 +17,7 @@ class RouteModalViewController: UIViewController {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = isFoldering ? "선택하신 루트파인딩을 성공하셨나요?" : "선택하신 루트 파인딩을 삭제하시겠어요?"
+        label.text = isFoldering ? "도전에 성공했나요?" : "삭제하시겠어요?"
         label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         label.minimumScaleFactor = 0.5
         label.adjustsFontSizeToFitWidth = true

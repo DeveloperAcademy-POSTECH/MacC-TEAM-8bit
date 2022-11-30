@@ -79,7 +79,7 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
     
     lazy var successLabel : UILabel = {
         let label = UILabel()
-        label.text = "완등 여부를 설정해주세요"
+        label.text = "완등 여부를 알려주세요"
         label.textColor = .orrBlack
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         label.backgroundColor = .orrWhite

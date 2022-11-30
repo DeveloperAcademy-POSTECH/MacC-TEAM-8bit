@@ -183,12 +183,11 @@ final class HomeViewController : UIViewController {
     // 영상이 없을 때 띄워주는 placeholder
     private lazy var placeholderView: UILabel = {
         let view = UILabel()
-        view.text = "업로드한 비디오가 없습니다.\n비디오를 업로드 해주세요."
+        view.text = "볼더링 기록이 있나요?\n볼더링 기록을 업로드해주세요"
         view.numberOfLines = 0
         view.textAlignment = .center
         view.textColor = .orrGray600
         view.font = .systemFont(ofSize: 15)
-        
         view.alpha = 0.0
         return view
     }()
@@ -261,20 +260,18 @@ final class HomeViewController : UIViewController {
         isCardView.toggle()
     }
     
-//    @objc func videoButtonPressed(sender: UIButton){
-//        let nextVC = DateSettingViewController()
-//        self.navigationController?.pushViewController(nextVC, animated: true)
-//    }
+    @objc func videoButtonPressed(sender: UIButton){
+        let nextVC = DateSettingViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
 
 //        MARK: 스와이프 온보딩을 보고 싶다면 해당 상단의 코드를 주석처리후 하단 주석을 풀어주세요.
-    @objc func videoButtonPressed(sender: UIButton){
-        //여기서 실행하면 온보딩을 여러번 볼 수 있어요.
-//            let nextVC = SwipeOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
-//            nextVC.modalPresentationStyle = .fullScreen
-//            self.present(nextVC, animated: true, completion: nil)
-    let onBoardingViewController = OnBoardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
-    self.navigationController?.pushViewController(onBoardingViewController, animated: true)
-    }
+//    @objc func videoButtonPressed(sender: UIButton){
+//        //여기서 실행하면 온보딩을 여러번 볼 수 있어요.
+//        let nextVC = SwipeOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+//        nextVC.modalPresentationStyle = .fullScreen
+//        self.present(nextVC, animated: true, completion: nil)
+//    }
     
     @objc func segmentControl(_ sender: BetterSegmentedControl) {
         isCardView = sender.index == 0
