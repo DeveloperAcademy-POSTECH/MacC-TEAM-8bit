@@ -23,6 +23,7 @@ class RouteModalViewController: UIViewController {
         label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 1
         label.textColor = .orrGray700
+        label.textAlignment = .center
         return label
     }()
     
