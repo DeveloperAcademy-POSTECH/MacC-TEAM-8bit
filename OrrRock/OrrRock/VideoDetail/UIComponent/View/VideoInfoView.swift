@@ -205,10 +205,7 @@ extension VideoInfoView: UITextViewDelegate {
             delegate?.tapReturnButton()
             return
         }
-            
-        
     }
-    
 }
 
 

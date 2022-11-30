@@ -31,6 +31,4 @@ extension VideoDetailViewController : VideoInfoViewTextViewDelegate {
     func tapReturnButton() {
         completeAction()
     }
-    
-    
 }
