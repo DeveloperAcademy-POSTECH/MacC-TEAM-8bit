@@ -40,7 +40,7 @@ class RouteFindingSaveViewController: UIViewController {
         return button
     }()
     
-    private lazy var doneButton: UIButton = {
+    private lazy var exportButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         button.layer.cornerRadius = 20
         button.setImage(UIImage(systemName: "square.and.arrow.down.fill"), for: .normal)
@@ -257,8 +257,8 @@ extension RouteFindingSaveViewController {
             $0.width.equalTo(40)
         }
         
-        view.addSubview(doneButton)
-        doneButton.snp.makeConstraints {
+        view.addSubview(exportButton)
+        exportButton.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(16)
             $0.height.equalTo(40)
