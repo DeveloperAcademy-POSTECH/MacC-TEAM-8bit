@@ -56,7 +56,6 @@ extension RouteFindingSaveViewController: UICollectionViewDataSource {
         cell.pageImage.contentMode = .scaleAspectFill
         cell.pageImage.clipsToBounds = true
         cell.pageImage.image = backgroundImage
-        print(cell)
         
         return cell
     }
