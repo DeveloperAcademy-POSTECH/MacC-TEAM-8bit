@@ -287,6 +287,8 @@ extension RouteFindingDetailViewController {
     private func loadPageViewControllerList() {
         viewControllerListForPageVC = getViewControllerForPageVC()
         routePageViewController.setViewControllers([viewControllerListForPageVC.first!], direction: .forward, animated: true)
+        thumbnailCollectionView.reloadData()
+        
     }
     
     private func setUpCollectionView() {
