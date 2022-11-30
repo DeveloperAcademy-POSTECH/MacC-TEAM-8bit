@@ -9,9 +9,23 @@ import UIKit
 
 final class RouteFindingPageViewController: UIViewController {
     var pageInfo: PageInfo
-    
     var isHandButton: Bool = true
     var buttonList: [RouteFindingFeatureButton] = []
+    
+    lazy var disableView: UIView = {
+       let view = UIView()
+        
+        view.backgroundColor = .black.withAlphaComponent(0.3)
+        
+        return view
+    }()
+    
+    lazy var arrowUI: UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 145, height: 145))
+        view.backgroundColor = .orrGray500
+        
+        return view
+    }()
     
     init(pageInfo: PageInfo) {
         self.pageInfo = pageInfo
@@ -62,14 +76,17 @@ final class RouteFindingPageViewController: UIViewController {
            }
     }
     
-    func addRoutePointButton(to location: CGPoint ) {
+    func addRoutePointButton(to location: CGPoint) {
         
         var button = isHandButton ? RouteFindingFeatureHandButton() : RouteFindingFeatureFootButton()
         
         self.view.addSubview(button)
+                
+        
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(moveRoutePointButton(_:)))
         button.addGestureRecognizer(panGesture)
         // pageView에 points 좌표를 넘겨줌
+        
         
         pageInfo.points?.append(PointInfo(footOrHand: isHandButton ? .hand : .foot, isForce: false, position: location, forceDirection: .pi0))
         buttonList.append(button)

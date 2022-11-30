@@ -14,7 +14,6 @@ final class RouteFindingFeatureViewController: UIViewController {
     // MARK: Variables
     
     var routeDataDraft: RouteDataDraft
-    var routeInfo: RouteInfo
     var pages: [PageInfo]
     var pageViewControllerList: [RouteFindingPageViewController] = []
     var backgroundImage: UIImage?
@@ -166,7 +165,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     private lazy var deleteImage: UIImageView = {
         let view = UIImageView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        view.image = routeInfo.imageLocalIdentifier.generateCardViewThumbnail()
+        view.image = routeDataDraft.routeInfoForUI.imageLocalIdentifier.generateCardViewThumbnail()
         return view
     }()
     
@@ -174,9 +173,8 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage?) {
         self.routeDataDraft = routeDataDraft
-        self.routeInfo = routeDataDraft.routeInfoForUI
         self.backgroundImage = backgroundImage
-        self.pages = routeInfo.pages
+        self.pages = routeDataDraft.routeInfoForUI.pages
         
         super.init(nibName: nil, bundle: nil)
         
@@ -277,15 +275,15 @@ final class RouteFindingFeatureViewController: UIViewController {
     func finishRouteFinding() {
         
         // TODO: 루트파인딩 저장하기 뷰로 데이터 넘겨주기
-        routeInfo.pages = pages
+//        routeInfo.pages = pages
         //        routeInfo -> 전달
 //        let routeFindingSaveViewController = RouteFindingSaveViewController(routeDataDraft: routeDataDraft, backgroundImage: backgroundImage, pageViews: pageViews)
         
-//        for index in pageViewControllerList.indices {
-//            pageViewControllerList[index].pageInfo.points?.forEach { point in
-//                routeDataDraft.addPointData(pageAt: index, addTargetPointInfo: point)
-//            }
-//        }
+        for index in pageViewControllerList.indices {
+            pageViewControllerList[index].pageInfo.points?.forEach { point in
+                routeDataDraft.addPointData(pageAt: index, addTargetPointInfo: point)
+            }
+        }
 
         print("Done Button Tapped")
     }
