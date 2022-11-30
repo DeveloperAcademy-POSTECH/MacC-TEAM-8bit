@@ -45,14 +45,14 @@ extension RouteInformation {
 
 extension RouteInformation : Identifiable {
     func convertToRouteInfo() -> RouteInfo {
-        let pageArray = Array(self.pages as! Set<PageInformation>)
+        let pageArray = Array(self.pages as! Set<PageInformation>).sorted(by: {$0.rowOrder < $1.rowOrder})
         var pageInfo: [PageInfo] = []
         var points2dimensionArray: [[PointInfo]] = []
         for i in 0..<pageArray.count {
             let pointsArray = Array(pageArray[i].points as! Set<PointInformation>)
             var pointInfo: [PointInfo] = []
             for j in 0..<pointsArray.count {
-                let temp = PointInfo(footOrHand: FootOrHand(rawValue: pointsArray[j].footOrHand) ?? FootOrHand.hand, isForce: pointsArray[j].isForce, position: CGPoint(x: pointsArray[j].xCoordinate, y: pointsArray[j].yCoordinate), forceDirection: ForceDirection(rawValue: Int(pointsArray[j].forceDirection)) ?? ForceDirection.pi0)
+                let temp = PointInfo(id: pointsArray[j].id ?? UUID(), footOrHand: FootOrHand(rawValue: pointsArray[j].footOrHand) ?? FootOrHand.hand, isForce: pointsArray[j].isForce, position: CGPoint(x: pointsArray[j].xCoordinate, y: pointsArray[j].yCoordinate), forceDirection: ForceDirection(rawValue: Int(pointsArray[j].forceDirection)) ?? ForceDirection.pi0)
                 pointInfo.append(temp)
             }
             points2dimensionArray.append(pointInfo)

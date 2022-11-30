@@ -83,6 +83,7 @@
 		3AA4D42B28FEBADF006C718A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AA4D42A28FEBADF006C718A /* Assets.xcassets */; };
 		3AA4D42E28FEBADF006C718A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA4D42C28FEBADF006C718A /* LaunchScreen.storyboard */; };
 		3AA4D43728FEBE94006C718A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA4D43628FEBE94006C718A /* SnapKit */; };
+		3AE233AB2937714400A057CE /* RotueDataDraft_Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE233AA2937714400A057CE /* RotueDataDraft_Archive.swift */; };
 		3AEB3D5D291C003D00A989FF /* VideoCollectionViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */; };
 		700AC6212926A1DA003DF5AF /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700AC6202926A1DA003DF5AF /* UIImageView+.swift */; };
 		704BAB5E292834DB004D987A /* NewLevelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704BAB5D292834DB004D987A /* NewLevelPickerView.swift */; };
@@ -233,6 +234,7 @@
 		3AA4D42A28FEBADF006C718A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AA4D42D28FEBADF006C718A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AA4D42F28FEBADF006C718A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3AE233AA2937714400A057CE /* RotueDataDraft_Archive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotueDataDraft_Archive.swift; sourceTree = "<group>"; };
 		3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewMode.swift; sourceTree = "<group>"; };
 		700AC6202926A1DA003DF5AF /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		704BAB5D292834DB004D987A /* NewLevelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLevelPickerView.swift; sourceTree = "<group>"; };
@@ -476,6 +478,7 @@
 				3A4641D5292FB30900C6B7A3 /* RouteDataDraft.swift */,
 				3A4641D9292FB4B400C6B7A3 /* RouteCoreDataDAO.swift */,
 				3A4641DB292FB71900C6B7A3 /* RouteDataManager.swift */,
+				3AE233AA2937714400A057CE /* RotueDataDraft_Archive.swift */,
 			);
 			path = RouteFinding;
 			sourceTree = "<group>";
@@ -847,6 +850,7 @@
 				3A15AC7929071F710058512F /* DataRepository.swift in Sources */,
 				342508AF29002F31000653D9 /* HomeCollectionViewHeaderCell.swift in Sources */,
 				78B6A712292F90FA00C0BB70 /* RouteFindingMainViewController+Extensions.swift in Sources */,
+				3AE233AB2937714400A057CE /* RotueDataDraft_Archive.swift in Sources */,
 				709A8C6D2904A3E800CEA6F4 /* CustomIndicator.swift in Sources */,
 				342508A729001BBC000653D9 /* HomeTableViewCardCell.swift in Sources */,
 				78FEE88B292616BC007B67BD /* VideoDetailViewController+Extensions.swift in Sources */,
@@ -1122,7 +1126,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = JPL38XBHJ4;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
@@ -1157,7 +1161,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = JPL38XBHJ4;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
