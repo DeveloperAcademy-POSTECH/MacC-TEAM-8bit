@@ -16,9 +16,8 @@ class NewLevelPickerView: UIView{
     private var pickerWidth = 64
     //피커뷰가 시작 될때 선택 되어 있어야 하는 값
     var pickerSelectValue = 0
-    //초기선택된 레이블을 설정에 사용되는 값
-    var isFirstLoad : Bool?
-    
+    //피커가 선택 할때 마다 변경되는 값
+    var currentPickerValue = 0
     //피커뷰에 들어갈 리스트들
     private let levelValues: [Int] = [0,1,2,3,4,5,6,7,8,9]
     //회전각도
@@ -86,6 +85,7 @@ class NewLevelPickerView: UIView{
     override func layoutSubviews() {
         guard changedLevelPicker else{
             pickerSelectValue =  pickerSelectValue < 0 ? 0 : pickerSelectValue
+            currentPickerValue = pickerSelectValue
             self.pickerView.selectRow(pickerSelectValue, inComponent: 0, animated: true)
             
             if customTitle != nil {
@@ -122,8 +122,8 @@ extension NewLevelPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         delegate?.didLevelChanged(selectedLevel: row)
         titleLabel.text = "V\(row)\(titleText)"
+        currentPickerValue = row
         guard let selectView = pickerView.view(forRow: row, forComponent: component) else {
-            isFirstLoad = false
             return
         }
         
@@ -144,20 +144,10 @@ extension NewLevelPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
             afterLabel.font = .systemRoundedFont(ofSize: 17, weight: .light)
             afterLabel.textColor = .black
         }
-        
-        guard let myBool = isFirstLoad else{
-            isFirstLoad = false
-            return
-        }
-        
-        if !myBool{
-            isFirstLoad = true
-        }
     }
     
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        
         let pickerRow = UIView()
         pickerRow.frame = CGRect(x: 0, y: 0, width: pickerWidth, height: 32)
         
@@ -182,13 +172,7 @@ extension NewLevelPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
         rowLabel.text = "V\(levelValues[row])"
         pickerRow.transform = CGAffineTransform(rotationAngle: 90 * (.pi/180))
         
-        guard let myBool = isFirstLoad else{
-            return pickerRow
-        }
-        guard !myBool else{
-            return pickerRow
-        }
-        guard let selectView = pickerView.view(forRow: pickerSelectValue, forComponent: component) else {
+        guard let selectView = pickerView.view(forRow: currentPickerValue, forComponent: component) else {
             return pickerRow
         }
         let selectLabel = selectView.subviews[0] as! UILabel

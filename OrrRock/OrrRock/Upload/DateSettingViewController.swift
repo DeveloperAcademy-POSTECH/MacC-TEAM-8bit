@@ -15,7 +15,7 @@ class DateSettingViewController: UIViewController {
     
     let datePickerLabel : UILabel = {
         let label = UILabel()
-        label.text = "방문한 날짜를 선택해주세요"
+        label.text = "방문한 날짜를 알려주세요"
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.textColor = .orrBlack
         label.backgroundColor = .orrWhite
@@ -51,8 +51,12 @@ class DateSettingViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
         self.navigationController?.setExpansionBackbuttonArea()
-        
         setUpLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
     }
 }
 

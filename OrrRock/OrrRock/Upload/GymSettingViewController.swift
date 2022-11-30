@@ -19,7 +19,7 @@ class GymSettingViewController: UIViewController {
     
     let gymNameLabel : UILabel = {
         let label = UILabel()
-        label.text = "방문한 클라이밍장을 입력해주세요"
+        label.text = "방문한 클라이밍장을 알려주세요"
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.textColor = .orrBlack
         label.backgroundColor = .orrWhite
@@ -86,12 +86,10 @@ class GymSettingViewController: UIViewController {
     
     // MARK: Dark,Light 모드 전환 안될때 사용하세요.
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-       if #available(iOS 13.0, *) {
            if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
                // ColorUtils.loadCGColorFromAsset returns cgcolor for color name
                nextButton.setBackgroundColor(.orrUPBlue!, for: .normal)
                nextButton.setBackgroundColor(.orrGray300!, for: .disabled)
-           }
        }
     }
     

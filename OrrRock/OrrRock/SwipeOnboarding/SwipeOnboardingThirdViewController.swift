@@ -52,7 +52,7 @@ class SwipeOnboardingThirdViewController: UIViewController {
     private lazy var skipButton: UIButton = {
         let btn = UIButton()
         btn.addTarget(self, action: #selector(pressSkipButton), for: .touchUpInside)
-        btn.setAttributedTitle("SKIP".underLineAttribute(), for: .normal)
+        btn.setAttributedTitle("SKIP".underLineAttribute(color: .orrUPBlue!), for: .normal)
         return btn
     }()
     
@@ -68,10 +68,8 @@ class SwipeOnboardingThirdViewController: UIViewController {
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-       if #available(iOS 13.0, *) {
            if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
                mainImageView.layer.borderColor = UIColor.orrWhite?.cgColor
-           }
        }
     }
     
@@ -203,10 +201,8 @@ extension SwipeOnboardingThirdViewController {
         
         view.addSubview(skipButton)
         skipButton.snp.makeConstraints{
-            $0.centerX.equalTo(view)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
-            $0.leading.equalTo(view).offset(OrrPd.pd16.rawValue)
-            $0.trailing.equalTo(view).offset(-OrrPd.pd16.rawValue)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalToSuperview().offset(-OrrPd.pd16.rawValue)
         }
         
     }

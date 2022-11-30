@@ -46,7 +46,7 @@ class RouteFindingOnboardingParentViewController: UIViewController {
     
     lazy var skipButton: UIButton = {
         let btn = UIButton()
-        btn.setAttributedTitle("SKIP".underLineAttribute(), for: .normal)
+        btn.setAttributedTitle("SKIP".underLineAttribute(color: .darkGray), for: .normal)
         btn.addAction(UIAction(handler: { _ in
             self.triggerSkipOnboarding()
         }), for: .touchUpInside)

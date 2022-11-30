@@ -14,11 +14,14 @@ protocol ColorPickerViewDelegate {
 
 class ColorPickerView: UIView{
     //피커뷰의 고정적으로 쓰이는 넓이
-    private var pickerWidth = 45
+    private var pickerWidth = 0.0
+    //피커뷰의 고정적으로 쓰이는 넓이
+    private var backgroundViewWidth = 0.0
     //피커뷰가 시작 될때 선택 되어 있어야 하는 값
     var pickerSelectValue = 0
     //초기선택된 레이블을 설정에 사용되는 값
     var isFirstLoad : Bool?
+    
     
     //피커뷰에 들어갈 리스트들
     private let colorValues: [UIColor?] = [.holder0, .holder1, .holder2, .holder3, .holder4, .holder5, .holder6, .holder7, .holder8, .holder9]
@@ -37,6 +40,11 @@ class ColorPickerView: UIView{
         return picker
     }()
     
+    lazy var backgroundView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = backgroundViewWidth / 2
+        return view
+    }()
     
     lazy var pickerSetLabel: UILabel = {
         let label = UILabel()
@@ -55,11 +63,13 @@ class ColorPickerView: UIView{
     
     
     func setPicker() {
-        setUpLayout()
         self.pickerView.delegate?.pickerView?(self.pickerView, didSelectRow: pickerSelectValue, inComponent: 0)
     }
     
     override func layoutSubviews() {
+        backgroundViewWidth = self.frame.size.height
+        pickerWidth = backgroundViewWidth * 0.57
+        setUpLayout()
         guard changedLevelPicker else {
             pickerSelectValue =  pickerSelectValue < 0 ? 0 : pickerSelectValue
             pickerSelectValue =  pickerSelectValue > colorValues.count ? colorValues.count - 1: pickerSelectValue
@@ -173,19 +183,31 @@ extension ColorPickerView : UIPickerViewDelegate,UIPickerViewDataSource{
 extension ColorPickerView {
     
     private func setUpLayout(){
+        
+        self.addSubview(backgroundView)
+        backgroundView.backgroundColor = UIColor(hex: "#383B3D")
+        backgroundView.snp.makeConstraints {
+            $0.height.equalTo(backgroundViewWidth)
+            $0.leading.equalToSuperview().offset(OrrPd.pd36.rawValue)
+            $0.trailing.equalToSuperview().offset(-OrrPd.pd36.rawValue)
+            $0.center.equalToSuperview()
+        }
+        
         self.addSubview(pickerSetLabel)
         pickerSetLabel.snp.makeConstraints {
-            $0.height.equalTo(pickerWidth) // width
-            $0.width.equalTo(self.snp.width) //
+            $0.height.equalTo(pickerWidth)
+            $0.width.equalTo(self.snp.width)
             $0.center.equalToSuperview()
         }
         
         self.addSubview(pickerView)
         pickerView.snp.makeConstraints {
-            $0.height.equalTo(pickerSetLabel.snp.width) // width
-            $0.width.equalTo(pickerSetLabel.snp.height) // height
+            $0.height.equalTo(pickerSetLabel.snp.width)
+            $0.width.equalTo(pickerSetLabel.snp.height)
             $0.centerX.equalTo(pickerSetLabel.snp.centerX)
             $0.centerY.equalTo(pickerSetLabel.snp.centerY)
         }
+        
+        
     }
 }

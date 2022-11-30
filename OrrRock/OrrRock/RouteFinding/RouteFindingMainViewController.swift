@@ -10,6 +10,9 @@ import SnapKit
 
 final class RouteFindingMainViewController: UIViewController {
     
+    var routeDataManager: RouteDataManager = RouteDataManager()
+    var routeInfoList: [RouteInformation]!
+    
     private lazy var topView: UIView = {
         let view = UIView()
         return view
@@ -26,6 +29,7 @@ final class RouteFindingMainViewController: UIViewController {
         let button = UIButton()
         button.setImage(UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .bold)), for: .normal)
         button.tintColor = .orrGray600
+        button.addTarget(self, action: #selector(tapPlusButton), for: .touchUpInside)
         return button
     }()
     
@@ -37,19 +41,25 @@ final class RouteFindingMainViewController: UIViewController {
     
     private lazy var allRouteFindingViewController: UIViewController = {
         let vc = RouteFindingSectionViewController()
-        vc.infoArr = [1,2,3,4,5,6,7,8]
+        vc.routeInformations = routeInfoList
+        vc.routeFindingDataManager = routeDataManager
+        vc.sectionKind = RouteFindingSection.all
         return vc
     }()
     
     private lazy var challengeRouteFindingViewController: UIViewController = {
         let vc = RouteFindingSectionViewController()
-        vc.infoArr = [1,2,3,4]
+        vc.routeInformations = routeInfoList.filter({ $0.isChallengeComplete == false })
+        vc.routeFindingDataManager = routeDataManager
+        vc.sectionKind = RouteFindingSection.challenge
         return vc
     }()
     
     private lazy var successRouteFindingViewController: UIViewController = {
         let vc = RouteFindingSectionViewController()
-        vc.infoArr = [5,6,7,8]
+        vc.routeInformations = routeInfoList.filter({ $0.isChallengeComplete == true })
+        vc.routeFindingDataManager = routeDataManager
+        vc.sectionKind = RouteFindingSection.success
         return vc
     }()
     
@@ -81,6 +91,7 @@ final class RouteFindingMainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        routeInfoList = routeDataManager.getRouteFindingList()
         setUpLayout()
         setInitialNavigationBar()
         setUpSegment()
@@ -90,11 +101,6 @@ final class RouteFindingMainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.isNavigationBarHidden = false
     }
     
     private func setUpSegment() {
@@ -159,5 +165,15 @@ final class RouteFindingMainViewController: UIViewController {
     
     private func setInitialNavigationBar() {
         self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    @objc
+    private func tapPlusButton() {
+        let vc = RouteFindingCameraViewController()
+        vc.routeDataManager = routeDataManager
+        let navVc = UINavigationController(rootViewController: vc)
+        navVc.modalPresentationStyle = .fullScreen
+        navVc.isNavigationBarHidden = true
+        self.present(navVc, animated: true)
     }
 }

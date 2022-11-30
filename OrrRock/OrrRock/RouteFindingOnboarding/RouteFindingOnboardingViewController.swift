@@ -40,11 +40,11 @@ class RouteFindingOnboardingViewController: UIPageViewController {
             return viewController
         }()
         
-        let fourthViewController: RouteFindingFourthOnboardingViewController = {
-            let viewController = RouteFindingFourthOnboardingViewController(backgroundImage: backgroundImage)
-            viewController.delegate = self
-            return viewController
-        }()
+//        let fourthViewController: RouteFindingFourthOnboardingViewController = {
+//            let viewController = RouteFindingFourthOnboardingViewController(backgroundImage: backgroundImage)
+//            viewController.delegate = self
+//            return viewController
+//        }()
         
         let fifthViewController: RouteFindingFifthOnboardingViewController = {
             let viewController = RouteFindingFifthOnboardingViewController(backgroundImage: backgroundImage)
@@ -64,7 +64,7 @@ class RouteFindingOnboardingViewController: UIPageViewController {
             return viewController
         }()
         
-        return [firstViewController, secondViewController, thirdViewController, fourthViewController, fifthViewController, sixthViewController, seventhViewController]
+        return [firstViewController, secondViewController, thirdViewController, fifthViewController, sixthViewController, seventhViewController]
     }()
     
     

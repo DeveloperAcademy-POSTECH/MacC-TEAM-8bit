@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 class RouteFindingSecondOnboardingViewController: RouteFindingOnboardingParentViewController {
     
     // MARK: Variables
@@ -74,6 +76,14 @@ class RouteFindingSecondOnboardingViewController: RouteFindingOnboardingParentVi
         return view
     }()
     
+    private lazy var gestureView: RouteFindingOnboardingTapViewController = {
+        let view = RouteFindingOnboardingTapViewController()
+        view.delegate = self
+        
+        return view
+    }()
+    
+    
     // MARK: Life Cycle Functions
     
     override func viewDidLoad() {
@@ -99,13 +109,16 @@ class RouteFindingSecondOnboardingViewController: RouteFindingOnboardingParentVi
     // MARK: @objc Functions
 }
 
-    
-
 extension RouteFindingSecondOnboardingViewController {
     
     // MARK: Set Up Functions
     override func setUpLayout() {
         super.setUpLayout()
+        
+        view.addSubview(gestureView.view)
+        gestureView.view.snp.makeConstraints {
+            $0.edges.equalTo(backgroundImageView)
+        }
         
         view.addSubview(footHandStackView)
         footHandStackView.snp.makeConstraints {
@@ -125,6 +138,60 @@ extension RouteFindingSecondOnboardingViewController {
         footDescriptionView.snp.makeConstraints {
             $0.centerY.equalTo(footButton.snp.centerY)
             $0.leading.equalTo(footHandStackView.snp.trailing).offset(OrrPd.pd16.rawValue)
+        }
+    }
+}
+
+extension RouteFindingSecondOnboardingViewController: RouteFindingOnboardingTapViewControllerDelegate {
+    func buttonAdded() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            self.triggerMoveToNextPage()
+        }
+    }
+}
+
+
+protocol RouteFindingOnboardingTapViewControllerDelegate {
+    func buttonAdded()
+}
+
+final class RouteFindingOnboardingTapViewController: UIViewController {
+    
+    var delegate: RouteFindingOnboardingTapViewControllerDelegate?
+    var isHandButton: Bool = true
+    
+    init() {
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(makeRoutePoint(_:)))
+        self.view.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    @objc
+    func makeRoutePoint(_ sender: UITapGestureRecognizer){
+        if sender.state == .ended {
+            if sender.location(in: self.view).y < self.view.frame.maxY {
+                addRoutePointButton(to: sender.location(in: self.view))
+                print("\(sender.location(in: self.view))")
+            }
+        }
+        
+        delegate?.buttonAdded()
+    }
+    
+    func addRoutePointButton(to location: CGPoint) {
+        var button = isHandButton ? RouteFindingFeatureHandButton() : RouteFindingFeatureFootButton()
+        self.view.addSubview(button)
+        
+        button.snp.makeConstraints{
+            $0.centerX.equalTo(location.x)
+            $0.centerY.equalTo(location.y)
         }
     }
 }

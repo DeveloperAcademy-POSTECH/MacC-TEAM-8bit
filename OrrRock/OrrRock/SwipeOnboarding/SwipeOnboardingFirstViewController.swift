@@ -31,7 +31,7 @@ class SwipeOnboardingFirstViewController: UIViewController {
     private lazy var skipButton: UIButton = {
         let btn = UIButton()
         btn.addTarget(self, action: #selector(pressSkipButton), for: .touchUpInside)
-        btn.setAttributedTitle("이미 잘 할 수 있어요".underLineAttribute(), for: .normal)
+        btn.setAttributedTitle("이미 잘 할 수 있어요".underLineAttribute(color: UIColor(hex: "#969696")), for: .normal)
         return btn
     }()
     

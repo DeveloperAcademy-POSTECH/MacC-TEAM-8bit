@@ -11,7 +11,7 @@ class RouteFindingFifthOnboardingViewController: RouteFindingOnboardingParentVie
     
     // MARK: Variables
     var pages: [PageInfo] = [PageInfo(rowOrder: 0)]
-    var pageViews: [RouteFindingPageView] = [RouteFindingPageView()]
+    var pageViews: [UIView] = [UIView()]
     var centerCell: RouteFindingThumbnailCollectionViewCell?
     
     // MARK: View Components
@@ -101,14 +101,14 @@ extension RouteFindingFifthOnboardingViewController: RouteFindingThumbnailCollec
     // 페이지 추가 버튼이 눌리면 새로운 페이지를 추가
     func tapAddPageButton() {
         pages.append(PageInfo(rowOrder: pages.last!.rowOrder + 1))
-        let newView = RouteFindingPageView()
+        let newView = UIView()
         self.backgroundImageView.addSubview(newView)
         pageViews.append(newView)
         
         thumbnailCollectionView.reloadData()
         thumbnailCollectionView.scrollToItem(at: IndexPath(row: pageViews.count, section: 0), at: .centeredHorizontally, animated: true)
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.8) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
             self.triggerMoveToNextPage()
         }
     }

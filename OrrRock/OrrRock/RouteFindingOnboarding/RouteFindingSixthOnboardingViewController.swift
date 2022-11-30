@@ -14,7 +14,7 @@ class RouteFindingSixthOnboardingViewController: RouteFindingOnboardingParentVie
     let collectionViewCellSize: Int = 62
 
     var pages: [PageInfo] = [PageInfo(rowOrder: 0), PageInfo(rowOrder: 1)]
-    var pageViews: [RouteFindingPageView] = [RouteFindingPageView(), RouteFindingPageView()]
+    var pageViews: [UIView] = [UIView(), UIView()]
     var centerCell: RouteFindingThumbnailCollectionViewCell?
     
     // MARK: View Components
