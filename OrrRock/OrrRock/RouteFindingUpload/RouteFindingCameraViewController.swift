@@ -12,6 +12,7 @@ import PhotosUI
 final class RouteFindingCameraViewController: UIViewController {
     
     var currentLocalIdentifier: String?
+    var routeDataManager: RouteDataManager?
     
     private lazy var cameraView: CameraView = {
         let view = CameraView()
@@ -59,6 +60,8 @@ final class RouteFindingCameraViewController: UIViewController {
         let config = UIImage.SymbolConfiguration(pointSize: 24, weight: .medium, scale: .small)
         let buttonSymbol = UIImage(systemName: "multiply", withConfiguration: config)?.withTintColor(UIColor.orrWhite ?? UIColor.white, renderingMode: .alwaysOriginal)
         button.setImage(buttonSymbol, for: .normal)
+        
+        button.addTarget(self, action: #selector(dismissRouteFinidngCameraViewController), for: .touchUpInside)
         return button
     }()
     
@@ -152,6 +155,11 @@ extension RouteFindingCameraViewController {
         photosButton.isUserInteractionEnabled = status
         shutterButton.isUserInteractionEnabled = status
         closeButton.isUserInteractionEnabled = status
+    }
+    
+    @objc
+    private func dismissRouteFinidngCameraViewController() {
+        self.dismiss(animated: true)
     }
 }
 
@@ -311,3 +319,14 @@ private extension RouteFindingCameraViewController {
         }
     }
 }
+
+// MARK: Navigation
+extension RouteFindingCameraViewController {
+    func navigateToRouteFindingFeatureVC(phAssetLocalIdentifier localIdentifier: String?, image: UIImage?) {
+        guard let image = photoImage, let manager = routeDataManager else { return }
+        let routeDataDraft = RouteDataDraft(manager: manager, existingRouteFinding: nil, imageLocalIdentifier: localIdentifier ?? "")
+        let featureVC = RouteFindingFeatureViewController(routeDataDraft: routeDataDraft, backgroundImage: image)
+        navigationController?.pushViewController(featureVC, animated: true)
+    }
+}
+

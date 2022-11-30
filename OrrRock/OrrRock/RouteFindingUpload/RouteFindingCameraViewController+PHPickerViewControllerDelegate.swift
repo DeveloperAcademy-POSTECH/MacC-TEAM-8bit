@@ -34,9 +34,7 @@ extension RouteFindingCameraViewController: PHPickerViewControllerDelegate {
                 
                 photoImage = orientationFixedImage.cropped(rect: rect)
                 
-                // MARK: **TEST** 이미지 넘김 테스트용 코드
-                guard let image = photoImage else { return }
-                navigateToSampleImageVC(image: image)
+                navigateToRouteFindingFeatureVC(phAssetLocalIdentifier: currentLocalIdentifier, image: photoImage)
             } else {
                 CustomIndicator.stopLoading()
             }

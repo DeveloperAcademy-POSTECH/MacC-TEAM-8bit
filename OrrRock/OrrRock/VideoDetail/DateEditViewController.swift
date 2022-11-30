@@ -32,7 +32,7 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
     //MARK: date view 관련 components
     private lazy var datePickerLabel : UILabel = {
         let label = UILabel()
-        label.text = "방문한 날짜를 선택해주세요"
+        label.text = "방문한 날짜를 알려주세요"
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.textColor = .orrBlack
         label.backgroundColor = .orrWhite

@@ -7,6 +7,7 @@
 
 import UIKit
 import Photos
+import SnapKit
 
 class ExportViewController: UIViewController, UINavigationBarDelegate {
     
@@ -160,8 +161,8 @@ extension ExportViewController {
         colorPickerView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(72)
-            $0.height.equalTo(40)
+            $0.bottom.equalToSuperview().offset(-34)
+            $0.height.equalTo(70)
         }
         
         view.addSubview(previewVideoView)
