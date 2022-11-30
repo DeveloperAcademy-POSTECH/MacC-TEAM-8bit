@@ -92,6 +92,9 @@ final class RouteFindingFeatureViewController: UIViewController {
         button.layer.cornerRadius = 20
         button.backgroundColor = .orrGray700
         button.setImage(UIImage(systemName: "multiply"), for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         button.tintColor = .orrWhite
         button.addAction(UIAction { _ in
             self.exitRouteFinding()
@@ -174,7 +177,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage?) {
         self.routeDataDraft = routeDataDraft
         self.backgroundImage = backgroundImage
-//        self.pages = routeDataDraft.routeInfoForUI.pages
+
         
         super.init(nibName: nil, bundle: nil)
         

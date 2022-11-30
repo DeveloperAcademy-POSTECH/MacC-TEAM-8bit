@@ -257,7 +257,7 @@ private extension LevelAndPFSettingViewController {
                 using: { [weak self] currentTime in
                     self?.updateVideoSlider(card: card, time: currentTime)
                     // TODO: 남은 시간 표시
-                    // self?.updateTimeRemaining(currentTime)
+                    // self?.updateTi meRemaining(currentTime)
                 })
         }
     }

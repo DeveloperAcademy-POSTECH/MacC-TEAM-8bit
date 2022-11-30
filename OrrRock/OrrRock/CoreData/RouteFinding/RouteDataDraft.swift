@@ -206,3 +206,12 @@ final class RouteDataDraft {
         }
     }
 
+    // MARK: Update Gym Name in RouteFindingGymSaveViewController
+    func updateGymName(gymName: String) {
+        routeInfoForUI.gymName = gymName
+    }
+    // MARK: Update Problem Level in RouteFindingLevelSaveViewController
+    func updateProblemLevel(problemLevel: Int) {
+        routeInfoForUI.problemLevel = problemLevel
+    }
+}

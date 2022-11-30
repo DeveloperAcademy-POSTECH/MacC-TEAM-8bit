@@ -100,32 +100,21 @@ final class RouteDataManager {
         coreDataDAO.deleteAllData()
     }
     
-    //MARK: RouteDataMainSampleDataGenerate
-    func randomRouteGenerate(for num: Int) {
-        
-        let randomGymNameList: [String] = ["클라이밍 Alpha", "Beta 클라이밍", "C 클라임", "Grand Climb"]
-        let randomBool: [Bool] = [true, false]
-        
-        for _ in 0..<num {
-            let randomDate = Date.randomBetween(start: Date(timeIntervalSince1970: 30000), end: Date(timeIntervalSince1970: 300000000))
-            let randomGymName = randomGymNameList[Int.random(in: 0..<randomGymNameList.count)]
-            let randomProblemLevel = Int.random(in: 0...9)
-            let randomBool = randomBool[Int.random(in: 0...1)]
-            let pageGenerateNum = Int.random(in: 1..<5)
-            let pageInfoList: [PageInfo] = randomPageListGenerate(for: pageGenerateNum)
-            let routeInfo = RouteInfo(imageLocalIdentifier: "", dataWrittenDate: randomDate, gymName: randomGymName, problemLevel: randomProblemLevel, isChallengeComplete: randomBool, pages: pageInfoList)
-            
-            coreDataDAO.createRouteInformationData(routeInfo: routeInfo)
-        }
-        saveData()
+    // MARK: 루트파인딩 내 최근 방문 클라이밍장명을 보여주기 위한 메서드
+    
+    func readVisitedClimbingGym() -> [VisitedClimbingGym] {
+        return DataManager.shared.repository.visitedClimbingGyms
     }
     
-    //MARK: RouteDataMainSampleDataGenerate
-    func randomPageListGenerate(for num: Int) -> [PageInfo] {
-        var pageList: [PageInfo] = []
-        for i in 0..<num {
-            pageList.append(PageInfo(rowOrder: i, points: []))
-        }
-        return pageList
+    func createVisitedClimbingGym(gymName: String) {
+        DataManager.shared.createVisitedClimbingGym(gymName: gymName)
+    }
+    
+    func deleteVisitedClimbingGym(deleteTarget: VisitedClimbingGym) {
+        DataManager.shared.deleteVisitedClimbingGym(deleteTarget: deleteTarget)
+    }
+    
+    func updateVisitedClimbingGym(updateTarget: VisitedClimbingGym) {
+        DataManager.shared.updateVisitedClimbingGym(updateTarget: updateTarget)
     }
 }
