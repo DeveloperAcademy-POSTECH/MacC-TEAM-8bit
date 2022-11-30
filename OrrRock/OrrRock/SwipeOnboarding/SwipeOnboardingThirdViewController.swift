@@ -52,7 +52,7 @@ class SwipeOnboardingThirdViewController: UIViewController {
     private lazy var skipButton: UIButton = {
         let btn = UIButton()
         btn.addTarget(self, action: #selector(pressSkipButton), for: .touchUpInside)
-        btn.setAttributedTitle("SKIP".underLineAttribute(hex: "#00A4FF"), for: .normal)
+        btn.setAttributedTitle("SKIP".underLineAttribute(color: .orrUPBlue!), for: .normal)
         return btn
     }()
     
