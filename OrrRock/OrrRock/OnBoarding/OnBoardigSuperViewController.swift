@@ -53,8 +53,8 @@ class OnBoardigSuperViewController: UIViewController {
         view.addSubview(labelImage)
         labelImage.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.leading.equalTo(self.view.snp.leading).offset(OrrPd.pd20.rawValue)
-            $0.trailing.equalTo(self.view.snp.trailing).offset(-OrrPd.pd20.rawValue)
+            $0.leading.equalTo(self.view.snp.leading)
+            $0.trailing.equalTo(self.view.snp.trailing)
             $0.height.equalTo(labelImage.snp.width).multipliedBy(1.1)
         }
         
