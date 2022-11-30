@@ -270,7 +270,7 @@ extension RouteFindingGymSaveViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
         
-        var videoInfoArray : [VideoInfo] = []
+        var videoInformations : [VideoInfo] = []
         let identifiers = results.compactMap(\.assetIdentifier)
         let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: nil)
         
