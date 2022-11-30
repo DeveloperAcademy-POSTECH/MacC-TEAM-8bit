@@ -181,7 +181,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if !UserDefaults.standard.bool(forKey: "SwipeOnboardingClear"){
+        if !UserDefaults.standard.bool(forKey: "SwipeOnboardingClear") {
             let nextVC = SwipeOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
             nextVC.modalPresentationStyle = .fullScreen
             self.present(nextVC, animated: true, completion: nil)
