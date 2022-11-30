@@ -12,6 +12,7 @@ import PhotosUI
 final class RouteFindingCameraViewController: UIViewController {
     
     var currentLocalIdentifier: String?
+    var routeDataManager: RouteDataManager?
     
     private lazy var cameraView: CameraView = {
         let view = CameraView()
@@ -59,6 +60,8 @@ final class RouteFindingCameraViewController: UIViewController {
         let config = UIImage.SymbolConfiguration(pointSize: 24, weight: .medium, scale: .small)
         let buttonSymbol = UIImage(systemName: "multiply", withConfiguration: config)?.withTintColor(UIColor.orrWhite ?? UIColor.white, renderingMode: .alwaysOriginal)
         button.setImage(buttonSymbol, for: .normal)
+        
+        button.addTarget(self, action: #selector(dismissRouteFinidngCameraViewController), for: .touchUpInside)
         return button
     }()
     
@@ -98,8 +101,8 @@ final class RouteFindingCameraViewController: UIViewController {
 }
 
 // MARK: Layout & Property Setting Function
-private extension RouteFindingCameraViewController {
-    func setUpLayout() {
+extension RouteFindingCameraViewController {
+    private func setUpLayout() {
         
         let shutterButtonSize: CGFloat = 75
         let safeArea = view.safeAreaLayoutGuide
@@ -142,10 +145,21 @@ private extension RouteFindingCameraViewController {
         })
     }
     
-    func makePropertyEmpty() {
+    private func makePropertyEmpty() {
         photoImage = nil
         photoData = nil
         currentLocalIdentifier = nil
+    }
+    
+    func buttonActiveStatus(to status: Bool) {
+        photosButton.isUserInteractionEnabled = status
+        shutterButton.isUserInteractionEnabled = status
+        closeButton.isUserInteractionEnabled = status
+    }
+    
+    @objc
+    private func dismissRouteFinidngCameraViewController() {
+        self.dismiss(animated: true)
     }
 }
 
@@ -155,7 +169,7 @@ private extension RouteFindingCameraViewController {
     @objc private func showPhotoPicker() {
         let photoLibrary = PHPhotoLibrary.shared()
         var config = PHPickerConfiguration(photoLibrary: photoLibrary)
-        config.filter = .images
+        config.filter = .all(of: [.images, .not(.panoramas), .not(PHPickerFilter.playbackStyle(.imageAnimated))])
         config.preferredAssetRepresentationMode = .current
         config.selectionLimit = 1
         let picker = PHPickerViewController(configuration: config)
@@ -164,6 +178,9 @@ private extension RouteFindingCameraViewController {
     }
     
     @objc private func capturePhoto() {
+        
+        buttonActiveStatus(to: false)
+        
         let settings = AVCapturePhotoSettings()
         sessionQueue.async {
             self.photoOutput?.capturePhoto(with: settings, delegate: self)
@@ -266,6 +283,7 @@ private extension RouteFindingCameraViewController {
     
     // 카메라 세션 실행
     private func executeCameraSession() {
+        buttonActiveStatus(to: true)
         sessionQueue.async { [self] in
             switch cameraAuthorizeStatus {
             case .success:
@@ -301,3 +319,14 @@ private extension RouteFindingCameraViewController {
         }
     }
 }
+
+// MARK: Navigation
+extension RouteFindingCameraViewController {
+    func navigateToRouteFindingFeatureVC(phAssetLocalIdentifier localIdentifier: String?, image: UIImage?) {
+        guard let image = photoImage, let manager = routeDataManager else { return }
+        let routeDataDraft = RouteDataDraft(manager: manager, existingRouteFinding: nil, imageLocalIdentifier: localIdentifier ?? "")
+        let featureVC = RouteFindingFeatureViewController(routeDataDraft: routeDataDraft, backgroundImage: image)
+        navigationController?.pushViewController(featureVC, animated: true)
+    }
+}
+

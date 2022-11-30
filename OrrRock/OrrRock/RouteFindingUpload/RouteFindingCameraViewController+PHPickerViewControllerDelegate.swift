@@ -18,17 +18,25 @@ extension RouteFindingCameraViewController: PHPickerViewControllerDelegate {
         currentLocalIdentifier = fetchResult[0].localIdentifier
         
         guard let phAsset = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: nil).firstObject else { return }
-        PHImageManager.default().requestImageDataAndOrientation(for: phAsset, options: nil) { [self] data, _, _, _ in
+        
+        let imageRequestOption = PHImageRequestOptions()
+        imageRequestOption.isNetworkAccessAllowed = true
+        
+        CustomIndicator.startLoading()
+        
+        PHImageManager.default().requestImageDataAndOrientation(for: phAsset, options: imageRequestOption) { [self] data, _, _, _ in
             if let data = data, let image = UIImage(data: data) {
+                
+                CustomIndicator.stopLoading()
                 
                 let orientationFixedImage = image.fixOrientation()
                 let rect = orientationFixedImage.imageRectAs16to9()
                 
                 photoImage = orientationFixedImage.cropped(rect: rect)
                 
-                // MARK: **TEST** 이미지 넘김 테스트용 코드
-                guard let image = photoImage else { return }
-                navigateToSampleImageVC(image: image)
+                navigateToRouteFindingFeatureVC(phAssetLocalIdentifier: currentLocalIdentifier, image: photoImage)
+            } else {
+                CustomIndicator.stopLoading()
             }
         }
         dismiss(animated: true)

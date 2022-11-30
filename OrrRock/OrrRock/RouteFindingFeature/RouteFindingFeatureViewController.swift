@@ -13,9 +13,11 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     // MARK: Variables
     
+    var routeDataDraft: RouteDataDraft
     var routeInfo: RouteInfo
     var pages: [PageInfo]
     var pageViews: [RouteFindingPageView] = []
+    var backgroundImage: UIImage
     
     var centerCell: RouteFindingThumbnailCollectionViewCell?
     private var beforeCell: RouteFindingThumbnailCollectionViewCell?
@@ -32,7 +34,7 @@ final class RouteFindingFeatureViewController: UIViewController {
         let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)!.windows.first
         let contentHeight = view.frame.height - Double(((window?.safeAreaInsets.top)! + (window?.safeAreaInsets.bottom)!))
         let contentWidth = view.frame.width
-        view.image = routeInfo.imageLocalIdentifier.generateCardViewThumbnail()
+        view.image = backgroundImage
         view.backgroundColor = .white
         return view
     }()
@@ -75,6 +77,9 @@ final class RouteFindingFeatureViewController: UIViewController {
         button.layer.cornerRadius = 20
         button.backgroundColor = .orrGray700
         button.setImage(UIImage(systemName: "multiply"), for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         button.tintColor = .orrWhite
         button.addAction(UIAction { _ in
             self.exitRouteFinding()
@@ -153,10 +158,12 @@ final class RouteFindingFeatureViewController: UIViewController {
     }()
     
     // MARK: Life Cycle Functions
-    
-    init(routeInfo: RouteInfo) {
-        self.routeInfo = routeInfo
-        self.pages = routeInfo.pages
+
+    init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage) {
+        self.routeDataDraft = routeDataDraft
+        self.routeInfo = routeDataDraft.routeInfoForUI
+        self.backgroundImage = backgroundImage
+        self.pages = routeDataDraft.newPageInfo
         
         super.init(nibName: nil, bundle: nil)
         
@@ -251,12 +258,8 @@ final class RouteFindingFeatureViewController: UIViewController {
     }
     
     func finishRouteFinding() {
-        
-        // TODO: 루트파인딩 저장하기 뷰로 데이터 넘겨주기
-        routeInfo.pages = pages
-//        routeInfo -> 전달
-        
-        print("Done Button Tapped")
+        let routeFindingSaveViewController = RouteFindingSaveViewController(routeDataDraft: routeDataDraft, backgroundImage: backgroundImage, pageViews: pageViews)
+        navigationController?.pushViewController(routeFindingSaveViewController, animated: true)
     }
     
     func exitRouteFinding() {

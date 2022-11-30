@@ -6,36 +6,27 @@
 //
 
 import UIKit
+import SnapKit
 
 class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControllerDelegate {
     
     var isSuccess : Bool = false
-    private let levelValues: [Int] = [-1,0,1,2,3,4,5,6,7,8,9]
     override var sheetPresentationController: UISheetPresentationController {
         presentationController as! UISheetPresentationController
     }
     
     var videoInformation : VideoInformation!
     var completioHandler : ((Bool,Int) -> (Void))?
-    var selectSuccess : Bool?
     var selectLevel : Int?
     var pickerSelectValue = 0
+    private let padding = 68
     
-    private lazy var levelTopView : UIView = {
-        let view = UIView()
-        
-        view.backgroundColor = .orrGray100
-        view.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
-        
-        view.addSubview(cancelButton)
-        cancelButton.snp.makeConstraints {
-            $0.centerY.equalTo(titleLabel.snp.centerY)
-            $0.left.equalToSuperview().inset(15)
-        }
-        return view
+    private lazy var titleLabel : UILabel = {
+        let title = UILabel()
+        title.text = "문제 편집"
+        title.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        title.textColor = .orrBlack
+        return title
     }()
     
     lazy var cancelButton : UIButton = {
@@ -46,43 +37,32 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         return btn
     }()
     
-    private lazy var titleLabel : UILabel = {
-        let title = UILabel()
-        title.text = "문제 편집"
-        title.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        title.textColor = .orrBlack
-        return title
-    }()
-    
-    private lazy var levelContentView : UIView = {
+    private lazy var levelTopView : UIView = {
         let view = UIView()
+        view.backgroundColor = .orrGray100
         return view
     }()
     
-    private lazy var LevelLabel : UILabel = {
-        let label = UILabel()
-        label.text = "레벨을 선택해 주세요"
-        label.font = UIFont.boldSystemFont(ofSize: 17)
-        label.textColor = .orrBlack
-        label.backgroundColor = .orrWhite
-        return label
+    private lazy var newLevelPickerView: NewLevelPickerView = {
+        let view = NewLevelPickerView()
+        view.pickerSelectValue = pickerSelectValue
+        view.delegate = self
+        view.backgroundColor = .orrGray050
+        return view
     }()
     
-    lazy var pickerView: UIPickerView = {
-        let picker = UIPickerView()
-        picker.frame = CGRect(x: 0, y: 150, width: self.view.bounds.width, height: 180.0)
-        picker.backgroundColor = .orrWhite
-        picker.delegate = self
-        picker.dataSource = self
-        return picker
+    private lazy var paddingView: UIView = {
+        let view = UIView()
+        return view
     }()
     
     lazy var successLabel : UILabel = {
         let label = UILabel()
         label.text = "완등 여부를 알려주세요"
         label.textColor = .orrBlack
-        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        label.backgroundColor = .orrWhite
+        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        label.textAlignment = .center
+        
         return label
     }()
     
@@ -127,9 +107,13 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         super.viewDidLoad()
         setUpLayout()
         setData()
-        self.pickerView.delegate?.pickerView?(self.pickerView, didSelectRow: pickerSelectValue, inComponent: 0)
-        self.pickerView.selectRow(pickerSelectValue, inComponent: 0, animated: true)
-        // Do any additional setup after loading the view.
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+            if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+                saveButton.setBackgroundColor(.orrUPBlue!, for: .normal)
+                saveButton.setBackgroundColor(.orrGray300!, for: .disabled)
+        }
     }
 }
 
@@ -144,62 +128,67 @@ extension LevelAndPFEditViewController {
             $0.top.equalToSuperview()
         }
         
-        view.addSubview(levelContentView)
-        levelContentView.snp.makeConstraints {
-            $0.top.equalTo(levelTopView.snp.bottom)
-            $0.bottom.equalToSuperview()
-            $0.width.equalToSuperview()
+        levelTopView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
+        levelTopView.addSubview(cancelButton)
+        cancelButton.snp.makeConstraints {
+            $0.centerY.equalTo(titleLabel.snp.centerY)
+            $0.left.equalToSuperview().inset(15)
+        }
+        
+        view.addSubview(newLevelPickerView)
+        newLevelPickerView.snp.makeConstraints {
+            $0.top.equalTo(levelTopView.snp.bottom).offset(OrrPd.pd72.rawValue)
             $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+            $0.height.equalTo(110)
         }
         
-        levelContentView.addSubview(LevelLabel)
-        LevelLabel.snp.makeConstraints {
-            $0.centerX.equalTo(levelContentView)
-            $0.top.equalTo(levelContentView.snp.top).offset(UIScreen.main.bounds.height<700 ? OrrPd.pd24.rawValue : OrrPd.pd40.rawValue)
-        }
-        
-        levelContentView.addSubview(pickerView)
-        pickerView.snp.makeConstraints {
-            $0.leading.equalTo(levelContentView).offset(47)
-            $0.trailing.equalTo(levelContentView).offset(-47)
-            $0.top.equalTo(LevelLabel.snp.bottom).offset(UIScreen.main.bounds.height<700 ? OrrPd.pd16.rawValue : OrrPd.pd24.rawValue)
-        }
-        
-        levelContentView.addSubview(successLabel)
+        view.addSubview(successLabel)
         successLabel.snp.makeConstraints {
-            $0.top.equalTo(pickerView.snp.bottom).offset(UIScreen.main.bounds.height<700 ? OrrPd.pd24.rawValue : OrrPd.pd72.rawValue)
-            $0.centerX.equalToSuperview()
+            $0.center.equalToSuperview()
         }
         
-        levelContentView.addSubview(successCheckButton)
-        successCheckButton.snp.makeConstraints {
-            $0.centerY.equalTo(successLabel.snp.bottom).offset(61.5)
-            $0.centerX.equalTo(LevelLabel.snp.centerX).offset(52)
-            $0.width.equalTo(80)
-            $0.height.equalTo(80)
-        }
-        
-        levelContentView.addSubview(failCheckButton)
-        failCheckButton.snp.makeConstraints {
-            $0.centerY.equalTo(successLabel.snp.bottom).offset(61.5)
-            $0.centerX.equalTo(LevelLabel.snp.centerX).offset(-52)
-            $0.width.equalTo(80)
-            $0.height.equalTo(80)
-        }
-        
-        levelContentView.addSubview(saveButton)
+        view.addSubview(saveButton)
         saveButton.snp.makeConstraints{
-            $0.centerX.equalTo(levelContentView)
-            $0.bottom.equalTo(levelContentView).offset(-34)
-            $0.leading.equalTo(levelContentView).offset(OrrPd.pd16.rawValue)
-            $0.trailing.equalTo(levelContentView).offset(-OrrPd.pd16.rawValue)
+            $0.centerX.equalTo(view)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
+            $0.leading.equalTo(view).offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalTo(view).offset(-OrrPd.pd16.rawValue)
             $0.height.equalTo(56)
         }
         
-        levelContentView.addSubview(indicateLabel)
+        view.addSubview(paddingView)
+        paddingView.snp.makeConstraints {
+            $0.leading.equalTo(view.snp.leading).offset(padding)
+            $0.trailing.equalTo(view.snp.trailing).offset(-padding)
+            $0.top.equalTo(successLabel.snp.bottom)
+            $0.height.equalTo(160)
+        }
+        
+        paddingView.addSubview(failCheckButton)
+        failCheckButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.centerX.equalToSuperview().offset(-padding)
+            $0.height.equalTo(90)
+            $0.width.equalTo(90)
+        }
+        
+        paddingView.addSubview(successCheckButton)
+        successCheckButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.centerX.equalToSuperview().offset(padding)
+            $0.height.equalTo(90)
+            $0.width.equalTo(90)
+        }
+        
+        view.addSubview(indicateLabel)
         indicateLabel.snp.makeConstraints {
-            $0.top.equalTo(successLabel).offset(145)
-            $0.centerX.equalTo(levelContentView)
+            $0.top.equalTo(paddingView.snp.bottom)
+            $0.centerX.equalTo(paddingView)
         }
         
     }
@@ -261,24 +250,13 @@ extension LevelAndPFEditViewController {
     private func setData(){
         isSuccess = videoInformation.isSucceeded
         selectLevel = Int(videoInformation.problemLevel)
-        pickerView.selectRow(Int(videoInformation.problemLevel), inComponent: 0, animated: true)
     }
 }
 
-extension LevelAndPFEditViewController : UIPickerViewDelegate,UIPickerViewDataSource{
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+extension LevelAndPFEditViewController: NewLevelPickerViewDelegate {
+    
+    func didLevelChanged(selectedLevel: Int) {
+        selectLevel = selectedLevel
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return levelValues.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectLevel = row - 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return levelValues[row] == -1 ? "선택안함" : "V\(levelValues[row])"
-    }
 }

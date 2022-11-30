@@ -1,8 +1,8 @@
 //
-//  GymSettingViewController.swift
+//  RouteFindingGymSaveViewController.swift
 //  OrrRock
 //
-//  Created by Ruyha on 2022/10/23.
+//  Created by kimhyeongmin on 2022/11/28.
 //
 
 import PhotosUI
@@ -10,16 +10,34 @@ import UIKit
 
 import SnapKit
 
-class GymSettingViewController: UIViewController {
+class RouteFindingGymSaveViewController: UIViewController {
+    
+    var routeDataDraft: RouteDataDraft
+    var backgroundImage: UIImage
     
     var gymVisitDate : Date?
     var visitedGymList: [VisitedClimbingGym] = []
     var filteredVisitedGymList: [VisitedClimbingGym] = []
     var maxTableViewCellCount: Int = 0
     
+    private lazy var exitButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        button.layer.cornerRadius = 20
+        button.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
+        button.tintColor = .white
+        button.addAction(UIAction { _ in
+            self.goBackAction()
+        }, for: .touchUpInside)
+        
+        return button
+    }()
+    
     let gymNameLabel : UILabel = {
         let label = UILabel()
-        label.text = "방문한 클라이밍장을 알려주세요"
+        label.text = "방문한 클라이밍장을 입력해주세요"
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.textColor = .orrBlack
         label.backgroundColor = .orrWhite
@@ -29,7 +47,7 @@ class GymSettingViewController: UIViewController {
     let gymTextField : UnderlinedTextField = {
         let view = UnderlinedTextField()
         view.borderStyle = .none
-        view.placeholder = "클라이밍장"
+        view.placeholder = "클라이밍장을 입력해주세요"
         view.tintColor = .orrUPBlue
         view.font = UIFont.systemFont(ofSize: 22)
         view.addTarget(self, action: #selector(toggleNextButton(textField:)), for: .editingChanged)
@@ -37,18 +55,17 @@ class GymSettingViewController: UIViewController {
         return view
     }()
     
-   
     let nextButton : UIButton = {
-        let btn = UIButton()
-        btn.setBackgroundColor(.orrUPBlue!, for: .normal)
-        btn.setBackgroundColor(.orrGray300!, for: .disabled)
-        btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
-        btn.setTitle("저장", for: .normal)
-        btn.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
-        btn.setTitleColor(.white, for: .normal)
-        btn.setTitleColor(.orrGray400, for: .disabled)
-        btn.isEnabled = false
-        return btn
+        let button = UIButton()
+        button.setBackgroundColor(.orrUPBlue!, for: .normal)
+        button.setBackgroundColor(.orrGray300!, for: .disabled)
+        button.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
+        button.setTitle("다음", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
+        button.setTitleColor(.white, for: .normal)
+        button.isEnabled = false
+        
+        return button
     }()
     
     lazy var autocompleteTableView: UITableView = {
@@ -57,7 +74,6 @@ class GymSettingViewController: UIViewController {
         tableView.dataSource = self
         tableView.isScrollEnabled = false
         tableView.register(AutocompleteTableViewCell.classForCoder(), forCellReuseIdentifier: AutocompleteTableViewCell.identifier)
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: CGFloat(OrrPd.pd16.rawValue), bottom: 0, right: CGFloat(OrrPd.pd16.rawValue))
         return tableView
     }()
     
@@ -68,35 +84,46 @@ class GymSettingViewController: UIViewController {
         return label
     }()
     
+    init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage) {
+        self.routeDataDraft = routeDataDraft
+        self.backgroundImage = backgroundImage
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) is not supported")
+    }
+    
     //MARK: 생명주기 함수 모음
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
+        overrideUserInterfaceStyle = .dark
         self.navigationController?.setExpansionBackbuttonArea()
 
         setUpData()
         setUpLayout()
         setUITableViewDelegate()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
     override func viewDidAppear(_ animated: Bool) {
         gymTextField.becomeFirstResponder()
-
     }
     
-    // MARK: Dark,Light 모드 전환 안될때 사용하세요.
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-           if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
-               // ColorUtils.loadCGColorFromAsset returns cgcolor for color name
-               nextButton.setBackgroundColor(.orrUPBlue!, for: .normal)
-               nextButton.setBackgroundColor(.orrGray300!, for: .disabled)
-       }
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
     }
     
 }
 
 //MARK: 함수모음
-extension GymSettingViewController {
+extension RouteFindingGymSaveViewController {
     
     //텍스트 필드의 내용물에 따라 버튼을 활성화 비활성화 시킴
     @objc
@@ -118,8 +145,7 @@ extension GymSettingViewController {
         resetAutocompleteTableView()
     }
     
-    @objc
-    final func pressNextButton() {
+    @objc final func pressNextButton() {
         // 자동완성에 클라이밍장명 데이터 업데이트
         let target = visitedGymList.filter({ $0.name == gymTextField.text! })
         if target.isEmpty {
@@ -131,33 +157,10 @@ extension GymSettingViewController {
             DataManager.shared.updateVisitedClimbingGym(updateTarget: visitedGymList[index!])
         }
         
-        // 영상 선택
-        let photoLibrary =  PHPhotoLibrary.shared()
-        var configuration = PHPickerConfiguration(photoLibrary: photoLibrary)
-        configuration.filter = .all(of: [.videos,.not(.slomoVideos)])
-        configuration.selectionLimit = 0
-        configuration.preferredAssetRepresentationMode = .current
-        let picker = PHPickerViewController(configuration: configuration)
-        picker.delegate = self
+        routeDataDraft.updateGymName(gymName: gymTextField.text!)
         
-        PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
-            switch status {
-            case .authorized:
-                DispatchQueue.main.async {
-                    self.present(picker, animated: true, completion: nil)
-                    self.view.endEditing(true)
-                }
-            case .limited:
-                DispatchQueue.main.async {
-                    self.present(picker, animated: true, completion: nil)
-                    self.view.endEditing(true)
-                }
-            default:
-                DispatchQueue.main.async {
-                    self.authSettingOpen(alertType: .denied)
-                }
-            }
-        }
+        let routeFindingLevelSaveViewController = RouteFindingLevelSaveViewController(routeDataDraft: routeDataDraft, backgroundImage: backgroundImage)
+        navigationController?.pushViewController(routeFindingLevelSaveViewController, animated: true)
     }
     
     
@@ -180,6 +183,10 @@ extension GymSettingViewController {
         autocompleteTableView.delegate = self
     }
     
+    @objc func goBackAction() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     // DataManager에게서 데이터를 새로 받아올 때 사용하는 메서드
     // CoreData와 Repository 단에서 데이터 변화가 발생하는 경우에 본 메서드를 호출해 데이터를 동기화
     func setUpData() {
@@ -199,13 +206,21 @@ extension GymSettingViewController {
 }
 
 //MARK: 오토레이아웃 설정 영역
-extension GymSettingViewController {
+extension RouteFindingGymSaveViewController {
     
     func setUpLayout() {
+        view.addSubview(exitButton)
+        exitButton.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(16)
+            $0.height.equalTo(40)
+            $0.width.equalTo(40)
+        }
+        
         view.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(OrrPd.pd16.rawValue)
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd24.rawValue)
+            $0.top.equalTo(exitButton).offset(OrrPd.pd72.rawValue)
         }
         
         view.addSubview(gymTextField)
@@ -232,7 +247,7 @@ extension GymSettingViewController {
         view.addSubview(tableViewHeaderLabel)
         tableViewHeaderLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(OrrPd.pd16.rawValue)
-            $0.trailing.equalToSuperview().offset(-OrrPd.pd16.rawValue)
+            $0.trailing.equalToSuperview().offset(OrrPd.pd16.rawValue)
             $0.bottom.equalTo(autocompleteTableView.snp.top).offset(-OrrPd.pd16.rawValue)
         }
     }
@@ -243,53 +258,9 @@ extension GymSettingViewController {
         
         autocompleteTableView.snp.removeConstraints()
         autocompleteTableView.snp.makeConstraints {
-            $0.leading.equalTo(view.snp.leading)
-            $0.trailing.equalTo(view.snp.trailing)
+            $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(nextButton.snp.top)
             $0.height.equalTo(50 * min(maxTableViewCellCount, filteredVisitedGymList.count))
         }
-    }
-}
-
-extension GymSettingViewController: PHPickerViewControllerDelegate {
-    
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        picker.dismiss(animated: true)
-        
-        var videoInfoArray : [VideoInfo] = []
-        let identifiers = results.compactMap(\.assetIdentifier)
-        let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: nil)
-        
-        //인디케이트를 소환합니다.
-        CustomIndicator.startLoading()
-        
-        guard results.count != 0 else {
-            //사용자가 영상을 선택 하지 않았을때 예외처리
-            CustomIndicator.stopLoading()
-            gymTextField.becomeFirstResponder()
-            return
-        }
-        
-        guard results.count == fetchResult.count else{
-            // 사용자가 선택한 영상과 허용된 영상의 갯수가 다를때 발생하는 문구
-            CustomIndicator.stopLoading()
-            gymTextField.becomeFirstResponder()
-            self.authSettingOpen(alertType: .limited)
-            return
-        }
-        
-        for i in 0..<fetchResult.count {
-            let localIdentifier = fetchResult[i].localIdentifier
-            videoInfoArray.append(VideoInfo(gymName: gymTextField.text!,
-                                            gymVisitDate: gymVisitDate!,
-                                            videoLocalIdentifier: localIdentifier,
-                                            problemLevel: 0,
-                                            isSucceeded: true))
-        }
-        
-        CustomIndicator.stopLoading()
-        let nextVC = LevelAndPFSettingViewController()
-        nextVC.videoInfoArray = videoInfoArray
-        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
