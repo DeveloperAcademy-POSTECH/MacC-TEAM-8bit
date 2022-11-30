@@ -24,7 +24,8 @@ final class RouteFindingPageViewController: UIViewController {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "delete")?.resized(to: CGSize(width: 85, height: 85))
         imageView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
-        imageView.isHidden = true
+        // TODO: 드래그할 때만 trahView가 보일 수 있도록 true로 초기화
+        imageView.isHidden = false
         
         return imageView
     }()
@@ -91,10 +92,10 @@ final class RouteFindingPageViewController: UIViewController {
         else { return }
         
         if sender.state == .began {
-            buttonView.isHidden = false
             beginningPosition = sender.location(in: buttonView)
             initialMovableViewPosition = buttonView.frame.origin
         } else if sender.state == .changed {
+            buttonView.isHidden = false
             let locationInView = sender.location(in: buttonView)
             buttonView.frame.origin = CGPoint(x: buttonView.frame.origin.x + locationInView.x - beginningPosition.x, y: buttonView.frame.origin.y + locationInView.y - beginningPosition.y)
             
@@ -162,8 +163,13 @@ extension RouteFindingPageViewController: UIGestureRecognizerDelegate {
         
         self.view.addSubview(button)
         
-        let panGesture = CustomPanGestureRecognizer(target: self, action: #selector(moveRoutePointButton(_:)))
-        panGesture.panGestureDelegate = self
+        // TODO: 커스텀 팬 제스처로 바꾸기
+//        let panGesture = CustomPanGestureRecognizer(target: self, action: #selector(moveRoutePointButton(_:)))
+//        panGesture.panGestureDelegate = self
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(moveRoutePointButton(_:)))
+        panGesture.delegate = self
+        
         button.addGestureRecognizer(panGesture)
         
         routeDataDraft.addPointData(pageAt: routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == pageRowOrder })!,
