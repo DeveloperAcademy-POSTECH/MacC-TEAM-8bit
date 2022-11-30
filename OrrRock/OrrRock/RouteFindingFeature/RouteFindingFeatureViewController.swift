@@ -286,11 +286,17 @@ final class RouteFindingFeatureViewController: UIViewController {
 //                routeDataDraft.addPointData(pageAt: index, addTargetPointInfo: point)
 //            }
 //        }
+        routeDataDraft.route?.dataWrittenDate = Date()
+        routeDataDraft.route?.gymName = "test"
+        routeDataDraft.route?.isChallengeComplete = true
+        routeDataDraft.route?.problemLevel = 1
+        
         routeDataDraft.save()
         
         print("newPageInfo Count", routeDataDraft.newPageInfo.count)
-        print("Draft Page Index:", 0,": Point Count: ", routeDataDraft.newPageInfo[0].points.count)
-
+        if routeDataDraft.newPageInfo.count > 0 {
+            print("Draft Page Index:", 0,": Point Count: ", routeDataDraft.newPageInfo[0].points.count)
+        }
         print("Done Button Tapped")
     }
     

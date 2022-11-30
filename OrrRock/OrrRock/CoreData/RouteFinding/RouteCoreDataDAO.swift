@@ -95,11 +95,13 @@ class RouteCoreDataDAO {
     }
     
     func createPageInformation(pageInfo: PageInfo, routeInformation: RouteInformation) {
+        print("MAKE PAGE")
         let page = PageInformation(context: context)
         page.rowOrder = Int64(pageInfo.rowOrder)
         page.setValue(UUID(), forKey: "id")
         routeInformation.addToPages(page)
         
+        print("HI....", routeInformation.pages?.count)
 //        guard let points = pageInfo.points else { return }
         createPointInformation(pointInfoList: pageInfo.points, pageInformation: page)
     }

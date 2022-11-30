@@ -41,13 +41,16 @@ final class RouteDataDraft {
         
         // CASE: 새로운 루트 추가 OR 기존 루트 수정
         route = routeFinding
-        guard let route = route else {
+        guard let route = route
+        else {
             let pageInfo = PageInfo(rowOrder: 0, points: [])
             routeInfoForUI = RouteInfo(imageLocalIdentifier: imageLocalIdentifier, dataWrittenDate: Date(), gymName: "", problemLevel: 0, isChallengeComplete: false, pages: [pageInfo])
             newPageInfo.append(pageInfo)
-            return }
+            return
+        }
         
         routeInfoForUI = route.convertToRouteInfo()
+        print(routeInfoForUI.pages.count)
         pages = Array(route.pages as! Set<PageInformation>)
     }
     
@@ -78,6 +81,8 @@ final class RouteDataDraft {
                 }
             }
         }
+        
+//        routeDataManager.saveData()
     }
     
     // MARK: CREATE PAGE
@@ -180,7 +185,10 @@ final class RouteDataDraft {
                 if updatePointInfo[pages[pageIndex]] == nil {
                     updatePointInfo[pages[pageIndex]] = []
                 }
-                updatePointInfo[pages[pageIndex]]?.append((point[pointIndex], targetPointInfo))
+                
+                print(updatePointInfo)
+                
+                updatePointInfo[pages[pageIndex]]?.append((point[0], targetPointInfo))
             } else {
                 // COREDATA PART - CASE.1b:  기존에 존재하는 페이지에 존재하는 새로운 포인트인 경우
 //                guard let indices = newPointInfo[pages[pageIndex]]?.filter({$0 == existPoint}).indices else { return }
