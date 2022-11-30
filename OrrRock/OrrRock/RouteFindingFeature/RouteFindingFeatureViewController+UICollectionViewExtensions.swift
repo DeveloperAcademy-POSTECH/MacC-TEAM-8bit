@@ -19,7 +19,7 @@ extension RouteFindingFeatureViewController: UICollectionViewDelegate {
         // 화면 가운데에 셀의 indexPath에 대해
         if let indexPath = thumbnailCollectionView.indexPathForItem(at: centerPoint) {
             // 선택된 셀이 페이지 추가 버튼이라면
-            if indexPath.row == pages.count {
+            if indexPath.row == routeDataDraft.routeInfoForUI.pages.count {
                 // 아래 코드의 주석을 해제하면 버튼 선택시 마지막 페이지로 이동하지만, 중복 호출로 현재는 개선이 필요함.
                 // thumbnailCollectionView.scrollToItem(at: IndexPath(row: indexPath.row - 1, section: indexPath.section), at: .centeredHorizontally, animated: true)
             }
@@ -54,17 +54,17 @@ extension RouteFindingFeatureViewController: UICollectionViewDelegate {
 extension RouteFindingFeatureViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // 페이지 개수 + 페이지 추가 버튼
-        return pages.count + 1
+        return routeDataDraft.routeInfoForUI.pages.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // 페이지에 대한 섬네일 생성
-        if indexPath.row != pages.count {
+        if indexPath.row != routeDataDraft.routeInfoForUI.pages.count {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RouteFindingThumbnailCollectionViewCell.identifier, for: indexPath) as! RouteFindingThumbnailCollectionViewCell
             cell.indexPathOfCell = indexPath
             cell.pageImage.contentMode = .scaleAspectFill
             cell.pageImage.clipsToBounds = true
-            cell.pageImage.image = routeInfo.imageLocalIdentifier.generateCardViewThumbnail()
+            cell.pageImage.image = routeDataDraft.routeInfoForUI.imageLocalIdentifier.generateCardViewThumbnail()
             cell.delegate = self
             
             return cell
