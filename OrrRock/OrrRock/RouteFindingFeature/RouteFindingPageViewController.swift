@@ -57,7 +57,7 @@ final class RouteFindingPageViewController: UIViewController {
         if let button = sender.view as? RouteFindingFeatureButton,
            let index = buttonList.firstIndex { $0.id == button.id } {
                
-               
+
 //               let originPointInfo = routeDataDraft.routeInfoForUI.pages[routeDataDraft.routeInfoForUI.pages.first(where: { $0.rowOrder == self.pageRowOrder })]
                let originPointInfo = routeDataDraft.routeInfoForUI.pages.first(where: { $0.rowOrder == pageRowOrder })!.points[index] as! PointInfo
                
@@ -82,7 +82,6 @@ final class RouteFindingPageViewController: UIViewController {
         var button = isHandButton ? RouteFindingFeatureHandButton() : RouteFindingFeatureFootButton()
         
         self.view.addSubview(button)
-        
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(moveRoutePointButton(_:)))
         button.addGestureRecognizer(panGesture)
