@@ -201,7 +201,7 @@ extension VideoInfoView: UITextViewDelegate {
     
     // 다른 작업을 할 때 텍스트뷰가 비어있으면 플레이스 홀더 띄워주는 메서드
     func textViewDidEndEditing(_ textView: UITextView) {
-        guard checkThisStringIsEmpty(checkString: textView.text) else {
+        guard checkFeedbackStringIsEmpty(checkString: textView.text) else {
             delegate?.tapReturnButton()
             return
         }
@@ -216,9 +216,9 @@ extension VideoInfoView {
         levelIcon.text = videoInformation?.problemLevel == -1 ? "V?" : "V\(videoInformation?.problemLevel ?? -3)"
         isSucceeded.text = videoInformation!.isSucceeded ? "성공" : "실패"
         gymNameLabel.text = videoInformation?.gymName
-        feedbackTextView.text = checkThisStringIsEmpty(checkString: videoInformation?.feedback) ? "피드백 입력" : videoInformation?.feedback
+        feedbackTextView.text = checkFeedbackStringIsEmpty(checkString: videoInformation?.feedback) ? "피드백 입력" : videoInformation?.feedback
         feedbackTextView.delegate = self  // 플레이스 홀더를 위한 델리게이트
-        feedbackTextView.textColor = checkThisStringIsEmpty(checkString: videoInformation?.feedback) ? .placeholderText : .orrBlack
+        feedbackTextView.textColor = checkFeedbackStringIsEmpty(checkString: videoInformation?.feedback) ? .placeholderText : .orrBlack
     }
 }
 
@@ -316,7 +316,7 @@ extension VideoInfoView {
         }
     }
     
-    func checkThisStringIsEmpty(checkString: String?) -> Bool {
+    func checkFeedbackStringIsEmpty(checkString: String?) -> Bool {
         guard checkString != nil else {
             return true
         }
