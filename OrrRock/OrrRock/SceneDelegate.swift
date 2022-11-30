@@ -19,20 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window?.backgroundColor = .black
         
-//        let dm = RouteDataManager()
-////        dm.deleteAllData()
-////        dm.saveData()
-////        dm.updateRepository()
-//
-//        if dm.getRouteFindingList().count > 0 {
-//            guard let route = dm.getRouteFindingList().first else { return }
-//            window?.rootViewController = UINavigationController(rootViewController: RouteFindingFeatureViewController(routeDataDraft: RouteDataDraft(manager: dm, existingRouteFinding: route, imageLocalIdentifier: "6C923E1C-78C6-41C3-84B2-D2BE794F71DB/L0/001"), backgroundImage: "6C923E1C-78C6-41C3-84B2-D2BE794F71DB/L0/001".generateCardViewThumbnail()))
-//        } else {
-//            window?.rootViewController = UINavigationController(rootViewController: RouteFindingFeatureViewController(routeDataDraft: RouteDataDraft(manager: dm, existingRouteFinding: nil, imageLocalIdentifier: "6C923E1C-78C6-41C3-84B2-D2BE794F71DB/L0/001"), backgroundImage: "6C923E1C-78C6-41C3-84B2-D2BE794F71DB/L0/001".generateCardViewThumbnail()))
-//        }
         window?.rootViewController = UINavigationController(rootViewController: MainViewController())
-        
-//                window?.rootViewController = UINavigationController(rootViewController: RouteFindingFeatureViewController(routeInfo: RouteInfo(imageLocalIdentifier: "ImageLocalIdentifier", dataWrittenDate: Date(), gymName: "", problemLevel: 0, isChallengeComplete: false, pages: [PageInfo(rowOrder: 0)])))
         window?.makeKeyAndVisible()
     }
     
