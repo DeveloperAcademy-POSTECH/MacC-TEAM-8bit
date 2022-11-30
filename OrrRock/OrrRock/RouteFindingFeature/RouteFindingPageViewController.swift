@@ -6,10 +6,10 @@
 //
 
 import UIKit
-
 import SnapKit
 
 final class RouteFindingPageViewController: UIViewController {
+    
     var routeDataDraft: RouteDataDraft
     var pageRowOrder: Int
     var backgroundImage: UIImage
@@ -39,7 +39,6 @@ final class RouteFindingPageViewController: UIViewController {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(makeRoutePoint(_:)))
         self.view.addGestureRecognizer(gestureRecognizer)
         
-        setUpLayout()
         guard let page = routeDataDraft.routeInfoForUI.pages.first(where: { $0.rowOrder == pageRowOrder }) else { return }
         
         if page.points.count > 0 {
@@ -62,12 +61,16 @@ final class RouteFindingPageViewController: UIViewController {
         }
         
         setUpBackgroundImage()
+        setUpLayout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     
     @objc
     func makeRoutePoint(_ sender: UITapGestureRecognizer){
@@ -82,34 +85,32 @@ final class RouteFindingPageViewController: UIViewController {
     
     @objc
     func moveRoutePointButton(_ sender: UIPanGestureRecognizer) {
+        
         guard sender.state == .began || sender.state == .changed,
               let buttonView = sender.view as? RouteFindingFeatureButton
         else { return }
         
         if sender.state == .began {
+            buttonView.isHidden = false
             beginningPosition = sender.location(in: buttonView)
             initialMovableViewPosition = buttonView.frame.origin
-            trashView.isHidden = false
-        } else if sender.state == .ended {
-            buttonView.frame.origin = initialMovableViewPosition
         } else if sender.state == .changed {
-            trashView.isHidden = false
             let locationInView = sender.location(in: buttonView)
             buttonView.frame.origin = CGPoint(x: buttonView.frame.origin.x + locationInView.x - beginningPosition.x, y: buttonView.frame.origin.y + locationInView.y - beginningPosition.y)
+            
             if buttonView.frame.intersects(trashView.frame) && !trashView.isHidden {
-                // TODO: 삭제 로직
-//                buttonView.delete(buttonView)
-//                routeDataDraft.removePointData(pageAt: <#T##Int#>, pointIndexOf: buttonView.id)
-                
                 guard let id = buttonList.firstIndex(where: { $0.id == buttonView.id }),
                       let pageNo = routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == pageRowOrder }) else { return }
-                                               
+                
                 routeDataDraft.removePointData(pageAt: pageNo, pointIndexOf: id)
                 buttonList.remove(at: id)
                 buttonView.removeFromSuperview()
-                print("deleted")
                 initialMovableViewPosition = .zero
             }
+        } else if sender.state == .cancelled {
+            print("취소데스")
+        } else if sender.state == UIPanGestureRecognizer.State.ended {
+            print("ㅎㅎ")
         }
         
         let translation = sender.translation(in: buttonView.superview)
@@ -117,27 +118,43 @@ final class RouteFindingPageViewController: UIViewController {
         sender.setTranslation(.zero, in: buttonView.superview)
         
         if let button = sender.view as? RouteFindingFeatureButton,
-           let index = buttonList.firstIndex { $0.id == button.id } {
-               
-               
-               //               let originPointInfo = routeDataDraft.routeInfoForUI.pages[routeDataDraft.routeInfoForUI.pages.first(where: { $0.rowOrder == self.pageRowOrder })]
-               let originPointInfo = routeDataDraft.routeInfoForUI.pages.first(where: { $0.rowOrder == pageRowOrder })!.points[index] as! PointInfo
-               
-               
-               routeDataDraft.updatePointData(pageAt: routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == self.pageRowOrder })!,
-                                              pointIndexOf: index,
-                                              updateTargetPointInfo: PointInfo(footOrHand: originPointInfo.footOrHand,
-                                                                               isForce: originPointInfo.isForce,
-                                                                               position: buttonView.center,
-                                                                               forceDirection: originPointInfo.forceDirection))
-               //               self.pageInfo.points![index].position = sender.location(in: self.view)
-               
-               button.snp.updateConstraints {
-                   $0.centerX.equalTo(sender.location(in: self.view).x)
-                   $0.centerY.equalTo(sender.location(in: self.view).y)
-               }
+           let index = buttonList.firstIndex(where: { $0.id == button.id }) {
+           let originPointInfo = routeDataDraft.routeInfoForUI.pages.first(where: { $0.rowOrder == pageRowOrder })!.points[index] as! PointInfo
+           
+           routeDataDraft.updatePointData(pageAt: routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == self.pageRowOrder })!,
+                                          pointIndexOf: index,
+                                          updateTargetPointInfo: PointInfo(id: button.id, footOrHand: originPointInfo.footOrHand,
+                                                                           isForce: originPointInfo.isForce,
+                                                                           position: buttonView.center,
+                                                                           forceDirection: originPointInfo.forceDirection))
+           
+           button.snp.updateConstraints {
+               $0.centerX.equalTo(sender.location(in: self.view).x)
+               $0.centerY.equalTo(sender.location(in: self.view).y)
            }
+       }
     }
+
+    func setUpBackgroundImage() {
+        let backgroundImage = backgroundImage
+        let backgroundImageView = UIImageView(image: backgroundImage)
+        
+        self.view.addSubview(backgroundImageView)
+        backgroundImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+    
+    private func setUpLayout(){
+        self.view.addSubview(trashView)
+        trashView.snp.makeConstraints{
+            $0.centerX.equalTo(view.center.x)
+            $0.bottom.equalToSuperview()
+        }
+    }
+}
+
+extension RouteFindingPageViewController: UIGestureRecognizerDelegate {
     
     func addRoutePointButton(to location: CGPoint) {
         
@@ -145,9 +162,9 @@ final class RouteFindingPageViewController: UIViewController {
         
         self.view.addSubview(button)
         
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(moveRoutePointButton(_:)))
+        let panGesture = CustomPanGestureRecognizer(target: self, action: #selector(moveRoutePointButton(_:)))
+        panGesture.panGestureDelegate = self
         button.addGestureRecognizer(panGesture)
-        // pageView에 points 좌표를 넘겨줌
         
         routeDataDraft.addPointData(pageAt: routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == pageRowOrder })!,
                                     addTargetPointInfo: PointInfo(id: UUID(), footOrHand: isHandButton ? .hand : .foot, isForce: false, position: location, forceDirection: .pi0))
@@ -158,21 +175,13 @@ final class RouteFindingPageViewController: UIViewController {
             $0.centerY.equalTo(location.y)
         }
     }
+}
+
+extension RouteFindingPageViewController: CustomPanGestureRecognizerDelegate {
     
-    private func setUpLayout(){
-        view.addSubview(trashView)
-        trashView.snp.makeConstraints{
-            $0.centerX.equalTo(view.center.x)
-            $0.bottom.equalToSuperview()
-        }
+    func hideTrashView() {
+        trashView.isHidden = true
+        print("ended")
     }
-    func setUpBackgroundImage() {
-        let backgroundImage = backgroundImage
-        let backgroundImageView = UIImageView(image: backgroundImage)
-        
-        self.view.addSubview(backgroundImageView)
-        backgroundImageView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-    }
+    
 }
