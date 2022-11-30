@@ -13,9 +13,9 @@ final class RouteInfoView: UIView {
     
     // MARK: Variables
     
-//    private var routeInformation : RouteInformation
-    private var routeInformation : RouteInformation?
-    var routeDataManager: RouteDataManager?
+    var routeInformation : RouteInformation
+    var routeDataDraft: RouteDataDraft
+    var routeDataManager: RouteDataManager
     
     private var routeInfoDate: String = ""
     private var routeInfoLevel: String = ""
@@ -126,24 +126,20 @@ final class RouteInfoView: UIView {
     
     // MARK: Life Cycle Functions
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(routeDataDraft: RouteDataDraft) {
+        
+        self.routeDataDraft = routeDataDraft
+        self.routeDataManager = routeDataDraft.routeDataManager
+        self.routeInformation = routeDataDraft.route!
+        
+        super.init(frame: CGRect.zero)
         
         self.backgroundColor = .orrWhite
         
         setUpLayout()
+        setUpData(routeInformation: routeInformation)
     }
-    
-    convenience init(frame: CGRect, routeInfo : RouteInformation, routeDataManager: RouteDataManager) {
-        self.init(frame: frame)
         
-        self.routeInformation = routeInfo
-        self.routeDataManager = routeDataManager
-        
-        setUpLayout()
-        setUpData(routeInfo: routeInfo)
-    }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -158,7 +154,7 @@ final class RouteInfoView: UIView {
         vc.routeInformation = routeInformation
         
         vc.completionHandler = { [self] date in
-            routeDataManager?.updateRouteDataWrittenDate(to: date, of: routeInformation!)
+            routeDataManager.updateRouteDataWrittenDate(to: date, of: routeInformation)
             self.dateLabel.text = date.timeToString()
         }
         viewController.present(vc, animated: true)
@@ -171,7 +167,7 @@ final class RouteInfoView: UIView {
         vc.routeInformation = routeInformation
         
         vc.completionHandler = { [self] gymName in
-            routeDataManager?.updateRouteGymName(to: gymName, of: routeInformation!)
+            routeDataManager.updateRouteGymName(to: gymName, of: routeInformation)
             self.gymNameLabel.text = gymName
         }
         viewController.present(vc, animated: true)
@@ -182,10 +178,10 @@ final class RouteInfoView: UIView {
         let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
         let vc = LevelAndPFEditViewController()
         vc.routeInformation = routeInformation
-        vc.pickerSelectValue = Int(routeInformation!.problemLevel)
+        vc.pickerSelectValue = Int(routeInformation.problemLevel)
         
         vc.completionHandler = { isSuccess, level in
-            self.routeDataManager?.updateRouteLevelAndStatus(statusTo: isSuccess, levelTo: level, of: self.routeInformation!)
+            self.routeDataManager.updateRouteLevelAndStatus(statusTo: isSuccess, levelTo: level, of: self.routeInformation)
             self.levelIcon.text = level == -1 ? "V?" : "V\(level)"
             self.isSucceeded.text = isSuccess ? "성공" : "실패"
         }
@@ -283,11 +279,10 @@ extension RouteInfoView {
         }
     }
     
-    private func setUpData(routeInfo: RouteInformation) {
-        self.routeInformation = routeInfo
-        dateLabel.text = routeInformation?.dataWrittenDate.timeToString()
-        levelIcon.text = routeInformation?.problemLevel == -1 ? "V?" : "V\(routeInformation?.problemLevel ?? 0)"
-        isSucceeded.text = routeInformation!.isChallengeComplete ? "성공" : "실패"
-        gymNameLabel.text = routeInformation?.gymName
+    private func setUpData(routeInformation: RouteInformation) {
+        dateLabel.text = routeInformation.dataWrittenDate.timeToString()
+        levelIcon.text = routeInformation.problemLevel == -1 ? "V?" : "V\(routeInformation.problemLevel)"
+        isSucceeded.text = routeInformation.isChallengeComplete ? "성공" : "실패"
+        gymNameLabel.text = routeInformation.gymName
     }
 }

@@ -20,7 +20,6 @@ extension RouteFindingDetailViewController: UICollectionViewDataSource {
             // 가운데 셀을 선택
             self.centerCell = self.thumbnailCollectionView.cellForItem(at: indexPath) as? RouteFindingThumbnailCollectionViewCell
             centerCell?.showSelectedBar()
-            showSelectedPage()
             
             // 이전, 이후 셀에 대해 선택 취소 처리를 수행
             // 아래 작업을 적용하지 않을 경우, 스크롤이 빠르게 움직일 때 셀의 selectedBar가 남아있는 경우가 발생
@@ -35,13 +34,7 @@ extension RouteFindingDetailViewController: UICollectionViewDataSource {
             }
         }
     }
-    
-//    // 썸네일 셀을 단순 터치했을 때, 해당 셀로 이동
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-//    }
 }
-
 
 extension RouteFindingDetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

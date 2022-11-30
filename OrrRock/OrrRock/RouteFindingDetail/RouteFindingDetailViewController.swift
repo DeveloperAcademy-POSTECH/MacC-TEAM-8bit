@@ -46,7 +46,7 @@ class RouteFindingDetailViewController: UIViewController {
         let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         pageViewController.view.backgroundColor = .black
         
-        //        pageViewController.setViewControllers([RouteViewController(pageInfo: routeDataDraft.routeInfoForUI.pages[0])], direction: .forward, animated: true)
+        pageViewController.setViewControllers([RouteViewController(pageInfo: routeDataDraft.routeInfoForUI.pages[0], backgroundImage: routeDataDraft.routeInfoForUI.imageLocalIdentifier.generateCardViewThumbnail()!)], direction: .forward, animated: true)
         return pageViewController
     }()
     
@@ -64,7 +64,7 @@ class RouteFindingDetailViewController: UIViewController {
     }()
     
     private lazy var routeInfoView: RouteInfoView = {
-        let view = RouteInfoView()
+        let view = RouteInfoView(routeDataDraft: routeDataDraft)
         
         return view
     }()
@@ -73,12 +73,6 @@ class RouteFindingDetailViewController: UIViewController {
     
     init(routeDataDraft: RouteDataDraft) {
         self.routeDataDraft = routeDataDraft
-        
-        // DEBUG
-        self.routeDataDraft.routeInfoForUI.pages.append(PageInfo(rowOrder: 1))
-        self.routeDataDraft.routeInfoForUI.pages.append(PageInfo(rowOrder: 2))
-        self.routeDataDraft.routeInfoForUI.pages.append(PageInfo(rowOrder: 3))
-        // DEBUG
         
         super.init(nibName: nil, bundle: nil)
         
@@ -151,16 +145,10 @@ class RouteFindingDetailViewController: UIViewController {
         var routeViewControllers: [RouteViewController] = []
         
         routeDataDraft.routeInfoForUI.pages.forEach { pageInfo in
-            routeViewControllers.append(RouteViewController(pageInfo: pageInfo))
+            routeViewControllers.append(RouteViewController(pageInfo: pageInfo, backgroundImage: routeDataDraft.routeInfoForUI.imageLocalIdentifier.generateCardViewThumbnail()!))
         }
         
         return routeViewControllers
-    }
-    
-    func showSelectedPage() {
-        let selectedIndex = centerCell?.indexPathOfCell.row ?? 0
-        
-//        routePageViewController.setViewControllers([viewControllerListForPageVC[selectedIndex]], direction: .forward, animated: false)
     }
     
     // MARK: @objc Functions
@@ -199,7 +187,7 @@ class RouteFindingDetailViewController: UIViewController {
     @objc func deleteVideoAction(_ sender: UIBarButtonItem) {
         let optionMenu = UIAlertController(title: "선택한 영상 삭제하기", message: "정말로 삭제하시겠어요?", preferredStyle: .actionSheet)
         let deleteAction = UIAlertAction(title: "삭제하기", style: .destructive) {_ in
-            //            routeDataManager .shared.deleteData(videoInformation: self.currentVideoInformation!)
+            self.routeDataDraft.routeDataManager.deleteRouteData(routeInformation: self.routeDataDraft.route!)
             self.goBackAction()
         }
         let cancelAction = UIAlertAction(title: "취소하기", style: .cancel)

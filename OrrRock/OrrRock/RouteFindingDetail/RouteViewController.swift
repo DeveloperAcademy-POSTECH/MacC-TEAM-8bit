@@ -14,12 +14,14 @@ class RouteViewController: UIViewController {
     // MARK: Variables
     
     var pageInfo: PageInfo
-
+    var backgroundImage: UIImage
+    
     // MARK: View Components
     
-    private lazy var backgroundView: UIView = {
-        let view = UIView()
-    
+    private lazy var backgroundView: UIImageView = {
+        let view = UIImageView()
+        view.image = backgroundImage
+        
         return view
     }()
     
@@ -41,23 +43,14 @@ class RouteViewController: UIViewController {
     }()
     
     lazy var pageView: UIView = {
-        let view = UIView()
-        
-        switch pageInfo.rowOrder {
-        case 0: view.backgroundColor = .systemRed
-        case 1: view.backgroundColor = .systemYellow
-        case 2: view.backgroundColor = .systemBlue
-        default: view.backgroundColor = .systemMint
-        }
-        
-        
-        return view
+        convertPageInfoToPageView(from: pageInfo)
     }()
     
     // MARK: Life Cycle Functions
     
-    init(pageInfo: PageInfo) {
+    init(pageInfo: PageInfo, backgroundImage: UIImage) {
         self.pageInfo = pageInfo
+        self.backgroundImage = backgroundImage
         
         super.init(nibName: nil, bundle: nil)
         
@@ -68,13 +61,20 @@ class RouteViewController: UIViewController {
         fatalError()
     }
     
-    
     // MARK: Functions
     
     private func convertPageInfoToPageView(from pageInfo: PageInfo) -> UIView {
         let view = UIView()
         
-        // TODO: RouteFindingPageVIew UI 및 뷰 구현방법이 나오면 PageInfo에서 뷰 그리기 구현
+        pageInfo.points.forEach { pointInfo in
+            let button = pointInfo.footOrHand == .hand ? RouteFindingFeatureHandButton() : RouteFindingFeatureFootButton()
+            
+            view.addSubview(button)
+            button.snp.makeConstraints{
+                $0.centerX.equalTo(pointInfo.position.x)
+                $0.centerY.equalTo(pointInfo.position.y)
+            }
+        }
         
         return view
     }
