@@ -129,6 +129,7 @@
 		78CAA0682901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA0672901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift */; };
 		78CAA06A290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA069290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift */; };
 		78CAA06C290271E7003C3D77 /* VIdeoCollectionFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CAA06B290271E7003C3D77 /* VIdeoCollectionFooterCell.swift */; };
+		78D44C03293799AF007376DB /* VideoInfoView+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D44C02293799AF007376DB /* VideoInfoView+Protocol.swift */; };
 		78F56F6C291A67FA00174B74 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F56F6B291A67FA00174B74 /* OnBoardingViewController.swift */; };
 		78F93ED32906EFC500F3D9F3 /* GymEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED22906EFC500F3D9F3 /* GymEditViewController.swift */; };
 		78F93ED7290743DF00F3D9F3 /* LevelAndPFEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */; };
@@ -281,6 +282,7 @@
 		78CAA0672901FF0F003C3D77 /* VideoCollectionView+VideoCollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoCollectionView+VideoCollectionViewExtensions.swift"; sourceTree = "<group>"; };
 		78CAA069290271C9003C3D77 /* VideoCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
 		78CAA06B290271E7003C3D77 /* VIdeoCollectionFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIdeoCollectionFooterCell.swift; sourceTree = "<group>"; };
+		78D44C02293799AF007376DB /* VideoInfoView+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoInfoView+Protocol.swift"; sourceTree = "<group>"; };
 		78F56F6B291A67FA00174B74 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		78F93ED22906EFC500F3D9F3 /* GymEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymEditViewController.swift; sourceTree = "<group>"; };
 		78F93ED6290743DF00F3D9F3 /* LevelAndPFEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelAndPFEditViewController.swift; sourceTree = "<group>"; };
@@ -750,6 +752,7 @@
 			children = (
 				FB32281229046CDE00276A7D /* VideoPlayView.swift */,
 				FB32281429046CED00276A7D /* VideoInfoView.swift */,
+				78D44C02293799AF007376DB /* VideoInfoView+Protocol.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -917,6 +920,7 @@
 				3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */,
 				3A15AC7F2907262C0058512F /* VideoCollectionView+DataSorting.swift in Sources */,
 				342508A929001C2E000653D9 /* HomeTableViewCardCell+CollectionViewExtensions.swift in Sources */,
+				78D44C03293799AF007376DB /* VideoInfoView+Protocol.swift in Sources */,
 				3AA4D42928FEBADE006C718A /* OrrRock.xcdatamodeld in Sources */,
 				78F93ED7290743DF00F3D9F3 /* LevelAndPFEditViewController.swift in Sources */,
 				341418B42922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift in Sources */,
