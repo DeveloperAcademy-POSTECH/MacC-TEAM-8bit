@@ -282,32 +282,61 @@ extension RouteFindingSaveViewController {
             $0.bottom.equalTo(nextButton.snp.top).offset(-OrrPd.pd8.rawValue)
         }
         
-        view.addSubview(countVideoView)
-        countVideoView.snp.makeConstraints {
-            $0.bottom.equalTo(skipButton.snp.top).offset(-54) // TODO: 린다와 패딩 협의 필요
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(24)
-            $0.width.equalTo(71)
-        }
-        
-        countVideoView.addSubview(countVideoLabel)
-        countVideoLabel.snp.makeConstraints {
-            $0.center.equalTo(countVideoView.snp.center)
-        }
-        
-        view.addSubview(saveRouteFindingImageCollectionView)
-        saveRouteFindingImageCollectionView.snp.makeConstraints {
-            $0.height.equalTo(125)
-            $0.horizontalEdges.equalToSuperview()
-            $0.bottom.equalTo(countVideoView.snp.top).offset(-OrrPd.pd8.rawValue)
-        }
-        
-        view.addSubview(previewImageView)
-        previewImageView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(exitButton.snp.bottom).offset(OrrPd.pd8.rawValue)
-            $0.bottom.equalTo(saveRouteFindingImageCollectionView.snp.top).offset(-OrrPd.pd8.rawValue)
-            $0.width.equalTo(previewImageView.snp.height).multipliedBy(0.5625)
+        if screenHeight < 800 {
+            // 물리버튼이 있는 iPhone 8 이하 or SE 버전 디바이스
+            view.addSubview(countVideoView)
+            countVideoView.snp.makeConstraints {
+                $0.bottom.equalTo(skipButton.snp.top).offset(-54) // TODO: 린다와 패딩 협의 필요
+                $0.centerX.equalToSuperview()
+                $0.height.equalTo(24)
+                $0.width.equalTo(71)
+            }
+            
+            countVideoView.addSubview(countVideoLabel)
+            countVideoLabel.snp.makeConstraints {
+                $0.center.equalTo(countVideoView.snp.center)
+            }
+            
+            countVideoView.addSubview(countVideoLabel)
+            countVideoLabel.snp.makeConstraints {
+                $0.center.equalTo(countVideoView.snp.center)
+            }
+            
+            view.addSubview(saveRouteFindingImageCollectionView)
+            saveRouteFindingImageCollectionView.snp.makeConstraints {
+                $0.top.equalTo(exitButton.snp.bottom).offset(OrrPd.pd36.rawValue)
+                $0.bottom.equalTo(countVideoView.snp.top).offset(-OrrPd.pd8.rawValue)
+                $0.horizontalEdges.equalToSuperview()
+            }
+        } else {
+            // 물리버튼이 없는 그 외의 디바이스
+            view.addSubview(countVideoView)
+            countVideoView.snp.makeConstraints {
+                $0.bottom.equalTo(skipButton.snp.top).offset(-54) // TODO: 린다와 패딩 협의 필요
+                $0.centerX.equalToSuperview()
+                $0.height.equalTo(24)
+                $0.width.equalTo(71)
+            }
+            
+            countVideoView.addSubview(countVideoLabel)
+            countVideoLabel.snp.makeConstraints {
+                $0.center.equalTo(countVideoView.snp.center)
+            }
+            
+            view.addSubview(saveRouteFindingImageCollectionView)
+            saveRouteFindingImageCollectionView.snp.makeConstraints {
+                $0.height.equalTo(125)
+                $0.horizontalEdges.equalToSuperview()
+                $0.bottom.equalTo(countVideoView.snp.top).offset(-OrrPd.pd8.rawValue)
+            }
+            
+            view.addSubview(previewImageView)
+            previewImageView.snp.makeConstraints {
+                $0.centerX.equalToSuperview()
+                $0.top.equalTo(exitButton.snp.bottom).offset(OrrPd.pd8.rawValue)
+                $0.bottom.equalTo(saveRouteFindingImageCollectionView.snp.top).offset(-OrrPd.pd8.rawValue)
+                $0.width.equalTo(previewImageView.snp.height).multipliedBy(0.5625)
+            }
         }
     }
 }
