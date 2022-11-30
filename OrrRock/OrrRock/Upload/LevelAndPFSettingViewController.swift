@@ -88,7 +88,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     private lazy var emptyVideoInformation: UILabel = {
         let label = UILabel()
-        label.text = "모든 비디오를 분류했습니다!"
+        label.text = "모든 비디오를 기록했어요!"
         label.textColor = .orrGray500
         label.font = .systemFont(ofSize: 15.0, weight: .regular)
         
@@ -257,7 +257,7 @@ private extension LevelAndPFSettingViewController {
                 using: { [weak self] currentTime in
                     self?.updateVideoSlider(card: card, time: currentTime)
                     // TODO: 남은 시간 표시
-                    // self?.updateTimeRemaining(currentTime)
+                    // self?.updateTi meRemaining(currentTime)
                 })
         }
     }

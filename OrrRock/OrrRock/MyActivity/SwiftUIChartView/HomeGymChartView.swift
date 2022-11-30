@@ -32,7 +32,7 @@ struct HomeGymChartView: View {
                         .foregroundColor(Color(uiColor: UIColor.orrBlack!))
                         .padding(.top, CGFloat(OrrPd.pd8.rawValue))
                     
-                    Text("기록을 추가하면 홈짐이 자동으로 작성됩니다")
+                    Text("기록을 추가하면 홈짐을 알 수 있어요")
                         .font(.system(size: 12, weight: .regular))
                         .foregroundColor(Color(uiColor: UIColor.orrGray500!))
                     

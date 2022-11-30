@@ -8,6 +8,7 @@
 import Foundation
 
 struct PointInfo: Equatable {
+    var id: UUID
     var footOrHand: FootOrHand
     var isForce: Bool
     var position: CGPoint

@@ -53,12 +53,10 @@ final class RouteFindingCameraViewController: UIViewController {
     
     private lazy var closeButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor.orrBlack?.withAlphaComponent(0.3)
-        button.layer.borderColor = UIColor(hex: "979797").cgColor
-        button.layer.borderWidth = 1
+        button.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         button.layer.cornerRadius = 20
         let config = UIImage.SymbolConfiguration(pointSize: 24, weight: .medium, scale: .small)
-        let buttonSymbol = UIImage(systemName: "multiply", withConfiguration: config)?.withTintColor(UIColor.orrWhite ?? UIColor.white, renderingMode: .alwaysOriginal)
+        let buttonSymbol = UIImage(systemName: "multiply", withConfiguration: config)?.withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
         button.setImage(buttonSymbol, for: .normal)
         
         button.addTarget(self, action: #selector(dismissRouteFinidngCameraViewController), for: .touchUpInside)
@@ -300,7 +298,7 @@ private extension RouteFindingCameraViewController {
     // 카메라 권한 재점검을 위한 Alert 보여주기
     private func showAuthAlert() {
         DispatchQueue.main.async {
-            let alertMessage = "클라이밍 문제 촬영을 위해 카메라 사용 권한이 필요합니다.\n[설정] > [개인 정보 보호] > [카메라]에서 권한을 설정해주세요."
+            let alertMessage = "볼더링 문제 촬영을 위해 카메라 사용 권한이 필요합니다.\n[설정] > [개인 정보 보호] > [카메라]에서 권한을 설정해주세요."
             let message = NSLocalizedString(alertMessage, comment: "")
             let alertController = UIAlertController(title: "ORRROCK", message: message, preferredStyle: .alert)
             

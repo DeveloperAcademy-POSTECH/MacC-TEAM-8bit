@@ -7,11 +7,13 @@
 
 import UIKit
 
+import SnapKit
+
 final class RouteFindingPageViewController: UIViewController {
     var routeDataDraft: RouteDataDraft
     var pageRowOrder: Int
+    var backgroundImage: UIImage
     
-    //    var pageInfo: PageInfo
     var isHandButton: Bool = true
     var buttonList: [RouteFindingFeatureButton] = []
     
@@ -27,18 +29,39 @@ final class RouteFindingPageViewController: UIViewController {
         return imageView
     }()
     
-    init(routeDataDraft: RouteDataDraft, pageRowOrder: Int) {
+    init(routeDataDraft: RouteDataDraft, pageRowOrder: Int, backgroundImage: UIImage) {
         self.routeDataDraft = routeDataDraft
         self.pageRowOrder = pageRowOrder
-        //        self.pageInfo = routeDataDraft.routeInfoForUI.pages.filter({ $0.rowOrder == pageRowOrder }).first!
+        self.backgroundImage = backgroundImage
         
         super.init(nibName: nil, bundle: nil)
-        self.view.backgroundColor = .systemMint
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(makeRoutePoint(_:)))
         self.view.addGestureRecognizer(gestureRecognizer)
         
         setUpLayout()
+        guard let page = routeDataDraft.routeInfoForUI.pages.first(where: { $0.rowOrder == pageRowOrder }) else { return }
+        
+        if page.points.count > 0 {
+            
+            page.points.forEach { pointInfo in
+                var button = isHandButton ? RouteFindingFeatureHandButton() : RouteFindingFeatureFootButton()
+                
+                self.view.addSubview(button)
+                buttonList.append(button)
+                
+                let panGesture = UIPanGestureRecognizer(target: self, action: #selector(moveRoutePointButton(_:)))
+                
+                button.addGestureRecognizer(panGesture)
+                
+                button.snp.makeConstraints{
+                    $0.centerX.equalTo(pointInfo.position.x)
+                    $0.centerY.equalTo(pointInfo.position.y)
+                }
+            }
+        }
+        
+        setUpBackgroundImage()
     }
     
     required init?(coder: NSCoder) {
@@ -126,9 +149,8 @@ final class RouteFindingPageViewController: UIViewController {
         button.addGestureRecognizer(panGesture)
         // pageView에 points 좌표를 넘겨줌
         
-        
         routeDataDraft.addPointData(pageAt: routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == pageRowOrder })!,
-                                    addTargetPointInfo: PointInfo(footOrHand: isHandButton ? .hand : .foot, isForce: false, position: location, forceDirection: .pi0))
+                                    addTargetPointInfo: PointInfo(id: UUID(), footOrHand: isHandButton ? .hand : .foot, isForce: false, position: location, forceDirection: .pi0))
         buttonList.append(button)
         
         button.snp.makeConstraints{
@@ -142,6 +164,15 @@ final class RouteFindingPageViewController: UIViewController {
         trashView.snp.makeConstraints{
             $0.centerX.equalTo(view.center.x)
             $0.bottom.equalToSuperview()
+        }
+    }
+    func setUpBackgroundImage() {
+        let backgroundImage = backgroundImage
+        let backgroundImageView = UIImageView(image: backgroundImage)
+        
+        self.view.addSubview(backgroundImageView)
+        backgroundImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
 }
