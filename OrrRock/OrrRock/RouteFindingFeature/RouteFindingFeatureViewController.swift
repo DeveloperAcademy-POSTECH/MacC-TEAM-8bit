@@ -77,6 +77,9 @@ final class RouteFindingFeatureViewController: UIViewController {
         button.layer.cornerRadius = 20
         button.backgroundColor = .orrGray700
         button.setImage(UIImage(systemName: "multiply"), for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         button.tintColor = .orrWhite
         button.addAction(UIAction { _ in
             self.exitRouteFinding()
@@ -160,6 +163,7 @@ final class RouteFindingFeatureViewController: UIViewController {
         self.routeDataDraft = routeDataDraft
         self.routeInfo = routeDataDraft.routeInfoForUI
         self.backgroundImage = backgroundImage
+        self.pages = routeDataDraft.newPageInfo
         
         super.init(nibName: nil, bundle: nil)
         
@@ -254,12 +258,8 @@ final class RouteFindingFeatureViewController: UIViewController {
     }
     
     func finishRouteFinding() {
-        
-        // TODO: 루트파인딩 저장하기 뷰로 데이터 넘겨주기
-        routeInfo.pages = pages
-//        routeInfo -> 전달
-        
-        print("Done Button Tapped")
+        let routeFindingSaveViewController = RouteFindingSaveViewController(routeDataDraft: routeDataDraft, backgroundImage: backgroundImage, pageViews: pageViews)
+        navigationController?.pushViewController(routeFindingSaveViewController, animated: true)
     }
     
     func exitRouteFinding() {
