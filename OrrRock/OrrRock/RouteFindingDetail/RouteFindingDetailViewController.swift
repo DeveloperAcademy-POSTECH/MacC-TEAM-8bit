@@ -83,7 +83,6 @@ class RouteFindingDetailViewController: UIViewController {
         setUpCollectionView()
         
         loadPageViewControllerList()
-        
         let tapgesture = UITapGestureRecognizer(target: self, action: #selector(respondToTapGesture(_:)))
         view.addGestureRecognizer(tapgesture)
         
@@ -184,10 +183,8 @@ class RouteFindingDetailViewController: UIViewController {
     }
     
     @objc func editAction() {
-        guard let image = routeDataDraft.route?.imageLocalIdentifier.generateCardViewThumbnail(),
-              let manager = routeDataDraft.routeDataManager else { return }
+        guard let image = routeDataDraft.routeInfoForUI.imageLocalIdentifier.generateCardViewThumbnail() else { return }
         
-        let routeDataDraft = RouteDataDraft(manager: manager, existingRouteFinding: routeDataDraft.route, imageLocalIdentifier: routeDataDraft.routeInfoForUI.imageLocalIdentifier ?? "")
         let featureVC = RouteFindingFeatureViewController(routeDataDraft: routeDataDraft, backgroundImage: image)
         
         featureVC.modalPresentationStyle = .fullScreen
