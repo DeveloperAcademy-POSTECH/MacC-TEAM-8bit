@@ -69,10 +69,6 @@ final class RouteFindingPageViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
-    
     @objc
     func makeRoutePoint(_ sender: UITapGestureRecognizer){
         
@@ -99,6 +95,7 @@ final class RouteFindingPageViewController: UIViewController {
             let locationInView = sender.location(in: buttonView)
             buttonView.frame.origin = CGPoint(x: buttonView.frame.origin.x + locationInView.x - beginningPosition.x, y: buttonView.frame.origin.y + locationInView.y - beginningPosition.y)
             
+            // buttonView가 trashView영역에 들어왔을 때 point 삭제
             if buttonView.frame.intersects(trashView.frame) && !trashView.isHidden {
                 guard let id = buttonList.firstIndex(where: { $0.id == buttonView.id }),
                       let pageNo = routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == pageRowOrder }) else { return }
@@ -108,34 +105,32 @@ final class RouteFindingPageViewController: UIViewController {
                 buttonView.removeFromSuperview()
                 initialMovableViewPosition = .zero
             }
-        } else if sender.state == .cancelled {
-            print("취소데스")
-        } else if sender.state == UIPanGestureRecognizer.State.ended {
-            print("ㅎㅎ")
+            
+            // panGeture로 새로 업데이트한 좌표를 업데이트
+            let translation = sender.translation(in: buttonView.superview)
+            buttonView.center = CGPoint(x: buttonView.center.x + translation.x, y: buttonView.center.y + translation.y)
+            sender.setTranslation(.zero, in: buttonView.superview)
+            
+            // point 추가
+            if let button = sender.view as? RouteFindingFeatureButton,
+               let index = buttonList.firstIndex(where: { $0.id == button.id }) {
+                let originPointInfo = routeDataDraft.routeInfoForUI.pages.first(where: { $0.rowOrder == pageRowOrder })!.points[index] as! PointInfo
+                
+                routeDataDraft.updatePointData(pageAt: routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == self.pageRowOrder })!,
+                                               pointIndexOf: index,
+                                               updateTargetPointInfo: PointInfo(id: button.id, footOrHand: originPointInfo.footOrHand,
+                                                                                isForce: originPointInfo.isForce,
+                                                                                position: buttonView.center,
+                                                                                forceDirection: originPointInfo.forceDirection))
+                
+                button.snp.updateConstraints {
+                    $0.centerX.equalTo(sender.location(in: self.view).x)
+                    $0.centerY.equalTo(sender.location(in: self.view).y)
+                }
+            }
         }
-        
-        let translation = sender.translation(in: buttonView.superview)
-        buttonView.center = CGPoint(x: buttonView.center.x + translation.x, y: buttonView.center.y + translation.y)
-        sender.setTranslation(.zero, in: buttonView.superview)
-        
-        if let button = sender.view as? RouteFindingFeatureButton,
-           let index = buttonList.firstIndex(where: { $0.id == button.id }) {
-           let originPointInfo = routeDataDraft.routeInfoForUI.pages.first(where: { $0.rowOrder == pageRowOrder })!.points[index] as! PointInfo
-           
-           routeDataDraft.updatePointData(pageAt: routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == self.pageRowOrder })!,
-                                          pointIndexOf: index,
-                                          updateTargetPointInfo: PointInfo(id: button.id, footOrHand: originPointInfo.footOrHand,
-                                                                           isForce: originPointInfo.isForce,
-                                                                           position: buttonView.center,
-                                                                           forceDirection: originPointInfo.forceDirection))
-           
-           button.snp.updateConstraints {
-               $0.centerX.equalTo(sender.location(in: self.view).x)
-               $0.centerY.equalTo(sender.location(in: self.view).y)
-           }
-       }
     }
-
+    
     func setUpBackgroundImage() {
         let backgroundImage = backgroundImage
         let backgroundImageView = UIImageView(image: backgroundImage)
@@ -150,7 +145,7 @@ final class RouteFindingPageViewController: UIViewController {
         self.view.addSubview(trashView)
         trashView.snp.makeConstraints{
             $0.centerX.equalTo(view.center.x)
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(OrrPd.pd36.rawValue)
         }
     }
 }
@@ -164,8 +159,8 @@ extension RouteFindingPageViewController: UIGestureRecognizerDelegate {
         self.view.addSubview(button)
         
         // TODO: 커스텀 팬 제스처로 바꾸기
-//        let panGesture = CustomPanGestureRecognizer(target: self, action: #selector(moveRoutePointButton(_:)))
-//        panGesture.panGestureDelegate = self
+        //        let panGesture = CustomPanGestureRecognizer(target: self, action: #selector(moveRoutePointButton(_:)))
+        //        panGesture.panGestureDelegate = self
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(moveRoutePointButton(_:)))
         panGesture.delegate = self
@@ -173,7 +168,11 @@ extension RouteFindingPageViewController: UIGestureRecognizerDelegate {
         button.addGestureRecognizer(panGesture)
         
         routeDataDraft.addPointData(pageAt: routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == pageRowOrder })!,
-                                    addTargetPointInfo: PointInfo(id: UUID(), footOrHand: isHandButton ? .hand : .foot, isForce: false, position: location, forceDirection: .pi0))
+                                    addTargetPointInfo: PointInfo(id: UUID(),
+                                                                  footOrHand: isHandButton ? .hand : .foot,
+                                                                  isForce: false,
+                                                                  position: location,
+                                                                  forceDirection: .pi0))
         buttonList.append(button)
         
         button.snp.makeConstraints{
@@ -182,7 +181,8 @@ extension RouteFindingPageViewController: UIGestureRecognizerDelegate {
         }
     }
 }
-
+    
+// TODO: CustomView로 전환하여 ended시점에 trashView.isHidden = true로 전환
 extension RouteFindingPageViewController: CustomPanGestureRecognizerDelegate {
     
     func hideTrashView() {
