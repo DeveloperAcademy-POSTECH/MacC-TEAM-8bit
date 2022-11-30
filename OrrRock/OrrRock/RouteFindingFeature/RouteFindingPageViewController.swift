@@ -85,7 +85,7 @@ final class RouteFindingPageViewController: UIViewController {
                
                routeDataDraft.updatePointData(pageAt: routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == self.pageRowOrder })!,
                                               pointIndexOf: index,
-                                              updateTargetPointInfo: PointInfo(footOrHand: originPointInfo.footOrHand,
+                                              updateTargetPointInfo: PointInfo(id: originPointInfo.id, footOrHand: originPointInfo.footOrHand,
                                                                                isForce: originPointInfo.isForce,
                                                                                position: box.center,
                                                                                forceDirection: originPointInfo.forceDirection))
@@ -112,7 +112,7 @@ final class RouteFindingPageViewController: UIViewController {
         
 //                pageInfo.points?.append(PointInfo(footOrHand: isHandButton ? .hand : .foot, isForce: false, position: location, forceDirection: .pi0))
         routeDataDraft.addPointData(pageAt: routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == pageRowOrder })!,
-                                    addTargetPointInfo: PointInfo(footOrHand: isHandButton ? .hand : .foot, isForce: false, position: location, forceDirection: .pi0))
+                                    addTargetPointInfo: PointInfo(id: UUID(), footOrHand: isHandButton ? .hand : .foot, isForce: false, position: location, forceDirection: .pi0))
         buttonList.append(button)
         
         button.snp.makeConstraints{
