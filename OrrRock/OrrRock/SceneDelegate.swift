@@ -19,8 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window?.backgroundColor = .black
         
-//        window?.rootViewController = UINavigationController(rootViewController: MainViewController())
-        window?.rootViewController = UINavigationController(rootViewController: RouteFindingOnboardingViewController(backgroundImage: UIImage(systemName: "house")!))
+        window?.rootViewController = UINavigationController(rootViewController: MainViewController())
+        
         window?.makeKeyAndVisible()
     }
     
