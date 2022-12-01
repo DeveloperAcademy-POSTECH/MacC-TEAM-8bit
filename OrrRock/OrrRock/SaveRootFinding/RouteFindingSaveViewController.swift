@@ -196,9 +196,33 @@ class RouteFindingSaveViewController: UIViewController {
     }
     
     @objc func saveAction() {
-        guard let image = previewImageView.image else { return }
-        UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
-        completeSaveImage()
+        // 액션시트 생성
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // 묶음사진 전체 저장 로직 생성
+        let saveAllImage = UIAlertAction(title: "묶음사진 전체 저장", style: UIAlertAction.Style.default) { [self] _ in
+            let pageimages = pageImages
+            for pageimage in pageimages {
+                UIImageWriteToSavedPhotosAlbum(pageimage, self, nil, nil)
+            }
+            completeSaveImage()
+        }
+        // 이 사진만 저장 로직 생성
+        let saveThisImage = UIAlertAction(title: "이 사진만 저장", style: UIAlertAction.Style.default) { [self] _ in
+            guard let image = previewImageView.image else { return }
+            UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
+            completeSaveImage()
+        }
+        // 취소 로직 생성
+        let cancelAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.cancel)
+        
+        // 액션시트에 액션 추가
+        alert.addAction(saveAllImage)
+        alert.addAction(saveThisImage)
+        alert.addAction(cancelAction)
+        
+        // 액션시트 표시
+        self.present(alert, animated: true)
     }
     
     @objc func completeSaveImage() {
