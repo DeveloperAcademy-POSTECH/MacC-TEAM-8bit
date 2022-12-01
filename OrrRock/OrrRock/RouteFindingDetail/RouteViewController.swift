@@ -14,7 +14,7 @@ class RouteViewController: UIViewController {
     // MARK: Variables
     
     var pageInfo: PageInfo
-    var backgroundImage: UIImage
+    var backgroundImage: UIImage?
     
     // MARK: View Components
     
@@ -29,10 +29,11 @@ class RouteViewController: UIViewController {
         let view = UIView()
         
         let warningLabel = UILabel()
-        warningLabel.text = "앨범에서 영상이 삭제되어\n해당 영상을 재생할 수 없습니다."
+        warningLabel.text = "앨범에서 사진이 삭제되어\n해당 사진을 로드할 수 없습니다."
         warningLabel.textColor = .orrGray600
         warningLabel.textAlignment = .center
         warningLabel.numberOfLines = 2
+        warningLabel.backgroundColor = .white
         
         view.addSubview(warningLabel)
         warningLabel.snp.makeConstraints {
@@ -48,7 +49,7 @@ class RouteViewController: UIViewController {
     
     // MARK: Life Cycle Functions
     
-    init(pageInfo: PageInfo, backgroundImage: UIImage) {
+    init(pageInfo: PageInfo, backgroundImage: UIImage?) {
         self.pageInfo = pageInfo
         self.backgroundImage = backgroundImage
         

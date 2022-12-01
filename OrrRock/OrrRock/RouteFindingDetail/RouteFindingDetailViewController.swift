@@ -46,7 +46,7 @@ class RouteFindingDetailViewController: UIViewController {
         let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         pageViewController.view.backgroundColor = .black
         
-        pageViewController.setViewControllers([RouteViewController(pageInfo: routeDataDraft.routeInfoForUI.pages[0], backgroundImage: routeDataDraft.routeInfoForUI.imageLocalIdentifier.generateCardViewThumbnail()!)], direction: .forward, animated: true)
+        pageViewController.setViewControllers([RouteViewController(pageInfo: routeDataDraft.routeInfoForUI.pages[0], backgroundImage: routeDataDraft.routeInfoForUI.imageLocalIdentifier.generateCardViewThumbnail())], direction: .forward, animated: true)
         pageViewController.isPagingEnabled = false
         return pageViewController
     }()
@@ -155,7 +155,7 @@ class RouteFindingDetailViewController: UIViewController {
         var routeViewControllers: [RouteViewController] = []
         
         routeDataDraft.routeInfoForUI.pages.forEach { pageInfo in
-            routeViewControllers.append(RouteViewController(pageInfo: pageInfo, backgroundImage: routeDataDraft.routeInfoForUI.imageLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: 2400, height: 2400))!))
+            routeViewControllers.append(RouteViewController(pageInfo: pageInfo, backgroundImage: routeDataDraft.routeInfoForUI.imageLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: 2400, height: 2400))))
         }
         
         return routeViewControllers
