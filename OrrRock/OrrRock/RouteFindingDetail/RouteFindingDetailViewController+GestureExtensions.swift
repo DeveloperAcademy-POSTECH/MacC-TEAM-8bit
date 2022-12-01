@@ -35,6 +35,8 @@ extension RouteFindingDetailViewController {
                     navigationController?.isToolbarHidden = true
                     navigationController?.hidesBarsOnTap = false
                     self.navigationController?.popViewController(animated: true)
+                } else {
+                    showInfo()
                 }
             default:
                 break
