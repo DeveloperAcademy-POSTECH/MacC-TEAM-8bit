@@ -32,13 +32,13 @@ class RouteFindingDetailViewController: UIViewController {
     
     private lazy var topSafeAreaView: UIView = {
         let view = UIView()
-        view.backgroundColor = .black
+        view.backgroundColor = .orrGray100
         return view
     }()
     
     private lazy var bottomSafeAreaView: UIView = {
         let view = UIView()
-        view.backgroundColor = .black
+        view.backgroundColor = .orrGray100
         return view
     }()
     
@@ -58,7 +58,7 @@ class RouteFindingDetailViewController: UIViewController {
         collection.backgroundColor = .orrGray100
         collection.showsHorizontalScrollIndicator = false
         collection.register(RouteFindingThumbnailCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: RouteFindingThumbnailCollectionViewCell.identifier)
-                
+        
         collection.isUserInteractionEnabled = false
         
         return collection
@@ -105,6 +105,8 @@ class RouteFindingDetailViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        view.backgroundColor = .black
+        
         // CollectionView가 다 그려지고 난 뒤, CollectionView의 content에 Inset을 넣어 끝까지 스크롤이 가능하도록 하기
         let layoutMargins: CGFloat = self.thumbnailCollectionView.layoutMargins.left
         let sideInset = self.view.frame.width / 2 - layoutMargins
@@ -132,7 +134,6 @@ class RouteFindingDetailViewController: UIViewController {
         navigationController?.isToolbarHidden = false
         
         // 배경, 네비게이션바, 툴바 색 지정
-        self.view.backgroundColor = .orrWhite
         
         // 툴바 버튼 아이템 생성
         infoButton = UIBarButtonItem(image: UIImage(systemName: isShowingInfo ? "info.circle.fill" : "info.circle"), style: .plain, target: self, action: #selector(showInfo))
@@ -145,11 +146,9 @@ class RouteFindingDetailViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         // 네비게이션바가 숨겨졌을 때 배경색 변경
         let isNavigationBarHidden = navigationController?.isNavigationBarHidden ?? false
-        let backGroundColor = isNavigationBarHidden ? UIColor.orrBlack : UIColor.orrWhite
+        let backGroundColor = UIColor.black
         
         view.backgroundColor = backGroundColor
-        //        bottomSafeAreaView.backgroundColor = backGroundColor
-        //        topSafeAreaView.backgroundColor = backGroundColor
     }
     
     func getViewControllerForPageVC() -> [RouteViewController] {
@@ -175,7 +174,7 @@ class RouteFindingDetailViewController: UIViewController {
                 self.navigationController?.isNavigationBarHidden = true
                 self.topSafeAreaView.layer.opacity = 0
                 self.navigationController?.isToolbarHidden = false
-                //                self.bottomSafeAreaView.layer.opacity = 1.0
+//                self.bottomSafeAreaView.layer.opacity = 1.0
             })
         } else {
             UIView.animate(withDuration: 0.2, animations: {
@@ -224,6 +223,8 @@ class RouteFindingDetailViewController: UIViewController {
             self.bottomSafeAreaView.layer.opacity = self.navigationController!.isToolbarHidden ? 1.0 : 0.0
             self.navigationController?.isNavigationBarHidden = self.navigationController!.isToolbarHidden ? false : true
             self.navigationController?.isToolbarHidden = self.navigationController!.isToolbarHidden ? false : true
+            
+            self.thumbnailCollectionView.backgroundColor = self.navigationController!.isToolbarHidden ? .black : .orrGray100
         }
     }
 }
@@ -247,24 +248,7 @@ extension RouteFindingDetailViewController {
                 $0.height.equalTo(contentHeight - 69)
                 $0.width.equalTo((contentHeight - 69) * 9 / 16)
             }
-            $0.top.equalTo(view.forLastBaselineLayout.snp_topMargin)
-            $0.centerX.equalToSuperview()
-        }
-        
-        
-        view.addSubview(thumbnailCollectionView)
-        thumbnailCollectionView.snp.makeConstraints {
-            $0.height.equalTo(74)
-            $0.horizontalEdges.equalToSuperview()
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(0)
-        }
-        
-        view.addSubview(routeInfoView)
-        routeInfoView.snp.makeConstraints {
-            $0.leading.equalTo(self.view)
-            $0.trailing.equalTo(self.view)
-            $0.height.equalTo(450)
-            $0.bottom.equalTo(self.view).offset(450)
+            $0.center.equalToSuperview()
         }
         
         view.addSubview(topSafeAreaView)
@@ -281,6 +265,21 @@ extension RouteFindingDetailViewController {
             $0.trailing.equalTo(self.view)
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
             $0.bottom.equalTo(self.view)
+        }
+        
+        view.addSubview(thumbnailCollectionView)
+        thumbnailCollectionView.snp.makeConstraints {
+            $0.height.equalTo(74)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+        }
+        
+        view.addSubview(routeInfoView)
+        routeInfoView.snp.makeConstraints {
+            $0.leading.equalTo(self.view)
+            $0.trailing.equalTo(self.view)
+            $0.height.equalTo(450)
+            $0.bottom.equalTo(self.view).offset(450)
         }
     }
     

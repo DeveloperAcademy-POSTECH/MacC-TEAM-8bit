@@ -68,6 +68,7 @@ class RouteViewController: UIViewController {
         
         pageInfo.points.forEach { pointInfo in
             let button = pointInfo.footOrHand == .hand ? RouteFindingFeatureHandButton() : RouteFindingFeatureFootButton()
+            button.isUserInteractionEnabled = false
             
             view.addSubview(button)
             button.snp.makeConstraints{
