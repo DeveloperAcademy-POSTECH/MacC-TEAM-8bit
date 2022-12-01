@@ -27,9 +27,9 @@ final class LevelAndPFSettingViewController: UIViewController {
     private var timeObserverToken: Any?
     private var firstCardtimeObserverToken: Any?
     
-    //버튼 아이콘 크기 조절 할때 사용 
+    //버튼 아이콘 크기 조절 할때 사용
     let largeConfig = UIImage.SymbolConfiguration(pointSize: 15, weight: .bold, scale: .large)
-
+    
     private lazy var BackgroundView: EmptyBackgroundView = {
         let view = EmptyBackgroundView()
         view.layer.zPosition = -1
@@ -76,7 +76,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     private lazy var paddigView: UIView = {
         let view = UIView()
-        
+        view.layer.zPosition = -1
         return view
     }()
     
@@ -129,6 +129,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         let view = UIView()
         view.layer.cornerRadius = 15
         view.backgroundColor = .orrGray100
+        view.layer.zPosition = -1
         return view
     }()
     
@@ -418,6 +419,7 @@ private extension LevelAndPFSettingViewController {
         // 스와이프가 완료되고 removeCard가 호출될 때 버튼 활성화
         successButton.isEnabled = true
         failButton.isEnabled = true
+        deleteButton.isEnabled = true
         counter += 1
         
     }
@@ -565,6 +567,7 @@ private extension LevelAndPFSettingViewController {
                         // 카드 스와이프 애니매이션이 진행 중일 때 버튼 비활성화
                         self.successButton.isEnabled = false
                         self.failButton.isEnabled = false
+                        self.deleteButton.isEnabled = false
                         
                     }) { [self] _ in
                         if counter != cards.count-1 {
@@ -691,5 +694,6 @@ private extension LevelAndPFSettingViewController {
             $0.trailing.equalTo(view).offset(-OrrPd.pd16.rawValue)
             $0.height.equalTo(56)
         }
+        
     }
 }

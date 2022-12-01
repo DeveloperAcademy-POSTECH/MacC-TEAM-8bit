@@ -15,8 +15,10 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         presentationController as! UISheetPresentationController
     }
     
-    var videoInformation : VideoInformation!
-    var completioHandler : ((Bool,Int) -> (Void))?
+    var videoInformation : VideoInformation?
+    var routeInformation: RouteInformation?
+    
+    var completionHandler : ((Bool,Int) -> (Void))?
     var selectLevel : Int?
     var pickerSelectValue = 0
     private let padding = 68
@@ -195,8 +197,18 @@ extension LevelAndPFEditViewController {
     
     @objc
     private func pressSaveButton(_ sender: UIButton) {
-        DataManager.shared.updateLevelAndPF(videoInformation: videoInformation, problemLevel: selectLevel!, isSucceeded: isSuccess)
-        completioHandler!(isSuccess,selectLevel!)
+        if let videoInformation {
+            DataManager.shared.updateLevelAndPF(videoInformation: videoInformation, problemLevel: selectLevel!, isSucceeded: isSuccess)
+            completionHandler!(isSuccess,selectLevel!)
+        }
+        else if let routeInformation {
+            completionHandler!(isSuccess,selectLevel!)
+        }
+        else {
+            // 정상적으로 데이터가 들어오지 않음
+            print("DateEditViewController Input Data Error")
+        }
+        
         self.dismiss(animated: true)
     }
     
@@ -248,8 +260,18 @@ extension LevelAndPFEditViewController {
     }
     
     private func setData(){
-        isSuccess = videoInformation.isSucceeded
-        selectLevel = Int(videoInformation.problemLevel)
+        if let videoInformation {
+            isSuccess = videoInformation.isSucceeded
+            selectLevel = Int(videoInformation.problemLevel)
+        }
+        else if let routeInformation {
+            isSuccess = routeInformation.isChallengeComplete
+            selectLevel = Int(routeInformation.problemLevel)
+        }
+        else {
+            // 정상적으로 데이터가 들어오지 않음
+            print("DateEditViewController Input Data Error")
+        }
     }
 }
 

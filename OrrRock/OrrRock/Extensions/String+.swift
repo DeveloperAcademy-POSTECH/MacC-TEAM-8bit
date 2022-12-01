@@ -41,7 +41,7 @@ extension String {
     
     // MARK: String -> UIImage 변환 메서드
     // PHAsset Local Identifier로부터 영상 썸네일을 생성해 반환
-    func generateCardViewThumbnail() -> UIImage? {
+    func generateCardViewThumbnail(targetSize: CGSize = CGSize(width: 500, height: 500)) -> UIImage? {
         
         guard let asset: PHAsset = PHAsset.fetchAssets(withLocalIdentifiers: [self], options: .none).firstObject else { return nil }
         
@@ -53,7 +53,7 @@ extension String {
         var thumbnail = UIImage()
         
         manager.requestImage(for: asset,
-                             targetSize:  CGSize(width: 500, height: 500),
+                             targetSize:  targetSize,
                              contentMode: .aspectFit,
                              options: option,
                              resultHandler: {(result, info) -> Void in

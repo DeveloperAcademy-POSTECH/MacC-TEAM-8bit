@@ -78,5 +78,3 @@ extension RouteFindingFeatureViewController: UICollectionViewDataSource {
         }
     }
 }
-
-
