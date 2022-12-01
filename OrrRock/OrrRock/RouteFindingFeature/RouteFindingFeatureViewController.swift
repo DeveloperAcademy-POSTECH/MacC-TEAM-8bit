@@ -191,8 +191,19 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .black
         overrideUserInterfaceStyle = .light
+        
+        // 루트파인딩 온보딩 호출
+        if !UserDefaults.standard.bool(forKey: "RouteFindingOnboardingClear") {
+            let onboardingVC = RouteFindingOnboardingViewController(backgroundImage: backgroundImage)
+            onboardingVC.modalPresentationStyle = .fullScreen
+            
+            self.present(onboardingVC, animated: true, completion: nil)
+        }
+        
+        
         setUpLayout()
         setUpThumbnailCollectionDelegate()
         setUpPageViewController()
