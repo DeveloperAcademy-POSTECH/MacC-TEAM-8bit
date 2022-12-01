@@ -59,7 +59,6 @@ final class RouteFindingPageViewController: UIViewController {
                 }
             }
         }
-        
         setUpBackgroundImage()
         setUpLayout()
     }
@@ -91,23 +90,30 @@ final class RouteFindingPageViewController: UIViewController {
             initialMovableViewPosition = buttonView.frame.origin
         } else if sender.state == .ended {
             trashView.isHidden = true
-        } else if sender.state == .changed {
-            trashView.isHidden = false
-            
-            let locationInView = sender.location(in: buttonView)
-            buttonView.frame.origin = CGPoint(x: buttonView.frame.origin.x + locationInView.x - beginningPosition.x, y: buttonView.frame.origin.y + locationInView.y - beginningPosition.y)
-            
             // buttonView가 trashView영역에 들어왔을 때 point 삭제
-            if buttonView.frame.intersects(trashView.frame) && !trashView.isHidden {
+            if buttonView.frame.intersects(trashView.frame) {
+//                trashView.image = UIImage(named: "delete_destructive")?.resized(to: CGSize(width: 85, height: 85))
                 guard let id = buttonList.firstIndex(where: { $0.id == buttonView.id }),
                       let pageNo = routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == pageRowOrder }) else { return }
                 
                 routeDataDraft.removePointData(pageAt: pageNo, pointIndexOf: id)
                 buttonList.remove(at: id)
                 buttonView.removeFromSuperview()
-                trashView.isHidden = true
                 initialMovableViewPosition = .zero
             }
+            
+        } else if sender.state == .changed {
+            trashView.isHidden = false
+            
+            trashView.image = UIImage(named:
+                                        buttonView.frame.intersects(trashView.frame) ?
+                                      "delete_destructive" : "delete")?.resized(to: CGSize(width: 85, height: 85))
+
+            
+            let locationInView = sender.location(in: buttonView)
+            buttonView.frame.origin = CGPoint(x: buttonView.frame.origin.x + locationInView.x - beginningPosition.x,
+                                              y: buttonView.frame.origin.y + locationInView.y - beginningPosition.y)
+
             
             // panGeture로 새로 업데이트한 좌표를 업데이트
             let translation = sender.translation(in: buttonView.superview)
@@ -122,7 +128,7 @@ final class RouteFindingPageViewController: UIViewController {
                     $0.centerY.equalTo(sender.location(in: self.view).y)
                 }
                 
-                let originPointInfo = routeDataDraft.routeInfoForUI.pages.first(where: { $0.rowOrder == pageRowOrder })!.points[index] as! PointInfo
+                let originPointInfo = routeDataDraft.routeInfoForUI.pages.first(where: { $0.rowOrder == pageRowOrder })!.points[index]
                 
                 routeDataDraft.updatePointData(pageAt: routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == self.pageRowOrder })!,
                                                pointIndexOf: index,
@@ -130,7 +136,6 @@ final class RouteFindingPageViewController: UIViewController {
                                                                                 isForce: originPointInfo.isForce,
                                                                                 position: buttonView.center,
                                                                                 forceDirection: originPointInfo.forceDirection))
-
             }
         }
     }
@@ -161,11 +166,6 @@ extension RouteFindingPageViewController: UIGestureRecognizerDelegate {
         var button = isHandButton ? RouteFindingFeatureHandButton() : RouteFindingFeatureFootButton()
         
         self.view.addSubview(button)
-        
-        // TODO: 커스텀 팬 제스처로 바꾸기
-        //        let panGesture = CustomPanGestureRecognizer(target: self, action: #selector(moveRoutePointButton(_:)))
-        //        panGesture.panGestureDelegate = self
-        
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(moveRoutePointButton(_:)))
         panGesture.delegate = self
         
@@ -185,13 +185,3 @@ extension RouteFindingPageViewController: UIGestureRecognizerDelegate {
         }
     }
 }
-    
-// TODO: CustomView로 전환하여 ended시점에 trashView.isHidden = true로 전환
-//extension RouteFindingPageViewController: CustomPanGestureRecognizerDelegate {
-//
-//    func hideTrashView() {
-//        trashView.isHidden = true
-//        print("ended")
-//    }
-//
-//}
