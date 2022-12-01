@@ -191,8 +191,19 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .black
         overrideUserInterfaceStyle = .light
+        
+        // 루트파인딩 온보딩 호출
+        if !UserDefaults.standard.bool(forKey: "RouteFindingOnboardingClear") {
+            let onboardingVC = RouteFindingOnboardingViewController(backgroundImage: backgroundImage)
+            onboardingVC.modalPresentationStyle = .fullScreen
+            
+            self.present(onboardingVC, animated: true, completion: nil)
+        }
+        
+        
         setUpLayout()
         setUpThumbnailCollectionDelegate()
         setUpPageViewController()
@@ -210,7 +221,6 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navigationController?.isNavigationBarHidden = true
         
         // CollectionView가 다 그려지고 난 뒤, CollectionView의 content에 Inset을 넣어 끝까지 스크롤이 가능하도록 하기
         let layoutMargins: CGFloat = self.thumbnailCollectionView.layoutMargins.left
@@ -223,8 +233,6 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        navigationController?.isNavigationBarHidden = false
     }
     
     // MARK: Functions
@@ -458,5 +466,15 @@ extension RouteFindingFeatureViewController: RouteFindingThumbnailCollectionView
             self.deleteImage.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.pageNumberingView.transform = CGAffineTransform(translationX: 0, y: -50)
         }
+    }
+}
+
+// DEBUG
+extension RouteFindingFeatureViewController {
+    func showPage() {
+        let nextVC = RouteFindingOnboardingViewController(backgroundImage: backgroundImageView.image!)
+//        RouteFindingOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+        nextVC.modalPresentationStyle = .fullScreen
+        self.present(nextVC, animated: true, completion: nil)
     }
 }
