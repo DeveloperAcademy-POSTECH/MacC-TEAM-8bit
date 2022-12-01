@@ -261,11 +261,9 @@ final class RouteFindingFeatureViewController: UIViewController {
         if let navigationController = self.navigationController {
             self.navigationController?.pushViewController(routeFindingSaveViewController, animated: true)
         } else {
-            routeDataDraft.save()
+            routeDataDraft.routeInfoForUI = routeDataDraft.save()
             self.dismiss(animated: true)
         }
-        
-        routeDataDraft.save()
         
         print("Done Button Tapped")
     }
