@@ -38,23 +38,20 @@ final class RouteDataDraft {
         routeInfoForUI = route.convertToRouteInfo()
     }
     
-    func save() -> RouteInfo? {
+    func save() {
           
         var routeInfo: RouteInfo? = nil
         // MODE: ADD_데이터 추가
         if route == nil {
             routeDataManager.addRoute(routeInfo: routeInfoForUI)
             routeDataManager.saveData()
-            return nil
         } else { // MODE: EDIT_데이터 수정
-            guard let routeInformation = route else { return nil}
+            guard let routeInformation = route else { return }
             routeDataManager.deleteRouteData(routeInformation: routeInformation)
             routeDataManager.addRoute(routeInfo: routeInfoForUI)
             routeDataManager.saveData()
             routeInfo = routeInfoForUI
         }
-        return routeInfo
-        
     }
     
     // MARK: CREATE PAGE
