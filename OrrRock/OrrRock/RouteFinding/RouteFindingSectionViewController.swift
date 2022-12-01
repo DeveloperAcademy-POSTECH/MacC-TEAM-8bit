@@ -62,7 +62,7 @@ class RouteFindingSectionViewController: UIViewController {
     
     lazy var emptyGuideView: UIView = {
         let view = UIView()
-        view.backgroundColor = .orrGray100
+        view.backgroundColor = .orrGray050
         view.alpha = 0.0
         return view
     }()
