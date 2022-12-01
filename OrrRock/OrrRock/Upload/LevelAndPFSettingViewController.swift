@@ -27,9 +27,9 @@ final class LevelAndPFSettingViewController: UIViewController {
     private var timeObserverToken: Any?
     private var firstCardtimeObserverToken: Any?
     
-    //버튼 아이콘 크기 조절 할때 사용 
+    //버튼 아이콘 크기 조절 할때 사용
     let largeConfig = UIImage.SymbolConfiguration(pointSize: 15, weight: .bold, scale: .large)
-
+    
     private lazy var BackgroundView: EmptyBackgroundView = {
         let view = EmptyBackgroundView()
         view.layer.zPosition = -1
@@ -76,7 +76,13 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     private lazy var paddigView: UIView = {
         let view = UIView()
-        
+        return view
+    }()
+    
+    private lazy var bottomBackgroundView: UIView = {
+        let view = UIView()
+        view.isUserInteractionEnabled = false
+        view.backgroundColor = .orrWhite
         return view
     }()
     
@@ -418,6 +424,7 @@ private extension LevelAndPFSettingViewController {
         // 스와이프가 완료되고 removeCard가 호출될 때 버튼 활성화
         successButton.isEnabled = true
         failButton.isEnabled = true
+        deleteButton.isEnabled = true
         counter += 1
         
     }
@@ -565,6 +572,7 @@ private extension LevelAndPFSettingViewController {
                         // 카드 스와이프 애니매이션이 진행 중일 때 버튼 비활성화
                         self.successButton.isEnabled = false
                         self.failButton.isEnabled = false
+                        self.deleteButton.isEnabled = false
                         
                     }) { [self] _ in
                         if counter != cards.count-1 {
@@ -628,6 +636,12 @@ private extension LevelAndPFSettingViewController {
             $0.center.equalTo(emptyVideoView.snp.center)
         }
         
+        view.addSubview(bottomBackgroundView)
+        bottomBackgroundView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+        
         view.addSubview(videoSliderBackgroundView)
         videoSliderBackgroundView.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-OrrPd.pd16.rawValue)
@@ -674,6 +688,7 @@ private extension LevelAndPFSettingViewController {
             $0.centerX.equalTo(view.snp.centerX)
             $0.height.equalTo(90)
             $0.width.equalTo(90)
+            $0.top.equalTo(bottomBackgroundView.snp.top)
         }
         
         paddigView.addSubview(successButton)
@@ -691,5 +706,6 @@ private extension LevelAndPFSettingViewController {
             $0.trailing.equalTo(view).offset(-OrrPd.pd16.rawValue)
             $0.height.equalTo(56)
         }
+        
     }
 }
