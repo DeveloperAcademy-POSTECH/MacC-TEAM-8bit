@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 
-extension VideoDetailPageViewController : VideoDetailViewControllerDelegate{
+extension VideoDetailPageViewController : VideoDetailViewControllerDelegate {
     func changeVideoSoundPlayAndStop() {
         videoDetailPageViewControllerDelegate!.changeVideoSoundPlayAndStop()
     }
@@ -25,4 +25,10 @@ extension VideoDetailPageViewController : VideoDetailViewControllerDelegate{
         (videoDetailPageViewControllerDelegate?.getCurrentQueuePlayer())!
     }
     
+}
+
+extension VideoDetailViewController : VideoInfoViewTextViewDelegate {
+    func tapReturnButton() {
+        completeAction()
+    }
 }
