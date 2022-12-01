@@ -113,6 +113,11 @@ class RouteFindingDetailViewController: UIViewController {
         thumbnailCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: false)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.isToolbarHidden = true
+    }
+    
+    
     // MARK: Functions
     
     // 네비게이션바 세팅 함수
