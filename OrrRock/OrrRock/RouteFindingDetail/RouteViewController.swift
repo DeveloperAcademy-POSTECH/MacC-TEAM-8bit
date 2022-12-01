@@ -97,9 +97,16 @@ extension RouteViewController {
             $0.edges.equalToSuperview()
         }
         
-        view.addSubview(pageView)
-        pageView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+        if backgroundImage == nil {
+            view.addSubview(placeholderView)
+            placeholderView.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
+        } else {
+            view.addSubview(pageView)
+            pageView.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
         }
     }
 }
