@@ -14,7 +14,7 @@ final class RouteFindingPageViewController: UIViewController {
     var pageRowOrder: Int
     var backgroundImage: UIImage
     
-    var isHandButton: Bool = true
+    var isHandButtonMode: Bool = true
     var buttonList: [RouteFindingFeatureButton] = []
     
     
@@ -155,7 +155,7 @@ extension RouteFindingPageViewController: UIGestureRecognizerDelegate {
     
     func addRoutePointButton(to location: CGPoint) {
         
-        var button = isHandButton ? RouteFindingFeatureHandButton() : RouteFindingFeatureFootButton()
+        var button = isHandButtonMode ? RouteFindingFeatureHandButton() : RouteFindingFeatureFootButton()
         
         self.view.addSubview(button)
         
@@ -170,7 +170,7 @@ extension RouteFindingPageViewController: UIGestureRecognizerDelegate {
         
         routeDataDraft.addPointData(pageAt: routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == pageRowOrder })!,
                                     addTargetPointInfo: PointInfo(id: UUID(),
-                                                                  footOrHand: isHandButton ? .hand : .foot,
+                                                                  footOrHand: isHandButtonMode ? .hand : .foot,
                                                                   isForce: false,
                                                                   position: location,
                                                                   forceDirection: .pi0))
