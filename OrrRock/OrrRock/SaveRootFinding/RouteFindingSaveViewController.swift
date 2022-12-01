@@ -196,7 +196,7 @@ class RouteFindingSaveViewController: UIViewController {
     }
     
     @objc func saveAction() {
-        let image = previewImageView.asImage()
+        guard let image = previewImageView.image else { return }
         UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
         completeSaveImage()
     }
