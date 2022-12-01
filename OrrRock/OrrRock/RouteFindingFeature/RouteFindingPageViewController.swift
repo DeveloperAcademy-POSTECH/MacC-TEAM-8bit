@@ -69,7 +69,6 @@ final class RouteFindingPageViewController: UIViewController {
                 $0.centerY.equalTo(pointInfo.position.y)
             }
         }
-        setUpBackgroundImage()
         setUpLayout()
     }
     
