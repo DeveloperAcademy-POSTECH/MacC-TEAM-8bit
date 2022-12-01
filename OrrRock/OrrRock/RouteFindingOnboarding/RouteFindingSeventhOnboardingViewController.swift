@@ -49,7 +49,7 @@ class RouteFindingSeventhOnboardingViewController: RouteFindingOnboardingParentV
         button.setTitleColor(.orrWhite, for: .normal)
         button.setTitleColor(.orrGray500, for: .highlighted)
         button.addAction(UIAction { _ in
-//            self.finishRouteFinding()
+            self.triggerSkipOnboarding()
         }, for: .touchUpInside)
         return button
     }()
@@ -109,5 +109,7 @@ extension RouteFindingSeventhOnboardingViewController {
             $0.height.equalTo(40)
             $0.width.equalTo(64)
         }
+        
+        skipButton.removeFromSuperview()
     }
 }

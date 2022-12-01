@@ -102,7 +102,7 @@ class RouteFindingSecondOnboardingViewController: RouteFindingOnboardingParentVi
         super.viewWillAppear(animated)
         
         isHandButtonMode = true
-        descriptionView.text = "버튼을 눌러\n손동작과 발동작을 추가할 수 있어요"
+        descriptionView.text = "화면을 눌러\n손동작과 발동작을 추가할 수 있어요"
     }
     
     override func viewDidAppear(_ animated: Bool) {

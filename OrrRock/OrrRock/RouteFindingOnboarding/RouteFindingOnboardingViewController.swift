@@ -86,7 +86,9 @@ class RouteFindingOnboardingViewController: UIPageViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpPageViewControllerDelegate()
+        setUpPageViewController()
+        
+        overrideUserInterfaceStyle = .light
         
         if let firstVC = viewControllerList.first {
             setViewControllers([firstVC], direction: .forward, animated: false, completion: nil)
@@ -110,9 +112,11 @@ class RouteFindingOnboardingViewController: UIPageViewController {
 extension RouteFindingOnboardingViewController {
     
     // MARK: Set Up Functions
-    func setUpPageViewControllerDelegate() {
+    func setUpPageViewController() {
         self.delegate = self
         self.dataSource = self
+        
+        self.isPagingEnabled = false
     }
 }
 

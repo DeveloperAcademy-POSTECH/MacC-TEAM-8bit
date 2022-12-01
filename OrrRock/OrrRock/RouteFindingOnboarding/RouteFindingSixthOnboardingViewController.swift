@@ -77,7 +77,7 @@ class RouteFindingSixthOnboardingViewController: RouteFindingOnboardingParentVie
         super.viewWillAppear(animated)
         
         setUpThumbnailCollectionViewScrollInset()
-        descriptionView.text = "추가한 시퀀스는 꾸욱 눌러\n삭제할 수 있어요"
+        descriptionView.text = "추가한 페이지는 꾸욱 눌러\n삭제할 수 있어요"
     }
     
     override func viewDidAppear(_ animated: Bool) {

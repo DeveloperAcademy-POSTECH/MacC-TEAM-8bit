@@ -46,7 +46,7 @@ class RouteFindingOnboardingParentViewController: UIViewController {
     
     lazy var skipButton: UIButton = {
         let btn = UIButton()
-        btn.setAttributedTitle("SKIP".underLineAttribute(color: .darkGray), for: .normal)
+        btn.setAttributedTitle("SKIP".underLineAttribute(color: .orrUPBlue!), for: .normal)
         btn.addAction(UIAction(handler: { _ in
             self.triggerSkipOnboarding()
         }), for: .touchUpInside)
@@ -125,8 +125,8 @@ extension RouteFindingOnboardingParentViewController {
         
         view.addSubview(skipButton)
         skipButton.snp.makeConstraints {
-            $0.centerX.equalTo(view)
-            $0.bottom.equalTo(view.snp.bottom).offset(-OrrPd.pd36.rawValue)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(12)
+            $0.trailing.equalTo(view.snp.trailing).offset(-OrrPd.pd16.rawValue)
         }
     }
 }
