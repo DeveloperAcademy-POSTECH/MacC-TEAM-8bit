@@ -62,7 +62,6 @@ final class RouteFindingPageViewController: UIViewController {
             }
         }
         
-        setUpBackgroundImage()
         setUpLayout()
     }
     
