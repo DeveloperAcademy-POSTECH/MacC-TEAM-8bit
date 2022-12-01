@@ -1,42 +1,29 @@
 //
-//  VideoInfoView.swift
+//  RouteInfoView.swift
 //  OrrRock
 //
-//  Created by kimhyeongmin on 2022/10/23.
+//  Created by Park Sungmin on 2022/11/29.
 //
 
 import UIKit
 
-final class VideoInfoView: UIView {
+import SnapKit
+
+final class RouteInfoView: UIView {
     
-    private var videoDate: String = ""
-    private var videoLevel: String = ""
-    private var videoLocation: String = ""
-    private var videoIsSucceeded: Bool = true
-    private var videoInformation : VideoInformation?
+    // MARK: Variables
     
-    var delegate: VideoInfoViewTextViewDelegate?
+    var routeInformation : RouteInformation
+    var routeDataDraft: RouteDataDraft
+    var routeDataManager: RouteDataManager
     
-    lazy var feedbackTextView: UITextView = {
-        let view = UITextView()
-        view.backgroundColor = .orrWhite
-        view.font = .systemFont(ofSize: 17.0, weight: .semibold)
-        view.keyboardType = .default
-        view.returnKeyType = UIReturnKeyType.done
-        view.autocorrectionType = .no
-        view.autocapitalizationType = .none
-        return view
-    }()
+    private var routeInfoDate: String = ""
+    private var routeInfoLevel: String = ""
+    private var routeInfoLocation: String = ""
+    private var routeInfoIsSucceeded: Bool = true
     
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if text == "\n" {
-            textView.resignFirstResponder()
-            return false
-        }
-        return true
-    }
+    // MARK: View Components
     
-    // 날짜 관련 View
     private lazy var dateView: UIView = {
         let view = UIView()
         view.backgroundColor = .orrGray100
@@ -55,7 +42,7 @@ final class VideoInfoView: UIView {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17.0, weight: .regular)
         label.textColor = .orrBlack
-        label.text = videoDate
+        label.text = routeInfoDate
         return label
     }()
     
@@ -78,7 +65,7 @@ final class VideoInfoView: UIView {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17.0, weight: .regular)
         label.textColor = .orrBlack
-        label.text = videoLocation
+        label.text = routeInfoLocation
         return label
     }()
     
@@ -94,7 +81,7 @@ final class VideoInfoView: UIView {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
         label.font = .systemRoundedFont(ofSize: 14, weight: .medium)
         label.textColor = .orrGray100
-        label.text = videoLevel
+        label.text = routeInfoLevel
         label.textAlignment = .center
         label.layer.cornerRadius = 13
         label.clipsToBounds = true
@@ -106,7 +93,7 @@ final class VideoInfoView: UIView {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17.0, weight: .regular)
         label.textColor = .orrBlack
-        label.text = videoIsSucceeded ? "성공" : "실패"
+        label.text = routeInfoIsSucceeded ? "성공" : "실패"
         return label
     }()
     
@@ -137,12 +124,37 @@ final class VideoInfoView: UIView {
         return button
     }()
     
+    // MARK: Life Cycle Functions
+    
+    init(routeDataDraft: RouteDataDraft) {
+        
+        self.routeDataDraft = routeDataDraft
+        self.routeDataManager = routeDataDraft.routeDataManager
+        self.routeInformation = routeDataDraft.route!
+        
+        super.init(frame: CGRect.zero)
+        
+        self.backgroundColor = .orrWhite
+        
+        setUpLayout()
+        setUpData(routeInformation: routeInformation)
+    }
+        
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: @objc Functions
+    
     @objc private func dateEdit() {
         // 날짜, 클라이밍장 편집 뷰 네비게이션
         let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
+        
         let vc = DateEditViewController()
-        vc.videoInformation = videoInformation
+        vc.routeInformation = routeInformation
+        
         vc.completionHandler = { [self] date in
+            routeDataManager.updateRouteDataWrittenDate(to: date, of: routeInformation)
             self.dateLabel.text = date.timeToString()
         }
         viewController.present(vc, animated: true)
@@ -152,8 +164,10 @@ final class VideoInfoView: UIView {
         // 날짜, 클라이밍장 편집 뷰 네비게이션
         let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
         let vc = GymEditViewController()
-        vc.videoInformation = videoInformation
+        vc.routeInformation = routeInformation
+        
         vc.completionHandler = { [self] gymName in
+            routeDataManager.updateRouteGymName(to: gymName, of: routeInformation)
             self.gymNameLabel.text = gymName
         }
         viewController.present(vc, animated: true)
@@ -163,80 +177,29 @@ final class VideoInfoView: UIView {
         // 난이도, 성패여부 편집 뷰 네비게이션
         let viewController = UIApplication.shared.windows.first!.rootViewController as! UINavigationController
         let vc = LevelAndPFEditViewController()
-        vc.videoInformation = videoInformation
-        vc.pickerSelectValue = Int(videoInformation!.problemLevel)
+        vc.routeInformation = routeInformation
+        vc.pickerSelectValue = Int(routeInformation.problemLevel)
+        
         vc.completionHandler = { isSuccess, level in
-            
+            self.routeDataManager.updateRouteLevelAndStatus(statusTo: isSuccess, levelTo: level, of: self.routeInformation)
             self.levelIcon.text = level == -1 ? "V?" : "V\(level)"
-            
             self.isSucceeded.text = isSuccess ? "성공" : "실패"
-            
         }
         viewController.present(vc, animated: true)
     }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.backgroundColor = .orrWhite
-        setUpLayout()
-    }
-    
-    convenience init(frame: CGRect, videoInfo : VideoInformation) {
-        self.init(frame: frame)
-        refreshData(videoInfo: videoInfo)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }
 
-extension VideoInfoView: UITextViewDelegate {
-    // 텍스트뷰가 비어있을 때 플레이스 홀더 띄워주는 메서드
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        guard textView.textColor == .placeholderText else { return }
-        textView.textColor = .orrBlack
-        textView.text = nil
-    }
+extension RouteInfoView {
     
-    // 다른 작업을 할 때 텍스트뷰가 비어있으면 플레이스 홀더 띄워주는 메서드
-    func textViewDidEndEditing(_ textView: UITextView) {
-        guard checkFeedbackStringIsEmpty(checkString: textView.text) else {
-            delegate?.tapReturnButton()
-            return
-        }
-    }
-}
-
-
-extension VideoInfoView {
-    func refreshData(videoInfo : VideoInformation) {
-        self.videoInformation = videoInfo
-        dateLabel.text = videoInformation?.gymVisitDate.timeToString()
-        levelIcon.text = videoInformation?.problemLevel == -1 ? "V?" : "V\(videoInformation?.problemLevel ?? -3)"
-        isSucceeded.text = videoInformation!.isSucceeded ? "성공" : "실패"
-        gymNameLabel.text = videoInformation?.gymName
-        feedbackTextView.text = checkFeedbackStringIsEmpty(checkString: videoInformation?.feedback) ? "피드백 입력" : videoInformation?.feedback
-        feedbackTextView.delegate = self  // 플레이스 홀더를 위한 델리게이트
-        feedbackTextView.textColor = checkFeedbackStringIsEmpty(checkString: videoInformation?.feedback) ? .placeholderText : .orrBlack
-    }
-}
-
-extension VideoInfoView {
-    @objc private func setUpLayout() {
-        // textView
-        self.addSubview(feedbackTextView)
-        feedbackTextView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(OrrPd.pd16.rawValue)
-            $0.top.equalTo(self.snp.top).offset(OrrPd.pd16.rawValue)
-            $0.height.equalTo(110)
-        }
+    // MARK: Set Up Functions
+    
+    private func setUpLayout() {
         // 날짜 입력 뷰
         self.addSubview(dateView)
         dateView.snp.makeConstraints {
             $0.height.equalTo(56)
             $0.leading.trailing.equalToSuperview().inset(OrrPd.pd16.rawValue)
-            $0.top.equalTo(feedbackTextView.snp.bottom).offset(OrrPd.pd8.rawValue)
+            $0.top.equalTo(self.snp.top).offset(OrrPd.pd16.rawValue)
         }
         // 클라이밍장 이름 뷰
         self.addSubview(gymNameView)
@@ -316,18 +279,10 @@ extension VideoInfoView {
         }
     }
     
-    func checkFeedbackStringIsEmpty(checkString: String?) -> Bool {
-        guard checkString != nil else {
-            return true
-        }
-        guard checkString?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) != "" else {
-            return true
-        }
-        guard checkString != "피드백 입력" else {
-            return true
-        }
-        return false
+    private func setUpData(routeInformation: RouteInformation) {
+        dateLabel.text = routeInformation.dataWrittenDate.timeToString()
+        levelIcon.text = routeInformation.problemLevel == -1 ? "V?" : "V\(routeInformation.problemLevel)"
+        isSucceeded.text = routeInformation.isChallengeComplete ? "성공" : "실패"
+        gymNameLabel.text = routeInformation.gymName
     }
 }
-
-

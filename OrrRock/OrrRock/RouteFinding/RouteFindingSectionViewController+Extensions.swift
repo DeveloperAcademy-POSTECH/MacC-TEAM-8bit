@@ -48,9 +48,9 @@ extension RouteFindingSectionViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // 실사들어오면 사용할 것들
-        let screenBounds = UIScreen.main.bounds
-        let screenScale = UIScreen.main.scale
-        let screenSize = CGSize(width: screenBounds.size.width * screenScale, height: screenBounds.size.height * screenScale)
+//        let screenBounds = UIScreen.main.bounds
+//        let screenScale = UIScreen.main.scale
+//        let screenSize = CGSize(width: screenBounds.size.width * screenScale, height: screenBounds.size.height * screenScale)
         
         let index = indexPath.row
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RouteFindingCollectionViewCustomCell", for: indexPath) as! RouteFindingCollectionViewCustomCell
@@ -58,7 +58,7 @@ extension RouteFindingSectionViewController: UICollectionViewDataSource {
         cell.cellChallengeLabel.text = routeInformations[index].isChallengeComplete ? "도전 성공" : "도전 중"
         cell.cellDateLabel.text = routeInformations[index].dataWrittenDate.timeToString()
         cell.cellTitleLabel.text = routeInformations[index].gymName
-        cell.cellImage.image = UIImage(named: "SwipeOnboardingImage1")
+        cell.cellImage.image = routeFindingDataManager?.getRouteFindingList()[index].imageLocalIdentifier.generateCardViewThumbnail()
         cell.isSelectable = mMode == .select ? true : false
         return cell
     }
@@ -68,7 +68,13 @@ extension RouteFindingSectionViewController: UICollectionViewDataSource {
         case .view:
             routeFindingCollectionView.deselectItem(at: indexPath, animated: true)
             //화면이동 로직 들어갈 부분
-            print("화면이동합니다~")
+            let index = indexPath.row
+            guard let route = routeFindingDataManager?.getRouteFindingList()[index] else { return }
+
+            let routeDataDraft = RouteDataDraft(manager: routeFindingDataManager!, existingRouteFinding: route, imageLocalIdentifier: route.imageLocalIdentifier)
+            let vc = RouteFindingDetailViewController(routeDataDraft: routeDataDraft)
+            self.navigationController?.pushViewController(vc, animated: true)
+            
         case .select:
             dictionarySelectedIndexPath[indexPath] = true
             changeStatusOfChangeFolderButtons(to: true)

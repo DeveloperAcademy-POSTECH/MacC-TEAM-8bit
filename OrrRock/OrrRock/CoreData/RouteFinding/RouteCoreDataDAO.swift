@@ -101,8 +101,6 @@ class RouteCoreDataDAO {
         page.setValue(UUID(), forKey: "id")
         routeInformation.addToPages(page)
         
-        print("HI....", routeInformation.pages?.count)
-//        guard let points = pageInfo.points else { return }
         createPointInformation(pointInfoList: pageInfo.points, pageInformation: page)
     }
     

@@ -33,10 +33,16 @@
 		343170F229310971005E66F3 /* RouteFindingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343170F129310971005E66F3 /* RouteFindingPageViewController.swift */; };
 		34793F9F29251E4B00B74110 /* BetterSegmentedControl in Frameworks */ = {isa = PBXBuildFile; productRef = 34793F9E29251E4B00B74110 /* BetterSegmentedControl */; };
 		34793FA329262A8800B74110 /* CustomBackBarButtomItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34793FA229262A8800B74110 /* CustomBackBarButtomItem.swift */; };
+		3487290629365F1500634A05 /* RoutefindingDetailViewController+UIPageViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3487290529365F1500634A05 /* RoutefindingDetailViewController+UIPageViewControllerExtensions.swift */; };
+		348729082936701700634A05 /* RouteFindingDetailViewController+CollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348729072936701700634A05 /* RouteFindingDetailViewController+CollectionViewExtensions.swift */; };
+		348968B82937F76E00B52B9D /* RouteFindingDetailViewController+GestureExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348968B72937F76E00B52B9D /* RouteFindingDetailViewController+GestureExtensions.swift */; };
 		3495AEF72929192000006469 /* CalendarComponent+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3495AEF62929192000006469 /* CalendarComponent+.swift */; };
 		34BFCD7929369993009602CA /* RouteFindingFeatureHandButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BFCD7829369993009602CA /* RouteFindingFeatureHandButton.swift */; };
 		34BFCD7B293699A2009602CA /* RouteFindingFeatureFootButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BFCD7A293699A2009602CA /* RouteFindingFeatureFootButton.swift */; };
 		34BFCD7D2936A73B009602CA /* RouteFindingFeatureViewController+UIPageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BFCD7C2936A73B009602CA /* RouteFindingFeatureViewController+UIPageViewExtensions.swift */; };
+		34CAA30B29361A0400907C77 /* RouteFindingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CAA30A29361A0400907C77 /* RouteFindingDetailViewController.swift */; };
+		34CAA30E2936240900907C77 /* RouteInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CAA30D2936240900907C77 /* RouteInfoView.swift */; };
+		34CAA31129363F8800907C77 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CAA31029363F8800907C77 /* RouteViewController.swift */; };
 		34E11EC3292BEDCF00787316 /* FirstDateSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E11EC2292BEDCF00787316 /* FirstDateSettingViewController.swift */; };
 		34E11EC5292BFF2700787316 /* ExportCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E11EC4292BFF2700787316 /* ExportCardView.swift */; };
 		34E11EC9292D2C5100787316 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E11EC8292D2C5100787316 /* UIImage+.swift */; };
@@ -186,10 +192,16 @@
 		342C456F29018D5C0037D9E7 /* HomeCollectionViewFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewFooterCell.swift; sourceTree = "<group>"; };
 		343170F129310971005E66F3 /* RouteFindingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingPageViewController.swift; sourceTree = "<group>"; };
 		34793FA229262A8800B74110 /* CustomBackBarButtomItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackBarButtomItem.swift; sourceTree = "<group>"; };
+		3487290529365F1500634A05 /* RoutefindingDetailViewController+UIPageViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutefindingDetailViewController+UIPageViewControllerExtensions.swift"; sourceTree = "<group>"; };
+		348729072936701700634A05 /* RouteFindingDetailViewController+CollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteFindingDetailViewController+CollectionViewExtensions.swift"; sourceTree = "<group>"; };
+		348968B72937F76E00B52B9D /* RouteFindingDetailViewController+GestureExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteFindingDetailViewController+GestureExtensions.swift"; sourceTree = "<group>"; };
 		3495AEF62929192000006469 /* CalendarComponent+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarComponent+.swift"; sourceTree = "<group>"; };
 		34BFCD7829369993009602CA /* RouteFindingFeatureHandButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingFeatureHandButton.swift; sourceTree = "<group>"; };
 		34BFCD7A293699A2009602CA /* RouteFindingFeatureFootButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingFeatureFootButton.swift; sourceTree = "<group>"; };
 		34BFCD7C2936A73B009602CA /* RouteFindingFeatureViewController+UIPageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteFindingFeatureViewController+UIPageViewExtensions.swift"; sourceTree = "<group>"; };
+		34CAA30A29361A0400907C77 /* RouteFindingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingDetailViewController.swift; sourceTree = "<group>"; };
+		34CAA30D2936240900907C77 /* RouteInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteInfoView.swift; sourceTree = "<group>"; };
+		34CAA31029363F8800907C77 /* RouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
 		34E11EC2292BEDCF00787316 /* FirstDateSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstDateSettingViewController.swift; sourceTree = "<group>"; };
 		34E11EC4292BFF2700787316 /* ExportCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportCardView.swift; sourceTree = "<group>"; };
 		34E11EC8292D2C5100787316 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
@@ -425,6 +437,27 @@
 			path = UIComponents;
 			sourceTree = "<group>";
 		};
+		34CAA3092936198E00907C77 /* RouteFindingDetail */ = {
+			isa = PBXGroup;
+			children = (
+				34CAA30C293623FF00907C77 /* UIComponents */,
+				34CAA30A29361A0400907C77 /* RouteFindingDetailViewController.swift */,
+				348729072936701700634A05 /* RouteFindingDetailViewController+CollectionViewExtensions.swift */,
+				3487290529365F1500634A05 /* RoutefindingDetailViewController+UIPageViewControllerExtensions.swift */,
+				348968B72937F76E00B52B9D /* RouteFindingDetailViewController+GestureExtensions.swift */,
+				34CAA31029363F8800907C77 /* RouteViewController.swift */,
+			);
+			path = RouteFindingDetail;
+			sourceTree = "<group>";
+		};
+		34CAA30C293623FF00907C77 /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				34CAA30D2936240900907C77 /* RouteInfoView.swift */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
 		34E11EC0292BEBF200787316 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,6 +563,7 @@
 			isa = PBXGroup;
 			children = (
 				78B6A708292F5AC700C0BB70 /* RouteFinding */,
+				34CAA3092936198E00907C77 /* RouteFindingDetail */,
 				34E11EDE293097F500787316 /* RouteFindingFeature */,
 				FB8A9E102930A0BC003F44D3 /* SaveRootFinding */,
 				3405BE5D2927DA6200D6E15A /* MyActivity */,
@@ -855,6 +889,7 @@
 				0AAB780A290424A300EEEFFB /* SwipeableCardVideoView.swift in Sources */,
 				FB8A9E0F292D840C003F44D3 /* ExportViewController.swift in Sources */,
 				3A46424A2934107A00C6B7A3 /* RouteFindingCameraViewController+PHPickerViewControllerDelegate.swift in Sources */,
+				348729082936701700634A05 /* RouteFindingDetailViewController+CollectionViewExtensions.swift in Sources */,
 				34E11EE12930981F00787316 /* RouteFindingFeatureViewController.swift in Sources */,
 				3A15AC7929071F710058512F /* DataRepository.swift in Sources */,
 				342508AF29002F31000653D9 /* HomeCollectionViewHeaderCell.swift in Sources */,
@@ -880,6 +915,7 @@
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
 				78CAA0662901F7A9003C3D77 /* BasePaddingLabel.swift in Sources */,
 				FBB272BA29329EBA00A36CB0 /* RouteFindingSaveViewController+UICollectionViewExtensions.swift .swift in Sources */,
+				3487290629365F1500634A05 /* RoutefindingDetailViewController+UIPageViewControllerExtensions.swift in Sources */,
 				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
 				78B6A7212932967100C0BB70 /* RouteFindingCollectionViewHeaderCell+Protocol.swift in Sources */,
 				3A4642462933FF8300C6B7A3 /* CameraSessionStatus.swift in Sources */,
@@ -919,11 +955,13 @@
 				341418B82922A2500033D851 /* GymSettingViewController+TableViewExtensions.swift in Sources */,
 				3AA4D41F28FEBADE006C718A /* AppDelegate.swift in Sources */,
 				3A15AC7F2907262C0058512F /* VideoCollectionView+DataSorting.swift in Sources */,
+				34CAA30E2936240900907C77 /* RouteInfoView.swift in Sources */,
 				342508A929001C2E000653D9 /* HomeTableViewCardCell+CollectionViewExtensions.swift in Sources */,
 				78D44C03293799AF007376DB /* VideoInfoView+Protocol.swift in Sources */,
 				3AA4D42928FEBADE006C718A /* OrrRock.xcdatamodeld in Sources */,
 				78F93ED7290743DF00F3D9F3 /* LevelAndPFEditViewController.swift in Sources */,
 				341418B42922974D0033D851 /* VisitedClimbingGym+CoreDataClass.swift in Sources */,
+				34CAA30B29361A0400907C77 /* RouteFindingDetailViewController.swift in Sources */,
 				78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */,
 				342508A329001780000653D9 /* HomeViewController.swift in Sources */,
 				705C19C929309AB300C975D5 /* UINavigationController+.swift in Sources */,
@@ -944,6 +982,8 @@
 				78B6A714292FA8A100C0BB70 /* RouteFindingCollectionViewCustomCell.swift in Sources */,
 				78B6A723293296DF00C0BB70 /* RouteModalViewController+Protocol.swift in Sources */,
 				3405BE632927DD2E00D6E15A /* ChallengeChartView.swift in Sources */,
+				34CAA31129363F8800907C77 /* RouteViewController.swift in Sources */,
+				348968B82937F76E00B52B9D /* RouteFindingDetailViewController+GestureExtensions.swift in Sources */,
 				78FEE89B29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift in Sources */,
 				FB8A9E122930A10E003F44D3 /* RouteFindingSaveViewController.swift in Sources */,
 				3A15AC7D2907258A0058512F /* SectionData.swift in Sources */,
