@@ -105,7 +105,7 @@ class RouteFindingSaveViewController: UIViewController {
         label.textColor = UIColor.white
         label.font = UIFont.systemFont(ofSize: 14.0)
         label.textAlignment = .center
-        label.text = "이 루트파인딩을 사진에 저장했습니다."
+        label.text = ""
         
         return label
     }()
@@ -196,14 +196,44 @@ class RouteFindingSaveViewController: UIViewController {
     }
     
     @objc func saveAction() {
-        let image = previewImageView.asImage()
-        UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
-        completeSaveImage()
+        // 액션시트 생성
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // 묶음사진 전체 저장 로직 생성
+        let saveAllImage = UIAlertAction(title: "묶음사진 전체 저장", style: UIAlertAction.Style.default) { [self] _ in
+            let pageimages = pageImages
+            for pageimage in pageimages {
+                UIImageWriteToSavedPhotosAlbum(pageimage, self, nil, nil)
+            }
+            completeSaveImage(isSaveAll: true)
+        }
+        // 이 사진만 저장 로직 생성
+        let saveThisImage = UIAlertAction(title: "이 사진만 저장", style: UIAlertAction.Style.default) { [self] _ in
+            guard let image = previewImageView.image else { return }
+            UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
+            completeSaveImage(isSaveAll: false)
+        }
+        // 취소 로직 생성
+        let cancelAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.cancel)
+        
+        // 액션시트에 액션 추가
+        alert.addAction(saveAllImage)
+        alert.addAction(saveThisImage)
+        alert.addAction(cancelAction)
+        
+        // 액션시트 표시
+        self.present(alert, animated: true)
     }
     
-    @objc func completeSaveImage() {
+    @objc func completeSaveImage(isSaveAll: Bool) {
         
         self.toastMessageView.alpha = 0
+        
+        if isSaveAll == true {
+            toastMessage.text = "모든 루트파인딩을 사진에 저장했습니다."
+        } else {
+            toastMessage.text = "이 루트파인딩을 사진에 저장했습니다."
+        }
         
         view.addSubview(toastMessageView)
         toastMessageView.snp.makeConstraints {
@@ -286,7 +316,7 @@ extension RouteFindingSaveViewController {
             // 물리버튼이 있는 iPhone 8 이하 or SE 버전 디바이스
             view.addSubview(countVideoView)
             countVideoView.snp.makeConstraints {
-                $0.bottom.equalTo(skipButton.snp.top).offset(-54) // TODO: 린다와 패딩 협의 필요
+                $0.bottom.equalTo(skipButton.snp.top).offset(-54)
                 $0.centerX.equalToSuperview()
                 $0.height.equalTo(24)
                 $0.width.equalTo(71)
