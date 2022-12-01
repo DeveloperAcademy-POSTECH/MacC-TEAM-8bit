@@ -32,14 +32,12 @@ class RouteFindingDetailViewController: UIViewController {
     
     private lazy var topSafeAreaView: UIView = {
         let view = UIView()
-//        view.backgroundColor = .black
         view.backgroundColor = .orrGray100
         return view
     }()
     
     private lazy var bottomSafeAreaView: UIView = {
         let view = UIView()
-//        view.backgroundColor = .black
         view.backgroundColor = .orrGray100
         return view
     }()
@@ -150,8 +148,6 @@ class RouteFindingDetailViewController: UIViewController {
         let backGroundColor = UIColor.black
         
         view.backgroundColor = backGroundColor
-        //        bottomSafeAreaView.backgroundColor = backGroundColor
-        //        topSafeAreaView.backgroundColor = backGroundColor
     }
     
     func getViewControllerForPageVC() -> [RouteViewController] {
@@ -251,7 +247,6 @@ extension RouteFindingDetailViewController {
                 $0.height.equalTo(contentHeight - 69)
                 $0.width.equalTo((contentHeight - 69) * 9 / 16)
             }
-//            $0.top.equalTo(view.forLastBaselineLayout.snp_topMargin)
             $0.center.equalToSuperview()
         }
         
@@ -275,7 +270,7 @@ extension RouteFindingDetailViewController {
         thumbnailCollectionView.snp.makeConstraints {
             $0.height.equalTo(74)
             $0.horizontalEdges.equalToSuperview()
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(0)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
         
         view.addSubview(routeInfoView)
