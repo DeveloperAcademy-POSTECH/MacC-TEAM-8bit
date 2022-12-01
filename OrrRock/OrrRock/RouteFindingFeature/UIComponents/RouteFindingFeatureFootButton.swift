@@ -11,10 +11,8 @@ class RouteFindingFeatureFootButton: RouteFindingFeatureButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        let image = UIImage(named: "foot_point_button")!.resized(to: CGSize(width: 40, height: 40))
-        self.imageView?.contentMode = .scaleToFill
-        self.setImage(image, for: .normal)
-//        self.setImage(), for: .normal)
+        
+        self.setImage(UIImage(named: "foot_point_button")!.resized(to: CGSize(width: 40, height: 40)), for: .normal)
     }
     
     required init?(coder: NSCoder) {
