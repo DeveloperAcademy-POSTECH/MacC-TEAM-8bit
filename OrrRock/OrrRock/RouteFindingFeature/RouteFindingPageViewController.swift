@@ -8,15 +8,24 @@
 import UIKit
 import SnapKit
 
+
+protocol IsDeletingPointButtonDelegate {
+
+    func hidePageNumberingLabelView()
+    func showPageNumberingLabelView()
+}
+
+
 final class RouteFindingPageViewController: UIViewController {
     
+    var delegate: IsDeletingPointButtonDelegate?
+
     var routeDataDraft: RouteDataDraft
     var pageRowOrder: Int
     var backgroundImage: UIImage
     
     var isHandButton: Bool = true
     var buttonList: [RouteFindingFeatureButton] = []
-    
     
     var beginningPosition: CGPoint = .zero
     var initialMovableViewPosition: CGPoint = .zero
@@ -90,6 +99,7 @@ final class RouteFindingPageViewController: UIViewController {
             initialMovableViewPosition = buttonView.frame.origin
         } else if sender.state == .ended {
             trashView.isHidden = true
+            delegate?.showPageNumberingLabelView()
             // buttonView가 trashView영역에 들어왔을 때 point 삭제
             if buttonView.frame.intersects(trashView.frame) {
 //                trashView.image = UIImage(named: "delete_destructive")?.resized(to: CGSize(width: 85, height: 85))
@@ -104,10 +114,11 @@ final class RouteFindingPageViewController: UIViewController {
             
         } else if sender.state == .changed {
             trashView.isHidden = false
+            delegate?.hidePageNumberingLabelView()
             
             trashView.image = UIImage(named:
                                         buttonView.frame.intersects(trashView.frame) ?
-                                      "delete_destructive" : "delete")?.resized(to: CGSize(width: 85, height: 85))
+                                      "delete_destructive" : "delete")?.resized(to: CGSize(width: 80, height: 80))
 
             
             let locationInView = sender.location(in: buttonView)
@@ -154,7 +165,7 @@ final class RouteFindingPageViewController: UIViewController {
         self.view.addSubview(trashView)
         trashView.snp.makeConstraints{
             $0.centerX.equalTo(view.center.x)
-            $0.bottom.equalToSuperview().inset(OrrPd.pd36.rawValue)
+            $0.bottom.equalToSuperview().inset(OrrPd.pd24.rawValue)
         }
     }
 }
