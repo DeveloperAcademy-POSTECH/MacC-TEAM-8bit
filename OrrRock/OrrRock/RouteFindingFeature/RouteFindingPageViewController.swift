@@ -14,7 +14,7 @@ final class RouteFindingPageViewController: UIViewController {
     var pageRowOrder: Int
     var backgroundImage: UIImage
     
-    var isHandButton: Bool = true
+    var isHandButtonMode: Bool = true
     var buttonList: [RouteFindingFeatureButton] = []
     
     
@@ -37,31 +37,31 @@ final class RouteFindingPageViewController: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
         
+        setUpBackgroundImage()
+
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(makeRoutePoint(_:)))
         self.view.addGestureRecognizer(gestureRecognizer)
         
+        
         guard let page = routeDataDraft.routeInfoForUI.pages.first(where: { $0.rowOrder == pageRowOrder }) else { return }
         
-        if page.points.count > 0 {
+        for pointInfo in page.points {
             
-            page.points.forEach { pointInfo in
-                var button = isHandButton ? RouteFindingFeatureHandButton() : RouteFindingFeatureFootButton()
-                
-                self.view.addSubview(button)
-                buttonList.append(button)
-                
-                let panGesture = UIPanGestureRecognizer(target: self, action: #selector(moveRoutePointButton(_:)))
-                
-                button.addGestureRecognizer(panGesture)
-                
-                button.snp.makeConstraints{
-                    $0.centerX.equalTo(pointInfo.position.x)
-                    $0.centerY.equalTo(pointInfo.position.y)
-                }
+            let button = pointInfo.footOrHand == .hand ? RouteFindingFeatureHandButton() : RouteFindingFeatureFootButton()
+            
+            self.view.addSubview(button)
+            buttonList.append(button)
+            
+            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(moveRoutePointButton(_:)))
+            
+            button.addGestureRecognizer(panGesture)
+            
+            button.snp.makeConstraints{
+                $0.centerX.equalTo(pointInfo.position.x)
+                $0.centerY.equalTo(pointInfo.position.y)
             }
         }
         
-        setUpBackgroundImage()
         setUpLayout()
     }
     
@@ -154,7 +154,7 @@ extension RouteFindingPageViewController: UIGestureRecognizerDelegate {
     
     func addRoutePointButton(to location: CGPoint) {
         
-        var button = isHandButton ? RouteFindingFeatureHandButton() : RouteFindingFeatureFootButton()
+        var button = isHandButtonMode ? RouteFindingFeatureHandButton() : RouteFindingFeatureFootButton()
         
         self.view.addSubview(button)
         
@@ -169,7 +169,7 @@ extension RouteFindingPageViewController: UIGestureRecognizerDelegate {
         
         routeDataDraft.addPointData(pageAt: routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == pageRowOrder })!,
                                     addTargetPointInfo: PointInfo(id: UUID(),
-                                                                  footOrHand: isHandButton ? .hand : .foot,
+                                                                  footOrHand: isHandButtonMode ? .hand : .foot,
                                                                   isForce: false,
                                                                   position: location,
                                                                   forceDirection: .pi0))

@@ -15,15 +15,13 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
         presentationController as! UISheetPresentationController
     }
     
-    var videoInformation : VideoInformation!
+    var videoInformation: VideoInformation?
+    var routeInformation: RouteInformation?
+    
     var selectDate : Date?
     var selectGymName : String?
-    var completioHandler : ((Date) -> (Void))?
+    var completionHandler : ((Date) -> (Void))?
     
-    var visitedGymList: [VisitedClimbingGym] = []
-    var filteredVisitedGymList: [VisitedClimbingGym] = []
-    var maxTableViewCellCount: Int = 0
-
     // MARK: gym view compenents
     private lazy var gymContentView : UIView = {
         let view = UIView()
@@ -163,8 +161,18 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
     }
     
     private func setData(){
-        datePicker.date = videoInformation.gymVisitDate
-        selectDate = videoInformation.gymVisitDate
+        if let videoInformation {
+            datePicker.date = videoInformation.gymVisitDate
+            selectDate = videoInformation.gymVisitDate
+        }
+        else if let routeInformation {
+            datePicker.date = routeInformation.dataWrittenDate
+            selectDate = routeInformation.dataWrittenDate
+        }
+        else {
+            // 정상적으로 데이터가 들어오지 않음
+            print("DateEditViewController Input Data Error")
+        }
     }
 }
 
@@ -178,8 +186,18 @@ extension DateEditViewController {
     
     @objc
     func pressSaveButton() {
-        DataManager.shared.updateDateData(videoInformation: videoInformation, gymVisitDate: datePicker.date)
-        completioHandler?(datePicker.date)
+        if let videoInformation {
+            DataManager.shared.updateDateData(videoInformation: videoInformation, gymVisitDate: datePicker.date)
+            completionHandler?(datePicker.date)
+        }
+        else if let routeInformation {
+            completionHandler?(datePicker.date)
+        }
+        else {
+            // 정상적으로 데이터가 들어오지 않음
+            print("DateEditViewController Input Data Error")
+        }
+        
         self.dismiss(animated: true)
     }
     

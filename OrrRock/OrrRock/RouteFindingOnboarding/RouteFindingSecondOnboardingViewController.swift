@@ -13,29 +13,37 @@ class RouteFindingSecondOnboardingViewController: RouteFindingOnboardingParentVi
     
     // MARK: Variables
 
+    var isHandButtonMode: Bool = false {
+        didSet {
+            gestureView.isHandButton = isHandButtonMode
+            
+            handButton.tintColor = isHandButtonMode ? .orrWhite : .orrGray500
+            footButton.tintColor = isHandButtonMode ? .orrGray500 : .orrWhite
+        }
+    }
     
     // MARK: View Components
     
     // TODO: house 이미지를 손, 발 이미지로 대체하기
 
-    private lazy var handButton = {
+    private lazy var handButton: UIButton = {
         let handButton = UIButton()
         handButton.backgroundColor = .clear
-        handButton.setImage(UIImage(systemName: "house"), for: .normal)
-        handButton.tintColor = .orrWhite
+        handButton.setImage(UIImage(named: "activated_hand_button")!.withRenderingMode(.alwaysTemplate), for: .normal)
+        handButton.tintColor = .orrGray500
         handButton.addAction(UIAction { _ in
-                self.tapHandFootButton()
+            self.isHandButtonMode = true
         }, for: .touchUpInside)
         return handButton
     }()
     
-    private lazy var footButton = {
+    private lazy var footButton: UIButton = {
         let footButton = UIButton()
         footButton.backgroundColor = .clear
-        footButton.setImage(UIImage(systemName: "house"), for: .normal)
-        footButton.tintColor = .orrWhite
+        footButton.setImage(UIImage(named: "activated_foot_button")!.withRenderingMode(.alwaysTemplate), for: .normal)
+        footButton.tintColor = .orrGray500
         footButton.addAction(UIAction { _ in
-            self.tapHandFootButton()
+            self.isHandButtonMode = false
         }, for: .touchUpInside)
         return footButton
     }()
@@ -93,6 +101,7 @@ class RouteFindingSecondOnboardingViewController: RouteFindingOnboardingParentVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        isHandButtonMode = true
         descriptionView.text = "버튼을 눌러\n손동작과 발동작을 추가할 수 있어요"
     }
     

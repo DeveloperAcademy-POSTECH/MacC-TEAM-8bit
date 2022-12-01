@@ -17,11 +17,14 @@ final class RouteFindingFeatureViewController: UIViewController {
     var pageViewControllerList: [RouteFindingPageViewController] = []
     var backgroundImage: UIImage
     
-    var isHandButton: Bool = false {
+    var isHandButtonMode: Bool = false {
         didSet {
             pageViewControllerList.forEach { vc in
-                vc.isHandButton = isHandButton
+                vc.isHandButtonMode = isHandButtonMode
             }
+            
+            handButton.tintColor = isHandButtonMode ? .orrWhite : .orrGray500
+            footButton.tintColor = isHandButtonMode ? .orrGray500 : .orrWhite
         }
     }
     
@@ -111,26 +114,29 @@ final class RouteFindingFeatureViewController: UIViewController {
         return button
     }()
     
-    private lazy var footHandStackView: UIStackView = {
-        
-        // TODO: house 이미지를 손, 발 이미지로 대체하기
-        
+    private lazy var handButton: UIButton = {
         let handButton = UIButton()
         handButton.backgroundColor = .clear
-        handButton.setImage(UIImage(named: "activated_hand_button"), for: .normal)
-        handButton.tintColor = .orrWhite
+        handButton.setImage(UIImage(named: "activated_hand_button")!.withRenderingMode(.alwaysTemplate), for: .normal)
+        handButton.tintColor = .orrGray500
         handButton.addAction(UIAction { _ in
             self.tapHandButton()
         }, for: .touchUpInside)
-        
+        return handButton
+    }()
+    
+    private lazy var footButton: UIButton = {
         let footButton = UIButton()
         footButton.backgroundColor = .clear
-        footButton.setImage(UIImage(named: "activated_foot_button"), for: .normal)
-        footButton.tintColor = .orrWhite
+        footButton.setImage(UIImage(named: "activated_foot_button")!.withRenderingMode(.alwaysTemplate), for: .normal)
+        footButton.tintColor = .orrGray500
         footButton.addAction(UIAction { _ in
             self.tapFootButton()
         }, for: .touchUpInside)
-        
+        return footButton
+    }()
+    
+    private lazy var footHandStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [handButton, footButton])
         stackView.backgroundColor = .orrGray700
         // stackView의 width가 40이므로, cornerRadius의 값을 20으로 지정
@@ -186,6 +192,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        overrideUserInterfaceStyle = .light
         setUpLayout()
         setUpThumbnailCollectionDelegate()
         setUpPageViewController()
@@ -198,8 +205,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        navigationController?.isNavigationBarHidden = true
+        isHandButtonMode = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -261,9 +267,12 @@ final class RouteFindingFeatureViewController: UIViewController {
         
         let routeFindingSaveViewController = RouteFindingSaveViewController(routeDataDraft: routeDataDraft, backgroundImage: backgroundImage, pageImages: pageImageList)
         
-        self.navigationController?.pushViewController(routeFindingSaveViewController, animated: true)
-        
-        routeDataDraft.save()
+        if let navigationController = self.navigationController {
+            self.navigationController?.pushViewController(routeFindingSaveViewController, animated: true)
+        } else {
+            routeDataDraft.routeInfoForUI = routeDataDraft.save()
+            self.dismiss(animated: true)
+        }
         
         print("Done Button Tapped")
     }
@@ -271,21 +280,21 @@ final class RouteFindingFeatureViewController: UIViewController {
     func exitRouteFinding() {
         
         // TODO: 루트파인딩 데이터 초기화 및 뷰 닫기
-        showPage()
+        self.dismiss(animated: true, completion: nil)
         print("Exit Button Tapped")
     }
     
     func tapHandButton() {
         
         // TODO: 손 버튼을 눌렀을 때 손 입력모드 or 최대 개수 초과 알림 띄우기
-        isHandButton = true
+        isHandButtonMode = true
         print("Hand Button Tapped")
     }
     
     func tapFootButton() {
         
         // TODO: 발 버튼을 눌렀을 때 손 입력모드 or 최대 개수 초과 알림 띄우기
-        isHandButton = false
+        isHandButtonMode = false
         print("Foot Button Tapped")
     }
     
@@ -403,6 +412,7 @@ extension RouteFindingFeatureViewController {
     private func setUpPageViewController() {
         routePageViewController.delegate = self
         routePageViewController.dataSource = self
+        routePageViewController.isPagingEnabled = false
         
         pageViewControllerList = getViewControllerForPageVC()
         routePageViewController.setViewControllers([pageViewControllerList.first!], direction: .forward, animated: true)
@@ -426,6 +436,7 @@ extension RouteFindingFeatureViewController: RouteFindingThumbnailCollectionView
         
         routeDataDraft.addPageData(pageInfo: PageInfo(rowOrder: newRowOrder))
         let newVC = RouteFindingPageViewController(routeDataDraft: routeDataDraft, pageRowOrder: newRowOrder, backgroundImage: backgroundImage)
+        newVC.isHandButtonMode = isHandButtonMode
         pageViewControllerList.append(newVC)
         
         thumbnailCollectionView.reloadData()
