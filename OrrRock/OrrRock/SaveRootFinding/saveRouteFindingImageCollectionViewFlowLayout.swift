@@ -16,7 +16,7 @@ class SaveRouteFindingImageCollectionViewFlowLayout: UICollectionViewFlowLayout 
         
         if screenHeight < 800 {
             let cellWidth = UIScreen.main.bounds.width / 2
-            let cellHeight = cellWidth * 1.7777
+            let cellHeight = cellWidth * 16 / 9
             minimumLineSpacing = CGFloat(OrrPd.pd24.rawValue)
             minimumInteritemSpacing = CGFloat(OrrPd.pd24.rawValue)
             itemSize = CGSize(width: cellWidth, height: cellHeight)
