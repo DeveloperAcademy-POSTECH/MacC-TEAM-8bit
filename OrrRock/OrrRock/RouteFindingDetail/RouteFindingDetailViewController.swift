@@ -151,7 +151,7 @@ class RouteFindingDetailViewController: UIViewController {
         var routeViewControllers: [RouteViewController] = []
         
         routeDataDraft.routeInfoForUI.pages.forEach { pageInfo in
-            routeViewControllers.append(RouteViewController(pageInfo: pageInfo, backgroundImage: routeDataDraft.routeInfoForUI.imageLocalIdentifier.generateCardViewThumbnail()!))
+            routeViewControllers.append(RouteViewController(pageInfo: pageInfo, backgroundImage: routeDataDraft.routeInfoForUI.imageLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: 2400, height: 2400))!))
         }
         
         return routeViewControllers
@@ -183,7 +183,7 @@ class RouteFindingDetailViewController: UIViewController {
     }
     
     @objc func editAction() {
-        guard let image = routeDataDraft.routeInfoForUI.imageLocalIdentifier.generateCardViewThumbnail() else { return }
+        guard let image = routeDataDraft.routeInfoForUI.imageLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: 2400, height: 2400)) else { return }
         
         let featureVC = RouteFindingFeatureViewController(routeDataDraft: routeDataDraft, backgroundImage: image)
         
