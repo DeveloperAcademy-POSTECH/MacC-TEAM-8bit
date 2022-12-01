@@ -117,7 +117,7 @@ final class RouteFindingFeatureViewController: UIViewController {
         
         let handButton = UIButton()
         handButton.backgroundColor = .clear
-        handButton.setImage(UIImage(systemName: "house"), for: .normal)
+        handButton.setImage(UIImage(named: "activated_hand_button"), for: .normal)
         handButton.tintColor = .orrWhite
         handButton.addAction(UIAction { _ in
             self.tapHandButton()
@@ -125,7 +125,7 @@ final class RouteFindingFeatureViewController: UIViewController {
         
         let footButton = UIButton()
         footButton.backgroundColor = .clear
-        footButton.setImage(UIImage(systemName: "house"), for: .normal)
+        footButton.setImage(UIImage(named: "activated_foot_button"), for: .normal)
         footButton.tintColor = .orrWhite
         footButton.addAction(UIAction { _ in
             self.tapFootButton()
