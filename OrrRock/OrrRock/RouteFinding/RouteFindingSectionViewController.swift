@@ -56,7 +56,7 @@ class RouteFindingSectionViewController: UIViewController {
         layout.sectionInset = .zero
         layout.headerReferenceSize = .init(width: UIScreen.main.bounds.width, height: 64)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .orrGray100
+        cv.backgroundColor = .orrGray050
         return cv
     }()
     
@@ -209,15 +209,17 @@ class RouteFindingSectionViewController: UIViewController {
     }
     
     private func initRouteInformations() {
+        print("inittt")
         switch sectionKind{
         case .all:
-            routeInformations = routeFindingDataManager?.getRouteFindingList()
+            routeInformations = routeFindingDataManager?.getRouteFindingList().sorted { $1.dataWrittenDate < $0.dataWrittenDate }
         case .challenge:
-            routeInformations = routeFindingDataManager?.getSpecificRouteFindingList(isChallengeComplete: false)
+            routeInformations = routeFindingDataManager?.getSpecificRouteFindingList(isChallengeComplete: false).sorted { $1.dataWrittenDate < $0.dataWrittenDate }
         case .success:
-            routeInformations = routeFindingDataManager?.getSpecificRouteFindingList(isChallengeComplete: true)
+            routeInformations = routeFindingDataManager?.getSpecificRouteFindingList(isChallengeComplete: true).sorted { $1.dataWrittenDate < $0.dataWrittenDate }
         case .none:
             break
         }
+        
     }
 }
