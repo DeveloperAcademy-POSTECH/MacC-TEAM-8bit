@@ -66,6 +66,7 @@ final class RouteFindingCameraViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .black
         setUpLayout()
         setPhotosButtonImage()
         
