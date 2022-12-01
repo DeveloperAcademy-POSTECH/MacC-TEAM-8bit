@@ -117,7 +117,6 @@ class RouteFindingDetailViewController: UIViewController {
         self.navigationController?.isToolbarHidden = true
     }
     
-    
     // MARK: Functions
     
     // 네비게이션바 세팅 함수
