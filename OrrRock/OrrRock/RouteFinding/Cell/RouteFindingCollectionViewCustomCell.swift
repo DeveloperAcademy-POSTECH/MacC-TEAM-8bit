@@ -48,7 +48,7 @@ final class RouteFindingCollectionViewCustomCell: UICollectionViewCell {
     
     private lazy var infoView: UIView = {
         let view = UIView()
-        view.backgroundColor = .orrWhite
+        view.backgroundColor = .orrWhiteCustom
         return view
     }()
     

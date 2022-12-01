@@ -58,7 +58,7 @@ extension RouteFindingSectionViewController: UICollectionViewDataSource {
         cell.cellChallengeLabel.text = routeInformations[index].isChallengeComplete ? "도전 성공" : "도전 중"
         cell.cellDateLabel.text = routeInformations[index].dataWrittenDate.timeToString()
         cell.cellTitleLabel.text = routeInformations[index].gymName
-        cell.cellImage.image = routeFindingDataManager?.getRouteFindingList()[index].imageLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: 1200, height: 1200))
+        cell.cellImage.image = routeInformations[index].imageLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: 1200, height: 1200))
         cell.isSelectable = mMode == .select ? true : false
         return cell
     }

@@ -92,6 +92,7 @@ class RouteCoreDataDAO {
         } catch {
             print("CoreDataDAO UpateRoute Method \(error.localizedDescription)")
         }
+        saveData()
     }
     
     func createPageInformation(pageInfo: PageInfo, routeInformation: RouteInformation) {

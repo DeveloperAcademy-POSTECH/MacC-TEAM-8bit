@@ -126,7 +126,7 @@ final class RouteFindingMainViewController: UIViewController {
     }
     
     private func setUpLayout(){
-        view.backgroundColor = .orrGray100
+        view.backgroundColor = .orrGray050
         
         view.addSubview(topView)
         topView.snp.makeConstraints {
