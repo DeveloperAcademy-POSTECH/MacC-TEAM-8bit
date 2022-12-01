@@ -24,8 +24,7 @@ final class RouteFindingPageViewController: UIViewController {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "delete")?.resized(to: CGSize(width: 85, height: 85))
         imageView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
-        // TODO: 드래그할 때만 trahView가 보일 수 있도록 true로 초기화
-        imageView.isHidden = false
+        imageView.isHidden = true
         
         return imageView
     }()
@@ -83,15 +82,18 @@ final class RouteFindingPageViewController: UIViewController {
     @objc
     func moveRoutePointButton(_ sender: UIPanGestureRecognizer) {
         
-        guard sender.state == .began || sender.state == .changed,
+        guard sender.state == .began || sender.state == .changed || sender.state == .ended,
               let buttonView = sender.view as? RouteFindingFeatureButton
         else { return }
         
         if sender.state == .began {
             beginningPosition = sender.location(in: buttonView)
             initialMovableViewPosition = buttonView.frame.origin
+        } else if sender.state == .ended {
+            trashView.isHidden = true
         } else if sender.state == .changed {
-            buttonView.isHidden = false
+            trashView.isHidden = false
+            
             let locationInView = sender.location(in: buttonView)
             buttonView.frame.origin = CGPoint(x: buttonView.frame.origin.x + locationInView.x - beginningPosition.x, y: buttonView.frame.origin.y + locationInView.y - beginningPosition.y)
             
@@ -103,6 +105,7 @@ final class RouteFindingPageViewController: UIViewController {
                 routeDataDraft.removePointData(pageAt: pageNo, pointIndexOf: id)
                 buttonList.remove(at: id)
                 buttonView.removeFromSuperview()
+                trashView.isHidden = true
                 initialMovableViewPosition = .zero
             }
             
@@ -114,6 +117,11 @@ final class RouteFindingPageViewController: UIViewController {
             // point 추가
             if let button = sender.view as? RouteFindingFeatureButton,
                let index = buttonList.firstIndex(where: { $0.id == button.id }) {
+                button.snp.updateConstraints {
+                    $0.centerX.equalTo(sender.location(in: self.view).x)
+                    $0.centerY.equalTo(sender.location(in: self.view).y)
+                }
+                
                 let originPointInfo = routeDataDraft.routeInfoForUI.pages.first(where: { $0.rowOrder == pageRowOrder })!.points[index] as! PointInfo
                 
                 routeDataDraft.updatePointData(pageAt: routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == self.pageRowOrder })!,
@@ -122,11 +130,7 @@ final class RouteFindingPageViewController: UIViewController {
                                                                                 isForce: originPointInfo.isForce,
                                                                                 position: buttonView.center,
                                                                                 forceDirection: originPointInfo.forceDirection))
-                
-                button.snp.updateConstraints {
-                    $0.centerX.equalTo(sender.location(in: self.view).x)
-                    $0.centerY.equalTo(sender.location(in: self.view).y)
-                }
+
             }
         }
     }
@@ -183,11 +187,11 @@ extension RouteFindingPageViewController: UIGestureRecognizerDelegate {
 }
     
 // TODO: CustomView로 전환하여 ended시점에 trashView.isHidden = true로 전환
-extension RouteFindingPageViewController: CustomPanGestureRecognizerDelegate {
-    
-    func hideTrashView() {
-        trashView.isHidden = true
-        print("ended")
-    }
-    
-}
+//extension RouteFindingPageViewController: CustomPanGestureRecognizerDelegate {
+//
+//    func hideTrashView() {
+//        trashView.isHidden = true
+//        print("ended")
+//    }
+//
+//}
