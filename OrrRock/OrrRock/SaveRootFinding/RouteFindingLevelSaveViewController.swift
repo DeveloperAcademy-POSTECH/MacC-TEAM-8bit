@@ -45,7 +45,7 @@ final class RouteFindingLevelSaveViewController: UIViewController {
         view.pickerSelectValue = 0
         view.delegate = self
         view.customTitle = "슬라이드 해주세요"
-
+        
         return view
     }()
     
@@ -86,10 +86,10 @@ final class RouteFindingLevelSaveViewController: UIViewController {
         
         view.backgroundColor = .orrWhite
         overrideUserInterfaceStyle = .dark
-
+        
         setUpLayout()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,27 +106,10 @@ final class RouteFindingLevelSaveViewController: UIViewController {
         var imageLocalIdentifier = routeDataDraft.routeInfoForUI.imageLocalIdentifier
         
         if  imageLocalIdentifier == "" {
-            // 사진 촬영 기능을 통해 사진을 가져왔을 경우
-            func savePhotoByLocalIdentifier(targetImage image: UIImage?, _ completion: @escaping (String) -> Void) {
-                let status = PHPhotoLibrary.authorizationStatus()
-                if status == .authorized {
-                    do {
-                        try PHPhotoLibrary.shared().performChangesAndWait {
-                            guard let photoImage = image else { return }
-                            let assetRequest = PHAssetChangeRequest.creationRequestForAsset(from: photoImage)
-                            completion(assetRequest.placeholderForCreatedAsset?.localIdentifier ?? "")
-                        }
-                    }
-                    catch let error {
-                        print("saveImage: there was a problem: \(error.localizedDescription)")
-                    }
-                }
-            }
-            
             savePhotoByLocalIdentifier(targetImage: backgroundImage) { localIdentifier in
-                imageLocalIdentifier = localIdentifier
+                self.routeDataDraft.routeInfoForUI.imageLocalIdentifier = localIdentifier
+                self.routeDataDraft.save()
             }
-            routeDataDraft.save()
         } else {
             // 사진 앨범에서 사진을 가져왔을 경우
             routeDataDraft.save()
@@ -184,4 +167,26 @@ private extension RouteFindingLevelSaveViewController {
             $0.height.equalTo(56)
         }
     }
+    
+}
+
+private extension RouteFindingLevelSaveViewController {
+    
+    // 사진 촬영 기능을 통해 사진을 가져왔을 경우
+    func savePhotoByLocalIdentifier(targetImage image: UIImage?, _ completion: @escaping (String) -> Void) {
+        let status = PHPhotoLibrary.authorizationStatus()
+        if status == .authorized {
+            do {
+                try PHPhotoLibrary.shared().performChangesAndWait {
+                    guard let photoImage = image else { return }
+                    let assetRequest = PHAssetChangeRequest.creationRequestForAsset(from: photoImage)
+                    completion(assetRequest.placeholderForCreatedAsset?.localIdentifier ?? "")
+                }
+            }
+            catch let error {
+                print("saveImage: there was a problem: \(error.localizedDescription)")
+            }
+        }
+    }
+    
 }
