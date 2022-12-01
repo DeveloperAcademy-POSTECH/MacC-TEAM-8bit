@@ -13,6 +13,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     // MARK: Variables
     
     var routeDataDraft: RouteDataDraft
+    var tempRouteInfo: RouteInfo
     var pageViewControllerList: [RouteFindingPageViewController] = []
     var backgroundImage: UIImage
     
@@ -177,6 +178,8 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage) {
         self.routeDataDraft = routeDataDraft
+        self.tempRouteInfo = routeDataDraft.routeInfoForUI
+        
         self.backgroundImage = backgroundImage
         
         super.init(nibName: nil, bundle: nil)
@@ -291,6 +294,8 @@ final class RouteFindingFeatureViewController: UIViewController {
     func showExitAlert() {
         let optionMenu = UIAlertController(title: "저장하지 않고 나가기", message: "지금 나가면 변경 사항이\r\n삭제됩니다.", preferredStyle: .alert)
         let deleteAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
+            self.routeDataDraft.routeInfoForUI = self.tempRouteInfo
+            
             self.dismiss(animated: true, completion: nil)
         }
         
