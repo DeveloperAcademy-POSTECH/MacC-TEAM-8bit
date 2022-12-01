@@ -289,7 +289,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     }
     
     func showExitAlert() {
-        let optionMenu = UIAlertController(title: "저장하지 않고 나가기", message: "지금 나가면 변경 사항이 삭제됩니다.", preferredStyle: .alert)
+        let optionMenu = UIAlertController(title: "저장하지 않고 나가기", message: "지금 나가면 변경 사항이\r\n삭제됩니다.", preferredStyle: .alert)
         let deleteAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
             self.dismiss(animated: true, completion: nil)
         }
