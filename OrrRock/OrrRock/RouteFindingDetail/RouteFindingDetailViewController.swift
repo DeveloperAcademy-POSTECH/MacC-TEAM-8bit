@@ -81,6 +81,7 @@ class RouteFindingDetailViewController: UIViewController {
         setNavigationBar()
         setUpPageViewController()
         setUpCollectionView()
+        addUIGesture()
         
         loadPageViewControllerList()
         let tapgesture = UITapGestureRecognizer(target: self, action: #selector(respondToTapGesture(_:)))
