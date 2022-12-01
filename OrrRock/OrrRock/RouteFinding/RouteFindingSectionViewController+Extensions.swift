@@ -69,7 +69,7 @@ extension RouteFindingSectionViewController: UICollectionViewDataSource {
             routeFindingCollectionView.deselectItem(at: indexPath, animated: true)
             //화면이동 로직 들어갈 부분
             let index = indexPath.row
-            guard let route = routeFindingDataManager?.getRouteFindingList()[index] else { return }
+            let route = routeInformations[index]
 
             let routeDataDraft = RouteDataDraft(manager: routeFindingDataManager!, existingRouteFinding: route, imageLocalIdentifier: route.imageLocalIdentifier)
             let vc = RouteFindingDetailViewController(routeDataDraft: routeDataDraft)
