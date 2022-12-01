@@ -35,6 +35,7 @@
 		34793FA329262A8800B74110 /* CustomBackBarButtomItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34793FA229262A8800B74110 /* CustomBackBarButtomItem.swift */; };
 		3487290629365F1500634A05 /* RoutefindingDetailViewController+UIPageViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3487290529365F1500634A05 /* RoutefindingDetailViewController+UIPageViewControllerExtensions.swift */; };
 		348729082936701700634A05 /* RouteFindingDetailViewController+CollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348729072936701700634A05 /* RouteFindingDetailViewController+CollectionViewExtensions.swift */; };
+		348968B82937F76E00B52B9D /* RouteFindingDetailViewController+GestureExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348968B72937F76E00B52B9D /* RouteFindingDetailViewController+GestureExtensions.swift */; };
 		3495AEF72929192000006469 /* CalendarComponent+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3495AEF62929192000006469 /* CalendarComponent+.swift */; };
 		34BFCD7929369993009602CA /* RouteFindingFeatureHandButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BFCD7829369993009602CA /* RouteFindingFeatureHandButton.swift */; };
 		34BFCD7B293699A2009602CA /* RouteFindingFeatureFootButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BFCD7A293699A2009602CA /* RouteFindingFeatureFootButton.swift */; };
@@ -193,6 +194,7 @@
 		34793FA229262A8800B74110 /* CustomBackBarButtomItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackBarButtomItem.swift; sourceTree = "<group>"; };
 		3487290529365F1500634A05 /* RoutefindingDetailViewController+UIPageViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutefindingDetailViewController+UIPageViewControllerExtensions.swift"; sourceTree = "<group>"; };
 		348729072936701700634A05 /* RouteFindingDetailViewController+CollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteFindingDetailViewController+CollectionViewExtensions.swift"; sourceTree = "<group>"; };
+		348968B72937F76E00B52B9D /* RouteFindingDetailViewController+GestureExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteFindingDetailViewController+GestureExtensions.swift"; sourceTree = "<group>"; };
 		3495AEF62929192000006469 /* CalendarComponent+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarComponent+.swift"; sourceTree = "<group>"; };
 		34BFCD7829369993009602CA /* RouteFindingFeatureHandButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingFeatureHandButton.swift; sourceTree = "<group>"; };
 		34BFCD7A293699A2009602CA /* RouteFindingFeatureFootButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingFeatureFootButton.swift; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 				34CAA30A29361A0400907C77 /* RouteFindingDetailViewController.swift */,
 				348729072936701700634A05 /* RouteFindingDetailViewController+CollectionViewExtensions.swift */,
 				3487290529365F1500634A05 /* RoutefindingDetailViewController+UIPageViewControllerExtensions.swift */,
+				348968B72937F76E00B52B9D /* RouteFindingDetailViewController+GestureExtensions.swift */,
 				34CAA31029363F8800907C77 /* RouteViewController.swift */,
 			);
 			path = RouteFindingDetail;
@@ -980,6 +983,7 @@
 				78B6A723293296DF00C0BB70 /* RouteModalViewController+Protocol.swift in Sources */,
 				3405BE632927DD2E00D6E15A /* ChallengeChartView.swift in Sources */,
 				34CAA31129363F8800907C77 /* RouteViewController.swift in Sources */,
+				348968B82937F76E00B52B9D /* RouteFindingDetailViewController+GestureExtensions.swift in Sources */,
 				78FEE89B29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift in Sources */,
 				FB8A9E122930A10E003F44D3 /* RouteFindingSaveViewController.swift in Sources */,
 				3A15AC7D2907258A0058512F /* SectionData.swift in Sources */,
