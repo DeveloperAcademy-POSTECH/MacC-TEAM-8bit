@@ -76,13 +76,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     private lazy var paddigView: UIView = {
         let view = UIView()
-        return view
-    }()
-    
-    private lazy var bottomBackgroundView: UIView = {
-        let view = UIView()
-        view.isUserInteractionEnabled = false
-        view.backgroundColor = .orrWhite
+        view.layer.zPosition = -1
         return view
     }()
     
@@ -135,6 +129,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         let view = UIView()
         view.layer.cornerRadius = 15
         view.backgroundColor = .orrGray100
+        view.layer.zPosition = -1
         return view
     }()
     
@@ -636,12 +631,6 @@ private extension LevelAndPFSettingViewController {
             $0.center.equalTo(emptyVideoView.snp.center)
         }
         
-        view.addSubview(bottomBackgroundView)
-        bottomBackgroundView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview()
-        }
-        
         view.addSubview(videoSliderBackgroundView)
         videoSliderBackgroundView.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-OrrPd.pd16.rawValue)
@@ -688,7 +677,6 @@ private extension LevelAndPFSettingViewController {
             $0.centerX.equalTo(view.snp.centerX)
             $0.height.equalTo(90)
             $0.width.equalTo(90)
-            $0.top.equalTo(bottomBackgroundView.snp.top)
         }
         
         paddigView.addSubview(successButton)
