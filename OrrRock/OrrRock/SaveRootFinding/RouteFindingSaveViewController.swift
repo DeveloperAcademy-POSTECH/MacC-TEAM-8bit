@@ -312,7 +312,7 @@ extension RouteFindingSaveViewController {
             // 물리버튼이 없는 그 외의 디바이스
             view.addSubview(countVideoView)
             countVideoView.snp.makeConstraints {
-                $0.bottom.equalTo(skipButton.snp.top).offset(-54) // TODO: 린다와 패딩 협의 필요
+                $0.bottom.equalTo(skipButton.snp.top).offset(-54)
                 $0.centerX.equalToSuperview()
                 $0.height.equalTo(24)
                 $0.width.equalTo(71)
