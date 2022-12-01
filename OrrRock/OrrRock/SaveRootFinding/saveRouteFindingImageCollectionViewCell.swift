@@ -18,13 +18,15 @@ class SaveRouteFindingImageCollectionViewCell: UICollectionViewCell {
     
     let collectionViewCellwidth: Int = 58
     
+    let screenHeight = UIScreen.main.bounds.size.height
+    
     // MARK: View Components
     
     lazy var pageImage: UIImageView = {
         let view = UIImageView()
         view.backgroundColor = .white
-        view.layer.cornerRadius = 10
         view.clipsToBounds = true
+        view.layer.cornerRadius = 10
         return view
     }()
     
@@ -72,12 +74,13 @@ class SaveRouteFindingImageCollectionViewCell: UICollectionViewCell {
         pageImage.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
-        contentView.addSubview(selectedBar)
-        selectedBar.snp.makeConstraints {
-            $0.width.equalTo(collectionViewCellwidth)
-            $0.height.equalTo(4)
-            $0.top.equalTo(pageImage.snp.bottom).offset(OrrPd.pd8.rawValue)
+        if screenHeight > 800 {
+            contentView.addSubview(selectedBar)
+            selectedBar.snp.makeConstraints {
+                $0.width.equalTo(collectionViewCellwidth)
+                $0.height.equalTo(4)
+                $0.top.equalTo(pageImage.snp.bottom).offset(OrrPd.pd8.rawValue)
+            }
         }
     }
 }

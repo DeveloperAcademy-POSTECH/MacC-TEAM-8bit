@@ -42,6 +42,10 @@ extension RouteFindingSaveViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    }
 }
 
 extension RouteFindingSaveViewController: UICollectionViewDataSource {
@@ -53,10 +57,9 @@ extension RouteFindingSaveViewController: UICollectionViewDataSource {
         // 페이지에 대한 섬네일 생성
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SaveRouteFindingImageCollectionViewCell.identifier, for: indexPath) as! SaveRouteFindingImageCollectionViewCell
         cell.indexPathOfCell = indexPath
+        
+        cell.pageImage.image = pageImages[indexPath.item]
         cell.pageImage.contentMode = .scaleAspectFill
-        cell.pageImage.clipsToBounds = true
-        cell.pageImage.image = backgroundImage
-        print(cell)
         
         return cell
     }

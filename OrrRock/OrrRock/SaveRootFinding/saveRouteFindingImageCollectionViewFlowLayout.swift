@@ -9,13 +9,25 @@ import UIKit
 
 class SaveRouteFindingImageCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
+    let screenHeight = UIScreen.main.bounds.size.height
+    
     override func prepare() {
         super.prepare()
         
+        if screenHeight < 800 {
+            let cellWidth = UIScreen.main.bounds.width / 2
+            let cellHeight = cellWidth * 1.7777
+            minimumLineSpacing = CGFloat(OrrPd.pd24.rawValue)
+            minimumInteritemSpacing = CGFloat(OrrPd.pd24.rawValue)
+            itemSize = CGSize(width: cellWidth, height: cellHeight)
+        } else {
+            let cellWidth = 58
+            let cellHeight = 103
+            minimumLineSpacing = CGFloat(OrrPd.pd8.rawValue)
+            minimumInteritemSpacing = CGFloat(OrrPd.pd8.rawValue)
+            itemSize = CGSize(width: cellWidth, height: cellHeight)
+        }
         scrollDirection = .horizontal
-        minimumLineSpacing = CGFloat(OrrPd.pd8.rawValue)
-        minimumInteritemSpacing = CGFloat(OrrPd.pd8.rawValue)
-        itemSize = CGSize(width: 58, height: 103)
     }
     
     // 스크롤 시 스크롤이 정지할 것으로 예상되는 지점을 반환하는 메서드
