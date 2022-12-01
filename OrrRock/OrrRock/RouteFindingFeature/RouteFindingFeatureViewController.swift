@@ -265,6 +265,7 @@ final class RouteFindingFeatureViewController: UIViewController {
         var pageImageList: [UIImage] = []
         
         pageViewControllerList.forEach { vc in
+            vc.trashView.isHidden = true
             pageImageList.append(vc.view.asImage())
         }
         
