@@ -150,7 +150,7 @@ class RouteFindingThumbnailCollectionViewAddCell: UICollectionViewCell {
     private func setUpLayout() {
         contentView.addSubview(button)
         button.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
     }
 }
