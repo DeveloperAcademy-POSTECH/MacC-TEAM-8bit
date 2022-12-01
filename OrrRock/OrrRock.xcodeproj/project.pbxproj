@@ -159,7 +159,6 @@
 		78FEE89B29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FEE89A29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift */; };
 		A81992C42927E48B00F024CA /* VideoSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81992C32927E48B00F024CA /* VideoSlider.swift */; };
 		A88805852907F5A0002CD52E /* LevelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88805842907F5A0002CD52E /* LevelPickerView.swift */; };
-		A8AA10A32937E58500F52994 /* CustomPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA10A22937E58500F52994 /* CustomPanGestureRecognizer.swift */; };
 		FB3227FC2903FD9C00276A7D /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3227FB2903FD9C00276A7D /* Date+.swift */; };
 		FB3227FE2903FDA600276A7D /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3227FD2903FDA600276A7D /* String+.swift */; };
 		FB32280F29046B4500276A7D /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32280E29046B4500276A7D /* VideoDetailViewController.swift */; };
@@ -328,7 +327,6 @@
 		78FEE89A29291AEA007B67BD /* VideoDetailPageViewController+Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoDetailPageViewController+Extentions.swift"; sourceTree = "<group>"; };
 		A81992C32927E48B00F024CA /* VideoSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoSlider.swift; sourceTree = "<group>"; };
 		A88805842907F5A0002CD52E /* LevelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelPickerView.swift; sourceTree = "<group>"; };
-		A8AA10A22937E58500F52994 /* CustomPanGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPanGestureRecognizer.swift; sourceTree = "<group>"; };
 		FB3227FB2903FD9C00276A7D /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		FB3227FD2903FDA600276A7D /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		FB32280E29046B4500276A7D /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
@@ -737,7 +735,6 @@
 				7085BA29292D2F08004FD734 /* ColorPickerView.swift */,
 				78B6A70F292F8CD800C0BB70 /* UnderlineSegmentedControl.swift */,
 				78B6A71C2930F91100C0BB70 /* ImageButton.swift */,
-				A8AA10A22937E58500F52994 /* CustomPanGestureRecognizer.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -964,7 +961,6 @@
 				343170F229310971005E66F3 /* RouteFindingPageViewController.swift in Sources */,
 				3A15AC892907B1160058512F /* VideoInformation+CoreDataProperties.swift in Sources */,
 				70A8DF05291403EA0061E36B /* GymSettingModel.swift in Sources */,
-				A8AA10A32937E58500F52994 /* CustomPanGestureRecognizer.swift in Sources */,
 				704BAB5E292834DB004D987A /* NewLevelPickerView.swift in Sources */,
 				3405BE5F2927DA9600D6E15A /* MyActivityViewController.swift in Sources */,
 				70E8E7542923865400793F91 /* OnBoardigSuperViewController.swift in Sources */,

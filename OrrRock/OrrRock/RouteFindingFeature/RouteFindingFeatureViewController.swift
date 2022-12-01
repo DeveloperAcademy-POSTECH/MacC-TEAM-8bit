@@ -6,7 +6,6 @@
 //
 
 import UIKit
-
 import SnapKit
 
 final class RouteFindingFeatureViewController: UIViewController {
@@ -207,6 +206,7 @@ final class RouteFindingFeatureViewController: UIViewController {
         setUpLayout()
         setUpThumbnailCollectionDelegate()
         setUpPageViewController()
+        
     }
     
     // status bar 의 글자 색상을 흰 색으로 변경
@@ -434,7 +434,10 @@ extension RouteFindingFeatureViewController {
         var routeViewControllers: [RouteFindingPageViewController] = []
         
         routeDataDraft.routeInfoForUI.pages.forEach { pageInfo in
-            routeViewControllers.append(RouteFindingPageViewController(routeDataDraft: routeDataDraft, pageRowOrder: pageInfo.rowOrder, backgroundImage: backgroundImage))
+            let vc = RouteFindingPageViewController(routeDataDraft: routeDataDraft, pageRowOrder: pageInfo.rowOrder, backgroundImage: backgroundImage)
+            vc.delegate = self
+            routeViewControllers.append(vc)
+            
         }
         
         return routeViewControllers
@@ -469,7 +472,18 @@ extension RouteFindingFeatureViewController: RouteFindingThumbnailCollectionView
     }
 }
 
-// DEBUG
+extension RouteFindingFeatureViewController: IsDeletingPointButtonDelegate {
+    func hidePageNumberingLabelView() {
+        pageNumberingLabelView.isHidden = true
+        pageNumberingView.isHidden = true
+    }
+    
+    func showPageNumberingLabelView() {
+        pageNumberingLabelView.isHidden = false
+        pageNumberingView.isHidden = false
+    }
+}
+
 extension RouteFindingFeatureViewController {
     func showPage() {
         let nextVC = RouteFindingOnboardingViewController(backgroundImage: backgroundImageView.image!)
