@@ -29,8 +29,8 @@ class RouteViewController: UIViewController {
         let view = UIView()
         
         let warningLabel = UILabel()
-        warningLabel.text = "앨범에서 사진이 삭제되어\n해당 사진을 로드할 수 없습니다."
-        warningLabel.textColor = .orrGray600
+        warningLabel.text = "앨범에서 사진이 삭제되어\n해당 사진을 불러올 수 없습니다."
+        warningLabel.textColor = .orrGray400
         warningLabel.textAlignment = .center
         warningLabel.numberOfLines = 2
         warningLabel.backgroundColor = .white

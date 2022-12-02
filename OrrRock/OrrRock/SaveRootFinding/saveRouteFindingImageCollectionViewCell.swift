@@ -35,7 +35,7 @@ class SaveRouteFindingImageCollectionViewCell: UICollectionViewCell {
         view.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         view.backgroundColor = .clear
         view.layer.cornerRadius = 2
-        view.clipsToBounds =
+        view.clipsToBounds = true
         return view
     }()
     
