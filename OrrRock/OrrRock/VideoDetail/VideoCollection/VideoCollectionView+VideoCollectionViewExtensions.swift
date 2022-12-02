@@ -36,7 +36,7 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
         case .select:
             dictionarySelectedIndexPath[indexPath] = true
             let indexCountLabel = UILabel()
-            indexCountLabel.text = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndexPath.values.filter({$0 == true}).count)개의 비디오 선택"
+            indexCountLabel.text = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndexPath.values.filter({$0 == true}).count)개의 기록 선택"
             toolbarText.customView = indexCountLabel
             deleteBarButton.isEnabled = true
         }
@@ -48,7 +48,7 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
             collectionView.cellForItem(at: indexPath)?.isHighlighted = false
             collectionView.cellForItem(at: indexPath)?.isSelected = false
             let indexCountLabel = UILabel()
-            indexCountLabel.text = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndexPath.values.filter({$0 == true}).count)개의 비디오 선택"
+            indexCountLabel.text = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndexPath.values.filter({$0 == true}).count)개의 기록 선택"
             deleteBarButton.isEnabled = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? false : true
             toolbarText.customView = indexCountLabel
         }

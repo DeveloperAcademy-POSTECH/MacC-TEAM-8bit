@@ -41,7 +41,7 @@ extension HomeViewController: UITableViewDataSource {
             cell.setUpData(primaryTitle: primaryTitle,
                            secondaryTitle: secondaryTitle,
                            PFCountDescription: "\(successCount)번의 성공, \(sortedVideoInfoData[indexPath.row].count - successCount)번의 실패",
-                           videoCountDescription: "\(sortedVideoInfoData[indexPath.row].count)개의 비디오",
+                           videoCountDescription: "\(sortedVideoInfoData[indexPath.row].count)개의 기록",
                            thumbnails: thumbnails,
                            sortOption: sortOption
             )

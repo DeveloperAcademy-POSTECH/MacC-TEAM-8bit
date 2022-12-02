@@ -233,7 +233,7 @@ class VideoCollectionViewController: UIViewController {
     }
     
     @objc func didDeleteActionSheetClicked(_ sender: UIBarButtonItem) {
-        let optionMenu = UIAlertController(title: "선택한 영상 삭제하기", message: "정말로 삭제하시겠어요?", preferredStyle: .actionSheet)
+        let optionMenu = UIAlertController(title: "선택한 기록 삭제하기", message: "정말로 삭제하시겠어요?", preferredStyle: .actionSheet)
         let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { _ in
             self.didDeleteButtonClicked()
         }
@@ -265,7 +265,7 @@ class VideoCollectionViewController: UIViewController {
             
         }
         let indexCountLabel = UILabel()
-        indexCountLabel.text = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndexPath.values.filter({$0 == true}).count)개의 비디오 선택"
+        indexCountLabel.text = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndexPath.values.filter({$0 == true}).count)개의 기록 선택"
         deleteBarButton.isEnabled = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? false : true
         toolbarText.customView = indexCountLabel
         isFirstSelectAllButtonTouch.toggle()

@@ -44,7 +44,7 @@ final class VideoCollectionFooterCell: UICollectionReusableView {
     
     func prepare(title: String?,count : Int,successCount : Int , failCount : Int) {
         self.titleLabel.text = "\(successCount)번의 성공, \(failCount)번의 실패"
-        self.subTitleLabel.text = "\(count)개의 비디오"
+        self.subTitleLabel.text = "\(count)개의 기록"
     }
     
     func setUpLayout(){
