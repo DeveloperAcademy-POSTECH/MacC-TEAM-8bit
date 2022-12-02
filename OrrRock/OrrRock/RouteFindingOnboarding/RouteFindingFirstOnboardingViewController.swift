@@ -44,10 +44,14 @@ class RouteFindingFirstOnboardingViewController: RouteFindingOnboardingParentVie
         return btn
     }()
     
-    override var skipButton: UIButton {
-        get { return super.skipButton }
-        set { self.skipButton = newValue }
-    }
+    lazy var underlinedSkipButton: UIButton = {
+        let btn = UIButton()
+        btn.setAttributedTitle("이미 잘 할 수 있어요".underLineAttribute(color: .orrGray500!), for: .normal)
+        btn.addAction(UIAction(handler: { _ in
+            self.triggerSkipOnboarding()
+        }), for: .touchUpInside)
+        return btn
+    }()
     
     // MARK: Life Cycle Functions
     
@@ -60,7 +64,6 @@ class RouteFindingFirstOnboardingViewController: RouteFindingOnboardingParentVie
         super.viewWillAppear(animated)
         
         descriptionView.text = "이제부터 루트파인딩을 기록해요\n방법을 살펴볼까요?"
-        skipButton.setAttributedTitle("이미 잘 할 수 있어요".underLineAttribute(color: .orrGray500!), for: .normal)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -103,8 +106,8 @@ extension RouteFindingFirstOnboardingViewController {
             $0.height.equalTo(56)
         }
         
-        skipButton.snp.removeConstraints()
-        skipButton.snp.makeConstraints {
+        view.addSubview(underlinedSkipButton)
+        underlinedSkipButton.snp.makeConstraints {
             $0.centerX.equalTo(view)
             $0.bottom.equalTo(nextButton.snp.top).offset(-OrrPd.pd4.rawValue)
         }

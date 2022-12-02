@@ -95,7 +95,6 @@ final class RouteFindingMainViewController: UIViewController {
         setUpLayout()
         setInitialNavigationBar()
         setUpSegment()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -127,6 +126,7 @@ final class RouteFindingMainViewController: UIViewController {
     
     private func setUpLayout(){
         view.backgroundColor = .orrGray050
+        UserDefaults.standard.set(tabBarController!.tabBar.frame.size.height, forKey: "tabBarHeight")
         
         view.addSubview(topView)
         topView.snp.makeConstraints {

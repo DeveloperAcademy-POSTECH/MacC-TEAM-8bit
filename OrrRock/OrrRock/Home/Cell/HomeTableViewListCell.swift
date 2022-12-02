@@ -19,7 +19,7 @@ final class HomeTableViewListCell: UITableViewCell {
         let view = UIImageView()
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
-        view.backgroundColor = .orrGray500
+        view.backgroundColor = .orrGray300
         view.contentMode = .scaleAspectFill
         return view
     }()

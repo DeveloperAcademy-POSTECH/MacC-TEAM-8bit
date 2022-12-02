@@ -97,7 +97,7 @@ final class RouteFindingCollectionViewCustomCell: UICollectionViewCell {
     private func setUpLayout() {
         self.layer.cornerRadius = 10
         self.clipsToBounds = true
-        self.backgroundColor = .gray
+        self.backgroundColor = .orrGray300
         self.addSubview(cellImage)
         cellImage.snp.makeConstraints {
             $0.leading.top.trailing.bottom.equalTo(0)

@@ -17,7 +17,7 @@ final class HomeTableViewCardCell: UITableViewCell {
     private var visitedGymName: String = "클라이밍장 정보"
     private var PFCountDescription: String = "N번의 성공, N번의 실패"
     private var videoCountDescription: String = "N개의 비디오"
-    var videoThumbnails: [UIImage] = []
+    var videoThumbnails: [UIImage?] = []
     
     // MARK: UI Components
     private lazy var cardView: UIView = {
@@ -156,7 +156,7 @@ final class HomeTableViewCardCell: UITableViewCell {
     }
     
     // MARK: Value Assign Function
-    func setUpData(primaryTitle: String, secondaryTitle: String, PFCountDescription: String, videoCountDescription: String, thumbnails: [UIImage], sortOption: SortOption) {
+    func setUpData(primaryTitle: String, secondaryTitle: String, PFCountDescription: String, videoCountDescription: String, thumbnails: [UIImage?], sortOption: SortOption) {
         dateLabel.text = primaryTitle
         gymLabel.text = secondaryTitle
         countTotalVideoLabel.text = videoCountDescription
