@@ -13,6 +13,7 @@ class RouteFindingSixthOnboardingViewController: RouteFindingOnboardingParentVie
 
     let collectionViewCellSize: Int = 62
 
+    var isMovingToNextPage: Bool = false
     var pages: [PageInfo] = [PageInfo(rowOrder: 0), PageInfo(rowOrder: 1)]
     var pageViews: [UIView] = [UIView(), UIView()]
     var centerCell: RouteFindingThumbnailCollectionViewCell?
@@ -139,8 +140,12 @@ class RouteFindingSixthOnboardingViewController: RouteFindingOnboardingParentVie
         thumbnailCollectionView.scrollToItem(at: nextPath, at: .centeredHorizontally, animated: true)
         cancelDeleteMode()
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.8) {
-            self.triggerMoveToNextPage()
+        if !isMovingToNextPage {
+            isMovingToNextPage = true
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                self.triggerMoveToNextPage()
+            }
         }
     }
 }
@@ -160,6 +165,8 @@ extension RouteFindingSixthOnboardingViewController {
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
+        
+        super.setUpSkipButtonLayout()
     }
     
     func setUpThumbnailCollectionViewDelegate() {

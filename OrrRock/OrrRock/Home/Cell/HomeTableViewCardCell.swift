@@ -156,7 +156,7 @@ final class HomeTableViewCardCell: UITableViewCell {
     }
     
     // MARK: Value Assign Function
-    func setUpData(primaryTitle: String, secondaryTitle: String, PFCountDescription: String, videoCountDescription: String, thumbnails: [UIImage], sortOption: SortOption) {
+    func setUpData(primaryTitle: String, secondaryTitle: String, PFCountDescription: String, videoCountDescription: String, thumbnails: [UIImage?], sortOption: SortOption) {
         dateLabel.text = primaryTitle
         gymLabel.text = secondaryTitle
         countTotalVideoLabel.text = videoCountDescription

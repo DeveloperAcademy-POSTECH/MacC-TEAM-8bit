@@ -10,9 +10,11 @@ import UIKit
 class RouteFindingFifthOnboardingViewController: RouteFindingOnboardingParentViewController {
     
     // MARK: Variables
+    
     var pages: [PageInfo] = [PageInfo(rowOrder: 0)]
     var pageViews: [UIView] = [UIView()]
     var centerCell: RouteFindingThumbnailCollectionViewCell?
+    var isMovingToNextPage: Bool = false
     
     // MARK: View Components
     
@@ -77,6 +79,8 @@ extension RouteFindingFifthOnboardingViewController {
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
+        
+        super.setUpSkipButtonLayout()
     }
     
     func setUpThumbnailCollectionViewDelegate() {
@@ -108,8 +112,12 @@ extension RouteFindingFifthOnboardingViewController: RouteFindingThumbnailCollec
         thumbnailCollectionView.reloadData()
         thumbnailCollectionView.scrollToItem(at: IndexPath(row: pageViews.count, section: 0), at: .centeredHorizontally, animated: true)
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-            self.triggerMoveToNextPage()
+        if !isMovingToNextPage {
+            isMovingToNextPage = true
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                self.triggerMoveToNextPage()
+            }
         }
     }
 }
