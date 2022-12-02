@@ -44,7 +44,7 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
     
     private lazy var videoCountLabel: UILabel = {
         let view = UILabel()
-        view.text = "NNN개의 비디오"
+        view.text = "NNN개의 기록"
         view.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         view.textColor = .orrGray500
         return view
@@ -106,7 +106,7 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
     }
     
     func setUpData(videoCount: Int, successCount: Int) {
-        videoCountLabel.text = "\(videoCount)개의 비디오"
+        videoCountLabel.text = "\(videoCount)개의 기록"
         PFCountLabel.text = "\(successCount)번의 성공, \(videoCount - successCount)번의 실패"
     }
 }
