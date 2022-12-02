@@ -150,7 +150,7 @@ class RouteFindingDetailViewController: UIViewController {
     func getViewControllerForPageVC() -> [RouteViewController] {
         var routeViewControllers: [RouteViewController] = []
         routeDataDraft.routeInfoForUI.pages.forEach { pageInfo in
-            routeViewControllers.append(RouteViewController(pageInfo: pageInfo, backgroundImage: routeDataDraft.routeInfoForUI.imageLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: 2400, height: 2400))!))
+            routeViewControllers.append(RouteViewController(pageInfo: pageInfo, backgroundImage: routeDataDraft.routeInfoForUI.imageLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: 2400, height: 2400))))
         }
         
         return routeViewControllers
