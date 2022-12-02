@@ -45,12 +45,16 @@ class RouteFindingOnboardingParentViewController: UIViewController {
     }()
     
     lazy var skipButton: UIButton = {
-        let btn = UIButton()
-        btn.setAttributedTitle("SKIP".underLineAttribute(color: .orrUPBlue!), for: .normal)
-        btn.addAction(UIAction(handler: { _ in
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 64, height: 40))
+        button.layer.cornerRadius = 20
+        button.backgroundColor = .orrGray700
+        button.setTitle("SKIP", for: .normal)
+        button.setTitleColor(.orrWhite, for: .normal)
+        button.setTitleColor(.orrGray500, for: .highlighted)
+        button.addAction(UIAction { _ in
             self.triggerSkipOnboarding()
-        }), for: .touchUpInside)
-        return btn
+        }, for: .touchUpInside)
+        return button
     }()
     
     // MARK: Life Cycle Functions
@@ -98,8 +102,8 @@ class RouteFindingOnboardingParentViewController: UIViewController {
 extension RouteFindingOnboardingParentViewController {
     
     // MARK: Set Up Functions
-    
-    @objc func setUpLayout() {
+    @objc
+    func setUpLayout() {
         view.addSubview(backgroundImageView)
         let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)!.windows.first
         let contentHeight = view.frame.height - (window?.safeAreaInsets.top)! + (window?.safeAreaInsets.bottom)!
@@ -122,11 +126,16 @@ extension RouteFindingOnboardingParentViewController {
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(backgroundImageView.snp.bottom).inset(OrrPd.pd72.rawValue)
         }
-        
+    }
+    
+    @objc
+    func setUpSkipButtonLayout() {
         view.addSubview(skipButton)
         skipButton.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(12)
             $0.trailing.equalTo(view.snp.trailing).offset(-OrrPd.pd16.rawValue)
+            $0.height.equalTo(40)
+            $0.width.equalTo(80)
         }
     }
 }

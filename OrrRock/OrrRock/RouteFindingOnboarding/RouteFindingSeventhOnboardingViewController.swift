@@ -13,6 +13,7 @@ class RouteFindingSeventhOnboardingViewController: RouteFindingOnboardingParentV
 
     
     // MARK: View Components
+    
     private lazy var imageView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "RouteFindingOnboardingHandImage")
