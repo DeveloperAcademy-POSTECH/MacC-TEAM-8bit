@@ -228,7 +228,7 @@ final class RouteFindingFeatureViewController: UIViewController {
         self.thumbnailCollectionView.contentInset = UIEdgeInsets(top: 0, left: sideInset, bottom: 0, right: sideInset)
         
         // 뷰가 올라오면 가장 처음 페이지로 이동
-        thumbnailCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: false)
+        thumbnailCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
