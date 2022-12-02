@@ -209,7 +209,6 @@ class RouteFindingSectionViewController: UIViewController {
     }
     
     private func initRouteInformations() {
-        print("inittt")
         switch sectionKind{
         case .all:
             routeInformations = routeFindingDataManager?.getRouteFindingList().sorted { $1.dataWrittenDate < $0.dataWrittenDate }
