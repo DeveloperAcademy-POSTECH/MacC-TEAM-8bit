@@ -171,7 +171,7 @@ class RouteFindingSaveViewController: UIViewController {
         let sideInset = self.view.frame.width / 2 - layoutMargins
         self.saveRouteFindingImageCollectionView.contentInset = UIEdgeInsets(top: 0, left: sideInset, bottom: 0, right: sideInset)
         
-        saveRouteFindingImageCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: false)
+        saveRouteFindingImageCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
