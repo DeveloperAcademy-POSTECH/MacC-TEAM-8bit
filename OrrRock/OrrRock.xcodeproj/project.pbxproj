@@ -882,7 +882,7 @@
 			};
 			buildConfigurationList = 3AA4D41628FEBADE006C718A /* Build configuration list for PBXProject "OrrRock" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = kr;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
