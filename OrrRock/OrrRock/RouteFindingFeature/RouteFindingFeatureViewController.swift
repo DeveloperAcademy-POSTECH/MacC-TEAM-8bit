@@ -198,7 +198,6 @@ final class RouteFindingFeatureViewController: UIViewController {
         overrideUserInterfaceStyle = .light
         
         // 루트파인딩 온보딩 호출
-        UserDefaults.standard.set(false, forKey: "RouteFindingOnboardingClear")
         if !UserDefaults.standard.bool(forKey: "RouteFindingOnboardingClear") {
             let onboardingVC = RouteFindingOnboardingViewController(backgroundImage: backgroundImage)
             onboardingVC.modalPresentationStyle = .fullScreen
