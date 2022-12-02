@@ -12,6 +12,7 @@ class RouteFindingFourthOnboardingViewController: RouteFindingOnboardingParentVi
     // MARK: Variables
 
     
+    
     // MARK: View Components
     
     override var descriptionView: UILabel {
@@ -46,6 +47,6 @@ extension RouteFindingFourthOnboardingViewController {
     override func setUpLayout() {
         super.setUpLayout()
         
-
+        super.setUpSkipButtonLayout()
     }
 }

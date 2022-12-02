@@ -11,6 +11,7 @@ class RouteFindingThirdOnboardingViewController: RouteFindingOnboardingParentVie
     
     // MARK: Variables
 
+    var isMovingToNextPage: Bool = false
     
     // MARK: View Components
     
@@ -60,13 +61,19 @@ extension RouteFindingThirdOnboardingViewController {
         gestureVC.view.snp.makeConstraints {
             $0.edges.equalTo(super.backgroundImageView)
         }
+        
+        super.setUpSkipButtonLayout()
     }
 }
 
 extension RouteFindingThirdOnboardingViewController: RouteFindingOnboardingPanViewControllerDelegate {
     func buttonRemoved() {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-            self.triggerMoveToNextPage()
+        if !isMovingToNextPage {
+            isMovingToNextPage = true
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                self.triggerMoveToNextPage()
+            }
         }
     }
 }

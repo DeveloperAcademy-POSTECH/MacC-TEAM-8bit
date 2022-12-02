@@ -13,6 +13,7 @@ class RouteFindingSecondOnboardingViewController: RouteFindingOnboardingParentVi
     
     // MARK: Variables
 
+    var isMovingToNextPage: Bool = false
     var isHandButtonMode: Bool = false {
         didSet {
             gestureView.isHandButton = isHandButtonMode
@@ -148,13 +149,19 @@ extension RouteFindingSecondOnboardingViewController {
             $0.centerY.equalTo(footButton.snp.centerY)
             $0.leading.equalTo(footHandStackView.snp.trailing).offset(OrrPd.pd16.rawValue)
         }
+        
+        super.setUpSkipButtonLayout()
     }
 }
 
 extension RouteFindingSecondOnboardingViewController: RouteFindingOnboardingTapViewControllerDelegate {
     func buttonAdded() {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-            self.triggerMoveToNextPage()
+        if !isMovingToNextPage {
+            isMovingToNextPage = true
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                self.triggerMoveToNextPage()
+            }
         }
     }
 }
