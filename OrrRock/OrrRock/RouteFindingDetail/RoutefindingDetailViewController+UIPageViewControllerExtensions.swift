@@ -47,7 +47,6 @@ extension RouteFindingDetailViewController: UIPageViewControllerDelegate {
           let currentVC = pageViewController.viewControllers?.first,
           let index = viewControllerListForPageVC.firstIndex(of: currentVC) else { return }
         
-//        print("index : \(index)")
         thumbnailCollectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
 
       }

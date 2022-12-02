@@ -13,6 +13,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     // MARK: Variables
     
     var routeDataDraft: RouteDataDraft
+    var tempRouteInfo: RouteInfo
     var pageViewControllerList: [RouteFindingPageViewController] = []
     var backgroundImage: UIImage
     
@@ -95,7 +96,7 @@ final class RouteFindingFeatureViewController: UIViewController {
         button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         button.tintColor = .orrWhite
         button.addAction(UIAction { _ in
-            self.exitRouteFinding()
+            self.showExitAlert()
         }, for: .touchUpInside)
         return button
     }()
@@ -177,6 +178,8 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage) {
         self.routeDataDraft = routeDataDraft
+        self.tempRouteInfo = routeDataDraft.routeInfoForUI
+        
         self.backgroundImage = backgroundImage
         
         super.init(nibName: nil, bundle: nil)
@@ -201,7 +204,6 @@ final class RouteFindingFeatureViewController: UIViewController {
             
             self.present(onboardingVC, animated: true, completion: nil)
         }
-        
         
         setUpLayout()
         setUpThumbnailCollectionDelegate()
@@ -282,18 +284,27 @@ final class RouteFindingFeatureViewController: UIViewController {
         if let navigationController = self.navigationController {
             self.navigationController?.pushViewController(routeFindingSaveViewController, animated: true)
         } else {
-            routeDataDraft.routeInfoForUI = routeDataDraft.save()
+            routeDataDraft.save()
             self.dismiss(animated: true)
         }
         
         print("Done Button Tapped")
     }
     
-    func exitRouteFinding() {
+    func showExitAlert() {
+        let optionMenu = UIAlertController(title: "저장하지 않고 나가기", message: "지금 나가면 변경 사항이\r\n삭제됩니다.", preferredStyle: .alert)
+        let deleteAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
+            self.routeDataDraft.routeInfoForUI = self.tempRouteInfo
+            
+            self.dismiss(animated: true, completion: nil)
+        }
         
-        // TODO: 루트 파인딩 데이터 초기화 및 뷰 닫기
-        self.dismiss(animated: true, completion: nil)
-        print("Exit Button Tapped")
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        
+        optionMenu.addAction(deleteAction)
+        optionMenu.addAction(cancelAction)
+        
+        self.present(optionMenu, animated: true, completion: nil)
     }
     
     func tapHandButton() {

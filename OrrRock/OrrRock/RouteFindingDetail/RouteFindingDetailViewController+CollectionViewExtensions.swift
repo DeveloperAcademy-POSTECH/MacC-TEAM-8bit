@@ -14,7 +14,6 @@ extension RouteFindingDetailViewController: UICollectionViewDataSource {
         
         let centerPoint = CGPoint(x: self.thumbnailCollectionView.frame.size.width / 2 + scrollView.contentOffset.x,
                                   y: self.thumbnailCollectionView.frame.size.height / 2 + scrollView.contentOffset.y)
-        
         // 화면 가운데에 셀의 indexPath에 대해
         if let indexPath = thumbnailCollectionView.indexPathForItem(at: centerPoint) {
             // 가운데 셀을 선택

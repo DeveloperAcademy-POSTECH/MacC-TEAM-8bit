@@ -149,7 +149,7 @@ class RouteFindingSectionViewController: UIViewController {
         bottomOptionView.snp.makeConstraints {
             $0.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
-            $0.top.equalTo(view.snp_bottomMargin)
+            $0.height.equalTo(UserDefaults.standard.double(forKey: "tabBarHeight"))
         }
         
         bottomOptionView.addSubview(folderButton)
@@ -209,7 +209,6 @@ class RouteFindingSectionViewController: UIViewController {
     }
     
     private func initRouteInformations() {
-        print("inittt")
         switch sectionKind{
         case .all:
             routeInformations = routeFindingDataManager?.getRouteFindingList().sorted { $1.dataWrittenDate < $0.dataWrittenDate }
@@ -220,6 +219,5 @@ class RouteFindingSectionViewController: UIViewController {
         case .none:
             break
         }
-        
     }
 }
