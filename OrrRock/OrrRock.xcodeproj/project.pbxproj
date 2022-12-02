@@ -1225,6 +1225,7 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ORRROCK;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "볼더링 문제 등록을 위해 카메라 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "업로드한 사진을 계속 찾아 볼 수 있도록 사진 권한을 승인해주세요.";
@@ -1260,6 +1261,7 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ORRROCK;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "볼더링 문제 등록을 위해 카메라 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "업로드한 사진을 계속 찾아 볼 수 있도록 사진 권한을 승인해주세요.";
