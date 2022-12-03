@@ -85,7 +85,7 @@ import BetterSegmentedControl
   
 <br>
   
-## 👨‍👩‍👧‍👦 Team Members
+## 👨‍👩‍👧‍👦 Team 8Bit Members
   
 <table width=“800”>
   <tr align=center>
