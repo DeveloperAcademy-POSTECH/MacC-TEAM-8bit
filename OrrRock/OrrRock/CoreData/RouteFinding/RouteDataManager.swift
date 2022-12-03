@@ -100,7 +100,7 @@ final class RouteDataManager {
         coreDataDAO.deleteAllData()
     }
     
-    // MARK: 루트파인딩 내 최근 방문 클라이밍장명을 보여주기 위한 메서드
+    // MARK: 루트 파인딩 내 최근 방문 클라이밍장명을 보여주기 위한 메서드
     
     func readVisitedClimbingGym() -> [VisitedClimbingGym] {
         return DataManager.shared.repository.visitedClimbingGyms

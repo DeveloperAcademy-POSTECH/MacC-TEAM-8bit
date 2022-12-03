@@ -16,8 +16,8 @@ final class HomeTableViewCardCell: UITableViewCell {
     private var visitedDate: String = "YYYY년 MM월 DD일"
     private var visitedGymName: String = "클라이밍장 정보"
     private var PFCountDescription: String = "N번의 성공, N번의 실패"
-    private var videoCountDescription: String = "N개의 비디오"
-    var videoThumbnails: [UIImage?] = []
+    private var videoCountDescription: String = "N개의 기록"
+    var videoThumbnails: [UIImage] = []
     
     // MARK: UI Components
     private lazy var cardView: UIView = {
@@ -63,7 +63,7 @@ final class HomeTableViewCardCell: UITableViewCell {
     
     private lazy var countTotalVideoLabel: UILabel = {
         let view = UILabel()
-        view.text = "N개의 비디오"
+        view.text = "N개의 기록"
         view.font = UIFont.systemFont(ofSize: 15)
         view.textColor = .orrGray500
         return view

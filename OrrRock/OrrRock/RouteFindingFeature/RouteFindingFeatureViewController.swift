@@ -197,7 +197,7 @@ final class RouteFindingFeatureViewController: UIViewController {
         view.backgroundColor = .black
         overrideUserInterfaceStyle = .light
         
-        // 루트파인딩 온보딩 호출
+        // 루트 파인딩 온보딩 호출
         if !UserDefaults.standard.bool(forKey: "RouteFindingOnboardingClear") {
             let onboardingVC = RouteFindingOnboardingViewController(backgroundImage: backgroundImage)
             onboardingVC.modalPresentationStyle = .fullScreen
@@ -270,7 +270,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     func finishRouteFinding() {
         
-        // TODO: 루트파인딩 저장하기 뷰로 데이터 넘겨주기
+        // TODO: 루트 파인딩 저장하기 뷰로 데이터 넘겨주기
         
         var pageImageList: [UIImage] = []
         
