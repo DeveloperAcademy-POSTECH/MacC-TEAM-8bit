@@ -50,7 +50,7 @@
   
 ## 🛠 Development Environment
 
-<img height="23" alt="ios badge" src="https://img.shields.io/badge/iOS-15.0+-silver">  <img height="23" alt="xcode badge" src="https://img.shields.io/badge/Xcode-14.0.1-blue">  <img height="23" alt="swift badge" src="https://img.shields.io/badge/Swift-5.7.1-orange"> 
+<img height="23" alt="ios badge" src="https://img.shields.io/badge/iOS-16.0+-silver">  <img height="23" alt="xcode badge" src="https://img.shields.io/badge/Xcode-14.0.1-blue">  <img height="23" alt="swift badge" src="https://img.shields.io/badge/Swift-5.7.1-orange"> 
   
 <br>
   
