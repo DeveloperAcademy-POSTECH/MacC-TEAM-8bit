@@ -135,7 +135,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     private lazy var videoPlayStopButton: CustomButton = {
         let button = CustomButton()
-        button.setImage(UIImage(systemName: "play.fill", withConfiguration: largeConfig), for: .normal)
+        button.setImage(UIImage(systemName: "pause.fill", withConfiguration: largeConfig), for: .normal)
         button.addTarget(self, action: #selector(didVideoPlayStopButton), for: .touchUpInside)
         button.tintColor  = .orrUPBlue
         return button
@@ -235,9 +235,9 @@ private extension LevelAndPFSettingViewController {
         let card = cards[counter]?.queuePlayer
         if card?.rate == 0.0 {
             card?.play()
-            videoPlayStopButton.setImage(UIImage(systemName: "play.fill", withConfiguration: largeConfig), for: .normal)
-        } else {
             videoPlayStopButton.setImage(UIImage(systemName: "pause.fill", withConfiguration: largeConfig), for: .normal)
+        } else {
+            videoPlayStopButton.setImage(UIImage(systemName: "play.fill", withConfiguration: largeConfig), for: .normal)
             card?.pause()
         }
         
@@ -415,7 +415,7 @@ private extension LevelAndPFSettingViewController {
     @objc
     func removeCard(card: UIView) {
         card.removeFromSuperview()
-        videoPlayStopButton.setImage(UIImage(systemName: "play.fill", withConfiguration: largeConfig), for: .normal)
+        videoPlayStopButton.setImage(UIImage(systemName: "pause.fill", withConfiguration: largeConfig), for: .normal)
         // 스와이프가 완료되고 removeCard가 호출될 때 버튼 활성화
         successButton.isEnabled = true
         failButton.isEnabled = true

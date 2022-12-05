@@ -94,7 +94,7 @@ class NewLevelPickerView: UIView{
                 titleLabel.text = "V\(pickerSelectValue)\(titleText)"
             }
             
-            if self.frame.height < 110 {
+            if self.frame.height < 100 {
                 titleLabel.removeFromSuperview()
             }
             changedLevelPicker = true
@@ -205,7 +205,7 @@ extension NewLevelPickerView {
         self.addSubview(invertedTriangleLabel)
         invertedTriangleLabel.snp.makeConstraints {
             $0.centerX.equalTo(pickerSetLabel.snp.centerX)
-            $0.bottom.equalTo(pickerSetLabel.snp.top)
+            $0.bottom.equalTo(pickerSetLabel.snp.top).offset(10)
         }
         
         self.addSubview(titleLabel)
