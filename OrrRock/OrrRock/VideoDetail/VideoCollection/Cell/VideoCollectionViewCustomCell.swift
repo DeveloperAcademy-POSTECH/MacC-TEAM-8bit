@@ -78,7 +78,7 @@ class VideoCollectionViewCell : UICollectionViewCell {
     }
     
     func setUpLayout() {
-        self.backgroundColor = .gray
+        self.backgroundColor = .orrGray300
         self.addSubview(cellImage)
         cellImage.snp.makeConstraints {
             $0.leading.top.trailing.equalTo(0)

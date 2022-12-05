@@ -197,7 +197,7 @@ final class RouteFindingFeatureViewController: UIViewController {
         view.backgroundColor = .black
         overrideUserInterfaceStyle = .light
         
-        // 루트파인딩 온보딩 호출
+        // 루트 파인딩 온보딩 호출
         if !UserDefaults.standard.bool(forKey: "RouteFindingOnboardingClear") {
             let onboardingVC = RouteFindingOnboardingViewController(backgroundImage: backgroundImage)
             onboardingVC.modalPresentationStyle = .fullScreen
@@ -230,7 +230,7 @@ final class RouteFindingFeatureViewController: UIViewController {
         self.thumbnailCollectionView.contentInset = UIEdgeInsets(top: 0, left: sideInset, bottom: 0, right: sideInset)
         
         // 뷰가 올라오면 가장 처음 페이지로 이동
-        thumbnailCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: false)
+        thumbnailCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -270,7 +270,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     func finishRouteFinding() {
         
-        // TODO: 루트파인딩 저장하기 뷰로 데이터 넘겨주기
+        // TODO: 루트 파인딩 저장하기 뷰로 데이터 넘겨주기
         
         var pageImageList: [UIImage] = []
         
