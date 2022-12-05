@@ -71,7 +71,7 @@ class RouteFindingSaveViewController: UIViewController {
         button.setBackgroundColor(.orrUPBlue!, for: .normal)
         button.setTitle("저장", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel!.font = UIFont.boldSystemFont(ofSize: 17)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         button.addAction(UIAction { _ in
             self.pressNextButton()
         }, for: .touchUpInside)

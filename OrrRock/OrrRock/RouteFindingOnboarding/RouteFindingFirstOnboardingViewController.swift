@@ -36,7 +36,7 @@ class RouteFindingFirstOnboardingViewController: RouteFindingOnboardingParentVie
         btn.setBackgroundColor(.orrGray300!, for: .disabled)
         btn.setTitle("방법 살펴보기", for: .normal)
         btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel!.font = UIFont.boldSystemFont(ofSize: 17)
+        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         btn.addAction(UIAction(handler: { _ in
             self.triggerMoveToNextPage()
         }), for: .touchUpInside)

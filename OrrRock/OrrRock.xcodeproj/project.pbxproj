@@ -885,6 +885,7 @@
 			developmentRegion = kr;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				kr,
 				en,
 				Base,
 			);

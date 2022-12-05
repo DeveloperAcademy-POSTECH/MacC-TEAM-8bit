@@ -34,7 +34,7 @@ class RouteFindingSeventhOnboardingViewController: RouteFindingOnboardingParentV
         btn.setBackgroundColor(.orrGray300!, for: .disabled)
         btn.setTitle("시작", for: .normal)
         btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel!.font = UIFont.boldSystemFont(ofSize: 17)
+        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         btn.addAction(UIAction(handler: { _ in
             self.triggerSkipOnboarding()
         }), for: .touchUpInside)
