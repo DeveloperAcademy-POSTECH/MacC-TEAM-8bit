@@ -882,10 +882,10 @@
 			};
 			buildConfigurationList = 3AA4D41628FEBADE006C718A /* Build configuration list for PBXProject "OrrRock" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = kr;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				kr,
+				ko,
 				en,
 				Base,
 			);
@@ -1239,7 +1239,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jhHwang.OrrRock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1275,7 +1275,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jhHwang.OrrRock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
