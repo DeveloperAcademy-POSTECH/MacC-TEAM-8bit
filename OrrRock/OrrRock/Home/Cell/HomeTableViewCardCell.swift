@@ -17,7 +17,7 @@ final class HomeTableViewCardCell: UITableViewCell {
     private var visitedGymName: String = "클라이밍장 정보"
     private var PFCountDescription: String = "N번의 성공, N번의 실패"
     private var videoCountDescription: String = "N개의 기록"
-    var videoThumbnails: [UIImage] = []
+    var videoThumbnails: [UIImage?] = []
     
     // MARK: UI Components
     private lazy var cardView: UIView = {

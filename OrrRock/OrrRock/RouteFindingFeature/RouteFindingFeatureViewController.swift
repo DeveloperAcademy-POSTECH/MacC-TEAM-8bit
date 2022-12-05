@@ -106,6 +106,7 @@ final class RouteFindingFeatureViewController: UIViewController {
         button.layer.cornerRadius = 20
         button.backgroundColor = .orrGray700
         button.setTitle("완료", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         button.setTitleColor(.orrWhite, for: .normal)
         button.setTitleColor(.orrGray500, for: .highlighted)
         button.addAction(UIAction { _ in

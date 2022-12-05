@@ -885,6 +885,7 @@
 			developmentRegion = kr;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				kr,
 				en,
 				Base,
 			);
@@ -1222,7 +1223,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 22A6RK2943;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ORRROCK;
@@ -1258,7 +1259,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 22A6RK2943;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ORRROCK;
