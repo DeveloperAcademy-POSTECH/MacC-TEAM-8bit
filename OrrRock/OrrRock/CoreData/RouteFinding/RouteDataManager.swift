@@ -14,7 +14,13 @@ final class RouteDataManager {
     
     init() {
         coreDataDAO = RouteCoreDataDAO()
+        //MARK: RouteDataMainSampleDataGenerate
+        // deleteAllData()
+        // randomRouteGenerate(for: 10)
+        // 추가된 코드
+        
         updateRepository()
+
     }
     
     func updateRepository() {
@@ -33,9 +39,21 @@ final class RouteDataManager {
         let routeFinding = coreDataDAO.createRouteInformationData(routeInfo: routeInfo) as! RouteInformation
         routeFindingList.append(routeFinding)
     }
-
-    func updateRoute(routeInfo: RouteInfo, routeInformation: RouteInformation) {
-        coreDataDAO.updateRoute(routeInfo: routeInfo, routeInformation: routeInformation)
+    
+    func updateRouteDataWrittenDate(to date: Date, of routeInformation: RouteInformation) {
+        coreDataDAO.updateRouteInformationDataWrittenDate(date: date, routeInformation: routeInformation)
+    }
+    
+    func updateRouteGymName(to gymName: String, of routeInformation: RouteInformation) {
+        coreDataDAO.updateRouteInformationGymName(gymName: gymName, routeInformation: routeInformation)
+    }
+    
+    func updateRouteLevelAndStatus(statusTo status: Bool, levelTo level: Int, of routeInformation: RouteInformation) {
+        coreDataDAO.updateRouteInformationLevelAndStatus(status: status, problemLevel: level, routeInformation: routeInformation)
+    }
+    
+    func updateRouteStatus(to status: Bool, of routeInformation: RouteInformation) {
+        coreDataDAO.updateRouteInformationStatus(status: status, routeInformation: routeInformation)
     }
     
     func addPageData(pageInfoList: [PageInfo], routeInformation: RouteInformation) {
@@ -63,6 +81,7 @@ final class RouteDataManager {
         coreDataDAO.deleteRouteFindingData(routeFinding: routeInformation)
         guard let index = routeFindingList.firstIndex(of: routeInformation) else { return }
         routeFindingList.remove(at: index)
+        saveData()
     }
     
     func deletePageData(pageInformationList: [PageInformation], routeFinding: RouteInformation) {
@@ -79,5 +98,23 @@ final class RouteDataManager {
     
     func deleteAllData() {
         coreDataDAO.deleteAllData()
+    }
+    
+    // MARK: 루트 파인딩 내 최근 방문 클라이밍장명을 보여주기 위한 메서드
+    
+    func readVisitedClimbingGym() -> [VisitedClimbingGym] {
+        return DataManager.shared.repository.visitedClimbingGyms
+    }
+    
+    func createVisitedClimbingGym(gymName: String) {
+        DataManager.shared.createVisitedClimbingGym(gymName: gymName)
+    }
+    
+    func deleteVisitedClimbingGym(deleteTarget: VisitedClimbingGym) {
+        DataManager.shared.deleteVisitedClimbingGym(deleteTarget: deleteTarget)
+    }
+    
+    func updateVisitedClimbingGym(updateTarget: VisitedClimbingGym) {
+        DataManager.shared.updateVisitedClimbingGym(updateTarget: updateTarget)
     }
 }

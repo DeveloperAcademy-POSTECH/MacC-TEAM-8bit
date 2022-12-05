@@ -31,15 +31,14 @@ class VideoCollectionViewController: UIViewController {
                 let indexCountLabel = UILabel()
                 indexCountLabel.text = "항목 선택"
                 toolbarText.customView = indexCountLabel
-                navigationItem.leftBarButtonItem = backBarButton
+                self.navigationController?.setExpansionBackbuttonArea()
+                navigationItem.leftBarButtonItem = nil
                 videoCollectionView.allowsMultipleSelection = false
-                navigationController?.interactivePopGestureRecognizer?.isEnabled = true
                 self.navigationController?.setToolbarHidden(true, animated: true)
             case .select:
                 selectBarButton.title = "취소"
                 navigationItem.leftBarButtonItem = selectAllButton
                 videoCollectionView.allowsMultipleSelection = true
-                navigationController?.interactivePopGestureRecognizer?.isEnabled = false
                 self.navigationController?.setToolbarHidden(false, animated: true)
             }
         }
@@ -89,10 +88,6 @@ class VideoCollectionViewController: UIViewController {
         return barButtonItem
     }()
     
-    lazy var backBarButton: UIBarButtonItem = {
-        let barButtonItem = CustomBackBarButtomItem(target: self, action: #selector(didBackButtonClicked(_:)))
-        return barButtonItem
-    }()
     
     lazy var deleteBarButton: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(didDeleteActionSheetClicked(_:)))
@@ -108,7 +103,7 @@ class VideoCollectionViewController: UIViewController {
         layout.headerReferenceSize = .init(width: 100, height: 76)
         layout.footerReferenceSize = .init(width: 50, height: 120)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .white
+        cv.backgroundColor = .orrWhite
         return cv
     }()
     
@@ -127,7 +122,6 @@ class VideoCollectionViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         setVideoCollectionViewDelegate()
         registerCells()
         setUpLayout()
@@ -182,7 +176,7 @@ class VideoCollectionViewController: UIViewController {
         }
         self.toolbarItems = bottomBatItems
         navigationItem.rightBarButtonItem = selectBarButton
-        navigationItem.leftBarButtonItem = backBarButton
+        self.navigationController?.setExpansionBackbuttonArea()
         firstContentOffset = Float(videoCollectionView.contentOffset.y)
     }
     
@@ -217,7 +211,8 @@ class VideoCollectionViewController: UIViewController {
         selectBarButton.title = "편집"
         let indexCountLabel = UILabel()
         indexCountLabel.text = "항목 선택"
-        navigationItem.leftBarButtonItem = backBarButton
+        self.navigationController?.setExpansionBackbuttonArea()
+
         self.navigationController?.setToolbarHidden(true, animated: true)
         
         videoCollectionView.allowsMultipleSelection = false
@@ -238,11 +233,11 @@ class VideoCollectionViewController: UIViewController {
     }
     
     @objc func didDeleteActionSheetClicked(_ sender: UIBarButtonItem) {
-        let optionMenu = UIAlertController(title: "선택한 영상 삭제하기", message: "정말로 삭제하시겠어요?", preferredStyle: .actionSheet)
-        let deleteAction = UIAlertAction(title: "삭제하기", style: .destructive) { _ in
+        let optionMenu = UIAlertController(title: "선택한 기록 삭제하기", message: "정말로 삭제하시겠어요?", preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { _ in
             self.didDeleteButtonClicked()
         }
-        let cancelAction = UIAlertAction(title: "취소하기", style: .cancel)
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         optionMenu.addAction(deleteAction)
         optionMenu.addAction(cancelAction)
         self.present(optionMenu, animated: true, completion: nil)
@@ -270,7 +265,7 @@ class VideoCollectionViewController: UIViewController {
             
         }
         let indexCountLabel = UILabel()
-        indexCountLabel.text = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndexPath.values.filter({$0 == true}).count)개의 비디오 선택"
+        indexCountLabel.text = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndexPath.values.filter({$0 == true}).count)개의 기록 선택"
         deleteBarButton.isEnabled = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? false : true
         toolbarText.customView = indexCountLabel
         isFirstSelectAllButtonTouch.toggle()

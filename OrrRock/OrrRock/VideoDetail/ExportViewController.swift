@@ -7,6 +7,7 @@
 
 import UIKit
 import Photos
+import SnapKit
 
 class ExportViewController: UIViewController, UINavigationBarDelegate {
     
@@ -62,7 +63,7 @@ class ExportViewController: UIViewController, UINavigationBarDelegate {
     private lazy var gymName: UILabel = {
         let label = UILabel()
         label.text = videoInformation.gymName
-        label.textColor = .orrWhite
+        label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
         
         return label
@@ -71,7 +72,7 @@ class ExportViewController: UIViewController, UINavigationBarDelegate {
     private lazy var gymVisitDate: UILabel = {
         let label = UILabel()
         label.text = videoInformation.gymVisitDate.timeToString()
-        label.textColor = .orrWhite
+        label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
         
         return label
@@ -160,8 +161,8 @@ extension ExportViewController {
         colorPickerView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(72)
-            $0.height.equalTo(40)
+            $0.bottom.equalToSuperview().offset(-34)
+            $0.height.equalTo(70)
         }
         
         view.addSubview(previewVideoView)
@@ -321,7 +322,7 @@ extension ExportViewController {
             dateTextLayer.anchorPoint = CGPoint(x: 0, y: 1)
             dateTextLayer.position = CGPoint(x: 162.28, y: 317)
             dateTextLayer.string = videoInformation.gymVisitDate.timeToString()
-            dateTextLayer.foregroundColor = UIColor.orrWhite?.cgColor
+            dateTextLayer.foregroundColor = UIColor.white.cgColor
             imageLayer.addSublayer(dateTextLayer)
             
             // 암장 아이콘 추가
@@ -338,7 +339,7 @@ extension ExportViewController {
             gymTextLayer.frame = imageLayer.bounds
             gymTextLayer.anchorPoint = CGPoint(x: 0, y: 1)
             gymTextLayer.position = CGPoint(x: 162.28, y: 197)
-            gymTextLayer.foregroundColor = UIColor.orrWhite?.cgColor
+            gymTextLayer.foregroundColor = UIColor.white.cgColor
             gymTextLayer.string = videoInformation.gymName
             gymTextLayer.contentsScale = UIScreen.main.scale
             imageLayer.addSublayer(gymTextLayer)

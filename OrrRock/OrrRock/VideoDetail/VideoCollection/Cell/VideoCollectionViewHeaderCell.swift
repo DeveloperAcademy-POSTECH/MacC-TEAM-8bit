@@ -13,7 +13,7 @@ final class VideoCollectionViewHeaderCell: UICollectionReusableView {
     
     let titleLabel : UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .orrBlack
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 23, weight:.bold)
         return label
@@ -21,7 +21,7 @@ final class VideoCollectionViewHeaderCell: UICollectionReusableView {
     
     let subTitleLabel : UILabel = {
         let label = UILabel()
-        label.textColor = .gray
+        label.textColor = .orrGray700
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 15, weight:.light)
         return label
@@ -29,7 +29,7 @@ final class VideoCollectionViewHeaderCell: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = .orrWhite
         setUpLayout()
     }
     

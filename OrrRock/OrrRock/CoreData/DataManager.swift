@@ -123,7 +123,6 @@ final class DataManager {
     
     // MARK: Data Printing을 위한 메소드로 Print문을 따로 삭제하지 않았습니다.
     func printData(info: VideoInformation, primarySortOption: SortOption) {
-        
         if primarySortOption == .gymName {
             print("\(info.gymName) | \(info.gymVisitDate.formatted(date: .numeric, time: .omitted)) | \(info.videoLocalIdentifier) | \(info.problemLevel) | 즐겨찾기 \(info.isFavorite) | 성공 \(info.isSucceeded)")
         } else {

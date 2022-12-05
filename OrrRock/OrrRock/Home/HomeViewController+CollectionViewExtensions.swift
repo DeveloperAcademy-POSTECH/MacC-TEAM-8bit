@@ -25,7 +25,7 @@ extension HomeViewController: UITableViewDataSource {
             let cell = homeTableView.dequeueReusableCell(withIdentifier: HomeTableViewCardCell.identifier) as! HomeTableViewCardCell
             
             var successCount: Int = 0
-            var thumbnails: [UIImage] = []
+            var thumbnails: [UIImage?] = []
             
             let primaryTitle: String = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymVisitDate.timeToString() : sortedVideoInfoData[indexPath.row][0].gymName
             let secondaryTitle: String = sortOption == .gymVisitDate ? sortedVideoInfoData[indexPath.row][0].gymName : "\(min(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString()) ~  \(max(sortedVideoInfoData[indexPath.row].first!.gymVisitDate, sortedVideoInfoData[indexPath.row].last!.gymVisitDate).timeToString())"
@@ -33,15 +33,14 @@ extension HomeViewController: UITableViewDataSource {
             sortedVideoInfoData[indexPath.row].forEach { videoInfo in
                 successCount += videoInfo.isSucceeded ? 1 : 0
                 
-                if let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: 825, height: 825)) {
-                    thumbnails.append(thumbnail)
-                }
+                let thumbnail = videoInfo.videoLocalIdentifier!.generateCardViewThumbnail()
+                thumbnails.append(thumbnail)
             }
             
             cell.setUpData(primaryTitle: primaryTitle,
                            secondaryTitle: secondaryTitle,
                            PFCountDescription: "\(successCount)번의 성공, \(sortedVideoInfoData[indexPath.row].count - successCount)번의 실패",
-                           videoCountDescription: "\(sortedVideoInfoData[indexPath.row].count)개의 비디오",
+                           videoCountDescription: "\(sortedVideoInfoData[indexPath.row].count)개의 기록",
                            thumbnails: thumbnails,
                            sortOption: sortOption
             )
@@ -56,9 +55,8 @@ extension HomeViewController: UITableViewDataSource {
             
             cell.setUpData(level: "V\(sortedVideoInfoData[indexPath.section][indexPath.row].problemLevel)",
                            PF: sortedVideoInfoData[indexPath.section][indexPath.row].isSucceeded ? "성공" : "실패",
-                           thumbnail: sortedVideoInfoData[indexPath.section][indexPath.row].videoLocalIdentifier!.generateCardViewThumbnail(targetSize: CGSize(width: 825, height: 825)),
+                           thumbnail: sortedVideoInfoData[indexPath.section][indexPath.row].videoLocalIdentifier!.generateCardViewThumbnail(),
                            feedback: sortedVideoInfoData[indexPath.section][indexPath.row].feedback ?? "")
-            
             return cell
         }
     }

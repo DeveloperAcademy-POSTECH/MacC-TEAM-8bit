@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.backgroundColor = .black
         
         window?.rootViewController = UINavigationController(rootViewController: MainViewController())
-//        window?.rootViewController = UINavigationController(rootViewController: HomeViewController())
+        
         window?.makeKeyAndVisible()
     }
     

@@ -19,7 +19,7 @@ class GymSettingViewController: UIViewController {
     
     let gymNameLabel : UILabel = {
         let label = UILabel()
-        label.text = "방문한 클라이밍장을 입력해주세요"
+        label.text = "방문한 클라이밍장을 알려주세요"
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.textColor = .orrBlack
         label.backgroundColor = .orrWhite
@@ -37,6 +37,7 @@ class GymSettingViewController: UIViewController {
         return view
     }()
     
+   
     let nextButton : UIButton = {
         let btn = UIButton()
         btn.setBackgroundColor(.orrUPBlue!, for: .normal)
@@ -45,6 +46,7 @@ class GymSettingViewController: UIViewController {
         btn.setTitle("저장", for: .normal)
         btn.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
         btn.setTitleColor(.white, for: .normal)
+        btn.setTitleColor(.orrGray400, for: .disabled)
         btn.isEnabled = false
         return btn
     }()
@@ -55,6 +57,7 @@ class GymSettingViewController: UIViewController {
         tableView.dataSource = self
         tableView.isScrollEnabled = false
         tableView.register(AutocompleteTableViewCell.classForCoder(), forCellReuseIdentifier: AutocompleteTableViewCell.identifier)
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: CGFloat(OrrPd.pd16.rawValue), bottom: 0, right: CGFloat(OrrPd.pd16.rawValue))
         return tableView
     }()
     
@@ -69,17 +72,25 @@ class GymSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
-        self.navigationController?.navigationBar.topItem?.title = ""
-        navigationItem.leftBarButtonItem = CustomBackBarButtomItem(target: self, action: #selector(didBackButtonClicked))
-        navigationItem.leftBarButtonItem?.tintColor = .orrUPBlue
-        
+        self.navigationController?.setExpansionBackbuttonArea()
+
         setUpData()
         setUpLayout()
         setUITableViewDelegate()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         gymTextField.becomeFirstResponder()
+
+    }
+    
+    // MARK: Dark,Light 모드 전환 안될때 사용하세요.
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+           if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+               // ColorUtils.loadCGColorFromAsset returns cgcolor for color name
+               nextButton.setBackgroundColor(.orrUPBlue!, for: .normal)
+               nextButton.setBackgroundColor(.orrGray300!, for: .disabled)
+       }
     }
     
 }
@@ -149,9 +160,6 @@ extension GymSettingViewController {
         }
     }
     
-    @objc func didBackButtonClicked(_ sender: UIBarButtonItem) {
-        self.navigationController?.popToRootViewController(animated: true)
-    }
     
     final private func authSettingOpen(alertType: AuthSettingAlert) {
         let message = alertType.rawValue
@@ -197,7 +205,7 @@ extension GymSettingViewController {
         view.addSubview(gymNameLabel)
         gymNameLabel.snp.makeConstraints {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(OrrPd.pd16.rawValue)
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd8.rawValue)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd24.rawValue)
         }
         
         view.addSubview(gymTextField)
@@ -224,7 +232,7 @@ extension GymSettingViewController {
         view.addSubview(tableViewHeaderLabel)
         tableViewHeaderLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(OrrPd.pd16.rawValue)
-            $0.trailing.equalToSuperview().offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalToSuperview().offset(-OrrPd.pd16.rawValue)
             $0.bottom.equalTo(autocompleteTableView.snp.top).offset(-OrrPd.pd16.rawValue)
         }
     }
@@ -235,7 +243,8 @@ extension GymSettingViewController {
         
         autocompleteTableView.snp.removeConstraints()
         autocompleteTableView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
+            $0.leading.equalTo(view.snp.leading)
+            $0.trailing.equalTo(view.snp.trailing)
             $0.bottom.equalTo(nextButton.snp.top)
             $0.height.equalTo(50 * min(maxTableViewCellCount, filteredVisitedGymList.count))
         }
