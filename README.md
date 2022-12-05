@@ -88,7 +88,7 @@ import BetterSegmentedControl
   
 <table width=“800”>
   <tr align=center>
-    <td><img src="https://github.com/drin131.png" width="100" height="100"/></td>
+    <td><img src="https://user-images.githubusercontent.com/45965405/205679294-cdf997a2-8519-4969-b4e8-9d4bd2ada43d.jpeg" width="100" height="100"/></td>
     <td><img src="https://github.com/commitcomplete.png" width="100" height="100"/></td>
     <td><img src="https://github.com/hminkim.png" width="100" height="100"/></td>
     <td><img src="https://github.com/jeong-hyeonHwang.png" width="100" height="100"/></td>
