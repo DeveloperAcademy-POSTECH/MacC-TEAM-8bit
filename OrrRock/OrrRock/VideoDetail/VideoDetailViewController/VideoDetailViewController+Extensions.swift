@@ -31,7 +31,6 @@ extension VideoDetailViewController{
             case UISwipeGestureRecognizer.Direction.up :
                 if !isShowInfo && !self.navigationController!.isToolbarHidden{
                     showInfo()
-                    videoDetailPageViewController.isPagingEnabled = false
                 }
             case UISwipeGestureRecognizer.Direction.down :
                 if !isShowInfo{
@@ -42,7 +41,6 @@ extension VideoDetailViewController{
                 }else{
                     if !isShowKeyboard{
                         showInfo()
-                        videoDetailPageViewController.isPagingEnabled = true
                     }
                 }
             default:
