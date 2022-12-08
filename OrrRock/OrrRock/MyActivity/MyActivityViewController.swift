@@ -112,11 +112,11 @@ class MyActivityViewController: UIViewController {
     
     private lazy var growthChartView: UIView = {
         var mostFrequentLevelForPeriod: [Int] = [-1, -1, -1]
-
+        
         mostFrequentLevelForPeriod[0] = getMostFrequentLevelOfList(from: entireSolvedProblemsForGrowthChart[0])
         mostFrequentLevelForPeriod[1] = getMostFrequentLevelOfList(from: entireSolvedProblemsForGrowthChart[1])
         mostFrequentLevelForPeriod[2] = getMostFrequentLevelOfList(from: entireSolvedProblemsForGrowthChart[2])
-
+        
         let VC = UIHostingController(rootView: GrowthChartView(chartData: entireSolvedProblemsForGrowthChart, periodData: periodDataForGrowthChart, mostFrequentLevelForPeriod: mostFrequentLevelForPeriod))
         VC.view.backgroundColor = .clear
         return VC.view
@@ -158,7 +158,7 @@ class MyActivityViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
+        
     }
     
     
@@ -297,26 +297,26 @@ class MyActivityViewController: UIViewController {
         var periodIndex: Int = iterationForPeriod-1
         
         // videoInformationUnit은 "같은 날짜에 같은 클라이밍장을 방문하여 기록한 영상의 뭉치"임
-        searchVideoLoop: for videoInformationUnit in from {
-            // 해당 배열에 아무 값도 없는 경우 continue (error)
-            guard let sample = videoInformationUnit.first else { continue searchVideoLoop }
-            
-            // 해당 데이터가 속한 time period를 찾아감
-            while (sample.gymVisitDate < lastDayOfThisPeriod) {
-                lastDayOfThisPeriod = Calendar.current.date(byAdding: .day, value: -timePeriodInterval, to: lastDayOfThisPeriod)!
-                periodIndex -= 1
-            }
-            
-            // 영상 정보의 날짜가 차트로 만들고자 하는 time period를 넘어선 경우부터는 이후 영상 정보들을 데이터에 포함하지 않음
-            if periodIndex < 0 { break }
-            
-            // 차트에 포함되어야 하는 데이터이므로, Unit에 포함된 영상 데이터들의 개수를 count 합니다.
-            videoInformationUnit.forEach { videoInformation in
-                if videoInformation.problemLevel >= 0 {
-                    result[Int(videoInformation.problemLevel)].problems[periodIndex].count += 1
-                }
+    searchVideoLoop: for videoInformationUnit in from {
+        // 해당 배열에 아무 값도 없는 경우 continue (error)
+        guard let sample = videoInformationUnit.first else { continue searchVideoLoop }
+        
+        // 해당 데이터가 속한 time period를 찾아감
+        while (sample.gymVisitDate < lastDayOfThisPeriod) {
+            lastDayOfThisPeriod = Calendar.current.date(byAdding: .day, value: -timePeriodInterval, to: lastDayOfThisPeriod)!
+            periodIndex -= 1
+        }
+        
+        // 영상 정보의 날짜가 차트로 만들고자 하는 time period를 넘어선 경우부터는 이후 영상 정보들을 데이터에 포함하지 않음
+        if periodIndex < 0 { break }
+        
+        // 차트에 포함되어야 하는 데이터이므로, Unit에 포함된 영상 데이터들의 개수를 count 합니다.
+        videoInformationUnit.forEach { videoInformation in
+            if videoInformation.problemLevel >= 0 {
+                result[Int(videoInformation.problemLevel)].problems[periodIndex].count += 1
             }
         }
+    }
         
         let periodData: (Date, Date) = (Calendar.current.date(byAdding: .day, value: -(iterationForPeriod * timePeriodInterval), to: Date())!, Date())
         
@@ -417,10 +417,7 @@ class MyActivityViewController: UIViewController {
     }
     
     @objc func refreshView(_ sender: UIRefreshControl) {
-        print("refresh")
-        
         refreshView()
-        
         sender.endRefreshing()
     }
 }
@@ -559,6 +556,7 @@ extension MyActivityViewController {
         
         var myCard = MyCardView(firstDate: firstDateOfClimbing, highestLevel: highestLevel, homeGymName: frequentlyVisitedGymList[0].0)
         myCard.delegate = self
+        
         let cardVC = UIHostingController(rootView: myCard)
         cardVC.view.backgroundColor = .clear
         cardView = cardVC.view
