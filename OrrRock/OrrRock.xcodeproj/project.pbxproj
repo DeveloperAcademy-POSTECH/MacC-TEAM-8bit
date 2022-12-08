@@ -103,6 +103,7 @@
 		3AE233AB2937714400A057CE /* RotueDataDraft_Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE233AA2937714400A057CE /* RotueDataDraft_Archive.swift */; };
 		3AEB3D5D291C003D00A989FF /* VideoCollectionViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */; };
 		700AC6212926A1DA003DF5AF /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700AC6202926A1DA003DF5AF /* UIImageView+.swift */; };
+		701E92522942AC6500D0DB9F /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701E92512942AC6500D0DB9F /* BlockView.swift */; };
 		704BAB5E292834DB004D987A /* NewLevelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704BAB5D292834DB004D987A /* NewLevelPickerView.swift */; };
 		705C19C929309AB300C975D5 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705C19C829309AB300C975D5 /* UINavigationController+.swift */; };
 		707B2CAE28FFF7090062C958 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 707B2CAD28FFF7090062C958 /* NVActivityIndicatorView */; };
@@ -272,6 +273,7 @@
 		3AE233AA2937714400A057CE /* RotueDataDraft_Archive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotueDataDraft_Archive.swift; sourceTree = "<group>"; };
 		3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewMode.swift; sourceTree = "<group>"; };
 		700AC6202926A1DA003DF5AF /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		701E92512942AC6500D0DB9F /* BlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
 		704BAB5D292834DB004D987A /* NewLevelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLevelPickerView.swift; sourceTree = "<group>"; };
 		705C19C829309AB300C975D5 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		707B2CB729012BFE0062C958 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
@@ -735,6 +737,7 @@
 				7085BA29292D2F08004FD734 /* ColorPickerView.swift */,
 				78B6A70F292F8CD800C0BB70 /* UnderlineSegmentedControl.swift */,
 				78B6A71C2930F91100C0BB70 /* ImageButton.swift */,
+				701E92512942AC6500D0DB9F /* BlockView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -967,6 +970,7 @@
 				70E8E7542923865400793F91 /* OnBoardigSuperViewController.swift in Sources */,
 				3431710729329BF2005E66F3 /* RouteFindingOnboardingParentViewController.swift in Sources */,
 				FBB272B8293279E200A36CB0 /* SaveRouteFindingImageCollectionViewFlowLayout.swift in Sources */,
+				701E92522942AC6500D0DB9F /* BlockView.swift in Sources */,
 				3495AEF72929192000006469 /* CalendarComponent+.swift in Sources */,
 				70DE795C292517330009AD43 /* SwipeOnboardingFirstViewController.swift in Sources */,
 				3A15AC7729071DD90058512F /* OrderOption.swift in Sources */,
@@ -1223,7 +1227,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
-				DEVELOPMENT_TEAM = ML59XN7A6B;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ORRROCK;
@@ -1259,7 +1263,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
-				DEVELOPMENT_TEAM = ML59XN7A6B;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OrrRock/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ORRROCK;
