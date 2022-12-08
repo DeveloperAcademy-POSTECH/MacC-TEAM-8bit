@@ -9,6 +9,6 @@ import UIKit
 
 extension MyActivityViewController: MyCardViewDelegate {
     func longPressedCardView() {
-        
+        longPressedCardSaveButton()
     }
 }

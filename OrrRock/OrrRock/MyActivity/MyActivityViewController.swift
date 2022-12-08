@@ -89,7 +89,9 @@ class MyActivityViewController: UIViewController {
     }()
     
     private lazy var cardView: UIView = {
-        let VC = UIHostingController(rootView: MyCardView(firstDate: firstDateOfClimbing, highestLevel: highestLevel, homeGymName: frequentlyVisitedGymList[0].0))
+        var cardView = MyCardView(firstDate: self.firstDateOfClimbing, highestLevel: self.highestLevel, homeGymName: self.frequentlyVisitedGymList[0].0)
+        cardView.delegate = self
+        let VC = UIHostingController(rootView: cardView)
         VC.view.backgroundColor = .clear
         return VC.view
     }()
@@ -407,7 +409,6 @@ class MyActivityViewController: UIViewController {
         contentView.addSubview(card)
         shareObject.append(card.asImage())
         card.removeFromSuperview()
-        
         
         let activityViewController = UIActivityViewController(activityItems : shareObject, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
