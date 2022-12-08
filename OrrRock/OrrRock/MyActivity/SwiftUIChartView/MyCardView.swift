@@ -81,7 +81,7 @@ struct MyCardView: View {
         .gesture(LongPressGesture()
             .onEnded { _ in
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
-                    
+                    HapticManager.instance.impact(style: .heavy)
                 }
             })
     }
