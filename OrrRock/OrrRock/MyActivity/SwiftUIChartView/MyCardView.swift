@@ -78,9 +78,11 @@ struct MyCardView: View {
             }
         }
         .frame(width: UIScreen.main.bounds.width - 32, height: UIScreen.main.bounds.width - 32, alignment: .leading)
-//        .overlay(
-//            RoundedRectangle(cornerRadius: 10)
-//                .stroke(Color(uiColor: .orrGray200!), lineWidth: 1)
-//        )
+        .gesture(LongPressGesture()
+            .onEnded { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    
+                }
+            })
     }
 }
