@@ -126,6 +126,7 @@
 		70DE7964292640FF0009AD43 /* SwipeOnboardingFourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE7963292640FF0009AD43 /* SwipeOnboardingFourthViewController.swift */; };
 		70DE79662926524D0009AD43 /* SwipeOnboardingFifthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE79652926524D0009AD43 /* SwipeOnboardingFifthViewController.swift */; };
 		70E8E7542923865400793F91 /* OnBoardigSuperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E8E7532923865400793F91 /* OnBoardigSuperViewController.swift */; };
+		78196A582941FBEE009D96BE /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78196A572941FBEE009D96BE /* HapticManager.swift */; };
 		78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */; };
 		78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0354F290132D300FF1913 /* VideoCollectionViewCustomCell.swift */; };
 		78B6A70A292F5B7300C0BB70 /* RouteFindingMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A709292F5B7300C0BB70 /* RouteFindingMainViewController.swift */; };
@@ -294,6 +295,7 @@
 		70DE7963292640FF0009AD43 /* SwipeOnboardingFourthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnboardingFourthViewController.swift; sourceTree = "<group>"; };
 		70DE79652926524D0009AD43 /* SwipeOnboardingFifthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnboardingFifthViewController.swift; sourceTree = "<group>"; };
 		70E8E7532923865400793F91 /* OnBoardigSuperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardigSuperViewController.swift; sourceTree = "<group>"; };
+		78196A572941FBEE009D96BE /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewController.swift; sourceTree = "<group>"; };
 		78A0354F290132D300FF1913 /* VideoCollectionViewCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCustomCell.swift; sourceTree = "<group>"; };
 		78B6A709292F5B7300C0BB70 /* RouteFindingMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingMainViewController.swift; sourceTree = "<group>"; };
@@ -735,6 +737,7 @@
 				7085BA29292D2F08004FD734 /* ColorPickerView.swift */,
 				78B6A70F292F8CD800C0BB70 /* UnderlineSegmentedControl.swift */,
 				78B6A71C2930F91100C0BB70 /* ImageButton.swift */,
+				78196A572941FBEE009D96BE /* HapticManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1072,6 +1075,7 @@
 				3A4641CC292FAF0000C6B7A3 /* PageInformation+CoreDataProperties.swift in Sources */,
 				70A8DF0A291A863F0061E36B /* UIView+.swift in Sources */,
 				78FEE8912926A599007B67BD /* VideoDetailPageViewController.swift in Sources */,
+				78196A582941FBEE009D96BE /* HapticManager.swift in Sources */,
 				70DE7964292640FF0009AD43 /* SwipeOnboardingFourthViewController.swift in Sources */,
 				3A4641D4292FAF7300C6B7A3 /* RouteInformation+CoreDataProperties.swift in Sources */,
 				70DE795E29253F050009AD43 /* EmptyBackgroundView.swift in Sources */,
