@@ -557,7 +557,9 @@ extension MyActivityViewController {
         // 내 정보 카드
         cardView.removeFromSuperview()
         
-        let cardVC = UIHostingController(rootView: MyCardView(firstDate: firstDateOfClimbing, highestLevel: highestLevel, homeGymName: frequentlyVisitedGymList[0].0))
+        var myCard = MyCardView(firstDate: firstDateOfClimbing, highestLevel: highestLevel, homeGymName: frequentlyVisitedGymList[0].0)
+        myCard.delegate = self
+        let cardVC = UIHostingController(rootView: myCard)
         cardVC.view.backgroundColor = .clear
         cardView = cardVC.view
         
