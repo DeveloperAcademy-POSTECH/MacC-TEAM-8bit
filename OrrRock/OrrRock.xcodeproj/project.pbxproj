@@ -127,6 +127,7 @@
 		70DE79662926524D0009AD43 /* SwipeOnboardingFifthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE79652926524D0009AD43 /* SwipeOnboardingFifthViewController.swift */; };
 		70E8E7542923865400793F91 /* OnBoardigSuperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E8E7532923865400793F91 /* OnBoardigSuperViewController.swift */; };
 		78196A582941FBEE009D96BE /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78196A572941FBEE009D96BE /* HapticManager.swift */; };
+		78196A5A294206A7009D96BE /* MyCardView+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78196A59294206A7009D96BE /* MyCardView+Protocol.swift */; };
 		78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */; };
 		78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0354F290132D300FF1913 /* VideoCollectionViewCustomCell.swift */; };
 		78B6A70A292F5B7300C0BB70 /* RouteFindingMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A709292F5B7300C0BB70 /* RouteFindingMainViewController.swift */; };
@@ -296,6 +297,7 @@
 		70DE79652926524D0009AD43 /* SwipeOnboardingFifthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnboardingFifthViewController.swift; sourceTree = "<group>"; };
 		70E8E7532923865400793F91 /* OnBoardigSuperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardigSuperViewController.swift; sourceTree = "<group>"; };
 		78196A572941FBEE009D96BE /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		78196A59294206A7009D96BE /* MyCardView+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyCardView+Protocol.swift"; sourceTree = "<group>"; };
 		78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewController.swift; sourceTree = "<group>"; };
 		78A0354F290132D300FF1913 /* VideoCollectionViewCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCustomCell.swift; sourceTree = "<group>"; };
 		78B6A709292F5B7300C0BB70 /* RouteFindingMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingMainViewController.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				34172EB4292B3FEC009DAAB8 /* GrowthChartView.swift */,
 				34172EB6292B41D1009DAAB8 /* HomeGymChartView.swift */,
 				34172EB8292B41F8009DAAB8 /* HistoryView.swift */,
+				78196A59294206A7009D96BE /* MyCardView+Protocol.swift */,
 			);
 			path = SwiftUIChartView;
 			sourceTree = "<group>";
@@ -1056,6 +1059,7 @@
 				78FCCFF72934AB4900E435BC /* RouteFindingEditType.swift in Sources */,
 				341418BB2922A3800033D851 /* AutocompleteTableViewCell.swift in Sources */,
 				78B6A70A292F5B7300C0BB70 /* RouteFindingMainViewController.swift in Sources */,
+				78196A5A294206A7009D96BE /* MyCardView+Protocol.swift in Sources */,
 				709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */,
 				78B6A717292FA8DA00C0BB70 /* RouteFindingCollectionViewHeaderCell.swift in Sources */,
 				3A4641D6292FB30900C6B7A3 /* RouteDataDraft.swift in Sources */,
