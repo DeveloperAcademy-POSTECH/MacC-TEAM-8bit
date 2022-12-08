@@ -14,6 +14,29 @@ struct MyCardView: View {
     
     var delegate: MyCardViewDelegate?
     
+    @GestureState var isDetectingLongPress = false
+    @State var completedLongPress = false
+    
+    var size: CGFloat = UIScreen.main.bounds.width - 50
+    
+    var longPress: some Gesture {
+        LongPressGesture(minimumDuration: 0.5)
+            .updating($isDetectingLongPress) { currentState, gestureState,
+                transaction in
+                gestureState = currentState
+                transaction.animation = Animation.spring()
+                
+            }
+            .onEnded { finished in
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    HapticManager.instance.impact(style: .heavy)
+                    delegate?.longPressedCardView()
+                }
+                self.completedLongPress = finished
+                
+            }
+    }
+    
     var body: some View {
         ZStack(alignment: .center) {
             if highestLevel >= 0 {
@@ -79,14 +102,12 @@ struct MyCardView: View {
                 .padding(.bottom, 24)
             }
         }
-        .frame(width: UIScreen.main.bounds.width - 32, height: UIScreen.main.bounds.width - 32, alignment: .leading)
-        .gesture(LongPressGesture()
-            .onEnded { _ in
-                DispatchQueue.main.asyncAfter(deadline: .now()) {
-                    HapticManager.instance.impact(style: .heavy)
-                    delegate?.longPressedCardView()
-                }
-            })
+        .frame(width: self.isDetectingLongPress ?
+               size * 1.03 :
+                size, height: self.isDetectingLongPress ?
+               size * 1.03:
+                size , alignment: .center)
+        .gesture(longPress)
     }
     
 }
