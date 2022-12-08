@@ -11,6 +11,3 @@ protocol MyCardViewDelegate {
     func longPressedCardView()
 }
 
-extension MyCardView {
-    
-}
