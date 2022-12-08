@@ -393,6 +393,28 @@ class MyActivityViewController: UIViewController {
         self.present(activityViewController, animated: true, completion: nil)
     }
     
+    func longPressedCardSaveButton() {
+        let card: UIView = {
+            let VC = UIHostingController(rootView: ExportCardView(firstDate: firstDateOfClimbing, highestLevel: highestLevel, homeGymName: frequentlyVisitedGymList[0].0))
+            VC.view.backgroundColor = .clear
+            VC.view.layer.cornerRadius = 4
+            VC.view.frame = CGRect(x: 0, y: 0, width: 262, height: 398)
+            return VC.view
+        }()
+        
+        // 공유하기
+        var shareObject = [Any]()
+        contentView.addSubview(card)
+        shareObject.append(card.asImage())
+        card.removeFromSuperview()
+        
+        
+        let activityViewController = UIActivityViewController(activityItems : shareObject, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
     @objc func refreshView(_ sender: UIRefreshControl) {
         print("refresh")
         
