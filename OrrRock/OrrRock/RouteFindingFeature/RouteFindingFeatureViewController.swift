@@ -16,7 +16,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     var tempRouteInfo: RouteInfo
     var pageViewControllerList: [RouteFindingPageViewController] = []
     var backgroundImage: UIImage
-    
+    var isCreateMode: Bool
     var isHandButtonMode: Bool = false {
         didSet {
             pageViewControllerList.forEach { vc in
@@ -176,12 +176,12 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     // MARK: Life Cycle Functions
     
-    init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage) {
+    init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage, isCreateMode: Bool) {
         self.routeDataDraft = routeDataDraft
         self.tempRouteInfo = routeDataDraft.routeInfoForUI
         
         self.backgroundImage = backgroundImage
-        
+        self.isCreateMode = isCreateMode
         super.init(nibName: nil, bundle: nil)
         
         backgroundImageView.image = self.backgroundImage
@@ -268,9 +268,8 @@ final class RouteFindingFeatureViewController: UIViewController {
         }
     }
     
+    // TODO: 루트 파인딩 저장하기 뷰로 데이터 넘겨주기
     func finishRouteFinding() {
-        
-        // TODO: 루트 파인딩 저장하기 뷰로 데이터 넘겨주기
         
         var pageImageList: [UIImage] = []
         
@@ -292,8 +291,9 @@ final class RouteFindingFeatureViewController: UIViewController {
     }
     
     func showExitAlert() {
-        let optionMenu = UIAlertController(title: "저장하지 않고 나가기", message: "지금 나가면 변경 사항이\r\n삭제됩니다.", preferredStyle: .alert)
-        let deleteAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
+        let msg = isCreateMode ? "루트 파인딩은" : "편집한 내용은"
+        let optionMenu = UIAlertController(title: "저장하지 않고 나가기", message: "나가기 선택 시, \(msg) 저장되지 않습니다.", preferredStyle: .alert)
+        let deleteAction = UIAlertAction(title: "나가기", style: .destructive) {_ in
             self.routeDataDraft.routeInfoForUI = self.tempRouteInfo
             
             self.dismiss(animated: true, completion: nil)
@@ -498,7 +498,6 @@ extension RouteFindingFeatureViewController: IsDeletingPointButtonDelegate {
 extension RouteFindingFeatureViewController {
     func showPage() {
         let nextVC = RouteFindingOnboardingViewController(backgroundImage: backgroundImageView.image!)
-//        RouteFindingOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         nextVC.modalPresentationStyle = .fullScreen
         self.present(nextVC, animated: true, completion: nil)
     }
