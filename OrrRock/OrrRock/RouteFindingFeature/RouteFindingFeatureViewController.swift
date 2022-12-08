@@ -193,7 +193,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        CustomIndicator.stopLoading()
         view.backgroundColor = .black
         overrideUserInterfaceStyle = .light
         
