@@ -125,6 +125,7 @@ class VideoDetailViewController: UIViewController {
         infoButton.image = UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle")
         feedbackText = videoInfoView.feedbackTextView.text!
         if isShowInfo {
+            videoDetailPageViewController.isPagingEnabled = false
             UIView.animate(withDuration: 0.2, animations: {
                 self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -430)
                 self.videoDetailPageViewController.view.transform = CGAffineTransform(translationX: 0, y: -430)
@@ -134,6 +135,7 @@ class VideoDetailViewController: UIViewController {
                 self.bottomSafeAreaView.layer.opacity = 1.0
             })
         } else {
+            videoDetailPageViewController.isPagingEnabled = true
             UIView.animate(withDuration: 0.2, animations: {
                 self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
                 self.videoDetailPageViewController.view.transform = CGAffineTransform(translationX: 0, y: 0)
