@@ -102,6 +102,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         let button = CustomButton()
         button.setImage(UIImage(named: "fail_icon"), for: .normal)
         button.layer.cornerRadius = 37.0
+        button.isExclusiveTouch = true
         button.addTarget(self, action: #selector(didFailButton), for: .touchUpInside)
         
         return button
@@ -111,6 +112,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         let button = CustomButton()
         button.setImage(UIImage(named: "delete"), for: .normal)
         button.layer.cornerRadius = 37.0
+        button.isExclusiveTouch = true
         button.addTarget(self, action: #selector(didDeleteButton), for: .touchUpInside)
         
         return button
@@ -121,6 +123,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         let button = CustomButton()
         button.setImage(UIImage(named: "success_icon"), for: .normal)
         button.layer.cornerRadius = 37.0
+        button.isExclusiveTouch = true
         button.addTarget(self, action: #selector(didSuccessButton), for: .touchUpInside)
         return button
     }()
