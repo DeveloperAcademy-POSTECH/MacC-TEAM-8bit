@@ -420,6 +420,8 @@ private extension LevelAndPFSettingViewController {
         successButton.isEnabled = true
         failButton.isEnabled = true
         deleteButton.isEnabled = true
+        BlockView.stopBlock()
+        
         counter += 1
         
     }
@@ -449,12 +451,11 @@ private extension LevelAndPFSettingViewController {
                 // 카드의 x축을 통한 성패 결정 스와이프 정도
                 
                 let cardPositionX = card.center.x
-                
                 switch cardPositionX {
-                case self.view.bounds.width / 3 * 2..<self.view.bounds.width:
+                case (view.bounds.width - view.bounds.width / 3)...:
                     animateCard(rotationAngle: horizonalRotationAngle, videoResultType: .success)
                     return
-                case 0..<self.view.bounds.width / 3:
+                case ..<(self.view.bounds.width / 3):
                     animateCard(rotationAngle: horizonalRotationAngle, videoResultType: .fail)
                     return
                 default:
@@ -568,6 +569,7 @@ private extension LevelAndPFSettingViewController {
                         self.successButton.isEnabled = false
                         self.failButton.isEnabled = false
                         self.deleteButton.isEnabled = false
+                        BlockView.startBlock()
                         
                     }) { [self] _ in
                         if counter != cards.count-1 {
