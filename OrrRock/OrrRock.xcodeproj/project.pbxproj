@@ -103,6 +103,7 @@
 		3AE233AB2937714400A057CE /* RotueDataDraft_Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE233AA2937714400A057CE /* RotueDataDraft_Archive.swift */; };
 		3AEB3D5D291C003D00A989FF /* VideoCollectionViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */; };
 		700AC6212926A1DA003DF5AF /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700AC6202926A1DA003DF5AF /* UIImageView+.swift */; };
+		701E92522942AC6500D0DB9F /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701E92512942AC6500D0DB9F /* BlockView.swift */; };
 		704BAB5E292834DB004D987A /* NewLevelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704BAB5D292834DB004D987A /* NewLevelPickerView.swift */; };
 		705C19C929309AB300C975D5 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705C19C829309AB300C975D5 /* UINavigationController+.swift */; };
 		707B2CAE28FFF7090062C958 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 707B2CAD28FFF7090062C958 /* NVActivityIndicatorView */; };
@@ -126,6 +127,9 @@
 		70DE7964292640FF0009AD43 /* SwipeOnboardingFourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE7963292640FF0009AD43 /* SwipeOnboardingFourthViewController.swift */; };
 		70DE79662926524D0009AD43 /* SwipeOnboardingFifthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DE79652926524D0009AD43 /* SwipeOnboardingFifthViewController.swift */; };
 		70E8E7542923865400793F91 /* OnBoardigSuperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E8E7532923865400793F91 /* OnBoardigSuperViewController.swift */; };
+		78196A582941FBEE009D96BE /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78196A572941FBEE009D96BE /* HapticManager.swift */; };
+		78196A5A294206A7009D96BE /* MyCardView+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78196A59294206A7009D96BE /* MyCardView+Protocol.swift */; };
+		78196A5E294208B8009D96BE /* MyActivityViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78196A5D294208B8009D96BE /* MyActivityViewController+Extensions.swift */; };
 		78A0354C290131E100FF1913 /* VideoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */; };
 		78A03550290132D300FF1913 /* VideoCollectionViewCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0354F290132D300FF1913 /* VideoCollectionViewCustomCell.swift */; };
 		78B6A70A292F5B7300C0BB70 /* RouteFindingMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A709292F5B7300C0BB70 /* RouteFindingMainViewController.swift */; };
@@ -272,6 +276,7 @@
 		3AE233AA2937714400A057CE /* RotueDataDraft_Archive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotueDataDraft_Archive.swift; sourceTree = "<group>"; };
 		3AEB3D5C291C003D00A989FF /* VideoCollectionViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewMode.swift; sourceTree = "<group>"; };
 		700AC6202926A1DA003DF5AF /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		701E92512942AC6500D0DB9F /* BlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
 		704BAB5D292834DB004D987A /* NewLevelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLevelPickerView.swift; sourceTree = "<group>"; };
 		705C19C829309AB300C975D5 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		707B2CB729012BFE0062C958 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
@@ -294,6 +299,9 @@
 		70DE7963292640FF0009AD43 /* SwipeOnboardingFourthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnboardingFourthViewController.swift; sourceTree = "<group>"; };
 		70DE79652926524D0009AD43 /* SwipeOnboardingFifthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeOnboardingFifthViewController.swift; sourceTree = "<group>"; };
 		70E8E7532923865400793F91 /* OnBoardigSuperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardigSuperViewController.swift; sourceTree = "<group>"; };
+		78196A572941FBEE009D96BE /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		78196A59294206A7009D96BE /* MyCardView+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyCardView+Protocol.swift"; sourceTree = "<group>"; };
+		78196A5D294208B8009D96BE /* MyActivityViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyActivityViewController+Extensions.swift"; sourceTree = "<group>"; };
 		78A0354B290131E100FF1913 /* VideoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewController.swift; sourceTree = "<group>"; };
 		78A0354F290132D300FF1913 /* VideoCollectionViewCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCustomCell.swift; sourceTree = "<group>"; };
 		78B6A709292F5B7300C0BB70 /* RouteFindingMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFindingMainViewController.swift; sourceTree = "<group>"; };
@@ -379,6 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				3405BE5E2927DA9600D6E15A /* MyActivityViewController.swift */,
+				78196A5D294208B8009D96BE /* MyActivityViewController+Extensions.swift */,
 				3405BE602927DC6700D6E15A /* SwiftUIChartView */,
 				34E11EC0292BEBF200787316 /* View */,
 			);
@@ -394,6 +403,7 @@
 				34172EB4292B3FEC009DAAB8 /* GrowthChartView.swift */,
 				34172EB6292B41D1009DAAB8 /* HomeGymChartView.swift */,
 				34172EB8292B41F8009DAAB8 /* HistoryView.swift */,
+				78196A59294206A7009D96BE /* MyCardView+Protocol.swift */,
 			);
 			path = SwiftUIChartView;
 			sourceTree = "<group>";
@@ -735,6 +745,8 @@
 				7085BA29292D2F08004FD734 /* ColorPickerView.swift */,
 				78B6A70F292F8CD800C0BB70 /* UnderlineSegmentedControl.swift */,
 				78B6A71C2930F91100C0BB70 /* ImageButton.swift */,
+				701E92512942AC6500D0DB9F /* BlockView.swift */,
+				78196A572941FBEE009D96BE /* HapticManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -967,6 +979,7 @@
 				70E8E7542923865400793F91 /* OnBoardigSuperViewController.swift in Sources */,
 				3431710729329BF2005E66F3 /* RouteFindingOnboardingParentViewController.swift in Sources */,
 				FBB272B8293279E200A36CB0 /* SaveRouteFindingImageCollectionViewFlowLayout.swift in Sources */,
+				701E92522942AC6500D0DB9F /* BlockView.swift in Sources */,
 				3495AEF72929192000006469 /* CalendarComponent+.swift in Sources */,
 				70DE795C292517330009AD43 /* SwipeOnboardingFirstViewController.swift in Sources */,
 				3A15AC7729071DD90058512F /* OrderOption.swift in Sources */,
@@ -1051,8 +1064,10 @@
 				3431710129328D68005E66F3 /* RouteFindingFourthOnboardingViewController.swift in Sources */,
 				34BFCD7929369993009602CA /* RouteFindingFeatureHandButton.swift in Sources */,
 				78FCCFF72934AB4900E435BC /* RouteFindingEditType.swift in Sources */,
+				78196A5E294208B8009D96BE /* MyActivityViewController+Extensions.swift in Sources */,
 				341418BB2922A3800033D851 /* AutocompleteTableViewCell.swift in Sources */,
 				78B6A70A292F5B7300C0BB70 /* RouteFindingMainViewController.swift in Sources */,
+				78196A5A294206A7009D96BE /* MyCardView+Protocol.swift in Sources */,
 				709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */,
 				78B6A717292FA8DA00C0BB70 /* RouteFindingCollectionViewHeaderCell.swift in Sources */,
 				3A4641D6292FB30900C6B7A3 /* RouteDataDraft.swift in Sources */,
@@ -1072,6 +1087,7 @@
 				3A4641CC292FAF0000C6B7A3 /* PageInformation+CoreDataProperties.swift in Sources */,
 				70A8DF0A291A863F0061E36B /* UIView+.swift in Sources */,
 				78FEE8912926A599007B67BD /* VideoDetailPageViewController.swift in Sources */,
+				78196A582941FBEE009D96BE /* HapticManager.swift in Sources */,
 				70DE7964292640FF0009AD43 /* SwipeOnboardingFourthViewController.swift in Sources */,
 				3A4641D4292FAF7300C6B7A3 /* RouteInformation+CoreDataProperties.swift in Sources */,
 				70DE795E29253F050009AD43 /* EmptyBackgroundView.swift in Sources */,
@@ -1239,7 +1255,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jhHwang.OrrRock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1275,7 +1291,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jhHwang.OrrRock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

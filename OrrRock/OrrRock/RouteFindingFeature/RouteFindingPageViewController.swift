@@ -8,18 +8,16 @@
 import UIKit
 import SnapKit
 
-
 protocol IsDeletingPointButtonDelegate {
-
+    
     func hidePageNumberingLabelView()
     func showPageNumberingLabelView()
 }
 
-
 final class RouteFindingPageViewController: UIViewController {
     
     var delegate: IsDeletingPointButtonDelegate?
-
+    
     var routeDataDraft: RouteDataDraft
     var pageRowOrder: Int
     var backgroundImage: UIImage
@@ -46,7 +44,7 @@ final class RouteFindingPageViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         setUpBackgroundImage()
-
+        
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(makeRoutePoint(_:)))
         self.view.addGestureRecognizer(gestureRecognizer)
         
@@ -102,7 +100,6 @@ final class RouteFindingPageViewController: UIViewController {
             delegate?.showPageNumberingLabelView()
             // buttonView가 trashView영역에 들어왔을 때 point 삭제
             if buttonView.frame.intersects(trashView.frame) {
-//                trashView.image = UIImage(named: "delete_destructive")?.resized(to: CGSize(width: 85, height: 85))
                 guard let id = buttonList.firstIndex(where: { $0.id == buttonView.id }),
                       let pageNo = routeDataDraft.routeInfoForUI.pages.firstIndex(where: { $0.rowOrder == pageRowOrder }) else { return }
                 
@@ -119,12 +116,10 @@ final class RouteFindingPageViewController: UIViewController {
             trashView.image = UIImage(named:
                                         buttonView.frame.intersects(trashView.frame) ?
                                       "delete_destructive" : "delete")?.resized(to: CGSize(width: 80, height: 80))
-
             
             let locationInView = sender.location(in: buttonView)
             buttonView.frame.origin = CGPoint(x: buttonView.frame.origin.x + locationInView.x - beginningPosition.x,
                                               y: buttonView.frame.origin.y + locationInView.y - beginningPosition.y)
-
             
             // panGeture로 새로 업데이트한 좌표를 업데이트
             let translation = sender.translation(in: buttonView.superview)
@@ -164,7 +159,7 @@ final class RouteFindingPageViewController: UIViewController {
     private func setUpLayout(){
         self.view.addSubview(trashView)
         trashView.snp.makeConstraints{
-            $0.centerX.equalTo(view.center.x)
+            $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().inset(OrrPd.pd24.rawValue)
         }
     }
