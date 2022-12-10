@@ -22,7 +22,7 @@ class SwipeOnboardingFifthViewController: UIViewController {
         btn.addTarget(self, action: #selector(pressSkipButton), for: .touchUpInside)
         btn.setTitle("시작하기", for: .normal)
         btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel!.font = UIFont.boldSystemFont(ofSize: 17)
+        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         return btn
     }()
     
@@ -42,6 +42,7 @@ class SwipeOnboardingFifthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpLayout()
+        view.backgroundColor = .orrGray050
     }
 }
 

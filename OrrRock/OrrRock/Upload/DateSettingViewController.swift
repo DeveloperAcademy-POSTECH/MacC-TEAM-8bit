@@ -15,7 +15,7 @@ class DateSettingViewController: UIViewController {
     
     let datePickerLabel : UILabel = {
         let label = UILabel()
-        label.text = "방문한 날짜를 선택해주세요"
+        label.text = "방문한 날짜를 알려주세요"
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.textColor = .orrBlack
         label.backgroundColor = .orrWhite
@@ -42,20 +42,22 @@ class DateSettingViewController: UIViewController {
         btn.setBackgroundColor(.orrGray300!, for: .disabled)
         btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
         btn.setTitle("계속", for: .normal)
+        btn.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
         btn.setTitleColor(.white, for: .normal)
         return btn
     }()
-    
+
     //MARK: 생명주기 함수 모음
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orrWhite
-        
-        self.navigationController?.navigationBar.topItem?.title = ""
-        navigationItem.leftBarButtonItem = CustomBackBarButtomItem(target: self, action: #selector(didBackButtonClicked))
-        navigationItem.leftBarButtonItem?.tintColor = .orrUPBlue
-        
+        self.navigationController?.setExpansionBackbuttonArea()
         setUpLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
     }
 }
 
@@ -74,9 +76,6 @@ extension DateSettingViewController {
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
-    @objc func didBackButtonClicked(_ sender: UIBarButtonItem) {
-        self.navigationController?.popToRootViewController(animated: true)
-    }
 }
 
 //MARK: 오토레이아웃 설정 영역
@@ -87,7 +86,7 @@ extension DateSettingViewController {
         view.addSubview(datePickerLabel)
         datePickerLabel.snp.makeConstraints {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(OrrPd.pd16.rawValue)
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd8.rawValue)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd24 .rawValue)
         }
         
         view.addSubview(datePicker)

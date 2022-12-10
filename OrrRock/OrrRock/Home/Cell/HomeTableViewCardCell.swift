@@ -16,13 +16,13 @@ final class HomeTableViewCardCell: UITableViewCell {
     private var visitedDate: String = "YYYY년 MM월 DD일"
     private var visitedGymName: String = "클라이밍장 정보"
     private var PFCountDescription: String = "N번의 성공, N번의 실패"
-    private var videoCountDescription: String = "N개의 비디오"
-    var videoThumbnails: [UIImage] = []
+    private var videoCountDescription: String = "N개의 기록"
+    var videoThumbnails: [UIImage?] = []
     
     // MARK: UI Components
     private lazy var cardView: UIView = {
         let view = UIView()
-        view.backgroundColor = .orrWhite
+        view.backgroundColor = .orrWhiteCustom
         view.layer.cornerRadius = 10
         return view
     }()
@@ -54,7 +54,7 @@ final class HomeTableViewCardCell: UITableViewCell {
         flow.minimumLineSpacing = 1
         
         var view = UICollectionView(frame: CGRect.zero, collectionViewLayout: flow)
-        view.backgroundColor = UIColor.orrWhite
+        view.backgroundColor = .orrWhiteCustom
         view.register(HomeCardCollectionViewThumbnailCell.classForCoder(), forCellWithReuseIdentifier: "homeCardCollectionViewThumbnailCell")
         view.isUserInteractionEnabled = false
         
@@ -63,7 +63,7 @@ final class HomeTableViewCardCell: UITableViewCell {
     
     private lazy var countTotalVideoLabel: UILabel = {
         let view = UILabel()
-        view.text = "N개의 비디오"
+        view.text = "N개의 기록"
         view.font = UIFont.systemFont(ofSize: 15)
         view.textColor = .orrGray500
         return view
@@ -85,7 +85,7 @@ final class HomeTableViewCardCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.backgroundColor = .orrGray100
+        self.backgroundColor = .orrGray050
         
         setUpLayout()
         setCollectionViewDelegate()
@@ -156,7 +156,7 @@ final class HomeTableViewCardCell: UITableViewCell {
     }
     
     // MARK: Value Assign Function
-    func setUpData(primaryTitle: String, secondaryTitle: String, PFCountDescription: String, videoCountDescription: String, thumbnails: [UIImage], sortOption: SortOption) {
+    func setUpData(primaryTitle: String, secondaryTitle: String, PFCountDescription: String, videoCountDescription: String, thumbnails: [UIImage?], sortOption: SortOption) {
         dateLabel.text = primaryTitle
         gymLabel.text = secondaryTitle
         countTotalVideoLabel.text = videoCountDescription

@@ -28,7 +28,7 @@ class SwipeOnboardingThirdViewController: UIViewController {
         let view = UIImageView(image: image)
         view.layer.borderWidth = 3
         view.layer.cornerRadius = cornerRadius
-        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.borderColor = UIColor.orrWhite?.cgColor
         view.layer.zPosition = 1
         view.isUserInteractionEnabled = true
         gesture.addTarget(self, action: #selector(handlerCard))
@@ -52,7 +52,7 @@ class SwipeOnboardingThirdViewController: UIViewController {
     private lazy var skipButton: UIButton = {
         let btn = UIButton()
         btn.addTarget(self, action: #selector(pressSkipButton), for: .touchUpInside)
-        btn.setAttributedTitle("SKIP".underLineAttribute(), for: .normal)
+        btn.setAttributedTitle("SKIP".underLineAttribute(color: .orrUPBlue!), for: .normal)
         return btn
     }()
     
@@ -64,7 +64,15 @@ class SwipeOnboardingThirdViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpLayout()
+        view.backgroundColor = .orrGray050
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+           if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+               mainImageView.layer.borderColor = UIColor.orrWhite?.cgColor
+       }
+    }
+    
 }
 
 //MARK: 함수 모음
@@ -193,10 +201,8 @@ extension SwipeOnboardingThirdViewController {
         
         view.addSubview(skipButton)
         skipButton.snp.makeConstraints{
-            $0.centerX.equalTo(view)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
-            $0.leading.equalTo(view).offset(OrrPd.pd16.rawValue)
-            $0.trailing.equalTo(view).offset(-OrrPd.pd16.rawValue)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalToSuperview().offset(-OrrPd.pd16.rawValue)
         }
         
     }

@@ -17,7 +17,7 @@ class OnBoardigSuperViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
-        label.textColor = .black
+        label.textColor = .orrBlack
         label.text = titleLabelText
         return label
     }()
@@ -30,7 +30,7 @@ class OnBoardigSuperViewController: UIViewController {
     private lazy var subLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
-        label.textColor = .black
+        label.textColor = .orrBlack
         label.textAlignment = .center
         label.text = subLabelText
         return label
@@ -53,8 +53,8 @@ class OnBoardigSuperViewController: UIViewController {
         view.addSubview(labelImage)
         labelImage.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.leading.equalTo(self.view.snp.leading).offset(OrrPd.pd20.rawValue)
-            $0.trailing.equalTo(self.view.snp.trailing).offset(-OrrPd.pd20.rawValue)
+            $0.leading.equalTo(self.view.snp.leading)
+            $0.trailing.equalTo(self.view.snp.trailing)
             $0.height.equalTo(labelImage.snp.width).multipliedBy(1.1)
         }
         

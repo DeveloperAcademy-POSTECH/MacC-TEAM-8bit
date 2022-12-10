@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 2</title>
+    <defs>
+        <polygon id="path-1" points="0 0 8.90322581 0 8.90322581 8.16129032 0 8.16129032"></polygon>
+        <polygon id="path-3" points="0 0 12.6129032 0 12.6129032 15.5806452 0 15.5806452"></polygon>
+    </defs>
+    <g id="Sprint3/Hi-Fi" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="삭제-시" transform="translate(-23.000000, -408.000000)">
+            <g id="Group-4" transform="translate(16.000000, 356.000000)">
+                <g id="Group-2" transform="translate(7.000000, 52.000000)">
+                    <rect id="Rectangle-Copy-5" x="0" y="0" width="28" height="28"></rect>
+                    <g id="Group-7" transform="translate(6.000000, 3.000000)">
+                        <g id="Group-3" transform="translate(0.000000, 14.838710)">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <g id="Clip-2"></g>
+                            <path d="M8.89253259,2.56558367 L5.20425508,1.28279183 L1.51575999,0 C1.010746,0.529729036 0.594506556,1.18320277 0.319044381,1.93414666 C-0.609824516,4.46688712 0.575359106,7.19435598 2.75773321,7.95335175 C4.94032489,8.71234751 7.63141192,7.33314499 8.56028082,4.80040452 C8.83574299,4.04946064 8.93887812,3.28707461 8.89253259,2.56558367" id="Fill-1" fill="#FFFFFF" mask="url(#mask-2)"></path>
+                        </g>
+                        <g id="Group-6" transform="translate(1.483871, 0.000000)">
+                            <mask id="mask-4" fill="white">
+                                <use xlink:href="#path-3"></use>
+                            </mask>
+                            <g id="Clip-5"></g>
+                            <path d="M11.9548557,10.8387854 C13.3630282,6.939892 12.5168347,1.3084228 9.36608389,0.195563792 C6.21533312,-0.917095881 1.95292024,2.91023812 0.544949273,6.80913156 C-0.256294045,9.02727503 -0.143212913,11.2978423 0.682420454,13.0487564 L7.85128048,15.5806452 C9.6117985,14.7430608 11.1536124,13.0571282 11.9548557,10.8387854" id="Fill-4" fill="#FFFFFF" mask="url(#mask-4)"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

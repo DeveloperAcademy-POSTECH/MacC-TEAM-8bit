@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Group 3.png",
+      "filename" : "onboarding3.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Group 4.png",
+      "filename" : "onboarding3 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Group 5.png",
+      "filename" : "onboarding3 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

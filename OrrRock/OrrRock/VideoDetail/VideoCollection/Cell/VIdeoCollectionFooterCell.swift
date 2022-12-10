@@ -13,23 +13,23 @@ final class VideoCollectionFooterCell: UICollectionReusableView {
     
     private let titleLabel : UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .orrGray700
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18, weight:.medium)
+        label.font = UIFont.systemFont(ofSize: 17, weight:.light)
         return label
     }()
     
     private let subTitleLabel : UILabel = {
         let label = UILabel()
-        label.textColor = .gray
+        label.textColor = .orrBlack
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 15, weight:.light)
+        label.font = UIFont.systemFont(ofSize: 17, weight:.bold)
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = .orrWhite
         setUpLayout()
     }
     
@@ -44,7 +44,7 @@ final class VideoCollectionFooterCell: UICollectionReusableView {
     
     func prepare(title: String?,count : Int,successCount : Int , failCount : Int) {
         self.titleLabel.text = "\(successCount)번의 성공, \(failCount)번의 실패"
-        self.subTitleLabel.text = "\(count)개의 비디오"
+        self.subTitleLabel.text = "\(count)개의 기록"
     }
     
     func setUpLayout(){

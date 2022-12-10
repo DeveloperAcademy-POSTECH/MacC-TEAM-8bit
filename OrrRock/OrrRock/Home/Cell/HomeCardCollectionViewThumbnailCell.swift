@@ -29,7 +29,7 @@ final class HomeCardCollectionViewThumbnailCell: UICollectionViewCell {
     
     func setUpLayout() {
         contentView.addSubview(thumbnailView)
-        thumbnailView.backgroundColor = .orrGray500
+        thumbnailView.backgroundColor = .orrGray300
         
         thumbnailView.snp.makeConstraints {
             $0.edges.equalTo(contentView.safeAreaLayoutGuide)

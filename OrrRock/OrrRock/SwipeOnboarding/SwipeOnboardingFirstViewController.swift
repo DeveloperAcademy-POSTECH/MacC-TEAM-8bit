@@ -24,14 +24,14 @@ class SwipeOnboardingFirstViewController: UIViewController {
         btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
         btn.setTitle("방법 살펴보기", for: .normal)
         btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel!.font = UIFont.boldSystemFont(ofSize: 17)
+        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         return btn
     }()
     
     private lazy var skipButton: UIButton = {
         let btn = UIButton()
         btn.addTarget(self, action: #selector(pressSkipButton), for: .touchUpInside)
-        btn.setAttributedTitle("이미 잘 할 수 있어요".underLineAttribute(), for: .normal)
+        btn.setAttributedTitle("이미 잘 할 수 있어요".underLineAttribute(color: UIColor(hex: "#969696")), for: .normal)
         return btn
     }()
     
@@ -50,6 +50,7 @@ class SwipeOnboardingFirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpLayout()
+        view.backgroundColor = .orrGray050
     }
 }
 
