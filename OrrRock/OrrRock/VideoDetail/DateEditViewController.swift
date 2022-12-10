@@ -15,15 +15,13 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
         presentationController as! UISheetPresentationController
     }
     
-    var videoInformation : VideoInformation!
+    var videoInformation: VideoInformation?
+    var routeInformation: RouteInformation?
+    
     var selectDate : Date?
     var selectGymName : String?
-    var completioHandler : ((Date) -> (Void))?
+    var completionHandler : ((Date) -> (Void))?
     
-    var visitedGymList: [VisitedClimbingGym] = []
-    var filteredVisitedGymList: [VisitedClimbingGym] = []
-    var maxTableViewCellCount: Int = 0
-
     // MARK: gym view compenents
     private lazy var gymContentView : UIView = {
         let view = UIView()
@@ -34,7 +32,7 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
     //MARK: date view 관련 components
     private lazy var datePickerLabel : UILabel = {
         let label = UILabel()
-        label.text = "방문한 날짜를 선택해주세요"
+        label.text = "방문한 날짜를 알려주세요"
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.textColor = .orrBlack
         label.backgroundColor = .orrWhite
@@ -43,13 +41,12 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
     
     private lazy var datePicker : UIDatePicker = {
         let datePicker = UIDatePicker()
-        datePicker.overrideUserInterfaceStyle = .light
         datePicker.preferredDatePickerStyle = .inline
         datePicker.datePickerMode = .date
         datePicker.timeZone = .autoupdatingCurrent
         datePicker.locale = Locale(identifier:"ko_KR")
         datePicker.addTarget(self, action: #selector(handleDatePicker(_:)), for: .valueChanged)
-        datePicker.backgroundColor = .orrWhite
+        datePicker.backgroundColor = .orrGray050
         datePicker.maximumDate = Date()
         return datePicker
     }()
@@ -62,7 +59,7 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
         btn.layer.cornerRadius = 15
         btn.addTarget(self, action: #selector(pressSaveButton), for: .touchUpInside)
         btn.setTitle("저장", for: .normal)
-        btn.setTitleColor(.white, for: .normal)
+        btn.setTitleColor(.orrGray500, for: .normal)
         btn.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
         btn.isEnabled = false
         return btn
@@ -102,7 +99,7 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
         let title = UILabel()
         title.text = "날짜 편집"
         title.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        title.textColor = .black
+        title.textColor = .orrBlack
         return title
     }()
     
@@ -114,7 +111,7 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
     }
     
     private func setUpLayout(){
-        view.backgroundColor = .orrWhite
+        view.backgroundColor = .orrGray050
         self.navigationController?.isToolbarHidden = false
         
         view.addSubview(dateTopView)
@@ -164,8 +161,18 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
     }
     
     private func setData(){
-        datePicker.date = videoInformation.gymVisitDate
-        selectDate = videoInformation.gymVisitDate
+        if let videoInformation {
+            datePicker.date = videoInformation.gymVisitDate
+            selectDate = videoInformation.gymVisitDate
+        }
+        else if let routeInformation {
+            datePicker.date = routeInformation.dataWrittenDate
+            selectDate = routeInformation.dataWrittenDate
+        }
+        else {
+            // 정상적으로 데이터가 들어오지 않음
+            print("DateEditViewController Input Data Error")
+        }
     }
 }
 
@@ -174,12 +181,23 @@ extension DateEditViewController {
     @objc
     private func handleDatePicker(_ sender: UIDatePicker) {
         saveButton.isEnabled = true
+        saveButton.setTitleColor(.white, for: .normal)
     }
     
     @objc
     func pressSaveButton() {
-        DataManager.shared.updateDateData(videoInformation: videoInformation, gymVisitDate: datePicker.date)
-        completioHandler?(datePicker.date)
+        if let videoInformation {
+            DataManager.shared.updateDateData(videoInformation: videoInformation, gymVisitDate: datePicker.date)
+            completionHandler?(datePicker.date)
+        }
+        else if let routeInformation {
+            completionHandler?(datePicker.date)
+        }
+        else {
+            // 정상적으로 데이터가 들어오지 않음
+            print("DateEditViewController Input Data Error")
+        }
+        
         self.dismiss(animated: true)
     }
     

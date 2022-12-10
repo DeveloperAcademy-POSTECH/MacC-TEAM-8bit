@@ -27,6 +27,9 @@ final class LevelAndPFSettingViewController: UIViewController {
     private var timeObserverToken: Any?
     private var firstCardtimeObserverToken: Any?
     
+    //버튼 아이콘 크기 조절 할때 사용
+    let largeConfig = UIImage.SymbolConfiguration(pointSize: 15, weight: .bold, scale: .large)
+    
     private lazy var BackgroundView: EmptyBackgroundView = {
         let view = EmptyBackgroundView()
         view.layer.zPosition = -1
@@ -39,7 +42,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         view.pickerSelectValue = 0
         view.delegate = self
         view.layer.zPosition = -1
-
+        
         return view
     }()
     
@@ -73,7 +76,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     private lazy var paddigView: UIView = {
         let view = UIView()
-        
+        view.layer.zPosition = -1
         return view
     }()
     
@@ -88,7 +91,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     private lazy var emptyVideoInformation: UILabel = {
         let label = UILabel()
-        label.text = "모든 비디오를 분류했습니다!"
+        label.text = "모든 비디오를 기록했어요!"
         label.textColor = .orrGray500
         label.font = .systemFont(ofSize: 15.0, weight: .regular)
         
@@ -113,34 +116,38 @@ final class LevelAndPFSettingViewController: UIViewController {
         return button
     }()
     
+    
     private lazy var successButton: CustomButton = {
         let button = CustomButton()
         button.setImage(UIImage(named: "success_icon"), for: .normal)
         button.layer.cornerRadius = 37.0
         button.addTarget(self, action: #selector(didSuccessButton), for: .touchUpInside)
-        
+        return button
+    }()
+    
+    private lazy var videoSliderBackgroundView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 15
+        view.backgroundColor = .orrGray100
+        view.layer.zPosition = -1
+        return view
+    }()
+    
+    private lazy var videoPlayStopButton: CustomButton = {
+        let button = CustomButton()
+        button.setImage(UIImage(systemName: "play.fill", withConfiguration: largeConfig), for: .normal)
+        button.addTarget(self, action: #selector(didVideoPlayStopButton), for: .touchUpInside)
+        button.tintColor  = .orrUPBlue
         return button
     }()
     
     private lazy var videoSlider: VideoSlider = {
         let slider = VideoSlider()
-        slider.minimumTrackTintColor = .orrUPBlue
-        slider.maximumTrackTintColor = .orrGray100
-        slider.translatesAutoresizingMaskIntoConstraints = false
         slider.setThumbImage(UIImage(named: "sliderThumb"), for: .normal)
-        
+        slider.setMinimumTrackImage(UIColor.orrUPBlue!.colorImage(), for: .normal)
+        slider.setMaximumTrackImage(UIColor.orrGray050!.colorImage(), for: .normal)
         // 재생시점 조정 제스처
         slider.addTarget(self, action: #selector(didChangedSlider(_:)), for: .valueChanged)
-        
-        // 탭 했을 때 일시정지 제스처
-//        let touchesBeganGesture = UITapGestureRecognizer()
-//        touchesBeganGesture.addTarget(self, action: #selector(self.didSliderTouchesBegin(slider)))
-//
-//        let touchesEndedGesture = UITapGestureRecognizer()
-//        touchesBeganGesture.addTarget(self, action: #selector(self.didSliderTouchesEnded(slider)))
-        
-        slider.addTarget(self, action: #selector(didSliderTouchesBegin(_:)), for: .editingDidBegin)
-        slider.addTarget(self, action: #selector(didSliderTouchesEnded(_:)), for: .editingDidEnd)
         
         return slider
     }()
@@ -149,7 +156,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         let button = UIButton()
         button.setBackgroundColor(.orrUPBlue!, for: .normal)
         button.addTarget(self, action: #selector(tapSaveButton), for: .touchUpInside)
-        button.setTitle("저장하기", for: .normal)
+        button.setTitle("완료", for: .normal)
         button.clipsToBounds = true
         button.layer.cornerRadius = 10.0
         button.setTitleColor(.white, for: .normal)
@@ -164,10 +171,17 @@ final class LevelAndPFSettingViewController: UIViewController {
         return view
     }()
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+            videoSlider.setMinimumTrackImage(UIColor.orrUPBlue!.colorImage(), for: .normal)
+            videoSlider.setMaximumTrackImage(UIColor.orrGray050!.colorImage(), for: .normal)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if !UserDefaults.standard.bool(forKey: "SwipeOnboardingClear"){
+        if !UserDefaults.standard.bool(forKey: "SwipeOnboardingClear") {
             let nextVC = SwipeOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
             nextVC.modalPresentationStyle = .fullScreen
             self.present(nextVC, animated: true, completion: nil)
@@ -175,8 +189,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         
         view.backgroundColor = .orrWhite
         
-        navigationItem.leftBarButtonItem = CustomBackBarButtomItem(target: self, action: #selector(backButtonClicked))
-        navigationItem.leftBarButtonItem?.tintColor = .orrUPBlue
+        self.navigationController?.setExpansionBackbuttonArea()
         
         // card UI
         setUpLayout()
@@ -216,6 +229,20 @@ private extension LevelAndPFSettingViewController {
             videoSlider.value = Float(CMTimeGetSeconds(currentTime) / CMTimeGetSeconds(duration))
         }
     }
+    
+    @objc
+    func didVideoPlayStopButton() {
+        let card = cards[counter]?.queuePlayer
+        if card?.rate == 0.0 {
+            card?.play()
+            videoPlayStopButton.setImage(UIImage(systemName: "play.fill", withConfiguration: largeConfig), for: .normal)
+        } else {
+            videoPlayStopButton.setImage(UIImage(systemName: "pause.fill", withConfiguration: largeConfig), for: .normal)
+            card?.pause()
+        }
+        
+    }
+    
     
     // 슬라이더 터치에 따른 비디오 업데이트
     @objc
@@ -259,13 +286,12 @@ private extension LevelAndPFSettingViewController {
                 using: { [weak self] currentTime in
                     self?.updateVideoSlider(card: card, time: currentTime)
                     // TODO: 남은 시간 표시
-                    // self?.updateTimeRemaining(currentTime)
+                    // self?.updateTi meRemaining(currentTime)
                 })
         }
     }
     
     func removePeriodicTimeObserver(card: SwipeableCardVideoView, isFirstCard: Bool){
-        
         switch isFirstCard {
         case true:
             if let timeObserverToken = firstCardtimeObserverToken {
@@ -389,9 +415,11 @@ private extension LevelAndPFSettingViewController {
     @objc
     func removeCard(card: UIView) {
         card.removeFromSuperview()
+        videoPlayStopButton.setImage(UIImage(systemName: "play.fill", withConfiguration: largeConfig), for: .normal)
         // 스와이프가 완료되고 removeCard가 호출될 때 버튼 활성화
         successButton.isEnabled = true
         failButton.isEnabled = true
+        deleteButton.isEnabled = true
         counter += 1
         
     }
@@ -401,7 +429,6 @@ private extension LevelAndPFSettingViewController {
     func handlerCard(_ gesture: UIPanGestureRecognizer) {
         if let card = gesture.view as? SwipeableCardVideoView {
             let point = gesture.translation(in: view)
-            
             card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
             
             let horizonalRotationAngle = point.x / view.bounds.width * 0.4
@@ -473,7 +500,6 @@ private extension LevelAndPFSettingViewController {
     
     // swipeCard의 애니메이션 효과를 담당합니다.
     func animateCard(rotationAngle: CGFloat, videoResultType: VideoResultType) {
-        
         guard let card = cards[counter] else { return }
         removePeriodicTimeObserver(card: card, isFirstCard:  counter == 0 ? true : false)
         
@@ -525,7 +551,6 @@ private extension LevelAndPFSettingViewController {
                 UIView.animate(
                     withDuration: 0.3,
                     animations: {
-                        
                         card.center = center
                         card.transform = CGAffineTransform(rotationAngle: rotationAngle)
                         
@@ -542,6 +567,7 @@ private extension LevelAndPFSettingViewController {
                         // 카드 스와이프 애니매이션이 진행 중일 때 버튼 비활성화
                         self.successButton.isEnabled = false
                         self.failButton.isEnabled = false
+                        self.deleteButton.isEnabled = false
                         
                     }) { [self] _ in
                         if counter != cards.count-1 {
@@ -554,11 +580,6 @@ private extension LevelAndPFSettingViewController {
                 
             }
         }
-    }
-    
-    @objc
-    func backButtonClicked() {
-        self.navigationController?.popViewController(animated: true)
     }
     
     // 모든 카드를 스와이핑 했을 때 호출되는 메서드
@@ -610,14 +631,28 @@ private extension LevelAndPFSettingViewController {
             $0.center.equalTo(emptyVideoView.snp.center)
         }
         
-        // TODO: Slider가 너무 빨리 그려지는 이슈
-        view.addSubview(videoSlider)
-        videoSlider.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(OrrPd.pd16.rawValue)
-            // TODO: Slider 초기, 후기에 급하게 값이 변동되어 offset으로 해당 영역 숨김. 슬라이더 디테일 작업 보완 예정.
-            $0.leading.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd24.rawValue)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd24.rawValue)
+        view.addSubview(videoSliderBackgroundView)
+        videoSliderBackgroundView.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-OrrPd.pd16.rawValue)
+            $0.leading.equalTo(view.safeAreaLayoutGuide).offset(OrrPd.pd16.rawValue)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).offset(-OrrPd.pd16.rawValue)
             $0.height.equalTo(56)
+        }
+        
+        videoSliderBackgroundView.addSubview(videoPlayStopButton)
+        videoPlayStopButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview()
+            $0.leading.equalToSuperview()
+            $0.height.equalToSuperview()
+            $0.width.equalTo(56)
+        }
+        
+        videoSliderBackgroundView.addSubview(videoSlider)
+        videoSlider.snp.makeConstraints {
+            $0.leading.equalTo(videoPlayStopButton.snp.trailing)
+            $0.trailing.equalToSuperview().offset(-OrrPd.pd16.rawValue)
+            $0.centerY.equalToSuperview()
+            $0.height.equalTo(34)
         }
         
         view.addSubview(paddigView)
@@ -659,5 +694,6 @@ private extension LevelAndPFSettingViewController {
             $0.trailing.equalTo(view).offset(-OrrPd.pd16.rawValue)
             $0.height.equalTo(56)
         }
+        
     }
 }

@@ -14,7 +14,7 @@ class HomeTableViewFooter: UITableViewHeaderFooterView {
     
     private lazy var roundCornerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .orrWhite
+        view.backgroundColor = .orrWhiteCustom
         view.layer.cornerRadius = 10
         return view
     }()

@@ -36,7 +36,7 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
         case .select:
             dictionarySelectedIndexPath[indexPath] = true
             let indexCountLabel = UILabel()
-            indexCountLabel.text = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndexPath.values.filter({$0 == true}).count)개의 비디오 선택"
+            indexCountLabel.text = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndexPath.values.filter({$0 == true}).count)개의 기록 선택"
             toolbarText.customView = indexCountLabel
             deleteBarButton.isEnabled = true
         }
@@ -48,7 +48,7 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
             collectionView.cellForItem(at: indexPath)?.isHighlighted = false
             collectionView.cellForItem(at: indexPath)?.isSelected = false
             let indexCountLabel = UILabel()
-            indexCountLabel.text = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndexPath.values.filter({$0 == true}).count)개의 비디오 선택"
+            indexCountLabel.text = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? "항목 선택":"\(dictionarySelectedIndexPath.values.filter({$0 == true}).count)개의 기록 선택"
             deleteBarButton.isEnabled = (dictionarySelectedIndexPath.values.filter({$0 == true}).count) == 0 ? false : true
             toolbarText.customView = indexCountLabel
         }
@@ -89,23 +89,23 @@ extension VideoCollectionViewController :  UICollectionViewDelegate{
 
 extension VideoCollectionViewController  : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let screenBounds = UIScreen.main.bounds
-        let screenScale = UIScreen.main.scale
-        let screenSize = CGSize(width: screenBounds.size.width * screenScale, height: screenBounds.size.height * screenScale)
+
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customVideoCollectionCell", for: indexPath) as! VideoCollectionViewCell
-        cell.cellImage.image = videoInformationArray[indexPath.row].videoLocalIdentifier?.generateCardViewThumbnail(targetSize: screenSize )
+        
+        cell.cellImage.image = videoInformationArray[indexPath.row].videoLocalIdentifier?.generateCardViewThumbnail()
+        
         if videoInformationArray[indexPath.item].isFavorite{
             cell.heartImage.alpha = 1.0
-        }
-        else{
+        } else {
             cell.heartImage.alpha = 0.0
         }
+        
         if videoInformationArray[indexPath.item].isSucceeded{
             cell.cellLabel.backgroundColor = .orrPass
-        }
-        else{
+        } else {
             cell.cellLabel.backgroundColor = .orrFail
         }
+        
         cell.cellLabel.text = videoInformationArray[indexPath.item].problemLevel == -1 ? "V?" : "V\(videoInformationArray[indexPath.item].problemLevel)"
         return cell
     }

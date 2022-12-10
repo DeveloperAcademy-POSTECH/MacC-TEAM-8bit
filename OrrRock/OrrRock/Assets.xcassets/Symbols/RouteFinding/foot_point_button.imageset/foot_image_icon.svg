@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 4</title>
+    <defs>
+        <filter x="-33.3%" y="-33.3%" width="166.7%" height="166.7%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <polygon id="path-2" points="0 0 6.99539171 0 6.99539171 6.4124424 0 6.4124424"></polygon>
+        <polygon id="path-4" points="0 0 9.91013825 0 9.91013825 12.2419355 0 12.2419355"></polygon>
+    </defs>
+    <g id="Sprint3/Hi-Fi" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-4" filter="url(#filter-1)" transform="translate(6.000000, 6.000000)">
+            <circle id="Oval" fill="#FFFFFF" cx="12" cy="12" r="12"></circle>
+            <g id="Group-2-Copy" transform="translate(2.000000, 1.000000)">
+                <rect id="Rectangle-Copy-5" x="0" y="0" width="22" height="22"></rect>
+                <g id="Group-7" transform="translate(4.714286, 2.357143)">
+                    <g id="Group-3" transform="translate(0.000000, 11.658986)">
+                        <mask id="mask-3" fill="white">
+                            <use xlink:href="#path-2"></use>
+                        </mask>
+                        <g id="Clip-2"></g>
+                        <path d="M6.98698989,2.01581574 L4.08905756,1.00790787 L1.19095428,0 C0.794157574,0.416215671 0.467112294,0.929659323 0.250677728,1.51968666 C-0.479147834,3.50969703 0.452067869,5.65270827 2.16679038,6.24906209 C3.88168384,6.8454159 5.99610937,5.76175678 6.72593493,3.77174641 C6.94236949,3.18171908 7.02340424,2.58270148 6.98698989,2.01581574" id="Fill-1" fill="#30B0C7" mask="url(#mask-3)"></path>
+                    </g>
+                    <g id="Group-6" transform="translate(1.165899, 0.000000)">
+                        <mask id="mask-5" fill="white">
+                            <use xlink:href="#path-4"></use>
+                        </mask>
+                        <g id="Clip-5"></g>
+                        <path d="M9.3931009,8.51618856 C10.4995222,5.45277228 9.8346558,1.02804648 7.35906591,0.153657265 C4.88347602,-0.720575335 1.53443733,2.28661566 0.428174429,5.35003194 C-0.201373893,7.09285895 -0.112524432,8.87687607 0.536187499,10.2525943 L6.16886324,12.2419355 C7.5521274,11.5838335 8.76355258,10.2591722 9.3931009,8.51618856" id="Fill-4" fill="#30B0C7" mask="url(#mask-5)"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

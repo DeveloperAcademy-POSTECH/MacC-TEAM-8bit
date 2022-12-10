@@ -18,7 +18,6 @@ class VideoDetailViewController: UIViewController {
     var isSounded: Bool = false
     var isPlayed: Bool = false
     var isShowKeyboard: Bool = false
-    var iconSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
     
     var videoInfoView = VideoInfoView()
     
@@ -42,14 +41,13 @@ class VideoDetailViewController: UIViewController {
     var soundButton: UIBarButtonItem!
     var playButton: UIBarButtonItem!
     var favoriteButton: UIBarButtonItem!
-    private var goBackButton: UIBarButtonItem!
     private var flexibleSpace: UIBarButtonItem!
-    private var cancelButton: UIBarButtonItem!
     private var completeButton: UIBarButtonItem!
     
     lazy var topSafeAreaView: UIView = {
         let view = UIView()
         view.backgroundColor = .orrWhite
+        
         return view
     }()
     
@@ -58,10 +56,6 @@ class VideoDetailViewController: UIViewController {
         view.backgroundColor = .orrWhite
         return view
     }()
-    
-    // 영상 재생하는 뷰 (VideoPlayerView)
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,13 +69,14 @@ class VideoDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         self.navigationController?.isToolbarHidden = false
-        self.navigationController?.hidesBarsOnTap = true
         self.navigationController?.isNavigationBarHidden = false
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.setToolbarHidden(true, animated: false)
         self.navigationController?.navigationBar.layer.opacity = 1
         self.topSafeAreaView.layer.opacity = 1
     }
@@ -90,33 +85,27 @@ class VideoDetailViewController: UIViewController {
     func setNavigationBar() {
         // 네비게이션바 버튼 아이템 생성
         flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        goBackButton = CustomBackBarButtomItem(target: self, action: #selector(goBackAction))
         favoriteButton = UIBarButtonItem(image: UIImage(systemName: videoInformation.isFavorite ? "heart.fill" : "heart"), style: .plain, target: self, action: #selector(favoriteAction))
-        cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelAction))
         completeButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(completeAction))
-        
+        self.navigationController?.setExpansionBackbuttonArea()
+
         // 네비게이션바 띄워주고 탭 되었을 때 숨기기
         navigationController?.isToolbarHidden = false
-        navigationController?.hidesBarsOnTap = true
         
         // 배경, 네비게이션바, 툴바 색 지정
         self.view.backgroundColor = .orrWhite
-        navigationController?.navigationBar.backgroundColor = .orrWhite
-        navigationController?.toolbar.backgroundColor = .orrWhite
-        
-        navigationItem.leftBarButtonItem = goBackButton
-       
         
         // 툴바 버튼 아이템 생성
         exportButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(exportAction))
         infoButton = UIBarButtonItem(image: UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle"), style: .plain, target: self, action: #selector(showInfo))
         trashButton = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteVideoAction))
         soundButton = UIBarButtonItem(image: UIImage(systemName: "speaker.slash.fill"), style: .plain, target: self, action: #selector(soundVideoAction))
-        var items = [UIBarButtonItem]()
+        soundButton.width = 40
         playButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(playVideoAction))
-        iconSpace.width = 8.4
+        playButton.width = 30
         
-        [exportButton,flexibleSpace,favoriteButton,flexibleSpace,playButton,iconSpace,flexibleSpace,soundButton,flexibleSpace,infoButton,flexibleSpace,trashButton].forEach {
+        var items = [UIBarButtonItem]()
+        [exportButton,flexibleSpace,favoriteButton,flexibleSpace,playButton,flexibleSpace,soundButton,flexibleSpace,infoButton,flexibleSpace,trashButton].forEach {
             items.append($0)
         }
         self.toolbarItems = items
@@ -134,13 +123,12 @@ class VideoDetailViewController: UIViewController {
     @objc func showInfo() {
         isShowInfo.toggle()
         infoButton.image = UIImage(systemName: isShowInfo ? "info.circle.fill" : "info.circle")
-        navigationController?.hidesBarsOnTap = !isShowInfo
         feedbackText = videoInfoView.feedbackTextView.text!
         if isShowInfo {
             UIView.animate(withDuration: 0.2, animations: {
                 self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: -430)
                 self.videoDetailPageViewController.view.transform = CGAffineTransform(translationX: 0, y: -430)
-                self.navigationController?.navigationBar.layer.opacity = 0
+                self.navigationController?.isNavigationBarHidden = true
                 self.topSafeAreaView.layer.opacity = 0
                 self.navigationController?.isToolbarHidden = false
                 self.bottomSafeAreaView.layer.opacity = 1.0
@@ -149,7 +137,7 @@ class VideoDetailViewController: UIViewController {
             UIView.animate(withDuration: 0.2, animations: {
                 self.videoInfoView.transform = CGAffineTransform(translationX: 0, y: 0)
                 self.videoDetailPageViewController.view.transform = CGAffineTransform(translationX: 0, y: 0)
-                self.navigationController?.navigationBar.layer.opacity = 1
+                self.navigationController?.isNavigationBarHidden = false
                 self.topSafeAreaView.layer.opacity = 1
             })
         }
@@ -160,17 +148,16 @@ class VideoDetailViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
         navigationController?.isNavigationBarHidden = false
         navigationController?.isToolbarHidden = true
-        navigationController?.hidesBarsOnTap = false
     }
     
     // 삭제 버튼을 눌렀을 때 로직
     @objc func deleteVideoAction(_ sender: UIBarButtonItem) {
-        let optionMenu = UIAlertController(title: "선택한 영상 삭제하기", message: "정말로 삭제하시겠어요?", preferredStyle: .actionSheet)
-        let deleteAction = UIAlertAction(title: "삭제하기", style: .destructive) {_ in
+        let optionMenu = UIAlertController(title: "선택한 기록 삭제하기", message: "정말로 삭제하시겠어요?", preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
             DataManager.shared.deleteData(videoInformation: self.currentVideoInformation!)
             self.goBackAction()
         }
-        let cancelAction = UIAlertAction(title: "취소하기", style: .cancel)
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         
         optionMenu.addAction(deleteAction)
         optionMenu.addAction(cancelAction)
@@ -181,10 +168,8 @@ class VideoDetailViewController: UIViewController {
     // 소리 버튼을 눌렀을 때 로직
     @objc func soundVideoAction() {
         isSounded.toggle()
-        iconSpace.width = isSounded ? 0 : 8.4
         soundButton.image = UIImage(systemName: isSounded ? "speaker.wave.2.fill" : "speaker.slash.fill")
         VideoDetailViewControllerDelegate?.changeVideoSoundPlayAndStop()
-        print(#function)
     }
     
     // 재생 버튼을 눌렀을 때 로직
@@ -192,7 +177,6 @@ class VideoDetailViewController: UIViewController {
         isPlayed.toggle()
         playButton.image = UIImage(systemName: isPlayed ? "play.fill" : "pause.fill")
         VideoDetailViewControllerDelegate?.changeVideoPlayAndStop()
-        print(#function)
         
     }
     
@@ -201,7 +185,6 @@ class VideoDetailViewController: UIViewController {
         currentVideoInformation!.isFavorite.toggle()
         favoriteButton.image = UIImage(systemName: currentVideoInformation!.isFavorite ? "heart.fill" : "heart")
         DataManager.shared.updateFavorite(videoInformation: currentVideoInformation!, isFavorite: currentVideoInformation!.isFavorite)
-        print(#function)
     }
     
     // 취소 버튼을 눌렀을 때 로직
@@ -213,7 +196,6 @@ class VideoDetailViewController: UIViewController {
     // 완료 버튼을 눌렀을 때 로직
     @objc func completeAction() {
         //TODO: 피드백 입력 구현 마무리
-        
         feedbackText = videoInfoView.feedbackTextView.text!
         DataManager.shared.updateFeedback(videoInformation: currentVideoInformation!, feedback: feedbackText!)
         self.view.endEditing(true)
@@ -252,26 +234,16 @@ extension VideoDetailViewController {
     @objc func showKeyboard(notification: NSNotification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             isShowKeyboard.toggle()
-            self.navigationController?.navigationBar.layer.opacity = 1
-            self.topSafeAreaView.layer.opacity = 1
-            // 키보드의 유무에 따라 버튼 옵션 변경
-            navigationItem.leftBarButtonItem = isShowKeyboard ? cancelButton : goBackButton
             feedbackText = videoInfoView.feedbackTextView.text!
             DataManager.shared.updateFeedback(videoInformation: currentVideoInformation!, feedback: feedbackText!)
-            navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         }
     }
     
     @objc func hideKeyboard(notification: NSNotification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             isShowKeyboard.toggle()
-            self.navigationController?.navigationBar.layer.opacity = 0
-            self.topSafeAreaView.layer.opacity = 0
-            // 키보드의 유무에 따라 버튼 옵션 변경
-            navigationItem.leftBarButtonItem = isShowKeyboard ? cancelButton : goBackButton
             feedbackText = videoInfoView.feedbackTextView.text!
             DataManager.shared.updateFeedback(videoInformation: currentVideoInformation!, feedback: feedbackText!)
-            navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         }
     }
     
@@ -332,7 +304,7 @@ extension VideoDetailViewController {
             $0.top.equalTo(self.view)
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.top)
         }
-        // 하단 safe area를 가려주는 뷰
+//         하단 safe area를 가려주는 뷰
         view.addSubview(bottomSafeAreaView)
         bottomSafeAreaView.snp.makeConstraints {
             $0.leading.equalTo(self.view)

@@ -33,7 +33,7 @@ class RouteCoreDataDAO {
         return routeInformation
     }
     
-    func updateRoute(routeInfo: RouteInfo, routeInformation: RouteInformation) {
+    func updateRouteInformationDataWrittenDate(date: Date, routeInformation: RouteInformation) {
         guard let id = routeInformation.id else { return }
         let request = RouteInformation.fetchRequest()
         
@@ -41,25 +41,68 @@ class RouteCoreDataDAO {
         do {
             let info = try context.fetch(request)
             if let tempInfo = info.first {
-                tempInfo.setValue(routeInfo.imageLocalIdentifier, forKey: "imageLocalIdentifier")
-                tempInfo.setValue(routeInfo.dataWrittenDate, forKey: "dataWrittenDate")
-                tempInfo.setValue(routeInfo.gymName, forKey: "gymName")
-                tempInfo.setValue(routeInfo.isChallengeComplete, forKey: "isChallengeComplete")
-                tempInfo.setValue(routeInfo.problemLevel, forKey: "problemLevel")
+                tempInfo.setValue(date, forKey: "dataWrittenDate")
             }
         } catch {
             print("CoreDataDAO UpateRoute Method \(error.localizedDescription)")
         }
     }
     
+    func updateRouteInformationGymName(gymName: String, routeInformation: RouteInformation) {
+        guard let id = routeInformation.id else { return }
+        let request = RouteInformation.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        do {
+            let info = try context.fetch(request)
+            if let tempInfo = info.first {
+                tempInfo.setValue(gymName, forKey: "gymName")
+            }
+        } catch {
+            print("CoreDataDAO UpateRoute Method \(error.localizedDescription)")
+        }
+    }
+    
+    func updateRouteInformationLevelAndStatus(status: Bool, problemLevel: Int, routeInformation: RouteInformation) {
+        guard let id = routeInformation.id else { return }
+        let request = RouteInformation.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        do {
+            let info = try context.fetch(request)
+            if let tempInfo = info.first {
+                tempInfo.setValue(status, forKey: "isChallengeComplete")
+                tempInfo.setValue(problemLevel, forKey: "problemLevel")
+            }
+        } catch {
+            print("CoreDataDAO UpateRoute Method \(error.localizedDescription)")
+        }
+    }
+    
+    func updateRouteInformationStatus(status: Bool, routeInformation: RouteInformation) {
+        guard let id = routeInformation.id else { return }
+        let request = RouteInformation.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        do {
+            let info = try context.fetch(request)
+            if let tempInfo = info.first {
+                tempInfo.setValue(status, forKey: "isChallengeComplete")
+            }
+        } catch {
+            print("CoreDataDAO UpateRoute Method \(error.localizedDescription)")
+        }
+        saveData()
+    }
+    
     func createPageInformation(pageInfo: PageInfo, routeInformation: RouteInformation) {
+        print("MAKE PAGE")
         let page = PageInformation(context: context)
         page.rowOrder = Int64(pageInfo.rowOrder)
         page.setValue(UUID(), forKey: "id")
         routeInformation.addToPages(page)
         
-        guard let points = pageInfo.points else { return }
-        createPointInformation(pointInfoList: points, pageInformation: page)
+        createPointInformation(pointInfoList: pageInfo.points, pageInformation: page)
     }
     
     func createPointInformation(pointInfoList: [PointInfo], pageInformation: PageInformation) {

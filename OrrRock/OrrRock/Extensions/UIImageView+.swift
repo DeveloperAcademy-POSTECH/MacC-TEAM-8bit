@@ -9,21 +9,17 @@ import UIKit
 
 extension UIImageView {
     func setVideoBackgroundViewBorderColor(color: VideoBackgroundViewBorderColor,alpha: CGFloat) {
-        var r : CGFloat = 0.0
-        var g : CGFloat = 0.0
-        var b : CGFloat = 0.0
-        
+        var myColor = UIColor.orrWhite
         switch color {
         case.pass :
-            r = 48; g = 176; b = 199
+            myColor = .orrPass
         case .fail :
-            r = 242; g = 52; b = 52
-        // TODO: 디자인 상의 후 색상 값 수정
+            myColor = .orrFail
         case .delete:
-            r = 178; g = 178; b = 178
+            myColor = .orrGray500
         case .clear :
-            r = 255; g = 255; b = 255
+            myColor = .orrWhite
         }
-        self.layer.borderColor = UIColor(red:r/255.0, green:g/255.0, blue:b/255.0, alpha: alpha).cgColor
+        self.layer.borderColor = myColor?.withAlphaComponent(1.0).cgColor
     }
 }
