@@ -35,7 +35,8 @@ final class SwipeableCardVideoView: UIView {
     
     let successImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "success")
+        imageView.image = UIImage(named: "success")?.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = .orrPass
         imageView.alpha = 0.0
         
         return imageView
@@ -43,7 +44,8 @@ final class SwipeableCardVideoView: UIView {
     
     let failImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "fail")
+        imageView.image = UIImage(named: "fail")?.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = .orrFail
         imageView.alpha = 0.0
         
         return imageView

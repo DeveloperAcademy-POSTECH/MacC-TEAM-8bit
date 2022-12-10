@@ -24,7 +24,7 @@ class SwipeOnboardingFirstViewController: UIViewController {
         btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
         btn.setTitle("방법 살펴보기", for: .normal)
         btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel!.font = UIFont.boldSystemFont(ofSize: 17)
+        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         return btn
     }()
     

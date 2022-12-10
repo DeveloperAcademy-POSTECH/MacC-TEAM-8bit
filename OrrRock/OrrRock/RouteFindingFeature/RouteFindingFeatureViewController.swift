@@ -90,10 +90,9 @@ final class RouteFindingFeatureViewController: UIViewController {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         button.layer.cornerRadius = 20
         button.backgroundColor = .orrGray700
-        button.setImage(UIImage(systemName: "multiply"), for: .normal)
-        button.contentVerticalAlignment = .fill
-        button.contentHorizontalAlignment = .fill
-        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        let config = UIImage.SymbolConfiguration(pointSize: 24, weight: .medium, scale: .small)
+        let buttonSymbol = UIImage(systemName: "xmark", withConfiguration: config)?.withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
+        button.setImage(buttonSymbol, for: .normal)
         button.tintColor = .orrWhite
         button.addAction(UIAction { _ in
             self.showExitAlert()
@@ -106,6 +105,7 @@ final class RouteFindingFeatureViewController: UIViewController {
         button.layer.cornerRadius = 20
         button.backgroundColor = .orrGray700
         button.setTitle("완료", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         button.setTitleColor(.orrWhite, for: .normal)
         button.setTitleColor(.orrGray500, for: .highlighted)
         button.addAction(UIAction { _ in

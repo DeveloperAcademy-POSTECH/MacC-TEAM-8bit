@@ -56,7 +56,7 @@ final class RouteFindingCameraViewController: UIViewController {
         button.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         button.layer.cornerRadius = 20
         let config = UIImage.SymbolConfiguration(pointSize: 24, weight: .medium, scale: .small)
-        let buttonSymbol = UIImage(systemName: "multiply", withConfiguration: config)?.withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
+        let buttonSymbol = UIImage(systemName: "xmark", withConfiguration: config)?.withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
         button.setImage(buttonSymbol, for: .normal)
         
         button.addTarget(self, action: #selector(dismissRouteFinidngCameraViewController), for: .touchUpInside)
