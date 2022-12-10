@@ -16,7 +16,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     var tempRouteInfo: RouteInfo
     var pageViewControllerList: [RouteFindingPageViewController] = []
     var backgroundImage: UIImage
-    
+    var isCreateMode: Bool
     var isHandButtonMode: Bool = false {
         didSet {
             pageViewControllerList.forEach { vc in
@@ -90,10 +90,9 @@ final class RouteFindingFeatureViewController: UIViewController {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         button.layer.cornerRadius = 20
         button.backgroundColor = .orrGray700
-        button.setImage(UIImage(systemName: "multiply"), for: .normal)
-        button.contentVerticalAlignment = .fill
-        button.contentHorizontalAlignment = .fill
-        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        let config = UIImage.SymbolConfiguration(pointSize: 24, weight: .medium, scale: .small)
+        let buttonSymbol = UIImage(systemName: "xmark", withConfiguration: config)?.withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
+        button.setImage(buttonSymbol, for: .normal)
         button.tintColor = .orrWhite
         button.addAction(UIAction { _ in
             self.showExitAlert()
@@ -106,6 +105,7 @@ final class RouteFindingFeatureViewController: UIViewController {
         button.layer.cornerRadius = 20
         button.backgroundColor = .orrGray700
         button.setTitle("완료", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         button.setTitleColor(.orrWhite, for: .normal)
         button.setTitleColor(.orrGray500, for: .highlighted)
         button.addAction(UIAction { _ in
@@ -176,12 +176,12 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     // MARK: Life Cycle Functions
     
-    init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage) {
+    init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage, isCreateMode: Bool) {
         self.routeDataDraft = routeDataDraft
         self.tempRouteInfo = routeDataDraft.routeInfoForUI
         
         self.backgroundImage = backgroundImage
-        
+        self.isCreateMode = isCreateMode
         super.init(nibName: nil, bundle: nil)
         
         backgroundImageView.image = self.backgroundImage
@@ -193,7 +193,7 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        CustomIndicator.stopLoading()
         view.backgroundColor = .black
         overrideUserInterfaceStyle = .light
         
@@ -268,9 +268,8 @@ final class RouteFindingFeatureViewController: UIViewController {
         }
     }
     
+    // TODO: 루트 파인딩 저장하기 뷰로 데이터 넘겨주기
     func finishRouteFinding() {
-        
-        // TODO: 루트 파인딩 저장하기 뷰로 데이터 넘겨주기
         
         var pageImageList: [UIImage] = []
         
@@ -292,8 +291,9 @@ final class RouteFindingFeatureViewController: UIViewController {
     }
     
     func showExitAlert() {
-        let optionMenu = UIAlertController(title: "저장하지 않고 나가기", message: "지금 나가면 변경 사항이\r\n삭제됩니다.", preferredStyle: .alert)
-        let deleteAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
+        let msg = isCreateMode ? "루트 파인딩은" : "편집한 내용은"
+        let optionMenu = UIAlertController(title: "저장하지 않고 나가기", message: "나가기 선택 시, \(msg) 저장되지 않습니다.", preferredStyle: .alert)
+        let deleteAction = UIAlertAction(title: "나가기", style: .destructive) {_ in
             self.routeDataDraft.routeInfoForUI = self.tempRouteInfo
             
             self.dismiss(animated: true, completion: nil)
@@ -498,7 +498,6 @@ extension RouteFindingFeatureViewController: IsDeletingPointButtonDelegate {
 extension RouteFindingFeatureViewController {
     func showPage() {
         let nextVC = RouteFindingOnboardingViewController(backgroundImage: backgroundImageView.image!)
-//        RouteFindingOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         nextVC.modalPresentationStyle = .fullScreen
         self.present(nextVC, animated: true, completion: nil)
     }

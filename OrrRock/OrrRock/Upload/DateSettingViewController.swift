@@ -42,6 +42,7 @@ class DateSettingViewController: UIViewController {
         btn.setBackgroundColor(.orrGray300!, for: .disabled)
         btn.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
         btn.setTitle("계속", for: .normal)
+        btn.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
         btn.setTitleColor(.white, for: .normal)
         return btn
     }()

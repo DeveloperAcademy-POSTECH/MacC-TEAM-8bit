@@ -102,6 +102,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         let button = CustomButton()
         button.setImage(UIImage(named: "fail_icon"), for: .normal)
         button.layer.cornerRadius = 37.0
+        button.isExclusiveTouch = true
         button.addTarget(self, action: #selector(didFailButton), for: .touchUpInside)
         
         return button
@@ -111,6 +112,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         let button = CustomButton()
         button.setImage(UIImage(named: "delete"), for: .normal)
         button.layer.cornerRadius = 37.0
+        button.isExclusiveTouch = true
         button.addTarget(self, action: #selector(didDeleteButton), for: .touchUpInside)
         
         return button
@@ -121,6 +123,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         let button = CustomButton()
         button.setImage(UIImage(named: "success_icon"), for: .normal)
         button.layer.cornerRadius = 37.0
+        button.isExclusiveTouch = true
         button.addTarget(self, action: #selector(didSuccessButton), for: .touchUpInside)
         return button
     }()
@@ -135,7 +138,7 @@ final class LevelAndPFSettingViewController: UIViewController {
     
     private lazy var videoPlayStopButton: CustomButton = {
         let button = CustomButton()
-        button.setImage(UIImage(systemName: "play.fill", withConfiguration: largeConfig), for: .normal)
+        button.setImage(UIImage(systemName: "pause.fill", withConfiguration: largeConfig), for: .normal)
         button.addTarget(self, action: #selector(didVideoPlayStopButton), for: .touchUpInside)
         button.tintColor  = .orrUPBlue
         return button
@@ -235,9 +238,9 @@ private extension LevelAndPFSettingViewController {
         let card = cards[counter]?.queuePlayer
         if card?.rate == 0.0 {
             card?.play()
-            videoPlayStopButton.setImage(UIImage(systemName: "play.fill", withConfiguration: largeConfig), for: .normal)
-        } else {
             videoPlayStopButton.setImage(UIImage(systemName: "pause.fill", withConfiguration: largeConfig), for: .normal)
+        } else {
+            videoPlayStopButton.setImage(UIImage(systemName: "play.fill", withConfiguration: largeConfig), for: .normal)
             card?.pause()
         }
         
@@ -415,11 +418,13 @@ private extension LevelAndPFSettingViewController {
     @objc
     func removeCard(card: UIView) {
         card.removeFromSuperview()
-        videoPlayStopButton.setImage(UIImage(systemName: "play.fill", withConfiguration: largeConfig), for: .normal)
+        videoPlayStopButton.setImage(UIImage(systemName: "pause.fill", withConfiguration: largeConfig), for: .normal)
         // 스와이프가 완료되고 removeCard가 호출될 때 버튼 활성화
         successButton.isEnabled = true
         failButton.isEnabled = true
         deleteButton.isEnabled = true
+        BlockView.stopBlock()
+        
         counter += 1
         
     }
@@ -449,12 +454,11 @@ private extension LevelAndPFSettingViewController {
                 // 카드의 x축을 통한 성패 결정 스와이프 정도
                 
                 let cardPositionX = card.center.x
-                
                 switch cardPositionX {
-                case self.view.bounds.width / 3 * 2..<self.view.bounds.width:
+                case (view.bounds.width - view.bounds.width / 3)...:
                     animateCard(rotationAngle: horizonalRotationAngle, videoResultType: .success)
                     return
-                case 0..<self.view.bounds.width / 3:
+                case ..<(self.view.bounds.width / 3):
                     animateCard(rotationAngle: horizonalRotationAngle, videoResultType: .fail)
                     return
                 default:
@@ -568,6 +572,7 @@ private extension LevelAndPFSettingViewController {
                         self.successButton.isEnabled = false
                         self.failButton.isEnabled = false
                         self.deleteButton.isEnabled = false
+                        BlockView.startBlock()
                         
                     }) { [self] _ in
                         if counter != cards.count-1 {

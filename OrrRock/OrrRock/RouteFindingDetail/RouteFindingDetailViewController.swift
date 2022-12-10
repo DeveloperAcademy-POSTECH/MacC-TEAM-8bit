@@ -184,7 +184,7 @@ class RouteFindingDetailViewController: UIViewController {
     @objc func editAction() {
         guard let image = routeDataDraft.routeInfoForUI.imageLocalIdentifier.generateCardViewThumbnail(targetSize: CGSize(width: 2400, height: 2400)) else { return }
         
-        let featureVC = RouteFindingFeatureViewController(routeDataDraft: routeDataDraft, backgroundImage: image)
+        let featureVC = RouteFindingFeatureViewController(routeDataDraft: routeDataDraft, backgroundImage: image, isCreateMode: false)
         
         featureVC.modalPresentationStyle = .fullScreen
         navigationController?.present(featureVC, animated: true)
