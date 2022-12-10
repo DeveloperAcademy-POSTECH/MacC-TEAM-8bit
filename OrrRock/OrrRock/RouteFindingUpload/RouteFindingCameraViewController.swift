@@ -51,6 +51,15 @@ final class RouteFindingCameraViewController: UIViewController {
         return button
     }()
     
+    private lazy var noneCamreaLabel: UILabel = {
+        let label = UILabel()
+        label.text = "해당 기종에서는 카메라 사용이 불가능 합니다.\n\n 좌측하단 엘범에서 이미지를 선택해 주세요."
+        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        label.textColor = .white
+        label.numberOfLines = 0
+        return label
+    }()
+    
     private lazy var closeButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.black.withAlphaComponent(0.3)
@@ -192,7 +201,7 @@ extension RouteFindingCameraViewController {
                 DispatchQueue.main.async {
                     self.present(picker, animated: true, completion: nil)
                 }
-           
+                
             default:
                 DispatchQueue.main.async {
                     self.authSettingOpen(alertType: .denied)
@@ -207,6 +216,7 @@ extension RouteFindingCameraViewController {
         
         let settings = AVCapturePhotoSettings()
         sessionQueue.async {
+            CustomIndicator.startLoading()
             self.photoOutput?.capturePhoto(with: settings, delegate: self)
         }
     }
@@ -279,11 +289,21 @@ private extension RouteFindingCameraViewController {
     
     // 카메라 기능 동작을 위해 필요한 여러 항목 세팅
     private func setupCaptureSession() {
+        
+        guard let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera,
+                                                        for: .video, position: .unspecified) else {
+            showPhotoPicker()
+            view.addSubview(noneCamreaLabel)
+            noneCamreaLabel.snp.makeConstraints {
+                $0.center.equalToSuperview()
+            }
+            return
+        }
+        
         sessionQueue.async { [self] in
             captureSession.beginConfiguration()
-            let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera,
-                                                      for: .video, position: .unspecified)
-            guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice!),
+            
+            guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice),
                   captureSession.canAddInput(videoDeviceInput) else { return }
             captureSession.addInput(videoDeviceInput)
             
@@ -348,7 +368,7 @@ extension RouteFindingCameraViewController {
     func navigateToRouteFindingFeatureVC(phAssetLocalIdentifier localIdentifier: String?, image: UIImage?) {
         guard let image = photoImage, let manager = routeDataManager else { return }
         let routeDataDraft = RouteDataDraft(manager: manager, existingRouteFinding: nil, imageLocalIdentifier: localIdentifier ?? "")
-        let featureVC = RouteFindingFeatureViewController(routeDataDraft: routeDataDraft, backgroundImage: image)
+        let featureVC = RouteFindingFeatureViewController(routeDataDraft: routeDataDraft, backgroundImage: image, isCreateMode: true)
         navigationController?.pushViewController(featureVC, animated: true)
     }
 }
