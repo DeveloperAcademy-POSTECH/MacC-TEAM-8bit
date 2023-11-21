@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class SwipeOnboardingThirdViewController: UIViewController {
     
@@ -23,24 +24,20 @@ class SwipeOnboardingThirdViewController: UIViewController {
         return view
     }()
     
-    private lazy var mainImageView: UIImageView = {
-        let image = UIImage(named: "SwipeOnboardingImage3")
-        let view = UIImageView(image: image)
-        view.layer.borderWidth = 3
-        view.layer.cornerRadius = cornerRadius
-        view.layer.borderColor = UIColor.orrWhite?.cgColor
-        view.layer.zPosition = 1
-        view.isUserInteractionEnabled = true
+    private lazy var mainImageView: UIImageView = .init().then {
+        $0.image = UIImage(named: "SwipeOnboardingImage3")
+        $0.layer.borderWidth = 3
+        $0.layer.cornerRadius = cornerRadius
+        $0.layer.borderColor = UIColor.orrWhite?.cgColor
+        $0.layer.zPosition = 1
+        $0.isUserInteractionEnabled = true
         gesture.addTarget(self, action: #selector(handlerCard))
-        view.addGestureRecognizer(gesture)
-        return view
-    }()
+        $0.addGestureRecognizer(gesture)
+    }
     
-    private lazy var successArrowImageView: UIImageView = {
-        let image = UIImage(named: "success_arrow")
-        let view = UIImageView(image: image)
-        return view
-    }()
+    private lazy var successArrowImageView: UIImageView = .init().then {
+        $0.image = UIImage(named: "success_arrow")
+    }
     
     private lazy var successButton: CustomButton = {
         let btn = CustomButton()

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Then
 protocol RouteFindingThumbnailCollectionViewCellDelegate {
     func enterDeletePageMode(indexPath: IndexPath)
 }
@@ -24,11 +24,9 @@ final class RouteFindingThumbnailCollectionViewCell: UICollectionViewCell {
     
     // MARK: View Components
     
-    lazy var pageImage: UIImageView = {
-        let view = UIImageView()
-        view.backgroundColor = .white
-        return view
-    }()
+    lazy var pageImage: UIImageView = .init().then {
+        $0.backgroundColor = .white
+    }
     
     private lazy var selectedBar: UIView = {
         let view = UIView()

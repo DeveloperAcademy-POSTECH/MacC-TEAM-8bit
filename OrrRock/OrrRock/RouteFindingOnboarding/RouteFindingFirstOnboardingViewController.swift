@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Then
 
 class RouteFindingFirstOnboardingViewController: RouteFindingOnboardingParentViewController {
     
@@ -16,12 +17,10 @@ class RouteFindingFirstOnboardingViewController: RouteFindingOnboardingParentVie
     
     // MARK: View Components
     
-    private lazy var imageView: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(named: "RouteFindingOnboardingHandImage")
-        view.contentMode = .scaleAspectFit
-        return view
-    }()
+    private lazy var imageView: UIImageView = .init().then {
+        $0.image = UIImage(named: "RouteFindingOnboardingHandImage")
+        $0.contentMode = .scaleAspectFit
+    }
     
     override var descriptionView: UILabel {
         get { return super.descriptionView }

@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class RouteFindingSaveViewController: UIViewController {
     
@@ -55,14 +56,11 @@ class RouteFindingSaveViewController: UIViewController {
         return button
     }()
     
-    lazy var previewImageView: UIImageView = {
-        let view = UIImageView()
-        view.backgroundColor = .orrGray200
-        view.layer.cornerRadius = 10
-        view.clipsToBounds = true
-        
-        return view
-    }()
+    lazy var previewImageView: UIImageView = .init().then {
+        $0.backgroundColor = .orrGray200
+        $0.layer.cornerRadius = 10
+        $0.clipsToBounds = true
+    }
     
     private lazy var nextButton: UIButton = {
         let button = UIButton()

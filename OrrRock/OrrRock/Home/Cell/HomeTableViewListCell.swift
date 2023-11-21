@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Then
 
 final class HomeTableViewListCell: UITableViewCell {
     static let identifier = "homeTableViewListCell"
@@ -15,14 +16,12 @@ final class HomeTableViewListCell: UITableViewCell {
         return view
     }()
     
-    private lazy var thumbnailView: UIImageView = {
-        let view = UIImageView()
-        view.layer.cornerRadius = 10
-        view.layer.masksToBounds = true
-        view.backgroundColor = .orrGray300
-        view.contentMode = .scaleAspectFill
-        return view
-    }()
+    private lazy var thumbnailView: UIImageView = .init().then {
+        $0.layer.cornerRadius = 10
+        $0.layer.masksToBounds = true
+        $0.backgroundColor = .orrGray300
+        $0.contentMode = .scaleAspectFill
+    }
     
     private lazy var dividerView: UIView = {
         let view = UIView()

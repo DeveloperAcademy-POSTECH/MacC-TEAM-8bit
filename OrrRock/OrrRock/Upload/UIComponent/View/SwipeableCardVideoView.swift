@@ -6,10 +6,11 @@
 //
 
 import UIKit
-
-import SnapKit
 import AVKit
 import AVFoundation
+
+import SnapKit
+import Then
 
 final class SwipeableCardVideoView: UIView {
     
@@ -33,23 +34,17 @@ final class SwipeableCardVideoView: UIView {
         return view
     }()
     
-    let successImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "success")?.withRenderingMode(.alwaysTemplate)
-        imageView.tintColor = .orrPass
-        imageView.alpha = 0.0
-        
-        return imageView
-    }()
+    let successImageView: UIImageView = .init().then {
+        $0.image = UIImage(named: "success")?.withRenderingMode(.alwaysTemplate)
+        $0.tintColor = .orrPass
+        $0.alpha = 0.0
+    }
     
-    let failImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "fail")?.withRenderingMode(.alwaysTemplate)
-        imageView.tintColor = .orrFail
-        imageView.alpha = 0.0
-        
-        return imageView
-    }()
+    let failImageView: UIImageView = .init().then {
+        $0.image = UIImage(named: "fail")?.withRenderingMode(.alwaysTemplate)
+        $0.tintColor = .orrFail
+        $0.alpha = 0.0
+    }
     
     private lazy var countVideoView:  UIView = {
         let view = UIView()

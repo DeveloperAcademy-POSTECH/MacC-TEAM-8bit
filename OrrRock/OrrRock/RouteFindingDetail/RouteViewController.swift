@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Then
 
 class RouteViewController: UIViewController {
     
@@ -18,12 +19,9 @@ class RouteViewController: UIViewController {
     
     // MARK: View Components
     
-    private lazy var backgroundView: UIImageView = {
-        let view = UIImageView()
-        view.image = backgroundImage
-        
-        return view
-    }()
+    private lazy var backgroundView: UIImageView = .init().then {
+        $0.image = backgroundImage
+    }
     
     private lazy var placeholderView: UIView = {
         let view = UIView()

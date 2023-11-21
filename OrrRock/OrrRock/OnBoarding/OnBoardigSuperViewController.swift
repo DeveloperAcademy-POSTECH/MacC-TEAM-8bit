@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class OnBoardigSuperViewController: UIViewController {
     
@@ -36,11 +37,9 @@ class OnBoardigSuperViewController: UIViewController {
         return label
     }()
     
-    private lazy var labelImage: UIImageView = {
-        let image = UIImage(named: labelImageName)
-        let label = UIImageView(image: image)
-        return label
-    }()
+    private lazy var labelImage: UIImageView = .init().then {
+        $0.image = UIImage(named: labelImageName)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

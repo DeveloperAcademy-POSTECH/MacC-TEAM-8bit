@@ -8,6 +8,7 @@
 import UIKit
 import Photos
 import SnapKit
+import Then
 
 class ExportViewController: UIViewController, UINavigationBarDelegate {
     
@@ -25,40 +26,25 @@ class ExportViewController: UIViewController, UINavigationBarDelegate {
         return view
     }()
     
-    private lazy var orrLogo: UIImageView = {
-        let imgView = UIImageView()
-        imgView.image = UIImage(named: "V0")
-        
-        return imgView
-    }()
+    private lazy var orrLogo: UIImageView = .init().then {
+        $0.image = UIImage(named: "V0")
+    }
     
-    private lazy var orrTextLogo: UIImageView = {
-        let imgView = UIImageView()
-        imgView.image = UIImage(named: "ORRROCK")
-        
-        return imgView
-    }()
+    private lazy var orrTextLogo: UIImageView = .init().then {
+        $0.image = UIImage(named: "ORRROCK")
+    }
     
-    private lazy var calendarIcon: UIImageView = {
-        let imgView = UIImageView()
-        imgView.image = UIImage(named: "calandarIcon")
-        
-        return imgView
-    }()
+    private lazy var calendarIcon: UIImageView = .init().then {
+        $0.image = UIImage(named: "calandarIcon")
+    }
     
-    private lazy var gymIcon: UIImageView = {
-        let imgView = UIImageView()
-        imgView.image = UIImage(named: "gymIcon")
-        
-        return imgView
-    }()
+    private lazy var gymIcon: UIImageView = .init().then {
+        $0.image = UIImage(named: "gymIcon")
+    }
     
-    private lazy var gradation: UIImageView = {
-        let imgView = UIImageView()
-        imgView.image = UIImage(named: "gradation")
-        
-        return imgView
-    }()
+    private lazy var gradation: UIImageView = .init().then {
+        $0.image = UIImage(named: "gradation")
+    }
     
     private lazy var gymName: UILabel = {
         let label = UILabel()

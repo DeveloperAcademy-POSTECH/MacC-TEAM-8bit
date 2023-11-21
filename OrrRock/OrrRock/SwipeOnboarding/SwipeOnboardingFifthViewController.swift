@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class SwipeOnboardingFifthViewController: UIViewController {
     // 오토레이아웃의 시작점이 되는 값입니다. 변경시 류하에게 문의 주세요.
@@ -32,11 +33,9 @@ class SwipeOnboardingFifthViewController: UIViewController {
         return view
     }()
     
-    private lazy var mainImageView: UIImageView = {
-        let image = UIImage(named: "SwipeOnboardingImage5")
-        let view = UIImageView(image: image)
-        return view
-    }()
+    private lazy var mainImageView: UIImageView = .init().then {
+        $0.image = UIImage(named: "SwipeOnboardingImage5")
+    }
     
     
     override func viewDidLoad() {

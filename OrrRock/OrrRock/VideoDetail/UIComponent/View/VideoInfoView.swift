@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Then
 
 final class VideoInfoView: UIView {
     
@@ -44,12 +45,10 @@ final class VideoInfoView: UIView {
         return view
     }()
     
-    private lazy var dateIcon: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(systemName: "calendar")
-        view.tintColor = .orrGray900
-        return view
-    }()
+    private lazy var dateIcon: UIImageView = .init().then {
+        $0.image = UIImage(systemName: "calendar")
+        $0.tintColor = .orrGray900
+    }
     
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
@@ -67,12 +66,10 @@ final class VideoInfoView: UIView {
         return view
     }()
     
-    private lazy var gymNameIcon: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(named: "location icon")?.withRenderingMode(.alwaysTemplate)
-        view.tintColor = .orrGray900
-        return view
-    }()
+    private lazy var gymNameIcon: UIImageView = .init().then {
+        $0.image = UIImage(named: "location icon")?.withRenderingMode(.alwaysTemplate)
+        $0.tintColor = .orrGray900
+    }
     
     private lazy var gymNameLabel: UILabel = {
         let label = UILabel()

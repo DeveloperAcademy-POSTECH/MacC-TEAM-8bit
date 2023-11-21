@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Then
 
 class RouteFindingSeventhOnboardingViewController: RouteFindingOnboardingParentViewController {
 
@@ -14,12 +15,10 @@ class RouteFindingSeventhOnboardingViewController: RouteFindingOnboardingParentV
     
     // MARK: View Components
     
-    private lazy var imageView: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(named: "RouteFindingOnboardingHandImage")
-        view.contentMode = .scaleAspectFit
-        return view
-    }()
+    private lazy var imageView: UIImageView = .init().then {
+        $0.image = UIImage(named: "RouteFindingOnboardingHandImage")
+        $0.contentMode = .scaleAspectFit
+    }
 
     override var descriptionView: UILabel {
         get { return super.descriptionView }

@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Then
 
 final class RouteFindingCollectionViewCustomCell: UICollectionViewCell {
     static let identifier = "RouteFindingCollectionViewCustomCell"
@@ -23,28 +24,22 @@ final class RouteFindingCollectionViewCustomCell: UICollectionViewCell {
         }
     }
     
-    private lazy var selectableImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "selectable_icon")
-        imageView.isHidden = true
-        return imageView
-    }()
+    private lazy var selectableImage: UIImageView = .init().then {
+        $0.image = UIImage(named: "selectable_icon")
+        $0.isHidden = true
+    }
     
-    private lazy var checkImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "Check")
-        imageView.isHidden = true
-        return imageView
-    }()
+    private lazy var checkImage: UIImageView = .init().then {
+        $0.image = UIImage(named: "Check")
+        $0.isHidden = true
+    }
     
-    lazy var cellImage: UIImageView = {
-        let img = UIImageView()
-        img.translatesAutoresizingMaskIntoConstraints = false
-        img.image = UIImage(named: "SwipeOnboardingImage1")
-        img.contentMode = .scaleAspectFill
-        img.layer.masksToBounds = true
-        return img
-    }()
+    lazy var cellImage: UIImageView = .init().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.image = UIImage(named: "SwipeOnboardingImage1")
+        $0.contentMode = .scaleAspectFill
+        $0.layer.masksToBounds = true
+    }
     
     private lazy var infoView: UIView = {
         let view = UIView()

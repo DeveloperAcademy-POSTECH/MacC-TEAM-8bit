@@ -46,13 +46,10 @@ final class LevelAndPFSettingViewController: UIViewController {
         return view
     }()
     
-    private lazy var levelButtonImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "chevron.down")
-        imageView.tintColor = .orrGray500
-        
-        return imageView
-    }()
+    private lazy var levelButtonImage: UIImageView = .init().then {
+        $0.image = UIImage(systemName: "chevron.down")
+        $0.tintColor = .orrGray500
+    }
     
     private lazy var levelStackView: UIStackView = {
         let stackView = UIStackView()

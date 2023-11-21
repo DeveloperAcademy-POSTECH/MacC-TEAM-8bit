@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Then
 
 final class RouteFindingFeatureViewController: UIViewController {
     
@@ -39,17 +40,14 @@ final class RouteFindingFeatureViewController: UIViewController {
     
     // MARK: View Components
     
-    private lazy var backgroundImageView: UIImageView = {
-        let view = UIImageView()
-        
+    private lazy var backgroundImageView: UIImageView = .init().then {
         // 다양한 기기 사이즈에서 16:9 이미지 사이즈를 유지하기 위해 width, height을 계산
         let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)!.windows.first
         let contentHeight = view.frame.height - Double(((window?.safeAreaInsets.top)! + (window?.safeAreaInsets.bottom)!))
         let contentWidth = view.frame.width
-        view.image = backgroundImage
-        view.backgroundColor = .white
-        return view
-    }()
+        $0.image = backgroundImage
+        $0.backgroundColor = .white
+    }
     
     private lazy var routePageViewController: UIPageViewController = {
         let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
@@ -168,11 +166,9 @@ final class RouteFindingFeatureViewController: UIViewController {
         return button
     }()
     
-    private lazy var deleteImage: UIImageView = {
-        let view = UIImageView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        view.image = routeDataDraft.routeInfoForUI.imageLocalIdentifier.generateCardViewThumbnail()
-        return view
-    }()
+    private lazy var deleteImage: UIImageView = .init().then {
+        $0.image = routeDataDraft.routeInfoForUI.imageLocalIdentifier.generateCardViewThumbnail()
+    }
     
     // MARK: Life Cycle Functions
     

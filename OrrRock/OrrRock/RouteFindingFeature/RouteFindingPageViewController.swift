@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Then
 
 protocol IsDeletingPointButtonDelegate {
     
@@ -27,14 +28,11 @@ final class RouteFindingPageViewController: UIViewController {
     
     var beginningPosition: CGPoint = .zero
     var initialMovableViewPosition: CGPoint = .zero
-    let trashView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "delete")?.resized(to: CGSize(width: 85, height: 85))
-        imageView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
-        imageView.isHidden = true
-        
-        return imageView
-    }()
+    let trashView: UIImageView = .init().then {
+        $0.image = UIImage(named: "delete")?.resized(to: CGSize(width: 85, height: 85))
+        $0.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        $0.isHidden = true
+    }
     
     init(routeDataDraft: RouteDataDraft, pageRowOrder: Int, backgroundImage: UIImage) {
         self.routeDataDraft = routeDataDraft

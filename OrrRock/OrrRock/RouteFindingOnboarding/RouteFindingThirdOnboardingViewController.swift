@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Then
 
 class RouteFindingThirdOnboardingViewController: RouteFindingOnboardingParentViewController {
     
@@ -91,14 +92,11 @@ final class RouteFindingOnboardingPanViewController: UIViewController, UIGesture
     var beginningPosition: CGPoint = .zero
     var initialMovableViewPosition: CGPoint = .zero
     
-    let trashView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "delete")?.resized(to: CGSize(width: 85, height: 85))
-        imageView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
-        imageView.isHidden = true
-        
-        return imageView
-    }()
+    let trashView: UIImageView = .init().then {
+        $0.image = UIImage(named: "delete")?.resized(to: CGSize(width: 85, height: 85))
+        $0.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        $0.isHidden = true
+    }
     
     init() {
         super.init(nibName: nil, bundle: nil)

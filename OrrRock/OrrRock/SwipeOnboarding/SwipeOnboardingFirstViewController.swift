@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class SwipeOnboardingFirstViewController: UIViewController {
     
@@ -40,11 +41,9 @@ class SwipeOnboardingFirstViewController: UIViewController {
         return view
     }()
     
-    private lazy var mainImageView: UIImageView = {
-        let image = UIImage(named: "SwipeOnboardingImage1")
-        let view = UIImageView(image: image)
-        return view
-    }()
+    private lazy var mainImageView: UIImageView = .init().then {
+        $0.image = UIImage(named: "SwipeOnboardingImage1")
+    }
     
     
     override func viewDidLoad() {

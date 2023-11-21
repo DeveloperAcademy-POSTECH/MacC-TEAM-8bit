@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Photos
+import Then
 
 final class RouteFindingLevelSaveViewController: UIViewController {
     
@@ -49,13 +50,10 @@ final class RouteFindingLevelSaveViewController: UIViewController {
         return view
     }()
     
-    private lazy var levelButtonImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "chevron.down")
-        imageView.tintColor = .orrGray500
-        
-        return imageView
-    }()
+    private lazy var levelButtonImage: UIImageView = .init().then {
+        $0.image = UIImage(systemName: "chevron.down")
+        $0.tintColor = .orrGray500
+    }
     
     let nextButton : UIButton = {
         let button = UIButton()

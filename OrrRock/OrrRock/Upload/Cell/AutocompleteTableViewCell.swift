@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Then
 
 protocol AutocompleteTableViewCellDelegate {
     func tapDeleteButton(deleteTarget: VisitedClimbingGym)
@@ -21,12 +22,10 @@ final class AutocompleteTableViewCell: UITableViewCell {
     var delegate: AutocompleteTableViewCellDelegate?
     
     // MARK: UI Components
-    private lazy var locationIconView: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(named: "location icon")
-        view.contentMode = .scaleAspectFit
-        return view
-    }()
+    private lazy var locationIconView: UIImageView = .init().then {
+        $0.image = UIImage(named: "location icon")
+        $0.contentMode = .scaleAspectFit
+    }
     
     private lazy var gymNameLabel: UILabel = {
        let view = UILabel()

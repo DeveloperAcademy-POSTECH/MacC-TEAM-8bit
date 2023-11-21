@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class VideoCollectionViewCell : UICollectionViewCell {
     static let identifier = "customVideoCollectionCell"
@@ -31,21 +32,17 @@ class VideoCollectionViewCell : UICollectionViewCell {
         return uiView
     }()
     
-    lazy var checkImage : UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "Check")
-        imageView.isHidden = true
-        return imageView
-    }()
+    lazy var checkImage: UIImageView = .init().then {
+        $0.image = UIImage(named: "Check")
+        $0.isHidden = true
+    }
     
-    lazy var cellImage : UIImageView = {
-        let img = UIImageView()
-        img.translatesAutoresizingMaskIntoConstraints = false
-        img.image = UIImage(named: "s")
-        img.contentMode = .scaleAspectFill
-        img.layer.masksToBounds = true
-        return img
-    }()
+    lazy var cellImage : UIImageView = .init().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.image = UIImage(named: "s")
+        $0.contentMode = .scaleAspectFill
+        $0.layer.masksToBounds = true
+    }
 
     lazy var cellLabel : UILabel = {
         let label = BasePaddingLabel(padding: UIEdgeInsets(top: 2, left: 8, bottom: 2, right: 8))

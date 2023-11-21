@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Then
 
 class RouteFindingOnboardingParentViewController: UIViewController {
     
@@ -16,23 +17,21 @@ class RouteFindingOnboardingParentViewController: UIViewController {
     
     // MARK: View Components
     
-    lazy var backgroundImageView: UIImageView = {
-        let view = UIImageView()
+    lazy var backgroundImageView: UIImageView = .init().then {
         
         let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)!.windows.first
         let contentHeight = view.frame.height - Double(((window?.safeAreaInsets.top)! + (window?.safeAreaInsets.bottom)!))
         let contentWidth = view.frame.width
-        view.image = backgroundImage
-        view.backgroundColor = .white
         
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [UIColor.black.withAlphaComponent(0.5).cgColor, UIColor.black.withAlphaComponent(0.8).cgColor]
         gradientLayer.locations = [0, 1]
         gradientLayer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        view.layer.addSublayer(gradientLayer)
         
-        return view
-    }()
+        $0.image = backgroundImage
+        $0.backgroundColor = .white
+        $0.layer.addSublayer(gradientLayer)
+    }
     
     lazy var descriptionView: UILabel = {
         let view = UILabel()

@@ -8,14 +8,13 @@
 import UIKit
 
 import SnapKit
+import Then
 
 final class HomeCardCollectionViewThumbnailCell: UICollectionViewCell {
-    private lazy var thumbnailView: UIImageView = {
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFill
-        view.layer.masksToBounds = true
-        return view
-    }()
+    private lazy var thumbnailView: UIImageView = .init().then {
+        $0.contentMode = .scaleAspectFill
+        $0.layer.masksToBounds = true
+    }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)

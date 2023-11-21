@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Then
 
 class RouteFindingSixthOnboardingViewController: RouteFindingOnboardingParentViewController {
 
@@ -59,11 +60,9 @@ class RouteFindingSixthOnboardingViewController: RouteFindingOnboardingParentVie
         return button
     }()
     
-    private lazy var deleteImage: UIImageView = {
-        let view = UIImageView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        view.image = backgroundImage
-        return view
-    }()
+    private lazy var deleteImage: UIImageView = .init().then {
+        $0.image = backgroundImage
+    }
     
     
     // MARK: Life Cycle Functions

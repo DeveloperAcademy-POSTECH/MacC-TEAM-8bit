@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class SwipeOnboardingSecondViewController: UIViewController {
     
@@ -20,11 +21,9 @@ class SwipeOnboardingSecondViewController: UIViewController {
         return view
     }()
     
-    private lazy var mainImageView: UIImageView = {
-        let image = UIImage(named: "SwipeOnboardingImage2")
-        let view = UIImageView(image: image)
-        return view
-    }()
+    private lazy var mainImageView: UIImageView = .init().then {
+        $0.image = UIImage(named: "SwipeOnboardingImage2")
+    }
     
     private lazy var newLevelPickerView: NewLevelPickerView = {
         let view = NewLevelPickerView()

@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class SaveRouteFindingImageCollectionViewCell: UICollectionViewCell {
     
@@ -22,13 +23,11 @@ class SaveRouteFindingImageCollectionViewCell: UICollectionViewCell {
     
     // MARK: View Components
     
-    lazy var pageImage: UIImageView = {
-        let view = UIImageView()
-        view.backgroundColor = .white
-        view.clipsToBounds = true
-        view.layer.cornerRadius = 10
-        return view
-    }()
+    lazy var pageImage: UIImageView = .init().then {
+        $0.backgroundColor = .white
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 10
+    }
     
     private lazy var selectedBar: UIView = {
         let view = UIView()
