@@ -8,17 +8,16 @@
 import UIKit
 
 import SnapKit
+import Then
 
 class UnderlinedTextField: UITextField, UITextFieldDelegate {
     
     let underlineLayer = CALayer()
-    let warningLabel: UILabel = {
-        let view = UILabel()
-        view.text = "20자 이내로 적어주세요"
-        view.textColor = .orrGray400
-        view.textAlignment = .left
-        return view
-    }()
+    let warningLabel: UILabel = .init().then {
+        $0.text = "20자 이내로 적어주세요"
+        $0.textColor = .orrGray400
+        $0.textAlignment = .left
+    }
     
     /// Size the underline layer and position it as a one point line under the text field.
     func setUpUnderlineLayer() {

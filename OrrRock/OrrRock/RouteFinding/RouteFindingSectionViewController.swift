@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Then
 
 class RouteFindingSectionViewController: UIViewController {
     
@@ -60,47 +61,37 @@ class RouteFindingSectionViewController: UIViewController {
         return cv
     }()
     
-    lazy var emptyGuideView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrGray050
-        view.alpha = 0.0
-        return view
-    }()
+    lazy var emptyGuideView: UIView = .init().then {
+        $0.backgroundColor = .orrGray050
+        $0.alpha = 0.0
+    }
     
-    private lazy var emptyGuideLabel: UILabel = {
-        let label = UILabel()
-        label.text = "풀고 싶은 문제가 있나요?\n상단 업로드를 통해 루트 파인딩을 추가하세요"
-        label.numberOfLines = 2
-        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        label.textAlignment = .center
-        label.textColor = .orrGray500
-        return label
-    }()
+    private lazy var emptyGuideLabel: UILabel = .init().then {
+        $0.text = "풀고 싶은 문제가 있나요?\n상단 업로드를 통해 루트 파인딩을 추가하세요"
+        $0.numberOfLines = 2
+        $0.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        $0.textAlignment = .center
+        $0.textColor = .orrGray500
+    }
     
-    private lazy var bottomOptionView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrUPBlue
-        view.layer.opacity = 0.0
-        return view
-    }()
+    private lazy var bottomOptionView: UIView = .init().then {
+        $0.backgroundColor = .orrUPBlue
+        $0.layer.opacity = 0.0
+    }
     
-    lazy var folderButton: VerticalAlignImageTextButton = {
-        let view = VerticalAlignImageTextButton ()
-        view.setImage(UIImage(systemName: "folder.fill"), for: .normal)
-        view.setTitle("이동", for: .normal)
-        view.isEnabled = false
-        view.addTarget(self, action: #selector(touchFolderButton), for: .touchUpInside)
-        return view
-    }()
+    lazy var folderButton: VerticalAlignImageTextButton = .init().then {
+        $0.setImage(UIImage(systemName: "folder.fill"), for: .normal)
+        $0.setTitle("이동", for: .normal)
+        $0.isEnabled = false
+        $0.addTarget(self, action: #selector(touchFolderButton), for: .touchUpInside)
+    }
     
-    lazy var deleteButton: VerticalAlignImageTextButton = {
-        let view = VerticalAlignImageTextButton ()
-        view.setImage(UIImage(systemName: "trash.fill"), for: .normal)
-        view.setTitle("삭제", for: .normal)
-        view.isEnabled = false
-        view.addTarget(self, action: #selector(touchDeleteButton), for: .touchUpInside)
-        return view
-    }()
+    lazy var deleteButton: VerticalAlignImageTextButton = .init().then {
+        $0.setImage(UIImage(systemName: "trash.fill"), for: .normal)
+        $0.setTitle("삭제", for: .normal)
+        $0.isEnabled = false
+        $0.addTarget(self, action: #selector(touchDeleteButton), for: .touchUpInside)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

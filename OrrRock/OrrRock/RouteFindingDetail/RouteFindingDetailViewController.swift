@@ -30,17 +30,13 @@ class RouteFindingDetailViewController: UIViewController {
     
     // MARK: View Components
     
-    private lazy var topSafeAreaView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrGray100
-        return view
-    }()
+    private lazy var topSafeAreaView: UIView = .init().then {
+        $0.backgroundColor = .orrGray100
+    }
     
-    private lazy var bottomSafeAreaView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrGray100
-        return view
-    }()
+    private lazy var bottomSafeAreaView: UIView = .init().then {
+        $0.backgroundColor = .orrGray100
+    }
     
     private lazy var routePageViewController: UIPageViewController = {
         let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
@@ -51,22 +47,15 @@ class RouteFindingDetailViewController: UIViewController {
     
     let thumbnailCollectionView: UICollectionView = {
         let layout = RouteFindingThumbnailCollectionViewFlowLayout()
-        
         let collection = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
         collection.backgroundColor = .orrGray100
         collection.showsHorizontalScrollIndicator = false
         collection.register(RouteFindingThumbnailCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: RouteFindingThumbnailCollectionViewCell.identifier)
-        
         collection.isUserInteractionEnabled = false
-        
         return collection
     }()
     
-    private lazy var routeInfoView: RouteInfoView = {
-        let view = RouteInfoView(routeDataDraft: routeDataDraft)
-        
-        return view
-    }()
+    private lazy var routeInfoView: RouteInfoView = .init(routeDataDraft: routeDataDraft)
     
     // MARK: Life Cycle Functions
     
@@ -169,7 +158,7 @@ class RouteFindingDetailViewController: UIViewController {
                 self.navigationController?.isNavigationBarHidden = true
                 self.topSafeAreaView.layer.opacity = 0
                 self.navigationController?.isToolbarHidden = false
-//                self.bottomSafeAreaView.layer.opacity = 1.0
+                //                self.bottomSafeAreaView.layer.opacity = 1.0
             })
         } else {
             UIView.animate(withDuration: 0.2, animations: {

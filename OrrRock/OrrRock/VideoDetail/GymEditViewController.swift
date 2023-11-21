@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Then
 
 final class GymEditViewController: UIViewController , UISheetPresentationControllerDelegate{
     override var sheetPresentationController: UISheetPresentationController {
@@ -24,14 +25,10 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
     var filteredVisitedGymList: [VisitedClimbingGym] = []
 
     // MARK: gym view compenents
-    private lazy var gymContentView : UIView = {
-        let view = UIView()
-        return view
-    }()
+    private lazy var gymContentView : UIView = .init()
     
-    private lazy var gymTopView : UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrGray100
+    private lazy var gymTopView : UIView = .init().then {
+        $0.backgroundColor = .orrGray100
         
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
@@ -43,8 +40,7 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
             $0.centerY.equalTo(titleLabel.snp.centerY)
             $0.left.equalToSuperview().inset(15)
         }
-        return view
-    }()
+}
     
     private lazy var gymNameLabel : UILabel = {
         let label = UILabel()
@@ -54,14 +50,12 @@ final class GymEditViewController: UIViewController , UISheetPresentationControl
         return label
     }()
     
-    lazy var gymTextField : UnderlinedTextField = {
-        let view = UnderlinedTextField()
-        view.borderStyle = .none
-        view.placeholder = "김대우 암벽교실"
-        view.tintColor = .orrUPBlue
-        view.font = UIFont.systemFont(ofSize: 22)
-        return view
-    }()
+    lazy var gymTextField : UnderlinedTextField = .init().then {
+        $0.borderStyle = .none
+        $0.placeholder = "김대우 암벽교실"
+        $0.tintColor = .orrUPBlue
+        $0.font = UIFont.systemFont(ofSize: 22)
+}
     
     lazy var saveButton : UIButton = {
         let btn = UIButton()

@@ -8,16 +8,15 @@
 import UIKit
 
 import SnapKit
+import Then
 
 class HomeTableViewFooter: UITableViewHeaderFooterView {
     static let identifier: String = "HomeTableViewFooter"
     
-    private lazy var roundCornerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrWhiteCustom
-        view.layer.cornerRadius = 10
-        return view
-    }()
+    private lazy var roundCornerView: UIView = .init().then {
+        $0.backgroundColor = .orrWhiteCustom
+        $0.layer.cornerRadius = 10
+}
     
     override func awakeFromNib() {
         super.awakeFromNib()

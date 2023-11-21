@@ -23,23 +23,18 @@ class RouteViewController: UIViewController {
         $0.image = backgroundImage
     }
     
-    private lazy var placeholderView: UIView = {
-        let view = UIView()
-        
+    private lazy var placeholderView: UIView = .init().then {
         let warningLabel = UILabel()
         warningLabel.text = "앨범에서 사진이 삭제되어\n해당 사진을 불러올 수 없습니다."
         warningLabel.textColor = .orrGray400
         warningLabel.textAlignment = .center
         warningLabel.numberOfLines = 2
         warningLabel.backgroundColor = .white
-        
-        view.addSubview(warningLabel)
+        $0.addSubview(warningLabel)
         warningLabel.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
-        return view
-    }()
+    }
     
     lazy var pageView: UIView = {
         convertPageInfoToPageView(from: pageInfo)

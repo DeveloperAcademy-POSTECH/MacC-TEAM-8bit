@@ -77,12 +77,10 @@ final class RouteFindingFeatureViewController: UIViewController {
         return label
     }()
     
-    private lazy var pageNumberingView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrBlack?.withAlphaComponent(0.6)
+    private lazy var pageNumberingView: UIView = .init().then {
+        $0.backgroundColor = .orrBlack?.withAlphaComponent(0.6)
         view.layer.cornerRadius = 10
-        return view
-    }()
+}
     
     private lazy var exitButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
@@ -145,15 +143,13 @@ final class RouteFindingFeatureViewController: UIViewController {
     }()
     
     // 삭제모드 진입 시 화면 인터렉션 방지를 위한 뷰
-    private lazy var deleteView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .black.withAlphaComponent(0.4)
+    private lazy var deleteView: UIView = .init().then {
+        $0.backgroundColor = .black.withAlphaComponent(0.4)
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(cancelDeleteMode))
         view.addGestureRecognizer(gestureRecognizer)
         
-        return view
-    }()
+}
     
     private lazy var deleteButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))

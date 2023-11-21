@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControllerDelegate {
     
@@ -39,24 +40,17 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         return btn
     }()
     
-    private lazy var levelTopView : UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrGray100
-        return view
-    }()
+    private lazy var levelTopView : UIView = .init().then {
+        $0.backgroundColor = .orrGray100
+    }
     
-    private lazy var newLevelPickerView: NewLevelPickerView = {
-        let view = NewLevelPickerView()
-        view.pickerSelectValue = pickerSelectValue
-        view.delegate = self
-        view.backgroundColor = .orrGray050
-        return view
-    }()
+    private lazy var newLevelPickerView: NewLevelPickerView = .init().then {
+        $0.pickerSelectValue = pickerSelectValue
+        $0.delegate = self
+        $0.backgroundColor = .orrGray050
+    }
     
-    private lazy var paddingView: UIView = {
-        let view = UIView()
-        return view
-    }()
+    private lazy var paddingView: UIView = .init()
     
     lazy var successLabel : UILabel = {
         let label = UILabel()
@@ -112,9 +106,9 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-            if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
-                saveButton.setBackgroundColor(.orrUPBlue!, for: .normal)
-                saveButton.setBackgroundColor(.orrGray300!, for: .disabled)
+        if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+            saveButton.setBackgroundColor(.orrUPBlue!, for: .normal)
+            saveButton.setBackgroundColor(.orrGray300!, for: .disabled)
         }
     }
 }

@@ -23,11 +23,9 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
     var completionHandler : ((Date) -> (Void))?
     
     // MARK: gym view compenents
-    private lazy var gymContentView : UIView = {
-        let view = UIView()
-        view.alpha = 0.0
-        return view
-    }()
+    private lazy var gymContentView : UIView = .init().then {
+        $0.alpha = 0.0
+}
     
     //MARK: date view 관련 components
     private lazy var datePickerLabel : UILabel = {
@@ -65,14 +63,10 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
         return btn
     }()
     
-    private lazy var dateContentView : UIView = {
-        let view = UIView()
-        return view
-    }()
+    private lazy var dateContentView : UIView = .init()
     
-    private lazy var dateTopView : UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrGray100
+    private lazy var dateTopView : UIView = .init().then {
+        $0.backgroundColor = .orrGray100
         
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
@@ -84,8 +78,7 @@ final class DateEditViewController: UIViewController , UISheetPresentationContro
             $0.centerY.equalTo(titleLabel.snp.centerY)
             $0.left.equalToSuperview().inset(15)
         }
-        return view
-    }()
+}
     
     lazy var cancelButton : UIButton = {
         let btn = UIButton()

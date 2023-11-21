@@ -11,6 +11,7 @@ import UIKit
 import BetterSegmentedControl
 import NVActivityIndicatorView
 import SnapKit
+import Then
 
 final class HomeViewController : UIViewController {
     
@@ -49,25 +50,21 @@ final class HomeViewController : UIViewController {
         layer.colors = [UIColor.orrGray050!.cgColor, UIColor.orrGray050!.withAlphaComponent(0).cgColor]
         layer.locations = [0.61, 0.82]
         layer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 170)
-
+        
         return layer
     }()
-
     
-    private let headerView: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 170))
-        view.isUserInteractionEnabled = false
-        
-        return view
-    }()
     
-    private lazy var titleLabel: UILabel = {
-        let view = UILabel()
-        view.text = "모든 기록"
-        view.font = .systemFont(ofSize: 22, weight: .bold)
-        view.textColor = .orrBlack
-        return view
-    }()
+    private let headerView: UIView = .init().then {
+        $0.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 170)
+        $0.isUserInteractionEnabled = false
+    }
+    
+    private lazy var titleLabel: UILabel = .init().then {
+        $0.text = "모든 기록"
+        $0.font = .systemFont(ofSize: 22, weight: .bold)
+        $0.textColor = .orrBlack
+    }
     
     private let uploadButton: UIButton = {
         let button = UIButton()
@@ -159,53 +156,44 @@ final class HomeViewController : UIViewController {
         return button
     }()
     
-    lazy var homeTableView: UITableView = {
-        var view = UITableView(frame: CGRect.zero, style: .grouped)
-        
-        view.register(HomeTableViewCardCell.classForCoder(), forCellReuseIdentifier: HomeTableViewCardCell.identifier)
-        view.register(HomeTableViewListCell.classForCoder(), forCellReuseIdentifier: HomeTableViewListCell.identifier)
-        view.register(HomeTableViewHeader.classForCoder(), forHeaderFooterViewReuseIdentifier: HomeTableViewHeader.identifier)
-        view.register(HomeTableViewFooter.classForCoder(), forHeaderFooterViewReuseIdentifier: HomeTableViewFooter.identifier)
-        
-        view.showsVerticalScrollIndicator = false
-        view.backgroundColor = UIColor.clear
-        view.separatorStyle = .none
-
+    lazy var homeTableView: UITableView = .init(frame: .zero, style: .grouped).then {
+        $0.register(HomeTableViewCardCell.classForCoder(), forCellReuseIdentifier: HomeTableViewCardCell.identifier)
+        $0.register(HomeTableViewListCell.classForCoder(), forCellReuseIdentifier: HomeTableViewListCell.identifier)
+        $0.register(HomeTableViewHeader.classForCoder(), forHeaderFooterViewReuseIdentifier: HomeTableViewHeader.identifier)
+        $0.register(HomeTableViewFooter.classForCoder(), forHeaderFooterViewReuseIdentifier: HomeTableViewFooter.identifier)
+        $0.showsVerticalScrollIndicator = false
+        $0.backgroundColor = UIColor.clear
+        $0.separatorStyle = .none
         // 테이블뷰의 카드들이 시작되는 지점을 아래로 옮겨, UI 구성
-        view.tableHeaderView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 0, height: 20)))
-        
+        $0.tableHeaderView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 0, height: 20)))
         // 앨범형, 목록형 셀 간격을 맞추기 위한 offset을 적용
-        view.sectionHeaderTopPadding = CGFloat(OrrPd.pd16.rawValue - 4)
-        
-        return view
-    }()
+        $0.sectionHeaderTopPadding = CGFloat(OrrPd.pd16.rawValue - 4)
+    }
     
     // 영상이 없을 때 띄워주는 placeholder
-    private lazy var placeholderView: UILabel = {
-        let view = UILabel()
-        view.text = "볼더링 기록이 있나요?\n볼더링 기록을 업로드해주세요"
-        view.numberOfLines = 0
-        view.textAlignment = .center
-        view.textColor = .orrGray600
-        view.font = .systemFont(ofSize: 15)
-        view.alpha = 0.0
-        return view
-    }()
+    private lazy var placeholderView: UILabel = .init().then {
+        $0.text = "볼더링 기록이 있나요?\n볼더링 기록을 업로드해주세요"
+        $0.numberOfLines = 0
+        $0.textAlignment = .center
+        $0.textColor = .orrGray600
+        $0.font = .systemFont(ofSize: 15)
+        $0.alpha = 0.0
+    }
     
     // 세그먼트 컨트롤
     private lazy var tableViewSegmentControl: BetterSegmentedControl = {
-        let view = BetterSegmentedControl(
+        let segControl = BetterSegmentedControl(
             frame: CGRect(x: 0.0, y: 380.0, width: 160, height: 30.0),
-            segments: IconSegment.segments(withIcons: [UIImage(systemName: "square.split.2x2.fill")!, UIImage(systemName:  "list.bullet")!],
+            segments: IconSegment.segments(withIcons: [UIImage(systemName: "square.split.2x2.fill")!, 
+                                                       UIImage(systemName:  "list.bullet")!],
                                            iconSize: CGSize(width: 24.0, height: 24.0),
                                            normalIconTintColor: .orrGray500!,
                                            selectedIconTintColor: UIColor.orrUPBlue!),
             options: [.cornerRadius(25.0),
                       .backgroundColor(UIColor.orrGray300!),
                       .indicatorViewBackgroundColor(.orrWhite ?? .white)])
-        view.addTarget(self, action: #selector(segmentControl(_:)), for: .valueChanged)
-        
-        return view
+        segControl.addTarget(self, action: #selector(segmentControl(_:)), for: .valueChanged)
+        return segControl
     }()
     
     // MARK: Components
@@ -236,9 +224,9 @@ final class HomeViewController : UIViewController {
     
     // MARK: 다크모드 대응 코드
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-           if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
-               gradientLayer.colors = [UIColor.orrGray050!.cgColor, UIColor.orrGray050!.withAlphaComponent(0).cgColor]
-       }
+        if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+            gradientLayer.colors = [UIColor.orrGray050!.cgColor, UIColor.orrGray050!.withAlphaComponent(0).cgColor]
+        }
     }
     
     private func setUICollectionViewDelegate() {
@@ -261,14 +249,14 @@ final class HomeViewController : UIViewController {
         let nextVC = DateSettingViewController()
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
-
-//        MARK: 스와이프 온보딩을 보고 싶다면 해당 상단의 코드를 주석처리후 하단 주석을 풀어주세요.
-//    @objc func videoButtonPressed(sender: UIButton){
-//        //여기서 실행하면 온보딩을 여러번 볼 수 있어요.
-//        let nextVC = SwipeOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
-//        nextVC.modalPresentationStyle = .fullScreen
-//        self.present(nextVC, animated: true, completion: nil)
-//    }
+    
+    //        MARK: 스와이프 온보딩을 보고 싶다면 해당 상단의 코드를 주석처리후 하단 주석을 풀어주세요.
+    //    @objc func videoButtonPressed(sender: UIButton){
+    //        //여기서 실행하면 온보딩을 여러번 볼 수 있어요.
+    //        let nextVC = SwipeOnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+    //        nextVC.modalPresentationStyle = .fullScreen
+    //        self.present(nextVC, animated: true, completion: nil)
+    //    }
     
     @objc func segmentControl(_ sender: BetterSegmentedControl) {
         isCardView = sender.index == 0

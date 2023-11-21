@@ -16,15 +16,13 @@ class ExportViewController: UIViewController, UINavigationBarDelegate {
     var videoAsset: PHAsset?
     var level: Int = 0
     
-    private lazy var previewVideoView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrGray200
+    private lazy var previewVideoView: UIView = .init().then {
+        $0.backgroundColor = .orrGray200
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
         view.layoutSubviews()
         
-        return view
-    }()
+    }
     
     private lazy var orrLogo: UIImageView = .init().then {
         $0.image = UIImage(named: "V0")
@@ -64,20 +62,13 @@ class ExportViewController: UIViewController, UINavigationBarDelegate {
         return label
     }()
     
-    lazy var videoPlayView: VideoPlayView = {
-        let view = VideoPlayView(videoAsset: videoAsset)
-        
-        return view
-    }()
+    lazy var videoPlayView: VideoPlayView = .init(videoAsset: videoAsset)
     
-    private lazy var colorPickerView: ColorPickerView = {
-        let view = ColorPickerView()
+    private lazy var colorPickerView: ColorPickerView = .init().then {
         //배열에서 선택되어야 하는값
-        view.pickerSelectValue = 0
-        view.delegate = self
-        
-        return view
-    }()
+        $0.pickerSelectValue = 0
+        $0.delegate = self
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

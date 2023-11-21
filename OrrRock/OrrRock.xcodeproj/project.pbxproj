@@ -917,7 +917,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1400;
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					3AA4D41A28FEBADE006C718A = {
 						CreatedOnToolsVersion = 14.0.1;
@@ -1001,7 +1001,6 @@
 				78CAA0662901F7A9003C3D77 /* BasePaddingLabel.swift in Sources */,
 				FBB272BA29329EBA00A36CB0 /* RouteFindingSaveViewController+UICollectionViewExtensions.swift .swift in Sources */,
 				3487290629365F1500634A05 /* RoutefindingDetailViewController+UIPageViewControllerExtensions.swift in Sources */,
-				3AA4D42328FEBADE006C718A /* MainViewController.swift in Sources */,
 				78B6A7212932967100C0BB70 /* RouteFindingCollectionViewHeaderCell+Protocol.swift in Sources */,
 				3431710929332731005E66F3 /* RouteFindingSeventhOnboardingViewController.swift in Sources */,
 				3A4642462933FF8300C6B7A3 /* CameraSessionStatus.swift in Sources */,
@@ -1026,7 +1025,6 @@
 				3A4641B9292FA7B500C6B7A3 /* PointInformation+CoreDataClass.swift in Sources */,
 				70DE795A29250F480009AD43 /* SwipeOnboardingViewController.swift in Sources */,
 				FB32280F29046B4500276A7D /* VideoDetailViewController.swift in Sources */,
-				3A70C3CF2901CB9600BE11B5 /* CoreDataDAO.swift in Sources */,
 				34E11EE729309E2900787316 /* RouteFindingThumbnailCollectionViewCell.swift in Sources */,
 				3A4641D3292FAF7300C6B7A3 /* RouteInformation+CoreDataClass.swift in Sources */,
 				FB32281329046CDE00276A7D /* VideoPlayView.swift in Sources */,
@@ -1106,7 +1104,6 @@
 				709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */,
 				78B6A717292FA8DA00C0BB70 /* RouteFindingCollectionViewHeaderCell.swift in Sources */,
 				3A4641D6292FB30900C6B7A3 /* RouteDataDraft.swift in Sources */,
-				709A8C6B2904827B00CEA6F4 /* UnderlinedTextField.swift in Sources */,
 				3412C4DF29378E3B00A584C6 /* RouteFindingFeatureButton.swift in Sources */,
 				3A4641C8292FAD4000C6B7A3 /* PointInfo.swift in Sources */,
 				78FEE89729291A19007B67BD /* VideoDetailViewController+Protocol.swift in Sources */,
@@ -1157,6 +1154,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1189,6 +1187,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1217,6 +1216,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1249,6 +1249,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

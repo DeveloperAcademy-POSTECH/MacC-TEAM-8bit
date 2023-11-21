@@ -28,14 +28,12 @@ final class RouteFindingThumbnailCollectionViewCell: UICollectionViewCell {
         $0.backgroundColor = .white
     }
     
-    private lazy var selectedBar: UIView = {
-        let view = UIView()
-        view.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-        view.backgroundColor = .clear
-        view.layer.cornerRadius = 2
-        view.clipsToBounds = true
-        return view
-    }()
+    private lazy var selectedBar: UIView = .init().then {
+        $0.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        $0.backgroundColor = .clear
+        $0.layer.cornerRadius = 2
+        $0.clipsToBounds = true
+    }
     
     // MARK: Life Cycle Functions
     
@@ -94,10 +92,10 @@ final class RouteFindingThumbnailCollectionViewCell: UICollectionViewCell {
     
     private func setGestureRecognizer() {
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(pressDeleteButton(_:)))
-
+        
         longPressGesture.minimumPressDuration = 0.5
         longPressGesture.allowableMovement = 40
-
+        
         contentView.addGestureRecognizer(longPressGesture)
     }
 }

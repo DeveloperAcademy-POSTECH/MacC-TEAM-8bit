@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Then
 
 final class HomeTableViewCardCell: UITableViewCell {
     static let identifier = "homeTableViewCardCell"
@@ -20,33 +21,25 @@ final class HomeTableViewCardCell: UITableViewCell {
     var videoThumbnails: [UIImage?] = []
     
     // MARK: UI Components
-    private lazy var cardView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrWhiteCustom
-        view.layer.cornerRadius = 10
-        return view
-    }()
+    private lazy var cardView: UIView = .init().then {
+        $0.backgroundColor = .orrWhiteCustom
+        $0.layer.cornerRadius = 10
+    }
     
-    private lazy var cardAnchorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemRed
-        return view
-    }()
+    private lazy var cardAnchorView: UIView = .init().then {
+        $0.backgroundColor = .systemRed
+    }
     
-    private lazy var dateLabel: UILabel = {
-        let view = UILabel()
-        view.text = "YYYY년 MM월 DD일"
-        view.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        return view
-    }()
+    private lazy var dateLabel: UILabel = .init().then {
+        $0.text = "YYYY년 MM월 DD일"
+        $0.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+    }
     
-    private lazy var gymLabel: UILabel = {
-        let view = UILabel()
-        view.text = "클라이밍장 정보"
-        view.font = UIFont.systemFont(ofSize: 15)
-        view.textColor = .orrGray600
-        return view
-    }()
+    private lazy var gymLabel: UILabel = .init().then {
+        $0.text = "클라이밍장 정보"
+        $0.font = UIFont.systemFont(ofSize: 15)
+        $0.textColor = .orrGray600
+    }
     
     lazy var thumbnailCollectionView: UICollectionView = {
         let flow = UICollectionViewFlowLayout()
@@ -57,25 +50,20 @@ final class HomeTableViewCardCell: UITableViewCell {
         view.backgroundColor = .orrWhiteCustom
         view.register(HomeCardCollectionViewThumbnailCell.classForCoder(), forCellWithReuseIdentifier: "homeCardCollectionViewThumbnailCell")
         view.isUserInteractionEnabled = false
-        
         return view
     }()
     
-    private lazy var countTotalVideoLabel: UILabel = {
-        let view = UILabel()
-        view.text = "N개의 기록"
-        view.font = UIFont.systemFont(ofSize: 15)
-        view.textColor = .orrGray500
-        return view
-    }()
+    private lazy var countTotalVideoLabel: UILabel = .init().then {
+        $0.text = "N개의 기록"
+        $0.font = UIFont.systemFont(ofSize: 15)
+        $0.textColor = .orrGray500
+    }
     
-    lazy var detailLabel: UILabel = {
-        let view = UILabel()
-        view.text = "더 보기"
-        view.font = UIFont.systemFont(ofSize: 17)
-        view.textColor = .orrUPBlue
-        return view
-    }()
+    lazy var detailLabel: UILabel = .init().then {
+        $0.text = "더 보기"
+        $0.font = UIFont.systemFont(ofSize: 17)
+        $0.textColor = .orrUPBlue
+    }
     
     // MARK: View Lifecycle Function
     required init?(coder: NSCoder) {

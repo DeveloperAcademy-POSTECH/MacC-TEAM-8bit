@@ -9,6 +9,7 @@ import AVFoundation
 import UIKit
 import Photos
 import SnapKit
+import Then
 
 class VideoPlayViewController: UIViewController {
     
@@ -21,27 +22,14 @@ class VideoPlayViewController: UIViewController {
     
     var index: Int = 0
     
-    private lazy var videoBackgroundView: UIView = {
-        let view = UIView()
-        return view
-    }()
+    private lazy var videoBackgroundView: UIView = .init()
     
-    private lazy var warningView: UIView = {
-        let view = UIView()
-        
-        let warningLabel = UILabel()
-        warningLabel.text = "앨범에서 영상이 삭제되어\n해당 영상을 불러올 수 없습니다."
-        warningLabel.textColor = .orrGray400
-        warningLabel.textAlignment = .center
-        warningLabel.numberOfLines = 2
-        
-        view.addSubview(warningLabel)
-        warningLabel.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
-        return view
-    }()
+    private lazy var warningView: UILabel = .init().then {
+        $0.text = "앨범에서 영상이 삭제되어\n해당 영상을 불러올 수 없습니다."
+        $0.textColor = .orrGray400
+        $0.textAlignment = .center
+        $0.numberOfLines = 2
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -16,7 +16,7 @@ protocol AutocompleteTableViewCellDelegate {
 
 final class AutocompleteTableViewCell: UITableViewCell {
     static let identifier = "autocompleteTableViewCell"
-
+    
     private var gymName: String = ""
     private var gymData: VisitedClimbingGym? = nil
     var delegate: AutocompleteTableViewCellDelegate?
@@ -27,22 +27,18 @@ final class AutocompleteTableViewCell: UITableViewCell {
         $0.contentMode = .scaleAspectFit
     }
     
-    private lazy var gymNameLabel: UILabel = {
-       let view = UILabel()
-        view.text = "최근에 방문한 클라이밍장"
-        view.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        view.textColor = UIColor.orrGray600
-        return view
-    }()
+    private lazy var gymNameLabel: UILabel = .init().then {
+        $0.text = "최근에 방문한 클라이밍장"
+        $0.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        $0.textColor = UIColor.orrGray600
+    }
     
-    private lazy var deleteButton: UIButton = {
-        let view = UIButton()
-        view.setImage(UIImage(systemName: "multiply"), for: .normal)
-        view.tintColor = UIColor.orrGray600
-        view.addTarget(self, action: #selector(tapDeleteButton(_:)), for: .touchUpInside)
-        return view
-    }()
-
+    private lazy var deleteButton: UIButton = .init().then {
+        $0.setImage(UIImage(systemName: "multiply"), for: .normal)
+        $0.tintColor = UIColor.orrGray600
+        $0.addTarget(self, action: #selector(tapDeleteButton(_:)), for: .touchUpInside)
+    }
+    
     // MARK: View Lifecycle Function
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -59,13 +55,13 @@ final class AutocompleteTableViewCell: UITableViewCell {
         // Initialization code
         setUpLayout()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
     }
-
+    
     func setUpData(data: VisitedClimbingGym) {
         self.gymData = data
         self.gymNameLabel.text = data.name

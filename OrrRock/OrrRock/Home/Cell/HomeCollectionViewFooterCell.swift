@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Then
 
 final class HomeCollectionViewFooterCell: UICollectionReusableView {
     static let identifier = "HomeCollectionViewFooterCell"
@@ -22,12 +23,10 @@ final class HomeCollectionViewFooterCell: UICollectionReusableView {
         return UIView()
     }()
     
-    private lazy var footerRoundedSquare: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrWhite
-        view.layer.cornerRadius = 10
-        return view
-    }()
+    private lazy var footerRoundedSquare: UIView = .init().then {
+        $0.backgroundColor = .orrWhite
+        $0.layer.cornerRadius = 10
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

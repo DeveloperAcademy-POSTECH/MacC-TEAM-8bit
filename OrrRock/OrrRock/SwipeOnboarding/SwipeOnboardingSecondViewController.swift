@@ -16,23 +16,17 @@ class SwipeOnboardingSecondViewController: UIViewController {
     var delegate: SwipeOnboardingViewControllerDelegate?
     var changedLevelPicker = false
     
-    private lazy var BackgroundView: EmptyBackgroundView = {
-        let view = EmptyBackgroundView()
-        return view
-    }()
-    
+    private lazy var BackgroundView: EmptyBackgroundView = .init()
     private lazy var mainImageView: UIImageView = .init().then {
         $0.image = UIImage(named: "SwipeOnboardingImage2")
     }
     
-    private lazy var newLevelPickerView: NewLevelPickerView = {
-        let view = NewLevelPickerView()
-        view.pickerSelectValue = 0
-        view.delegate = self
-        view.customTitle = "슬라이드 해주세요"
-        view.backgroundColor = .orrGray050
-        return view
-    }()
+    private lazy var newLevelPickerView: NewLevelPickerView = .init().then {
+        $0.pickerSelectValue = 0
+        $0.delegate = self
+        $0.customTitle = "슬라이드 해주세요"
+        $0.backgroundColor = .orrGray050
+    }
     
     
     private lazy var skipButton: UIButton = {
@@ -89,7 +83,7 @@ extension SwipeOnboardingSecondViewController {
             $0.width.equalTo(view.snp.width)
             BackgroundView.setUpLayout()
         }
-
+        
         view.addSubview(mainImageView)
         mainImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -98,7 +92,7 @@ extension SwipeOnboardingSecondViewController {
             $0.trailing.equalTo(view.snp.trailing).offset(-padding)
             $0.height.equalTo(mainImageView.snp.width).multipliedBy(1.641)
         }
-
+        
         view.addSubview(newLevelPickerView)
         newLevelPickerView.snp.makeConstraints {
             $0.leading.equalTo(view.snp.leading)

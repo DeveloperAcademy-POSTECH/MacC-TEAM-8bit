@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Then
 
 final class UnderlineSegmentedControl: UISegmentedControl {
     override init(frame: CGRect) {
@@ -20,30 +21,28 @@ final class UnderlineSegmentedControl: UISegmentedControl {
         fatalError()
     }
     
-    private lazy var underlineView: UIView = {
+    private lazy var underlineView: UIView = .init().then {
         self.addSubview(underlineBaseView)
         let width = self.bounds.size.width / CGFloat(self.numberOfSegments)
         let height = 3.0
         let xPosition = CGFloat(self.selectedSegmentIndex) * width
         let yPosition = self.bounds.size.height - 1.0
         let frame = CGRect(x: xPosition, y: yPosition, width: width, height: height)
-        let view = UIView(frame: frame)
-        view.backgroundColor = .orrUPBlue
-        self.addSubview(view)
-        return view
-    }()
+        $0.frame = frame
+        $0.backgroundColor = .orrUPBlue
+        self.addSubview($0)
+}
     
-    private lazy var underlineBaseView : UIView = {
+    private lazy var underlineBaseView: UIView = .init().then {
         let width = self.bounds.size.width * 3
         let height = 3.0
         let xPosition = 0.0
         let yPosition = self.bounds.size.height - 1.0
         let frame = CGRect(x: xPosition, y: yPosition, width: width, height: height)
-        let view = UIView(frame: frame)
-        view.backgroundColor = .orrGray200
-        self.addSubview(view)
-        return view
-    }()
+        $0.frame = frame
+        $0.backgroundColor = .orrGray200
+        self.addSubview($0)
+}
     
     private func removeBackgroundAndDivider() {
         let image = UIImage()

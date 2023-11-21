@@ -11,10 +11,7 @@ import Then
 final class HomeTableViewListCell: UITableViewCell {
     static let identifier = "homeTableViewListCell"
     
-    private lazy var cellView: UIView = {
-        let view = UIView()
-        return view
-    }()
+    private lazy var cellView: UIView = .init()
     
     private lazy var thumbnailView: UIImageView = .init().then {
         $0.layer.cornerRadius = 10
@@ -23,46 +20,36 @@ final class HomeTableViewListCell: UITableViewCell {
         $0.contentMode = .scaleAspectFill
     }
     
-    private lazy var dividerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrGray300
-        return view
-    }()
+    private lazy var dividerView: UIView = .init().then {
+        $0.backgroundColor = .orrGray300
+    }
     
-    private lazy var levelAndPFLabel: UILabel = {
-        let view = UILabel()
-        view.text = "V6"
-        view.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        view.textColor = .orrBlack
-        return view
-    }()
+    private lazy var levelAndPFLabel: UILabel = .init().then {
+        $0.text = "V6"
+        $0.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        $0.textColor = .orrBlack
+    }
     
-    private lazy var PFLabel: UILabel = {
-        let view = UILabel()
-        view.text = "성공"
-        view.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        view.textColor = .orrBlack
-        return view
-    }()
+    private lazy var PFLabel: UILabel = .init().then {
+        $0.text = "성공"
+        $0.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        $0.textColor = .orrBlack
+    }
     
-    private lazy var feedbackLabel: UILabel = {
-        let view = UILabel()
-        view.text = ""
-        view.font = UIFont.systemFont(ofSize: 15)
-        view.textColor = .orrGray600
-        view.numberOfLines = 2
-        return view
-    }()
+    private lazy var feedbackLabel: UILabel = .init().then {
+        $0.text = ""
+        $0.font = UIFont.systemFont(ofSize: 15)
+        $0.textColor = .orrGray600
+        $0.numberOfLines = 2
+    }
     
-    private lazy var feedbackPlaceholder: UILabel = {
-        let view = UILabel()
-        view.text = "작성된 피드백이 없습니다."
-        view.font = UIFont.systemFont(ofSize: 15)
-        view.textColor = .orrGray500
-        view.numberOfLines = 2
-        view.textAlignment = .left
-        return view
-    }()
+    private lazy var feedbackPlaceholder: UILabel = .init().then {
+        $0.text = "작성된 피드백이 없습니다."
+        $0.font = UIFont.systemFont(ofSize: 15)
+        $0.textColor = .orrGray500
+        $0.numberOfLines = 2
+        $0.textAlignment = .left
+    }
     
     // MARK: View Lifecycle Function
     required init?(coder: NSCoder) {

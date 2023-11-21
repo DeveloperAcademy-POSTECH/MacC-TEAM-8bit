@@ -8,11 +8,12 @@
 import UIKit
 
 import SnapKit
+import Then
 
 class RouteFindingSecondOnboardingViewController: RouteFindingOnboardingParentViewController {
     
     // MARK: Variables
-
+    
     var isMovingToNextPage: Bool = false
     var isHandButtonMode: Bool = false {
         didSet {
@@ -26,7 +27,7 @@ class RouteFindingSecondOnboardingViewController: RouteFindingOnboardingParentVi
     // MARK: View Components
     
     // TODO: house 이미지를 손, 발 이미지로 대체하기
-
+    
     private lazy var handButton: UIButton = {
         let handButton = UIButton()
         handButton.backgroundColor = .clear
@@ -50,7 +51,7 @@ class RouteFindingSecondOnboardingViewController: RouteFindingOnboardingParentVi
     }()
     
     private lazy var footHandStackView: UIStackView = {
-                
+        
         let stackView = UIStackView(arrangedSubviews: [handButton, footButton])
         stackView.backgroundColor = .orrGray700
         // stackView의 width가 40이므로, cornerRadius의 값을 20으로 지정
@@ -65,32 +66,25 @@ class RouteFindingSecondOnboardingViewController: RouteFindingOnboardingParentVi
         set { self.descriptionView = newValue }
     }
     
-    private lazy var handDescriptionView: UILabel = {
-        let view = UILabel()
-        view.text = "손동작 추가하기"
-        view.numberOfLines = 1
-        view.font = .systemFont(ofSize: 15, weight: .bold)
-        view.textColor = .orrWhite
-        view.textAlignment = .center
-        return view
-    }()
+    private lazy var handDescriptionView: UILabel = .init().then {
+        $0.text = "손동작 추가하기"
+        $0.numberOfLines = 1
+        $0.font = .systemFont(ofSize: 15, weight: .bold)
+        $0.textColor = .orrWhite
+        $0.textAlignment = .center
+    }
     
-    private lazy var footDescriptionView: UILabel = {
-        let view = UILabel()
-        view.text = "발동작 추가하기"
-        view.numberOfLines = 1
-        view.font = .systemFont(ofSize: 15, weight: .bold)
-        view.textColor = .orrWhite
-        view.textAlignment = .center
-        return view
-    }()
+    private lazy var footDescriptionView: UILabel = .init().then {
+        $0.text = "발동작 추가하기"
+        $0.numberOfLines = 1
+        $0.font = .systemFont(ofSize: 15, weight: .bold)
+        $0.textColor = .orrWhite
+        $0.textAlignment = .center
+    }
     
-    private lazy var gestureView: RouteFindingOnboardingTapViewController = {
-        let view = RouteFindingOnboardingTapViewController()
-        view.delegate = self
-        
-        return view
-    }()
+    private lazy var gestureView: RouteFindingOnboardingTapViewController = .init().then {
+        $0.delegate = self
+    }
     
     
     // MARK: Life Cycle Functions

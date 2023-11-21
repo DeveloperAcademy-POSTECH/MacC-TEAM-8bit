@@ -33,15 +33,13 @@ class RouteFindingOnboardingParentViewController: UIViewController {
         $0.layer.addSublayer(gradientLayer)
     }
     
-    lazy var descriptionView: UILabel = {
-        let view = UILabel()
-        view.text = "이 곳에 설명이 보여집니다\ndescriptionView에 설명을 작성해주세요"
-        view.numberOfLines = 2
-        view.font = .systemFont(ofSize: 12, weight: .regular)
-        view.textColor = .orrGray100
-        view.textAlignment = .center
-        return view
-    }()
+    lazy var descriptionView: UILabel = .init().then {
+        $0.text = "이 곳에 설명이 보여집니다\ndescriptionView에 설명을 작성해주세요"
+        $0.numberOfLines = 2
+        $0.font = .systemFont(ofSize: 12, weight: .regular)
+        $0.textColor = .orrGray100
+        $0.textAlignment = .center
+    }
     
     lazy var skipButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 64, height: 40))
@@ -96,7 +94,7 @@ class RouteFindingOnboardingParentViewController: UIViewController {
     // MARK: @objc Functions
 }
 
-    
+
 
 extension RouteFindingOnboardingParentViewController {
     

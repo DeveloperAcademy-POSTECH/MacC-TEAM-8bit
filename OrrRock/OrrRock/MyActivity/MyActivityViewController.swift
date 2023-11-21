@@ -9,6 +9,7 @@ import SwiftUI
 import UIKit
 
 import SnapKit
+import Then
 
 class MyActivityViewController: UIViewController {
     
@@ -27,22 +28,19 @@ class MyActivityViewController: UIViewController {
     var totalGymVisitedDate: Int = 0
     
     // 레이아웃
-    private lazy var headerView: UIView = {
-        let view = UIView()
+    private lazy var headerView: UIView = .init().then {
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
-        view.addSubview(visualEffectView)
+        $0.addSubview(visualEffectView)
         visualEffectView.snp.makeConstraints {
             $0.edges.equalTo(view.snp.edges)
         }
         
-        return view
-    }()
+    }
     
-    private lazy var logoView: UIView = {
-        let view = UIImageView(image: UIImage(named: "orrrock_logo"))
-        view.frame = CGRect(x: 0, y: 0, width: 193, height: 40)
-        return view
-    }()
+    private lazy var logoView: UIImageView = .init().then {
+        $0.image = UIImage(named: "orrrock_logo")
+        $0.frame = CGRect(x: 0, y: 0, width: 193, height: 40)
+    }
     
     
     private lazy var scrollView: UIScrollView = {
@@ -72,12 +70,10 @@ class MyActivityViewController: UIViewController {
     }()
     
     // 내 활동
-    private lazy var cardTitle: UILabel = {
-        let view = UILabel()
-        view.text = "내 활동"
-        view.font = .systemFont(ofSize: 22, weight: .bold)
-        return view
-    }()
+    private lazy var cardTitle: UILabel = .init().then {
+        $0.text = "내 활동"
+        $0.font = .systemFont(ofSize: 22, weight: .bold)
+    }
     
     private lazy var cardSaveButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
@@ -97,12 +93,10 @@ class MyActivityViewController: UIViewController {
     }()
     
     // 도전
-    private lazy var challengeTitle: UILabel = {
-        let view = UILabel()
-        view.text = "도전"
-        view.font = .systemFont(ofSize: 22, weight: .bold)
-        return view
-    }()
+    private lazy var challengeTitle: UILabel = .init().then {
+        $0.text = "도전"
+        $0.font = .systemFont(ofSize: 22, weight: .bold)
+    }
     
     private lazy var challengeChartView: UIView = {
         let VC = UIHostingController(rootView: ChallengeChartView(chartData: ChartDataModel(dataModel: entireProblemsForChallengeChart), totalCount: validTotalCountForChallengeChart, successCount: validSuccessCountForChallengeChart))
@@ -123,12 +117,10 @@ class MyActivityViewController: UIViewController {
     }()
     
     // 정보
-    private lazy var informationTitle: UILabel = {
-        let view = UILabel()
-        view.text = "정보"
-        view.font = .systemFont(ofSize: 22, weight: .bold)
-        return view
-    }()
+    private lazy var informationTitle: UILabel = .init().then {
+        $0.text = "정보"
+        $0.font = .systemFont(ofSize: 22, weight: .bold)
+    }
     
     private lazy var homeGymChartView: UIView = {
         let VC = UIHostingController(rootView: HomeGymChartView(mostFrequentlyVisitedGymList: frequentlyVisitedGymList, totalGymVisitedDate: totalGymVisitedDate))

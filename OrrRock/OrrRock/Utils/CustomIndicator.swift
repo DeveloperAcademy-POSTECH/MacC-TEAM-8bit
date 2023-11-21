@@ -9,25 +9,21 @@ import UIKit
 
 import NVActivityIndicatorView
 import SnapKit
+import Then
 
 class CustomIndicator {
     
-    private static let indicator : NVActivityIndicatorView = {
-        let view = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 150, height: 150),
-                                           type: .lineSpinFadeLoader,
-                                           color: .lightGray,
-                                           padding: 50)
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        view.layoutIfNeeded()
-        view.layer.cornerRadius = 15
-        view.layer.masksToBounds = true
-        return view
-    }()
+    private static let indicator : NVActivityIndicatorView = .init(frame: CGRect(x: 0, y: 0, width: 150, height: 150),
+                                                                   type: .lineSpinFadeLoader,
+                                                                   color: .lightGray,
+                                                                   padding: 50).then {
+        $0.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        $0.layoutIfNeeded()
+        $0.layer.cornerRadius = 15
+        $0.layer.masksToBounds = true
+}
     
-    private static let blockTouchView: UIView = {
-        let view = UIView()
-        return view
-    }()
+    private static let blockTouchView: UIView = .init()
     
     static func startLoading() {
         DispatchQueue.main.async {

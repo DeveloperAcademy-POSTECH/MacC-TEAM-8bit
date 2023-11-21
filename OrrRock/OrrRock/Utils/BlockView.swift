@@ -10,10 +10,7 @@ import SnapKit
 
 class BlockView {
     
-    private static let blockTouchView: UIView = {
-        let view = UIView()
-        return view
-    }()
+    private static let blockTouchView: UIView = .init()
     
     static func startBlock() {
         DispatchQueue.main.async {

@@ -22,17 +22,13 @@ final class SwipeableCardVideoView: UIView {
     private var playerLooper: AVPlayerLooper?
     private var asset: AVAsset
     
-    private lazy var videoBackgroundView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrGray500
-        view.layer.borderWidth = 3
-        view.layer.cornerRadius = cornerRadius
-        view.layer.borderColor = UIColor.orrWhite!.cgColor
-        // 스와이프 뷰에서 카드들이 다중 터치가 되지 않게 막는 코드
-        view.isExclusiveTouch = true
-        
-        return view
-    }()
+    private lazy var videoBackgroundView: UIView = .init().then {
+        $0.backgroundColor = .orrGray500
+        $0.layer.borderWidth = 3
+        $0.layer.cornerRadius = cornerRadius
+        $0.layer.borderColor = UIColor.orrWhite!.cgColor
+        $0.isExclusiveTouch = true
+    }
     
     let successImageView: UIImageView = .init().then {
         $0.image = UIImage(named: "success")?.withRenderingMode(.alwaysTemplate)
@@ -46,22 +42,16 @@ final class SwipeableCardVideoView: UIView {
         $0.alpha = 0.0
     }
     
-    private lazy var countVideoView:  UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrBlack?.withAlphaComponent(0.6)
-        view.layer.cornerRadius = 10
-        
-        return view
-    }()
+    private lazy var countVideoView: UIView = .init().then {
+        $0.backgroundColor = .orrBlack?.withAlphaComponent(0.6)
+        $0.layer.cornerRadius = 10
+    }
     
-    lazy var countVideoLabel: UILabel = {
-        let label = UILabel()
-        label.text = ""
-        label.textColor = .orrWhite
-        label.font = .systemFont(ofSize: 12.0, weight: .regular)
-        
-        return label
-    }()
+    lazy var countVideoLabel: UILabel = .init().then {
+        $0.text = ""
+        $0.textColor = .orrWhite
+        $0.font = .systemFont(ofSize: 12.0, weight: .regular)
+    }
     
     init(asset: AVAsset) {
         self.asset = asset
@@ -88,8 +78,8 @@ final class SwipeableCardVideoView: UIView {
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-            if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
-                videoBackgroundView.layer.borderColor = UIColor.orrWhite!.cgColor
+        if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+            videoBackgroundView.layer.borderColor = UIColor.orrWhite!.cgColor
         }
     }
 }

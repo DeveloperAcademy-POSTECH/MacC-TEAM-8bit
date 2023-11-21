@@ -23,10 +23,7 @@ class OnBoardigSuperViewController: UIViewController {
         return label
     }()
     
-    private lazy var paddigView: UIView = {
-        let view = UIView()
-        return view
-    }()
+    private lazy var paddigView: UIView = .init()
     
     private lazy var subLabel: UILabel = {
         let label = UILabel()

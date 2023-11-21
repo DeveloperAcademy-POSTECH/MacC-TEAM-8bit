@@ -11,6 +11,7 @@ import AVFoundation
 import AVKit
 import SnapKit
 import Photos
+import Then
 
 final class LevelAndPFSettingViewController: UIViewController {
     
@@ -30,21 +31,15 @@ final class LevelAndPFSettingViewController: UIViewController {
     //버튼 아이콘 크기 조절 할때 사용
     let largeConfig = UIImage.SymbolConfiguration(pointSize: 15, weight: .bold, scale: .large)
     
-    private lazy var BackgroundView: EmptyBackgroundView = {
-        let view = EmptyBackgroundView()
-        view.layer.zPosition = -1
-        
-        return view
-    }()
+    private lazy var BackgroundView: EmptyBackgroundView = .init().then {
+        $0.layer.zPosition = -1
+    }
     
-    private lazy var newLevelPickerView: NewLevelPickerView = {
-        let view = NewLevelPickerView()
-        view.pickerSelectValue = 0
-        view.delegate = self
-        view.layer.zPosition = -1
-        
-        return view
-    }()
+    private lazy var newLevelPickerView: NewLevelPickerView = .init().then {
+        $0.pickerSelectValue = 0
+        $0.delegate = self
+        $0.layer.zPosition = -1
+    }
     
     private lazy var levelButtonImage: UIImageView = .init().then {
         $0.image = UIImage(systemName: "chevron.down")
@@ -71,20 +66,16 @@ final class LevelAndPFSettingViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var paddigView: UIView = {
-        let view = UIView()
-        view.layer.zPosition = -1
-        return view
-    }()
+    private lazy var paddigView: UIView = .init().then {
+        $0.layer.zPosition = -1
+    }
     
-    private lazy var emptyVideoView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrGray300
+    private lazy var emptyVideoView: UIView = .init().then {
+        $0.backgroundColor = .orrGray300
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
         
-        return view
-    }()
+    }
     
     private lazy var emptyVideoInformation: UILabel = {
         let label = UILabel()
@@ -125,13 +116,11 @@ final class LevelAndPFSettingViewController: UIViewController {
         return button
     }()
     
-    private lazy var videoSliderBackgroundView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 15
+    private lazy var videoSliderBackgroundView: UIView = .init().then {
+        $0.layer.cornerRadius = 15
         view.backgroundColor = .orrGray100
         view.layer.zPosition = -1
-        return view
-    }()
+    }
     
     private lazy var videoPlayStopButton: CustomButton = {
         let button = CustomButton()
@@ -166,10 +155,7 @@ final class LevelAndPFSettingViewController: UIViewController {
         return button
     }()
     
-    private lazy var emptyBackgroundView: EmptyBackgroundView = {
-        let view = EmptyBackgroundView()
-        return view
-    }()
+    private lazy var emptyBackgroundView: EmptyBackgroundView = .init()
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {

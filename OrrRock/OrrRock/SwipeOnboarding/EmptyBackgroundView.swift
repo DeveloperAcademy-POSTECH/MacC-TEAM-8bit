@@ -7,42 +7,37 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class EmptyBackgroundView: UIView {
-  
+    
     // 오토레이아웃의 시작점이 되는 값입니다. 변경시 류하에게 문의 주세요.
     let padding = 68
-
-    private lazy var backgroundRightTiltView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrGray200
-        view.layer.cornerRadius = 10
-        view.clipsToBounds = true
-        return view
-    }()
     
-    private lazy var backgroundLeftTiltView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrGray100
-        view.layer.cornerRadius = 10
-        view.clipsToBounds = true
+    private lazy var backgroundRightTiltView: UIView = .init().then {
+        $0.backgroundColor = .orrGray200
+        $0.layer.cornerRadius = 10
+        $0.clipsToBounds = true
+    }
+    
+    private lazy var backgroundLeftTiltView: UIView = .init().then {
+        $0.backgroundColor = .orrGray100
+        $0.layer.cornerRadius = 10
+        $0.clipsToBounds = true
         
-        return view
-    }()
+    }
     
-    private lazy var backgroundCenterView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrGray300
-        view.layer.cornerRadius = 10
-        view.clipsToBounds = true
-        return view
-    }()
+    private lazy var backgroundCenterView: UIView = .init().then {
+        $0.backgroundColor = .orrGray300
+        $0.layer.cornerRadius = 10
+        $0.clipsToBounds = true
+    }
     
 }
 
 extension EmptyBackgroundView {
     
-     func setUpLayout(){
+    func setUpLayout(){
         self.addSubview(backgroundRightTiltView)
         backgroundRightTiltView.snp.makeConstraints {
             $0.centerX.equalToSuperview()

@@ -41,11 +41,9 @@ final class RouteFindingCollectionViewCustomCell: UICollectionViewCell {
         $0.layer.masksToBounds = true
     }
     
-    private lazy var infoView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrWhiteCustom
-        return view
-    }()
+    private lazy var infoView: UIView = .init().then {
+        $0.backgroundColor = .orrWhiteCustom
+}
     
     lazy var cellTitleLabel: UILabel = {
         let label = UILabel()

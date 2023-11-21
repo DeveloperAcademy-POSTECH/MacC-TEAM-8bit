@@ -41,14 +41,12 @@ final class RouteFindingLevelSaveViewController: UIViewController {
         return label
     }()
     
-    private lazy var newLevelPickerView: NewLevelPickerView = {
-        let view = NewLevelPickerView()
-        view.pickerSelectValue = 0
-        view.delegate = self
-        view.customTitle = "슬라이드 해주세요"
+    private lazy var newLevelPickerView: NewLevelPickerView = .init().then {
+        $0.pickerSelectValue = 0
+        $0.delegate = self
+        $0.customTitle = "슬라이드 해주세요"
         
-        return view
-    }()
+    }
     
     private lazy var levelButtonImage: UIImageView = .init().then {
         $0.image = UIImage(systemName: "chevron.down")

@@ -9,6 +9,7 @@ import PhotosUI
 import UIKit
 
 import SnapKit
+import Then
 
 class RouteFindingGymSaveViewController: UIViewController {
     
@@ -44,16 +45,14 @@ class RouteFindingGymSaveViewController: UIViewController {
         return label
     }()
     
-    let gymTextField : UnderlinedTextField = {
-        let view = UnderlinedTextField()
-        view.borderStyle = .none
-        view.placeholder = "클라이밍장을 입력해주세요"
-        view.tintColor = .orrUPBlue
-        view.font = UIFont.systemFont(ofSize: 22)
-        view.addTarget(self, action: #selector(toggleNextButton(textField:)), for: .editingChanged)
-        view.addTarget(self, action: #selector(searchGymName(textField:)), for: .editingChanged)
-        return view
-    }()
+    let gymTextField : UnderlinedTextField = .init().then {
+        $0.borderStyle = .none
+        $0.placeholder = "클라이밍장을 입력해주세요"
+        $0.tintColor = .orrUPBlue
+        $0.font = UIFont.systemFont(ofSize: 22)
+        $0.addTarget(self, action: #selector(toggleNextButton(textField:)), for: .editingChanged)
+        $0.addTarget(self, action: #selector(searchGymName(textField:)), for: .editingChanged)
+    }
     
     let nextButton : UIButton = {
         let button = UIButton()
@@ -101,7 +100,7 @@ class RouteFindingGymSaveViewController: UIViewController {
         view.backgroundColor = .orrWhite
         overrideUserInterfaceStyle = .dark
         self.navigationController?.setExpansionBackbuttonArea()
-
+        
         setUpData()
         setUpLayout()
         setUITableViewDelegate()
@@ -251,7 +250,7 @@ extension RouteFindingGymSaveViewController {
             $0.bottom.equalTo(autocompleteTableView.snp.top).offset(-OrrPd.pd16.rawValue)
         }
     }
-        
+    
     // 자동완성 테이블 뷰의 데이터 개수의 변화에 따른 테이블뷰의 레이아웃의 변화가 필요한 경우에 본 함수를 호출
     func resetAutocompleteTableView() {
         autocompleteTableView.reloadData()

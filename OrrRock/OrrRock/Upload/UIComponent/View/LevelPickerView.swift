@@ -34,10 +34,7 @@ class LevelPickerView: UIViewController, UISheetPresentationControllerDelegate {
         return title
     }()
 
-    private lazy var levelContentView : UIView = {
-        let view = UIView()
-        return view
-    }()
+    private lazy var levelContentView : UIView = .init()
 
     lazy var pickerView: UIPickerView = {
         let picker = UIPickerView()

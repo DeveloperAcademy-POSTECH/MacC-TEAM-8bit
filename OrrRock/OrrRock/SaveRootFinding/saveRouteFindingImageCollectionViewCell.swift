@@ -29,14 +29,12 @@ class SaveRouteFindingImageCollectionViewCell: UICollectionViewCell {
         $0.layer.cornerRadius = 10
     }
     
-    private lazy var selectedBar: UIView = {
-        let view = UIView()
-        view.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-        view.backgroundColor = .clear
-        view.layer.cornerRadius = 2
-        view.clipsToBounds = true
-        return view
-    }()
+    private lazy var selectedBar: UIView = .init().then {
+        $0.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        $0.backgroundColor = .clear
+        $0.layer.cornerRadius = 2
+        $0.clipsToBounds = true
+    }
     
     // MARK: Life Cycle Functions
     

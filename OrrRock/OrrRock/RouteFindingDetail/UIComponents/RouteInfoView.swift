@@ -25,12 +25,10 @@ final class RouteInfoView: UIView {
     
     // MARK: View Components
     
-    private lazy var dateView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrGray100
-        view.layer.cornerRadius = 10
-        return view
-    }()
+    private lazy var dateView: UIView = .init().then {
+        $0.backgroundColor = .orrGray100
+        $0.layer.cornerRadius = 10
+    }
     
     private lazy var dateIcon: UIImageView = .init().then {
         $0.image = UIImage(systemName: "calendar")
@@ -46,12 +44,10 @@ final class RouteInfoView: UIView {
     }()
     
     // 클라이밍장 관련 View
-    private lazy var gymNameView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrGray100
-        view.layer.cornerRadius = 10
-        return view
-    }()
+    private lazy var gymNameView: UIView = .init().then {
+        $0.backgroundColor = .orrGray100
+        $0.layer.cornerRadius = 10
+    }
     
     private lazy var gymNameIcon: UIImageView = .init().then {
         $0.image = UIImage(named: "location icon")?.withRenderingMode(.alwaysTemplate)
@@ -67,12 +63,10 @@ final class RouteInfoView: UIView {
     }()
     
     // 레벨 관련 View
-    private lazy var levelView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrGray100
-        view.layer.cornerRadius = 10
-        return view
-    }()
+    private lazy var levelView: UIView = .init().then {
+        $0.backgroundColor = .orrGray100
+        $0.layer.cornerRadius = 10
+    }
     
     private lazy var levelIcon: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
@@ -136,7 +130,7 @@ final class RouteInfoView: UIView {
         setUpLayout()
         setUpData(routeInformation: routeInformation)
     }
-        
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

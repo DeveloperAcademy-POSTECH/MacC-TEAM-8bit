@@ -40,11 +40,9 @@ class ColorPickerView: UIView{
         return picker
     }()
     
-    lazy var backgroundView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = backgroundViewWidth / 2
-        return view
-    }()
+    lazy var backgroundView: UIView = .init().then {
+        $0.layer.cornerRadius = backgroundViewWidth / 2
+}
     
     lazy var pickerSetLabel: UILabel = {
         let label = UILabel()

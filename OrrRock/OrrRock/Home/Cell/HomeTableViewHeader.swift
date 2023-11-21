@@ -8,36 +8,29 @@
 import UIKit
 
 import SnapKit
+import Then
 
 class HomeTableViewHeader: UITableViewHeaderFooterView {
     static let identifier: String = "HomeTableViewHeader"
     
-    private lazy var backgroundSubview: UIView = {
-       let view = UIView()
-        view.backgroundColor = .orrWhiteCustom
-        return view
-    }()
+    private lazy var backgroundSubview: UIView = .init().then {
+        $0.backgroundColor = .orrWhiteCustom
+    }
     
-    private lazy var primaryTitleLabel: UILabel = {
-        let view = UILabel()
-        view.font = .systemFont(ofSize: 20, weight: .bold)
-        view.textColor = .orrBlack
-        return view
-    }()
+    private lazy var primaryTitleLabel: UILabel = .init().then {
+        $0.font = .systemFont(ofSize: 20, weight: .bold)
+        $0.textColor = .orrBlack
+    }
     
-    private lazy var secondaryTitleLabel: UILabel = {
-        let view = UILabel()
-        view.font = .systemFont(ofSize: 15, weight: .regular)
-        view.textColor = .orrGray600
-        return view
-    }()
+    private lazy var secondaryTitleLabel: UILabel = .init().then {
+        $0.font = .systemFont(ofSize: 15, weight: .regular)
+        $0.textColor = .orrGray600
+    }
     
-    private lazy var roundCornerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrWhiteCustom
-        view.layer.cornerRadius = 8
-        return view
-    }()
+    private lazy var roundCornerView: UIView = .init().then {
+        $0.backgroundColor = .orrWhiteCustom
+        $0.layer.cornerRadius = 8
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -44,18 +44,14 @@ class VideoDetailViewController: UIViewController {
     private var flexibleSpace: UIBarButtonItem!
     private var completeButton: UIBarButtonItem!
     
-    lazy var topSafeAreaView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrWhite
+    lazy var topSafeAreaView: UIView = .init().then {
+        $0.backgroundColor = .orrWhite
         
-        return view
-    }()
+}
     
-    lazy var bottomSafeAreaView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrWhite
-        return view
-    }()
+    lazy var bottomSafeAreaView: UIView = .init().then {
+        $0.backgroundColor = .orrWhite
+}
     
     override func viewDidLoad() {
         super.viewDidLoad()

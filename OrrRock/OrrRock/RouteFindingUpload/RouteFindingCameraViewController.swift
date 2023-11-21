@@ -14,11 +14,7 @@ final class RouteFindingCameraViewController: UIViewController {
     var currentLocalIdentifier: String?
     var routeDataManager: RouteDataManager?
     
-    private lazy var cameraView: CameraView = {
-        let view = CameraView()
-        
-        return view
-    }()
+    private lazy var cameraView: CameraView = .init()
     
     private let captureSession = AVCaptureSession()
     private let sessionQueue = DispatchQueue(label: "session queue")

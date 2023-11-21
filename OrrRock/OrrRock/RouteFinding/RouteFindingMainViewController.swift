@@ -13,10 +13,7 @@ final class RouteFindingMainViewController: UIViewController {
     var routeDataManager: RouteDataManager = RouteDataManager()
     var routeInfoList: [RouteInformation]!
     
-    private lazy var topView: UIView = {
-        let view = UIView()
-        return view
-    }()
+    private lazy var topView: UIView = .init()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()

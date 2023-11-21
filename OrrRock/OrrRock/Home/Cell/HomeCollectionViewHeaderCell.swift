@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Then
 
 final class HomeCollectionViewHeaderCell: UICollectionReusableView {
     static let identifier = "HomeCollectionViewHeaderCell"
@@ -20,35 +21,27 @@ final class HomeCollectionViewHeaderCell: UICollectionReusableView {
         }
     }
     
-    private lazy var headerTitle: UILabel = {
-        let view = UILabel()
-        view.text = "모든 비디오"
-        view.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+    private lazy var headerTitle: UILabel = .init().then {
+        $0.text = "모든 비디오"
+        $0.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         
-        return view
-    }()
+    }
     
-    private lazy var headerRoundedSquare: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 10
-        view.backgroundColor = .orrWhite
-        return view
-    }()
+    private lazy var headerRoundedSquare: UIView = .init().then {
+        $0.layer.cornerRadius = 10
+        $0.backgroundColor = .orrWhite
+    }
     
-    private lazy var PFCountLabel: UILabel = {
-        let view = UILabel()
-        view.text = "NN번의 성공, NN번의 실패"
-        view.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        return view
-    }()
+    private lazy var PFCountLabel: UILabel = .init().then {
+        $0.text = "NN번의 성공, NN번의 실패"
+        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+    }
     
-    private lazy var videoCountLabel: UILabel = {
-        let view = UILabel()
-        view.text = "NNN개의 기록"
-        view.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        view.textColor = .orrGray500
-        return view
-    }()
+    private lazy var videoCountLabel: UILabel = .init().then {
+        $0.text = "NNN개의 기록"
+        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        $0.textColor = .orrGray500
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

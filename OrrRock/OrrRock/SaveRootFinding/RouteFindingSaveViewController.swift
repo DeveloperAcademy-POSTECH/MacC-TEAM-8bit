@@ -85,17 +85,15 @@ class RouteFindingSaveViewController: UIViewController {
         return button
     }()
     
-    private lazy var toastMessageView: UIView = {
-        let view = UIView()
-        view.layer.borderColor = UIColor.orrUPBlue?.cgColor
+    private lazy var toastMessageView: UIView = .init().then {
+        $0.layer.borderColor = UIColor.orrUPBlue?.cgColor
         view.layer.borderWidth = 1
         view.alpha = 1
         view.layer.cornerRadius = 15
         view.backgroundColor = .black
         view.clipsToBounds  =  true
         
-        return view
-    }()
+    }
     
     private lazy var toastMessage: UILabel = {
         let label = UILabel()
@@ -108,13 +106,11 @@ class RouteFindingSaveViewController: UIViewController {
         return label
     }()
     
-    private lazy var countVideoView:  UIView = {
-        let view = UIView()
-        view.backgroundColor = .darkGray
-        view.layer.cornerRadius = 10
+    private lazy var countVideoView: UIView = .init().then {
+        $0.backgroundColor = .darkGray
+        $0.layer.cornerRadius = 10
         
-        return view
-    }()
+    }
     
     private lazy var countVideoLabel: UILabel = {
         let label = UILabel()

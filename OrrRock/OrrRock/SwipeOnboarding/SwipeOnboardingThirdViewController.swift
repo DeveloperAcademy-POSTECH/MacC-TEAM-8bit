@@ -19,10 +19,7 @@ class SwipeOnboardingThirdViewController: UIViewController {
     let cornerRadius: CGFloat = 10
     var chekNextbuttonClick =  false
     
-    private lazy var BackgroundView: EmptyBackgroundView = {
-        let view = EmptyBackgroundView()
-        return view
-    }()
+    private lazy var BackgroundView: EmptyBackgroundView = .init()
     
     private lazy var mainImageView: UIImageView = .init().then {
         $0.image = UIImage(named: "SwipeOnboardingImage3")
@@ -53,10 +50,7 @@ class SwipeOnboardingThirdViewController: UIViewController {
         return btn
     }()
     
-    private lazy var paddigView: UIView = {
-        let view = UIView()
-        return view
-    }()
+    private lazy var paddigView: UIView = .init()
     
     override func viewDidLoad() {
         super.viewDidLoad()

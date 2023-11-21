@@ -28,10 +28,7 @@ class SwipeOnboardingFifthViewController: UIViewController {
     }()
     
     
-    private lazy var BackgroundView: EmptyBackgroundView = {
-        let view = EmptyBackgroundView()
-        return view
-    }()
+    private lazy var BackgroundView: EmptyBackgroundView = .init()
     
     private lazy var mainImageView: UIImageView = .init().then {
         $0.image = UIImage(named: "SwipeOnboardingImage5")

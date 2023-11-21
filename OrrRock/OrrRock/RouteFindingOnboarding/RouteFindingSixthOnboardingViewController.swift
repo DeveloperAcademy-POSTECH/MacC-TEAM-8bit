@@ -39,15 +39,13 @@ class RouteFindingSixthOnboardingViewController: RouteFindingOnboardingParentVie
     }()
     
     // 삭제모드 진입 시 화면 인터렉션 방지를 위한 뷰
-    private lazy var deleteView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .black.withAlphaComponent(0.4)
+    private lazy var deleteView: UIView = .init().then {
+        $0.backgroundColor = .black.withAlphaComponent(0.4)
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(cancelDeleteMode))
         view.addGestureRecognizer(gestureRecognizer)
         
-        return view
-    }()
+}
     
     private lazy var deleteButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))

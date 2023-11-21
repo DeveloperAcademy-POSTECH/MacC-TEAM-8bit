@@ -49,15 +49,12 @@ final class FirstDateSettingViewController: UIViewController , UISheetPresentati
         return btn
     }()
     
-    private lazy var dateContentView : UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrGray050
-        return view
-    }()
+    private lazy var dateContentView : UIView = .init().then {
+        $0.backgroundColor = .orrGray050
+}
     
-    private lazy var dateTopView : UIView = {
-        let view = UIView()
-        view.backgroundColor = .orrGray100
+    private lazy var dateTopView : UIView = .init().then {
+        $0.backgroundColor = .orrGray100
         
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
@@ -69,8 +66,7 @@ final class FirstDateSettingViewController: UIViewController , UISheetPresentati
             $0.centerY.equalTo(titleLabel.snp.centerY)
             $0.left.equalToSuperview().inset(15)
         }
-        return view
-    }()
+}
     
     lazy var cancelButton : UIButton = {
         let btn = UIButton()
