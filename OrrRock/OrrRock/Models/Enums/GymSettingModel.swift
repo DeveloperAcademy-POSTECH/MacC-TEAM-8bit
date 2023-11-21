@@ -2,7 +2,7 @@
 //  GymSettingModel.swift
 //  OrrRock
 //
-//  Created by Ruyha on 2022/11/03.
+//  Created by 8Bit on 2022/11/03.
 //  설정 -> 앱의 사진 권한 설정 이동 알림창 문구 열거형입니다.
 
 import Foundation

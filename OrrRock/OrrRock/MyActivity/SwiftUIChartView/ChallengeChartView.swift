@@ -2,7 +2,7 @@
 //  ChallengeChartView.swift
 //  OrrRock
 //
-//  Created by Park Sungmin on 2022/11/19.
+//  Created by 8Bit on 2022/11/19.
 //  https://tutorial101.blogspot.com/2021/08/swiftui-pie-chart.html
 
 import Charts

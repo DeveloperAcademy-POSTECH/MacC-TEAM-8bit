@@ -2,7 +2,7 @@
 //  SwipeableCardVideoView.swift
 //  OrrRock
 //
-//  Created by Yeni Hwang, 이성노 on 2022/10/22.
+//  Created by 8Bit on 2022/10/22.
 //
 
 import UIKit

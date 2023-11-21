@@ -2,7 +2,7 @@
 //  RouteFindingThumbnailCollectionViewFlowLayout.swift
 //  OrrRock
 //
-//  Created by Park Sungmin on 2022/11/25.
+//  Created by 8Bit on 2022/11/25.
 //  https://stackoverflow.com/questions/35045155/how-to-create-a-centered-uicollectionview-like-in-spotifys-player
 
 import UIKit

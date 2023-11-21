@@ -2,7 +2,7 @@
 //  NewLevelPickerView.swift
 //  OrrRock
 //
-//  Created by Ruyha on 2022/11/19.
+//  Created by 8Bit on 2022/11/19.
 //  NewLevelPickerViewDelegate 설정을 꼭 해야지만 값을 전달 받을 수 있습니다.
 //  자세한 설명은 하단 주석 참고
 //  *주의사항* 여기를 수정하실 생각이라면 컬렉션뷰로 새로 만드는것을 권장합니다.

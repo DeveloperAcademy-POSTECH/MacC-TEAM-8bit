@@ -2,7 +2,7 @@
 //  RouteFindingCollectionViewMode.swift
 //  OrrRock
 //
-//  Created by dohankim on 2022/11/25.
+//  Created by 8Bit on 2022/11/25.
 //
 
 import Foundation

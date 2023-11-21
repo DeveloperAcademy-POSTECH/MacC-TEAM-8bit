@@ -2,7 +2,7 @@
 //  VideoDetailViewController+Extensions.swift
 //  OrrRock
 //
-//  Created by dohankim on 2022/11/17.
+//  Created by 8Bit on 2022/11/17.
 //
 
 import UIKit

@@ -2,7 +2,7 @@
 //  SortTestViewController.swift
 //  OrrRock
 //
-//  Created by 황정현 on 2022/10/22.
+//  Created by 8Bit on 2022/10/22.
 //
 /// 추후 Sorting 기준이 추가될 가능성을 고려하여 삭제가 보류된 코드
 

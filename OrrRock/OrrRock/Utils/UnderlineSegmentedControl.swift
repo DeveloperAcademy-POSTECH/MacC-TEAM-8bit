@@ -2,7 +2,7 @@
 //  UnderlineSegmentedControl.swift
 //  OrrRock
 //
-//  Created by dohankim on 2022/11/24.
+//  Created by 8Bit on 2022/11/24.
 //
 
 import UIKit

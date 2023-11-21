@@ -2,7 +2,7 @@
 //  SwipeOnboardingFourthViewController.swift
 //  OrrRock
 //
-//  Created by Ruyha on 2022/11/17.
+//  Created by 8Bit on 2022/11/17.
 //
 
 import UIKit

@@ -2,7 +2,7 @@
 //  HapticManager.swift
 //  OrrRock
 //
-//  Created by dohankim on 2022/12/08.
+//  Created by 8Bit on 2022/12/08.
 //
 
 import SwiftUI

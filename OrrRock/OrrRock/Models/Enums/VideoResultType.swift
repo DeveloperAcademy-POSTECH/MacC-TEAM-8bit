@@ -2,7 +2,7 @@
 //  VideoResultType.swift
 //  OrrRock
 //
-//  Created by 이성노, Yeni Hwang on 2022/10/25.
+//  Created by 8Bit on 2022/10/25.
 //
 
 import Foundation

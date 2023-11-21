@@ -2,7 +2,7 @@
 //  VideoDetailViewController.swift
 //  OrrRock
 //
-//  Created by kimhyeongmin on 2022/10/23.
+//  Created by 8Bit on 2022/10/23.
 //
 
 import AVFoundation

@@ -2,7 +2,7 @@
 //  UnderlinedTextField.swift
 //  OrrRock
 //
-//  Created by Ruyha on 2022/10/23.
+//  Created by 8Bit on 2022/10/23.
 //  텍스트필드에 언더라인을 추가한 버전입니다.
 
 import UIKit

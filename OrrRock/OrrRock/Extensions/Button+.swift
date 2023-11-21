@@ -2,7 +2,7 @@
 //  Button+.swift
 //  OrrRock
 //
-//  Created by Ruyha on 2022/10/23.
+//  Created by 8Bit on 2022/10/23.
 //  버튼의 비활성화 상태시 색상을 선택할 수 있는 코드
 
 import UIKit

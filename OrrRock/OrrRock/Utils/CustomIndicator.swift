@@ -2,7 +2,7 @@
 //  CustomIndicator.swift
 //  OrrRock
 //
-//  Created by Ruyha on 2022/10/23.
+//  Created by 8Bit on 2022/10/23.
 //  커스텀인디게이터입니다. 자세한 설명은 하단 주석 참조
 
 import UIKit

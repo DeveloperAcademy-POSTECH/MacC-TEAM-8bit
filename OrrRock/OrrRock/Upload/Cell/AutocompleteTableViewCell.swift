@@ -2,7 +2,7 @@
 //  AutocompleteTableViewCell.swift
 //  OrrRock
 //
-//  Created by Park Sungmin on 2022/11/15.
+//  Created by 8Bit on 2022/11/15.
 //
 
 import UIKit

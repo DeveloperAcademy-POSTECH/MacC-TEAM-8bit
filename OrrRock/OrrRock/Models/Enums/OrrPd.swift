@@ -2,7 +2,7 @@
 //  OrrPadding.swift
 //  OrrRock
 //
-//  Created by Ruyha on 2022/10/20.
+//  Created by 8Bit on 2022/10/20.
 //  공통적으로 사용하는 패딩 값에 대한 열거형입니다.
 
 import Foundation

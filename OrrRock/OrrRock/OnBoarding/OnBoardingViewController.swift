@@ -2,7 +2,7 @@
 //  OnBoardingViewController.swift
 //  OrrRock
 //
-//  Created by dohankim on 2022/11/08.
+//  Created by 8Bit on 2022/11/08.
 //
 
 import UIKit

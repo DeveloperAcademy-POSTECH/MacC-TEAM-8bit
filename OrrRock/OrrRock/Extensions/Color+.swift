@@ -2,7 +2,7 @@
 //  Color+.swift
 //  OrrRock
 //
-//  Created by Ruyha on 2022/10/20.
+//  Created by 8Bit on 2022/10/20.
 //  공통적으로 사용하는 컬러값에 대한 extension입니다.
 
 import UIKit

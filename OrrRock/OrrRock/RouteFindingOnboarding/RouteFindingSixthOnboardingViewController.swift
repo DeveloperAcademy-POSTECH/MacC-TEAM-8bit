@@ -2,7 +2,7 @@
 //  RouteFindingSixthOnboardingViewController.swift
 //  OrrRock
 //
-//  Created by Park Sungmin on 2022/11/27.
+//  Created by 8Bit on 2022/11/27.
 //
 
 import UIKit

@@ -2,7 +2,7 @@
 //  UIImageView+.swift
 //  OrrRock
 //
-//  Created by Ruyha on 2022/11/18.
+//  Created by 8Bit on 2022/11/18.
 //
 
 import UIKit

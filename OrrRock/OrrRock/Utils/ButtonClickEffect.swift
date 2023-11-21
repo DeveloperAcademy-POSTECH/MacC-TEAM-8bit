@@ -2,7 +2,7 @@
 //  CustomButton.swift
 //  OrrRock
 //
-//  Created by kimhyeongmin on 2022/11/08.
+//  Created by 8Bit on 2022/11/08.
 //
 
 import UIKit

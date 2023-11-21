@@ -2,7 +2,7 @@
 //  HomeViewController+CollectionView.swift
 //  OrrRock
 //
-//  Created by Park Sungmin on 2022/10/19.
+//  Created by 8Bit on 2022/10/19.
 //
 
 import UIKit

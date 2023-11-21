@@ -2,7 +2,7 @@
 //  GymSettingViewController.swift
 //  OrrRock
 //
-//  Created by Ruyha on 2022/10/23.
+//  Created by 8Bit on 2022/10/23.
 //
 
 import PhotosUI

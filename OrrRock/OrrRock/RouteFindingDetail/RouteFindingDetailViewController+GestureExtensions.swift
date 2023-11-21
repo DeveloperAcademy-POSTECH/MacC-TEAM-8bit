@@ -2,7 +2,7 @@
 //  RouteFindingDetailViewController+GestureExtensions.swift
 //  OrrRock
 //
-//  Created by Park Sungmin on 2022/12/01.
+//  Created by 8Bit on 2022/12/01.
 //
 
 import UIKit
