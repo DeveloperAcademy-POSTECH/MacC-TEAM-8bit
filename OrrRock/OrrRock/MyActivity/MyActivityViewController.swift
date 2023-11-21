@@ -28,18 +28,11 @@ class MyActivityViewController: UIViewController {
     var totalGymVisitedDate: Int = 0
     
     // 레이아웃
-    private lazy var headerView: UIView = .init().then {
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
-        $0.addSubview(visualEffectView)
-        visualEffectView.snp.makeConstraints {
-            $0.edges.equalTo(view.snp.edges)
-        }
-        
-    }
+    private lazy var headerView: UIVisualEffectView = .init(effect: UIBlurEffect(style: .regular))
     
     private lazy var logoView: UIImageView = .init().then {
-        $0.image = UIImage(named: "orrrock_logo")
         $0.frame = CGRect(x: 0, y: 0, width: 193, height: 40)
+        $0.image = UIImage(named: "orrrock_logo")
     }
     
     
@@ -61,13 +54,10 @@ class MyActivityViewController: UIViewController {
         let contentView = UIView()
         contentView.backgroundColor = .orrGray050
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        
         return contentView
     }()
     
-    private lazy var paddingView: UIView = {
-        return UIView()
-    }()
+    private lazy var paddingView: UIView = .init()
     
     // 내 활동
     private lazy var cardTitle: UILabel = .init().then {
@@ -438,7 +428,7 @@ extension MyActivityViewController {
         
         // Header
         view.addSubview(headerView)
-        headerView.addSubview(logoView)
+        headerView.contentView.addSubview(logoView)
     }
     
     func removeLayout() {

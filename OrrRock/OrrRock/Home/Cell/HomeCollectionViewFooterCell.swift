@@ -19,9 +19,7 @@ final class HomeCollectionViewFooterCell: UICollectionReusableView {
         }
     }
     
-    private lazy var anchorView: UIView = {
-        return UIView()
-    }()
+    private lazy var anchorView: UIView = .init()
     
     private lazy var footerRoundedSquare: UIView = .init().then {
         $0.backgroundColor = .orrWhite
