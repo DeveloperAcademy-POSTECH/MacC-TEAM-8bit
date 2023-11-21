@@ -86,35 +86,27 @@ final class LevelAndPFSettingViewController: UIViewController {
         return label
     }()
     
-    private lazy var failButton: CustomButton = {
-        let button = CustomButton()
-        button.setImage(UIImage(named: "fail_icon"), for: .normal)
-        button.layer.cornerRadius = 37.0
-        button.isExclusiveTouch = true
-        button.addTarget(self, action: #selector(didFailButton), for: .touchUpInside)
-        
-        return button
-    }()
+    private lazy var failButton: CustomButton = .init().then {
+        $0.setImage(UIImage(named: "fail_icon"), for: .normal)
+        $0.layer.cornerRadius = 37.0
+        $0.isExclusiveTouch = true
+        $0.addTarget(self, action: #selector(didFailButton), for: .touchUpInside)
+    }
     
-    private lazy var deleteButton: CustomButton = {
-        let button = CustomButton()
-        button.setImage(UIImage(named: "delete"), for: .normal)
-        button.layer.cornerRadius = 37.0
-        button.isExclusiveTouch = true
-        button.addTarget(self, action: #selector(didDeleteButton), for: .touchUpInside)
-        
-        return button
-    }()
+    private lazy var deleteButton: CustomButton = .init().then {
+        $0.setImage(UIImage(named: "delete"), for: .normal)
+        $0.layer.cornerRadius = 37.0
+        $0.isExclusiveTouch = true
+        $0.addTarget(self, action: #selector(didDeleteButton), for: .touchUpInside)
+    }
     
     
-    private lazy var successButton: CustomButton = {
-        let button = CustomButton()
-        button.setImage(UIImage(named: "success_icon"), for: .normal)
-        button.layer.cornerRadius = 37.0
-        button.isExclusiveTouch = true
-        button.addTarget(self, action: #selector(didSuccessButton), for: .touchUpInside)
-        return button
-    }()
+    private lazy var successButton: CustomButton = .init().then {
+        $0.setImage(UIImage(named: "success_icon"), for: .normal)
+        $0.layer.cornerRadius = 37.0
+        $0.isExclusiveTouch = true
+        $0.addTarget(self, action: #selector(didSuccessButton), for: .touchUpInside)
+    }
     
     private lazy var videoSliderBackgroundView: UIView = .init().then {
         $0.layer.cornerRadius = 15
@@ -122,38 +114,30 @@ final class LevelAndPFSettingViewController: UIViewController {
         view.layer.zPosition = -1
     }
     
-    private lazy var videoPlayStopButton: CustomButton = {
-        let button = CustomButton()
-        button.setImage(UIImage(systemName: "pause.fill", withConfiguration: largeConfig), for: .normal)
-        button.addTarget(self, action: #selector(didVideoPlayStopButton), for: .touchUpInside)
-        button.tintColor  = .orrUPBlue
-        return button
-    }()
+    private lazy var videoPlayStopButton: CustomButton = .init().then {
+        $0.setImage(UIImage(systemName: "pause.fill", withConfiguration: largeConfig), for: .normal)
+        $0.addTarget(self, action: #selector(didVideoPlayStopButton), for: .touchUpInside)
+        $0.tintColor  = .orrUPBlue
+    }
     
-    private lazy var videoSlider: VideoSlider = {
-        let slider = VideoSlider()
-        slider.setThumbImage(UIImage(named: "sliderThumb"), for: .normal)
-        slider.setMinimumTrackImage(UIColor.orrUPBlue!.colorImage(), for: .normal)
-        slider.setMaximumTrackImage(UIColor.orrGray050!.colorImage(), for: .normal)
+    private lazy var videoSlider: VideoSlider = .init().then {
+        $0.setThumbImage(UIImage(named: "sliderThumb"), for: .normal)
+        $0.setMinimumTrackImage(UIColor.orrUPBlue!.colorImage(), for: .normal)
+        $0.setMaximumTrackImage(UIColor.orrGray050!.colorImage(), for: .normal)
         // 재생시점 조정 제스처
-        slider.addTarget(self, action: #selector(didChangedSlider(_:)), for: .valueChanged)
-        
-        return slider
-    }()
+        $0.addTarget(self, action: #selector(didChangedSlider(_:)), for: .valueChanged)
+    }
     
-    private lazy var saveButton : UIButton = {
-        let button = UIButton()
-        button.setBackgroundColor(.orrUPBlue!, for: .normal)
-        button.addTarget(self, action: #selector(tapSaveButton), for: .touchUpInside)
-        button.setTitle("완료", for: .normal)
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 10.0
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
-        button.isHidden = true
-        
-        return button
-    }()
+    private lazy var saveButton: UIButton = .init().then {
+        $0.setBackgroundColor(.orrUPBlue!, for: .normal)
+        $0.addTarget(self, action: #selector(tapSaveButton), for: .touchUpInside)
+        $0.setTitle("완료", for: .normal)
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 10.0
+        $0.setTitleColor(.white, for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
+        $0.isHidden = true
+    }
     
     private lazy var emptyBackgroundView: EmptyBackgroundView = .init()
     

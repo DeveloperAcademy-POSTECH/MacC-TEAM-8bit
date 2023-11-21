@@ -66,32 +66,23 @@ final class HomeViewController : UIViewController {
         $0.textColor = .orrBlack
     }
     
-    private let uploadButton: UIButton = {
-        let button = UIButton()
-        
+    private let uploadButton: UIButton = .init().then {
         let icon = UIImage(named: "upload icon")?.resized(to: CGSize(width: 30, height: 19)).withRenderingMode(.alwaysTemplate)
-        
-        button.setImage(icon, for: .normal)
-        button.tintColor = .orrGray600
-        
-        button.addTarget(self, action: #selector(videoButtonPressed), for: .touchUpInside)
-        
-        return button
-    }()
+        $0.setImage(icon, for: .normal)
+        $0.tintColor = .orrGray600
+        $0.addTarget(self, action: #selector(videoButtonPressed), for: .touchUpInside)
+    }
     
-    private lazy var quickActionButton: UIButton = {
-        let button = UIButton(primaryAction: UIAction(title: "", handler: { _ in}))
-        
+    private lazy var quickActionButton: UIButton = .init(primaryAction: UIAction(title: "", handler: { _ in})).then {
         let icon = UIImage(systemName: "line.3.horizontal.decrease.circle.fill")?.resized(to: CGSize(width: 25, height: 25)).withRenderingMode(.alwaysTemplate)
-        
-        button.setImage(icon, for: .normal)
-        button.tintColor = .orrGray600
+        $0.setImage(icon, for: .normal)
+        $0.tintColor = .orrGray600
         
         // QuickAction은 UIMenu() 라는 컴포넌트로 구현할 수 있음
         // 버튼의 menu에 UIMenu로 감싼 UIAction들을 담아주기
         // UIMenu는 Action에 대한 그룹핑 역할. displayInline을 빼면 폴더링이 되어 접힘
         // UIDeferredMenuElement를 통해 동적으로 UI가 변경될 수 있도록 정의
-        button.menu = UIMenu(options: .displayInline, children: [
+        $0.menu = UIMenu(options: .displayInline, children: [
             UIDeferredMenuElement.uncached { [weak self] completion in
                 let actions = [
                     UIMenu(title: "", options: .displayInline, children: [
@@ -151,10 +142,8 @@ final class HomeViewController : UIViewController {
         ])
         
         // 버튼을 눌렀을 때 메뉴를 보여주도록 설정
-        button.showsMenuAsPrimaryAction = true
-        
-        return button
-    }()
+        $0.showsMenuAsPrimaryAction = true
+    }
     
     lazy var homeTableView: UITableView = .init(frame: .zero, style: .grouped).then {
         $0.register(HomeTableViewCardCell.classForCoder(), forCellReuseIdentifier: HomeTableViewCardCell.identifier)
@@ -184,7 +173,7 @@ final class HomeViewController : UIViewController {
     private lazy var tableViewSegmentControl: BetterSegmentedControl = {
         let segControl = BetterSegmentedControl(
             frame: CGRect(x: 0.0, y: 380.0, width: 160, height: 30.0),
-            segments: IconSegment.segments(withIcons: [UIImage(systemName: "square.split.2x2.fill")!, 
+            segments: IconSegment.segments(withIcons: [UIImage(systemName: "square.split.2x2.fill")!,
                                                        UIImage(systemName:  "list.bullet")!],
                                            iconSize: CGSize(width: 24.0, height: 24.0),
                                            normalIconTintColor: .orrGray500!,

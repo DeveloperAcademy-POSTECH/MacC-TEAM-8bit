@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import PhotosUI
+import Then
 
 final class RouteFindingCameraViewController: UIViewController {
     
@@ -24,49 +25,38 @@ final class RouteFindingCameraViewController: UIViewController {
     var photoImage: UIImage? = nil
     var photoData: Data? = nil
     
-    private lazy var photosButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .white
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor(hex: "1F2528").cgColor
-        button.layer.cornerRadius = 10
-        button.clipsToBounds = true
-        
-        button.addTarget(self, action: #selector(showPhotoPicker), for: .touchUpInside)
-        return button
-    }()
+    private lazy var photosButton: UIButton = .init().then {
+        $0.backgroundColor = .white
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor(hex: "1F2528").cgColor
+        $0.layer.cornerRadius = 10
+        $0.clipsToBounds = true
+        $0.addTarget(self, action: #selector(showPhotoPicker), for: .touchUpInside)
+    }
     
-    private lazy var shutterButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .clear
-        button.layer.borderColor = UIColor(hex: "FFFFFF").cgColor
-        button.layer.borderWidth = 4
-        button.layer.cornerRadius = 37.5
-        
-        button.addTarget(self, action: #selector(capturePhoto), for: .touchUpInside)
-        return button
-    }()
+    private lazy var shutterButton: UIButton = .init().then {
+        $0.backgroundColor = .clear
+        $0.layer.borderColor = UIColor(hex: "FFFFFF").cgColor
+        $0.layer.borderWidth = 4
+        $0.layer.cornerRadius = 37.5
+        $0.addTarget(self, action: #selector(capturePhoto), for: .touchUpInside)
+    }
     
-    private lazy var noneCamreaLabel: UILabel = {
-        let label = UILabel()
-        label.text = "해당 기종에서는 카메라 사용이 불가능 합니다.\n\n 좌측하단 엘범에서 이미지를 선택해 주세요."
-        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
-        label.textColor = .white
-        label.numberOfLines = 0
-        return label
-    }()
+    private lazy var noneCamreaLabel: UILabel = .init().then {
+        $0.text = "해당 기종에서는 카메라 사용이 불가능 합니다.\n\n 좌측하단 엘범에서 이미지를 선택해 주세요."
+        $0.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        $0.textColor = .white
+        $0.numberOfLines = 0
+    }
     
-    private lazy var closeButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-        button.layer.cornerRadius = 20
+    private lazy var closeButton: UIButton = .init().then {
         let config = UIImage.SymbolConfiguration(pointSize: 24, weight: .medium, scale: .small)
         let buttonSymbol = UIImage(systemName: "xmark", withConfiguration: config)?.withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
-        button.setImage(buttonSymbol, for: .normal)
-        
-        button.addTarget(self, action: #selector(dismissRouteFinidngCameraViewController), for: .touchUpInside)
-        return button
-    }()
+        $0.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        $0.layer.cornerRadius = 20
+        $0.setImage(buttonSymbol, for: .normal)
+        $0.addTarget(self, action: #selector(dismissRouteFinidngCameraViewController), for: .touchUpInside)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

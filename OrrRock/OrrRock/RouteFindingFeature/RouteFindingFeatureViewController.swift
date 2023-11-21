@@ -82,33 +82,32 @@ final class RouteFindingFeatureViewController: UIViewController {
         view.layer.cornerRadius = 10
 }
     
-    private lazy var exitButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        button.layer.cornerRadius = 20
-        button.backgroundColor = .orrGray700
+    private lazy var exitButton: UIButton = .init().then {
         let config = UIImage.SymbolConfiguration(pointSize: 24, weight: .medium, scale: .small)
         let buttonSymbol = UIImage(systemName: "xmark", withConfiguration: config)?.withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
-        button.setImage(buttonSymbol, for: .normal)
-        button.tintColor = .orrWhite
-        button.addAction(UIAction { _ in
+        
+        $0.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        $0.layer.cornerRadius = 20
+        $0.backgroundColor = .orrGray700
+        $0.setImage(buttonSymbol, for: .normal)
+        $0.tintColor = .orrWhite
+        $0.addAction(UIAction { _ in
             self.showExitAlert()
         }, for: .touchUpInside)
-        return button
-    }()
+    }
     
-    private lazy var doneButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 64, height: 40))
-        button.layer.cornerRadius = 20
-        button.backgroundColor = .orrGray700
-        button.setTitle("완료", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        button.setTitleColor(.orrWhite, for: .normal)
-        button.setTitleColor(.orrGray500, for: .highlighted)
-        button.addAction(UIAction { _ in
+    private lazy var doneButton: UIButton = .init().then {
+        $0.frame = CGRect(x: 0, y: 0, width: 64, height: 40)
+        $0.layer.cornerRadius = 20
+        $0.backgroundColor = .orrGray700
+        $0.setTitle("완료", for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        $0.setTitleColor(.orrWhite, for: .normal)
+        $0.setTitleColor(.orrGray500, for: .highlighted)
+        $0.addAction(UIAction { _ in
             self.finishRouteFinding()
         }, for: .touchUpInside)
-        return button
-    }()
+    }
     
     private lazy var handButton: UIButton = {
         let handButton = UIButton()
@@ -151,16 +150,15 @@ final class RouteFindingFeatureViewController: UIViewController {
         
 }
     
-    private lazy var deleteButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+    private lazy var deleteButton: UIButton = .init().then {
+        $0.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         
-        button.setImage(UIImage(systemName: "minus.circle.fill")?.resized(to: CGSize(width: 26, height: 26)).withTintColor(.orrFail!, renderingMode: .alwaysTemplate), for: .normal)
-        button.addTarget(self, action: #selector(deletePage(_:)), for: .touchUpInside)
-        button.backgroundColor = .orrWhite
-        button.layer.cornerRadius = 14
-        button.tintColor = .orrFail
-        return button
-    }()
+        $0.setImage(UIImage(systemName: "minus.circle.fill")?.resized(to: CGSize(width: 26, height: 26)).withTintColor(.orrFail!, renderingMode: .alwaysTemplate), for: .normal)
+        $0.addTarget(self, action: #selector(deletePage(_:)), for: .touchUpInside)
+        $0.backgroundColor = .orrWhite
+        $0.layer.cornerRadius = 14
+        $0.tintColor = .orrFail
+    }
     
     private lazy var deleteImage: UIImageView = .init().then {
         $0.image = routeDataDraft.routeInfoForUI.imageLocalIdentifier.generateCardViewThumbnail()

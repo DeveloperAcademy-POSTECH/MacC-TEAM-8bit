@@ -50,12 +50,10 @@ class MyActivityViewController: UIViewController {
         return scrollView
     }()
     
-    private lazy var contentView: UIView = {
-        let contentView = UIView()
-        contentView.backgroundColor = .orrGray050
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        return contentView
-    }()
+    private lazy var contentView: UIView = .init().then {
+        $0.backgroundColor = .orrGray050
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     
     private lazy var paddingView: UIView = .init()
     
@@ -65,14 +63,12 @@ class MyActivityViewController: UIViewController {
         $0.font = .systemFont(ofSize: 22, weight: .bold)
     }
     
-    private lazy var cardSaveButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        button.setImage(UIImage(systemName: "square.and.arrow.up.fill", withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
-        button.tintColor = .orrGray600
-        
-        button.addTarget(self, action: #selector(tapCardSaveButton(_:)), for: .touchUpInside)
-        return button
-    }()
+    private lazy var cardSaveButton: UIButton = .init().then {
+        $0.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        $0.setImage(UIImage(systemName: "square.and.arrow.up.fill", withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
+        $0.tintColor = .orrGray600
+        $0.addTarget(self, action: #selector(tapCardSaveButton(_:)), for: .touchUpInside)
+    }
     
     private lazy var cardView: UIView = {
         var cardView = MyCardView(firstDate: self.firstDateOfClimbing, highestLevel: self.highestLevel, homeGymName: self.frequentlyVisitedGymList[0].0)

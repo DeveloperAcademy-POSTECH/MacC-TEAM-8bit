@@ -22,13 +22,11 @@ final class RouteFindingMainViewController: UIViewController {
         return label
     }()
     
-    private lazy var plusButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .bold)), for: .normal)
-        button.tintColor = .orrGray600
-        button.addTarget(self, action: #selector(tapPlusButton), for: .touchUpInside)
-        return button
-    }()
+    private lazy var plusButton: UIButton = .init().then {
+        $0.setImage(UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .bold)), for: .normal)
+        $0.tintColor = .orrGray600
+        $0.addTarget(self, action: #selector(tapPlusButton), for: .touchUpInside)
+    }
     
     lazy var segmentedControl: UnderlineSegmentedControl = {
         let control = UnderlineSegmentedControl(items: ["ALL","도전 중","도전 성공"])

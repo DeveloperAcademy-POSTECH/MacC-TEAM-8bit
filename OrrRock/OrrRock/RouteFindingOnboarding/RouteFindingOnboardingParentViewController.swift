@@ -41,18 +41,17 @@ class RouteFindingOnboardingParentViewController: UIViewController {
         $0.textAlignment = .center
     }
     
-    lazy var skipButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 64, height: 40))
-        button.layer.cornerRadius = 20
-        button.backgroundColor = .orrGray700
-        button.setTitle("SKIP", for: .normal)
-        button.setTitleColor(.orrWhite, for: .normal)
-        button.setTitleColor(.orrGray500, for: .highlighted)
-        button.addAction(UIAction { _ in
+    lazy var skipButton: UIButton = .init().then {
+        $0.frame = CGRect(x: 0, y: 0, width: 64, height: 40)
+        $0.layer.cornerRadius = 20
+        $0.backgroundColor = .orrGray700
+        $0.setTitle("SKIP", for: .normal)
+        $0.setTitleColor(.orrWhite, for: .normal)
+        $0.setTitleColor(.orrGray500, for: .highlighted)
+        $0.addAction(UIAction { _ in
             self.triggerSkipOnboarding()
         }, for: .touchUpInside)
-        return button
-    }()
+    }
     
     // MARK: Life Cycle Functions
     

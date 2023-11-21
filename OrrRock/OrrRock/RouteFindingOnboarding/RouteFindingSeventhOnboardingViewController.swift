@@ -41,18 +41,17 @@ class RouteFindingSeventhOnboardingViewController: RouteFindingOnboardingParentV
         return btn
     }()
     
-    private lazy var doneButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 64, height: 40))
-        button.layer.cornerRadius = 20
-        button.backgroundColor = .orrGray700
-        button.setTitle("완료", for: .normal)
-        button.setTitleColor(.orrWhite, for: .normal)
-        button.setTitleColor(.orrGray500, for: .highlighted)
-        button.addAction(UIAction { _ in
+    private lazy var doneButton: UIButton = .init().then {
+        $0.frame = CGRect(x: 0, y: 0, width: 64, height: 40)
+        $0.layer.cornerRadius = 20
+        $0.backgroundColor = .orrGray700
+        $0.setTitle("완료", for: .normal)
+        $0.setTitleColor(.orrWhite, for: .normal)
+        $0.setTitleColor(.orrGray500, for: .highlighted)
+        $0.addAction(UIAction { _ in
             self.triggerSkipOnboarding()
         }, for: .touchUpInside)
-        return button
-    }()
+    }
     
     // MARK: Life Cycle Functions
     

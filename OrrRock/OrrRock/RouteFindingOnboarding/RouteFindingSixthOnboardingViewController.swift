@@ -47,16 +47,14 @@ class RouteFindingSixthOnboardingViewController: RouteFindingOnboardingParentVie
         
 }
     
-    private lazy var deleteButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        
-        button.setImage(UIImage(systemName: "minus.circle.fill")?.resized(to: CGSize(width: 26, height: 26)).withTintColor(.orrFail!, renderingMode: .alwaysTemplate), for: .normal)
-        button.addTarget(self, action: #selector(deletePage(_:)), for: .touchUpInside)
-        button.backgroundColor = .orrWhite
-        button.layer.cornerRadius = 14
-        button.tintColor = .orrFail
-        return button
-    }()
+    private lazy var deleteButton: UIButton = .init().then {
+        $0.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        $0.setImage(UIImage(systemName: "minus.circle.fill")?.resized(to: CGSize(width: 26, height: 26)).withTintColor(.orrFail!, renderingMode: .alwaysTemplate), for: .normal)
+        $0.addTarget(self, action: #selector(deletePage(_:)), for: .touchUpInside)
+        $0.backgroundColor = .orrWhite
+        $0.layer.cornerRadius = 14
+        $0.tintColor = .orrFail
+    }
     
     private lazy var deleteImage: UIImageView = .init().then {
         $0.image = backgroundImage

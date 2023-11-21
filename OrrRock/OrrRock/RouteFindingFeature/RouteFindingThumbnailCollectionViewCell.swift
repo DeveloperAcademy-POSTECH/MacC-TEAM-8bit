@@ -116,13 +116,12 @@ class RouteFindingThumbnailCollectionViewAddCell: UICollectionViewCell {
     
     // MARK: View Components
     
-    private lazy var button: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: collectionViewCellSize, height: collectionViewCellSize))
-        button.setImage(UIImage(systemName: "plus.circle.fill")?.resized(to: CGSize(width: 24, height: 24)).withTintColor(.orrWhite!, renderingMode: .alwaysTemplate), for: .normal)
-        button.tintColor = .orrWhite
-        button.addTarget(self, action: #selector(tapAddButton(_:)), for: .touchUpInside)
-        return button
-    }()
+    private lazy var button: UIButton = .init().then {
+        $0.frame = CGRect(x: 0, y: 0, width: collectionViewCellSize, height: collectionViewCellSize)
+        $0.setImage(UIImage(systemName: "plus.circle.fill")?.resized(to: CGSize(width: 24, height: 24)).withTintColor(.orrWhite!, renderingMode: .alwaysTemplate), for: .normal)
+        $0.tintColor = .orrWhite
+        $0.addTarget(self, action: #selector(tapAddButton(_:)), for: .touchUpInside)
+    }
     
     // MARK: Life Cycle Functions
     

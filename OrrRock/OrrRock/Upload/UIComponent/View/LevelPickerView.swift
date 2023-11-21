@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Then
 
 protocol LevelPickerViewDelegate {
     func didLevelChanged(selectedLevel: Int)
@@ -45,18 +46,16 @@ class LevelPickerView: UIViewController, UISheetPresentationControllerDelegate {
         return picker
     }()
 
-    private lazy var saveButton : UIButton = {
-        let button = UIButton()
-        button.setBackgroundColor(.orrUPBlue ?? .red, for: .normal)
-        button.setBackgroundColor(.orrGray300 ?? .red, for: .disabled)
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 15
-        button.addTarget(self, action: #selector(tapSaveButton), for: .touchUpInside)
-        button.setTitle("저장", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
-        button.setTitleColor(.white, for: .normal)
-        return button
-    }()
+    private lazy var saveButton : UIButton = .init().then {
+        $0.setBackgroundColor(.orrUPBlue ?? .red, for: .normal)
+        $0.setBackgroundColor(.orrGray300 ?? .red, for: .disabled)
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 15
+        $0.addTarget(self, action: #selector(tapSaveButton), for: .touchUpInside)
+        $0.setTitle("저장", for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
+        $0.setTitleColor(.white, for: .normal)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

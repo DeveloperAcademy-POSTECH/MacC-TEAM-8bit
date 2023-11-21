@@ -62,28 +62,22 @@ class LevelAndPFEditViewController: UIViewController ,UISheetPresentationControl
         return label
     }()
     
-    private lazy var failCheckButton : UIButton = {
-        let button = UIButton()
-        button.clipsToBounds = true
-        button.setImage(UIImage(named: "fail_icon"), for: .normal)
-        button.addTarget(self, action: #selector(didFailButtonClicked), for: .touchUpInside)
-        return button
-    }()
+    private lazy var failCheckButton : UIButton = .init().then {
+        $0.clipsToBounds = true
+        $0.setImage(UIImage(named: "fail_icon"), for: .normal)
+        $0.addTarget(self, action: #selector(didFailButtonClicked), for: .touchUpInside)
+    }
     
-    private lazy var successCheckButton : UIButton = {
-        let button = UIButton()
-        button.clipsToBounds = true
-        button.setImage(UIImage(named: "success_icon"), for: .normal)
-        button.addTarget(self, action: #selector(didSuccessButtonClicked), for: .touchUpInside)
-        return button
-    }()
+    private lazy var successCheckButton : UIButton = .init().then {
+        $0.clipsToBounds = true
+        $0.setImage(UIImage(named: "success_icon"), for: .normal)
+        $0.addTarget(self, action: #selector(didSuccessButtonClicked), for: .touchUpInside)
+    }
     
-    private lazy var indicateLabel : UILabel = {
-        let label = UILabel()
-        label.textColor = .orrBlack
-        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        return label
-    }()
+    private lazy var indicateLabel: UILabel = .init().then {
+        $0.textColor = .orrBlack
+        $0.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+    }
     
     private lazy var saveButton : UIButton = {
         let btn = UIButton()

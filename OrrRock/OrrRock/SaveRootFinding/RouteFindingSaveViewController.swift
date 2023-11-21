@@ -26,35 +26,33 @@ class RouteFindingSaveViewController: UIViewController {
     
     let screenHeight = UIScreen.main.bounds.size.height
     
-    private lazy var exitButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        button.layer.cornerRadius = 20
-        button.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
-        button.contentVerticalAlignment = .fill
-        button.contentHorizontalAlignment = .fill
-        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
-        button.tintColor = .white
-        button.addAction(UIAction { _ in
+    private lazy var exitButton: UIButton = .init().then {
+        $0.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        $0.layer.cornerRadius = 20
+        $0.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
+        $0.contentVerticalAlignment = .fill
+        $0.contentHorizontalAlignment = .fill
+        $0.imageEdgeInsets = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
+        $0.tintColor = .white
+        $0.addAction(UIAction { _ in
             self.goBackAction()
         }, for: .touchUpInside)
         
-        return button
-    }()
+    }
     
-    private lazy var exportButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        button.layer.cornerRadius = 20
-        button.setImage(UIImage(systemName: "square.and.arrow.down.fill"), for: .normal)
-        button.contentVerticalAlignment = .fill
-        button.contentHorizontalAlignment = .fill
-        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        button.tintColor = .white
-        button.addAction(UIAction { _ in
+    private lazy var exportButton: UIButton = .init().then {
+        $0.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        $0.layer.cornerRadius = 20
+        $0.setImage(UIImage(systemName: "square.and.arrow.down.fill"), for: .normal)
+        $0.contentVerticalAlignment = .fill
+        $0.contentHorizontalAlignment = .fill
+        $0.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        $0.tintColor = .white
+        $0.addAction(UIAction { _ in
             self.saveAction()
         }, for: .touchUpInside)
         
-        return button
-    }()
+    }
     
     lazy var previewImageView: UIImageView = .init().then {
         $0.backgroundColor = .orrGray200
@@ -62,28 +60,23 @@ class RouteFindingSaveViewController: UIViewController {
         $0.clipsToBounds = true
     }
     
-    private lazy var nextButton: UIButton = {
-        let button = UIButton()
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 15
-        button.setBackgroundColor(.orrUPBlue!, for: .normal)
-        button.setTitle("저장", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-        button.addAction(UIAction { _ in
+    private lazy var nextButton: UIButton = .init().then {
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 15
+        $0.setBackgroundColor(.orrUPBlue!, for: .normal)
+        $0.setTitle("저장", for: .normal)
+        $0.setTitleColor(.white, for: .normal)
+        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        $0.addAction(UIAction { _ in
             self.pressNextButton()
         }, for: .touchUpInside)
         
-        return button
-    }()
+    }
     
-    private lazy var skipButton: UIButton = {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(pressSkipButton), for: .touchUpInside)
-        button.setAttributedTitle("저장하지 않을래요".underLineAttribute(color: UIColor(hex: "#969696")), for: .normal)
-        
-        return button
-    }()
+    private lazy var skipButton: UIButton = .init().then {
+        $0.addTarget(self, action: #selector(pressSkipButton), for: .touchUpInside)
+        $0.setAttributedTitle("저장하지 않을래요".underLineAttribute(color: UIColor(hex: "#969696")), for: .normal)
+    }
     
     private lazy var toastMessageView: UIView = .init().then {
         $0.layer.borderColor = UIColor.orrUPBlue?.cgColor

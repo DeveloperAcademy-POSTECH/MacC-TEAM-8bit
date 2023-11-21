@@ -21,31 +21,28 @@ class RouteFindingGymSaveViewController: UIViewController {
     var filteredVisitedGymList: [VisitedClimbingGym] = []
     var maxTableViewCellCount: Int = 0
     
-    private lazy var exitButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        button.layer.cornerRadius = 20
-        button.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
-        button.contentVerticalAlignment = .fill
-        button.contentHorizontalAlignment = .fill
-        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
-        button.tintColor = .white
-        button.addAction(UIAction { _ in
+    private lazy var exitButton: UIButton = .init().then {
+        $0.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        $0.layer.cornerRadius = 20
+        $0.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
+        $0.contentVerticalAlignment = .fill
+        $0.contentHorizontalAlignment = .fill
+        $0.imageEdgeInsets = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
+        $0.tintColor = .white
+        $0.addAction(UIAction { _ in
             self.goBackAction()
         }, for: .touchUpInside)
         
-        return button
-    }()
+    }
     
-    let gymNameLabel : UILabel = {
-        let label = UILabel()
-        label.text = "방문한 클라이밍장을 입력해주세요"
-        label.font = UIFont.boldSystemFont(ofSize: 22)
-        label.textColor = .orrBlack
-        label.backgroundColor = .orrWhite
-        return label
-    }()
+    let gymNameLabel: UILabel = .init().then {
+        $0.text = "방문한 클라이밍장을 입력해주세요"
+        $0.font = UIFont.boldSystemFont(ofSize: 22)
+        $0.textColor = .orrBlack
+        $0.backgroundColor = .orrWhite
+    }
     
-    let gymTextField : UnderlinedTextField = .init().then {
+    lazy var gymTextField : UnderlinedTextField = .init().then {
         $0.borderStyle = .none
         $0.placeholder = "클라이밍장을 입력해주세요"
         $0.tintColor = .orrUPBlue
@@ -54,18 +51,15 @@ class RouteFindingGymSaveViewController: UIViewController {
         $0.addTarget(self, action: #selector(searchGymName(textField:)), for: .editingChanged)
     }
     
-    let nextButton : UIButton = {
-        let button = UIButton()
-        button.setBackgroundColor(.orrUPBlue!, for: .normal)
-        button.setBackgroundColor(.orrGray300!, for: .disabled)
-        button.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
-        button.setTitle("다음", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
-        button.setTitleColor(.white, for: .normal)
-        button.isEnabled = false
-        
-        return button
-    }()
+    lazy var nextButton: UIButton = .init().then {
+        $0.setBackgroundColor(.orrUPBlue!, for: .normal)
+        $0.setBackgroundColor(.orrGray300!, for: .disabled)
+        $0.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
+        $0.setTitle("다음", for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
+        $0.setTitleColor(.white, for: .normal)
+        $0.isEnabled = false
+    }
     
     lazy var autocompleteTableView: UITableView = {
         let tableView = UITableView()

@@ -88,32 +88,26 @@ final class RouteInfoView: UIView {
         return label
     }()
     
-    private lazy var dateEditButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("편집", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.setTitleColor(UIColor.systemBlue.withAlphaComponent(0.3), for: .highlighted)
-        button.addTarget(self, action: #selector(dateEdit), for: .touchUpInside)
-        return button
-    }()
+    private lazy var dateEditButton: UIButton = .init().then {
+        $0.setTitle("편집", for: .normal)
+        $0.setTitleColor(.systemBlue, for: .normal)
+        $0.setTitleColor(UIColor.systemBlue.withAlphaComponent(0.3), for: .highlighted)
+        $0.addTarget(self, action: #selector(dateEdit), for: .touchUpInside)
+    }
     
-    private lazy var gymNameEditButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("편집", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.setTitleColor(UIColor.systemBlue.withAlphaComponent(0.3), for: .highlighted)
-        button.addTarget(self, action: #selector(gymNameEdit), for: .touchUpInside)
-        return button
-    }()
+    private lazy var gymNameEditButton: UIButton = .init().then {
+        $0.setTitle("편집", for: .normal)
+        $0.setTitleColor(.systemBlue, for: .normal)
+        $0.setTitleColor(UIColor.systemBlue.withAlphaComponent(0.3), for: .highlighted)
+        $0.addTarget(self, action: #selector(gymNameEdit), for: .touchUpInside)
+    }
     
-    private lazy var levelPFEditButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("편집", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.setTitleColor(UIColor.systemBlue.withAlphaComponent(0.3), for: .highlighted)
-        button.addTarget(self, action: #selector(levelPFEdit), for: .touchUpInside)
-        return button
-    }()
+    private lazy var levelPFEditButton: UIButton = .init().then {
+        $0.setTitle("편집", for: .normal)
+        $0.setTitleColor(.systemBlue, for: .normal)
+        $0.setTitleColor(UIColor.systemBlue.withAlphaComponent(0.3), for: .highlighted)
+        $0.addTarget(self, action: #selector(levelPFEdit), for: .touchUpInside)
+    }
     
     // MARK: Life Cycle Functions
     

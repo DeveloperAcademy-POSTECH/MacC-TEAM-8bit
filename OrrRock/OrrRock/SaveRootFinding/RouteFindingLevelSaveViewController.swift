@@ -18,20 +18,18 @@ final class RouteFindingLevelSaveViewController: UIViewController {
     
     private var currentSelectedLevel = 0
     
-    private lazy var exitButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        button.layer.cornerRadius = 20
-        button.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
-        button.contentVerticalAlignment = .fill
-        button.contentHorizontalAlignment = .fill
-        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
-        button.tintColor = .white
-        button.addAction(UIAction { _ in
+    private lazy var exitButton: UIButton = .init().then {
+        $0.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        $0.layer.cornerRadius = 20
+        $0.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
+        $0.contentVerticalAlignment = .fill
+        $0.contentHorizontalAlignment = .fill
+        $0.imageEdgeInsets = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
+        $0.tintColor = .white
+        $0.addAction(UIAction { _ in
             self.goBackAction()
         }, for: .touchUpInside)
-        
-        return button
-    }()
+    }
     
     let gymNameLabel : UILabel = {
         let label = UILabel()
@@ -53,18 +51,15 @@ final class RouteFindingLevelSaveViewController: UIViewController {
         $0.tintColor = .orrGray500
     }
     
-    let nextButton : UIButton = {
-        let button = UIButton()
-        button.setBackgroundColor(.orrUPBlue!, for: .normal)
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 15
-        button.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
-        button.setTitle("저장", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
-        button.setTitleColor(.white, for: .normal)
-        
-        return button
-    }()
+    let nextButton: UIButton = .init().then {
+        $0.setBackgroundColor(.orrUPBlue!, for: .normal)
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 15
+        $0.addTarget(self, action: #selector(pressNextButton), for: .touchUpInside)
+        $0.setTitle("저장", for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
+        $0.setTitleColor(.white, for: .normal)
+    }
     
     init(routeDataDraft: RouteDataDraft, backgroundImage: UIImage) {
         self.routeDataDraft = routeDataDraft

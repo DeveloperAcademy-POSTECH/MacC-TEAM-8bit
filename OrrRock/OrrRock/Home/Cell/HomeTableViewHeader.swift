@@ -53,7 +53,6 @@ extension HomeTableViewHeader {
             $0.top.equalToSuperview().inset(5)
         }
         
-        
         contentView.addSubview(roundCornerView)
         roundCornerView.snp.makeConstraints {
             $0.width.equalTo(contentView.snp.width)

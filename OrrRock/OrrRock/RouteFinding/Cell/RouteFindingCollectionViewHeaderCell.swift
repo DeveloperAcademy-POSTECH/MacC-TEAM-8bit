@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Then
 
 final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
     static let id = "RouteFindingCollectionViewHeaderCell"
@@ -20,14 +21,12 @@ final class RouteFindingCollectionViewHeaderCell: UICollectionReusableView {
         return label
     }()
     
-    let subTitleButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("버튼", for: .normal)
-        button.setTitleColor(UIColor.orrGray400, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .bold)
-        button.addTarget(self, action: #selector(buttonTouch), for: .touchUpInside)
-        return button
-    }()
+    let subTitleButton: UIButton = .init().then {
+        $0.setTitle("버튼", for: .normal)
+        $0.setTitleColor(UIColor.orrGray400, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .bold)
+        $0.addTarget(self, action: #selector(buttonTouch), for: .touchUpInside)
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
